@@ -8,8 +8,8 @@
 // @grant        none
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js
 // @license      MIT
-// @downloadURL  https://github.com/thakyZ/Userscripts/raw/master/mhw_wiki_remove_twitch/mhw_wiki_remove_twitch.user.js
-// @updateURL    https://github.com/thakyZ/Userscripts/raw/master/mhw_wiki_remove_twitch/mhw_wiki_remove_twitch.user.js
+// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/mhw_wiki_remove_twitch/mhw_wiki_remove_twitch.user.js
+// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/mhw_wiki_remove_twitch/mhw_wiki_remove_twitch.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
