@@ -8,8 +8,8 @@
 // @grant        none
 // @license      MIT
 // @grant        none
-// @downloadURL  https://github.com/thakyZ/Userscripts/raw/master/adfocus_link_remover/adfocus_link_remover.user.js
-// @updateURL    https://github.com/thakyZ/Userscripts/raw/master/adfocus_link_remover/adfocus_link_remover.user.js
+// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/adfocus_link_remover/adfocus_link_remover.user.js
+// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/adfocus_link_remover/adfocus_link_remover.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
