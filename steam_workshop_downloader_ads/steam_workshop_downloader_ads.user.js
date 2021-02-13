@@ -3,7 +3,7 @@
 // @namespace    NekoBoiNick.SteamWorkshopDownloader.AdBlocker
 // @version      0.1
 // @description  Block ads from appearing on Steam Workshop Downloader
-// @author       thakyZ
+// @author       Neko Boi Nick
 // @match        https://*steamworkshopdownloader.io/*
 // @grant        none
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js
