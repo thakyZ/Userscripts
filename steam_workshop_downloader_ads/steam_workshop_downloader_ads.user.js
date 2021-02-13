@@ -8,8 +8,8 @@
 // @grant        none
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js
 // @license      MIT
-// @downloadURL  https://github.com/thakyZ/Userscripts/raw/master/steam_workshop_downloader_ads/steam_workshop_downloader_ads.user.js
-// @updateURL    https://github.com/thakyZ/Userscripts/raw/master/steam_workshop_downloader_ads/steam_workshop_downloader_ads.user.js
+// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/steam_workshop_downloader_ads/steam_workshop_downloader_ads.user.js
+// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/steam_workshop_downloader_ads/steam_workshop_downloader_ads.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
