@@ -7,8 +7,8 @@
 // @match        https://www.avorion.net/*
 // @license      MIT
 // @grant        none
-// @downloadURL  https://github.com/thakyZ/Userscripts/raw/master/avorion_forum_fixes/avorion_forum_fixes.user.js
-// @updateURL    https://github.com/thakyZ/Userscripts/raw/master/avorion_forum_fixes/avorion_forum_fixes.user.js
+// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/avorion_forum_fixes/avorion_forum_fixes.user.js
+// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/avorion_forum_fixes/avorion_forum_fixes.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
