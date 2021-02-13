@@ -7,8 +7,8 @@
 // @match        *://*.reddit.com/*
 // @license      MIT
 // @grant        none
-// @downloadURL  https://github.com/thakyZ/Userscripts/raw/master/no_old_reddit/no_old_reddit.user.js
-// @updateURL    https://github.com/thakyZ/Userscripts/raw/master/no_old_reddit/no_old_reddit.user.js
+// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/no_old_reddit/no_old_reddit.user.js
+// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/no_old_reddit/no_old_reddit.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
