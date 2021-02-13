@@ -21,6 +21,10 @@
 // @run-at       document-start
 // @require      https://raw.githubusercontent.com/SloaneFox/code/master/GM4_registerMenuCommand_Submenu_JS_Module.js
 // @require      https://raw.github.com/odyniec/MonkeyConfig/master/monkeyconfig.js
+// @downloadURL  https://github.com/thakyZ/Userscripts/raw/master/speed_test_redirect/speed_test_redirect.user.js
+// @updateURL    https://github.com/thakyZ/Userscripts/raw/master/speed_test_redirect/speed_test_redirect.user.js
+// @supportURL   https://github.com/thakyZ/Userscripts/issues
+// @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
 
 /* globals MonkeyConfig */
