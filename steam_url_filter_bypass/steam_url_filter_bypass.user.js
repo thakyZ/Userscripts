@@ -7,8 +7,8 @@
 // @match        https://steamcommunity.com/linkfilter/*
 // @license      MIT
 // @grant        none
-// @downloadURL  https://github.com/thakyZ/Userscripts/raw/master/steam_url_filter_bypass/steam_url_filter_bypass.user.js
-// @updateURL    https://github.com/thakyZ/Userscripts/raw/master/steam_url_filter_bypass/steam_url_filter_bypass.user.js
+// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/steam_url_filter_bypass/steam_url_filter_bypass.user.js
+// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/steam_url_filter_bypass/steam_url_filter_bypass.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
