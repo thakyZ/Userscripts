@@ -7,8 +7,8 @@
 // @match        https://isthereanydeal.com/*
 // @license      MIT
 // @grant        none
-// @downloadURL  https://github.com/thakyZ/Userscripts/raw/master/fanatical_remove_ad_site/fanatical_remove_ad_site.user.js
-// @updateURL    https://github.com/thakyZ/Userscripts/raw/master/fanatical_remove_ad_site/fanatical_remove_ad_site.user.js
+// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/fanatical_remove_ad_site/fanatical_remove_ad_site.user.js
+// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/fanatical_remove_ad_site/fanatical_remove_ad_site.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
