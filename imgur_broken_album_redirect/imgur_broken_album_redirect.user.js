@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         Imgur Broken Album Redirect Script
 // @namespace    NekoBoiNick.Imgur.BrokenAlbum
-// @version      0.1
+// @version      0.2
 // @description  Redirects the favorited albums to a working link
 // @author       NekoBoiNick
 // @match        https://imgur.com/user/*
 // @grant        none
+// @license      MIT
 // @run-at       document-end
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js
 // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
