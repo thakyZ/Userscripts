@@ -7,8 +7,8 @@
 // @match        http://ffsrchmgr.com/*
 // @license      MIT
 // @grant        none
-// @downloadURL  https://github.com/thakyZ/Userscripts/raw/master/cheat_engine_bypass_website/cheat_engine_bypass_website.user.js
-// @updateURL    https://github.com/thakyZ/Userscripts/raw/master/cheat_engine_bypass_website/cheat_engine_bypass_website.user.js
+// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/cheat_engine_bypass_website/cheat_engine_bypass_website.user.js
+// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/cheat_engine_bypass_website/cheat_engine_bypass_website.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
