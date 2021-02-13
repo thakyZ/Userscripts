@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam Workshop Downloader Ad Blocker
-// @namespace    nekoboinick.steamworkshopdownloader.adblocker
+// @namespace    NekoBoiNick.SteamWorkshopDownloader.AdBlocker
 // @version      0.1
 // @description  Block ads from appearing on Steam Workshop Downloader
 // @author       thakyZ
