@@ -10,8 +10,8 @@
 // @run-at       document-end
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js
 // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
-// @downloadURL  https://github.com/thakyZ/Userscripts/raw/master/imgur_broken_album_redirect/imgur_broken_album_redirect.user.js
-// @updateURL    https://github.com/thakyZ/Userscripts/raw/master/imgur_broken_album_redirect/imgur_broken_album_redirect.user.js
+// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/imgur_broken_album_redirect/imgur_broken_album_redirect.user.js
+// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/imgur_broken_album_redirect/imgur_broken_album_redirect.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
