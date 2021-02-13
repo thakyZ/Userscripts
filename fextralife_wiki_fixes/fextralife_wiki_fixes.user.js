@@ -11,8 +11,8 @@
 // @compatible   firefox
 // @compatible   chrome
 // @license      MIT
-// @downloadURL  https://github.com/thakyZ/Userscripts/raw/master/fextralife_wiki_fixes/fextralife_wiki_fixes.user.js
-// @updateURL    https://github.com/thakyZ/Userscripts/raw/master/fextralife_wiki_fixes/fextralife_wiki_fixes.user.js
+// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/fextralife_wiki_fixes/fextralife_wiki_fixes.user.js
+// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/fextralife_wiki_fixes/fextralife_wiki_fixes.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
