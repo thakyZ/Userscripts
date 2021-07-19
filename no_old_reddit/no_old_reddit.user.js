@@ -19,6 +19,11 @@
     var regex = new RegExp("^https?:\\/\\/(np|old)\.reddit\.com","g")
     var i;
     for (i = 0; i < x.length; i++) {
+      if (x[i].hasAttribute("href") && x[i].href.match(regex)) {
         x[i].href = x[i].href.replace(regex,"https://reddit.com");
+      }
+      if (x[i].innerText.match(regex)) {
+        x[i].innerText = x[i].innerText.replace(regex,"https://reddit.com");
+      }
     }
 })();
