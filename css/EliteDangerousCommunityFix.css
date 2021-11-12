@@ -1,0 +1,4 @@
+@-moz-document domain("community.elitedangerous.com") {
+@import url('https://community.elitedangerous.com/sites/EDSITE_COMM/themes/bootstrap/bootstrap_community/css/webfonts/eurostileltpro.woff.css');
+body { font-family: "EurostileLTPro" !important; }
+}
