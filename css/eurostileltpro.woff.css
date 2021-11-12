@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'EurostileLTPro';
+  src: url("https://www.dropbox.com/s/wqs1nxvbwesxiub/EurostileLTPro-400.woff?dl=1") format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'EurostileLTPro';
+  src: url("https://www.dropbox.com/s/exso34c1nolr6aa/EurostileLTPro-700.woff?dl=1") format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
