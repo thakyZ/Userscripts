@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Snopes Remove TP Module
 // @namespace    NekoBoiNick.Snopes.TPModule
-// @version      1.0.0
+// @version      1.0.1
 // @description  Removes Snopes' Stupid TP Module
 // @author       Neko Boi Nick
 // @match        https://www.snopes.com/*
