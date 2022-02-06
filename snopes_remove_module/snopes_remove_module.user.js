@@ -20,7 +20,7 @@
   var otherSearchClasses = [".tp-modal",".tp-modal-open",".tp-banner",".tp-active"];
   var checked_for_classes = false;
   var classesHidden = 0;
-  var debug = true;
+  var debug = false;
 
   var getClasses = function() {
     var test = [];
