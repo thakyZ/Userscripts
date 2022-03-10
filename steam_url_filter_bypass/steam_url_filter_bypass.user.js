@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Steam Url Filter Bypasser
-// @namespace    NekoBoiNick.Steam.UrlFilterBypass
-// @version      0.2
+// @namespace    NekoBoiNick.Web.Steam.UrlFilterBypass
+// @version      0.3.0
 // @description  Simple script to bypass steam url filter.
 // @author       Neko Boi Nick
-// @match        https://steamcommunity.com/linkfilter/*
+// @match        https://steamcommunity.com/*
 // @license      MIT
 // @grant        none
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/steam_url_filter_bypass/steam_url_filter_bypass.user.js
@@ -16,7 +16,16 @@
 (function() {
   'use strict';
 
-  var regex = new RegExp("^https:\\/\\/steamcommunity.com\\/linkfilter\\/\\?url=","g");
+  var regex = new RegExp("^https:\\/\\/steamcommunity.com\\/linkfilter\\/","g");
 
-  window.location.assign(window.location.href.replace(regex,""));
+  if (window.location.href.includes("/linkfilter/")) {
+    var location = window.location.href;
+
+    if (window.location.href.includes("\?url=")) {
+      location = location.replace(/\?url=/g, "");
+    }
+
+    console.log(`Transfering to: https://${location.replace(regex,"")}`);
+    window.location.assign(`https://${location.replace(regex,"")}`);
+  }
 })();
