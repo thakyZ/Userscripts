@@ -8,13 +8,10 @@
 // @match           *://minecraft.curseforge.com/mc-mods/*
 // @exclude         *://minecraft.curseforge.com/projects/
 // @icon            https://github.com/thakyZ/Userscripts/raw/master/curseforge_redirect/curse-icon.png
-// @compatible      firefox
-// @compatible      chrome
 // @downloadURL     https://raw.githubusercontent.com/thakyz/Userscripts/master/curseforge_redirect/curseforge_redirect.user.js
 // @updateURL       https://raw.githubusercontent.com/thakyz/Userscripts/master/curseforge_redirect/curseforge_redirect.user.js
 // @supportURL      https://github.com/thakyZ/Userscripts/issues
 // @homepageURL     https://github.com/thakyZ/Userscripts
-// @contributionURL https://paypal.me/thakyZ
 // @grant           none
 // @noframes
 // ==/UserScript==
