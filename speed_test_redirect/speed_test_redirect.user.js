@@ -2,7 +2,7 @@
 // @name         Speed Test Redirect
 // @namespace    NekoBoiNick.Web.Search.SpeedTest
 // @copyright    2021, Neko Boi Nick
-// @version      0.1
+// @version      1.0.0
 // @license      MIT
 // @description  Redirects the search engine to a proper speed test site.
 // @author       Neko Boi Nick
