@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Speed Test Redirect
-// @namespace    NekoBoiNick.Search.SpeedTest
+// @namespace    NekoBoiNick.Web.Search.SpeedTest
 // @copyright    2021, Neko Boi Nick
 // @version      0.1
 // @license      MIT
@@ -26,7 +26,6 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-
 /* globals MonkeyConfig */
 
 (function() {
