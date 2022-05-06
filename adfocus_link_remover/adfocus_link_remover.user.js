@@ -21,6 +21,8 @@
   var regex = new RegExp("^https?:\\/\\/adfoc.us\\/serve\\/sitelinks\\/\\?id=\\d*&url=","g")
   var i;
   for (i = 0; i < x.length; i++) {
-    x[i].href = x[i].href.replace(regex,"");
+    if (x[i].href.match(regex)) {
+      x[i].href = x[i].href.replace(regex,"");
+    }
   }
 })();
