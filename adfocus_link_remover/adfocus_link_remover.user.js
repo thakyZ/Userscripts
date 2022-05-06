@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Adfocus Link Remover
 // @namespace    NekoBoiNick.Global.AdFocusLinkRemover
-// @version      0.1
+// @version      1.0.1
 // @description  Removes AdFocus redirects if possible.
 // @author       Neko Boi Nick
 // @match        *
