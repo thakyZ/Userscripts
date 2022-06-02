@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nexus Mods Copy Author Name
 // @namespace    NekoBoiNick.Web.NexusMods.CopyAuthorName
-// @version      1.0.1
+// @version      1.0.2
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.nexusmods.com/*/mods/*
@@ -19,7 +19,7 @@ $(document).ready(function() {
   var uploaderInfo = $("#fileinfo .sideitem")[3];
   var infos = [ creatorInfo, uploaderInfo ];
   var createObjects = function(e, i) {
-    var tempButton = `<style>#action-${e}{position: relative;margin-left: 100px;margin-top: -35px;}#action-${e}::marker{content:none;}#action-copycreatorname .inline-flex .icon{margin: 0 2px 0 2px;}</style>
+    var tempButton = `<style>#action-${e}{position: relative;margin-left: 100px;margin-top: -35px;}#action-${e}::marker{content:none;}#action-${e} .inline-flex .icon{margin: 0 2px 0 2px;}</style>
     <li style="" id="action-${e}">
       <a class="btn inline-flex" href="#" tabindex="0">
         <svg title="" class="icon icon-files">
