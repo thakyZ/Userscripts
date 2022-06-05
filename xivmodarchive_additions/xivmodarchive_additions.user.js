@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         XIV Mod Archive Additions
 // @namespace    NekoBoiNick.Web.XIVModArchive.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds custom things to XIV Mod Archive
 // @author       Neko Boi Nick
 // @match        https://www.xivmodarchive.com/*
@@ -46,14 +46,26 @@ $(function() {
     });
   }
   var getDoMin = function() {
-    if ($($($(".pagination")[0]).children("li")[0]).text() != "1") {
+    var pagination = $(".pagination")[0];
+    var paginationChildren = $(pagination).children("li");
+    if ($($(paginationChildren)[0]).text() !== "1") {
+      if ($($(paginationChildren)[1]).text() === "1" && $($(paginationChildren)[0]).text() === "Previous") {
+        return false;
+      }
       return true;
     }
     return false;
   }
-  var getDoMax = function() {
-    if ($($($(".pagination")[0]).children("li")[$($(".pagination")[0]).children("li").length - 1]).text() === "Next") {
-      return true;
+  var getDoMax = function(num) {
+    var pagination = $(".pagination")[0];
+    var paginationChildren = $(pagination).children("li");
+    var paginationChildLength = $(paginationChildren).length;
+    if ($($(paginationChildren)[paginationChildLength - 1]).text() === "Next") {
+      if ($($(paginationChildren)[paginationChildLength - 1]).text() === "Next" && $($(paginationChildren)[paginationChildLength - 2]).text() === `${num}`) {
+        return false;
+      } else {
+        return true;
+      }
     }
     return false;
   }
@@ -82,9 +94,20 @@ $(function() {
         pages = pages;
       }
     }
-    CreateFirstLastNavElements(pages, getDoMin(), getDoMax());
+    CreateFirstLastNavElements(pages, getDoMin(), getDoMax(pages));
   }
   getNumberOfPages();
+  var CreateCustomStyles = function() {
+    var styles = `
+    .page-number {
+      width: auto !important;
+      min-width: 2.5rem;
+    }`;
+    var styleElement = document.createElement("style");
+    $(styleElement).html(styles);
+    $("head").append(styleElement);
+  }
+  CreateCustomStyles();
 
   var CreateCopyName = function() {
     var downloadsColumn = $($("div.container.my-3.mod-page div.row:first-child div.col-4")[1]).parent();
