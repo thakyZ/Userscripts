@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name         XIV Mod Archive Additions
 // @namespace    NekoBoiNick.Web.XIVModArchive.Additions
-// @version      1.0.1
+// @version      1.0.2
 // @description  Adds custom things to XIV Mod Archive
 // @author       Neko Boi Nick
+// @match        https://xivmodarchive.com/*
 // @match        https://www.xivmodarchive.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=xivmodarchive.com
 // @grant        none
@@ -113,8 +114,8 @@ $(function() {
     var downloadsColumn = $($("div.container.my-3.mod-page div.row:first-child div.col-4")[1]).parent();
     var copyNameButton = document.createElement("div");
     $(copyNameButton).css("position", "absolute");
-    $(copyNameButton).css("left", "1450px");
-    $(copyNameButton).css("top", "115px");
+    $(copyNameButton).css("left", "calc(50% + 565px)");
+    $(copyNameButton).css("top", "72px");
     var copyNameButtonAnchor = document.createElement("a");
     $(copyNameButtonAnchor).attr("href", "#");
     var copyNameButtonButton = document.createElement("button");
