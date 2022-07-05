@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Twitch Remove Prime Notifications
 // @namespace    NekoBoiNick.Web.TwitchPrime.NotifRM
-// @version      1.0.0
+// @version      1.0.1
 // @description  Remove Twitch's notifications for Prime.
 // @author       Neko Boi Nick
 // @match        https://www.twitch.tv/*
-// @icon         https://www.google.com/s2/favicons?domain=twitch.tv
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=twitch.tv
 // @grant        none
 // @license      MIT
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/twitch_prime_notifs/twitch_prime_notifs.user.js
@@ -18,7 +18,7 @@
   'use strict';
 
   var otherSearchClasses = [".prime-offers > div:last-child",".prime-offers__pill"];
-  var twitchFrontPageSystem = ".featured-content-carousel__item-container--center > div > video";
+  var twitchFrontPageSystem = ".featured-content-carousel__item-container--center video";
   var checked_for_classes = false;
   var classesHidden = 0;
   var debug = false;
@@ -58,17 +58,24 @@
   setInterval(() => { if (checked_for_classes) checked_for_classes = false; }, 5000);
 
   var pauseMainVideo = function() {
-    if (window.location.href.mathc(/^https?:\/\/(www.)?twitch.tv(\/)?$/)) {
-      var video = document.quereySelector(twitchFrontPageSystem);
-      video.on("play", function() {
+    if (window.location.href.match(/^https?:\/\/(www.)?twitch.tv(\/)?$/)) {
+      var video = document.querySelector(twitchFrontPageSystem);
+      video.onplay = function() {
         video.pause();
-      });
+      };
     }
   }
 
   var waited = false;
 
-  pauseMainVideo();
+  let id = -1;
+  id = setInterval(function(){
+    let div = document.querySelector(twitchFrontPageSystem);
+    if (div) {
+      pauseMainVideo();
+      clearInterval(id);
+    }
+  }, 2500);
 
   var runCommands = function() {
     [...Array.from(getClasses()).forEach((element, index, array) => {
