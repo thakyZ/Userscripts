@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FFXIV Squadron App
 // @namespace    NekoBoiNick.Web.FFXIVSquadron.SaveLoad
-// @version      1.0.0
+// @version      1.0.1
 // @description  Syncs Fish Tracking to soupcat
 // @author       Neko Boi Nick
 // @match        http://ffxivsquadron.com/*
