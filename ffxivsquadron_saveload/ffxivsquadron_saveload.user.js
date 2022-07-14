@@ -11,8 +11,8 @@
 // @grant        GM_deleteValue
 // @grant        GM_listValues
 // @grant        GM_registerMenuCommand
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxovsquadron_saveload/ffxovsquadron_saveload.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxovsquadron_saveload/ffxovsquadron_saveload.user.js
+// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxivsquadron_saveload/ffxivsquadron_saveload.user.js
+// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxivsquadron_saveload/ffxivsquadron_saveload.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
