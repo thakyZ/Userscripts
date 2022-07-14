@@ -5,6 +5,7 @@
 // @description  Simple script to bypass steam url filter.
 // @author       Neko Boi Nick
 // @match        https://steamcommunity.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=steamcommunity.com
 // @license      MIT
 // @grant        none
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/steam_url_filter_bypass/steam_url_filter_bypass.user.js
