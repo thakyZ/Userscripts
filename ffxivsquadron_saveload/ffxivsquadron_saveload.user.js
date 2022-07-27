@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         FFXIV Squadron App
 // @namespace    NekoBoiNick.Web.FFXIVSquadron.SaveLoad
-// @version      1.0.2
+// @version      1.0.3
 // @description  Syncs Fish Tracking to soupcat
 // @author       Neko Boi Nick
-// @match        http://ffxivsquadron.com/*
+// @match        https://www.ffxivsquadron.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=ffxivsquadron.com
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -23,13 +23,12 @@ var DateSaveName = "FFXIVSquadronApp.Date";
 
 $(document).ready(function() {
   let getSettings = function() {
-    return btoa(JSON.stringify(sqMissionSolver.getSquadron()[sqMissionSolver.activeSquadron]));
+    return btoa(localStorage.getItem('squadron'));
   };
   let setSettings = function(settings) {
     try {
       // Apply the imported settings now.
-      sqMissionSolver.getSquadron()[sqMissionSolver.activeSquadron] = JSON.parse(atob(settings));
-      localStorage.setItem('squadron', JSON.stringify(sqMissionSolver.getSquadron()));
+      localStorage.setItem('squadron', atob(settings));
       // Update the display to update the squadron table as well.
       sqMissionSolver.load();
     } catch (e) {
