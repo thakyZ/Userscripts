@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bad Twitter No Intrests
 // @namespace    NekoBoiNick.Web.Twitter.NoIntrests
-// @version      1.0.0
+// @version      1.0.1
 // @description  Disables all of what Twitter thinks you are intrested in.
 // @author       Neko Boi Nick
 // @require      https://code.jquery.com/jquery-3.6.0.min.js
@@ -15,32 +15,44 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
 /* global $ */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
-(function() {
-  'use strict';
+$(document).ready(function () {
   let id = -1;
-  const timer = ms => new Promise(res => setTimeout(res, ms))
-  var runTest = async function(div) {
+  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+  var runTest = async function (div) {
     for (var i = 0; i < $(div).length - 1; i++) {
-      if ($($(div)[i]).prev().eq(0).children(".css-1dbjc4n").hasClass("r-l5o3uw")) {
+      if (
+        $($(div)[i]).prev().eq(0).children(".css-1dbjc4n").hasClass("r-l5o3uw")
+      ) {
         $(div)[i].click();
         await timer(5000);
       }
     }
-  }
-  var runIntrestBlocker = function() {
-    id = setInterval(async function(){
-      var div = $(".css-1dbjc4n.r-kemksi.r-ymttw5.r-1yzf0co .css-1dbjc4n.r-lrvibr input");
+  };
+  var runIntrestBlocker = function () {
+    id = setInterval(async function () {
+      var div = $(
+        ".css-1dbjc4n.r-kemksi.r-ymttw5.r-1yzf0co .css-1dbjc4n.r-lrvibr input"
+      );
       if (div.length > 0) {
         runTest(div);
         clearInterval(id);
       }
     }, 1000);
-  }
-  GM_registerMenuCommand('Run this now', function() {
-    runIntrestBlocker();
-  }, 'r');
-  GM_registerMenuCommand('Stop', function() {
-    clearInterval(id);
-  }, 'r');
-})();
+  };
+  GM_registerMenuCommand(
+    "Run this now",
+    function () {
+      runIntrestBlocker();
+    },
+    "r"
+  );
+  GM_registerMenuCommand(
+    "Stop",
+    function () {
+      clearInterval(id);
+    },
+    "r"
+  );
+});
