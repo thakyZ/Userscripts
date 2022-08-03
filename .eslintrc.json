@@ -1,0 +1,15 @@
+{
+  "root": true,
+  "rules": {
+    "comma-dangle": "off"
+  },
+  "parserOptions": {
+    "ecmaVersion": 13,
+    "sourceType": "script"
+  },
+  "env": {
+    "greasemonkey": true,
+    "jquery": true,
+    "browser": true
+  }
+}

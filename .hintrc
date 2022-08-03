@@ -1,0 +1,10 @@
+{
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": ["@-moz-document"]
+      }
+    ]
+  }
+}
