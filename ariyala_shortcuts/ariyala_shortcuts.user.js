@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ariyala's FFXIV Toolkit Bookmarks
 // @namespace    NekoBoiNick.Web.AriyalaFFXIV.Shortcuts
-// @version      1.0.0
+// @version      1.0.1
 // @license      MIT
 // @description  Adds a small box for shortcuts on the Wiki.
 // @author       Neko Boi Nick
@@ -16,84 +16,73 @@
 // ==/UserScript==
 /* global $ */
 
-(function() {
-  'use strict';
-  var jsonconfig = {
-    "items": [
-      {
-        "icon": "BLU",
-        "name": "Lvl 60",
-        "url": "1DEGU",
-        "id": "blu_level_60_melds"
-      }
-    ]
+let jsonConfig = {
+  items: [
+    {
+      icon: "BLU",
+      name: "Lvl 60",
+      url: "1DEGU",
+      id: "blu_level_60_melds",
+    },
+  ],
+};
+
+$(document).ready(function () {
+  const styleElement = (i) => {
+    return `<style>
+  .tray {
+    position: fixed;
+    min-height: 20px;
+    min-width: 75px;
+    left: 0px;
+    top: calc(50% - 35px);
+    border-style: solid;
+    border-left-width: 0;
+    border-right-width: 2px;
+    border: ;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-color: #3c3c3c;
+    box-shadow: 0px 0px 5px 4px rgba(0, 0, 0, 0.7);
   }
-  $(document).ready(function() {
-    var item = [];
-    $.each(jsonconfig.items, function(key, value) {
-      var tempElement = document.createElement("div");
-      $(tempElement).addClass("tray_item");
-      $(tempElement).attr("id", `${value.id}`);
-      var tempLink = document.createElement("a");
-      $(tempLink).attr("href", `${value.url}`);
-      $(tempLink).attr("id", `${value.id}_link`);
-      $(tempLink).append(`${value.name}`);
-      var tempIcon = document.createElement("div");
-      $(tempIcon).addClass("menuIcon");
-      $(tempIcon).attr("style", `background-image: url("https://cdn.ariyala.com/ffxiv/images/classes/${value.icon}.png");`);
-      $(tempLink).append(tempIcon);
-      $(tempElement).append(tempLink);
-      item.push(tempElement);
-    });
-    var tray = document.createElement("div");
-    $(tray).addClass("tray");
-    $(tray).attr("id", "bookmarks");
-    $("#body").append(tray);
-    $.each(item, function(key, value) {
-      $("#bookmarks").append(value);
-    });
+
+  tray_item {
+    position: relative;
+  }
+
+  .tray_item {
+    position: relative;
+    display: block;
+  }
+
+  .tray_item a {
+    padding: 0 10px 0 25px;
+    display: block;
+    text-align: left;
+    position: relative;
+    line-height: 20px;
+    height: 20px;
+    white-space: nowrap;
+  }
+
+  .tray_item a:hover {
+    background: url("/images/style/menuEntry.png");
+  }
+</style>`;
+  };
+  let item = [];
+  const templateItem = (i) => {
+    return `<div class="tray_item" id="${i.id}"><div class="menuIcon" style="background-image: url("https://cdn.ariyala.com/ffxiv/images/classes/${i.icon}.png");"></div><a href="${i.url}" id="${i.id}">${i.name}</a></div>`;
+  };
+  $.each(jsonConfig.items, function (key, value) {
+    item.push(templateItem(value));
   });
-  var css = document.createElement("style");
-  var appendedCSS = `
-.tray {
-  position: fixed;
-  min-height: 20px;
-  min-width: 75px;
-  left: 0px;
-  top: calc(50% - 35px);
-  border-style: solid;
-  border-left-width: 0;
-  border-right-width: 2px;
-  border: ;
-  border-top-width: 2px;
-  border-bottom-width: 2px;
-  border-color: #3c3c3c;
-  box-shadow: 0px 0px 5px 4px rgba(0, 0, 0, 0.7);
-}
-
-tray_item {
-  position: relative;
-}
-
-.tray_item {
-  position: relative;
-  display: block;
-}
-
-.tray_item a {
-  padding: 0 10px 0 25px;
-  display: block;
-  text-align: left;
-  position: relative;
-  line-height: 20px;
-  height: 20px;
-  white-space: nowrap;
-}
-
-.tray_item a:hover {
-  background: url("/images/style/menuEntry.png");
-}
-`
- css.append(appendedCSS);
- $("head").append(css);
-})();
+  const templateTray = () => {
+    return `<div class="tray" id="bookmarks"></div>`;
+  };
+  $("#body").append(templateTray());
+  $.each(item, function (key, value) {
+    $("#bookmarks").append(value);
+  });
+  $("head").append(css);
+});
