@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name         Adfocus Link Remover
 // @namespace    NekoBoiNick.Global.AdFocusLinkRemover
-// @version      1.0.1
+// @version      1.0.2
 // @description  Removes AdFocus redirects if possible.
 // @author       Neko Boi Nick
 // @match        *
-// @grant        none
 // @license      MIT
 // @grant        none
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/adfocus_link_remover/adfocus_link_remover.user.js
@@ -14,15 +13,14 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
 
-(function() {
-  'use strict';
+(function () {
+  "use strict";
 
-  var x = document.getElementsByTagName("a");
-  var regex = new RegExp("^https?:\\/\\/adfoc.us\\/serve\\/sitelinks\\/\\?id=\\d*&url=","g")
-  var i;
-  for (i = 0; i < x.length; i++) {
-    if (x[i].href.match(regex)) {
-      x[i].href = x[i].href.replace(regex,"");
+  var links = document.getElementsByTagName("a");
+  var regex = /^https?:\/\/adfoc.us\/serve\/sitelinks\/\?id=\d*&url=/g;
+  for (let i = 0; i < links.length; i++) {
+    if (links[i].href.match(regex)) {
+      links[i].href = links[i].href.replace(regex, "");
     }
   }
 })();
