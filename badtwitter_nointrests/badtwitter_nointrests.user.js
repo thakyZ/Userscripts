@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Bad Twitter No Intrests
 // @namespace    NekoBoiNick.Web.Twitter.NoIntrests
-// @version      1.0.1
+// @version      1.0.2
 // @description  Disables all of what Twitter thinks you are intrested in.
 // @author       Neko Boi Nick
 // @require      https://code.jquery.com/jquery-3.6.0.min.js
-// @match        https://twitter.com/*
+// @match        https://twitter.com/settings/your_twitter_data/twitter_interests
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
 // @grant        unsafeWindow
 // @grant        GM_registerMenuCommand
@@ -14,7 +14,7 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $ */
+/* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(function () {
@@ -22,9 +22,10 @@ $(document).ready(function () {
   const timer = (ms) => new Promise((res) => setTimeout(res, ms));
   var runTest = async function (div) {
     for (var i = 0; i < $(div).length - 1; i++) {
-      if (
-        $($(div)[i]).prev().eq(0).children(".css-1dbjc4n").hasClass("r-l5o3uw")
-      ) {
+      if (id === -1) {
+        break;
+      }
+      if ($($(div)[i]).prev().eq(0).children().find("svg").length > 0) {
         $(div)[i].click();
         await timer(5000);
       }
@@ -32,9 +33,7 @@ $(document).ready(function () {
   };
   var runIntrestBlocker = function () {
     id = setInterval(async function () {
-      var div = $(
-        ".css-1dbjc4n.r-kemksi.r-ymttw5.r-1yzf0co .css-1dbjc4n.r-lrvibr input"
-      );
+      var div = $('input[type="checkbox"]');
       if (div.length > 0) {
         runTest(div);
         clearInterval(id);
@@ -52,6 +51,7 @@ $(document).ready(function () {
     "Stop",
     function () {
       clearInterval(id);
+      id = -1;
     },
     "r"
   );
