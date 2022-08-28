@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gamer Escape Additions
 // @namespace    NekoBoiNick.Web.FFXIV.GamerEscape.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds new features to Gamer Escape
 // @author       Neko Boi Nick
 // @match        https://ffxiv.gamerescape.com/wiki/*
@@ -162,6 +162,25 @@ $(document).ready(() => {
           $(this).css({"border":convert});
         }
       }
+      if ($(this).is("table") && !$(this).hasClass("wikitable") && $(this).css("background-color") === "rgb(212, 214, 203)") {
+        if ($(this).attr("style").toString().match(/Background:\s?(#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
+          convert = $(this).css("background").toString().replace(/rgb\(\d+, \d+, \d+\)/, darkerWhite);
+          $(this).css({"background":convert});
+        }
+      }
+      if ($(this).is("th")) {
+        if ($(this).css("background-color") === "rgb(212, 214, 203)") {
+          if ($(this).attr("style").toString().match(/background:\s?(#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
+            convert = $(this).css("background").toString().replace(/rgb\(\d+, \d+, \d+\)/, lighterWhite);
+            $(this).css({"background":convert});
+          }
+        } else if ($(this).css("background-color") === "rgb(229, 231, 217)") {
+          if ($(this).attr("style").toString().match(/background:\s?(#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
+            convert = $(this).css("background").toString().replace(/rgb\(\d+, \d+, \d+\)/, darkerWhite);
+            $(this).css({"background":convert});
+          }
+        }
+      }
       if ($(this).css("color") === "rgb(0, 0, 0)") {
         $(this).css({"color":"white"});
       }
@@ -172,6 +191,54 @@ $(document).ready(() => {
         }
       }
     });
+    const RGBtoHSL = (rgb) => {
+      // Choose correct separator
+      let sep = rgb.indexOf(",") > -1 ? "," : " ";
+      // Turn "rgb(r,g,b)" into [r,g,b]
+      rgb = rgb.substr(4).split(")")[0].split(sep);
+      let r = rgb[0];
+      let g = rgb[1];
+      let b = rgb[2];
+      // Make r, g, and b fractions of 1
+      r /= 255;
+      g /= 255;
+      b /= 255;
+      // Find greatest and smallest channel values
+      let cmin = Math.min(r,g,b),
+          cmax = Math.max(r,g,b),
+          delta = cmax - cmin,
+          h = 0,
+          s = 0,
+          l = 0;
+      // Calculate hue
+      // No difference
+      if (delta == 0) {
+        h = 0;
+      }
+      // Red is max
+      else if (cmax = r) {
+        h = ((g - b) / delta) % 6;
+      }
+      else if (cmax == g) {
+        h = (b - r) / delta + 2;
+      }
+      else {
+        h = (r - g) / delta + 4;
+      }
+      h = Math.round(h * 60);
+      // Make negative hues positive behind 360°
+      if (h < 0) {
+        h += 360;
+      }
+      // Calculate lightness
+      l = (cmax + cmin) / 2;
+      // Calculate saturation
+      s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+      // Multiply l and s by 100
+      s = +(s * 100).toFixed(1);
+      l = +(l * 100).toFixed(1);
+      return "hsl(" + h + "," + s + "%," + l + "%)";
+    };
     $("#additions-style")
 .text(`${$("#additions-style").text()}
   table.datatable-GEtable3 tr, table.GEtable tr {
@@ -205,6 +272,17 @@ $(document).ready(() => {
   }
   table.datatable-GEtable tr, table.GEtable tr {
     background-color: ${darkerWhite};
+  }
+  table[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37, 37, 38); color: white;"]:not(.wikitable) tbody tbody tr:first-child,
+  table[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37, 37, 38); color: white;"]:not(.wikitable) tbody tbody tr:first-child a {
+    color: #101010;
+  }
+  .dark .content div.thumbinner, .dark .nav-page-actions a div.thumbinner, html .dark .content .thumbimage  {
+    background-color: ${darkerWhite};
+    border-color: #000;
+  }
+  html .dark font[color="black"] {
+    color: #fff !important;
   }
 `);
   }
