@@ -6,6 +6,7 @@
 // @author       Neko Boi Nick
 // @match        https://garlandtools.org/db/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=garlandtools.org
+// @license      MIT
 // @grant        GM_setClipboard
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/garlandtools_additions/garlandtools_additions.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/garlandtools_additions/garlandtools_additions.user.js
