@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FFLogs To XIV Analysis
 // @namespace    NekoBoiNick.Web.FFLogs.ButtonToXIVAnalysis
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds a button to FFLogs reports to redirect to XIV Analysis
 // @author       Neko Boi Nick
 // @match        https://www.fflogs.com/reports/*
@@ -66,10 +66,27 @@ $(document).ready(() => {
   createCSS();
   $("#stream-count-box").after(createButton());
   $("#goto-xivanalysis > button").on("click", () => {
-    var regex = new RegExp(/https:\/\/(www\.)?fflogs.com\/reports\/([a-zA-Z0-9]+)(#.*)?/g);
-    if (window.location.href.match(regex)) {
-      var computed = window.location.href.replace(regex, "$2");
-      var win = window.open(`https://xivanalysis.com/fflogs/${computed}`, "_blank");
+    const SiteRegex = new RegExp(/https:\/\/(www\.)?fflogs.com\/reports\/([a-zA-Z0-9]+)(#.*)?/g);
+    const FightRegex = new RegExp(/[#&]fight=(\d{1,})/g);
+    const SourceRegex = new RegExp(/[#&]source=(\d{1,})/g);
+    const location = window.location.href;
+    if (location.match(SiteRegex)) {
+      let computed = `https://xivanalysis.com/fflogs/${window.location.href.replace(SiteRegex, "$2")}`;
+      if (location.match(FightRegex)) {
+        try {
+          computed = `${computed}/${parseInt(location.match(FightRegex)[0].replace(FightRegex, "$1"))}`;
+        } catch (e) {
+          console.error({message:"Failed to parse fight int",stack:e});
+        }
+      }
+      if (location.match(SourceRegex)) {
+        try {
+          computed = `${computed}/${parseInt(location.match(SourceRegex)[0].replace(SourceRegex, "$1"))}`;
+        } catch (e) {
+          console.error({message:"Failed to parse source int",stack:e});
+        }
+      }
+      let win = window.open(computed, "_blank");
       if (win) {
         win.focus();
       } else {
