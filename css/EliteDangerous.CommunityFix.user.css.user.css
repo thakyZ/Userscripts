@@ -1,19 +1,17 @@
 /* ==UserStyle==
-@name           Elite Dangerous Community News Font Fix
-@namespace      NekoBoiNick.Web.EliteDangerous.Community.FontFix
+@name           Elite Dangerous Community Fix
+@namespace      NekoBoiNick.Web.EliteDangerous.CommunityFix
 @version        1.0.0
-@description    Fixes the font not loading on the Elite Dangerous Community News page.
+@description    Fixes font issue on the Elite Dangerous Community Website
 @author         Neko Boi Nick
 @license        MIT
-@downloadURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/css/EliteDangerousCommunityFix.user.css
-@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/EliteDangerousCommunityFix.user.css
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/EliteDangerous.CommunityFix.user.css
 @supportURL     https://github.com/thakyZ/Userscripts/issues
 @homepageURL    https://github.com/thakyZ/Userscripts
 ==/UserStyle== */
 
 @-moz-document domain("community.elitedangerous.com") {
   @import url('https://community.elitedangerous.com/sites/EDSITE_COMM/themes/bootstrap/bootstrap_community/css/webfonts/eurostileltpro.woff.css');
-
   body {
     font-family: "EurostileLTPro" !important;
   }
