@@ -1,0 +1,29 @@
+/* ==UserStyle==
+@name           FFXIV Squadron
+@namespace      NekoBoiNick.Web.FFXIVSquadron.Style
+@version        1.0.0
+@description    Modifications to FFXIV Squadron App
+@author         Neko Boi Nick
+@license        MIT
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/ffxivsquadron.app.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+
+@-moz-document regexp("https:\\/\\/(www\\.)?ffxivsquadron\\.com\\/") {
+  body {
+    background: #ebe8e5;
+  }
+  
+  body.dark {
+    background: #242424;
+  }
+  
+   body.dark #top-announcement a {
+    color: #6BE1D5;
+  }
+  
+   body.dark #footer a {
+    color: #90FFFF;
+  }
+}
