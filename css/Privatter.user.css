@@ -1,0 +1,35 @@
+/* ==UserStyle==
+@name           Privatter
+@namespace      NekoBoiNick.Web.Privatter.CSS
+@version        1.0.0
+@description    Changes some things on privatter.net
+@author         Neko Boi Nick
+@license        MIT
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/Privatter.user.css
+@homepageURL    https://github.com/thakyZ/Userscripts
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+==/UserStyle== */
+@-moz-document domain("privatter.net") {
+  .navbar-brand,
+  .caret {
+    color: #0C0C0D !important;
+  }
+
+  .nav-tabs > li.active > a > svg,
+  .nav-tabs > li.active > a {
+    color: #F9F9FA !important;
+  }
+
+
+  a[href="/adcookie.php"] {
+    display: none;
+  }
+
+  a[href="/theme/ceruleen"] {
+    content: "light theme";
+  }
+
+  a[href="/theme/darkly"] {
+    content: "dark theme";
+  }
+}
