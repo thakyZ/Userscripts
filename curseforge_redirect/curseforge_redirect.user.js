@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Curse Forge Redirect
 // @namespace       NekoBoiNick.Curseforge.Redirect
-// @version         1.0.0
+// @version         1.0.1
 // @description     Redirect Method to redirect to the better curse forge page dedicated to the game you are looking at.
 // @author          Neko Boi Nick
 // @match           *://www.curseforge.com/minecraft/*
@@ -25,6 +25,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 
 // Disable any banner with giveaways, as I personally do not want to sign up for them. But only if they contain "Win Awesome Prizes" otherwise others are fine.
 let disable_banner = true;
+const bannerTitles = ["The Official Mod Hub for", "win awesome prizes"];
 
 $(document).ready(function () {
   const regexp1 = /^(https?:\/\/)(www)(\.curseforge\.com\/)(minecraft\/)(.+)\/(.+)$/i;
@@ -39,9 +40,13 @@ $(document).ready(function () {
     window.location.href = urlrep;
   }
   const disableBanner = () => {
-    if ($("html head ~ div a").text().includes("win awesome prizes")) {
-      $("html head ~ div").css({"display": "none"});
-    }
+    bannerTitles.forEach(function(e) {
+      if ($("html head ~ div a").length > 0 && $("html head ~ div a").text().includes(e)) {
+        $("html head ~ div").css({"display": "none"});
+      } else if ($("#banner").length > 0 && $("#banner .banner-content p").text().includes(e)) {
+        $("#banner").css({"display": "none"});
+      }
+    });
   };
   if (disable_banner) {
     disableBanner();
