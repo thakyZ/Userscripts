@@ -1,0 +1,26 @@
+/* ==UserStyle==
+@name           CurseForge Custom CSS
+@namespace      NekoBoiNick.Web.CurseForge.Custom
+@version        1.0.0
+@description    Custom CurseForge CSS
+@author         Neko Boi Nick
+@license        MIT
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/CurseForge_Custom.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+
+@-moz-document domain("curseforge.com") {
+  html head ~ div a {
+    color: #212121;
+  }
+  html head ~ div a:hover {
+    color: #212121;
+  }
+  html head ~ div svg path {
+    fill: #000 !important;
+  }
+  textarea {
+    color: #212121;
+  }
+}
