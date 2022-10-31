@@ -9,27 +9,26 @@
 @supportURL     https://github.com/thakyZ/Userscripts/issues
 @homepageURL    https://github.com/thakyZ/Userscripts
 ==/UserStyle== */
-
 @-moz-document domain("aex.dev.azure.com") {
   :root {
-  --communication-background: rgb(32, 31, 30);
-  --background-color: rgb(37, 36, 35);
-  --text-primary-color: rgba(255, 255, 255, 0.95);
-  --text-secondary-color: rgba(255, 255, 255, 0.55);
-  --communication-foreground: rgb(184, 216, 255);
-  --palette-neutral-4: var(--communication-background);
-}
+    --communication-background: rgb(32, 31, 30);
+    --background-color: rgb(37, 36, 35);
+    --text-primary-color: rgba(255, 255, 255, 0.95);
+    --text-secondary-color: rgba(255, 255, 255, 0.55);
+    --communication-foreground: rgb(184, 216, 255);
+    --palette-neutral-4: var(--communication-background);
+  }
 
-select {
-  color: var(--text-primary-color);
-}
+  select {
+    color: var(--text-primary-color);
+  }
 
-#ux-footer {
-  background-color: var(--communication-background);
-  color: var(--text-secondary-color);
-}
+  #ux-footer {
+    background-color: var(--communication-background);
+    color: var(--text-secondary-color);
+  }
 
-#ux-footer #fourColumnFooter .listTitle {
-  color: var(--text-secondary-color);
-}
+  #ux-footer #fourColumnFooter .listTitle {
+    color: var(--text-secondary-color);
+  }
 }
