@@ -1,0 +1,68 @@
+/* ==UserStyle==
+@name           Pillowfort Social Chages
+@namespace      NekoBoiNick.Web.PillowfortSocial.Changes
+@version        1.0.0
+@description    Various chages to Pillowfort
+@author         Neko Boi Nick
+@license        MIT
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/PillowfortSocial_Changes.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+@-moz-document domain("pillowfort.social") {
+  .blog-home-button {
+    background-image: url("https://img3.pillowfort.social/avatars/000/000/003/original/pf-tumblr-icon-sq.png");
+    background-size: 41px 41px;
+    background-position: 0px 0px;
+    border-radius: 100%;
+    border: #FFF 2px solid;
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+@-moz-document url("https://www.pillowfort.social/nekoboinick") {
+  .user-sidebar {
+    box-shadow: rgba(0, 0, 0, 0.5) 2px 0px 4px 0px !important;
+    border-right: none !important;
+  }
+
+  .separator {
+    margin: 0px !important;
+    height: 0px !important;
+    border-bottom: none !important;
+  }
+
+  div.title:not([class^="title ng-binding"]),
+  .header,
+  .media,
+  .post-nav,
+  .timestamp {
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px 0px !important;
+  }
+
+  .util-buttons {
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px 0px !important;
+    height: 50px !important;
+    padding-top: 12.5px !important;
+  }
+
+  .util-buttons span {
+    background: #212121 !important;
+    width: 35px !important;
+    height: 35px !important;
+    line-height: 35px !important;
+    display: inline-block !important;
+    padding: 5px !important;
+    border-radius: 5px !important;
+  }
+
+  .util-buttons span.ng-scope {
+    display: none !important;
+  }
+
+  .user-sidebar div img[alt="Beta ribbon"] {
+    margin-top: 10px;
+  }
+}
