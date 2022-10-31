@@ -1,0 +1,57 @@
+/* ==UserStyle==
+    @name           Wondrous Tails Solver Dark
+    @namespace      NekoBoiNick.Web.WonderusTailsSolver.Dark
+    @version        1.0.0
+    @description    Makes the Wondrous Tails Solver dark mode.
+    @author         Neko Boi Nick
+    @license        MIT
+    @updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/WonderusTailsSolver_Dark.user.css
+    @supportURL     https://github.com/thakyZ/Userscripts/issues
+    @homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+
+@-moz-document url("http://ffxiv.morpheusz.com/p/wondrous-tails-solver.html") {
+  :root {
+    --color-bg-dark-0: #181818;
+    --color-bg-dark-1: #202020;
+    --color-bg-dark-2: #242424;
+    --color-fg-dark-0: #dcdcdc;
+    --color-fg-dark-1: #eeeeee;
+  }
+  body {
+    background: var(--color-bg-dark-0);
+  }
+  .bg-photo, .bg-photo-container, .bg-photo-overlay, .sidebar-container, .sidebar-container .sidebar_bottom {
+    background: none;
+  }
+  #ads, .post .post-body div center iframe {
+    display: none;
+  }
+  .Blog .blog-posts .post-outer-container, .sticky {
+    background: var(--color-bg-dark-1);
+  }
+  .post-title, h3, .image-attribution {
+    color: var(--color-fg-dark-0);
+  }
+  .Attribution svg {
+    fill: var(--color-fg-dark-0);
+  }
+  .post-body {
+    color: var(--color-fg-dark-1);
+  }
+  .sep div input.icon {
+    filter: invert(1);
+  }
+  #strategy, #second_chance, button {
+    background: var(--color-bg-dark-2);
+  }
+  #rex th, #prob th, #sim th {
+    color: var(--color-bg-dark-0);
+  }
+  a, a:hover, a:visited, .Attribution a, .Attribution a:visited, .Attribution a:hover {
+    color: #0fc;
+  }
+  header.sticky {
+    display: none;
+  }
+}
