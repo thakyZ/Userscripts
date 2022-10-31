@@ -1,0 +1,55 @@
+/* ==UserStyle==
+  @name           XIV Analysis Dark
+  @namespace      NekoBoiNick.Web.XIVAnalysis.Dark
+  @version        1.0.0
+  @description    Makes XIV Analysis darkmode
+  @author         Neko Boi Nick
+  @license        MIT
+  @updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/XIVAnalysis_Dark.user.css
+  @supportURL     https://github.com/thakyZ/Userscripts/issues
+  @homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+
+@-moz-document domain("xivanalysis.com") {
+  :root {
+    --background: #212121;
+    --text: #eee;
+    --background2: #111;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--text);
+  }
+  .ui.header, .ui.header .sub.header, .ui.styled.accordion .active.title,
+  a, .ui.styled.accordion .title:hover, .ui.styled.accordion .title, 
+  .Suggestions-module_extra__3kAoW, .ui.message, .ui.table thead th, .ui.table,
+  .ui.checkbox label, .ui.popup, .ui.dropdown .menu .active.item, .ui.dropdown .menu .item {
+    color: var(--text);
+  }
+  .SegmentLinkItem-module_active__3hnz9, .ui.warning.message,
+  .ui.styled.accordion, .ui.message, .ui.table thead th, .ui.table,
+  .ui.popup, .ui.dropdown .menu {
+    background-color: var(--background2);
+  }
+  .ui.warning.message {
+    color: #FD0;
+  }
+  .ui.progress {
+    background-color: var(--background);
+  }
+  .App-module_content__5sF6- h2, .ReportFlow-module_link__3tGdS:hover {
+    color: #000;
+  }
+  .Container-module_container__aGcIa .ReportFlow-module_group__OZsy9 h2 {
+    color: var(--text) !important;
+  }
+  .ui.table td.positive, .ui.table tr.positive {
+    background-color: #aeffae !important;
+  }
+  .ui.table td.negative, .ui.table tr.negative {
+    background-color: #ffaeae !important;
+  }
+ /* .ui.label {
+    filter: invert(100%);
+  }*/
+}
