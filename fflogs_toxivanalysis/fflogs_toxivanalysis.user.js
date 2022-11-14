@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FFLogs To XIV Analysis
 // @namespace    NekoBoiNick.Web.FFLogs.ButtonToXIVAnalysis
-// @version      1.0.2
+// @version      1.0.3
 // @description  Adds a button to FFLogs reports to redirect to XIV Analysis
 // @author       Neko Boi Nick
 // @match        https://www.fflogs.com/reports/*
@@ -13,7 +13,7 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $ */
+/* global $, fights */
 
 $(document).ready(() => {
   var mainMenu = $("#main-menu");
@@ -87,25 +87,47 @@ $(document).ready(() => {
   .xivanalysis-btn:hover .xivanalysis-text {
     color: #fff;
   }
+  .xivanalysis-ply-btn-box {
+    border: none !important;
+    padding: 0 !important;
+    min-width: 22px !important;
+  }
+  .xivanalysis-plyr-btn {
+    cursor: pointer;
+    max-height: 15px;
+    min-width: 18px;
+    min-height: 18px;
+    display: block !important;
+    padding: 2px;
+    border: 1px solid #323232;
+    border-radius: 4px;
+  }
+  .xivanalysis-plyr-btn:hover {
+    background: linear-gradient(90deg, #144662 0%, #13784D 100%);
+  }
 </style>`);
   };
   createCSS();
   $($(".report-bar-top-right-section").children()[0]).before(createButton());
   $(".goto-xivanalysis > .xivanalysis-btn").on("click", () => {
-    const SiteRegex = new RegExp(/https:\/\/(www\.)?fflogs.com\/reports\/([a-zA-Z0-9]+)(#.*)?/g);
-    const FightRegex = new RegExp(/[#&]fight=(\d{1,})/g);
+    const SiteRegex = new RegExp(/https:\/\/(www\.)?fflogs.com\/reports\/([a-zA-Z0-9]+)\/?(#.*)?/g);
+    const FightRegex = new RegExp(/[#&]fight=(\d{1,}|last)/g);
     const SourceRegex = new RegExp(/[#&]source=(\d{1,})/g);
     const location = window.location.href;
-    if (location.match(SiteRegex)) {
+    if (location.match(SiteRegex) !== null) {
       let computed = `https://xivanalysis.com/fflogs/${window.location.href.replace(SiteRegex, "$2")}`;
-      if (location.match(FightRegex)) {
+      if (location.match(FightRegex) !== null) {
         try {
-          computed = `${computed}/${parseInt(location.match(FightRegex)[0].replace(FightRegex, "$1"))}`;
+          let fightNumber = parseInt(location.match(FightRegex)[0].replace(FightRegex, "$1"));
+          if (location.match(FightRegex)[0].replace(FightRegex, "$1") === "last") {
+            fightNumber = fights.length;
+          }
+          computed = `${computed}/${fightNumber}`;
         } catch (e) {
           console.error({message:"Failed to parse fight int",stack:e});
         }
       }
-      if (location.match(SourceRegex)) {
+      if (location.match(SourceRegex) !== null) {
         try {
           computed = `${computed}/${parseInt(location.match(SourceRegex)[0].replace(SourceRegex, "$1"))}`;
         } catch (e) {
@@ -120,4 +142,77 @@ $(document).ready(() => {
       }
     }
   });
+
+  const SetupMutationObserver = () => {
+    const targetNode = $("#report-view-contents")[0];
+    const config = { attributes: true, childList: true, subtree: true };
+
+    const callback = (mutationList, observer) => {
+      for (const mutation of mutationList) {
+        if (mutation.type === 'attributes' && $(mutation.target).attr("class") === "summary-table report dataTable") {
+          const WhichTab = () => {
+            if ($("a:contains(\"Damage Done\").filter-type-tab.drop", $("#filter-type-tabs")).attr("class").split(" ").includes("selected")) {
+              return { type: 0, check: true };
+            } else if ($("a:contains(\"Healing\").filter-type-tab.drop", $("#filter-type-tabs")).attr("class").split(" ").includes("selected")) {
+              return { type: 1, check: true };
+            } else if ($("a:contains(\"Damage Taken\").filter-type-tab.drop", $("#filter-type-tabs")).attr("class").split(" ").includes("selected")) {
+              return { type: 2, check: true };
+            } else {
+              return { type: -1, check: false };
+            }
+          };
+          if (WhichTab().check && ($("span#filter-source-text").text() === "All Sources" || $("span#filter-source-text").text() === "All Friendlies")) {
+            $("table.summary-table.report.dataTable tbody tr td.main-table-name.report-table-name", $("#summary")).each(function(i, e) {
+              if ($(this).text().includes("Limit Break")) {
+                return;
+              }
+              if ($("tr td", $(this)).length === 2) {
+                const xivAnalysisBtn = $(`<td class="xivanalysis-ply-btn-box"><div class="xivanalysis-plyr-btn xivanalysis-icon" id="icon-9-0-5"></td>`);
+                $(xivAnalysisBtn).insertAfter($("tr td", $(this))[$("tr td", $(this)).length - 1]);
+                $(xivAnalysisBtn).on("click", function() {
+                  const SiteRegex = new RegExp(/https:\/\/(www\.)?fflogs.com\/reports\/([a-zA-Z0-9]+)\/?(#.*)?/g);
+                  const FightRegex = new RegExp(/[#&]fight=(\d{1,}|last)/g);
+                  const location = window.location.href;
+                  if (location.match(SiteRegex) !== null) {
+                    let computed = `https://xivanalysis.com/fflogs/${window.location.href.replace(SiteRegex, "$2")}`;
+                    let sourceId = 0;
+                    try {
+                      sourceId = parseInt($($(this).parents("td.main-table-name.report-table-name").parent()).attr("id").split("-")[3]);
+                    } catch (e) {
+                      console.error({message:"Failed to parse source int",stack:e});
+                    }
+                    if (location.match(FightRegex) !== null) {
+                      try {
+                        let fightNumber = parseInt(location.match(FightRegex)[0].replace(FightRegex, "$1"));
+                        if (location.match(FightRegex)[0].replace(FightRegex, "$1") === "last") {
+                          fightNumber = fights.length;
+                        }
+                        computed = `${computed}/${fightNumber}/${sourceId}`;
+                      } catch (e) {
+                        console.error({message:"Failed to parse fight int",stack:e});
+                      }
+                    }
+                    let win = window.open(computed, "_blank");
+                    if (win) {
+                      win.focus();
+                    } else {
+                      alert("Please allow popups for this website");
+                    }
+                  }
+                });
+              }
+            });
+          }
+        }
+      }
+    };
+    const observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
+
+    $(document).on("unload", function() {
+      observer.disconnect();
+    });
+  };
+
+  SetupMutationObserver();
 });
