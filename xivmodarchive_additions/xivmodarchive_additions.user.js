@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         XIV Mod Archive Additions
 // @namespace    NekoBoiNick.Web.XIVModArchive.Additions
-// @version      1.0.4
+// @version      1.0.5
 // @description  Adds custom things to XIV Mod Archive
 // @author       Neko Boi Nick
 // @match        https://xivmodarchive.com/*
@@ -31,7 +31,7 @@ $(document).ready(function() {
       }
     });
   };
-  const UserNameAlt = {336979:"Koko",154377:"Kispar",286600:"Ryota",101674:"caelum",367395:"captainmarv3l"};
+  const UserNameAlt = {336979:"Koko",154377:"Kispar",286600:"Ryota",101674:"caelum",367395:"captainmarv3l",208377:"YikTuum",225761:"Fauriel"};
   const NormalizeNames = function(name) {
     try {
       return name.normalize();
@@ -105,7 +105,7 @@ $(document).ready(function() {
   CreateCustomStyles();
 
   const CreateCopyName = function() {
-    const authorColumn = $(".container.my-3.mod-page .jumbotron.py-3.px-3.my-0 .row.no-gutters.border.rounded");
+    const authorColumn = $(".container-xl.my-3.mod-page .jumbotron.py-3.px-3.my-0 .row.no-gutters.border.rounded");
     const authorName = $("div.col-8", $(authorColumn));
     $(authorName).attr("class", "col-7");
     $(authorName).addClass("col-7-extra");
