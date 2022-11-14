@@ -3,7 +3,7 @@
 // @namespace    FireCanCan.Web.Bypass.AdLinks
 // @version      1.0.0
 // @description  Bypass Ad Links in any website on the web.
-// @author       Soup Can Sam
+// @author       Neko Boi Nick
 // @match        *
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=wikipedia.com
 // @license      MIT
