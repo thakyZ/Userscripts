@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Curse Forge Default Download Button
 // @namespace    NekoBoiNick.Web.CurseForge.DownloadButton
-// @version      1.0.0
+// @version      1.0.1
 // @description  Changes the "Install" button to a Download Button by default.
 // @author       Neko Boi Nick
 // @match        https://beta.curseforge.com/*/*
@@ -18,6 +18,41 @@
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(function() {
+  const SetupMutationObserver = () => {
+    const targetNode = $("section.tab-content")[0];
+    const config = { attributes: true, childList: true, subtree: true };
+
+    const callback = (mutationList, observer) => {
+      for (const mutation of mutationList) {
+        if (mutation.type === "childList" && $(mutation.target).attr("class") === "tab-content") {
+          const IsOnFileDL = () => {
+            if ($("section.file-details", $(mutation.target)).length > 0) {
+              return true;
+            } else {
+              return false;
+            }
+          };
+          if (IsOnFileDL() && $("div#menuButton button span").text() === "InstallInstall") {
+            if ($("section.file-details h2 #menuButton", $(mutation.target)).length > 0) {
+              $("section.file-details h2 #menuButton button:not(\".btn-more-options\")", $(mutation.target)).off("click");
+              $("section.file-details h2 #menuButton button:not(\".btn-more-options\")", $(mutation.target)).html("");
+              $("section.file-details h2 #menuButton button:not(\".btn-more-options\")", $(mutation.target)).html($("section.file-details h2 #menuButton .more-options li:last-child a", $(mutation.target)).html());
+              $("section.file-details h2 #menuButton button:not(\".btn-more-options\")", $(mutation.target)).on("click", function(e) {
+                e.stopPropagation();
+                window.open($("section.file-details h2 #menuButton .more-options li:last-child a", $(mutation.target)).attr("href"));
+              });
+            }
+          }
+        }
+      }
+    };
+    const observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
+
+    $(document).on("unload", function() {
+      observer.disconnect();
+    });
+  };
   if ($(".project-header .actions #menuButton").length > 0) {
     $(".project-header .actions #menuButton button:not(\".btn-more-options\")").off("click");
     $(".project-header .actions #menuButton button:not(\".btn-more-options\")").html("");
@@ -26,6 +61,17 @@ $(document).ready(function() {
       e.stopPropagation();
       window.open($(".project-header .actions #menuButton .more-options li:last-child a").attr("href"));
     });
+    if ($("section.file-details h2 #menuButton").length > 0) {
+      $("section.file-details h2 #menuButton button:not(\".btn-more-options\")").off("click");
+      $("section.file-details h2 #menuButton button:not(\".btn-more-options\")").html("");
+      $("section.file-details h2 #menuButton button:not(\".btn-more-options\")").html($("section.file-details h2 #menuButton .more-options li:last-child a").html());
+      $("section.file-details h2 #menuButton button:not(\".btn-more-options\")").on("click", function(e) {
+        e.stopPropagation();
+        window.open($("section.file-details h2 #menuButton .more-options li:last-child a").attr("href"));
+      });
+    }
+
+    SetupMutationObserver();
   }
   if ($(".project-card").length > 0) {
     $(".project-card").each(function() {
