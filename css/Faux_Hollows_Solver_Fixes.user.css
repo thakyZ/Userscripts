@@ -1,0 +1,17 @@
+/* ==UserStyle==
+    @name           Faux Hollows Solver Fixes
+    @namespace      NekoBoiNick.Web.FauxHollowsSolver.Fixes
+    @version        1.0.0
+    @description    Old outdated fixes for the Faux Hollows Solver
+    @author         Neko Boi Nick
+    @license        MIT
+    @updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/Faux_Hollows_Solver_Fixes.user.css
+    @supportURL     https://github.com/thakyZ/Userscripts/issues
+    @homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+
+@-moz-document domain("sturalke.github.io") {
+  .advanced-settings-box {
+    height: 130px;
+  }
+}

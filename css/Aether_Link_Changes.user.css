@@ -1,0 +1,64 @@
+/* ==UserStyle==
+@name           Aether Link Test Changes
+@namespace      NekoBoiNick.Web.FFXIV.Aetherlink.Test
+@version        1.0.0
+@description    A collection of changes to Aether Link's CSS that I want to test
+@author         Neko Boi Nick
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/Aether_Link_Changes.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+@-moz-document domain("aetherlink.app") {
+
+  .menu .grid .upper .options .account,
+  .menu-collapsed .grid .upper .options .account {
+    transition: all 0.7s ease;
+    border-radius: 15px;
+    justify-content: left;
+    white-space: nowrap;
+    position: absolute;
+  }
+
+  .menu .grid .upper .options .account:hover,
+  .menu-collapsed .grid .upper .options .account:hover {
+    transition: all 0.3s ease;
+    width: 205px;
+  }
+
+  .menu .grid .upper .options .account .signed-in,
+  .menu-collapsed .grid .upper .options .account .signed-in {
+    width: 30px;
+    border-radius: 15px;
+  }
+
+  .menu .grid .upper .options .account .name,
+  .menu-collapsed .grid .upper .options .account .name {
+    transition: all 0.7s ease;
+    transform: unset;
+    overflow: hidden;
+    width: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .menu .grid .upper .options .account:hover .name,
+  .menu-collapsed .grid .upper .options .account:hover .name {
+    transition: all 0.3s ease;
+    width: 155px;
+    transform: unset;
+    padding-left: 10px;
+    transform-origin: left;
+  }
+
+  .menu .grid .upper .options .account:hover .sign-in,
+  .menu .grid .upper .options .account:hover .signed-in,
+  .menu-collapsed .grid .upper .options .account:hover .sign-in,
+  .menu-collapsed .grid .upper .options .account:hover .signed-in {
+    border-radius: 15px;
+  }
+
+  .menu .grid .upper .options .button,
+  .menu-collapsed .grid .upper .options .button {
+    margin-right: 50px;
+  }
+}
