@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Gamer Escape Additions
 // @namespace    NekoBoiNick.Web.FFXIV.GamerEscape.Additions
-// @version      1.0.1
+// @version      1.0.0
 // @description  Adds new features to Gamer Escape
 // @author       Neko Boi Nick
 // @match        https://ffxiv.gamerescape.com/wiki/*
+// @match        https://ffxiv.gamerescape.com/w/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=gamerescape.com
 // @license      MIT
 // @grant        GM_setValue
@@ -14,6 +15,7 @@
 // @grant        GM_listValues
 // @grant        GM_addStyle
 // @grant        GM_registerMenuCommand
+// @grant        GM_setClipboard
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // @require      https://github.com/dawidsadowski/MonkeyConfig/raw/master/monkeyconfig.js
 // @require      https://raw.githubusercontent.com/SloaneFox/code/master/GM4_registerMenuCommand_Submenu_JS_Module.js
@@ -24,44 +26,44 @@
 // ==/UserScript==
 /* global $, MonkeyConfig */
 
-var SettingsSaveName = "GamerEscapeAdditions.Settings";
-
 $(document).ready(() => {
+  const SettingsSaveName = "GamerEscapeAdditions.Settings";
+
   const config = new MonkeyConfig({
     title: "Configure",
     storageKey: SettingsSaveName,
     menuCommand: true,
     openWin: true,
     params: {
-      dark_by_default: {
+      darkByDefault: {
         type: "checkbox",
         default: false
       },
-      hide_comments: {
+      hideComments: {
         type: "checkbox",
         default: false
       }
     }
   });
-  var disqus = $("#disqus_thread");
-  var hideButton = () => {
-    return `<div id="hide-disqus_thead"><button id="hide-disqus_thread-button"><div id="hide-disqus_thread-button-icon" class="fold-icon"></div></button></div>`;
-  };
-  var marked = ["#d7d8db","#000","#ebecf0","#f9f9f9","#fffae1"];
-  var catlinks = $("#catlinks");
-  $("head").append(`<style id="additions-style"></style>`);
-  var createFoldButton = () => {
-    if (catlinks.length > 0) {
+
+  const disqus = $("#disqus_thread");
+  const hideButton = () => "<div id=\"hide-disqus_thead\"><button id=\"hide-disqus_thread-button\"><div id=\"hide-disqus_thread-button-icon\" class=\"fold-icon\"></div></button></div>";
+
+  const marked = ["#d7d8db", "#000", "#ebecf0", "#f9f9f9", "#fffae1"];
+  const catlinks = $("#catlinks");
+  $("head").append("<style id=\"additions-style\"></style>");
+  const createFoldButton = () => {
+    if ($(catlinks).length > 0) {
       $(catlinks).after(hideButton());
       let id = -1;
-      let height = -1;
+      // Const height = -1;
       id = setInterval(() => {
-        var iframe = $("iframe[src*=\"https://disqus.com/embed/comments/\"]");
+        const iframe = $("iframe[src*=\"https://disqus.com/embed/comments/\"]");
         if (iframe.length > 0 && $(disqus).height() > 109 && $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css("height") !== "") {
-          var hideButtonStyleVar = $("iframe[src*=\"https://disqus.com/embed/comments/\"]").height();
-          var disqusHeight = $(disqus).height();
+          const hideButtonStyleVar = $("iframe[src*=\"https://disqus.com/embed/comments/\"]").height();
+          const disqusHeight = $(disqus).height();
           $("#additions-style")
-.text(`${$("#additions-style").text()}
+            .text(`${$("#additions-style").text()}
   #hide-disqus_thead {
     position: relative;
     left: calc(100% + 32px);
@@ -82,20 +84,20 @@ $(document).ready(() => {
   div#hide-disqus_thread-button-icon.fold-icon.hidden {
     transform: rotate(180deg);
   }
-  #disqus_thread[data-hide="false"] iframe[src*=\"https://disqus.com/embed/comments/\"] {
+  #disqus_thread[data-hide="false"] iframe[src*="https://disqus.com/embed/comments/"] {
     height: ${hideButtonStyleVar}px !important;
   }
-  #disqus_thread[data-hide="true"] iframe[src*=\"https://disqus.com/embed/comments/\"] {
+  #disqus_thread[data-hide="true"] iframe[src*="https://disqus.com/embed/comments/"] {
     height: 0px !important;
   }
-  #disqus_thread[data-hide] iframe[src*=\"https://disqus.com/embed/comments/\"] {
+  #disqus_thread[data-hide] iframe[src*="https://disqus.com/embed/comments/"] {
     transition: height 0.2s ease-out;
   }
   #disqus_thread[data-hide] {
     height: ${disqusHeight}px !important;
   }
 `);
-          $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css("height","");
+          $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css({ height: "" });
           $(disqus).attr("data-hide", "false");
           if (config.get("hide_comments")) {
             if ($(disqus).attr("data-hide") !== "true") {
@@ -103,6 +105,7 @@ $(document).ready(() => {
               $("#hide-disqus_thread-button-icon").addClass("hidden");
             }
           }
+
           clearInterval(id);
         }
       });
@@ -111,6 +114,7 @@ $(document).ready(() => {
           $(disqus).attr("data-hide", "false");
           $("#hide-disqus_thread-button-icon").addClass("unhidden");
         }
+
         if ($(disqus).attr("data-hide") === "false") {
           $(disqus).attr("data-hide", "true");
           $("#hide-disqus_thread-button-icon").addClass("hidden");
@@ -123,77 +127,102 @@ $(document).ready(() => {
       });
     }
   };
+
   createFoldButton();
-  var isDark = () => {
+  const isDark = () => {
     if ($("body").hasClass("dark")) {
       return true;
     }
+
     return false;
-  }
-  var darkerWhite = "#252526";
-  var lighterWhite = "#2F2F30";
-  var lighterWhiteHover = "#39393A";
-  let darkChanges = () => {
+  };
+
+  const darkChanges0 = (_, element) => {
+    let convert = null;
+    if ($(element).parents(".arrquestbox").length > 0) {
+      return;
+    }
+
+    if ($(element).css("background-color") === "rgb(235, 236, 240)") {
+      $(element).css({ "background-color": darkerWhite });
+    }
+
+    if ($(element).css("background-color") === "rgb(255, 255, 255)") {
+      $(element).css({ "background-color": darkerWhite });
+    }
+
+    if ($(element).hasClass("navbox-list") && $(element).css("border-left-color") === "rgb(253, 253, 253)") {
+      if ($(element).attr("style").toString().match(/border-left:\s?\d+(\.\d+)?px solid (#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
+        convert = $(element).css("border-left").toString().replace(/rgb\(\d+, \d+, \d+\)/, "#000");
+        $(element).css({ "border-left": convert });
+      }
+    }
+
+    if ($(element).hasClass("wikitable") && $(element).css("border-color") === "rgb(170, 170, 170)") {
+      if ($(element).attr("style").toString().match(/border:\s?\d+(\.\d+)?px solid (#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
+        convert = $(element).css("border").toString().replace(/rgb\(\d+, \d+, \d+\)/, "#000");
+        $(element).css({ border: convert });
+      }
+    }
+
+    if ($(element).is("table") && !$(element).hasClass("wikitable") && $(element).css("background-color") === "rgb(212, 214, 203)") {
+      if ($(element).attr("style").toString().match(/Background:\s?(#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
+        convert = $(element).css("background").toString().replace(/rgb\(\d+, \d+, \d+\)/, darkerWhite);
+        $(element).css({ background: convert });
+      }
+    }
+
+    if ($(element).is("th")) {
+      if ($(element).css("background-color") === "rgb(212, 214, 203)") {
+        if ($(element).attr("style").toString().match(/background:\s?(#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
+          convert = $(element).css("background").toString().replace(/rgb\(\d+, \d+, \d+\)/, lighterWhite);
+          $(element).css({ background: convert });
+        }
+      } else if ($(element).css("background-color") === "rgb(229, 231, 217)") {
+        if ($(element).attr("style").toString().match(/background:\s?(#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
+          convert = $(element).css("background").toString().replace(/rgb\(\d+, \d+, \d+\)/, darkerWhite);
+          $(element).css({ background: convert });
+        }
+      }
+    }
+
+    if ($(element).css("color") === "rgb(0, 0, 0)") {
+      $(element).css({ color: "white" });
+    }
+  };
+
+  const darkerWhite = "#252526";
+  const lighterWhite = "#2F2F30";
+  const lighterWhiteHover = "#39393A";
+  const darkChanges = () => {
     marked[0] = lighterWhite;
     marked[1] = "white";
     marked[2] = lighterWhiteHover;
     marked[3] = darkerWhite;
-    var tableHeader = $(".wiki.main *[style]");
-    $(tableHeader).each(function(i) {
-      var convert = null;
-      if ($(this).parents(".arrquestbox").length > 0) {
-        return;
-      }
-      if ($(this).css("background-color") === "rgb(235, 236, 240)") {
-        $(this).css({"background-color":darkerWhite});
-      }
-      if ($(this).css("background-color") === "rgb(255, 255, 255)") {
-        $(this).css({"background-color":darkerWhite});
-      }
-      if ($(this).hasClass("navbox-list") && $(this).css("border-left-color") === "rgb(253, 253, 253)") {
-        if ($(this).attr("style").toString().match(/border-left:\s?\d+(\.\d+)?px solid (#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
-          convert = $(this).css("border-left").toString().replace(/rgb\(\d+, \d+, \d+\)/, "#000");
-        $(this).css({"border-left":convert});
+    const tableHeader = $(".wiki.main *[style]");
+    $(tableHeader).each((index, element) => {
+      darkChanges0(index, element);
+      if ($(element).css("border-color") === "rgb(199, 199, 199)") {
+        if ($(element).attr("style").toString().match(/border:\s?\d+(\.\d+)?px solid (#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
+          const convert = $(element).css("border").toString().replace(/rgb\(\d+, \d+, \d+\)/, "#000");
+          $(element).css({ border: convert });
         }
       }
-      if ($(this).hasClass("wikitable") && $(this).css("border-color") === "rgb(170, 170, 170)") {
-        if ($(this).attr("style").toString().match(/border:\s?\d+(\.\d+)?px solid (#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
-          convert = $(this).css("border").toString().replace(/rgb\(\d+, \d+, \d+\)/, "#000");
-          $(this).css({"border":convert});
+
+      if ($(element).is("tr")) {
+        if ($(element).css("background-color") === "rgb(192, 192, 192)") {
+          $(element).css({ background: "#3E3E40" });
         }
-      }
-      if ($(this).is("table") && !$(this).hasClass("wikitable") && $(this).css("background-color") === "rgb(212, 214, 203)") {
-        if ($(this).attr("style").toString().match(/Background:\s?(#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
-          convert = $(this).css("background").toString().replace(/rgb\(\d+, \d+, \d+\)/, darkerWhite);
-          $(this).css({"background":convert});
-        }
-      }
-      if ($(this).is("th")) {
-        if ($(this).css("background-color") === "rgb(212, 214, 203)") {
-          if ($(this).attr("style").toString().match(/background:\s?(#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
-            convert = $(this).css("background").toString().replace(/rgb\(\d+, \d+, \d+\)/, lighterWhite);
-            $(this).css({"background":convert});
-          }
-        } else if ($(this).css("background-color") === "rgb(229, 231, 217)") {
-          if ($(this).attr("style").toString().match(/background:\s?(#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
-            convert = $(this).css("background").toString().replace(/rgb\(\d+, \d+, \d+\)/, darkerWhite);
-            $(this).css({"background":convert});
-          }
-        }
-      }
-      if ($(this).css("color") === "rgb(0, 0, 0)") {
-        $(this).css({"color":"white"});
-      }
-      if ($(this).css("border-color") === "rgb(199, 199, 199)") {
-        if ($(this).attr("style").toString().match(/border:\s?\d+(\.\d+)?px solid (#[a-zA-Z0-9]{3,6}|rgb\(\d+, \d+, \d+\))/)) {
-          convert = $(this).css("border").toString().replace(/rgb\(\d+, \d+, \d+\)/, "#000");
-          $(this).css({"border":convert});
+
+        if ($(element).css("background-color") === "rgb(150, 150, 150)") {
+          $(element).css({ background: "#252526" });
         }
       }
     });
-    const RGBtoHSL = (rgb) => {
+    /* eslint-disable-next-line no-unused-vars */
+    const RGBtoHSL = rgb => {
       // Choose correct separator
-      let sep = rgb.indexOf(",") > -1 ? "," : " ";
+      const sep = rgb.indexOf(",") > -1 ? "," : " ";
       // Turn "rgb(r,g,b)" into [r,g,b]
       rgb = rgb.substr(4).split(")")[0].split(sep);
       let r = rgb[0];
@@ -204,43 +233,45 @@ $(document).ready(() => {
       g /= 255;
       b /= 255;
       // Find greatest and smallest channel values
-      let cmin = Math.min(r,g,b),
-          cmax = Math.max(r,g,b),
-          delta = cmax - cmin,
-          h = 0,
-          s = 0,
-          l = 0;
+      const cmin = Math.min(r, g, b);
+      const cmax = Math.max(r, g, b);
+      const delta = cmax - cmin;
+      let h = 0;
+      let s = 0;
+      let l = 0;
       // Calculate hue
       // No difference
-      if (delta == 0) {
+      if (delta === 0) {
         h = 0;
+      // eslint-disable-next-line brace-style
       }
       // Red is max
-      else if (cmax = r) {
+      else if (cmax === r) {
         h = ((g - b) / delta) % 6;
+      } else if (cmax === g) {
+        h = ((b - r) / delta) + 2;
+      } else {
+        h = ((r - g) / delta) + 4;
       }
-      else if (cmax == g) {
-        h = (b - r) / delta + 2;
-      }
-      else {
-        h = (r - g) / delta + 4;
-      }
+
       h = Math.round(h * 60);
       // Make negative hues positive behind 360°
       if (h < 0) {
         h += 360;
       }
+
       // Calculate lightness
       l = (cmax + cmin) / 2;
       // Calculate saturation
-      s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+      s = delta === 0 ? 0 : delta / (1 - Math.abs((2 * l) - 1));
       // Multiply l and s by 100
-      s = +(s * 100).toFixed(1);
-      l = +(l * 100).toFixed(1);
+      s = Number((s * 100).toFixed(1));
+      l = Number((l * 100).toFixed(1));
       return "hsl(" + h + "," + s + "%," + l + "%)";
     };
+
     $("#additions-style")
-.text(`${$("#additions-style").text()}
+      .text(`${$("#additions-style").text()}
   table.datatable-GEtable3 tr, table.GEtable tr {
     background-color: ${lighterWhite};
     color: white;
@@ -284,9 +315,104 @@ $(document).ready(() => {
   html .dark font[color="black"] {
     color: #fff !important;
   }
-`);
+  .wikitable {
+    color: #fff;
   }
+  table.datatable-GEtable3 th, table.GEtable th {
+    background-color: transparent;
+  }
+  .copyItemBoxHeaderButton {
+    width: 32px;
+    overflow: visible;
+    height: 0px;
+    float: right;
+    position: relative;
+    right: -32px;
+    bottom: 60px;
+  }
+  .copyItemBoxHeaderButton button {
+    width: 32px;
+    height: 32px;
+  }
+  .copyItemBoxHeaderButton button:hover {
+    cursor: pointer;
+  }
+  .copyItemBoxHeaderButton button i {
+    font-size: 16px;
+  }
+`);
+  };
+
   if (isDark()) {
     darkChanges();
   }
+
+  const filterCatListByNumberOfMembers = count => {
+    if (/https:\/\/ffxiv\.gamerescape\.com\/(wiki\/Special:Categories|w\/index\.php\?title=Special:Categories).*/gi.test(window.location.href)) {
+      $(".mw-spcontent ul").find("li").each((i, e) => {
+        const text = $(e).clone().children().remove().end().text().replaceAll(/.*\(([\d,]+)\smembers?\).*/gi, "$1").replaceAll(/,/gi, "");
+        if (parseInt(text, 10) < count) {
+          $(e).remove();
+        }
+      });
+    }
+  };
+
+  filterCatListByNumberOfMembers(1000);
+
+  const getPageCat = () => {
+    const categories = $("#catlinks");
+    if ($(categories).length === 0) {
+      return null;
+    }
+
+    const cats = $(categories).find("#mw-normal-catlinks > ul > li");
+    if ($(cats).length > 0) {
+      for (let i = 0; i < $(cats).length; i++) {
+        const cat = $($(cats)[i]);
+        const catText = $(cat).find("a").text().toLowerCase();
+        if (catText === "item") {
+          return "item";
+        }
+
+        if (catText === "merchant") {
+          return "merchant";
+        }
+
+        if (catText === "achievement") {
+          return "achievement";
+        }
+
+        if (catText === "action") {
+          return "action";
+        }
+
+        if (catText === "armor") {
+          return "armor";
+        }
+
+        if (catText === "bestiary") {
+          return "bestiary";
+        }
+      }
+    }
+  };
+
+  const createCopyItemButton = () => {
+    if (getPageCat() === "item") {
+      const itemBox = $("div.wiki.main table.itembox:first-child > tbody:first-child > tr:first-child > td:first-child");
+      const itemBoxHeader = $(itemBox).find("table > tbody > tr:first-child > td:last-child");
+      if ($(itemBox).length > 0 && $(itemBoxHeader).length > 0) {
+        $("<div class=\"copyItemBoxHeaderButton\"><button id=\"copyItemNameButton\" class=\"btn btn-primary\" type=\"button\"><i class=\"fa fa-clipboard\"></i></button></div>").appendTo($(itemBoxHeader));
+        $(".copyItemBoxHeaderButton #copyItemNameButton").on("click", () => {
+          const itemName = $("div.wiki.main table.itembox:first-child > tbody:first-child > tr:first-child > td:first-child > table > tbody > tr:first-child > td:last-child").clone().children().remove().end().text().replace(/\s+$/gi, "");
+          if (itemName !== undefined && itemName !== null && itemName !== "") {
+            GM_setClipboard(itemName);
+          }
+        });
+      }
+    }
+  };
+
+  createCopyItemButton();
 });
