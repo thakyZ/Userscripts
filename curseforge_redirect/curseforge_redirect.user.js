@@ -40,11 +40,11 @@ $(document).ready(function () {
     window.location.href = urlrep;
   }
   const disableBanner = () => {
-    bannerTitles.forEach(function(e) {
+    bannerTitles.forEach(function (e) {
       if ($("html head ~ div a").length > 0 && $("html head ~ div a").text().includes(e)) {
-        $("html head ~ div").css({"display": "none"});
+        $("html head ~ div").css({ "display": "none" });
       } else if ($("#banner").length > 0 && $("#banner .banner-content p").text().includes(e)) {
-        $("#banner").css({"display": "none"});
+        $("#banner").css({ "display": "none" });
       }
     });
   };

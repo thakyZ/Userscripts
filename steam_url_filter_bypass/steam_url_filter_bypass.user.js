@@ -14,10 +14,10 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
 
-(function() {
+(function () {
   'use strict';
 
-  var regex = new RegExp("^https:\\/\\/steamcommunity.com\\/linkfilter\\/","g");
+  var regex = new RegExp("^https:\\/\\/steamcommunity.com\\/linkfilter\\/", "g");
 
   if (window.location.href.includes("/linkfilter/")) {
     var location = window.location.href;
@@ -26,7 +26,7 @@
       location = location.replace(/\?url=/g, "");
     }
 
-    console.log(`Transfering to: https://${location.replace(regex,"")}`);
-    window.location.assign(`https://${location.replace(regex,"")}`);
+    console.log(`Transfering to: https://${location.replace(regex, "")}`);
+    window.location.assign(`https://${location.replace(regex, "")}`);
   }
 })();

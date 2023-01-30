@@ -56,5 +56,5 @@ $(document).ready(() => {
   } else {
     $(globalHeader).append(openButton);
   }
-  $(".open-in-steam #open-in-steam_button").attr("href",`${steamOpenUrl}${window.location.href}`);
+  $(".open-in-steam #open-in-steam_button").attr("href", `${steamOpenUrl}${window.location.href}`);
 });

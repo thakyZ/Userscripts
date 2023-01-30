@@ -18,13 +18,13 @@
 /* global $, jQuery, ace, te */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(function() {
+$(document).ready(function () {
   const ThemeSaveName = "TextEditor_GD_DefaultTheme";
   const SetupMutationObserver = () => {
     const targetNode = $("body")[0];
     $("#settingsMenuButton").on("click", (e) => {
       let ld = -1;
-      ld = setInterval(function() {
+      ld = setInterval(function () {
         if ($("#-theme").length > 0) {
           $("#-theme").on("change", (e) => {
             const selectedValue = $("#-theme option:selected").attr("value");
@@ -36,14 +36,14 @@ $(document).ready(function() {
     });
     let i = 1;
     let kd = -1;
-    kd = setInterval(function() {
+    kd = setInterval(function () {
       if (ace !== undefined) {
-        ace.edit("mainEditor").renderer.on('afterRender', function(e) {
+        ace.edit("mainEditor").renderer.on('afterRender', function (e) {
           const value = GM_getValue(ThemeSaveName);
           if (value === "ace/theme/chrome" || ace.edit("mainEditor").getOption("theme") === value) {
             return;
           }
-          ace.edit("mainEditor").setOptions({theme: value});
+          ace.edit("mainEditor").setOptions({ theme: value });
         });
         clearInterval(kd);
       }
@@ -51,7 +51,7 @@ $(document).ready(function() {
   };
 
   let id = -1;
-  id = setInterval(function() {
+  id = setInterval(function () {
     if ($("#mainEditor").length > 0) {
       SetupMutationObserver();
       clearInterval(id);
