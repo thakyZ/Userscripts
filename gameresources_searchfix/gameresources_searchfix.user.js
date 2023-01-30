@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Game Resources Search Fix
 // @namespace    NekoBoiNick.Web.GameResources.SearchFix
-// @version      1.0.0
+// @version      1.0.1
 // @description  Fixes search when blocking ads.
 // @author       Neko Boi Nick
 // @match        https://www.sounds-resource.com/search/*
@@ -11,14 +11,15 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/gameresources_searchfix/gameresources_searchfix.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
+/* global $ */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
-(function() {
-  var headerAd = document.querySelectorAll("#headerad");
-  //window.getComputedStyle(x).visibility === "hidden"
-  if (headerAd.length === 1 && window.getComputedStyle(headerAd[0]).display === "none") {
-    var newHeaderAd = document.createElement("div");
-    newHeaderAd.style.padding = "0.1px";
-    headerAd[0].after(newHeaderAd);
+$(document).ready(() => {
+  const headerAd = $("#headerad");
+  // Window.getComputedStyle(x).visibility === "hidden"
+  if ($(headerAd).length === 1 && window.getComputedStyle(headerAd[0]).display === "none") {
+    $("<div style=\"padding: 0.1px;\"></div>").insertAfter(headerAd[0]);
   }
-})();
+});

@@ -8,69 +8,81 @@
 // @icon         https://www.google.com/s2/favicons?domain=snopes.com
 // @grant        none
 // @license      MIT
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/snopes_remove_module/snopes_remove_module.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/snopes_remove_module/snopes_remove_module.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
+/* global $ */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
-(function() {
-  'use strict';
+$(document).ready(() => {
+  const otherSearchClasses = [".tp-modal", ".tp-modal-open", ".tp-banner", ".tp-active"];
+  let checkedForClasses = false;
+  let classesHidden = 0;
+  const debug = false;
 
-  var otherSearchClasses = [".tp-modal",".tp-modal-open",".tp-banner",".tp-active"];
-  var checked_for_classes = false;
-  var classesHidden = 0;
-  var debug = false;
-
-  var getClasses = function() {
-    var test = [];
-    for (var i = 0; i < otherSearchClasses.length; i++)
-    {
-      var test2 = document.querySelector(otherSearchClasses[i]);
-      if (test2 !== null) {
-        test.push(test2);
+  const getClasses = function () {
+    const outClasses = [];
+    for (let index = 0; index < otherSearchClasses.length; index++) {
+      const testClass = $(otherSearchClasses[index]);
+      if (testClass !== null) {
+        outClasses.push(testClass);
       }
     }
-    return test;
-  }
 
-  var hideClass = function(_class) {
+    return outClasses;
+  };
+
+  const hideClass = function (_class) {
     if (_class.tagName == "BODY") {
       otherSearchClasses
         .forEach((obj, ind, arr) => {
-                                 _class.classList.remove(obj.substring(1))});
-    }
-    else
-    {
+          _class.classList.remove(obj.substring(1));
+        });
+    } else {
       _class.remove();
       classesHidden += 1;
       if (debug) {
-        console.log('Ads hidden: ', classesHidden.toString());
+        console.log("Ads hidden: ", classesHidden.toString());
       }
     }
-  }
+  };
 
   setInterval(() => {
-    if (checked_for_classes) return;
-    var classes = getClasses();
+    if (checkedForClasses) {
+      return;
+    }
+
+    const classes = getClasses();
     if (classes.length > 0) {
       classes.forEach((obj, inx, arr) => {
         if (arr.length > 0) {
           hideClass(obj);
         }
       });
-      checked_for_classes = true;
-    }}, 1000);
+      checkedForClasses = true;
+    }
+  }, 1000);
 
-  setInterval(() => { if (checked_for_classes) checked_for_classes = false; }, 5000);
+  setInterval(() => {
+    if (checkedForClasses) {
+      checkedForClasses = false;
+    }
+  }, 5000);
 
-  window.onhashchange = function() {
+  window.onhashchange = function () {
     [...Array.from(getClasses()).forEach((element, index, array) => {
       if (element.length) {
         Array.from(element).forEach(hideClass);
       }
-    })]
-  }
+    })];
+  };
 
-  document.addEventListener('scroll', () => Array.from(getClasses()).forEach((obj, inx, arr) => { if (arr.length > 0) { Array.from(obj).forEach(hideClass)}}));
+  document.addEventListener("scroll", () => Array.from(getClasses()).forEach((obj, inx, arr) => {
+    if (arr.length > 0) {
+      Array.from(obj).forEach(hideClass);
+    }
+  }));
 })();

@@ -15,23 +15,23 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
 /* global $ */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
   "use strict";
 
-
   function checkForProgress(ele) {
     if ($(ele).html().match(/[%]\[\d+\/\d+\]/gi).length > 0) {
-      $(ele).html($(ele).html().replaceAll(/[%]\[(\d+)\/(\d+)\]/gi, `<progress value="$1" max="$2"/>`));
+      $(ele).html($(ele).html().replaceAll(/[%]\[(\d+)\/(\d+)\]/gi, "<progress value=\"$1\" max=\"$2\"/>"));
     }
   }
 
-	function init() {
+  function init() {
     const variableHeader = $(".source.markdown");
-    $(variableHeader).each(function() {
+    $(variableHeader).each(function () {
       checkForProgress($(this));
     });
-	}
+  }
 
-	init();
+  init();
 });

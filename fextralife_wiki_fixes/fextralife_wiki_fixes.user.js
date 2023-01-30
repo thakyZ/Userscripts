@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         fExtra Life Wiki Fixes
-// @namespace    NekoBoiNick.FExtraLife.Wiki.Fixes
-// @version      1.0.1
+// @namespace    NekoBoiNick.Web.FExtraLife.Wiki.Fixes
+// @version      1.0.2
 // @description  Trys to fix some issues about fExtra Life's wiki pages.
 // @author       NekoBoiNick
 // @match        https://*.wiki.fextralife.com/*
@@ -15,30 +15,31 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/fextralife_wiki_fixes/fextralife_wiki_fixes.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
+/* global $ */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
-(function() {
-//  'use strict';
-
-  var otherSearchClass = "#sidebar-wrapper";
-  var checked_for_ads = false;
-  var adsHidden = 0;
-  var debug = false;
+$(document).ready(() => {
+  const otherSearchClass = "#sidebar-wrapper";
+  let checkedForAds = false;
+  let adsHidden = 0;
+  const debug = false;
 
   function getAds() {
-    return document.querySelector(otherSearchClass);
+    return $(otherSearchClass);
   }
 
   function hideAd(ad) {
-        ad.remove();
-      adsHidden += 1;
-      if (debug) {
-        console.log('Ads hidden: '+ adsHidden.toString());
-      }
+    ad.remove();
+    adsHidden += 1;
+    if (debug) {
+      console.log("Ads hidden: " + adsHidden.toString());
+    }
   }
 
   setInterval(() => {
-    if (checked_for_ads) {
+    if (checkedForAds) {
       return;
     }
 
@@ -46,11 +47,11 @@
 
     if (ads.length) {
       Array.from(ads).forEach(hideAd);
-      checked_for_ads = true;
+      checkedForAds = true;
     }
   }, 500);
 
-  //window.onhashchange = function() {
+  // Window.onhashchange = function() {
   //  [...document.getElementsByTagName(otherSearchClass)].forEach((element, index, array) => {
   //    if (checked_for_ads) {
   //      return;
@@ -63,7 +64,7 @@
   //      checked_for_ads = true;
   //    }
   //  });
-  //}
+  // }
 
-  document.addEventListener('scroll', () => Array.from(getAds()).forEach(hideAd));
-})();
+  $(document).on("scroll", () => Array.from(getAds()).forEach(hideAd));
+});

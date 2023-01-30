@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bot Sentinel Move Elements
 // @namespace    NekoBoiNick.Web.BotSentinel.ElementsMove
-// @version      1.0.0
+// @version      1.0.1
 // @description  Tries to move all the elements regarding the Bot Sentinel extension on Twitter
 // @author       Neko Boi Nick
 // @match        https://twitter.com/*
@@ -11,24 +11,28 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/botsentinel_moveelements/botsentinel_moveelements.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
 /* global $ */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
-(function() {
-  'use strict';
+$(document).ready(() => {
+  "use strict";
   let id = -1;
-  id = setInterval(function(){
-    var div = $("div.bot-sentinel-account-status");
+  id = setInterval(() => {
+    const div = $("div.bot-sentinel-account-status");
 
     if (div.length > 0) {
-      $(div).each(function(i, e) {
-        var divPrev = $(e).prev();
-        if ($(divPrev).text().match("^@[a-zA-Z0-9]+") && $(divPrev).find("a[tabindex=\"-1\"") !== undefined) {
-          
-        }
-      });
-      $(div).css({"max-height":"20px"});
+      /* Unknown code.
+       * $(div).each((i, e) => {
+       *   const divPrev = $(e).prev();
+       *   if ($(divPrev).text().match("^@[a-zA-Z0-9]+") && $(divPrev).find("a[tabindex=\"-1\"") !== undefined) {
+       *
+       *   }
+       * });
+       */
+      $(div).css({ "max-height": "20px" });
       clearInterval(id);
     }
   }, 100);
-})();
+});

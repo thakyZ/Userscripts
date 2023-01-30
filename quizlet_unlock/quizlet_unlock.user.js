@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Quizlet Unlock
-// @namespace    NekoBoiNick.Quizlet.Unlock
+// @namespace    NekoBoiNick.Web.Quizlet.Unlock
 // @version      1.0.0
 // @description  Unlcoks Quizlet Paywalls
 //               Please do not use this to cheat on tests, I used this to just not have to pay for Quizlet when studying.
@@ -13,30 +13,30 @@
 // @compatible   firefox
 // @compatible   chrome
 // @license      MIT
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/quizlet_unlock/quizlet_unlock.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/quizlet_unlock/quizlet_unlock.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
+/* global $ */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
-(function() {
-  'use strict';
+$(document).ready(() => {
+  "use strict";
 
-
-  window.onhashchange = function() {
-    [...document.getElementsByClassName("SetPageTerm")].forEach((element, index, array) => {
-      if (!element.classList.contains("is-showing"))
-      {
-        element.classList.add("is-showing");
+  window.onhashchange = () => {
+    $(".SetPageTerm").each((_, element) => {
+      if (!$(element).attr("class").contains("is-showing")) {
+        $(element).attr("class", `${$(element).attr("class")} is-showing`);
         GM_log("Found broken page");
-        console.log("Found broken page");
       }
     });
-  }
+  };
 
-  let checked_for_ads = false;
-  var adsHidden = 0;
-  var debug = false;
+  let checkedForAds = false;
+  let adsHidden = 0;
+  const debug = false;
 
   function getAds() {
     return document.getElementsByClassName("SetPageTerm");
@@ -44,27 +44,26 @@
 
   function hideAd(ad) {
     if (!ad.classList.contains("is-showing")) {
-        ad.classList.add("is-showing");
+      ad.classList.add("is-showing");
       adsHidden += 1;
       if (debug) {
-        console.log('Ads hidden: ', adsHidden.toString());
+        console.log("Ads hidden: ", adsHidden.toString());
       }
     }
   }
 
   setInterval(() => {
-    if (checked_for_ads) {
+    if (checkedForAds) {
       return;
     }
 
-    var ads = getAds();
+    const ads = getAds();
 
     if (ads.length) {
       Array.from(ads).forEach(hideAd);
-      checked_for_ads = true;
+      checkedForAds = true;
     }
   }, 500);
 
-  document.addEventListener('scroll', () => Array.from(getAds()).forEach(hideAd));
-  // Your code here...
+  document.addEventListener("scroll", () => Array.from(getAds()).forEach(hideAd));
 })();
