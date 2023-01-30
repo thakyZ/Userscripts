@@ -1,0 +1,54 @@
+/* ==UserStyle==
+    @name           Monkey Config GUI Override
+    @namespace      NekoBoiNick.Web.MonkeyConfig.GUI.Override
+    @version        1.0.0
+    @description    Overwrites any and all CSS styles modifying the Monkey Config GUI
+    @author         Neko Boi Nick
+    @license        MIT
+    @preprocessor   default
+    @updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/Monkey_Config_GUI_Override.user.css
+    @supportURL     https://github.com/thakyZ/Userscripts/issues
+    @homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+
+@-moz-document url("about:blank"),
+regexp("^https:\\/\\/(.*\\.)?.*\\.*\\/.*") {
+  .__MonkeyConfig_layer {
+    left: calc((194.4% - 110%) / 2) !important;
+  }
+
+  iframe#__MonkeyConfig_frame {
+    width: 110% !important;
+  }
+
+  html[stylus-iframe^="about:blank"] body .__MonkeyConfig_body,
+  body .__MonkeyConfig_body {
+    width: 100% !important;
+  }
+
+  html[stylus-iframe^="about:blank"] body .__MonkeyConfig_container label,
+  body .__MonkeyConfig_container label,
+  html[stylus-iframe^="about:blank"] body .__MonkeyConfig_container h1,
+  body .__MonkeyConfig_container h1 {
+    color: #000 !important;
+  }
+
+  html[stylus-iframe^="about:blank"] body .__MonkeyConfig_container tr,
+  body .__MonkeyConfig_container tr,
+  html[stylus-iframe^="about:blank"] body .__MonkeyConfig_container tr:nth-of-type(even),
+  body .__MonkeyConfig_container tr:nth-of-type(even),
+  html[stylus-iframe^="about:blank"] body .__MonkeyConfig_container tr:nth-of-type(odd),
+  body .__MonkeyConfig_container tr:nth-of-type(odd) {
+    background-color: transparent !important;
+  }
+
+  html[stylus-iframe^="about:blank"] body .__MonkeyConfig_container select,
+  body .__MonkeyConfig_container select,
+  html[stylus-iframe^="about:blank"] body .__MonkeyConfig_container select option,
+  body .__MonkeyConfig_container select option {
+    background-color: #fff !important;
+    color: #000 !important;
+    border-radius: 0;
+    border-color: none;
+  }
+}
