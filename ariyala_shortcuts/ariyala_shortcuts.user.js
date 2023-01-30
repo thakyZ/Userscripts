@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ariyala's FFXIV Toolkit Bookmarks
 // @namespace    NekoBoiNick.Web.AriyalaFFXIV.Shortcuts
-// @version      1.0.1
+// @version      1.0.2
 // @license      MIT
 // @description  Adds a small box for shortcuts on the Wiki.
 // @author       Neko Boi Nick
@@ -16,7 +16,7 @@
 // ==/UserScript==
 /* global $ */
 
-let jsonConfig = {
+const jsonConfig = {
   items: [
     {
       icon: "BLU",
@@ -27,9 +27,8 @@ let jsonConfig = {
   ],
 };
 
-$(document).ready(function () {
-  const styleElement = (i) => {
-    return `<style>
+$(document).ready(() => {
+  const styleElement = `<style>
   .tray {
     position: fixed;
     min-height: 20px;
@@ -69,20 +68,18 @@ $(document).ready(function () {
     background: url("/images/style/menuEntry.png");
   }
 </style>`;
-  };
-  let item = [];
-  const templateItem = (i) => {
-    return `<div class="tray_item" id="${i.id}"><div class="menuIcon" style="background-image: url("https://cdn.ariyala.com/ffxiv/images/classes/${i.icon}.png");"></div><a href="${i.url}" id="${i.id}">${i.name}</a></div>`;
-  };
-  $.each(jsonConfig.items, function (key, value) {
+
+  const item = [];
+  const templateItem = i => `<div class="tray_item" id="${i.id}"><div class="menuIcon" style="background-image: url("https://cdn.ariyala.com/ffxiv/images/classes/${i.icon}.png");"></div><a href="${i.url}" id="${i.id}">${i.name}</a></div>`;
+
+  $.each(jsonConfig.items, (_, value) => {
     item.push(templateItem(value));
   });
-  const templateTray = () => {
-    return `<div class="tray" id="bookmarks"></div>`;
-  };
+  const templateTray = () => "<div class=\"tray\" id=\"bookmarks\"></div>";
+
   $("#body").append(templateTray());
-  $.each(item, function (key, value) {
+  $.each(item, (_, value) => {
     $("#bookmarks").append(value);
   });
-  $("head").append(css);
+  $("head").append(styleElement);
 });
