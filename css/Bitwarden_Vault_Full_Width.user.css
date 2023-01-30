@@ -1,0 +1,80 @@
+/* ==UserStyle==
+@name           Bitwarden Vault Full Width
+@namespace      NekoBoiNick.Web.Bitwarden.FullWidth
+@author         Neko Boi Nick
+@description    `Full width theme for vault.bitwarden.com (version 1.0.0).`
+@version        1.0.0
+@license        MIT
+@preprocessor   uso
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/Bitwarden_Vault_Full_Width.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+@-moz-document domain("vault.bitwarden.com") {
+
+  /* Page */
+  .page-content,
+  .footer {
+    width: auto;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  /*.footer {
+    bottom: 0;
+    position: relative;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }*/
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body,
+  app-vault,
+  app-root,
+  app-user-layout {
+    height: 100%;
+  }
+
+  .page-content {
+    padding-bottom: 102px;
+  }
+
+  body>app-root,
+  body>app-root>app-user-layout {
+    min-height: 100%;
+    display: block;
+  }
+
+  body>app-root>app-user-layout>app-vault {
+    height: auto;
+    min-height: calc(100% - 76px);
+    display: block;
+  }
+
+  app-user-layout>app-vault {
+    padding-bottom: 40px;
+  }
+
+  .footer {
+    position: relative;
+    margin-top: -102px;
+    height: 102px;
+    clear: both;
+    display: block;
+  }
+
+  app-navbar .container {
+    width: calc(100% - 40px);
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .table-ciphers {
+    margin-top: -0.5rem;
+  }
+}

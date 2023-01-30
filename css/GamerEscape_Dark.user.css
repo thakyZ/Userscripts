@@ -1,0 +1,85 @@
+/* ==UserStyle==
+@name           GamerEscape Dark Mode Improvement
+@namespace      NekoBoiNick.Web.GamerEscape.Dark.Improvement
+@version        1.0.0
+@description    Modifications to FFXIV GamerEscape Wiki
+@author         Neko Boi Nick
+@license        MIT
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/GamerEscape_Dark.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+
+@-moz-document domain("gamerescape.com") {
+  .dark a:link {
+    color: #08f;
+  }
+
+  .dark a:visited {
+    color: #06c;
+  }
+
+  .dark a:hover {
+    color: #0af;
+  }
+
+  .nav-footer a:active,
+  .nav-footer a:hover,
+  .nav-main a:active,
+  .nav-main a:hover,
+  .nav-page-actions a:active,
+  .nav-page-actions a:hover,
+  .nav-sub a:active,
+  .nav-sub a:hover {
+    color: hsla(0, 0%, 100%, .85) !important;
+  }
+
+  .nav-footer a:link,
+  .nav-footer a:visited,
+  .nav-main a:link,
+  .nav-main a:visited,
+  .nav-page-actions a:link,
+  .nav-page-actions a:visited,
+  .nav-sub a:link,
+  .nav-sub a:visited {
+    color: #fff !important;
+  }
+
+  .dark header.user a {
+    color: #fff !important;
+  }
+
+  .dark .nav-footer ul.sub-menu,
+  .dark .nav-main ul.sub-menu,
+  .dark .nav-page-actions ul.sub-menu,
+  .dark .nav-sub ul.sub-menu,
+  .dark .nav-footer ul.sub-menu li,
+  .dark .nav-main ul.sub-menu li,
+  .dark .nav-page-actions ul.sub-menu li,
+  .dark .nav-sub ul.sub-menu li {
+    background: #10101a;
+  }
+
+  .dark .nav-footer ul.sub-menu:before,
+  .dark .nav-main ul.sub-menu:before,
+  .dark .nav-page-actions ul.sub-menu:before,
+  .dark .nav-sub ul.sub-menu:before {
+    border-bottom-color: #10101a;
+  }
+
+  .dark .posts .footer .button {
+    color: #000000;
+  }
+
+  .dark .itembox {
+    background: #3a3c3a;
+  }
+
+  .dark #mw-content-text table.datatable-GEtable3 a:not(.mw-selflink) {
+    color: #0af;
+  }
+
+  .dark .catlinks {
+    background: #3a3c3a;
+  }
+}

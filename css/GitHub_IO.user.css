@@ -1,0 +1,42 @@
+/* ==UserStyle==
+@name           Github IO Unknown CHanges
+@namespace      NekoBoiNick.Web.GithubIO.Changes
+@version        1.0.0
+@description    Unknown github.io changes
+@author         Neko Boi Nick
+@license        MIT
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/GitHub_IO.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+
+@-moz-document domain("github.io") {
+  #container>.toggle {
+    box-shadow: inset 0 2px 2px 0 #4187B2, inset 0 0 2px 0 hsla(203, 47%, 48%, .5), 0 0 2px 2px rgba(0, 0, 0, .5), 0 2px 2px 2px rgba(0, 0, 0, .5);
+    border-radius: 50%;
+    background-color: #4187B2;
+  }
+
+  #container {
+    background-color: #4187B2;
+    box-shadow: 0 0 0 1px #000;
+    border-radius: 0%;
+  }
+
+  #container #inner {
+    box-shadow: 0 0 0 3px #161616;
+    border-radius: 0%;
+  }
+
+  .placeholder {
+    box-shadow: inset 0 0 0 1px #000, inset 0 0 0 2px #4187B2, inset 0 0 0 2px #161616;
+    border-radius: 0%;
+    background: #4187B2;
+  }
+
+  .placeholder .inner {
+    box-shadow: 0 0 0 2px #161616;
+    border-radius: 0%;
+    background: #161616;
+  }
+}

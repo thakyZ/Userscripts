@@ -1,0 +1,139 @@
+/* ==UserStyle==
+@name           Final Fantasy Lodestone Maintenance Dark
+@namespace      NekoBoiNick.Web.FinalFantasyXIV.Lodestone.Maintenance.Dark
+@version        1.0.0
+@description    Dark mode for Final Fantasy XIV Lodestone on maintenance.
+@author         Neko Boi Nick
+@preprocessor   stylus
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/FFXIV_Lodestone_Maint_Dark.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+
+@-moz-document domain("finalfantasyxiv.com") {
+  :root {
+    --font-color: #e6e6e6;
+    --font-color-accent: #bfa34c;
+    --background: #404040;
+    --background1: #323232;
+    --background2: #212121;
+    --link1: #71a0ff;
+    --link2: #b2cbff;
+  }
+  body.error {
+    div.error__bg {
+      background-color: var(--background);
+      color: var(--font-color);
+    }
+    h1.maintenance__heading {
+      color: var(--font-color);
+    }
+    div.ldst__window,
+    header.news__header {
+      background-color: var(--background1);
+    }
+    article.news__detail {
+      background-color: var(--background2);
+      color: var(--font-color);
+      a {
+        color: var(--link1);
+      }
+      a:hover {
+        color: var(--link2);
+      }
+    }
+  }
+  body#news {
+    div.ldst__bg {
+      div.ldst__contents.clearfix {
+        article.news__detail {
+          background-color: var(--background2);
+          color: var(--font-color);
+          a {
+            color: var(--link1);
+          }
+          a:hover {
+            color: var(--link2);
+          }
+          .mdl-nav__floating__list {
+            background-color: var(--background2);
+          }
+        }
+      }
+    }
+  }
+  body {
+    div.global-nav {
+      nav.sub-nav {
+        background-color: var(--background1);
+        .sub-nav__list {
+          li {
+            a {
+              background: var(--background2);
+              color: var(--font-color);
+            }
+          }
+          .sub_text {
+            color: var(--font-color-accent);
+          }
+          ul {
+            border-bottom-color: var(--background2);
+          }
+        }
+        .sub-nav__news {
+          li:nth-child(1) {
+            a {
+              img {
+                filter: invert(100%);
+              }
+            }
+          }
+          li:nth-child(3) {
+            a {
+              img {
+                filter: invert(100%);
+              }
+            }
+          }
+        }
+        .sub-nav__playguide {
+          li {
+            a {
+              img {
+                filter: invert(100%);
+              }
+            }
+          }
+        }
+        .sub-nav__community {
+          .sub-nav__community__link {
+            li {
+              a {
+                img {
+                  filter: invert(100%);
+                }
+              }
+            }
+          }
+        }
+        .sub-nav__ranking {
+          li {
+            a {
+              img {
+                filter: invert(100%);
+              }
+            }
+          }
+        }
+        .sub-nav__help__other {
+          li:nth-child(3) {
+            a {
+              background-color: var(--font-color);
+              color: var(--background);
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+/* ==UserStyle==
+@name           Google Dark Changes
+@namespace      NekoBoiNick.Web.Google.DarkChanges
+@version        1.0.0
+@description    `Makes changes to various Google stylus scripts:
+                Dark Theme for Google Docs [V2.0]`
+@author         Neko Boi Nick
+@license        MIT
+@preprocessor   uso
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/Google_Dark_Changes.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+@-moz-document url-prefix("https://docs.google.com/document"),
+url-prefix("https://docs.google.com/spreadsheets/"),
+url-prefix("https://docs.google.com/presentation/"),
+url-prefix("https://docs.google.com/drawings"),
+url-prefix("https://docs.google.com/forms"),
+url-prefix("https://sites.google.com/u/"),
+url-prefix("https://sites.google.com/s/"),
+url-prefix("https://classroom.google.com"),
+url-prefix("https://calendar.google.com"),
+url-prefix("https://sites.google.com/new"),
+url-prefix("https://sites.google.com/d"),
+url-prefix("https://drive.google.com/") {
+
+  /* COLOR VARIABLES */
+  body,
+  html {
+    --bg-light: #525355;
+    --bg-mid: #2D2E30;
+    --bg-dark: #1f1f1f;
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff87;
+    --hyperlink: #5b99ff;
+    --hyperlink-hover: #78abff;
+  }
+
+  /* BACKGROUNDS */
+}
+
+@-moz-document url-prefix("https://drive.google.com/u/0/uc") {
+  body {
+    color: var(--text-secondary);
+  }
+
+  .uc-error-caption,
+  .uc-warning-caption {
+    color: var(--text-primary);
+  }
+
+  .uc-name-size a {
+    color: var(--hyperlink);
+  }
+
+  .uc-name-size a:hover {
+    color: var(--hyperlink-hover);
+  }
+
+  hr.uc-footer-divider {
+    border: 0;
+    border-top: 1px solid #000;
+  }
+}
+
+@-moz-document regexp("https:\\/\\/docs\\.google\\.com\\/spreadsheets\\/d\\/[A-Za-z0-9_-]+\\/htmlview#?") {
+  body #top-bar #doc-title .name {
+    color: #fff;
+  }
+
+  ul#sheet-menu li.active {
+    background-color: #343434;
+    border-color: #454545;
+  }
+
+  ul#sheet-menu li.active a,
+  ul#sheet-menu li.active a:visited {
+    color: #0086E6
+  }
+
+  #top-bar,
+  table,
+  div#sheets-viewport table.waffle thead tr th,
+  div#sheets-viewport table.waffle tbody tr th {
+    border-color: #000;
+  }
+
+  div#sheets-viewport table.waffle thead tr th,
+  div#sheets-viewport table.waffle tbody tr th {
+    background-color: #343434;
+    color: #fff;
+  }
+}
+
+@-moz-document regexp("https:\\/\\/docs\\.google\\.com\\/spreadsheets\\/d\\/1MYYLfTp0VH2wen5NWm8_e3_8okU3E1AgklOvF0c9pHc\\/htmlview#?") {
+  .ritz .waffle tbody tr td {
+    background-color: #212121 !important;
+    border-color: #101010 !important;
+  }
+}

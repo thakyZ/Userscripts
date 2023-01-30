@@ -1,0 +1,3749 @@
+/* ==UserStyle==
+@name           Console Games Wiki Dark Mode
+@namespace      NekoBoiNick.Web.ConsoleGamesWiki.DarkMode
+@version        1.0.0
+@description    Makes console games wiki dark moded
+@author         Neko Boi Nick
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/Console_Games_Wiki_Dark_Mode.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+
+@-moz-document domain("consolegameswiki.com") {
+  html {
+    background-color: #181a1b !important;
+  }
+
+  html {
+    color-scheme: dark !important;
+  }
+
+  html,
+  body {
+    background-color: #181a1b;
+  }
+
+  html,
+  body {
+    border-color: #736b5e;
+    color: #e8e6e3;
+  }
+
+  a {
+    color: #3391ff;
+  }
+
+  table {
+    border-color: #545b5e;
+  }
+
+  ::placeholder {
+    color: #b2aba1;
+  }
+
+  input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    background-color: #404400 !important;
+    color: #e8e6e3 !important;
+  }
+
+  ::-webkit-scrollbar {
+    background-color: #202324;
+    color: #aba499;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #454a4d;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #575e62;
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background-color: #484e51;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background-color: #181a1b;
+  }
+
+  ::selection {
+    background-color: #004daa !important;
+    color: #e8e6e3 !important;
+  }
+
+  ::-moz-selection {
+    background-color: #004daa !important;
+    color: #e8e6e3 !important;
+  }
+
+  /* Invert Style */
+  .jfk-bubble.gtx-bubble,
+  .captcheck_answer_label>input+img,
+  span#closed_text>img[src^="https://www.gstatic.com/images/branding/googlelogo"],
+  span[data-href^="https://www.hcaptcha.com/"]>#icon,
+  #bit-notification-bar-iframe,
+  ::-webkit-calendar-picker-indicator {
+    filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
+  }
+
+  /* Variables Style */
+  :root {
+    --darkreader-neutral-background: #131516;
+    --darkreader-neutral-text: #d8d4cf;
+    --darkreader-selection-background: #004daa;
+    --darkreader-selection-text: #e8e6e3;
+  }
+
+  /* Modified CSS */
+  .smw-placeholder {
+    list-style-image: initial;
+    background-color: rgb(30, 32, 33);
+  }
+
+  .client-nojs .smw-placeholder::after {
+    color: rgb(255, 26, 26);
+  }
+
+  .smw-personal-jobqueue-watchlist:hover,
+  .smw-personal-jobqueue-watchlist:focus,
+  .smw-personal-jobqueue-watchlist:active {
+    text-decoration-color: initial;
+    color: rgb(102, 177, 250);
+  }
+
+  .item-count {
+    background-color: rgba(22, 25, 28, 0.04);
+    color: rgb(189, 183, 175);
+  }
+
+  .item-count.active {
+    background-color: rgba(22, 25, 28, 0.08);
+    color: rgb(183, 177, 168);
+  }
+
+  .smwpre {
+    border-color: rgb(41, 97, 149);
+    color: rgb(232, 230, 227);
+    background-color: rgb(27, 30, 31);
+  }
+
+  .smw-debug-box {
+    border-color: rgb(179, 143, 0);
+    background-image: initial;
+    background-color: rgb(68, 53, 0);
+  }
+
+  .smw-debug-box-header {
+    border-bottom-color: rgb(179, 143, 0);
+  }
+
+  a.sortheader:hover {
+    text-decoration-color: initial;
+  }
+
+  div.smwtimeline {
+    border-color: rgb(72, 78, 81);
+    background-color: rgb(27, 30, 31);
+  }
+
+  .smwtable-striped tbody>tr:nth-child(2n) {
+    background-color: rgb(30, 32, 33);
+  }
+
+  .smwtable-striped tbody>tr:nth-child(2n+1) {
+    background-color: rgb(24, 26, 27);
+  }
+
+  .smwtable-striped tbody>tr:hover {
+    background-color: rgb(34, 36, 38);
+  }
+
+  .smwtable-clean {
+    background-color: transparent;
+  }
+
+  .smwtable-clean tr {
+    border-top-color: rgb(58, 62, 65);
+  }
+
+  .smwtable-clean tr>th {
+    border-top-color: rgb(58, 62, 65);
+  }
+
+  .smwtable-clean tr>td {
+    border-top-color: rgb(58, 62, 65);
+  }
+
+  .smwtable-clean tbody>tr:nth-child(2n) {
+    background-color: rgb(30, 32, 33);
+  }
+
+  div.smwhr hr {
+    background-color: rgb(43, 47, 49);
+    color: rgb(211, 207, 201);
+  }
+
+  span.smwwarning {
+    color: rgb(157, 148, 136);
+  }
+
+  .smw-protection-indicator .smw-edit-protection {
+    background-image: url("data:image/svg+xml,%3Csvg width='25' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3C!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ --%3E%3Cg%3E%3Ctitle%3Ebackground%3C/title%3E%3Crect fill='none' id='canvas_background' height='22' width='27' y='-1' x='-1'/%3E%3Cg display='none' overflow='visible' y='0' x='0' height='100%25' width='100%25' id='canvasGrid'%3E%3Crect fill='url(%23gridpattern)' stroke-width='0' y='0' x='0' height='100%25' width='100%25'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3Ctitle%3ELayer 1%3C/title%3E%3Crect stroke='%23b2b2b2' rx='1' id='svg_1' height='19.125' width='24.24996' y='0.4375' x='0.37502' stroke-width='0.5' fill='none'/%3E%3Cpath stroke='null' id='svg_2' d='m16.72335,9.09456l0,-1.71048l-0.00052,0c-0.00074,-2.11109 -1.89085,-3.82158 -4.2227,-3.82158s-4.22299,1.7114 -4.22299,3.82249l0,0l0,1.70957l-1.52717,0l0,7.34294l11.50005,0l0,-7.34294l-1.52667,0zm-7.11202,-1.70957c0,0 0,0 0,0c0,-1.44252 1.296,-2.61571 2.88881,-2.61571c1.59382,0 2.88982,1.17319 2.88982,2.61479c0,0 0,0 0,0l0,1.71048l-5.77863,0l0,-1.70957z' stroke-width='1.5' fill='%23b2b2b2'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: initial;
+  }
+
+  span.smwsearchicon {
+    color: rgb(157, 148, 136);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' height='18' width='18' viewBox='0 0 22 22'%3E%3Cpath d='m132.77 118.03l-27.945-27.945c6.735-9.722 10.1-20.559 10.1-32.508 0-7.767-1.508-15.195-4.523-22.283-3.01-7.089-7.088-13.199-12.221-18.332-5.133-5.133-11.242-9.207-18.33-12.221-7.09-3.01-14.518-4.522-22.285-4.522-7.767 0-15.195 1.507-22.283 4.522-7.089 3.01-13.199 7.088-18.332 12.221-5.133 5.133-9.207 11.244-12.221 18.332-3.01 7.089-4.522 14.516-4.522 22.283 0 7.767 1.507 15.193 4.522 22.283 3.01 7.088 7.088 13.197 12.221 18.33 5.133 5.134 11.244 9.207 18.332 12.222 7.089 3.02 14.516 4.522 22.283 4.522 11.951 0 22.787-3.369 32.509-10.1l27.945 27.863c1.955 2.064 4.397 3.096 7.332 3.096 2.824 0 5.27-1.032 7.332-3.096 2.064-2.063 3.096-4.508 3.096-7.332.0001-2.877-1-5.322-3.01-7.331m-49.41-34.668c-7.143 7.143-15.738 10.714-25.787 10.714-10.05 0-18.643-3.572-25.786-10.714-7.143-7.143-10.714-15.737-10.714-25.786 0-10.05 3.572-18.644 10.714-25.786 7.142-7.143 15.738-10.714 25.786-10.714 10.05 0 18.643 3.572 25.787 10.714 7.143 7.142 10.715 15.738 10.715 25.786 0 10.05-3.573 18.643-10.715 25.786' transform='matrix%28.11417.00745-.00745.11417 3.93 2.548%29' fill='%23888888'/%3E%3C/svg%3E");
+    background-color: initial;
+  }
+
+  span.smwsearch a {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' height='15' width='15' viewBox='0 0 22 22'%3E%3Cpath d='m132.77 118.03l-27.945-27.945c6.735-9.722 10.1-20.559 10.1-32.508 0-7.767-1.508-15.195-4.523-22.283-3.01-7.089-7.088-13.199-12.221-18.332-5.133-5.133-11.242-9.207-18.33-12.221-7.09-3.01-14.518-4.522-22.285-4.522-7.767 0-15.195 1.507-22.283 4.522-7.089 3.01-13.199 7.088-18.332 12.221-5.133 5.133-9.207 11.244-12.221 18.332-3.01 7.089-4.522 14.516-4.522 22.283 0 7.767 1.507 15.193 4.522 22.283 3.01 7.088 7.088 13.197 12.221 18.33 5.133 5.134 11.244 9.207 18.332 12.222 7.089 3.02 14.516 4.522 22.283 4.522 11.951 0 22.787-3.369 32.509-10.1l27.945 27.863c1.955 2.064 4.397 3.096 7.332 3.096 2.824 0 5.27-1.032 7.332-3.096 2.064-2.063 3.096-4.508 3.096-7.332.0001-2.877-1-5.322-3.01-7.331m-49.41-34.668c-7.143 7.143-15.738 10.714-25.787 10.714-10.05 0-18.643-3.572-25.786-10.714-7.143-7.143-10.714-15.737-10.714-25.786 0-10.05 3.572-18.644 10.714-25.786 7.142-7.143 15.738-10.714 25.786-10.714 10.05 0 18.643 3.572 25.787 10.714 7.143 7.142 10.715 15.738 10.715 25.786 0 10.05-3.573 18.643-10.715 25.786' transform='matrix%28.11417.00745-.00745.11417 3.93 2.548%29' fill='%23ccc'/%3E%3C/svg%3E");
+    background-color: initial;
+    color: rgb(200, 195, 188);
+    text-decoration-color: initial;
+  }
+
+  span.smwsearch a:hover {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' height='18' width='18' viewBox='0 0 22 22'%3E%3Cpath d='m132.77 118.03l-27.945-27.945c6.735-9.722 10.1-20.559 10.1-32.508 0-7.767-1.508-15.195-4.523-22.283-3.01-7.089-7.088-13.199-12.221-18.332-5.133-5.133-11.242-9.207-18.33-12.221-7.09-3.01-14.518-4.522-22.285-4.522-7.767 0-15.195 1.507-22.283 4.522-7.089 3.01-13.199 7.088-18.332 12.221-5.133 5.133-9.207 11.244-12.221 18.332-3.01 7.089-4.522 14.516-4.522 22.283 0 7.767 1.507 15.193 4.522 22.283 3.01 7.088 7.088 13.197 12.221 18.33 5.133 5.134 11.244 9.207 18.332 12.222 7.089 3.02 14.516 4.522 22.283 4.522 11.951 0 22.787-3.369 32.509-10.1l27.945 27.863c1.955 2.064 4.397 3.096 7.332 3.096 2.824 0 5.27-1.032 7.332-3.096 2.064-2.063 3.096-4.508 3.096-7.332.0001-2.877-1-5.322-3.01-7.331m-49.41-34.668c-7.143 7.143-15.738 10.714-25.787 10.714-10.05 0-18.643-3.572-25.786-10.714-7.143-7.143-10.714-15.737-10.714-25.786 0-10.05 3.572-18.644 10.714-25.786 7.142-7.143 15.738-10.714 25.786-10.714 10.05 0 18.643 3.572 25.787 10.714 7.143 7.142 10.715 15.738 10.715 25.786 0 10.05-3.573 18.643-10.715 25.786' transform='matrix%28.11417.00745-.00745.11417 3.93 2.548%29' fill='%23888888'/%3E%3C/svg%3E");
+    background-color: initial;
+    color: rgb(157, 148, 136);
+    text-decoration-color: initial;
+  }
+
+  span.smwbrowse a {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='15' width='15' viewBox='0 0 22 22'%3E%3Cg transform='matrix%28.02146 0 0 .02146 1 1%29' fill='%23ccc'%3E%3Cpath d='m466.07 161.53c-205.6 0-382.8 121.2-464.2 296.1-2.5 5.3-2.5 11.5 0 16.9 81.4 174.9 258.6 296.1 464.2 296.1 205.6 0 382.8-121.2 464.2-296.1 2.5-5.3 2.5-11.5 0-16.9-81.4-174.9-258.6-296.1-464.2-296.1m0 514.7c-116.1 0-210.1-94.1-210.1-210.1 0-116.1 94.1-210.1 210.1-210.1 116.1 0 210.1 94.1 210.1 210.1 0 116-94.1 210.1-210.1 210.1'/%3E%3Ccircle cx='466.08' cy='466.02' r='134.5'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: initial;
+    color: rgb(200, 195, 188);
+    text-decoration-color: initial;
+  }
+
+  span.smwbrowse a:hover {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='18' width='18' viewBox='0 0 22 22'%3E%3Cg transform='matrix%28.02146 0 0 .02146 1 1%29' fill='%23888888'%3E%3Cpath d='m466.07 161.53c-205.6 0-382.8 121.2-464.2 296.1-2.5 5.3-2.5 11.5 0 16.9 81.4 174.9 258.6 296.1 464.2 296.1 205.6 0 382.8-121.2 464.2-296.1 2.5-5.3 2.5-11.5 0-16.9-81.4-174.9-258.6-296.1-464.2-296.1m0 514.7c-116.1 0-210.1-94.1-210.1-210.1 0-116.1 94.1-210.1 210.1-210.1 116.1 0 210.1 94.1 210.1 210.1 0 116-94.1 210.1-210.1 210.1'/%3E%3Ccircle cx='466.08' cy='466.02' r='134.5'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: initial;
+    color: rgb(157, 148, 136);
+    text-decoration-color: initial;
+  }
+
+  .concept-documenation {
+    border-top-color: rgb(72, 78, 81);
+  }
+
+  hr.smw-form-horizontalrule {
+    background-color: rgb(43, 47, 49);
+  }
+
+  .smw-horizontalrule {
+    border-bottom-color: rgb(58, 62, 65);
+  }
+
+  .smw-editpage-help {
+    background-color: rgb(32, 35, 37);
+    border-color: rgb(66, 71, 74);
+  }
+
+  .smw-column-header {
+    color: rgb(232, 230, 227);
+  }
+
+  .smw-note {
+    list-style-image: initial;
+    background-color: rgb(30, 32, 33);
+  }
+
+  .smw-callout-info {
+    background-image: initial;
+    background-color: rgb(14, 48, 65);
+    border-left-color: rgb(29, 138, 170);
+  }
+
+  .smw-callout-info .title {
+    color: rgb(101, 199, 229);
+  }
+
+  .smw-callout-info-light {
+    background-image: initial;
+    background-color: rgb(27, 30, 31);
+    border-left-color: rgb(58, 62, 65);
+  }
+
+  .smw-callout-info-light .title {
+    color: rgb(101, 199, 229);
+  }
+
+  .smw-callout-warning {
+    background-image: initial;
+    background-color: rgb(47, 40, 5);
+    border-left-color: rgb(193, 117, 9);
+  }
+
+  .smw-callout-warning .title {
+    color: rgb(247, 181, 87);
+  }
+
+  .smw-callout-success {
+    background-image: initial;
+    background-color: rgb(41, 60, 23);
+    border-left-color: rgb(68, 134, 69);
+  }
+
+  .smw-callout-success .title {
+    color: rgb(139, 196, 140);
+  }
+
+  .smw-callout-error {
+    background-image: initial;
+    background-color: rgb(56, 22, 22);
+    border-left-color: rgb(137, 39, 36);
+  }
+
+  .smw-icon-info {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0MlM0Z4bWwgdmVyc2lvbj0lMjIxLjAlMjIgZW5jb2Rpbmc9JTIyVVRGLTglMjIlM0YlM0UlMEQlMEElM0NzdmcgeG1sbnM9JTIyaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmclMjIgd2lkdGg9JTIyMjQlMjIgaGVpZ2h0PSUyMjI0JTIyIHZpZXdCb3g9JTIyMCAwIDI0IDI0JTIyJTNFJTBEJTBBJTA5JTNDcGF0aCBkPSUyMk0xMS41IDE3YTUuNSA1LjUgMCAxIDEgMC0xMSA1LjUgNS41IDAgMCAxIDAgMTF6bTAtMTJhNi41IDYuNSAwIDEgMCAwIDEzIDYuNSA2LjUgMCAwIDAgMC0xM3ptLjUgNXY0aDF2MWgtM3YtMWgxdi0zaC0xdi0xem0tMS0yaDF2MWgtMXolMjIvJTNFJTBEJTBBJTNDL3N2ZyUzRSUwRCUwQSIgLz48L3N2Zz4=");
+    background-color: initial;
+  }
+
+  .smw-icon-pen {
+    background-image: linear-gradient(rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0)),
+      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAiIGhlaWdodD0iMTUiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMjAiIGhlaWdodD0iMTUiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9JTIyaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmclMjIgd2lkdGg9JTIyMjAlMjIgaGVpZ2h0PSUyMjE1JTIyIHZpZXdCb3g9JTIyMCAwIDIwIDIwJTIyJTNFJTNDdGl0bGUlM0VoaWdobGlnaHQlM0MvdGl0bGUlM0UlM0NwYXRoIGQ9JTIyTTE4LjczIDUuODZsLTMuNTktMy41OWExIDEgMCAwIDAtMS40MSAwbC0xMCAxMGExIDEgMCAwIDAgMCAxLjQxTDQgMTRsLTMgNGg1bDEtMSAuMjkuMjlhMSAxIDAgMCAwIDEuNDEgMGwxMC0xMGExIDEgMCAwIDAgLjAzLTEuNDN6TTcgMTVsLTItMiA5LTkgMiAyeiUyMi8lM0UlM0Mvc3ZnJTNFIiAvPjwvc3ZnPg==");
+  }
+
+  .smw-icon-bookmark {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0MlM0Z4bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnJTNGJTNFJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgd2lkdGg9JzE0JyBoZWlnaHQ9JzE0JyB2aWV3Qm94PScwIDAgMjAgMTYnJTNFJTNDdGl0bGUlM0UgYm9va21hcmsgb3V0bGluZWQgJTNDL3RpdGxlJTNFJTNDcGF0aCBkPSdNMTUgMUg1YTIgMiAwIDAgMC0yIDJ2MTZsNy01IDcgNVYzYTIgMiAwIDAgMC0yLTJ6bTAgMTQuMjVsLTUtMy41LTUgMy41VjNoMTB6Jy8lM0UlM0Mvc3ZnJTNFJTBBIiAvPjwvc3ZnPg==");
+  }
+
+  .smw-icon-compact {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjMiIGhlaWdodD0iMTIiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMjMiIGhlaWdodD0iMTIiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0MlM0Z4bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0ndXRmLTgnJTNGJTNFJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgd2lkdGg9JzIzJyBoZWlnaHQ9JzEyJyUzRSUzQ3BhdGggc3Ryb2tlLXdpZHRoPSczJyBzdHJva2U9JyUyMzAwMCcgZD0nTTEsMy41aDIxTTEsOS41aDltMywwaDknLyUzRSUzQy9zdmclM0UiIC8+PC9zdmc+");
+  }
+
+  .autocomplete-suggestions {
+    background-image: initial;
+    background-color: rgb(24, 26, 27);
+    border-color: rgb(58, 62, 65);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px;
+    color: rgb(152, 143, 130);
+  }
+
+  .autocomplete-suggestion {
+    border-bottom-color: rgb(58, 62, 65);
+  }
+
+  .autocomplete-selected {
+    background-image: initial;
+    background-color: rgb(32, 35, 37);
+  }
+
+  .autocomplete-suggestions strong {
+    color: rgb(61, 168, 255);
+  }
+
+  .autocomplete-group strong {
+    border-bottom-color: rgb(140, 130, 115);
+  }
+
+  .autocomplete-loading {
+    background-image: url("data:image/gif;base64,R0lGODlhDgAOAPQAAP///wMDAwQEBCwsLDo6Ojs7Ozw8PExMTE5OTlBQUGRkZGdnZ3BwcHV1dYODg4SEhJCQkJiYmLa2try8vL6+vr+/v8DAwMHBwcLCwsPDw8XFxcbGxsjIyAAAAAAAAAAAACH5BAkKAAAAIf4gUmVzaXplZCB3aXRoIGV6Z2lmLmNvbSBHSUYgbWFrZXIAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAADgAOAAAFSSAgjsNojokoiJV1AkQBBMBGnYhoMCLHYiLEofGaVEyKxesFWQIkkkzk4XBaTZmLqTJZUo4ADFgz6gJcJopWAqiATRYwO3zNvEIAIfkECQoAAAAsAAAAAA4ADgCE////HR0dHh4eIiIiKioqNTU1Pj4+QUFBS0tLUFBQUlJSYWFhfX19jo6OkpKSlZWVnZ2dn5+fqamptra2vLy8vb29vr6+v7+/wMDAwcHBwsLCw8PDxcXFAAAAAAAAAAAABUkgII7HaI6LKIgDcQKKAgSFEZyOmDCigQAXjejRkLwqFxMk8npRmoDJZLORQq+mTcZ0qTQtSYAmzBk9AZiTZTsBhk2YcFuM3bxCACH5BAkKAAAALAAAAAAOAA4AhP///yMjIyUlJTQ0NDY2Njs7Oz4+PkxMTFJSUlRUVFtbW2BgYGZmZpKSkpSUlJWVlaCgoKqqqra2tre3t7y8vL29vb6+vr+/v8DAwMHBwcLCwsPDw8XFxcbGxsrKygAAAAVMICCOymiOkEiIhXECTwMMB7KamOhEYsIAgoLoUvG8AgITp/NanCgv0USy2Ugk0exrkzERo5aLSCMGcEZQQM5k6WIvZVwZC9BoAZtXCAAh+QQJCgAAACwAAAAADgAOAIT///8DAwMEBAQsLCw6Ojo7Ozs8PDxMTExOTk5QUFBkZGRnZ2dwcHB1dXWDg4OEhISQkJCYmJi2tra8vLy9vb2+vr6/v7/AwMDCwsLDw8PExMTFxcXGxsbHx8fKysoAAAAFSiAgjtFojpr4iAhyApYFOJBynJdoeeLSAISEjsI7GQqmzebFOE1eooBgkJFIoNgXp2OyUKAVGQAjXoqegJypkrvGXhfxdZwFZF4hACH5BAkKAAAALAAAAAAOAA4Ahf///x0dHR4eHiEhISQkJDc3N0BAQEFBQUpKSk9PT1JSUmFhYXt7e4+Pj5GRkZKSkpmZmZqamp2dnaCgoKSkpKmpqa2trba2try8vL29vb6+vr+/v8DAwMLCwsPDw8TExMXFxcrKysvLywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWQIBwaBkahx9hROh4HAGbDQBCkTSOHOFGJJxUAIqFNhN6JhRGEOjJOGKewoDg4Llc4IAC3mgwGDcZTwgBA0IdUgBrQoEABEcaWXdRTxyIdwAdewAeT0EAIfkECQoAAAAsAAAAAA4ADgCF////JCQkJSUlNDQ0NjY2Ozs7Pj4+TExMUlJSVFRUW1tbYmJiampqkZGRk5OTnp6epKSkqKioqqqqrKyssLCwtbW1tra2t7e3vLy8vb29vr6+v7+/wMDAwsLCw8PDxMTExcXFysrKzc3NAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlhAgHDoGRqHH6FFGJkcAZsNwIKhQI4c4UYkrGgAjYc2E3o6GkYQ6Ck5Yp7CAUHhsVTggAPemEAYNxlPDAQFQh1SAGsACwFCBkcaWRcAAgJPHIhLAIV7RUdBACH5BAkKAAAALAAAAAAOAA4Ahf///wMDAwQEBCwsLDo6Ojs7Ozw8PExMTE5OTlBQUGRkZGdnZ3BwcHV1dYODg4SEhJCQkJiYmLa2try8vL29vb6+vr+/v8DAwMLCwsPDw8TExMXFxcbGxsfHx8jIyMrKysvLy83NzQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWQIBwmBkahxqhRGi5HAEWC0Ay2VCOTmhI2AFBk1DK5xk1bjbPsXHyFDoekYxk2Ya0jwuF0cI+Ng4IQhhSAB5CDAZCgUYVHAABAAUETxeEAkIJd0IDT0EAIfkECQoAAAAsAAAAAA4ADgCF////HR0dHh4eIiIiKioqNjY2Ojo6QEBAQUFBSkpKUFBQUVFRUlJSYWFhfX19j4+PkZGRkpKSnZ2dn5+fqamptra2vLy8vb29v7+/wMDAwsLCw8PDxMTExcXFx8fHysrKy8vLzc3NAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlZAgHC4GRqHHGFFiMkcARgMoGLpXI5OaEjoAUGT0MvnGTV2Os+t0fJUVjabyrLNbhsnEiPmeqQ8IEIaUgkGQg4KQhFHAQcFAQALDE8EA0ICQg12QghPQQAh+QQJCgAAACwAAAAADgAOAIX///8jIyMlJSU0NDQ2NjY3Nzc7Ozs+Pj5MTExSUlJUVFRWVlZgYGBqamqRkZGTk5OVlZWenp6qqqq2tra3t7e8vLy9vb2/v7/AwMDDw8PExMTFxcXGxsbHx8fKysrLy8vNzc0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGWUCAcJgZGoca4UR4wRwBlwtgUtlYjk4oSNj5QJNQi+cZNW42z62x8lROMpkJpQ1gGxlPDnooCDw/FlIABgIADQpCEg9CWUMECQgDABAOTwcGQgVCEXRCC09BACH5BAkKAAAALAAAAAAOAA4Ahf///wICAgQEBCIiIiwsLDo6Ojs7Ozw8PExMTE5OTlBQUGRkZGdnZ3BwcHV1dYODg4SEhJCQkJiYmLa2try8vL29vb+/v8DAwMPDw8TExMXFxcbGxsfHx8jIyMrKysvLy83NzQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZWQIBwiBkahxnhRGi5HAEWC2BC0VSOTihIyPFAk9CK9xg1ejrPrXHwVE4wBEGgDaAcG8+Nxmg4PD8VUgAKBQAODEIegllDCAsRD1CCRgkJQhBCYHQST0EAIfkECQoAAAAsAAAAAA4ADgCF////AgICBAQEHBwcICAgISEhJCQkLCwsQEBAQUFBT09PUlJSVlZWYWFhenp6jo6OkpKSlZWVnZ2dn5+fqamptra2vLy8vb29v7+/wMDAw8PDxMTExcXFxsbGx8fHy8vLzc3NAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlVAgHCoGRqHG2FFiMkcARgMoGLhXI4GJkjo+UCTgMKA8YwaE4jn1kh4KiuagyDgBliOjmeHY1wonh8XUgANCwAUE0Igg05GDxIWS2ZHEBFKQmB1RUdBACH5BAkKAAAALAAAAAAOAA4Ahf///yMjIyUlJTQ0NDY2Njs7Oz4+PkxMTFJSUlRUVFtbW2BgYGpqapKSkpOTk5SUlJ6enqqqqra2tre3t7y8vL29vb+/v8DAwMPDw8TExMXFxcbGxsfHx8jIyMrKysvLy83NzQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZZQIBwiBkahwWhRGi5HAECAWBC0VSOBmFgIeR8AJaMsEBgPC0WIyLxBB0PT6UEoyAM4gDKMfLcaIwNDk8fFWkAEA8AHh1CIIZORhUaFEtoTxeGSwBieABFR0EAOw==");
+    background-color: initial;
+  }
+
+  .autocomplete-arrow-light {
+    background-image: linear-gradient(45deg,
+        rgba(0, 0, 0, 0) 50%,
+        rgb(96, 104, 108) 50%),
+      linear-gradient(135deg,
+        rgb(96, 104, 108) 50%,
+        rgba(0, 0, 0, 0) 50%),
+      linear-gradient(to right,
+        rgb(24, 26, 27),
+        rgb(24, 26, 27));
+  }
+
+  .autocomplete-arrow {
+    background-image: url("data:image/svg+xml,%3Csvg fill='%23888888' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+  }
+
+  .smw-breadcrumb-link {
+    color: rgb(153, 144, 131);
+  }
+
+  .smw-breadcrumb-arrow-right {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: rgb(72, 78, 81);
+  }
+
+  .smw-ask-action-btn,
+  .smw-action-btn {
+    background-image: none;
+    border-color: transparent;
+  }
+
+  .smw-ask-action-btn-lgrey,
+  a.smw-ask-action-btn-lgrey:visited,
+  .smw-action-btn-lgrey,
+  .smw-action-btn-lgrey:visited {
+    color: rgb(211, 207, 201);
+    background-color: rgb(34, 36, 38);
+    border-color: rgb(58, 62, 65);
+    text-decoration-color: initial;
+  }
+
+  a.smw-ask-action-btn-lgrey:hover,
+  .smw-action-btn-lgrey:hover {
+    color: rgb(211, 207, 201);
+    background-color: rgb(43, 47, 49);
+    border-color: rgb(58, 62, 65);
+    text-decoration-color: initial;
+  }
+
+  .smw-ask-action-btn-lblue,
+  a.smw-ask-action-btn-lblue:visited {
+    color: rgb(232, 230, 227);
+    background-color: rgb(28, 115, 141);
+    border-color: rgb(28, 115, 140);
+    text-decoration-color: initial;
+  }
+
+  a.smw-ask-action-btn-lblue:hover {
+    color: rgb(232, 230, 227);
+    background-color: rgb(34, 136, 166);
+    border-color: rgb(31, 128, 156);
+    text-decoration-color: initial;
+  }
+
+  .smw-ask-action-btn-dblue,
+  a.smw-ask-action-btn-dblue:visited {
+    color: rgb(232, 230, 227);
+    background-color: rgb(41, 98, 146);
+    border-color: rgb(42, 100, 150);
+    text-decoration-color: initial;
+  }
+
+  .smw-ask-action-btn-dblue:hover,
+  .smw-ask-action-btn-dblue:focus,
+  a.smw-ask-action-btn-dblue:hover,
+  a.smw-ask-action-btn-dblue:focus {
+    color: rgb(232, 230, 227);
+    background-image: none;
+    background-color: rgb(32, 77, 115);
+    border-color: rgb(46, 110, 165);
+    text-decoration-color: initial;
+  }
+
+  .smw-concept-page-indicator a.external.text,
+  .smw-page-indicator a.external.text {
+    background-image: none;
+  }
+
+  .smw-page-indicator {
+    color: rgb(205, 201, 194);
+    border-color: rgb(58, 62, 65);
+  }
+
+  .smw-protection-indicator {
+    color: rgb(205, 201, 194);
+    border-color: transparent;
+  }
+
+  .smw-protection-indicator.with-border {
+    border-color: rgb(58, 62, 65);
+  }
+
+  .smw-page-indicator.usage-count.moderate {
+    background-color: rgb(105, 71, 14);
+    border-color: rgb(120, 82, 16);
+    color: rgb(214, 126, 95);
+  }
+
+  .smw-page-indicator.usage-count.high {
+    background-color: rgb(128, 9, 0);
+    border-color: rgb(131, 34, 0);
+    color: rgb(255, 114, 114);
+  }
+
+  .smw-page-indicator-rdflink a {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2ZXJzaW9uPScxLjEnIG92ZXJmbG93PSd2aXNpYmxlJyBoZWlnaHQ9JzE4JyB3aWR0aD0nMTgnIHZpZXdCb3g9JzAgMCA5NC4zMzIgMTAxLjg4MyclM0UlM0NnIHNoYXBlLXJlbmRlcmluZz0nZ2VvbWV0cmljUHJlY2lzaW9uJyB0ZXh0LXJlbmRlcmluZz0nZ2VvbWV0cmljUHJlY2lzaW9uJyBpbWFnZS1yZW5kZXJpbmc9J29wdGltaXplUXVhbGl0eSclM0UlM0NwYXRoIGQ9J004NC40NSw2Ni44MzZjLTAuNjM2LTAuMzM3LTEuMjg0LTAuNjI0LTEuOTM2LTAuODc5bDAuNDY2LTAuMDM4YzAsMC00LjE1MS0xLjgzOC00LjUxNC0xNS4xOCBjLTAuMzU5LTEzLjM0NCwzLjk1Ny0xNS42MiwzLjk1Ny0xNS42MmwtMC42MiwwLjAyN2MzLjI2MS0xLjY3Myw2LjA2Ni00LjMxNiw3LjkxNy03LjgwNGM0LjgyMy05LjA3MiwxLjM3Mi0yMC4zNDEtNy43MDItMjUuMTY1IEM3Mi45NC0yLjY0MSw2MS42NzQsMC44MDIsNTYuODU0LDkuODgzYy0xLjk4MiwzLjcyNS0yLjU0NSw3LjgxNy0xLjkxOSwxMS42ODNsLTAuMjEyLTAuMzI2YzAsMCwxLjA5Myw0Ljg0Mi0xMC4yNTgsMTEuODg4IGMtMTEuMzQ5LDcuMDUtMTYuNDY5LDMuNTQtMTYuNDY5LDMuNTRsMC4zMjYsMC40OGMtMC4zMjUtMC4yMDEtMC42MzYtMC40MDYtMC45NzUtMC41ODNDMTguMjY5LDMxLjc0MSw3LDM1LjE4OCwyLjE3OCw0NC4yNjYgYy00LjgyLDkuMDc3LTEuMzcyLDIwLjM0MSw3LjcwMywyNS4xNjdjNi43NjYsMy41OTEsMTQuNzQ0LDIuNTksMjAuMzY1LTEuOTE0bC0wLjEyMiwwLjIzNmMwLDAsNC4xMzItMy4zOTksMTYuMDQsMi45OTQgYzkuNCw1LjA0NCwxMC43OTYsOS45ODgsMTAuOTc1LDExLjg0NmMtMC4yNDYsNi44OTMsMy4zNDcsMTMuNjU0LDkuODQ3LDE3LjEwN2M5LjA3NSw0LjgyNSwyMC4zNDQsMS4zNzUsMjUuMTY0LTcuNzAxIEM5Ni45NzQsODIuOTI2LDkzLjUyOCw3MS42NTYsODQuNDUsNjYuODM2eiBNNjMuNDY2LDY5LjI4MmMtMS41MDQsMC41MzItNS44MDEsMS4xMjEtMTQuODQ3LTMuNzMgYy05Ljc5Ny01LjI2LTExLjI1MS05LjY1NC0xMS40NjQtMTAuOTczYzAuMTM5LTEuNiwwLjA1LTMuMTk3LTAuMjIzLTQuNzU1bDAuMDYsMC4wOWMwLDAtMC43OTgtNC4yNzQsMTAuNDEyLTExLjIzNSBjMTAuMDMzLTYuMjI4LDE0LjU5NC00Ljk4OSwxNS40NDMtNC42NjRjMC41NDYsMC4zNzEsMS4xMTIsMC43MTcsMS43MDYsMS4wMzNjMS4xMjksMC42LDIuMjkzLDEuMDcsMy40NzIsMS40MTggYzEuMzgsMS4zMTQsMy45Miw1LjA0NSw0LjE4NCwxNC44NTRjMC4yNyw5Ljg4My0yLjYzNCwxMy42OTQtNC4yMTcsMTUuMDQyQzY2LjM2Miw2Ny4xLDY0LjgzNiw2OC4wODUsNjMuNDY2LDY5LjI4MnonIGZpbGw9JyUyMzBDNDc5QycvJTNFJTNDZyUzRSUzQ3BhdGggZD0nTTYyLjIzOSw4LjFjLTUuNDE1LDUuOTIzLTUuNTI5LDE0LjYzNi0wLjMxMiwxOS41NjZjLTIuNTc5LTIuNDgzLTIuNTIzLTcuNjUxLDAuMDgzLTEyLjU5NyBjMC4zMzUtMC40NDMsMS4zMDYtMS40OSwyLjcyNS0xLjAxNGMwLjE0MywwLjA0OSwwLjIzNywwLjA2MiwwLjI5MiwwLjA1M2MwLjMyMSwwLjA2OSwwLjY1LDAuMTEsMC45OSwwLjA5NSBjMi4xNTUtMC4wOTgsMy44MjItMS45MjEsMy43MjUtNC4wNzdjLTAuMDQ0LTAuOTY3LTAuNDQ1LTEuODIzLTEuMDY1LTIuNDhjNS4wMDItMy4yNzcsMTAuNzQyLTMuNjUyLDEzLjA5NC0xLjUwNGwwLjA5LDAuMDA2IEM3Ni40ODgsMS4yNDIsNjcuNzA1LDIuMTE5LDYyLjIzOSw4LjF6JyBmaWxsPSclMjNGRkZGRkYnLyUzRSUzQy9nJTNFJTNDZyUzRSUzQ3BhdGggZD0nTTcuNjMyLDYyLjg0NWMtMC4wNDYtMC4wNDctMC4wOTMtMC4xMDItMC4xNDEtMC4xNDhjMC4wMywwLjAzMSwwLjA1OSwwLjA2OSwwLjA5NSwwLjEwMkw3LjYzMiw2Mi44NDV6JyBmaWxsPSclMjNGRkZGRkYnLyUzRSUzQ3BhdGggZD0nTTcuODA1LDQzLjEzYy01LjQxNiw1LjkyNC01LjUyOSwxNC42MzUtMC4zMTMsMTkuNTY2Yy0yLjU3OC0yLjQ4NC0yLjUyMy03LjY1MiwwLjA4My0xMi41OTggYzAuMzM2LTAuNDQ0LDEuMzA4LTEuNDksMi43MjctMS4wMTRjMC4xNDEsMC4wNDksMC4yMzYsMC4wNjEsMC4yOTIsMC4wNTRjMC4zMjEsMC4wNjksMC42NTEsMC4xMSwwLjk5LDAuMDk1IGMyLjE1Ni0wLjA5OSwzLjgyMi0xLjkyMiwzLjcyNS00LjA3NmMtMC4wNDUtMC45NjctMC40NDUtMS44MjQtMS4wNjMtMi40OGM0Ljk5OS0zLjI3NiwxMC43NC0zLjY1NCwxMy4wOTItMS41MDVsMC4wODksMC4wMDggQzIyLjA1NCwzNi4yNzEsMTMuMjY5LDM3LjE0Nyw3LjgwNSw0My4xM3onIGZpbGw9JyUyM0ZGRkZGRicvJTNFJTNDL2clM0UlM0NnJTNFJTNDcGF0aCBkPSdNNjUuMjU2LDkyLjUwNGMtMC4wNDctMC4wNDgtMC4wOTQtMC4xMDItMC4xNDEtMC4xNDhjMC4wMjksMC4wMzEsMC4wNTksMC4wNjksMC4wOTQsMC4xMDFMNjUuMjU2LDkyLjUwNHonIGZpbGw9JyUyM0ZGRkZGRicvJTNFJTNDcGF0aCBkPSdNNjUuNDI4LDcyLjc4NmMtNS40MTYsNS45MjYtNS41MjksMTQuNjM5LTAuMzEzLDE5LjU2OWMtMi41OC0yLjQ4My0yLjUyMy03LjY1MywwLjA4Mi0xMi41OTcgYzAuMzM2LTAuNDQ1LDEuMzA3LTEuNDksMi43MjctMS4wMTRjMC4xNDMsMC4wNDcsMC4yMzUsMC4wNjEsMC4yOTIsMC4wNTNjMC4zMiwwLjA2OSwwLjY1MSwwLjExLDAuOTksMC4wOTYgYzIuMTU0LTAuMSwzLjgyLTEuOTI0LDMuNzIzLTQuMDhjLTAuMDQ0LTAuOTY2LTAuNDQ1LTEuODIyLTEuMDYzLTIuNDc5YzUtMy4yNzUsMTAuNzM5LTMuNjUyLDEzLjA5My0xLjUwNGwwLjA4OCwwLjAwNyBDNzkuNjc3LDY1LjkzLDcwLjg5MSw2Ni44MDcsNjUuNDI4LDcyLjc4NnonIGZpbGw9JyUyM0ZGRkZGRicvJTNFJTNDL2clM0UlM0MvZyUzRSUzQy9zdmclM0UlMEEiIC8+PC9zdmc+");
+    background-color: initial;
+  }
+
+  .smw-admin-circle-orange {
+    background-image: initial;
+    background-color: rgb(204, 132, 0);
+  }
+
+  .smw-loading-image-dots {
+    background-image: url("data:image/gif;base64,R0lGODlhIgAUAMQRAOjp6dTW19ze3+Xm54iKjevs7IKEh/f396Olp5ianPz8/Judn9fY2YGDhp+ho4CChdHT1P///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/wtYTVAgRGF0YVhNUDw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoxRThFNDZFQ0RFQjJFMjExQUZCNUREQjU1MEFCRTI5OCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozNkVFNURCOUIyREYxMUUyQTBEQUNFNUIzREVGNjg0MyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozNkVFNURCOEIyREYxMUUyQTBEQUNFNUIzREVGNjg0MyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyMDhFNDZFQ0RFQjJFMjExQUZCNUREQjU1MEFCRTI5OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRThFNDZFQ0RFQjJFMjExQUZCNUREQjU1MEFCRTI5OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAkyABEALAAAAAAiABQAAAVeYCSOZGmeaKqubOu+cCzPdM0iBIGYgCAUPB8Q5XgYHw4SAMKEAJRNJ8pwfBhIgagAq0U1qg1ukyFmkk+L6oI0iD5H7ebbdEgYEweSYhAIDEp7fX82hIWGh4iJiosoIQAh+QQJMgARACwAAAAAIgAUAAAFZGAkjmRpnmiqrmzrvnAsz3TNFoIAmAhBICZArpACQI6Q3cjxaD4cJCNSaRIgIQGSwfkwkAJXAYpxzY4a3Mb3ykBJjwPSgrsgDa5U0yAQGChIBwlNCQckCnt9NoqLjI2Oj5CRKSEAIfkEBTIAEQAsAAAAACIAFAAABWNgJI5kaZ5oqq5s675wLM90zRaCAJi4biIEAiIFgBghu1HxmBQ5HtCHAyU4QgKk6hE7MkQfBhTDyhWNt6TGt4FaGgckNwQ+WnwXqUEgMFCU9Hx+IwcJUAkHNomKi4yNjo+QKCEAOw==");
+    background-color: initial;
+  }
+
+  .smw-overlay-spinner.mini {
+    border-color: rgba(0, 133, 183, 0.8) rgba(0, 133, 183, 0.15) rgba(0, 133, 183, 0.15);
+  }
+
+  .smw-overlay-spinner {
+    border-color: rgba(0, 133, 183, 0.8) rgba(0, 133, 183, 0.15) rgba(0, 133, 183, 0.15);
+  }
+
+  .ns-112.action-submit .error {
+    color: rgb(225, 134, 143);
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    background-image: initial;
+    background-color: rgb(56, 22, 22);
+    border-left-color: rgb(137, 39, 36);
+  }
+
+  .ns-112.action-submit .error a.external {
+    background-image: none !important;
+    background-color: initial !important;
+  }
+
+  .ns-112.action-submit .error::before {
+    color: rgb(225, 134, 143);
+  }
+
+  .smw-dropdown>a,
+  .smw-dropdown>button {
+    background-color: rgb(24, 26, 27);
+    border-color: rgb(62, 68, 70);
+    color: rgb(232, 230, 227);
+    text-decoration-color: initial;
+  }
+
+  .smw-dropdown>a::before,
+  .smw-dropdown>button::before {
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: rgb(140, 130, 115);
+  }
+
+  .smw-dropdown .smw-dropdown-menu {
+    border-color: rgb(62, 68, 70);
+    list-style-image: initial;
+    background-color: rgb(24, 26, 27);
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 3px 6px;
+  }
+
+  .smw-dropdown .smw-dropdown-menu li:hover {
+    background-color: rgb(30, 32, 33);
+  }
+
+  .smw-dropdown .smw-dropdown-menu li a {
+    text-decoration-color: initial;
+    color: rgb(232, 230, 227);
+  }
+
+  .smw-dropdown .smw-dropdown-menu .divider {
+    background-color: rgb(39, 42, 44);
+  }
+
+  .smw-dropdown-menu::before {
+    border-color: transparent transparent rgba(130, 121, 107, 0.15);
+  }
+
+  .smw-dropdown-menu::before {
+    border-color: transparent transparent rgba(130, 121, 107, 0.15);
+  }
+
+  .smw-dropdown-menu::after {
+    border-color: transparent transparent rgb(48, 52, 54);
+  }
+
+  .smw-table-header {
+    background-color: rgb(34, 36, 38);
+  }
+
+  .smw-table-cell,
+  .smw-table-head {
+    border-color: rgb(77, 83, 86);
+  }
+
+  .smw-table-header {
+    background-color: rgb(34, 36, 38);
+  }
+
+  .smw-table-footer {
+    background-color: rgb(34, 36, 38);
+  }
+
+  .smw-table-sort-asc::after {
+    color: rgb(168, 160, 149);
+  }
+
+  .smw-table-sort-desc::after {
+    color: rgb(168, 160, 149);
+  }
+
+  .smw-tabs section,
+  .smw-tabs .subtab-content {
+    border-top-color: rgb(58, 62, 65);
+  }
+
+  .smw-tabs label.nav-label {
+    color: rgb(189, 183, 175);
+    border-color: transparent;
+  }
+
+  .smw-tabs label.nav-label:hover {
+    color: rgb(157, 148, 136);
+  }
+
+  .smw-tabs input.nav-tab:checked+label.nav-label {
+    color: rgb(206, 202, 195);
+    border-color: rgb(40, 96, 145) rgb(58, 62, 65) rgb(48, 52, 54);
+  }
+
+  .smw-tabs input.nav-tab:checked+label.nav-label.cached {
+    border-top-color: rgb(179, 116, 0);
+  }
+
+  @media screen and (max-width: 800px) {
+    .smw-tabs label.nav-label {
+      border-top-color: initial;
+    }
+
+    .smw-tabs input.nav-tab:checked+label.nav-label {
+      background-color: rgba(27, 30, 31, 0.66);
+      border-left-color: initial !important;
+      border-right-color: initial !important;
+    }
+  }
+
+  .smw-tabset>label {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: initial;
+    color: rgb(160, 152, 139);
+  }
+
+  .smw-tabset>label::after {
+    background-image: initial;
+    background-color: rgb(88, 96, 99);
+  }
+
+  .smw-tabset>input:focus+label,
+  .smw-tabset>input:checked+label {
+    color: rgb(82, 177, 255);
+  }
+
+  .smw-tabset>input:focus+label::after,
+  .smw-tabset>input:checked+label::after {
+    background-image: initial;
+    background-color: rgb(0, 82, 163);
+  }
+
+  .smw-tabset>input:focus+label.smw-indicator-severity-error::after,
+  .smw-tabset>input:checked+label.smw-indicator-severity-error::after {
+    background-image: initial;
+    background-color: rgb(166, 28, 28);
+  }
+
+  .smw-tabset>input:focus+label.smw-indicator-severity-warning::after,
+  .smw-tabset>input:checked+label.smw-indicator-severity-warning::after {
+    background-image: initial;
+    background-color: rgb(204, 132, 0);
+  }
+
+  .smw-tabset>label:hover {
+    color: rgb(189, 183, 175);
+  }
+
+  .smw-tabset>label:hover::after {
+    background-image: initial;
+    background-color: rgb(51, 55, 58);
+  }
+
+  .smw-tabset>input:checked+label {
+    border-color: rgb(0, 97, 194) rgb(62, 68, 70) rgb(48, 52, 54);
+  }
+
+  .smw-tabset>input:checked+label.smw-indicator-severity-error {
+    border-top-color: rgb(149, 25, 25);
+    color: rgb(224, 68, 68);
+  }
+
+  .smw-tabset>input:checked+label.smw-indicator-severity-warning {
+    border-top-color: rgb(179, 116, 0);
+    color: rgb(255, 174, 26);
+  }
+
+  .tab-panel {
+    border-top-color: rgb(62, 68, 70);
+  }
+
+  .smw-issue-panel>label::after {
+    background-image: initial;
+    background-color: rgb(88, 96, 99);
+  }
+
+  .smwfact {
+    background-color: rgb(27, 30, 31);
+    border-color: rgb(72, 78, 81);
+  }
+
+  .smwfact td,
+  .smwfact tr,
+  .smwfact table {
+    background-color: rgb(27, 30, 31);
+  }
+
+  .smwfact .smwfacttable {
+    border-top-color: rgb(72, 78, 81);
+  }
+
+  .smwfact .smw-table-cell {
+    border-color: initial;
+  }
+
+  .smwfact .smw-table-row:nth-child(2n+1) {
+    background-color: rgb(27, 30, 31);
+  }
+
+  .smwfact .smw-table-row:nth-child(2n) {
+    background-color: rgb(24, 26, 27);
+  }
+
+  .swmfactboxheadbrowse a {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='18' width='18' viewBox='0 0 22 22'%3E%3Cg transform='matrix%28.02146 0 0 .02146 1 1%29' fill='%23ccc'%3E%3Cpath d='m466.07 161.53c-205.6 0-382.8 121.2-464.2 296.1-2.5 5.3-2.5 11.5 0 16.9 81.4 174.9 258.6 296.1 464.2 296.1 205.6 0 382.8-121.2 464.2-296.1 2.5-5.3 2.5-11.5 0-16.9-81.4-174.9-258.6-296.1-464.2-296.1m0 514.7c-116.1 0-210.1-94.1-210.1-210.1 0-116.1 94.1-210.1 210.1-210.1 116.1 0 210.1 94.1 210.1 210.1 0 116-94.1 210.1-210.1 210.1'/%3E%3Ccircle cx='466.08' cy='466.02' r='134.5'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: initial;
+    text-decoration-color: initial;
+  }
+
+  .swmfactboxheadbrowse a:hover {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='20' width='20' viewBox='0 0 22 22'%3E%3Cg transform='matrix%28.02146 0 0 .02146 1 1%29' fill='%23888888'%3E%3Cpath d='m466.07 161.53c-205.6 0-382.8 121.2-464.2 296.1-2.5 5.3-2.5 11.5 0 16.9 81.4 174.9 258.6 296.1 464.2 296.1 205.6 0 382.8-121.2 464.2-296.1 2.5-5.3 2.5-11.5 0-16.9-81.4-174.9-258.6-296.1-464.2-296.1m0 514.7c-116.1 0-210.1-94.1-210.1-210.1 0-116.1 94.1-210.1 210.1-210.1 116.1 0 210.1 94.1 210.1 210.1 0 116-94.1 210.1-210.1 210.1'/%3E%3Ccircle cx='466.08' cy='466.02' r='134.5'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: initial;
+    text-decoration-color: initial;
+  }
+
+  .rdflink a {
+    color: rgb(157, 148, 136);
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2ZXJzaW9uPScxLjEnIG92ZXJmbG93PSd2aXNpYmxlJyBoZWlnaHQ9JzEwJyB3aWR0aD0nMTAnIHZpZXdCb3g9JzAgMCA5NC4zMzIgMTAxLjg4MyclM0UlM0NnIHNoYXBlLXJlbmRlcmluZz0nZ2VvbWV0cmljUHJlY2lzaW9uJyB0ZXh0LXJlbmRlcmluZz0nZ2VvbWV0cmljUHJlY2lzaW9uJyBpbWFnZS1yZW5kZXJpbmc9J29wdGltaXplUXVhbGl0eSclM0UlM0NwYXRoIGQ9J004NC40NSw2Ni44MzZjLTAuNjM2LTAuMzM3LTEuMjg0LTAuNjI0LTEuOTM2LTAuODc5bDAuNDY2LTAuMDM4YzAsMC00LjE1MS0xLjgzOC00LjUxNC0xNS4xOCBjLTAuMzU5LTEzLjM0NCwzLjk1Ny0xNS42MiwzLjk1Ny0xNS42MmwtMC42MiwwLjAyN2MzLjI2MS0xLjY3Myw2LjA2Ni00LjMxNiw3LjkxNy03LjgwNGM0LjgyMy05LjA3MiwxLjM3Mi0yMC4zNDEtNy43MDItMjUuMTY1IEM3Mi45NC0yLjY0MSw2MS42NzQsMC44MDIsNTYuODU0LDkuODgzYy0xLjk4MiwzLjcyNS0yLjU0NSw3LjgxNy0xLjkxOSwxMS42ODNsLTAuMjEyLTAuMzI2YzAsMCwxLjA5Myw0Ljg0Mi0xMC4yNTgsMTEuODg4IGMtMTEuMzQ5LDcuMDUtMTYuNDY5LDMuNTQtMTYuNDY5LDMuNTRsMC4zMjYsMC40OGMtMC4zMjUtMC4yMDEtMC42MzYtMC40MDYtMC45NzUtMC41ODNDMTguMjY5LDMxLjc0MSw3LDM1LjE4OCwyLjE3OCw0NC4yNjYgYy00LjgyLDkuMDc3LTEuMzcyLDIwLjM0MSw3LjcwMywyNS4xNjdjNi43NjYsMy41OTEsMTQuNzQ0LDIuNTksMjAuMzY1LTEuOTE0bC0wLjEyMiwwLjIzNmMwLDAsNC4xMzItMy4zOTksMTYuMDQsMi45OTQgYzkuNCw1LjA0NCwxMC43OTYsOS45ODgsMTAuOTc1LDExLjg0NmMtMC4yNDYsNi44OTMsMy4zNDcsMTMuNjU0LDkuODQ3LDE3LjEwN2M5LjA3NSw0LjgyNSwyMC4zNDQsMS4zNzUsMjUuMTY0LTcuNzAxIEM5Ni45NzQsODIuOTI2LDkzLjUyOCw3MS42NTYsODQuNDUsNjYuODM2eiBNNjMuNDY2LDY5LjI4MmMtMS41MDQsMC41MzItNS44MDEsMS4xMjEtMTQuODQ3LTMuNzMgYy05Ljc5Ny01LjI2LTExLjI1MS05LjY1NC0xMS40NjQtMTAuOTczYzAuMTM5LTEuNiwwLjA1LTMuMTk3LTAuMjIzLTQuNzU1bDAuMDYsMC4wOWMwLDAtMC43OTgtNC4yNzQsMTAuNDEyLTExLjIzNSBjMTAuMDMzLTYuMjI4LDE0LjU5NC00Ljk4OSwxNS40NDMtNC42NjRjMC41NDYsMC4zNzEsMS4xMTIsMC43MTcsMS43MDYsMS4wMzNjMS4xMjksMC42LDIuMjkzLDEuMDcsMy40NzIsMS40MTggYzEuMzgsMS4zMTQsMy45Miw1LjA0NSw0LjE4NCwxNC44NTRjMC4yNyw5Ljg4My0yLjYzNCwxMy42OTQtNC4yMTcsMTUuMDQyQzY2LjM2Miw2Ny4xLDY0LjgzNiw2OC4wODUsNjMuNDY2LDY5LjI4MnonIGZpbGw9JyUyMzBDNDc5QycvJTNFJTNDZyUzRSUzQ3BhdGggZD0nTTYyLjIzOSw4LjFjLTUuNDE1LDUuOTIzLTUuNTI5LDE0LjYzNi0wLjMxMiwxOS41NjZjLTIuNTc5LTIuNDgzLTIuNTIzLTcuNjUxLDAuMDgzLTEyLjU5NyBjMC4zMzUtMC40NDMsMS4zMDYtMS40OSwyLjcyNS0xLjAxNGMwLjE0MywwLjA0OSwwLjIzNywwLjA2MiwwLjI5MiwwLjA1M2MwLjMyMSwwLjA2OSwwLjY1LDAuMTEsMC45OSwwLjA5NSBjMi4xNTUtMC4wOTgsMy44MjItMS45MjEsMy43MjUtNC4wNzdjLTAuMDQ0LTAuOTY3LTAuNDQ1LTEuODIzLTEuMDY1LTIuNDhjNS4wMDItMy4yNzcsMTAuNzQyLTMuNjUyLDEzLjA5NC0xLjUwNGwwLjA5LDAuMDA2IEM3Ni40ODgsMS4yNDIsNjcuNzA1LDIuMTE5LDYyLjIzOSw4LjF6JyBmaWxsPSclMjNGRkZGRkYnLyUzRSUzQy9nJTNFJTNDZyUzRSUzQ3BhdGggZD0nTTcuNjMyLDYyLjg0NWMtMC4wNDYtMC4wNDctMC4wOTMtMC4xMDItMC4xNDEtMC4xNDhjMC4wMywwLjAzMSwwLjA1OSwwLjA2OSwwLjA5NSwwLjEwMkw3LjYzMiw2Mi44NDV6JyBmaWxsPSclMjNGRkZGRkYnLyUzRSUzQ3BhdGggZD0nTTcuODA1LDQzLjEzYy01LjQxNiw1LjkyNC01LjUyOSwxNC42MzUtMC4zMTMsMTkuNTY2Yy0yLjU3OC0yLjQ4NC0yLjUyMy03LjY1MiwwLjA4My0xMi41OTggYzAuMzM2LTAuNDQ0LDEuMzA4LTEuNDksMi43MjctMS4wMTRjMC4xNDEsMC4wNDksMC4yMzYsMC4wNjEsMC4yOTIsMC4wNTRjMC4zMjEsMC4wNjksMC42NTEsMC4xMSwwLjk5LDAuMDk1IGMyLjE1Ni0wLjA5OSwzLjgyMi0xLjkyMiwzLjcyNS00LjA3NmMtMC4wNDUtMC45NjctMC40NDUtMS44MjQtMS4wNjMtMi40OGM0Ljk5OS0zLjI3NiwxMC43NC0zLjY1NCwxMy4wOTItMS41MDVsMC4wODksMC4wMDggQzIyLjA1NCwzNi4yNzEsMTMuMjY5LDM3LjE0Nyw3LjgwNSw0My4xM3onIGZpbGw9JyUyM0ZGRkZGRicvJTNFJTNDL2clM0UlM0NnJTNFJTNDcGF0aCBkPSdNNjUuMjU2LDkyLjUwNGMtMC4wNDctMC4wNDgtMC4wOTQtMC4xMDItMC4xNDEtMC4xNDhjMC4wMjksMC4wMzEsMC4wNTksMC4wNjksMC4wOTQsMC4xMDFMNjUuMjU2LDkyLjUwNHonIGZpbGw9JyUyM0ZGRkZGRicvJTNFJTNDcGF0aCBkPSdNNjUuNDI4LDcyLjc4NmMtNS40MTYsNS45MjYtNS41MjksMTQuNjM5LTAuMzEzLDE5LjU2OWMtMi41OC0yLjQ4My0yLjUyMy03LjY1MywwLjA4Mi0xMi41OTcgYzAuMzM2LTAuNDQ1LDEuMzA3LTEuNDksMi43MjctMS4wMTRjMC4xNDMsMC4wNDcsMC4yMzUsMC4wNjEsMC4yOTIsMC4wNTNjMC4zMiwwLjA2OSwwLjY1MSwwLjExLDAuOTksMC4wOTYgYzIuMTU0LTAuMSwzLjgyLTEuOTI0LDMuNzIzLTQuMDhjLTAuMDQ0LTAuOTY2LTAuNDQ1LTEuODIyLTEuMDYzLTIuNDc5YzUtMy4yNzUsMTAuNzM5LTMuNjUyLDEzLjA5My0xLjUwNGwwLjA4OCwwLjAwNyBDNzkuNjc3LDY1LjkzLDcwLjg5MSw2Ni44MDcsNjUuNDI4LDcyLjc4NnonIGZpbGw9JyUyM0ZGRkZGRicvJTNFJTNDL2clM0UlM0MvZyUzRSUzQy9zdmclM0UlMEEiIC8+PC9zdmc+");
+    background-color: initial;
+  }
+
+  .rdflink a:hover {
+    text-decoration-color: initial;
+    color: rgb(51, 125, 255);
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2ZXJzaW9uPScxLjEnIG92ZXJmbG93PSd2aXNpYmxlJyBoZWlnaHQ9JzEyJyB3aWR0aD0nMTInIHZpZXdCb3g9JzAgMCA5NC4zMzIgMTAxLjg4MyclM0UlM0NnIHNoYXBlLXJlbmRlcmluZz0nZ2VvbWV0cmljUHJlY2lzaW9uJyB0ZXh0LXJlbmRlcmluZz0nZ2VvbWV0cmljUHJlY2lzaW9uJyBpbWFnZS1yZW5kZXJpbmc9J29wdGltaXplUXVhbGl0eSclM0UlM0NwYXRoIGQ9J004NC40NSw2Ni44MzZjLTAuNjM2LTAuMzM3LTEuMjg0LTAuNjI0LTEuOTM2LTAuODc5bDAuNDY2LTAuMDM4YzAsMC00LjE1MS0xLjgzOC00LjUxNC0xNS4xOCBjLTAuMzU5LTEzLjM0NCwzLjk1Ny0xNS42MiwzLjk1Ny0xNS42MmwtMC42MiwwLjAyN2MzLjI2MS0xLjY3Myw2LjA2Ni00LjMxNiw3LjkxNy03LjgwNGM0LjgyMy05LjA3MiwxLjM3Mi0yMC4zNDEtNy43MDItMjUuMTY1IEM3Mi45NC0yLjY0MSw2MS42NzQsMC44MDIsNTYuODU0LDkuODgzYy0xLjk4MiwzLjcyNS0yLjU0NSw3LjgxNy0xLjkxOSwxMS42ODNsLTAuMjEyLTAuMzI2YzAsMCwxLjA5Myw0Ljg0Mi0xMC4yNTgsMTEuODg4IGMtMTEuMzQ5LDcuMDUtMTYuNDY5LDMuNTQtMTYuNDY5LDMuNTRsMC4zMjYsMC40OGMtMC4zMjUtMC4yMDEtMC42MzYtMC40MDYtMC45NzUtMC41ODNDMTguMjY5LDMxLjc0MSw3LDM1LjE4OCwyLjE3OCw0NC4yNjYgYy00LjgyLDkuMDc3LTEuMzcyLDIwLjM0MSw3LjcwMywyNS4xNjdjNi43NjYsMy41OTEsMTQuNzQ0LDIuNTksMjAuMzY1LTEuOTE0bC0wLjEyMiwwLjIzNmMwLDAsNC4xMzItMy4zOTksMTYuMDQsMi45OTQgYzkuNCw1LjA0NCwxMC43OTYsOS45ODgsMTAuOTc1LDExLjg0NmMtMC4yNDYsNi44OTMsMy4zNDcsMTMuNjU0LDkuODQ3LDE3LjEwN2M5LjA3NSw0LjgyNSwyMC4zNDQsMS4zNzUsMjUuMTY0LTcuNzAxIEM5Ni45NzQsODIuOTI2LDkzLjUyOCw3MS42NTYsODQuNDUsNjYuODM2eiBNNjMuNDY2LDY5LjI4MmMtMS41MDQsMC41MzItNS44MDEsMS4xMjEtMTQuODQ3LTMuNzMgYy05Ljc5Ny01LjI2LTExLjI1MS05LjY1NC0xMS40NjQtMTAuOTczYzAuMTM5LTEuNiwwLjA1LTMuMTk3LTAuMjIzLTQuNzU1bDAuMDYsMC4wOWMwLDAtMC43OTgtNC4yNzQsMTAuNDEyLTExLjIzNSBjMTAuMDMzLTYuMjI4LDE0LjU5NC00Ljk4OSwxNS40NDMtNC42NjRjMC41NDYsMC4zNzEsMS4xMTIsMC43MTcsMS43MDYsMS4wMzNjMS4xMjksMC42LDIuMjkzLDEuMDcsMy40NzIsMS40MTggYzEuMzgsMS4zMTQsMy45Miw1LjA0NSw0LjE4NCwxNC44NTRjMC4yNyw5Ljg4My0yLjYzNCwxMy42OTQtNC4yMTcsMTUuMDQyQzY2LjM2Miw2Ny4xLDY0LjgzNiw2OC4wODUsNjMuNDY2LDY5LjI4MnonIGZpbGw9JyUyMzBDNDc5QycvJTNFJTNDZyUzRSUzQ3BhdGggZD0nTTYyLjIzOSw4LjFjLTUuNDE1LDUuOTIzLTUuNTI5LDE0LjYzNi0wLjMxMiwxOS41NjZjLTIuNTc5LTIuNDgzLTIuNTIzLTcuNjUxLDAuMDgzLTEyLjU5NyBjMC4zMzUtMC40NDMsMS4zMDYtMS40OSwyLjcyNS0xLjAxNGMwLjE0MywwLjA0OSwwLjIzNywwLjA2MiwwLjI5MiwwLjA1M2MwLjMyMSwwLjA2OSwwLjY1LDAuMTEsMC45OSwwLjA5NSBjMi4xNTUtMC4wOTgsMy44MjItMS45MjEsMy43MjUtNC4wNzdjLTAuMDQ0LTAuOTY3LTAuNDQ1LTEuODIzLTEuMDY1LTIuNDhjNS4wMDItMy4yNzcsMTAuNzQyLTMuNjUyLDEzLjA5NC0xLjUwNGwwLjA5LDAuMDA2IEM3Ni40ODgsMS4yNDIsNjcuNzA1LDIuMTE5LDYyLjIzOSw4LjF6JyBmaWxsPSclMjNGRkZGRkYnLyUzRSUzQy9nJTNFJTNDZyUzRSUzQ3BhdGggZD0nTTcuNjMyLDYyLjg0NWMtMC4wNDYtMC4wNDctMC4wOTMtMC4xMDItMC4xNDEtMC4xNDhjMC4wMywwLjAzMSwwLjA1OSwwLjA2OSwwLjA5NSwwLjEwMkw3LjYzMiw2Mi44NDV6JyBmaWxsPSclMjNGRkZGRkYnLyUzRSUzQ3BhdGggZD0nTTcuODA1LDQzLjEzYy01LjQxNiw1LjkyNC01LjUyOSwxNC42MzUtMC4zMTMsMTkuNTY2Yy0yLjU3OC0yLjQ4NC0yLjUyMy03LjY1MiwwLjA4My0xMi41OTggYzAuMzM2LTAuNDQ0LDEuMzA4LTEuNDksMi43MjctMS4wMTRjMC4xNDEsMC4wNDksMC4yMzYsMC4wNjEsMC4yOTIsMC4wNTRjMC4zMjEsMC4wNjksMC42NTEsMC4xMSwwLjk5LDAuMDk1IGMyLjE1Ni0wLjA5OSwzLjgyMi0xLjkyMiwzLjcyNS00LjA3NmMtMC4wNDUtMC45NjctMC40NDUtMS44MjQtMS4wNjMtMi40OGM0Ljk5OS0zLjI3NiwxMC43NC0zLjY1NCwxMy4wOTItMS41MDVsMC4wODksMC4wMDggQzIyLjA1NCwzNi4yNzEsMTMuMjY5LDM3LjE0Nyw3LjgwNSw0My4xM3onIGZpbGw9JyUyM0ZGRkZGRicvJTNFJTNDL2clM0UlM0NnJTNFJTNDcGF0aCBkPSdNNjUuMjU2LDkyLjUwNGMtMC4wNDctMC4wNDgtMC4wOTQtMC4xMDItMC4xNDEtMC4xNDhjMC4wMjksMC4wMzEsMC4wNTksMC4wNjksMC4wOTQsMC4xMDFMNjUuMjU2LDkyLjUwNHonIGZpbGw9JyUyM0ZGRkZGRicvJTNFJTNDcGF0aCBkPSdNNjUuNDI4LDcyLjc4NmMtNS40MTYsNS45MjYtNS41MjksMTQuNjM5LTAuMzEzLDE5LjU2OWMtMi41OC0yLjQ4My0yLjUyMy03LjY1MywwLjA4Mi0xMi41OTcgYzAuMzM2LTAuNDQ1LDEuMzA3LTEuNDksMi43MjctMS4wMTRjMC4xNDMsMC4wNDcsMC4yMzUsMC4wNjEsMC4yOTIsMC4wNTNjMC4zMiwwLjA2OSwwLjY1MSwwLjExLDAuOTksMC4wOTYgYzIuMTU0LTAuMSwzLjgyLTEuOTI0LDMuNzIzLTQuMDhjLTAuMDQ0LTAuOTY2LTAuNDQ1LTEuODIyLTEuMDYzLTIuNDc5YzUtMy4yNzUsMTAuNzM5LTMuNjUyLDEzLjA5My0xLjUwNGwwLjA4OCwwLjAwNyBDNzkuNjc3LDY1LjkzLDcwLjg5MSw2Ni44MDcsNjUuNDI4LDcyLjc4NnonIGZpbGw9JyUyM0ZGRkZGRicvJTNFJTNDL2clM0UlM0MvZyUzRSUzQy9zdmclM0UlMEEiIC8+PC9zdmc+");
+    background-color: initial;
+  }
+
+  .smw-factbox section {
+    border-color: rgb(72, 78, 81);
+  }
+
+  .smw-factbox input.nav-tab:checked+label.nav-label {
+    border-color: rgb(179, 116, 0) rgb(72, 78, 81) rgb(48, 52, 54);
+    background-image: initial;
+    background-color: rgb(24, 26, 27);
+  }
+
+  .smw-factbox input.nav-tab:checked+label#tab-label-facts-attachment.nav-label {
+    border-color: rgb(3, 108, 157) rgb(72, 78, 81) rgb(48, 52, 54);
+  }
+
+  .smw-factbox .smwfact {
+    border-color: initial;
+    background-color: rgb(24, 26, 27);
+  }
+
+  .smw-factbox-view.skin-vector #mw-data-after-content .smw-factbox {
+    background-image: initial;
+    background-color: rgb(24, 26, 27);
+    border-left-color: rgb(8, 75, 122);
+    border-bottom-color: rgb(8, 75, 122);
+  }
+
+  .smw-factbox-view.skin-vector #bodyContent #mw-data-after-content .smw-factbox {
+    background-image: unset;
+    background-color: unset;
+    border-left-color: rgb(8, 75, 122);
+    border-bottom-color: rgb(8, 75, 122);
+  }
+
+  .smw-icon-indicator-placeholder {
+    background-color: rgb(34, 36, 38);
+  }
+
+  .smw-indicator-vertical-bar-loader,
+  .smw-indicator-vertical-bar-loader::before,
+  .smw-indicator-vertical-bar-loader::after {
+    background-image: initial;
+    background-color: rgb(60, 65, 67);
+  }
+
+  .smw-indicator-vertical-bar-loader {
+    color: rgb(192, 187, 179);
+  }
+
+  .smw-icon-indicator-replication-error {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cstyle type='text/css'%3E* %7B fill:%23e67e22 %7D%3C/style%3E%3Cpath d='M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm1 16H9v-2h2zm0-4H9V4h2z'/%3E%3C/svg%3E%0A");
+    background-color: initial;
+  }
+
+  .smw-icon-indicator-replication-error {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg stroke='%23d33' stroke-width='2.23'%3E%3Ccircle fill='%23ffffff' cx='10' cy='10' r='8.5652'/%3E%3Cpath d='M10,4.188V12.657M10,13.438V15.813'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: initial;
+  }
+
+  .smw-icon-indicator-constraint-error {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg stroke='%23ffa500' stroke-width='2.23'%3E%3Ccircle fill='%23ffffff' cx='10' cy='10' r='8.5652'/%3E%3Cpath d='M10,4.188V12.657M10,13.438V15.813'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: initial;
+  }
+
+  .smw-icon-constraint-violation {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2ZXJzaW9uPScxLjEnIHdpZHRoPScyNicgaGVpZ2h0PScyNicgdmlld0JveD0nMCAwIDI0IDI0JyUzRSUzQ3BhdGggZmlsbD0nJTIzY2U0ODQ0JyBkPSdNMTMsMTNIMTFWN0gxM00xMywxN0gxMVYxNUgxM00xMiwyQTEwLDEwIDAgMCwwIDIsMTJBMTAsMTAgMCAwLDAgMTIsMjJBMTAsMTAgMCAwLDAgMjIsMTJBMTAsMTAgMCAwLDAgMTIsMlonIC8lM0UlM0Mvc3ZnJTNFIiAvPjwvc3ZnPg==");
+    background-color: initial;
+  }
+
+  .smw-icon-es-engine {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='20px' height='20px' viewBox='0 0 30 30' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg id='es-logo' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Group-11' transform='translate(1.000000,0.000000)'%3E%3Cpath d='M0,15 C0,16.388 0.203,17.725 0.556,19 L19,19 C21.209,19 23,17.209 23,15 C23,12.791 21.209,11 19,11 L0.556,11 C0.203,12.275 0,13.612 0,15' id='Fill-1' fill='%23343741'%3E%3C/path%3E%3Cpath d='M25.3301,6.8613 C25.7831,6.4353 26.2111,5.9823 26.6051,5.5003 C23.8541,2.1433 19.6791,0.0003 15.0001,0.0003 C9.2481,0.0003 4.2721,3.2473 1.7601,8.0003 L22.3371,8.0003 C23.4401,8.0003 24.5251,7.6173 25.3301,6.8613' id='Fill-3' fill='%23FEC514'%3E%3C/path%3E%3Cpath d='M22.3369,22 L1.7599,22 C4.2729,26.753 9.2479,30 14.9999,30 C19.6789,30 23.8549,27.856 26.6059,24.5 C26.2109,24.018 25.7829,23.564 25.3299,23.139 C24.5249,22.383 23.4409,22 22.3369,22' id='Fill-5' fill='%2300BFB3'%3E%3C/path%3E%3Cpath d='M11.1035,19 L0.5555,19 L11.1035,19 Z' id='Fill-7' fill='%23FFC100'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-color: initial;
+  }
+
+  .smw-icon-entity-examiner-panel-large {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzAiIGhlaWdodD0iMjAiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4zMzMgLTAuNjY3IC0wLjY2NyAwLjAwMCAxLjAwMCAtMC42NjcgMC4zMzMgLTAuNjY3IDAuMDAwIDEuMDAwIC0wLjY2NyAtMC42NjcgMC4zMzMgMC4wMDAgMS4wMDAgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMzAiIGhlaWdodD0iMjAiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0Nzdmcgd2lkdGg9JzMwJyBoZWlnaHQ9JzIwJyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnJTNFJTNDIS0tIENyZWF0ZWQgd2l0aCBNZXRob2QgRHJhdyAtIGh0dHA6Ly9naXRodWIuY29tL2R1b3BpeGVsL01ldGhvZC1EcmF3LyAtLSUzRSUzQ2clM0UlM0N0aXRsZSUzRWJhY2tncm91bmQlM0MvdGl0bGUlM0UlM0NyZWN0IGZpbGw9JyUyM2ZmZicgaWQ9J2NhbnZhc19iYWNrZ3JvdW5kJyBoZWlnaHQ9JzIyJyB3aWR0aD0nMzInIHk9Jy0xJyB4PSctMScvJTNFJTNDZyBkaXNwbGF5PSdub25lJyBvdmVyZmxvdz0ndmlzaWJsZScgeT0nMCcgeD0nMCcgaGVpZ2h0PScxMDAlMjUnIHdpZHRoPScxMDAlMjUnIGlkPSdjYW52YXNHcmlkJyUzRSUzQ3JlY3QgZmlsbD0ndXJsKCUyM2dyaWRwYXR0ZXJuKScgc3Ryb2tlLXdpZHRoPScwJyB5PScwJyB4PScwJyBoZWlnaHQ9JzEwMCUyNScgd2lkdGg9JzEwMCUyNScvJTNFJTNDL2clM0UlM0MvZyUzRSUzQ2clM0UlM0N0aXRsZSUzRUxheWVyIDElM0MvdGl0bGUlM0UlM0NyZWN0IHN0cm9rZT0nJTIzZmZhNTAwJyBpZD0nc3ZnXzI0JyBoZWlnaHQ9JzE4LjQ5OTk2JyB3aWR0aD0nMjguNDk5OTMnIHk9JzAuNzUwMDInIHg9JzAuNzUwMDMnIHN0cm9rZS13aWR0aD0nMS41JyBmaWxsPSdub25lJy8lM0UlM0NlbGxpcHNlIHN0cm9rZT0nJTIzZmZhNTAwJyBpZD0nc3ZnXzcnIGN5PSc0LjYxMzMnIGN4PScyNC45OTk5NycgZmlsbC1vcGFjaXR5PSdudWxsJyBzdHJva2Utb3BhY2l0eT0nbnVsbCcgc3Ryb2tlLXdpZHRoPScxLjUnIGZpbGw9J25vbmUnLyUzRSUzQ3RleHQgc3Ryb2tlPSclMjMwMDAwMDAnIHRyYW5zZm9ybT0nbWF0cml4KDEsMCwwLDAuNzIyODc4NjM3MTg5Mzk2NCwwLDIuOTkxOTkzNzc2OTYyNTgxMykgJyB4bWw6c3BhY2U9J3ByZXNlcnZlJyB0ZXh0LWFuY2hvcj0nc3RhcnQnIGZvbnQtZmFtaWx5PSdIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZicgZm9udC1zaXplPScyNCcgaWQ9J3N2Z18xOScgeT0nMTguMDc4MzgnIHg9JzIxLjQyMTU5JyBzdHJva2Utd2lkdGg9JzAnIGZpbGw9JyUyM2ZmYTUwMCclM0UhJTNDL3RleHQlM0UlM0NsaW5lIHN0cm9rZT0nJTIzZmZhNTAwJyBzdHJva2UtbGluZWNhcD0nbnVsbCcgc3Ryb2tlLWxpbmVqb2luPSdudWxsJyBpZD0nc3ZnXzIwJyB5Mj0nNi4zMDY3NCcgeDI9JzE5LjUnIHkxPSc2LjMwNjc0JyB4MT0nNCcgZmlsbC1vcGFjaXR5PSdudWxsJyBzdHJva2Utb3BhY2l0eT0nbnVsbCcgc3Ryb2tlLXdpZHRoPScxLjUnIGZpbGw9J25vbmUnLyUzRSUzQ2xpbmUgc3Ryb2tlPSclMjNmZmE1MDAnIHN0cm9rZS1saW5lY2FwPSdudWxsJyBzdHJva2UtbGluZWpvaW49J251bGwnIGlkPSdzdmdfMjEnIHkyPSc5LjkzMTY2JyB4Mj0nMTkuNDk5ODcnIHkxPSc5LjkzMTY2JyB4MT0nNCcgZmlsbC1vcGFjaXR5PSdudWxsJyBzdHJva2Utb3BhY2l0eT0nbnVsbCcgc3Ryb2tlLXdpZHRoPScxLjUnIGZpbGw9J25vbmUnLyUzRSUzQ2xpbmUgc3Ryb2tlPSclMjNmZmE1MDAnIHN0cm9rZS1saW5lY2FwPSdudWxsJyBzdHJva2UtbGluZWpvaW49J251bGwnIGlkPSdzdmdfMjInIHkyPScxMy41NTY1NicgeDI9JzE5LjQ5OTg3JyB5MT0nMTMuNTU2NTYnIHgxPSc0JyBmaWxsLW9wYWNpdHk9J251bGwnIHN0cm9rZS13aWR0aD0nMS41JyBmaWxsPSdub25lJy8lM0UlM0MvZyUzRSUzQy9zdmclM0UiIC8+PC9zdmc+");
+    background-color: initial;
+  }
+
+  .smw-icon-entity-examiner-panel {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath opacity='1' fill='%23ffa500' d='M3 15h8v-2H3v2zm0 4h8v-2H3v2zm0-8h8V9H3v2zm0-6v2h8V5H3zm10 0h8v14h-8V5z'/%3E%3C/svg%3E");
+    background-color: initial;
+  }
+
+  .smw-icon-entity-examiner-panel-error {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB3aWR0aD0nMjQnIGhlaWdodD0nMjQnIHZpZXdCb3g9JzAgMCAyNCAyNCclM0UlM0NwYXRoIGZpbGw9J25vbmUnIGQ9J00wIDBoMjR2MjRIMFYweicvJTNFJTNDcGF0aCBvcGFjaXR5PScxJyBmaWxsPSclMjNkMzMnIGQ9J00zIDE1aDh2LTJIM3Yyem0wIDRoOHYtMkgzdjJ6bTAtOGg4VjlIM3Yyem0wLTZ2Mmg4VjVIM3ptMTAgMGg4djE0aC04VjV6Jy8lM0UlM0Mvc3ZnJTNFIiAvPjwvc3ZnPg==");
+    background-color: initial;
+  }
+
+  .smw-icon-entity-examiner-panel-warning {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath opacity='1' fill='%23ffa500' d='M3 15h8v-2H3v2zm0 4h8v-2H3v2zm0-8h8V9H3v2zm0-6v2h8V5H3zm10 0h8v14h-8V5z'/%3E%3C/svg%3E");
+    background-color: initial;
+  }
+
+  .smw-issue-label {
+    box-shadow: rgba(22, 25, 28, 0.12) 0px -1px 0px inset;
+  }
+
+  .smw-list-rule {
+    list-style-image: none;
+  }
+
+  .smw-list-rule-title {
+    border-bottom-color: rgb(58, 62, 65);
+    color: rgb(232, 230, 227);
+  }
+
+  .smw-indicator-accordion-tab {
+    color: rgb(232, 230, 227);
+  }
+
+  .smw-indicator-accordion-tab-label {
+    background-image: initial;
+    background-color: rgb(34, 37, 38);
+    color: rgb(211, 207, 201);
+    border-bottom-color: rgb(48, 52, 54);
+  }
+
+  .plain .smw-indicator-accordion-tab-label {
+    background-image: initial;
+    background-color: transparent;
+  }
+
+  .smw-indicator-accordion-tab-label:hover {
+    background-image: initial;
+    background-color: rgb(38, 42, 43);
+    color: rgb(232, 230, 227);
+  }
+
+  .smw-indicator-accordion-tab:last-child .smw-indicator-accordion-tab-label {
+    border-bottom-color: rgb(48, 52, 54);
+  }
+
+  .smw-indicator-accordion-tab-content {
+    color: rgb(174, 194, 211);
+  }
+
+  .smw-indicator-accordion-tab-close {
+    background-image: initial;
+    background-color: rgb(35, 50, 64);
+  }
+
+  .smw-indicator-accordion-tab .smw-indicator-accordion-tab-label {
+    border-top-color: rgb(54, 58, 60);
+    border-bottom-color: rgb(48, 52, 54);
+  }
+
+  .smw-indicator-accordion-tab-close:hover {
+    background-image: initial;
+    background-color: rgb(38, 42, 43);
+  }
+
+  input:checked+.smw-indicator-accordion-tab-label {
+    background-image: initial;
+    background-color: rgb(38, 42, 43);
+    color: rgb(232, 230, 227);
+  }
+
+  .plain input:checked+.smw-indicator-accordion-tab-label {
+    border-bottom-color: initial;
+  }
+
+  input:checked+.smw-indicator-accordion-tab-label::after {
+    color: rgb(232, 230, 227);
+  }
+
+  .smw-jsonview-button-group-left input {
+    border-color: rgb(58, 62, 65);
+  }
+
+  .smw-jsonview-button {
+    background-color: rgb(41, 98, 146);
+    border-color: initial;
+    color: rgb(232, 230, 227);
+    text-decoration-color: initial;
+  }
+
+  .smw-jsonview-button:first-child {
+    border-right-color: rgb(48, 52, 54);
+  }
+
+  .smw-jsonview-button:hover {
+    background-color: rgb(0, 112, 149);
+    color: rgb(232, 230, 227);
+  }
+
+  .smw-jsonview-button:focus {
+    outline-color: initial;
+  }
+
+  .jsonview .collapsible {
+    list-style-image: unset;
+  }
+
+  .jsonview ul {
+    border-left-color: rgb(62, 68, 70);
+  }
+
+  .smw-jsonview-clipboard {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cdefs id='defs3051'%3E%3Cstyle type='text/css' id='current-color-scheme'%3E .ColorScheme-Text %7B color:%2372777d;%7D %3C/style%3E%3C/defs%3E%3Cpath style='fill:currentColor;fill-opacity:1;stroke:none' d='M19,2h-4.2c-0.4-1.2-1.5-2-2.8-2S9.6,0.8,9.2,2H5C3.9,2,3,2.9,3,4v16c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V4 C21,2.9,20.1,2,19,2z M12,2c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1s-1-0.4-1-1C11,2.4,11.4,2,12,2z M19,20H5V4h2v2h10V4h2V20z' class='ColorScheme-Text' /%3E%3C/svg%3E%0A");
+  }
+
+  .smw-json-container ul,
+  .json-document ul {
+    list-style-image: none;
+  }
+
+  .smw-jsonview-menu {
+    background-color: rgb(29, 32, 33);
+    border-left-color: rgb(53, 58, 60);
+    border-top-color: rgb(53, 58, 60);
+    border-right-color: rgb(53, 58, 60);
+  }
+
+  .smw-jsonview-menu+pre {
+    background-color: rgb(24, 26, 27);
+  }
+
+  .smw-jsonview-menu .smw-jsonview-button {
+    color: rgb(157, 148, 135);
+    background-color: rgb(29, 32, 33);
+  }
+
+  .smw-jsonview-menu .smw-jsonview-button:hover {
+    background-color: rgb(43, 47, 49);
+  }
+
+  .smw-jsonview-menu .smw-jsonview-button:first-child {
+    border-right-color: rgb(51, 55, 57);
+  }
+
+  div.smwtt {
+    color: rgb(232, 230, 227);
+  }
+
+  span.smwttpersist span.smwttcontent {
+    color: rgb(157, 148, 136);
+  }
+
+  span.smwttactivepersist {
+    color: rgb(84, 146, 255);
+  }
+
+  span.smwttactiveinline {
+    color: rgb(255, 189, 73);
+    text-decoration-color: initial;
+  }
+
+  .smwtticon.info {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAjtJREFUeNrEl90rZHEYx88Z1Ma42JCX2dj2QlmlRUoujLjaKLlwsVIuJNn9ExSbi0GScoHEBW64keLGxW4zXCGUFSUvkYzduVjbmiWG2e/DQwcz5/zO2D2/pz7NnDPnPN/v/N4ftdR9qQhGDCgAxSAXvALx/NspOASrYB4sgguRpNECzySBelALsg2erebPTTAGhsEPvRdsBgkbwQpoFxDXRhZw8btNkRhIAJNggJs60nCAPjAFEkUNpIFZUKWX2ZmkKl+c0Te0vI0yMlLJOR1GBuifT4N8vWypL9QHomSm4Y1Rbyp5nDsxnAH6PsIP6kb+S/XJvUy7KtIlNHtGtbpaAzRYykWyLP8MPrl3dB4UHRfvwafHBpLBZ9EMXoi1bVwpvwO31x5fUBnavTYzOFtBinYdaAo3SsMFiXp8gUhnB421j6CFWiAW1CnWB2nGUQsUgddm36bpp42erWtlxmuqG9JJm1qgVJEXZTaeGrLinS3U6mRhOMiAXaKBeDKgSjRwsxD5Jer7yYBXooFjMrAm0cAaGXBLNOAmA3PUFBLEv9OWQgZ+gXEJBibAyd123GvxbPCz5v15YA90WWigG+w8PhF1ggULxJdAR6gj2TmoAfv/UfwAfABn4SqjXVABZkCG7j7qCUQiXnHX9Hp1wTrl/8fdscA5v4lWRjt8UHE9c3b4OQfl2jZbG/4BzaAQDAKfCWEqSPu5mm7mXCFDNVGe0zG6hAohkMPXMfzbJa9stK94wFe+Noy/AgwAS/d56gvLz80AAAAASUVORK5CYII=");
+    background-color: initial;
+  }
+
+  .smwtticon.question {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAuxJREFUeNq8l01oE0EUx2fqFqp20VKLxmoRxaIVikZE8WClBUFaEA9CFcGDiERPPdRLoYqH+IUXDyoWTyLUi4gK4kFJ8FSlEXJQ0abFKEStoJKqxaab/l+YLdvdnd2ZtfTBj2Rn533szJs3M7w9NcUUpRrsAHvANrAGmOLdBPgMXoMX4CX4p2LUUOjTAI6Do2BLSN9D4vctuANug29BClUhBk+CDLig4Nwpm0FS6CaiBFAP7oObYqijSiO4Dh6AFaoBrAZPwUE2f3JA2GwMywH68kcgLrPUbHIWX87ZifVzY8/8KLNhMPjJkqnGhe194LvdyB2rgCw+BJ0yC+S0e21w2hQmy+z8G4u9L5ZlXZ6ALmC5pyAR5LynOdw5SayGs8utiyq/EtkPTrtzYCU4J9Noa+CsK1alPOEmJra7iQd1OQtWOQNIyLKUxM/5wKjFOtKlConMtGfISceUVxnKtVN2AEvAsaCviddxj3NnspFzmnfPdCwOHAXyuZQC2A3WyXrVGl4j6XFvgk2UyrpLs4l80yC1h2U1DXOYdLqmqVhiQSvBlg5DbCz/JX7LczBvqahuNfyqk45cwZJz5wh9eUBBmlOqKezaqM77W7zOqSKeyU7rrFjGozinZUb1we28V935bCH6HSUAd6GhYdd1Tr4pgIKuFm1I7lI7MGZF+Y4vFEBWVytW422j4Y8gWQogpatluooT1YqIkqLteBn+vLM3hwWUr2ATjcAvqhts4eUe+GmXr2u6q4Eq37M2owKdFXSzX/ic3Y7HqKjp1ADnkYyeVQ4rDrkKcu4T0SUwpKK90fS2ba9TrmevwEW/U/EkOAI+hln4UPS2Dastwzw4DP7KjuWj4sAYGMTjglU5lDifFTafvLCdczZyyd1wA7gLds5Txg+Jq92I6s0oJw4qyah7hSPbk8LWiO7d8A/oA7vALTCu4ZgupDfEbbpP2PIVrnE9p0q5l07poFU8V4t3U6Ky0b6SBs/Fc6jMCDAA9GbPN7lxrCwAAAAASUVORK5CYII=");
+    background-color: initial;
+  }
+
+  .smwtticon.service {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAuxJREFUeNq8l01oE0EUx2fqFqp20VKLxmoRxaIVikZE8WClBUFaEA9CFcGDiERPPdRLoYqH+IUXDyoWTyLUi4gK4kFJ8FSlEXJQ0abFKEStoJKqxaab/l+YLdvdnd2ZtfTBj2Rn533szJs3M7w9NcUUpRrsAHvANrAGmOLdBPgMXoMX4CX4p2LUUOjTAI6Do2BLSN9D4vctuANug29BClUhBk+CDLig4Nwpm0FS6CaiBFAP7oObYqijSiO4Dh6AFaoBrAZPwUE2f3JA2GwMywH68kcgLrPUbHIWX87ZifVzY8/8KLNhMPjJkqnGhe194LvdyB2rgCw+BJ0yC+S0e21w2hQmy+z8G4u9L5ZlXZ6ALmC5pyAR5LynOdw5SayGs8utiyq/EtkPTrtzYCU4J9Noa+CsK1alPOEmJra7iQd1OQtWOQNIyLKUxM/5wKjFOtKlConMtGfISceUVxnKtVN2AEvAsaCviddxj3NnspFzmnfPdCwOHAXyuZQC2A3WyXrVGl4j6XFvgk2UyrpLs4l80yC1h2U1DXOYdLqmqVhiQSvBlg5DbCz/JX7LczBvqahuNfyqk45cwZJz5wh9eUBBmlOqKezaqM77W7zOqSKeyU7rrFjGozinZUb1we28V935bCH6HSUAd6GhYdd1Tr4pgIKuFm1I7lI7MGZF+Y4vFEBWVytW422j4Y8gWQogpatluooT1YqIkqLteBn+vLM3hwWUr2ATjcAvqhts4eUe+GmXr2u6q4Eq37M2owKdFXSzX/ic3Y7HqKjp1ADnkYyeVQ4rDrkKcu4T0SUwpKK90fS2ba9TrmevwEW/U/EkOAI+hln4UPS2Dastwzw4DP7KjuWj4sAYGMTjglU5lDifFTafvLCdczZyyd1wA7gLds5Txg+Jq92I6s0oJw4qyah7hSPbk8LWiO7d8A/oA7vALTCu4ZgupDfEbbpP2PIVrnE9p0q5l07poFU8V4t3U6Ky0b6SBs/Fc6jMCDAA9GbPN7lxrCwAAAAASUVORK5CYII=");
+    background-color: initial;
+  }
+
+  .smwtticon.warning {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAf9JREFUeNrEl78vQ1EUx29fRSNpBKmkHSyIkjJJNISBiKVrQyIsHYiEQfwNrBImg9FQDAYxVGPQBgMTQiMsliaNSqSTaOp79Dxtqb77ine/ySf98e49329f3r0915bbErJqAaNgCLSBLmDna1lwA+5BDETBo0xRm0SAbrAIgqBeMuwL2AWr4KrSQK3CtQawBs5ByIS54LEhnrsJms0G8IMzsAAcono5OEiMa0oFoIH7wCv+Tl6u6TcKoJu7DEuOHAoxmSvQPmM0w1UuRHEAD9iTMq9eLvbwlAuwAtzi/+Vmr5IAw2BaWKdp9vwMsFS0qVghO3t+BOigR0pYL/LsoAABUKcgAHkGKMCgUKdBCuBTGMCnWbT0flySGv+VqlJWE4qlWbz+v+0HFCCpMECSAlwrDHBNAeIKA8SpJ+zEm0tQY7H5G+ihO5AAxwp+PXkmKADaGbFsfgtBhx5M57sh6o6crWYrkGdO3weOQER6am0jdvHt/Ksepm/DjHmEPUs6onmQkpre1Fsw1yV/B57Y61tLdgempEqkL4R4fS79LvMgG2COvcp2xXRrZg1LkHl8vBAiGc1/NhbV3pE5mk2A9UonGpNK8SEnLHsyCvMh9OAPzA+4Vtjs2TDB7dokOKnCGGtTjHGNxG9Ox7oGuGA/oN3T+eV6BtyCU36WpEK/CzAAVzJnvJUoedQAAAAASUVORK5CYII=");
+    background-color: initial;
+  }
+
+  .smwtticon.error {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBQ0FBQUFBZ0NBWUFBQUJ6ZW5yMEFBQUFHWFJGV0hSVGIyWjBkMkZ5WlFCQlpHOWlaU0JKYldGblpWSmxZV1I1Y2NsbFBBQUFBZzVKUkVGVWVOckVsMHNvUkdFVXg4L000SnJTc0tCWVdDbERMQ3hJTko1aFl5Y0xlWlJtSThWQ2twVWxXMlZoSVJhU2hUd1hNaGxDWmp3V2RoU1RsTEpSS0FtbHZQNUhaelFZZCs2ODdqMzFxNm43emZuL1p1Nzk3dmQ5cHN2cUpOSlkyYUFPVklBY2tBOHNjdTBObklJTDRBR2I0RXBMVTVNR2dVTFFCNXFCVGFQc0ExZ0FvK0JFYmFCWjVWb2FHQU5Id0JsR09NbFlwM3gzQ21TRUsxQUtEa0V2VUNqeVVrVEVJejAxQ2ZEQVZXQ24ySlZkZXBhR0V2Q0hwMVBzS3oyWVJLQkFGbGlKVTNpZ3hJcGsvUkVZQVprVS84cVVyQjhDTmFDRDlLc095ZndXNkE5NHFlaFJGc244RXNnRnRhUi9jV1l1Q3pRQ3F3RUNuTm5JQWc0eXJod3NVR0NnUUVHQzZ0UXpXOGpXT2tCS1VWWDRyZDllNmNrMVRjODdDNnBUTWtHVzB1QXJTdHNncFhZT1Jmenprb3ZyeUtSWTZXbDk1bDlOczJxRGt2cW8vMk9XQ0xVYy96di9INWZIb3dwL3Y3K2x4OVZKMWZjQjM0SnJrQnJzNnZQMlBKa1NGVHdEbFpFOUErNVplam5lVXh0MXpUdWlSWHhvTW1nV0xQRXQ4Qm80RGIwczRBS3ZCb1J6cG9zRmZHRFhBQUhPOUxIQUJ4ZzJRSUF6UC96dmdTM2cxakhjTFprL2RrUTk0RWFIOER2SityTWxPd2Z0T2doMFMxYlFYVEgvTlYxeERPZmU4NkhPQlJPZ0pjYTM0MFo2VG1nOUdjM0pJWFF0QnVGcjBtc3UzTE9oVDdacnJXQS9ndUFOMENBOWZOR2NqdjFWTGczTFFCNUkrYjE0Z2pOd0lNK1NKdWxQQVFZQVR6VnJXOHFrR1NRQUFBQUFTVVZPUks1Q1lJST0iIC8+PC9zdmc+");
+    background-color: initial;
+  }
+
+  .smwtticon.note {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAuxJREFUeNq8l01oE0EUx2fqFqp20VKLxmoRxaIVikZE8WClBUFaEA9CFcGDiERPPdRLoYqH+IUXDyoWTyLUi4gK4kFJ8FSlEXJQ0abFKEStoJKqxaab/l+YLdvdnd2ZtfTBj2Rn533szJs3M7w9NcUUpRrsAHvANrAGmOLdBPgMXoMX4CX4p2LUUOjTAI6Do2BLSN9D4vctuANug29BClUhBk+CDLig4Nwpm0FS6CaiBFAP7oObYqijSiO4Dh6AFaoBrAZPwUE2f3JA2GwMywH68kcgLrPUbHIWX87ZifVzY8/8KLNhMPjJkqnGhe194LvdyB2rgCw+BJ0yC+S0e21w2hQmy+z8G4u9L5ZlXZ6ALmC5pyAR5LynOdw5SayGs8utiyq/EtkPTrtzYCU4J9Noa+CsK1alPOEmJra7iQd1OQtWOQNIyLKUxM/5wKjFOtKlConMtGfISceUVxnKtVN2AEvAsaCviddxj3NnspFzmnfPdCwOHAXyuZQC2A3WyXrVGl4j6XFvgk2UyrpLs4l80yC1h2U1DXOYdLqmqVhiQSvBlg5DbCz/JX7LczBvqahuNfyqk45cwZJz5wh9eUBBmlOqKezaqM77W7zOqSKeyU7rrFjGozinZUb1we28V935bCH6HSUAd6GhYdd1Tr4pgIKuFm1I7lI7MGZF+Y4vFEBWVytW422j4Y8gWQogpatluooT1YqIkqLteBn+vLM3hwWUr2ATjcAvqhts4eUe+GmXr2u6q4Eq37M2owKdFXSzX/ic3Y7HqKjp1ADnkYyeVQ4rDrkKcu4T0SUwpKK90fS2ba9TrmevwEW/U/EkOAI+hln4UPS2Dastwzw4DP7KjuWj4sAYGMTjglU5lDifFTafvLCdczZyyd1wA7gLds5Txg+Jq92I6s0oJw4qyah7hSPbk8LWiO7d8A/oA7vALTCu4ZgupDfEbbpP2PIVrnE9p0q5l07poFU8V4t3U6Ky0b6SBs/Fc6jMCDAA9GbPN7lxrCwAAAAASUVORK5CYII=");
+    background-color: initial;
+  }
+
+  .client-js .sortable:not(.jquery-tablesorter)>*>tr:first-child>th:not(.unsortable),
+  .jquery-tablesorter th.headerSort {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjEiIGhlaWdodD0iOSI+PGRlZnM+PGZpbHRlciBpZD0iZGFya3JlYWRlci1pbWFnZS1maWx0ZXIiPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwLjI0OSAtMC42MTQgLTAuNjcyIDAuMDAwIDEuMDM1IC0wLjY0NiAwLjI4OCAtMC42NjQgMC4wMDAgMS4wMjAgLTAuNjM2IC0wLjYwOSAwLjI1MCAwLjAwMCAwLjk5NCAwLjAwMCAwLjAwMCAwLjAwMCAxLjAwMCAwLjAwMCIgLz48L2ZpbHRlcj48L2RlZnM+PGltYWdlIHdpZHRoPSIyMSIgaGVpZ2h0PSI5IiBmaWx0ZXI9InVybCgjZGFya3JlYWRlci1pbWFnZS1maWx0ZXIpIiB4bGluazpocmVmPSJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBEOTRiV3dnZG1WeWMybHZiajBpTVM0d0lpQmxibU52WkdsdVp6MGlWVlJHTFRnaVB6NEtQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhkcFpIUm9QU0l5TVNJZ2FHVnBaMmgwUFNJNUlpQjJhV1YzUW05NFBTSXdJREFnTWpFZ09TSStDZ2s4Y0dGMGFDQmtQU0pOTVRRdU5TQTFiQzAwSURRdE5DMDBlbTB3TFRGc0xUUXROQzAwSURSNklpOCtDand2YzNablBnbz0iIC8+PC9zdmc+");
+  }
+
+  .jquery-tablesorter th.headerSortUp {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjEiIGhlaWdodD0iNCI+PGRlZnM+PGZpbHRlciBpZD0iZGFya3JlYWRlci1pbWFnZS1maWx0ZXIiPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwLjI0OSAtMC42MTQgLTAuNjcyIDAuMDAwIDEuMDM1IC0wLjY0NiAwLjI4OCAtMC42NjQgMC4wMDAgMS4wMjAgLTAuNjM2IC0wLjYwOSAwLjI1MCAwLjAwMCAwLjk5NCAwLjAwMCAwLjAwMCAwLjAwMCAxLjAwMCAwLjAwMCIgLz48L2ZpbHRlcj48L2RlZnM+PGltYWdlIHdpZHRoPSIyMSIgaGVpZ2h0PSI0IiBmaWx0ZXI9InVybCgjZGFya3JlYWRlci1pbWFnZS1maWx0ZXIpIiB4bGluazpocmVmPSJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBEOTRiV3dnZG1WeWMybHZiajBpTVM0d0lpQmxibU52WkdsdVp6MGlWVlJHTFRnaVB6NEtQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhkcFpIUm9QU0l5TVNJZ2FHVnBaMmgwUFNJMElpQjJhV1YzUW05NFBTSXdJREFnTWpFZ05DSStDZ2s4Y0dGMGFDQmtQU0pOTmk0MUlEUnNOQzAwSURRZ05Ib2lMejRLUEM5emRtYytDZz09IiAvPjwvc3ZnPg==");
+  }
+
+  .jquery-tablesorter th.headerSortDown {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjEiIGhlaWdodD0iNCI+PGRlZnM+PGZpbHRlciBpZD0iZGFya3JlYWRlci1pbWFnZS1maWx0ZXIiPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwLjI0OSAtMC42MTQgLTAuNjcyIDAuMDAwIDEuMDM1IC0wLjY0NiAwLjI4OCAtMC42NjQgMC4wMDAgMS4wMjAgLTAuNjM2IC0wLjYwOSAwLjI1MCAwLjAwMCAwLjk5NCAwLjAwMCAwLjAwMCAwLjAwMCAxLjAwMCAwLjAwMCIgLz48L2ZpbHRlcj48L2RlZnM+PGltYWdlIHdpZHRoPSIyMSIgaGVpZ2h0PSI0IiBmaWx0ZXI9InVybCgjZGFya3JlYWRlci1pbWFnZS1maWx0ZXIpIiB4bGluazpocmVmPSJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBEOTRiV3dnZG1WeWMybHZiajBpTVM0d0lpQmxibU52WkdsdVp6MGlWVlJHTFRnaVB6NEtQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhkcFpIUm9QU0l5TVNJZ2FHVnBaMmgwUFNJMElpQjJhV1YzUW05NFBTSXdJREFnTWpFZ05DSStDZ2s4Y0dGMGFDQmtQU0pOTVRRdU5TQXdiQzAwSURRdE5DMDBlaUl2UGdvOEwzTjJaejRLIiAvPjwvc3ZnPg==");
+  }
+
+  ul.mw-gallery-nolines li.gallerybox div.thumb {
+    background-color: transparent;
+    border-color: initial;
+  }
+
+  ul.mw-gallery-packed li.gallerybox div.thumb,
+  ul.mw-gallery-packed-overlay li.gallerybox div.thumb,
+  ul.mw-gallery-packed-hover li.gallerybox div.thumb {
+    background-color: transparent;
+    border-color: initial;
+  }
+
+  ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,
+  ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
+  ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
+    background-image: initial;
+    background-color: rgba(24, 26, 27, 0.8);
+  }
+
+  ul.gallery.mw-gallery-slideshow .gallerybox.slideshow-current {
+    background-image: initial;
+    background-color: rgb(33, 36, 37);
+  }
+
+  ul.gallery.mw-gallery-slideshow .gallerybox div.thumb {
+    border-color: initial;
+    background-image: initial;
+    background-color: transparent;
+  }
+
+  @media screen {
+    li.gallerybox div.thumb {
+      border-color: rgb(62, 67, 70);
+      background-color: rgb(27, 30, 31);
+    }
+  }
+
+  abbr[title] {
+    border-bottom-color: initial;
+  }
+
+  abbr[title] {
+    border-bottom-color: initial;
+    text-decoration-color: initial;
+  }
+
+  img {
+    border-color: initial;
+  }
+
+  legend {
+    color: inherit;
+  }
+
+  .messagebox,
+  .errorbox,
+  .warningbox,
+  .successbox {
+    color: rgb(232, 230, 227);
+    border-color: initial;
+  }
+
+  .messagebox h2,
+  .errorbox h2,
+  .warningbox h2,
+  .successbox h2 {
+    color: inherit;
+    border-color: initial;
+  }
+
+  .messagebox {
+    background-color: rgb(34, 37, 38);
+    border-color: rgb(72, 78, 81);
+  }
+
+  .errorbox {
+    background-color: rgb(64, 5, 3);
+    border-color: rgb(149, 25, 25);
+  }
+
+  .warningbox {
+    background-color: rgb(63, 42, 3);
+    border-color: rgb(163, 122, 0);
+  }
+
+  .successbox {
+    background-color: rgb(4, 74, 62);
+    border-color: rgb(27, 182, 148);
+  }
+
+  @media screen {
+    :focus {
+      outline-color: rgb(36, 71, 143);
+    }
+
+    body {
+      background-color: rgb(29, 32, 33);
+    }
+
+    .mw-body,
+    .parsoid-body {
+      background-color: rgb(24, 26, 27);
+      color: rgb(211, 207, 202);
+    }
+
+    .mw-body {
+      border-color: rgb(8, 75, 122);
+    }
+
+    #mw-page-base {
+      background-color: rgb(26, 28, 30);
+      background-image: linear-gradient(rgb(24, 26, 27) 50%,
+          rgb(29, 32, 33) 100%);
+    }
+
+    ul {
+      list-style-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNSIgaGVpZ2h0PSIxMyI+PGRlZnM+PGZpbHRlciBpZD0iZGFya3JlYWRlci1pbWFnZS1maWx0ZXIiPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwLjI0OSAtMC42MTQgLTAuNjcyIDAuMDAwIDEuMDM1IC0wLjY0NiAwLjI4OCAtMC42NjQgMC4wMDAgMS4wMjAgLTAuNjM2IC0wLjYwOSAwLjI1MCAwLjAwMCAwLjk5NCAwLjAwMCAwLjAwMCAwLjAwMCAxLjAwMCAwLjAwMCIgLz48L2ZpbHRlcj48L2RlZnM+PGltYWdlIHdpZHRoPSI1IiBoZWlnaHQ9IjEzIiBmaWx0ZXI9InVybCgjZGFya3JlYWRlci1pbWFnZS1maWx0ZXIpIiB4bGluazpocmVmPSJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBEOTRiV3dnZG1WeWMybHZiajBpTVM0d0lpQmxibU52WkdsdVp6MGlWVlJHTFRnaVB6NEtQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhkcFpIUm9QU0kxSWlCb1pXbG5hSFE5SWpFeklqNEtDVHhqYVhKamJHVWdZM2c5SWpJdU5TSWdZM2s5SWpraUlISTlJakl1TlNJZ1ptbHNiRDBpSXpJd01qRXlNaUl2UGdvOEwzTjJaejRLIiAvPjwvc3ZnPg==");
+    }
+
+    .mw-jump-link:not(:focus) {
+      border-color: initial;
+    }
+
+    .mw-body-content blockquote {
+      border-left-color: rgb(53, 58, 60);
+    }
+
+    .mw-parser-output .external {
+      background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/external-link-ltr-icon.svg?48e54");
+    }
+
+    .mw-portlet ul {
+      list-style-image: none;
+    }
+
+    #pt-anonuserpage,
+    #pt-userpage a {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEQ5NGJXd2dkbVZ5YzJsdmJqMGlNUzR3SWlCbGJtTnZaR2x1WnowaVZWUkdMVGdpUHo0S1BITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSGRwWkhSb1BTSXlNQ0lnYUdWcFoyaDBQU0l5TUNJZ2RtbGxkMEp2ZUQwaU1DQXdJREl3SURJd0lqNEtDVHhuSUdacGJHdzlJaU0xTkRVNU5XUWlQZ29KQ1R4d1lYUm9JR1E5SWsweE1DQXhNV010TlM0NU1pQXdMVGdnTXkwNElEVjJNMmd4Tm5ZdE0yTXdMVEl0TWk0d09DMDFMVGd0TlhvaUx6NEtDUWs4WTJseVkyeGxJR040UFNJeE1DSWdZM2s5SWpVdU5TSWdjajBpTkM0MUlpOCtDZ2s4TDJjK0Nqd3ZjM1puUGdvPSIgLz48L3N2Zz4=");
+    }
+
+    #pt-anonuserpage {
+      color: rgb(176, 169, 159);
+    }
+
+    #p-search h3 {
+      border-color: initial;
+    }
+
+    #searchInput {
+      background-color: rgba(24, 26, 27, 0.5);
+      color: rgb(232, 230, 227);
+      border-color: rgb(72, 78, 81);
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 1px inset;
+    }
+
+    #simpleSearch:hover #searchInput {
+      border-color: rgb(101, 93, 83);
+    }
+
+    #searchInput:focus,
+    #simpleSearch:hover #searchInput:focus {
+      outline-color: initial;
+      border-color: rgb(36, 71, 143);
+      box-shadow: rgb(41, 82, 163) 0px 0px 0px 1px inset;
+    }
+
+    #searchInput::-webkit-input-placeholder {
+      color: rgb(157, 148, 135);
+    }
+
+    #searchInput::placeholder {
+      color: rgb(157, 148, 135);
+    }
+
+    #searchButton,
+    #mw-searchButton {
+      background-color: transparent;
+      border-color: initial;
+    }
+
+    #searchButton {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEQ5NGJXd2dkbVZ5YzJsdmJqMGlNUzR3SWlCbGJtTnZaR2x1WnowaVZWUkdMVGdpUHo0S1BITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSGRwWkhSb1BTSXlNQ0lnYUdWcFoyaDBQU0l5TUNJZ2RtbGxkMEp2ZUQwaU1DQXdJREl3SURJd0lqNEtDVHgwYVhSc1pUNEtDUWx6WldGeVkyZ0tDVHd2ZEdsMGJHVStDZ2s4Y0dGMGFDQm1hV3hzTFhKMWJHVTlJbVYyWlc1dlpHUWlJR1E5SWsweE1pNHlJREV6TGpaaE55QTNJREFnTVNBeElERXVOQzB4TGpSc05TNDBJRFV1TkMweExqUWdNUzQwTFRVdU5DMDFMalI2VFRFeklEaEJOU0ExSURBZ01TQXhJRE1nT0dFMUlEVWdNQ0F3SURFZ01UQWdNSG9pTHo0S1BDOXpkbWMrQ2c9PSIgLz48L3N2Zz4=");
+      background-color: initial;
+    }
+
+    .vector-menu-tabs ul {
+      list-style-image: none;
+    }
+
+    .vector-menu-tabs li {
+      background-image: linear-gradient(to top,
+          rgb(9, 79, 129) 0px,
+          rgb(32, 35, 37) 1px,
+          rgb(24, 26, 27) 100%);
+    }
+
+    .vector-menu-tabs li a {
+      color: rgb(102, 177, 250);
+    }
+
+    .vector-menu-tabs .new a,
+    .vector-menu-tabs .new a:visited {
+      color: rgb(176, 106, 106);
+    }
+
+    .vector-menu-tabs .selected {
+      background-image: initial;
+      background-color: rgb(24, 26, 27);
+    }
+
+    .vector-menu-tabs .selected a,
+    .vector-menu-tabs .selected a:visited {
+      color: rgb(211, 207, 202);
+      text-decoration-color: initial;
+    }
+
+    .vector-menu-tabs #ca-unwatch.icon a::before {
+      background-image: linear-gradient(rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0)),
+        url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/unwatch-icon.svg?c5368");
+    }
+
+    .vector-menu-tabs #ca-unwatch.mw-watchlink-temp.icon a::before {
+      background-image: linear-gradient(rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0)),
+        url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/unwatch-temp-icon.svg?195f5");
+    }
+
+    .vector-menu-tabs #ca-watch.icon a::before {
+      background-image: linear-gradient(rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0)),
+        url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/watch-icon.svg?6ab6f");
+    }
+
+    .vector-menu-tabs #ca-unwatch.icon a:hover::before,
+    .vector-menu-tabs #ca-unwatch.icon a:focus::before {
+      background-image: linear-gradient(rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0)),
+        url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/unwatch-icon-hl.svg?5e652");
+    }
+
+    .vector-menu-tabs #ca-unwatch.mw-watchlink-temp.icon a:hover::before,
+    .vector-menu-tabs #ca-unwatch.mw-watchlink-temp.icon a:focus::before {
+      background-image: linear-gradient(rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0)),
+        url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/unwatch-temp-icon-hl.svg?f3db6");
+    }
+
+    .vector-menu-tabs #ca-watch.icon a:hover::before,
+    .vector-menu-tabs #ca-watch.icon a:focus::before {
+      background-image: linear-gradient(rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0)),
+        url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/watch-icon-hl.svg?9bf90");
+    }
+
+    .vector-menu-tabs #ca-unwatch.icon .loading::before,
+    .vector-menu-tabs #ca-watch.icon .loading::before {
+      outline-color: initial;
+    }
+
+    .vector-menu-dropdown h3 {
+      color: rgb(176, 169, 159);
+    }
+
+    .vector-menu-dropdown h3::after {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEQ5NGJXd2dkbVZ5YzJsdmJqMGlNUzR3SWlCbGJtTnZaR2x1WnowaVZWUkdMVGdpUHo0S1BITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSGRwWkhSb1BTSXhNaUlnYUdWcFoyaDBQU0l4TWlJZ2RtbGxkMEp2ZUQwaU1DQXdJREV5SURFeUlqNEtDVHh3WVhSb0lHWnBiR3c5SWlNeU1ESXhNaklpSUdROUltMHhNUzR3TlNBekxqazVOaTB1T1RZMUxURXVNRFV6TFRRdU1ETTFJRE11T0RZdE15NDVORGN0TXk0NE5rd3hMakExSURNdU9UazJiRFVnTlNBMUxUVWlMejRLUEM5emRtYytDZz09IiAvPjwvc3ZnPg==");
+    }
+
+    .vector-menu-dropdown h3:hover,
+    .vector-menu-dropdown h3:focus {
+      color: rgb(211, 207, 202);
+    }
+
+    .vector-menu-dropdown .vector-menu-content {
+      background-color: rgb(24, 26, 27);
+      list-style-image: none;
+      border-color: rgb(72, 78, 81);
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 1px 0px;
+    }
+
+    .vector-menu-dropdown ul {
+      list-style-image: initial;
+    }
+
+    .vector-menu-dropdown li a {
+      color: rgb(102, 177, 250);
+    }
+
+    .vector-menu-dropdown .selected a,
+    .vector-menu-dropdown .selected a:visited {
+      color: rgb(211, 207, 202);
+      text-decoration-color: initial;
+    }
+
+    .vector-menu-tabs,
+    .vector-menu-tabs a,
+    #mw-head .vector-menu-dropdown h3 {
+      background-image: linear-gradient(rgba(51, 55, 57, 0) 0px,
+          rgb(51, 55, 57) 100%);
+    }
+
+    .vector-menu-checkbox:focus+h3 {
+      outline-color: rgb(186, 123, 0);
+    }
+
+    .vector-menu-portal h3 {
+      background-image: linear-gradient(to right,
+          rgba(53, 57, 59, 0) 0px,
+          rgb(53, 57, 59) 33%,
+          rgb(53, 57, 59) 66%,
+          rgba(53, 57, 59, 0) 100%);
+      color: rgb(176, 169, 159);
+      border-color: initial;
+    }
+
+    .vector-menu-portal .vector-menu-content ul {
+      list-style-image: none;
+    }
+
+    .vector-menu-portal .vector-menu-content li a {
+      color: rgb(102, 177, 250);
+    }
+
+    .vector-menu-portal .vector-menu-content li a:visited {
+      color: rgb(126, 114, 255);
+    }
+
+    #mw-panel nav:first-child {
+      background-image: none;
+    }
+
+    #p-logo a {
+      text-decoration-color: initial;
+    }
+
+    .mw-footer ul {
+      list-style-image: none;
+    }
+
+    .mw-footer li {
+      color: rgb(211, 207, 202);
+    }
+  }
+
+  @media screen {
+    div.thumb {
+      background-color: transparent;
+    }
+
+    div.thumbinner {
+      border-color: rgb(62, 67, 70);
+      background-color: rgb(27, 30, 31);
+    }
+
+    .thumbimage {
+      background-color: rgb(24, 26, 27);
+      border-color: rgb(62, 67, 70);
+    }
+
+    .thumbcaption {
+      border-color: initial;
+    }
+
+    .magnify a {
+      background-image: linear-gradient(rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0)),
+        url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/magnify-clip-ltr.svg?8330e");
+    }
+
+    .thumbborder {
+      border-color: rgb(53, 58, 60);
+    }
+
+    .mw-content-ltr .magnify a {
+      background-image: linear-gradient(rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0)),
+        url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/magnify-clip-ltr.svg?8330e");
+    }
+
+    .mw-content-rtl .magnify a {
+      background-image: linear-gradient(rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0)),
+        url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/magnify-clip-rtl.svg?38fd5");
+    }
+
+    .catlinks {
+      border-color: rgb(72, 78, 81);
+      background-color: rgb(27, 30, 31);
+    }
+
+    textarea {
+      border-color: rgb(62, 67, 70);
+    }
+
+    .editOptions {
+      background-color: rgb(34, 37, 38);
+      color: rgb(211, 207, 202);
+      border-right-color: rgb(62, 67, 70);
+      border-bottom-color: rgb(62, 67, 70);
+      border-left-color: rgb(62, 67, 70);
+      border-top-color: initial;
+    }
+
+    .usermessage {
+      background-color: rgb(130, 82, 0);
+      border-color: rgb(179, 116, 0);
+      color: rgb(232, 230, 227);
+    }
+
+    #contentSub,
+    #contentSub2 {
+      color: rgb(176, 169, 159);
+    }
+
+    a {
+      text-decoration-color: initial;
+      color: rgb(102, 177, 250);
+      background-image: none;
+      background-color: initial;
+    }
+
+    a:visited {
+      color: rgb(126, 114, 255);
+    }
+
+    a:active {
+      color: rgb(255, 180, 29);
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration-color: initial;
+    }
+
+    a:lang(ar),
+    a:lang(kk-arab),
+    a:lang(mzn),
+    a:lang(ps),
+    a:lang(ur) {
+      text-decoration-color: initial;
+    }
+
+    a.stub {
+      color: rgb(220, 132, 150);
+    }
+
+    a.new,
+    #p-personal a.new {
+      color: rgb(224, 68, 68);
+    }
+
+    a.mw-selflink {
+      color: inherit;
+      text-decoration-color: inherit;
+    }
+
+    a.mw-selflink:hover {
+      text-decoration-color: inherit;
+    }
+
+    a.mw-selflink:active,
+    a.mw-selflink:visited {
+      color: inherit;
+    }
+
+    a.new:visited,
+    #p-personal a.new:visited {
+      color: rgb(176, 106, 106);
+    }
+
+    .mw-parser-output a.extiw,
+    .mw-parser-output a.external {
+      color: rgb(103, 159, 213);
+    }
+
+    .mw-parser-output a.extiw:visited,
+    .mw-parser-output a.external:visited {
+      color: rgb(202, 150, 202);
+    }
+
+    .mw-parser-output a.extiw:active,
+    .mw-parser-output a.external:active {
+      color: rgb(208, 131, 84);
+    }
+
+    .mw-underline-always a {
+      text-decoration-color: initial;
+    }
+
+    .mw-underline-never a {
+      text-decoration-color: initial;
+    }
+
+    .plainlinks a.external {
+      background-image: none !important;
+      background-color: initial !important;
+    }
+
+    img {
+      border-color: initial;
+    }
+
+    hr {
+      background-color: rgb(72, 78, 81);
+      border-color: initial;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: rgb(232, 230, 227);
+    }
+
+    h1,
+    h2 {
+      border-bottom-color: rgb(72, 78, 81);
+    }
+
+    ol {
+      list-style-image: none;
+    }
+
+    pre,
+    code,
+    .mw-code {
+      background-color: rgb(27, 30, 31);
+      color: rgb(232, 230, 227);
+      border-color: rgb(53, 58, 60);
+    }
+
+    fieldset {
+      border-color: rgb(46, 82, 154);
+    }
+
+    form {
+      border-color: initial;
+    }
+
+    mark {
+      background-color: rgb(153, 153, 0);
+      color: rgb(232, 230, 227);
+    }
+
+    abbr[title],
+    .explain[title] {
+      border-bottom-color: initial;
+    }
+
+    abbr[title],
+    .explain[title] {
+      border-bottom-color: initial;
+      text-decoration-color: initial;
+    }
+
+    li span.deleted,
+    span.history-deleted {
+      text-decoration-color: initial;
+      color: rgb(157, 148, 135);
+    }
+
+    div.thumb {
+      background-color: transparent;
+    }
+
+    div.thumbinner {
+      border-color: rgb(62, 67, 70);
+      background-color: rgb(27, 30, 31);
+    }
+
+    .thumbimage {
+      background-color: rgb(24, 26, 27);
+      border-color: rgb(62, 67, 70);
+    }
+
+    .thumbcaption {
+      border-color: initial;
+    }
+
+    .magnify a {
+      background-image: linear-gradient(rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0)),
+        url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/magnify-clip-ltr.svg?8330e");
+    }
+
+    .thumbborder {
+      border-color: rgb(53, 58, 60);
+    }
+
+    .mw-content-ltr .magnify a {
+      background-image: linear-gradient(rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0)),
+        url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/magnify-clip-ltr.svg?8330e");
+    }
+
+    .mw-content-rtl .magnify a {
+      background-image: linear-gradient(rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0)),
+        url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/magnify-clip-rtl.svg?38fd5");
+    }
+
+    .catlinks ul {
+      list-style-image: none;
+    }
+
+    .catlinks li {
+      border-left-color: rgb(72, 78, 81);
+    }
+
+    .catlinks li:first-child {
+      border-left-color: initial;
+    }
+
+    .autocomment,
+    .autocomment a,
+    .autocomment a:visited {
+      color: rgb(157, 148, 135);
+    }
+
+    a.new {
+      color: rgb(255, 74, 74);
+    }
+
+    .wikitable {
+      background-color: rgb(27, 30, 31);
+      color: rgb(211, 207, 202);
+      border-color: rgb(72, 78, 81);
+    }
+
+    .wikitable>tr>th,
+    .wikitable>tr>td,
+    .wikitable>*>tr>th,
+    .wikitable>*>tr>td {
+      border-color: rgb(72, 78, 81);
+    }
+
+    .wikitable>tr>th,
+    .wikitable>*>tr>th {
+      background-color: rgb(34, 37, 38);
+    }
+
+    .error {
+      color: rgb(224, 68, 68);
+    }
+
+    .warning {
+      color: rgb(255, 185, 84);
+    }
+
+    .success {
+      color: rgb(117, 234, 209);
+    }
+
+    .mw-infobox {
+      border-color: rgb(163, 122, 0);
+    }
+
+    .mw-datatable {
+      border-color: rgb(72, 78, 81);
+    }
+
+    .mw-datatable td,
+    .mw-datatable th {
+      border-color: rgb(72, 78, 81);
+    }
+
+    .mw-datatable th {
+      background-color: rgb(30, 32, 34);
+    }
+
+    .mw-datatable td {
+      background-color: rgb(24, 26, 27);
+    }
+
+    .mw-datatable tr:hover td {
+      background-color: rgb(30, 32, 34);
+    }
+
+    .mw-ajax-loader {
+      background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/ajax-loader.gif?57f34");
+    }
+
+    .mw-small-spinner {
+      background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/spinner.gif?ca65b");
+    }
+
+    .toc,
+    .toccolours {
+      border-color: rgb(72, 78, 81);
+      background-color: rgb(27, 30, 31);
+    }
+
+    .toc h2 {
+      border-color: initial;
+    }
+
+    .toc ul {
+      list-style-image: none;
+    }
+
+    .tocnumber,
+    .toctext {
+      text-decoration-color: inherit;
+    }
+
+    .tocnumber {
+      color: rgb(211, 207, 202);
+    }
+
+    .toctogglelabel {
+      color: rgb(102, 177, 250);
+    }
+
+    .toctogglelabel:hover {
+      text-decoration-color: initial;
+    }
+
+    .toctogglecheckbox:focus+.toctitle .toctogglelabel {
+      text-decoration-color: initial;
+      outline-color: rgb(186, 123, 0);
+    }
+  }
+
+  .srf-loading-dots {
+    background-image: url("data:image/gif;base64,R0lGODlhIgAUAMQRAOjp6dTW19ze3+Xm54iKjevs7IKEh/f396Olp5ianPz8/Judn9fY2YGDhp+ho4CChdHT1P///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/wtYTVAgRGF0YVhNUDw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoxRThFNDZFQ0RFQjJFMjExQUZCNUREQjU1MEFCRTI5OCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozNkVFNURCOUIyREYxMUUyQTBEQUNFNUIzREVGNjg0MyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozNkVFNURCOEIyREYxMUUyQTBEQUNFNUIzREVGNjg0MyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyMDhFNDZFQ0RFQjJFMjExQUZCNUREQjU1MEFCRTI5OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRThFNDZFQ0RFQjJFMjExQUZCNUREQjU1MEFCRTI5OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAkyABEALAAAAAAiABQAAAVeYCSOZGmeaKqubOu+cCzPdM0iBIGYgCAUPB8Q5XgYHw4SAMKEAJRNJ8pwfBhIgagAq0U1qg1ukyFmkk+L6oI0iD5H7ebbdEgYEweSYhAIDEp7fX82hIWGh4iJiosoIQAh+QQJMgARACwAAAAAIgAUAAAFZGAkjmRpnmiqrmzrvnAsz3TNFoIAmAhBICZArpACQI6Q3cjxaD4cJCNSaRIgIQGSwfkwkAJXAYpxzY4a3Mb3ykBJjwPSgrsgDa5U0yAQGChIBwlNCQckCnt9NoqLjI2Oj5CRKSEAIfkEBTIAEQAsAAAAACIAFAAABWNgJI5kaZ5oqq5s675wLM90zRaCAJi4biIEAiIFgBghu1HxmBQ5HtCHAyU4QgKk6hE7MkQfBhTDyhWNt6TGt4FaGgckNwQ+WnwXqUEgMFCU9Hx+IwcJUAkHNomKi4yNjo+QKCEAOw==");
+    background-color: initial;
+  }
+
+  .srf-spinner.text {
+    color: rgb(168, 160, 149);
+  }
+
+  .srf-notification-content {
+    color: rgb(232, 230, 227);
+  }
+
+  fieldset#mw-prefsection-smw-srf {
+    border-color: rgb(46, 82, 154);
+  }
+
+  fieldset#mw-prefsection-smw-srf-eventcalendar-options {
+    border-color: rgb(58, 62, 65) rgb(46, 82, 154) rgb(46, 82, 154);
+  }
+
+  fieldset#mw-prefsection-smw-srf-datatables-options {
+    border-color: rgb(58, 62, 65) rgb(46, 82, 154) rgb(46, 82, 154);
+  }
+
+  #mw-prefsection-smw-srf .oo-ui-fieldsetLayout-header .oo-ui-labelElement-label {
+    color: rgb(131, 174, 218);
+  }
+
+  .tippy-iOS {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tippy-popper {
+    outline-color: initial;
+  }
+
+  .tippy-popper[x-placement^="top"] .tippy-arrow {
+    border-top-color: rgb(123, 114, 101);
+    border-right-color: transparent;
+    border-left-color: transparent;
+  }
+
+  .tippy-popper[x-placement^="bottom"] .tippy-arrow {
+    border-bottom-color: rgb(123, 114, 101);
+    border-right-color: transparent;
+    border-left-color: transparent;
+  }
+
+  .tippy-popper[x-placement^="left"] .tippy-arrow {
+    border-left-color: rgb(123, 114, 101);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  .tippy-popper[x-placement^="right"] .tippy-arrow {
+    border-right-color: rgb(123, 114, 101);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  .tippy-tooltip {
+    color: rgb(232, 230, 227);
+    background-color: rgb(38, 42, 43);
+  }
+
+  .tippy-tooltip[data-animatefill] {
+    background-color: transparent;
+  }
+
+  .tippy-roundarrow {
+    fill: rgb(200, 195, 188);
+  }
+
+  .tippy-backdrop {
+    background-color: rgb(38, 42, 43);
+  }
+
+  .tippy-tooltip.light-border-theme {
+    background-color: rgb(24, 26, 27);
+    border-color: rgba(137, 128, 113, 0.15);
+    color: rgb(201, 196, 189);
+    box-shadow: rgba(0, 6, 13, 0.08) 0px 3px 14px -0.5px;
+  }
+
+  .tippy-tooltip.light-border-theme .tippy-backdrop {
+    background-color: rgb(24, 26, 27);
+  }
+
+  .tippy-tooltip.light-border-theme .tippy-roundarrow {
+    fill: rgb(232, 230, 227);
+  }
+
+  .tippy-tooltip.light-border-theme .tippy-roundarrow::after {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEuNDE0IiB2aWV3Qm94PSIwIDAgMTggNyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCA3czIuMDIxLS4wMTUgNS4yNTMtNC4yMThDNi41ODQgMS4wNTEgNy43OTcuMDA3IDkgMGMxLjIwMy0uMDA3IDIuNDE2IDEuMDM1IDMuNzYxIDIuNzgyQzE2LjAxMiA3LjAwNSAxOCA3IDE4IDd6IiBmaWxsPSIjMzMzIiBmaWxsLW9wYWNpdHk9Ii4yMzUiIGZpbGwtcnVsZT0ibm9uemVybyIvPjwvc3ZnPg==");
+    fill: rgba(227, 225, 221, 0.15);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="top"] .tippy-arrow {
+    border-top-color: rgb(48, 52, 54);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="top"] .tippy-arrow::after {
+    border-top-color: rgb(48, 52, 54);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="top"] .tippy-arrow::before {
+    border-top-color: rgba(137, 128, 113, 0.2);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="bottom"] .tippy-arrow {
+    border-bottom-color: rgb(48, 52, 54);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="bottom"] .tippy-arrow::after {
+    border-bottom-color: rgb(48, 52, 54);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="bottom"] .tippy-arrow::before {
+    border-bottom-color: rgba(137, 128, 113, 0.2);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="left"] .tippy-arrow {
+    border-left-color: rgb(48, 52, 54);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="left"] .tippy-arrow::after {
+    border-left-color: rgb(48, 52, 54);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="left"] .tippy-arrow::before {
+    border-left-color: rgba(137, 128, 113, 0.2);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="right"] .tippy-arrow {
+    border-right-color: rgb(48, 52, 54);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="right"] .tippy-arrow::after {
+    border-right-color: rgb(48, 52, 54);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="right"] .tippy-arrow::before {
+    border-right-color: rgba(137, 128, 113, 0.2);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="bottom"] .tippy-arrow::after,
+  .tippy-tooltip.light-border-theme[x-placement^="bottom"] .tippy-arrow::before,
+  .tippy-tooltip.light-border-theme[x-placement^="top"] .tippy-arrow::after,
+  .tippy-tooltip.light-border-theme[x-placement^="top"] .tippy-arrow::before {
+    border-left-color: transparent;
+    border-right-color: transparent;
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="left"] .tippy-arrow::after,
+  .tippy-tooltip.light-border-theme[x-placement^="left"] .tippy-arrow::before,
+  .tippy-tooltip.light-border-theme[x-placement^="right"] .tippy-arrow::after,
+  .tippy-tooltip.light-border-theme[x-placement^="right"] .tippy-arrow::before {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  .tippy-tooltip.light-theme {
+    color: rgb(201, 196, 189);
+    box-shadow: rgba(69, 75, 89, 0.15) 0px 0px 20px 4px,
+      rgba(29, 32, 38, 0.25) 0px 4px 80px -8px,
+      rgba(74, 80, 83, 0.15) 0px 4px 4px -2px;
+    background-color: rgb(24, 26, 27);
+  }
+
+  .tippy-tooltip.light-theme[x-placement^="top"] .tippy-arrow {
+    border-top-color: rgb(48, 52, 54);
+    border-right-color: transparent;
+    border-left-color: transparent;
+  }
+
+  .tippy-tooltip.light-theme[x-placement^="bottom"] .tippy-arrow {
+    border-bottom-color: rgb(48, 52, 54);
+    border-right-color: transparent;
+    border-left-color: transparent;
+  }
+
+  .tippy-tooltip.light-theme[x-placement^="left"] .tippy-arrow {
+    border-left-color: rgb(48, 52, 54);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  .tippy-tooltip.light-theme[x-placement^="right"] .tippy-arrow {
+    border-right-color: rgb(48, 52, 54);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  .tippy-tooltip.light-theme .tippy-backdrop {
+    background-color: rgb(24, 26, 27);
+  }
+
+  .tippy-tooltip.light-theme .tippy-roundarrow {
+    fill: rgb(232, 230, 227);
+  }
+
+  .tippy-tooltip.light-theme[data-animatefill] {
+    background-color: transparent;
+  }
+
+  .tippy-header {
+    color: inherit;
+    background-color: rgb(29, 31, 32);
+    border-bottom-color: rgb(54, 58, 60);
+  }
+
+  .tippy-bottom {
+    color: inherit;
+    background-color: rgb(24, 26, 27);
+    border-top-color: rgb(54, 58, 60);
+  }
+
+  .tippy-tooltip.light-border-theme[x-placement^="bottom"] .tippy-arrow,
+  .tippy-tooltip.light-theme[x-placement^="bottom"] .tippy-arrow,
+  .tippy-tooltip.light-border-theme[x-placement^="bottom"] .tippy-arrow::after,
+  .tippy-tooltip.light-theme[x-placement^="bottom"] .tippy-arrow::after {
+    border-bottom-color: rgb(50, 54, 57);
+  }
+
+  .tippy-tooltip.light-border-theme.square-border-transparent-arrow[x-placement^="bottom"] .tippy-arrow,
+  .tippy-tooltip.light-border-theme.square-border-light[x-placement^="bottom"] .tippy-arrow,
+  .tippy-tooltip.light-theme.square-border-transparent-arrow[x-placement^="bottom"] .tippy-arrow,
+  .tippy-tooltip.light-theme.square-border-light[x-placement^="bottom"] .tippy-arrow,
+  .tippy-tooltip.light-border-theme.square-border-transparent-arrow[x-placement^="bottom"] .tippy-arrow::after,
+  .tippy-tooltip.light-border-theme.square-border-light[x-placement^="bottom"] .tippy-arrow::after,
+  .tippy-tooltip.light-theme.square-border-transparent-arrow[x-placement^="bottom"] .tippy-arrow::after,
+  .tippy-tooltip.light-theme.square-border-light[x-placement^="bottom"] .tippy-arrow::after {
+    border-bottom-color: rgb(48, 52, 54);
+  }
+
+  .square-border-light .tippy-header {
+    background-color: rgb(24, 26, 27);
+  }
+
+  .tippy-cancel {
+    color: rgb(232, 230, 227);
+    text-shadow: rgb(24, 26, 27) 0px 1px 0px;
+  }
+
+  .tippy-cancel:hover {
+    color: rgb(232, 230, 227);
+    text-decoration-color: initial;
+  }
+
+  .tippy-warning-circle {
+    background-color: rgb(189, 122, 0);
+  }
+
+  .tippy-error-circle {
+    background-color: rgb(179, 51, 5);
+  }
+
+  .tippy-header.accordion-popup.plain {
+    background-color: transparent;
+  }
+
+  .is-wikipatron {
+    color: rgb(255, 26, 26) !important;
+  }
+
+  .is-ultimapatron {
+    color: rgb(51, 125, 255) !important;
+  }
+
+  .is-warrioroflight {
+    color: rgb(255, 219, 26) !important;
+  }
+
+  ul.special abbr,
+  ul.special acronym {
+    border-color: initial;
+  }
+
+  ol.references>li:target,
+  sup.reference:target,
+  cite:target {
+    background-image: initial;
+    background-color: rgb(29, 31, 32);
+  }
+
+  .autocomment {
+    color: rgb(152, 143, 129);
+  }
+
+  .gray,
+  .gray a {
+    color: rgb(152, 143, 129);
+  }
+
+  .hidelist ul {
+    list-style-image: none;
+  }
+
+  #content .hiddenlinks a,
+  #content .hiddenlinks a:link,
+  #content .hiddenlinks a:visited {
+    color: inherit;
+  }
+
+  #mainpagenavigation th {
+    color: rgb(232, 230, 227);
+    text-shadow: rgba(0, 0, 0, 0.75) 0px 0px 0.25em;
+    background-color: rgb(51, 55, 58);
+    background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/images/a/aa/Bg_gradient4.jpg") !important;
+  }
+
+  #mainpagenavigation td {
+    background-color: rgb(24, 26, 27);
+    background-image: -webkit-gradient(linear,
+        0% 0%,
+        0% 100%,
+        from(rgb(187, 187, 187)),
+        color-stop(0.02,
+          rgb(255, 255, 255)),
+        to(rgb(238, 238, 238)));
+  }
+
+  #mainpagenavigation td.separator {
+    border-right-color: rgb(72, 78, 81);
+  }
+
+  .table {
+    border-color: initial;
+  }
+
+  .table tr {
+    border-color: rgb(72, 78, 81);
+  }
+
+  .table>*>tr> :first-child {
+    border-left-color: rgb(72, 78, 81);
+  }
+
+  .table>*>tr> :last-child {
+    border-right-color: rgb(72, 78, 81);
+  }
+
+  .table>tbody>tr:last-child,
+  .table>tbody>tr:last-child>*,
+  .table>tfoot>tr:last-child>*,
+  .table>caption {
+    border-bottom-color: rgb(72, 78, 81);
+  }
+
+  .table>tbody:first-child>tr:first-child>*,
+  .table>tbody>tr.heading>*,
+  .table>thead>tr:first-child>* {
+    background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/images/b/b3/Box_overlay.png");
+    background-color: rgb(34, 36, 38);
+    border-color: rgb(72, 78, 81);
+  }
+
+  .table> :first-child>tr:first-child,
+  .table>tbody>tr.heading {
+    background-color: rgb(34, 36, 38);
+    border-color: rgb(72, 78, 81) !important;
+  }
+
+  .table>tbody>tr>th,
+  .table>tfoot>tr>th {
+    background-color: rgb(38, 41, 42);
+    border-color: rgb(72, 78, 81);
+  }
+
+  .table>tbody>tr:nth-child(2n+1) {
+    background-color: rgb(31, 33, 35);
+    border-color: rgb(72, 78, 81);
+  }
+
+  .table>tbody,
+  .table>tbody>tr.heading,
+  .table>tbody>tr>[rowspan],
+  .table>tbody>tr>[colspan] {
+    border-color: rgb(72, 78, 81);
+  }
+
+  .table .line-top {
+    border-top-color: rgb(72, 78, 81);
+  }
+
+  .table .line-left {
+    border-left-color: rgb(72, 78, 81);
+  }
+
+  .table .line-right {
+    border-right-color: rgb(72, 78, 81);
+  }
+
+  .table table {
+    background-color: transparent;
+  }
+
+  .table.dps-role> :first-child>tr:first-child,
+  .table.dps-role>tbody>tr.heading,
+  .table.dps-role> :first-child>tr:first-child>*,
+  .table.dps-role>tbody>tr.heading>* {
+    background-color: rgb(129, 56, 56) !important;
+    border-color: rgb(128, 60, 60) !important;
+  }
+
+  .table.dps-role>tbody>tr>th,
+  .table.dps-role>tfoot>tr>th,
+  .table.dps-role>thead>tr>th,
+  table.table>tbody>tr.dps-role>th {
+    background-color: rgb(44, 85, 65);
+    border-color: rgb(77, 84, 87);
+  }
+
+  .table.dps-role>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.dps-role:nth-child(2n+1) {
+    background-color: rgb(50, 31, 25);
+  }
+
+  .table.healer-role> :first-child>tr:first-child,
+  .table.healer-role>tbody>tr.heading,
+  .table.healer-role> :first-child>tr:first-child>*,
+  .table.healer-role>tbody>tr.heading>* {
+    background-color: rgb(48, 83, 33) !important;
+    border-color: rgb(123, 114, 101) !important;
+  }
+
+  .table.healer-role>tbody>tr>th,
+  .table.healer-role>tfoot>tr>th,
+  .table.healer-role>thead>tr>th,
+  table.table>tbody>tr.healer-role>th {
+    background-color: rgb(44, 85, 65);
+    border-color: rgb(77, 84, 87);
+  }
+
+  .table.healer-role>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.healer-role:nth-child(2n+1) {
+    background-color: rgb(37, 53, 22);
+  }
+
+  .table.tanker-role> :first-child>tr:first-child,
+  .table.tanker-role>tbody>tr.heading,
+  .table.tanker-role> :first-child>tr:first-child>*,
+  .table.tanker-role>tbody>tr.heading>* {
+    background-color: rgb(51, 92, 139) !important;
+    border-color: rgb(58, 90, 128) !important;
+  }
+
+  .table.tanker-role>tbody>tr>th,
+  .table.tanker-role>tfoot>tr>th,
+  .table.tanker-role>thead>tr>th,
+  table.table>tbody>tr.tanker-role>th {
+    background-color: rgb(44, 85, 65);
+    border-color: rgb(77, 84, 87);
+  }
+
+  .table.tanker-role>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.tanker-role:nth-child(2n+1) {
+    background-color: rgb(39, 42, 44);
+  }
+
+  .table.crafting-role> :first-child>tr:first-child,
+  .table.crafting-role>tbody>tr.heading,
+  .table.crafting-role> :first-child>tr:first-child>*,
+  .table.crafting-role>tbody>tr.heading>* {
+    background-color: rgb(64, 70, 104) !important;
+    border-color: rgb(81, 88, 91) !important;
+  }
+
+  .table.crafting-role>tbody>tr>th,
+  .table.crafting-role>tfoot>tr>th,
+  .table.crafting-role>thead>tr>th,
+  table.table>tbody>tr.crafting-role>th {
+    background-color: rgb(44, 85, 65);
+    border-color: rgb(77, 84, 87);
+  }
+
+  .table.crafting-role>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.crafting-role:nth-child(2n+1) {
+    background-color: rgb(38, 42, 43);
+  }
+
+  .table.gathering-role> :first-child>tr:first-child,
+  .table.gathering-role>tbody>tr.heading,
+  .table.gathering-role> :first-child>tr:first-child>*,
+  .table.gathering-role>tbody>tr.heading>* {
+    background-color: rgb(96, 135, 28) !important;
+    border-color: rgb(123, 175, 34) !important;
+  }
+
+  .table.gathering-role>tbody>tr>th,
+  .table.gathering-role>tfoot>tr>th,
+  .table.gathering-role>thead>tr>th,
+  table.table>tbody>tr.gathering-role>th {
+    background-color: rgb(63, 81, 15);
+    border-color: rgb(77, 84, 87);
+  }
+
+  .table.gathering-role>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.gathering-role:nth-child(2n+1) {
+    background-color: rgb(40, 52, 10);
+  }
+
+  .table.pet-role> :first-child>tr:first-child,
+  .table.pet-role>tbody>tr.heading,
+  .table.pet-role> :first-child>tr:first-child>*,
+  .table.pet-role>tbody>tr.heading>* {
+    background-color: rgb(59, 131, 123) !important;
+    border-color: rgb(58, 129, 118) !important;
+  }
+
+  .table.pet-role>tbody>tr>th,
+  .table.pet-role>tfoot>tr>th,
+  .table.pet-role>thead>tr>th,
+  table.table>tbody>tr.pet-role>th {
+    background-color: rgb(44, 85, 65);
+    border-color: rgb(77, 84, 87);
+  }
+
+  .table.pet-role>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.pet-role:nth-child(2n+1) {
+    background-color: rgb(20, 46, 44);
+  }
+
+  .table.npc> :first-child>tr:first-child,
+  .table.npc>tbody>tr.heading,
+  .table.npc> :first-child>tr:first-child>*,
+  .table.npc>tbody>tr.heading>* {
+    background-color: rgb(102, 163, 41) !important;
+    border-color: rgb(78, 155, 39) !important;
+  }
+
+  .table.npc>tbody>tr>th,
+  .table.npc>tfoot>tr>th,
+  .table.npc>thead>tr>th,
+  table.table>tbody>tr.npc>th {
+    background-color: rgb(64, 102, 25);
+    border-color: rgb(74, 106, 57);
+  }
+
+  .table.npc>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.npc:nth-child(2n+1) {
+    background-color: rgb(36, 59, 14);
+  }
+
+  .table.pve> :first-child>tr:first-child,
+  .table.pve>tbody>tr.heading,
+  .table.pve> :first-child>tr:first-child>*,
+  .table.pve>tbody>tr.heading>* {
+    background-color: rgb(107, 71, 0) !important;
+    border-color: rgb(131, 100, 39) !important;
+  }
+
+  .table.pve>tbody>tr>th,
+  .table.pve>tfoot>tr>th,
+  .table.pve>thead>tr>th,
+  table.table>tbody>tr.pve>th {
+    background-color: rgb(72, 49, 0);
+    border-color: rgb(104, 85, 47);
+  }
+
+  .table.pve>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.pve:nth-child(2n+1) {
+    background-color: rgb(49, 34, 0);
+  }
+
+  .table.equip> :first-child>tr:first-child,
+  .table.equip>tbody>tr.heading,
+  .table.equip> :first-child>tr:first-child>*,
+  .table.equip>tbody>tr.heading>*,
+  .table.item> :first-child>tr:first-child,
+  .table.item>tbody>tr.heading,
+  .table.item> :first-child>tr:first-child>*,
+  .table.item>tbody>tr.heading>* {
+    background-color: rgb(143, 48, 0) !important;
+    border-color: rgb(131, 69, 39) !important;
+  }
+
+  .table.equip>tbody>tr>th,
+  .table.equip>tfoot>tr>th,
+  .table.equip>thead>tr>th,
+  table.table>tbody>tr.equip>th,
+  .table.item>tbody>tr>th,
+  .table.item>tfoot>tr>th,
+  .table.item>thead>tr>th,
+  table.table>tbody>tr.item>th {
+    background-color: rgb(97, 32, 0);
+    border-color: rgb(104, 66, 47);
+  }
+
+  .table.equip>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.equip:nth-child(2n+1),
+  .table.item>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.item:nth-child(2n+1) {
+    background-color: rgb(65, 23, 0);
+  }
+
+  .table.skin> :first-child>tr:first-child,
+  .table.skin>tbody>tr.heading,
+  .table.skin> :first-child>tr:first-child>*,
+  .table.skin>tbody>tr.heading>* {
+    background-color: rgb(121, 28, 56) !important;
+    border-color: rgb(98, 91, 81) !important;
+  }
+
+  .table.skin>tbody>tr>th,
+  .table.skin>tfoot>tr>th,
+  .table.skin>thead>tr>th,
+  table.table>tbody>tr.skin>th {
+    background-color: rgb(77, 0, 20);
+    border-color: rgb(72, 78, 81);
+  }
+
+  .table.skin>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.skin:nth-child(2n+1) {
+    background-color: rgb(62, 0, 24);
+  }
+
+  .table.mech1> :first-child>tr:first-child,
+  .table.mech1>tbody>tr.heading,
+  .table.mech1> :first-child>tr:first-child>*,
+  .table.mech1>tbody>tr.heading>* {
+    background-color: rgb(43, 87, 130) !important;
+    border-color: rgb(61, 90, 121) !important;
+  }
+
+  .table.mech1>tbody>tr>th,
+  .table.mech1>tfoot>tr>th,
+  .table.mech1>thead>tr>th,
+  table.table>tbody>tr.mech1>th {
+    background-color: rgb(53, 57, 59);
+    border-color: rgb(74, 80, 83);
+  }
+
+  .table.mech1>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.mech1:nth-child(2n+1) {
+    background-color: rgb(32, 35, 37);
+  }
+
+  .table.mech2> :first-child>tr:first-child,
+  .table.mech2>tbody>tr.heading,
+  .table.mech2> :first-child>tr:first-child>*,
+  .table.mech2>tbody>tr.heading>* {
+    background-color: rgb(41, 163, 163) !important;
+    border-color: rgb(39, 155, 155) !important;
+  }
+
+  .table.mech2>tbody>tr>th,
+  .table.mech2>tfoot>tr>th,
+  .table.mech2>thead>tr>th,
+  table.table>tbody>tr.mech2>th {
+    background-color: rgb(25, 102, 102);
+    border-color: rgb(57, 106, 106);
+  }
+
+  .table.mech2>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.mech2:nth-child(2n+1) {
+    background-color: rgb(14, 59, 59);
+  }
+
+  .table.lore> :first-child>tr:first-child,
+  .table.lore>tbody>tr.heading,
+  .table.lore> :first-child>tr:first-child>*,
+  .table.lore>tbody>tr.heading>* {
+    background-color: rgb(130, 43, 130) !important;
+    border-color: rgb(121, 61, 121) !important;
+  }
+
+  .table.lore>tbody>tr>th,
+  .table.lore>tfoot>tr>th,
+  .table.lore>thead>tr>th,
+  table.table>tbody>tr.lore>th {
+    background-color: rgb(84, 28, 84);
+    border-color: rgb(74, 80, 83);
+  }
+
+  .table.lore>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.lore:nth-child(2n+1) {
+    background-color: rgb(53, 16, 53);
+  }
+
+  .table.location> :first-child>tr:first-child,
+  .table.location>tbody>tr.heading,
+  .table.location> :first-child>tr:first-child>*,
+  .table.location>tbody>tr.heading>* {
+    background-color: rgb(87, 43, 130) !important;
+    border-color: rgb(90, 61, 121) !important;
+  }
+
+  .table.location>tbody>tr>th,
+  .table.location>tfoot>tr>th,
+  .table.location>thead>tr>th,
+  table.table>tbody>tr.location>th {
+    background-color: rgb(53, 57, 59);
+    border-color: rgb(74, 80, 83);
+  }
+
+  .table.location>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.location:nth-child(2n+1) {
+    background-color: rgb(32, 35, 37);
+  }
+
+  .table.promo> :first-child>tr:first-child,
+  .table.promo>tbody>tr.heading,
+  .table.promo> :first-child>tr:first-child>*,
+  .table.promo>tbody>tr.heading>* {
+    background-color: rgb(99, 122, 31) !important;
+    border-color: rgb(116, 155, 39) !important;
+  }
+
+  .table.promo>tbody>tr>th,
+  .table.promo>tfoot>tr>th,
+  .table.promo>thead>tr>th,
+  table.table>tbody>tr.promo>th {
+    background-color: rgb(62, 77, 19);
+    border-color: rgb(90, 106, 57);
+  }
+
+  .table.promo>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.promo:nth-child(2n+1) {
+    background-color: rgb(36, 45, 10);
+  }
+
+  .table.buff> :first-child>tr:first-child,
+  .table.buff>tbody>tr.heading,
+  .table.buff> :first-child>tr:first-child>*,
+  .table.buff>tbody>tr.heading>* {
+    background-color: rgb(34, 124, 124) !important;
+    border-color: rgb(58, 117, 117) !important;
+  }
+
+  .table.buff>tbody>tr>th,
+  .table.buff>tfoot>tr>th,
+  .table.buff>thead>tr>th,
+  table.table>tbody>tr.buff>th {
+    background-color: rgb(22, 82, 82);
+    border-color: rgb(72, 78, 81);
+  }
+
+  .table.buff>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.buff:nth-child(2n+1) {
+    background-color: rgb(15, 52, 52);
+  }
+
+  .table.debuff> :first-child>tr:first-child,
+  .table.debuff>tbody>tr.heading,
+  .table.debuff> :first-child>tr:first-child>*,
+  .table.debuff>tbody>tr.heading>* {
+    background-color: rgb(65, 133, 65) !important;
+    border-color: rgb(64, 131, 64) !important;
+  }
+
+  .table.debuff>tbody>tr>th,
+  .table.debuff>tfoot>tr>th,
+  .table.debuff>thead>tr>th,
+  table.table>tbody>tr.debuff>th {
+    background-color: rgb(54, 86, 44);
+    border-color: rgb(77, 84, 87);
+  }
+
+  .table.debuff>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.debuff:nth-child(2n+1) {
+    background-color: rgb(31, 50, 25);
+  }
+
+  .table.crafting> :first-child>tr:first-child,
+  .table.crafting>tbody>tr.heading,
+  .table.crafting> :first-child>tr:first-child>*,
+  .table.crafting>tbody>tr.heading>*,
+  .table.recipe> :first-child>tr:first-child,
+  .table.recipe>tbody>tr.heading,
+  .table.recipe> :first-child>tr:first-child>*,
+  .table.recipe>tbody>tr.heading>* {
+    background-color: rgb(133, 103, 65) !important;
+    border-color: rgb(131, 102, 64) !important;
+  }
+
+  .table.crafting>tbody>tr>th,
+  .table.crafting>tfoot>tr>th,
+  .table.crafting>thead>tr>th,
+  table.table>tbody>tr.crafting>th,
+  .table.recipe>tbody>tr>th,
+  .table.recipe>tfoot>tr>th,
+  .table.recipe>thead>tr>th,
+  table.table>tbody>tr.recipe>th {
+    background-color: rgb(86, 67, 44);
+    border-color: rgb(77, 84, 87);
+  }
+
+  .table.crafting>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.crafting:nth-child(2n+1),
+  .table.recipe>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.recipe:nth-child(2n+1) {
+    background-color: rgb(50, 38, 25);
+  }
+
+  div.infobox-n {
+    background-image: initial;
+    background-color: rgb(24, 26, 27);
+    border-color: rgb(72, 78, 81);
+  }
+
+  div.infobox,
+  div.nav .box {
+    background-image: -webkit-gradient(linear,
+        0% 0%,
+        0% 100%,
+        from(rgb(0, 0, 0)),
+        to(rgb(17, 17, 17)));
+  }
+
+  div.infobox-n .icon p {
+    color: rgb(189, 183, 175);
+    background-color: rgba(24, 26, 27, 0.5);
+  }
+
+  div.infobox-n .heading,
+  div.nav .heading {
+    border-color: rgba(140, 130, 115, 0.25);
+    background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/images/b/b3/Box_overlay.png") !important;
+  }
+
+  div.infobox-n .heading {
+    background-color: rgb(51, 55, 58);
+    text-shadow: rgba(0, 0, 0, 0.75) 0px 0px 0.25em;
+    color: rgb(232, 230, 227) !important;
+  }
+
+  div.infobox-n .subheading,
+  div.nav .subheading {
+    background-color: rgb(91, 99, 103);
+    border-left-color: rgba(140, 130, 115, 0.25);
+    border-right-color: rgba(140, 130, 115, 0.25);
+    background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/images/b/b3/Box_overlay.png") !important;
+  }
+
+  div.infobox-n .subheading {
+    background-color: rgb(51, 55, 58);
+    text-shadow: rgba(0, 0, 0, 0.75) 0px 0px 0.25em;
+    color: rgb(232, 230, 227) !important;
+  }
+
+  div.infobox-n dt {
+    border-right-color: rgb(77, 83, 86);
+  }
+
+  div.infobox-n dd {
+    border-left-color: rgb(77, 83, 86);
+  }
+
+  div.infobox-n::after,
+  div.nav .box::after,
+  div.infobox-n .heading::after,
+  div.nav .heading::after,
+  div.infobox-n .subheading::after,
+  div.nav .subheading::after,
+  .table::after {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjMiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMjMwIiBoZWlnaHQ9IjMiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBT1lBQUFBRENBUUFBQUF0NnJzQkFBQUFJR05JVWswQUFIb2xBQUNBZ3dBQStmOEFBSURwQUFCMU1BQUE2bUFBQURxWUFBQVhiNUpmeFVZQUFBQUJjMUpIUWdIWnlTeC9BQUFBbWtsRVFWUjQydTJTd1JLRElBeEVYN0JPL2YrdmJVY2xQUmd3T0hRR2RhcVg3b1hOWmdtQklJQXdBTkRSQTlEekFPQkpZTUhBSDNmalpXdmtEY0RFQ01ESWJIbVZYUVdGemxqSURCczk5aEZLcjZBV0tRS28wekJsemFWdUVsUHppbk90cXQrL2pYeE5yVVRKejlkemErNXQzN2piVWJEVVJWbDF3WndaVEFVbk8yTEYyekNlcXlCTnlwbCt3c0Y5OGNTWldubnNGdVVuK0FEZXNUNEV4MzhRaXdBQUFBQkpSVTVFcmtKZ2dnPT0iIC8+PC9zdmc+");
+  }
+
+  .table[class*="center"]::after,
+  .table.noshadowafter::after {
+    background-image: none;
+  }
+
+  div.infobox-n table,
+  div.nav table {
+    background-color: transparent;
+  }
+
+  div.infobox-n.healer-role dd,
+  div.infobox-n.healer-role dt {
+    border-color: rgb(123, 114, 101) !important;
+  }
+
+  div.infobox-n.healer-role .heading,
+  div.infobox-n.healer-role .subheading {
+    background-color: rgb(48, 83, 33) !important;
+  }
+
+  div.infobox-n.tanker-role dd,
+  div.infobox-n.tanker-role dt {
+    border-color: rgb(58, 90, 128) !important;
+  }
+
+  div.infobox-n.tanker-role .heading,
+  div.infobox-n.tanker-role .subheading {
+    background-color: rgb(51, 92, 139) !important;
+  }
+
+  div.infobox-n.dps-role dd,
+  div.infobox-n.dps-role dt {
+    border-color: rgb(128, 60, 60) !important;
+  }
+
+  div.infobox-n.dps-role .heading,
+  div.infobox-n.dps-role .subheading {
+    background-color: rgb(129, 56, 56) !important;
+  }
+
+  div.infobox-n.pet-role dd,
+  div.infobox-n.pet-role dt {
+    border-color: rgb(58, 129, 118) !important;
+  }
+
+  div.infobox-n.pet-role .heading,
+  div.infobox-n.pet-role .subheading {
+    background-color: rgb(59, 131, 123) !important;
+  }
+
+  div.infobox-n.crafting-role dd,
+  div.infobox-n.crafting-role dt {
+    border-color: rgb(81, 88, 91) !important;
+  }
+
+  div.infobox-n.crafting-role .heading,
+  div.infobox-n.crafting-role .subheading {
+    background-color: rgb(64, 70, 104) !important;
+  }
+
+  div.infobox-n.gathering-role dd,
+  div.infobox-n.gathering-role dt {
+    border-color: rgb(123, 175, 34) !important;
+  }
+
+  div.infobox-n.gathering-role .heading,
+  div.infobox-n.gathering-role .subheading {
+    background-color: rgb(96, 135, 28) !important;
+  }
+
+  div.infobox-n.mixed-role dd,
+  div.infobox-n.mixed-role dt {
+    border-color: rgb(163, 130, 30) !important;
+  }
+
+  div.infobox-n.mixed-role .heading,
+  div.infobox-n.mixed-role .subheading {
+    background-color: rgb(112, 88, 21) !important;
+  }
+
+  div.infobox-n.buff dd,
+  div.infobox-n.buff dt {
+    border-color: rgb(48, 145, 145) !important;
+  }
+
+  div.infobox-n.buff .heading,
+  div.infobox-n.buff .subheading {
+    background-color: rgb(41, 122, 122) !important;
+  }
+
+  div.infobox-n.debuff dd,
+  div.infobox-n.debuff dt {
+    border-color: rgb(70, 139, 70) !important;
+  }
+
+  div.infobox-n.debuff .heading,
+  div.infobox-n.debuff .subheading {
+    background-color: rgb(41, 82, 41) !important;
+  }
+
+  div.infobox-n.mount dd,
+  div.infobox-n.mount dt {
+    border-color: rgb(123, 46, 132) !important;
+  }
+
+  div.infobox-n.mount .heading,
+  div.infobox-n.mount .subheading {
+    background-color: rgb(115, 33, 125) !important;
+  }
+
+  div.infobox-n.armor dd,
+  div.infobox-n.weapon dd,
+  div.infobox-n.trinket dd,
+  div.infobox-n.item dd,
+  div.infobox-n.armor dt,
+  div.infobox-n.weapon dt,
+  div.infobox-n.trinket dt,
+  div.infobox-n.item dt {
+    border-color: rgb(194, 48, 0);
+  }
+
+  div.infobox-n.armor .heading,
+  div.infobox-n.weapon .heading,
+  div.infobox-n.trinket .heading,
+  div.infobox-n.item .heading,
+  div.infobox-n.armor .subheading,
+  div.infobox-n.weapon .subheading,
+  div.infobox-n.trinket .subheading,
+  div.infobox-n.item .subheading {
+    background-image: initial;
+    background-color: rgb(163, 41, 0);
+  }
+
+  div.infobox-n.skin dd,
+  div.infobox-n.skin dt {
+    border-color: rgb(196, 0, 62);
+  }
+
+  div.infobox-n.skin .heading,
+  div.infobox-n.skin .subheading {
+    background-image: initial;
+    background-color: rgb(157, 0, 50);
+  }
+
+  div.infobox-n.recipe .heading,
+  div.infobox-n.recipe .subheading {
+    background-image: initial;
+    background-color: rgb(66, 43, 13);
+  }
+
+  div.infobox-n.crafting .heading,
+  div.infobox-n.crafting .subheading {
+    background-image: initial;
+    background-color: rgb(66, 43, 13);
+  }
+
+  div.infobox-n.crafting dd,
+  div.infobox-n.recipe dd,
+  div.infobox-n.crafting dt,
+  div.infobox-n.recipe dt {
+    border-color: rgb(124, 115, 102);
+  }
+
+  div.infobox-n.npc dd,
+  div.infobox-n.npc dt {
+    border-color: rgb(70, 209, 0);
+  }
+
+  div.infobox-n.npc .heading,
+  div.infobox-n.npc .subheading {
+    background-image: initial;
+    background-color: rgb(41, 122, 0);
+  }
+
+  div.infobox-n.action dd,
+  div.infobox-n.action dt {
+    border-color: rgb(77, 83, 86);
+  }
+
+  div.infobox-n.trait dd,
+  div.infobox-n.trait dt {
+    border-color: rgb(139, 88, 42);
+  }
+
+  div.infobox-n.trait .heading,
+  div.infobox-n.trait .subheading {
+    background-image: initial;
+    background-color: rgb(51, 55, 58);
+  }
+
+  div.infobox-n.trait .heading,
+  div.infobox-n.trait .subheading {
+    background-image: initial;
+    background-color: rgb(142, 88, 41);
+  }
+
+  div.infobox-n.effect .debuff {
+    background-image: initial;
+    background-color: rgb(41, 82, 41);
+  }
+
+  div.infobox-n.effect .buff {
+    background-image: initial;
+    background-color: rgb(41, 122, 122);
+  }
+
+  div.infobox-n.pet dd,
+  div.infobox-n.pet dt {
+    border-color: rgb(112, 224, 0);
+  }
+
+  div.infobox-n.pet .heading,
+  div.infobox-n.pet .subheading {
+    background-image: initial;
+    background-color: rgb(41, 82, 0);
+  }
+
+  div.infobox-n.quest dd,
+  div.infobox-n.quest dt {
+    border-color: rgb(153, 97, 13);
+  }
+
+  div.infobox-n.quest .heading,
+  div.infobox-n.quest .subheading {
+    background-image: initial;
+    background-color: rgb(160, 101, 14);
+  }
+
+  div.infobox-n.duty dd,
+  div.infobox-n.duty dt {
+    border-color: rgb(160, 40, 3);
+  }
+
+  div.infobox-n.duty .heading,
+  div.infobox-n.duty .subheading {
+    background-image: initial;
+    background-color: rgb(170, 43, 3);
+  }
+
+  div.infobox-n.fate dd,
+  div.infobox-n.fate dt {
+    border-color: rgb(115, 31, 136);
+  }
+
+  div.infobox-n.fate .heading,
+  div.infobox-n.fate .subheading {
+    background-image: initial;
+    background-color: rgb(118, 42, 152);
+  }
+
+  div.infobox-n.area dd,
+  div.infobox-n.area dt {
+    border-color: rgb(112, 0, 224);
+  }
+
+  div.infobox-n.area .heading,
+  div.infobox-n.area .subheading {
+    background-image: initial;
+    background-color: rgb(41, 0, 82);
+  }
+
+  div.nav .box {
+    border-color: rgb(72, 78, 81);
+  }
+
+  div.nav .heading {
+    background-color: rgb(91, 99, 103);
+  }
+
+  div.nav .box table {
+    background-color: transparent;
+  }
+
+  div.nav dt {
+    border-right-color: rgb(77, 83, 86);
+  }
+
+  div.nav dd {
+    border-left-color: rgb(82, 88, 92);
+  }
+
+  div.nav table th {
+    border-right-color: rgb(82, 88, 92);
+  }
+
+  div.nav.npc .heading {
+    background-color: rgb(102, 163, 41);
+  }
+
+  div.nav.npc dd,
+  div.nav.npc dt,
+  div.nav.npc table th {
+    border-color: rgb(71, 143, 36);
+  }
+
+  div.nav.pve .heading {
+    background-color: rgb(107, 71, 0);
+  }
+
+  div.nav.pve dd,
+  div.nav.pve dt,
+  div.nav.pve table th {
+    border-color: rgb(148, 99, 0);
+  }
+
+  div.nav.equip .heading {
+    background-color: rgb(143, 48, 0);
+  }
+
+  div.nav.equip dd,
+  div.nav.equip dt,
+  div.nav.equip table th {
+    border-color: rgb(148, 49, 0);
+  }
+
+  div.nav.mech1 .heading {
+    background-color: rgb(43, 87, 130);
+  }
+
+  div.nav.mech1 dd,
+  div.nav.mech1 dt,
+  div.nav.mech1 table th {
+    border-color: rgb(41, 82, 122);
+  }
+
+  div.nav.mech2 .heading {
+    background-color: rgb(41, 163, 163);
+  }
+
+  div.nav.mech2 dd,
+  div.nav.mech2 dt,
+  div.nav.mech2 table th {
+    border-color: rgb(36, 143, 143);
+  }
+
+  div.nav.location .heading {
+    background-color: rgb(87, 43, 130);
+  }
+
+  div.nav.location dd,
+  div.nav.location dt,
+  div.nav.location table th {
+    border-color: rgb(82, 41, 122);
+  }
+
+  div.nav.lore .heading {
+    background-color: rgb(130, 43, 130);
+  }
+
+  div.nav.lore dd,
+  div.nav.lore dt,
+  div.nav.lore table th {
+    border-color: rgb(122, 41, 122);
+  }
+
+  div.nav.promo .heading {
+    background-color: rgb(99, 122, 31);
+  }
+
+  div.nav.promo dd,
+  div.nav.promo dt,
+  div.nav.promo table th {
+    border-color: rgb(107, 143, 36);
+  }
+
+  div.nav.quest .heading {
+    background-color: rgb(160, 101, 14);
+  }
+
+  div.nav.quest dd,
+  div.nav.quest dt,
+  div.nav.quest table th {
+    border-color: rgb(153, 97, 13);
+  }
+
+  div.nav.condition .heading {
+    background-color: rgb(65, 133, 65);
+  }
+
+  div.nav.condition dd,
+  div.nav.condition dt,
+  div.nav.condition table th {
+    border-color: rgb(59, 122, 59);
+  }
+
+  div.nav.hom .heading {
+    background-color: rgb(130, 87, 43);
+  }
+
+  div.nav.hom dd,
+  div.nav.hom dt,
+  div.nav.hom table th {
+    border-color: rgb(122, 82, 41);
+  }
+
+  div.nav.crafting .heading,
+  div.nav.recipe .heading {
+    background-color: rgb(122, 82, 41);
+  }
+
+  div.nav.crafting dd,
+  div.nav.hom dt,
+  div.nav.crafting table th,
+  div.nav.recipe dd,
+  div.nav.hom dt,
+  div.nav.recipe table th {
+    border-color: rgb(145, 97, 48);
+  }
+
+  div.nav.monsters .heading,
+  div.nav.monsters .subheading {
+    background-color: rgb(102, 163, 41);
+  }
+
+  div.nav.monsters dd,
+  div.nav.monsters dt,
+  div.nav.monsters table th {
+    border-color: rgb(71, 143, 36);
+  }
+
+  div.nav.duty .heading,
+  div.nav.duty .subheading {
+    background-color: rgb(170, 43, 3);
+  }
+
+  div.nav.duty dd,
+  div.nav.duty dt,
+  div.nav.duty table th {
+    border-color: rgb(160, 40, 3);
+  }
+
+  div.nav.whatever20 dd,
+  div.nav.whatever20 dt,
+  div.nav.whatever20 table th {
+    border-color: rgb(128, 36, 47);
+  }
+
+  div.nav.whatever1 .heading,
+  div.nav.whatever1 .subheading {
+    background-color: rgb(41, 122, 163);
+  }
+
+  div.nav.whatever1 dd,
+  div.nav.whatever1 dt,
+  div.nav.whatever1 table th {
+    border-color: rgb(36, 107, 143);
+  }
+
+  div.nav.whatever2 .heading,
+  div.nav.whatever2 .subheading {
+    background-color: rgb(155, 50, 46);
+  }
+
+  div.nav.whatever2 dd,
+  div.nav.whatever2 dt,
+  div.nav.whatever2 table th {
+    border-color: rgb(138, 45, 41);
+  }
+
+  div.nav.whatever3 .heading,
+  div.nav.whatever3 .subheading {
+    background-color: rgb(173, 87, 0);
+  }
+
+  div.nav.whatever3 dd,
+  div.nav.whatever3 dt,
+  div.nav.whatever3 table th {
+    border-color: rgb(163, 82, 0);
+  }
+
+  div.nav.whatever4 .heading,
+  div.nav.whatever4 .subheading {
+    background-color: rgb(122, 82, 41);
+  }
+
+  div.nav.whatever4 dd,
+  div.nav.whatever4 dt,
+  div.nav.whatever4 table th {
+    border-color: rgb(145, 97, 48);
+  }
+
+  div.nav.whatever5 .heading,
+  div.nav.whatever5 .subheading {
+    background-color: rgb(130, 43, 43);
+  }
+
+  div.nav.whatever5 dd,
+  div.nav.whatever5 dt,
+  div.nav.whatever5 table th {
+    border-color: rgb(122, 41, 41);
+  }
+
+  div.nav.whatever6 .heading,
+  div.nav.whatever6 .subheading {
+    background-color: rgb(150, 21, 16);
+  }
+
+  div.nav.whatever6 dd,
+  div.nav.whatever6 dt,
+  div.nav.whatever6 table th {
+    border-color: rgb(144, 20, 16);
+  }
+
+  div.nav.whatever7 .heading,
+  div.nav.whatever7 .subheading {
+    background-color: rgb(122, 41, 122);
+  }
+
+  div.nav.whatever7 dd,
+  div.nav.whatever7 dt,
+  div.nav.whatever7 table th {
+    border-color: rgb(145, 48, 145);
+  }
+
+  div.nav.whatever8 .heading,
+  div.nav.whatever8 .subheading {
+    background-color: rgb(41, 122, 82);
+  }
+
+  div.nav.whatever8 dd,
+  div.nav.whatever8 dt,
+  div.nav.whatever8 table th {
+    border-color: rgb(48, 145, 97);
+  }
+
+  div.nav.whatever9 .heading,
+  div.nav.whatever9 .subheading {
+    background-color: rgb(48, 0, 143);
+  }
+
+  div.nav.whatever9 dd,
+  div.nav.whatever9 dt,
+  div.nav.whatever9 table th {
+    border-color: rgb(49, 0, 148);
+  }
+
+  div.nav.whatever10 .heading,
+  div.nav.whatever10 .subheading {
+    background-color: rgb(137, 38, 50);
+  }
+
+  div.nav.whatever11 .heading,
+  div.nav.whatever11 .subheading {
+    background-color: rgb(130, 98, 0);
+  }
+
+  div.nav.whatever12 dd,
+  div.nav.whatever12 dt,
+  div.nav.whatever12 table th {
+    border-color: rgb(163, 122, 0);
+  }
+
+  div.nav.whatever13 .heading,
+  div.nav.whatever13 .subheading {
+    background-color: rgb(0, 95, 143);
+  }
+
+  div.nav.whatever13 dd,
+  div.nav.whatever13 dt,
+  div.nav.whatever13 table th {
+    border-color: rgb(0, 99, 148);
+  }
+
+  div.nav.whatever14 .heading,
+  div.nav.whatever14 .subheading {
+    background-color: rgb(71, 163, 41);
+  }
+
+  div.nav.whatever14 dd,
+  div.nav.whatever14 dt,
+  div.nav.whatever14 table th {
+    border-color: rgb(36, 143, 36);
+  }
+
+  span.thumb-icon a.new {
+    color: transparent;
+  }
+
+  span.thumb-icon.item-icon.small a.new {
+    background-image: url("https://ffxiv.consolegameswiki.com/images/thumb/7/74/action.png/20px-action.png");
+  }
+
+  span.thumb-icon.item-icon.medium a.new {
+    background-image: url("https://ffxiv.consolegameswiki.com/images/thumb/7/74/action.png/35px-action.png");
+  }
+
+  div.infobox-icon a.new {
+    color: transparent;
+    background-image: url("https://ffxiv.consolegameswiki.com/images/thumb/7/74/action.png/40px-action.png");
+  }
+
+  div.action-infobox-icon a.new {
+    color: transparent;
+    background-image: url("https://ffxiv.consolegameswiki.com/images/thumb/7/74/action.png/48px-action.png");
+  }
+
+  #upperBar ul {
+    list-style-image: initial;
+  }
+
+  #upperBar ul li a {
+    color: rgb(225, 242, 192);
+  }
+
+  #upperBar ul li a:hover {
+    text-decoration-color: initial;
+    color: rgb(232, 230, 227);
+  }
+
+  #upperBar ul li:first-child a:hover {
+    background-image: url("https://ffxiv.consolegameswiki.com/images/c/c7/Masthead_hover_background.png");
+    background-color: initial;
+  }
+
+  #upperBar ul li:first-child+li a:hover {
+    background-image: url("/images/c/c7/Masthead_hover_background.png");
+    background-color: initial;
+  }
+
+  #upperBar ul li:first-child+li+li a:hover {
+    background-image: url("/images/c/c7/Masthead_hover_background.png");
+    background-color: initial;
+  }
+
+  table.jquery-tablesorter th.headerSort {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjEiIGhlaWdodD0iOSI+PGRlZnM+PGZpbHRlciBpZD0iZGFya3JlYWRlci1pbWFnZS1maWx0ZXIiPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwLjI0OSAtMC42MTQgLTAuNjcyIDAuMDAwIDEuMDM1IC0wLjY0NiAwLjI4OCAtMC42NjQgMC4wMDAgMS4wMjAgLTAuNjM2IC0wLjYwOSAwLjI1MCAwLjAwMCAwLjk5NCAwLjAwMCAwLjAwMCAwLjAwMCAxLjAwMCAwLjAwMCIgLz48L2ZpbHRlcj48L2RlZnM+PGltYWdlIHdpZHRoPSIyMSIgaGVpZ2h0PSI5IiBmaWx0ZXI9InVybCgjZGFya3JlYWRlci1pbWFnZS1maWx0ZXIpIiB4bGluazpocmVmPSJkYXRhOmltYWdlL2dpZjtiYXNlNjQsUjBsR09EbGhGUUFKQUlBQkFBQUFBQUFBQUNIL0MxaE5VQ0JFWVhSaFdFMVFQRDk0Y0dGamEyVjBJR0psWjJsdVBTTHZ1NzhpSUdsa1BTSlhOVTB3VFhCRFpXaHBTSHB5WlZONlRsUmplbXRqT1dRaVB6NGdQSGc2ZUcxd2JXVjBZU0I0Yld4dWN6cDRQU0poWkc5aVpUcHVjenB0WlhSaEx5SWdlRHA0YlhCMGF6MGlRV1J2WW1VZ1dFMVFJRU52Y21VZ05TNHdMV013TmpBZ05qRXVNVE0wTnpjM0xDQXlNREV3THpBeUx6RXlMVEUzT2pNeU9qQXdJQ0FnSUNBZ0lDQWlQaUE4Y21SbU9sSkVSaUI0Yld4dWN6cHlaR1k5SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpFNU9Ua3ZNREl2TWpJdGNtUm1MWE41Ym5SaGVDMXVjeU1pUGlBOGNtUm1Pa1JsYzJOeWFYQjBhVzl1SUhKa1pqcGhZbTkxZEQwaUlpQjRiV3h1Y3pwNGJYQk5UVDBpYUhSMGNEb3ZMMjV6TG1Ga2IySmxMbU52YlM5NFlYQXZNUzR3TDIxdEx5SWdlRzFzYm5NNmMzUlNaV1k5SW1oMGRIQTZMeTl1Y3k1aFpHOWlaUzVqYjIwdmVHRndMekV1TUM5elZIbHdaUzlTWlhOdmRYSmpaVkpsWmlNaUlIaHRiRzV6T25odGNEMGlhSFIwY0RvdkwyNXpMbUZrYjJKbExtTnZiUzk0WVhBdk1TNHdMeUlnZUcxd1RVMDZUM0pwWjJsdVlXeEViMk4xYldWdWRFbEVQU0o0YlhBdVpHbGtPakF4T0RBeE1UYzBNRGN5TURZNE1URTRPRU0yUkVZeU4wRXhNRGhCTkRKRklpQjRiWEJOVFRwRWIyTjFiV1Z1ZEVsRVBTSjRiWEF1Wkdsa09qZENOVEF5T0Rjd01FWTROakV4UlRCQk16a3lRekF5TTBFMVJEazNSRGMzSWlCNGJYQk5UVHBKYm5OMFlXNWpaVWxFUFNKNGJYQXVhV2xrT2pkQ05UQXlPRFpHTUVZNE5qRXhSVEJCTXpreVF6QXlNMEUxUkRrM1JEYzNJaUI0YlhBNlEzSmxZWFJ2Y2xSdmIydzlJa0ZrYjJKbElGQm9iM1J2YzJodmNDQkRVelVnVFdGamFXNTBiM05vSWo0Z1BIaHRjRTFOT2tSbGNtbDJaV1JHY205dElITjBVbVZtT21sdWMzUmhibU5sU1VROUluaHRjQzVwYVdRNk1ERTRNREV4TnpRd056SXdOamd4TVRnNFF6WkVSakkzUVRFd09FRTBNa1VpSUhOMFVtVm1PbVJ2WTNWdFpXNTBTVVE5SW5odGNDNWthV1E2TURFNE1ERXhOelF3TnpJd05qZ3hNVGc0UXpaRVJqSTNRVEV3T0VFME1rVWlMejRnUEM5eVpHWTZSR1Z6WTNKcGNIUnBiMjQrSUR3dmNtUm1PbEpFUmo0Z1BDOTRPbmh0Y0cxbGRHRStJRHcvZUhCaFkydGxkQ0JsYm1ROUluSWlQejRCLy83OS9QdjYrZmozOXZYMDgvTHg4Ty91N2V6cjZ1bm81K2JsNU9QaTRlRGYzdDNjMjlyWjJOZlcxZFRUMHRIUXo4N056TXZLeWNqSHhzWEV3OExCd0wrK3ZieTd1cm00dDdhMXRMT3lzYkN2cnEyc3E2cXBxS2VtcGFTam9xR2duNTZkbkp1YW1aaVhscFdVazVLUmtJK09qWXlMaW9tSWg0YUZoSU9DZ1lCL2ZuMThlM3A1ZUhkMmRYUnpjbkZ3YjI1dGJHdHFhV2huWm1Wa1kySmhZRjllWFZ4YldsbFlWMVpWVkZOU1VWQlBUazFNUzBwSlNFZEdSVVJEUWtGQVB6NDlQRHM2T1RnM05qVTBNekl4TUM4dUxTd3JLaWtvSnlZbEpDTWlJU0FmSGgwY0d4b1pHQmNXRlJRVEVoRVFEdzROREFzS0NRZ0hCZ1VFQXdJQkFBQWgrUVFCQUFBQkFDd0FBQUFBRlFBSkFBQUNGNHlQZ01zSjJtSjRWREtLcmQ0R1Z6NWxZUGVNaVZVQUFEcz0iIC8+PC9zdmc+");
+  }
+
+  table.jquery-tablesorter th.headerSortDown {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjEiIGhlaWdodD0iNCI+PGRlZnM+PGZpbHRlciBpZD0iZGFya3JlYWRlci1pbWFnZS1maWx0ZXIiPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwLjI0OSAtMC42MTQgLTAuNjcyIDAuMDAwIDEuMDM1IC0wLjY0NiAwLjI4OCAtMC42NjQgMC4wMDAgMS4wMjAgLTAuNjM2IC0wLjYwOSAwLjI1MCAwLjAwMCAwLjk5NCAwLjAwMCAwLjAwMCAwLjAwMCAxLjAwMCAwLjAwMCIgLz48L2ZpbHRlcj48L2RlZnM+PGltYWdlIHdpZHRoPSIyMSIgaGVpZ2h0PSI0IiBmaWx0ZXI9InVybCgjZGFya3JlYWRlci1pbWFnZS1maWx0ZXIpIiB4bGluazpocmVmPSJkYXRhOmltYWdlL2dpZjtiYXNlNjQsUjBsR09EbGhGUUFFQUlBQkFBQUFBQUFBQUNIL0MxaE5VQ0JFWVhSaFdFMVFQRDk0Y0dGamEyVjBJR0psWjJsdVBTTHZ1NzhpSUdsa1BTSlhOVTB3VFhCRFpXaHBTSHB5WlZONlRsUmplbXRqT1dRaVB6NGdQSGc2ZUcxd2JXVjBZU0I0Yld4dWN6cDRQU0poWkc5aVpUcHVjenB0WlhSaEx5SWdlRHA0YlhCMGF6MGlRV1J2WW1VZ1dFMVFJRU52Y21VZ05TNHdMV013TmpBZ05qRXVNVE0wTnpjM0xDQXlNREV3THpBeUx6RXlMVEUzT2pNeU9qQXdJQ0FnSUNBZ0lDQWlQaUE4Y21SbU9sSkVSaUI0Yld4dWN6cHlaR1k5SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpFNU9Ua3ZNREl2TWpJdGNtUm1MWE41Ym5SaGVDMXVjeU1pUGlBOGNtUm1Pa1JsYzJOeWFYQjBhVzl1SUhKa1pqcGhZbTkxZEQwaUlpQjRiV3h1Y3pwNGJYQk5UVDBpYUhSMGNEb3ZMMjV6TG1Ga2IySmxMbU52YlM5NFlYQXZNUzR3TDIxdEx5SWdlRzFzYm5NNmMzUlNaV1k5SW1oMGRIQTZMeTl1Y3k1aFpHOWlaUzVqYjIwdmVHRndMekV1TUM5elZIbHdaUzlTWlhOdmRYSmpaVkpsWmlNaUlIaHRiRzV6T25odGNEMGlhSFIwY0RvdkwyNXpMbUZrYjJKbExtTnZiUzk0WVhBdk1TNHdMeUlnZUcxd1RVMDZUM0pwWjJsdVlXeEViMk4xYldWdWRFbEVQU0o0YlhBdVpHbGtPakF5T0RBeE1UYzBNRGN5TURZNE1URTRPRU0yUkVZeU4wRXhNRGhCTkRKRklpQjRiWEJOVFRwRWIyTjFiV1Z1ZEVsRVBTSjRiWEF1Wkdsa09qaEZOek5HUWpJM01FWTROakV4UlRCQk16a3lRekF5TTBFMVJEazNSRGMzSWlCNGJYQk5UVHBKYm5OMFlXNWpaVWxFUFNKNGJYQXVhV2xrT2poRk56TkdRakkyTUVZNE5qRXhSVEJCTXpreVF6QXlNMEUxUkRrM1JEYzNJaUI0YlhBNlEzSmxZWFJ2Y2xSdmIydzlJa0ZrYjJKbElGQm9iM1J2YzJodmNDQkRVelVnVFdGamFXNTBiM05vSWo0Z1BIaHRjRTFOT2tSbGNtbDJaV1JHY205dElITjBVbVZtT21sdWMzUmhibU5sU1VROUluaHRjQzVwYVdRNk1ESTRNREV4TnpRd056SXdOamd4TVRnNFF6WkVSakkzUVRFd09FRTBNa1VpSUhOMFVtVm1PbVJ2WTNWdFpXNTBTVVE5SW5odGNDNWthV1E2TURJNE1ERXhOelF3TnpJd05qZ3hNVGc0UXpaRVJqSTNRVEV3T0VFME1rVWlMejRnUEM5eVpHWTZSR1Z6WTNKcGNIUnBiMjQrSUR3dmNtUm1PbEpFUmo0Z1BDOTRPbmh0Y0cxbGRHRStJRHcvZUhCaFkydGxkQ0JsYm1ROUluSWlQejRCLy83OS9QdjYrZmozOXZYMDgvTHg4Ty91N2V6cjZ1bm81K2JsNU9QaTRlRGYzdDNjMjlyWjJOZlcxZFRUMHRIUXo4N056TXZLeWNqSHhzWEV3OExCd0wrK3ZieTd1cm00dDdhMXRMT3lzYkN2cnEyc3E2cXBxS2VtcGFTam9xR2duNTZkbkp1YW1aaVhscFdVazVLUmtJK09qWXlMaW9tSWg0YUZoSU9DZ1lCL2ZuMThlM3A1ZUhkMmRYUnpjbkZ3YjI1dGJHdHFhV2huWm1Wa1kySmhZRjllWFZ4YldsbFlWMVpWVkZOU1VWQlBUazFNUzBwSlNFZEdSVVJEUWtGQVB6NDlQRHM2T1RnM05qVTBNekl4TUM4dUxTd3JLaWtvSnlZbEpDTWlJU0FmSGgwY0d4b1pHQmNXRlJRVEVoRVFEdzROREFzS0NRZ0hCZ1VFQXdJQkFBQWgrUVFCQUFBQkFDd0FBQUFBRlFBRUFBQUNEWXlQQWNtdHNKeURWREtLV1FFQU93PT0iIC8+PC9zdmc+");
+  }
+
+  table.jquery-tablesorter th.headerSortUp {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjEiIGhlaWdodD0iNCI+PGRlZnM+PGZpbHRlciBpZD0iZGFya3JlYWRlci1pbWFnZS1maWx0ZXIiPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwLjI0OSAtMC42MTQgLTAuNjcyIDAuMDAwIDEuMDM1IC0wLjY0NiAwLjI4OCAtMC42NjQgMC4wMDAgMS4wMjAgLTAuNjM2IC0wLjYwOSAwLjI1MCAwLjAwMCAwLjk5NCAwLjAwMCAwLjAwMCAwLjAwMCAxLjAwMCAwLjAwMCIgLz48L2ZpbHRlcj48L2RlZnM+PGltYWdlIHdpZHRoPSIyMSIgaGVpZ2h0PSI0IiBmaWx0ZXI9InVybCgjZGFya3JlYWRlci1pbWFnZS1maWx0ZXIpIiB4bGluazpocmVmPSJkYXRhOmltYWdlL2dpZjtiYXNlNjQsUjBsR09EbGhGUUFFQUlBQkFBQUFBQUFBQUNIL0MxaE5VQ0JFWVhSaFdFMVFQRDk0Y0dGamEyVjBJR0psWjJsdVBTTHZ1NzhpSUdsa1BTSlhOVTB3VFhCRFpXaHBTSHB5WlZONlRsUmplbXRqT1dRaVB6NGdQSGc2ZUcxd2JXVjBZU0I0Yld4dWN6cDRQU0poWkc5aVpUcHVjenB0WlhSaEx5SWdlRHA0YlhCMGF6MGlRV1J2WW1VZ1dFMVFJRU52Y21VZ05TNHdMV013TmpBZ05qRXVNVE0wTnpjM0xDQXlNREV3THpBeUx6RXlMVEUzT2pNeU9qQXdJQ0FnSUNBZ0lDQWlQaUE4Y21SbU9sSkVSaUI0Yld4dWN6cHlaR1k5SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpFNU9Ua3ZNREl2TWpJdGNtUm1MWE41Ym5SaGVDMXVjeU1pUGlBOGNtUm1Pa1JsYzJOeWFYQjBhVzl1SUhKa1pqcGhZbTkxZEQwaUlpQjRiV3h1Y3pwNGJYQk5UVDBpYUhSMGNEb3ZMMjV6TG1Ga2IySmxMbU52YlM5NFlYQXZNUzR3TDIxdEx5SWdlRzFzYm5NNmMzUlNaV1k5SW1oMGRIQTZMeTl1Y3k1aFpHOWlaUzVqYjIwdmVHRndMekV1TUM5elZIbHdaUzlTWlhOdmRYSmpaVkpsWmlNaUlIaHRiRzV6T25odGNEMGlhSFIwY0RvdkwyNXpMbUZrYjJKbExtTnZiUzk0WVhBdk1TNHdMeUlnZUcxd1RVMDZUM0pwWjJsdVlXeEViMk4xYldWdWRFbEVQU0o0YlhBdVpHbGtPakF6T0RBeE1UYzBNRGN5TURZNE1URTRPRU0yUkVZeU4wRXhNRGhCTkRKRklpQjRiWEJOVFRwRWIyTjFiV1Z1ZEVsRVBTSjRiWEF1Wkdsa09qZENOVEF5T0RjME1FWTROakV4UlRCQk16a3lRekF5TTBFMVJEazNSRGMzSWlCNGJYQk5UVHBKYm5OMFlXNWpaVWxFUFNKNGJYQXVhV2xrT2pkQ05UQXlPRGN6TUVZNE5qRXhSVEJCTXpreVF6QXlNMEUxUkRrM1JEYzNJaUI0YlhBNlEzSmxZWFJ2Y2xSdmIydzlJa0ZrYjJKbElGQm9iM1J2YzJodmNDQkRVelVnVFdGamFXNTBiM05vSWo0Z1BIaHRjRTFOT2tSbGNtbDJaV1JHY205dElITjBVbVZtT21sdWMzUmhibU5sU1VROUluaHRjQzVwYVdRNk1ETTRNREV4TnpRd056SXdOamd4TVRnNFF6WkVSakkzUVRFd09FRTBNa1VpSUhOMFVtVm1PbVJ2WTNWdFpXNTBTVVE5SW5odGNDNWthV1E2TURNNE1ERXhOelF3TnpJd05qZ3hNVGc0UXpaRVJqSTNRVEV3T0VFME1rVWlMejRnUEM5eVpHWTZSR1Z6WTNKcGNIUnBiMjQrSUR3dmNtUm1PbEpFUmo0Z1BDOTRPbmh0Y0cxbGRHRStJRHcvZUhCaFkydGxkQ0JsYm1ROUluSWlQejRCLy83OS9QdjYrZmozOXZYMDgvTHg4Ty91N2V6cjZ1bm81K2JsNU9QaTRlRGYzdDNjMjlyWjJOZlcxZFRUMHRIUXo4N056TXZLeWNqSHhzWEV3OExCd0wrK3ZieTd1cm00dDdhMXRMT3lzYkN2cnEyc3E2cXBxS2VtcGFTam9xR2duNTZkbkp1YW1aaVhscFdVazVLUmtJK09qWXlMaW9tSWg0YUZoSU9DZ1lCL2ZuMThlM3A1ZUhkMmRYUnpjbkZ3YjI1dGJHdHFhV2huWm1Wa1kySmhZRjllWFZ4YldsbFlWMVpWVkZOU1VWQlBUazFNUzBwSlNFZEdSVVJEUWtGQVB6NDlQRHM2T1RnM05qVTBNekl4TUM4dUxTd3JLaWtvSnlZbEpDTWlJU0FmSGgwY0d4b1pHQmNXRlJRVEVoRVFEdzROREFzS0NRZ0hCZ1VFQXdJQkFBQWgrUVFCQUFBQkFDd0FBQUFBRlFBRUFBQUNEWXdmb0F2b3o5cWJaOUZySkMwQU93PT0iIC8+PC9zdmc+");
+  }
+
+  table.table.jquery-tablesorter th.headerSort {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjEiIGhlaWdodD0iOSI+PGRlZnM+PGZpbHRlciBpZD0iZGFya3JlYWRlci1pbWFnZS1maWx0ZXIiPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwLjI0OSAtMC42MTQgLTAuNjcyIDAuMDAwIDEuMDM1IC0wLjY0NiAwLjI4OCAtMC42NjQgMC4wMDAgMS4wMjAgLTAuNjM2IC0wLjYwOSAwLjI1MCAwLjAwMCAwLjk5NCAwLjAwMCAwLjAwMCAwLjAwMCAxLjAwMCAwLjAwMCIgLz48L2ZpbHRlcj48L2RlZnM+PGltYWdlIHdpZHRoPSIyMSIgaGVpZ2h0PSI5IiBmaWx0ZXI9InVybCgjZGFya3JlYWRlci1pbWFnZS1maWx0ZXIpIiB4bGluazpocmVmPSJkYXRhOmltYWdlL2dpZjtiYXNlNjQsUjBsR09EbGhGUUFKQUlBQkFBQUFBQUFBQUNIL0MxaE5VQ0JFWVhSaFdFMVFQRDk0Y0dGamEyVjBJR0psWjJsdVBTTHZ1NzhpSUdsa1BTSlhOVTB3VFhCRFpXaHBTSHB5WlZONlRsUmplbXRqT1dRaVB6NGdQSGc2ZUcxd2JXVjBZU0I0Yld4dWN6cDRQU0poWkc5aVpUcHVjenB0WlhSaEx5SWdlRHA0YlhCMGF6MGlRV1J2WW1VZ1dFMVFJRU52Y21VZ05TNHdMV013TmpBZ05qRXVNVE0wTnpjM0xDQXlNREV3THpBeUx6RXlMVEUzT2pNeU9qQXdJQ0FnSUNBZ0lDQWlQaUE4Y21SbU9sSkVSaUI0Yld4dWN6cHlaR1k5SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpFNU9Ua3ZNREl2TWpJdGNtUm1MWE41Ym5SaGVDMXVjeU1pUGlBOGNtUm1Pa1JsYzJOeWFYQjBhVzl1SUhKa1pqcGhZbTkxZEQwaUlpQjRiV3h1Y3pwNGJYQk5UVDBpYUhSMGNEb3ZMMjV6TG1Ga2IySmxMbU52YlM5NFlYQXZNUzR3TDIxdEx5SWdlRzFzYm5NNmMzUlNaV1k5SW1oMGRIQTZMeTl1Y3k1aFpHOWlaUzVqYjIwdmVHRndMekV1TUM5elZIbHdaUzlTWlhOdmRYSmpaVkpsWmlNaUlIaHRiRzV6T25odGNEMGlhSFIwY0RvdkwyNXpMbUZrYjJKbExtTnZiUzk0WVhBdk1TNHdMeUlnZUcxd1RVMDZUM0pwWjJsdVlXeEViMk4xYldWdWRFbEVQU0o0YlhBdVpHbGtPakF4T0RBeE1UYzBNRGN5TURZNE1URTRPRU0yUkVZeU4wRXhNRGhCTkRKRklpQjRiWEJOVFRwRWIyTjFiV1Z1ZEVsRVBTSjRiWEF1Wkdsa09qZENOVEF5T0Rjd01FWTROakV4UlRCQk16a3lRekF5TTBFMVJEazNSRGMzSWlCNGJYQk5UVHBKYm5OMFlXNWpaVWxFUFNKNGJYQXVhV2xrT2pkQ05UQXlPRFpHTUVZNE5qRXhSVEJCTXpreVF6QXlNMEUxUkRrM1JEYzNJaUI0YlhBNlEzSmxZWFJ2Y2xSdmIydzlJa0ZrYjJKbElGQm9iM1J2YzJodmNDQkRVelVnVFdGamFXNTBiM05vSWo0Z1BIaHRjRTFOT2tSbGNtbDJaV1JHY205dElITjBVbVZtT21sdWMzUmhibU5sU1VROUluaHRjQzVwYVdRNk1ERTRNREV4TnpRd056SXdOamd4TVRnNFF6WkVSakkzUVRFd09FRTBNa1VpSUhOMFVtVm1PbVJ2WTNWdFpXNTBTVVE5SW5odGNDNWthV1E2TURFNE1ERXhOelF3TnpJd05qZ3hNVGc0UXpaRVJqSTNRVEV3T0VFME1rVWlMejRnUEM5eVpHWTZSR1Z6WTNKcGNIUnBiMjQrSUR3dmNtUm1PbEpFUmo0Z1BDOTRPbmh0Y0cxbGRHRStJRHcvZUhCaFkydGxkQ0JsYm1ROUluSWlQejRCLy83OS9QdjYrZmozOXZYMDgvTHg4Ty91N2V6cjZ1bm81K2JsNU9QaTRlRGYzdDNjMjlyWjJOZlcxZFRUMHRIUXo4N056TXZLeWNqSHhzWEV3OExCd0wrK3ZieTd1cm00dDdhMXRMT3lzYkN2cnEyc3E2cXBxS2VtcGFTam9xR2duNTZkbkp1YW1aaVhscFdVazVLUmtJK09qWXlMaW9tSWg0YUZoSU9DZ1lCL2ZuMThlM3A1ZUhkMmRYUnpjbkZ3YjI1dGJHdHFhV2huWm1Wa1kySmhZRjllWFZ4YldsbFlWMVpWVkZOU1VWQlBUazFNUzBwSlNFZEdSVVJEUWtGQVB6NDlQRHM2T1RnM05qVTBNekl4TUM4dUxTd3JLaWtvSnlZbEpDTWlJU0FmSGgwY0d4b1pHQmNXRlJRVEVoRVFEdzROREFzS0NRZ0hCZ1VFQXdJQkFBQWgrUVFCQUFBQkFDd0FBQUFBRlFBSkFBQUNGNHlQZ01zSjJtSjRWREtLcmQ0R1Z6NWxZUGVNaVZVQUFEcz0iIC8+PC9zdmc+"),
+      url("https://ffxiv.consolegameswiki.com/mediawiki/images/b/b3/Box_overlay.png");
+  }
+
+  table.table.jquery-tablesorter th.headerSortDown {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjEiIGhlaWdodD0iNCI+PGRlZnM+PGZpbHRlciBpZD0iZGFya3JlYWRlci1pbWFnZS1maWx0ZXIiPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwLjI0OSAtMC42MTQgLTAuNjcyIDAuMDAwIDEuMDM1IC0wLjY0NiAwLjI4OCAtMC42NjQgMC4wMDAgMS4wMjAgLTAuNjM2IC0wLjYwOSAwLjI1MCAwLjAwMCAwLjk5NCAwLjAwMCAwLjAwMCAwLjAwMCAxLjAwMCAwLjAwMCIgLz48L2ZpbHRlcj48L2RlZnM+PGltYWdlIHdpZHRoPSIyMSIgaGVpZ2h0PSI0IiBmaWx0ZXI9InVybCgjZGFya3JlYWRlci1pbWFnZS1maWx0ZXIpIiB4bGluazpocmVmPSJkYXRhOmltYWdlL2dpZjtiYXNlNjQsUjBsR09EbGhGUUFFQUlBQkFBQUFBQUFBQUNIL0MxaE5VQ0JFWVhSaFdFMVFQRDk0Y0dGamEyVjBJR0psWjJsdVBTTHZ1NzhpSUdsa1BTSlhOVTB3VFhCRFpXaHBTSHB5WlZONlRsUmplbXRqT1dRaVB6NGdQSGc2ZUcxd2JXVjBZU0I0Yld4dWN6cDRQU0poWkc5aVpUcHVjenB0WlhSaEx5SWdlRHA0YlhCMGF6MGlRV1J2WW1VZ1dFMVFJRU52Y21VZ05TNHdMV013TmpBZ05qRXVNVE0wTnpjM0xDQXlNREV3THpBeUx6RXlMVEUzT2pNeU9qQXdJQ0FnSUNBZ0lDQWlQaUE4Y21SbU9sSkVSaUI0Yld4dWN6cHlaR1k5SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpFNU9Ua3ZNREl2TWpJdGNtUm1MWE41Ym5SaGVDMXVjeU1pUGlBOGNtUm1Pa1JsYzJOeWFYQjBhVzl1SUhKa1pqcGhZbTkxZEQwaUlpQjRiV3h1Y3pwNGJYQk5UVDBpYUhSMGNEb3ZMMjV6TG1Ga2IySmxMbU52YlM5NFlYQXZNUzR3TDIxdEx5SWdlRzFzYm5NNmMzUlNaV1k5SW1oMGRIQTZMeTl1Y3k1aFpHOWlaUzVqYjIwdmVHRndMekV1TUM5elZIbHdaUzlTWlhOdmRYSmpaVkpsWmlNaUlIaHRiRzV6T25odGNEMGlhSFIwY0RvdkwyNXpMbUZrYjJKbExtTnZiUzk0WVhBdk1TNHdMeUlnZUcxd1RVMDZUM0pwWjJsdVlXeEViMk4xYldWdWRFbEVQU0o0YlhBdVpHbGtPakF5T0RBeE1UYzBNRGN5TURZNE1URTRPRU0yUkVZeU4wRXhNRGhCTkRKRklpQjRiWEJOVFRwRWIyTjFiV1Z1ZEVsRVBTSjRiWEF1Wkdsa09qaEZOek5HUWpJM01FWTROakV4UlRCQk16a3lRekF5TTBFMVJEazNSRGMzSWlCNGJYQk5UVHBKYm5OMFlXNWpaVWxFUFNKNGJYQXVhV2xrT2poRk56TkdRakkyTUVZNE5qRXhSVEJCTXpreVF6QXlNMEUxUkRrM1JEYzNJaUI0YlhBNlEzSmxZWFJ2Y2xSdmIydzlJa0ZrYjJKbElGQm9iM1J2YzJodmNDQkRVelVnVFdGamFXNTBiM05vSWo0Z1BIaHRjRTFOT2tSbGNtbDJaV1JHY205dElITjBVbVZtT21sdWMzUmhibU5sU1VROUluaHRjQzVwYVdRNk1ESTRNREV4TnpRd056SXdOamd4TVRnNFF6WkVSakkzUVRFd09FRTBNa1VpSUhOMFVtVm1PbVJ2WTNWdFpXNTBTVVE5SW5odGNDNWthV1E2TURJNE1ERXhOelF3TnpJd05qZ3hNVGc0UXpaRVJqSTNRVEV3T0VFME1rVWlMejRnUEM5eVpHWTZSR1Z6WTNKcGNIUnBiMjQrSUR3dmNtUm1PbEpFUmo0Z1BDOTRPbmh0Y0cxbGRHRStJRHcvZUhCaFkydGxkQ0JsYm1ROUluSWlQejRCLy83OS9QdjYrZmozOXZYMDgvTHg4Ty91N2V6cjZ1bm81K2JsNU9QaTRlRGYzdDNjMjlyWjJOZlcxZFRUMHRIUXo4N056TXZLeWNqSHhzWEV3OExCd0wrK3ZieTd1cm00dDdhMXRMT3lzYkN2cnEyc3E2cXBxS2VtcGFTam9xR2duNTZkbkp1YW1aaVhscFdVazVLUmtJK09qWXlMaW9tSWg0YUZoSU9DZ1lCL2ZuMThlM3A1ZUhkMmRYUnpjbkZ3YjI1dGJHdHFhV2huWm1Wa1kySmhZRjllWFZ4YldsbFlWMVpWVkZOU1VWQlBUazFNUzBwSlNFZEdSVVJEUWtGQVB6NDlQRHM2T1RnM05qVTBNekl4TUM4dUxTd3JLaWtvSnlZbEpDTWlJU0FmSGgwY0d4b1pHQmNXRlJRVEVoRVFEdzROREFzS0NRZ0hCZ1VFQXdJQkFBQWgrUVFCQUFBQkFDd0FBQUFBRlFBRUFBQUNEWXlQQWNtdHNKeURWREtLV1FFQU93PT0iIC8+PC9zdmc+"),
+      url("https://ffxiv.consolegameswiki.com/mediawiki/images/b/b3/Box_overlay.png");
+  }
+
+  table.table.jquery-tablesorter th.headerSortUp {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjEiIGhlaWdodD0iNCI+PGRlZnM+PGZpbHRlciBpZD0iZGFya3JlYWRlci1pbWFnZS1maWx0ZXIiPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwLjI0OSAtMC42MTQgLTAuNjcyIDAuMDAwIDEuMDM1IC0wLjY0NiAwLjI4OCAtMC42NjQgMC4wMDAgMS4wMjAgLTAuNjM2IC0wLjYwOSAwLjI1MCAwLjAwMCAwLjk5NCAwLjAwMCAwLjAwMCAwLjAwMCAxLjAwMCAwLjAwMCIgLz48L2ZpbHRlcj48L2RlZnM+PGltYWdlIHdpZHRoPSIyMSIgaGVpZ2h0PSI0IiBmaWx0ZXI9InVybCgjZGFya3JlYWRlci1pbWFnZS1maWx0ZXIpIiB4bGluazpocmVmPSJkYXRhOmltYWdlL2dpZjtiYXNlNjQsUjBsR09EbGhGUUFFQUlBQkFBQUFBQUFBQUNIL0MxaE5VQ0JFWVhSaFdFMVFQRDk0Y0dGamEyVjBJR0psWjJsdVBTTHZ1NzhpSUdsa1BTSlhOVTB3VFhCRFpXaHBTSHB5WlZONlRsUmplbXRqT1dRaVB6NGdQSGc2ZUcxd2JXVjBZU0I0Yld4dWN6cDRQU0poWkc5aVpUcHVjenB0WlhSaEx5SWdlRHA0YlhCMGF6MGlRV1J2WW1VZ1dFMVFJRU52Y21VZ05TNHdMV013TmpBZ05qRXVNVE0wTnpjM0xDQXlNREV3THpBeUx6RXlMVEUzT2pNeU9qQXdJQ0FnSUNBZ0lDQWlQaUE4Y21SbU9sSkVSaUI0Yld4dWN6cHlaR1k5SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpFNU9Ua3ZNREl2TWpJdGNtUm1MWE41Ym5SaGVDMXVjeU1pUGlBOGNtUm1Pa1JsYzJOeWFYQjBhVzl1SUhKa1pqcGhZbTkxZEQwaUlpQjRiV3h1Y3pwNGJYQk5UVDBpYUhSMGNEb3ZMMjV6TG1Ga2IySmxMbU52YlM5NFlYQXZNUzR3TDIxdEx5SWdlRzFzYm5NNmMzUlNaV1k5SW1oMGRIQTZMeTl1Y3k1aFpHOWlaUzVqYjIwdmVHRndMekV1TUM5elZIbHdaUzlTWlhOdmRYSmpaVkpsWmlNaUlIaHRiRzV6T25odGNEMGlhSFIwY0RvdkwyNXpMbUZrYjJKbExtTnZiUzk0WVhBdk1TNHdMeUlnZUcxd1RVMDZUM0pwWjJsdVlXeEViMk4xYldWdWRFbEVQU0o0YlhBdVpHbGtPakF6T0RBeE1UYzBNRGN5TURZNE1URTRPRU0yUkVZeU4wRXhNRGhCTkRKRklpQjRiWEJOVFRwRWIyTjFiV1Z1ZEVsRVBTSjRiWEF1Wkdsa09qZENOVEF5T0RjME1FWTROakV4UlRCQk16a3lRekF5TTBFMVJEazNSRGMzSWlCNGJYQk5UVHBKYm5OMFlXNWpaVWxFUFNKNGJYQXVhV2xrT2pkQ05UQXlPRGN6TUVZNE5qRXhSVEJCTXpreVF6QXlNMEUxUkRrM1JEYzNJaUI0YlhBNlEzSmxZWFJ2Y2xSdmIydzlJa0ZrYjJKbElGQm9iM1J2YzJodmNDQkRVelVnVFdGamFXNTBiM05vSWo0Z1BIaHRjRTFOT2tSbGNtbDJaV1JHY205dElITjBVbVZtT21sdWMzUmhibU5sU1VROUluaHRjQzVwYVdRNk1ETTRNREV4TnpRd056SXdOamd4TVRnNFF6WkVSakkzUVRFd09FRTBNa1VpSUhOMFVtVm1PbVJ2WTNWdFpXNTBTVVE5SW5odGNDNWthV1E2TURNNE1ERXhOelF3TnpJd05qZ3hNVGc0UXpaRVJqSTNRVEV3T0VFME1rVWlMejRnUEM5eVpHWTZSR1Z6WTNKcGNIUnBiMjQrSUR3dmNtUm1PbEpFUmo0Z1BDOTRPbmh0Y0cxbGRHRStJRHcvZUhCaFkydGxkQ0JsYm1ROUluSWlQejRCLy83OS9QdjYrZmozOXZYMDgvTHg4Ty91N2V6cjZ1bm81K2JsNU9QaTRlRGYzdDNjMjlyWjJOZlcxZFRUMHRIUXo4N056TXZLeWNqSHhzWEV3OExCd0wrK3ZieTd1cm00dDdhMXRMT3lzYkN2cnEyc3E2cXBxS2VtcGFTam9xR2duNTZkbkp1YW1aaVhscFdVazVLUmtJK09qWXlMaW9tSWg0YUZoSU9DZ1lCL2ZuMThlM3A1ZUhkMmRYUnpjbkZ3YjI1dGJHdHFhV2huWm1Wa1kySmhZRjllWFZ4YldsbFlWMVpWVkZOU1VWQlBUazFNUzBwSlNFZEdSVVJEUWtGQVB6NDlQRHM2T1RnM05qVTBNekl4TUM4dUxTd3JLaWtvSnlZbEpDTWlJU0FmSGgwY0d4b1pHQmNXRlJRVEVoRVFEdzROREFzS0NRZ0hCZ1VFQXdJQkFBQWgrUVFCQUFBQkFDd0FBQUFBRlFBRUFBQUNEWXdmb0F2b3o5cWJaOUZySkMwQU93PT0iIC8+PC9zdmc+"),
+      url("https://ffxiv.consolegameswiki.com/mediawiki/images/b/b3/Box_overlay.png");
+  }
+
+  div.recipe-box {
+    background-color: rgb(24, 26, 27);
+    border-color: rgb(72, 78, 81);
+    background-image: -webkit-gradient(linear,
+        0% 0%,
+        0% 100%,
+        from(rgb(255, 255, 255)),
+        to(rgb(238, 238, 238)));
+  }
+
+  div.recipe-box::after {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjMiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMjMwIiBoZWlnaHQ9IjMiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBT1lBQUFBRENBUUFBQUF0NnJzQkFBQUFJR05JVWswQUFIb2xBQUNBZ3dBQStmOEFBSURwQUFCMU1BQUE2bUFBQURxWUFBQVhiNUpmeFVZQUFBQUJjMUpIUWdIWnlTeC9BQUFBbWtsRVFWUjQydTJTd1JLRElBeEVYN0JPL2YrdmJVY2xQUmd3T0hRR2RhcVg3b1hOWmdtQklJQXdBTkRSQTlEekFPQkpZTUhBSDNmalpXdmtEY0RFQ01ESWJIbVZYUVdGemxqSURCczk5aEZLcjZBV0tRS28wekJsemFWdUVsUHppbk90cXQrL2pYeE5yVVRKejlkemErNXQzN2piVWJEVVJWbDF3WndaVEFVbk8yTEYyekNlcXlCTnlwbCt3c0Y5OGNTWldubnNGdVVuK0FEZXNUNEV4MzhRaXdBQUFBQkpSVTVFcmtKZ2dnPT0iIC8+PC9zdmc+");
+  }
+
+  div.recipe-box .subheading,
+  div.recipe-box .heading {
+    background-color: rgb(86, 67, 44);
+    border-color: rgba(140, 130, 115, 0.25);
+    background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/images/b/b3/Box_overlay.png") !important;
+  }
+
+  div.recipe-box dt {
+    border-right-color: rgb(77, 84, 87);
+  }
+
+  div.recipe-box dd {
+    border-left-color: rgb(77, 83, 86);
+  }
+
+  div.ingredients dt {
+    border-color: initial;
+  }
+
+  div.ingredients dd {
+    border-color: initial;
+  }
+
+  .jqplot-data-label {
+    color: rgb(232, 230, 227);
+    text-shadow: rgb(0, 0, 0) 1px 1px;
+  }
+
+  .srf-jqplot-plot.bar.jqplot-target {
+    color: rgb(232, 230, 227);
+  }
+
+  .dialogue dl {
+    border-left-color: rgba(110, 102, 90, 0.4);
+  }
+
+  .dialogue>dl,
+  .dialogue td>dl {
+    border-left-color: initial;
+  }
+
+  body.page-Glob_of_Ectoplasm_salvage_research div.multipleTemplateInstance.multipleTemplate,
+  body.page-Special_FormEdit_Glob_of_Ectoplasm_salvage_research_Glob_of_Ectoplasm_salvage_research div.multipleTemplateInstance {
+    background-image: none !important;
+    background-color: initial !important;
+    border-color: initial !important;
+  }
+
+  .table.form-row::after {
+    background-image: none;
+    background-color: initial;
+  }
+
+  .nav~hr {
+    background-color: transparent;
+  }
+
+  .action-history {
+    border-color: rgb(72, 78, 81);
+    background-color: rgb(41, 36, 14);
+  }
+
+  .table+.smw-template-furtherresults a {
+    background-image: none;
+    background-color: initial;
+    color: rgb(102, 177, 250);
+  }
+
+  span.colorized-description.triple-tick,
+  span.colorized-description.triple-tick>a {
+    color: rgb(244, 152, 77);
+  }
+
+  span.colorized-description.double-tick,
+  span.colorized-description.double-tick>a {
+    color: rgb(255, 255, 61);
+  }
+
+  span.colorized-description.single-tick,
+  span.colorized-description.single-tick>a {
+    color: rgb(104, 245, 127);
+  }
+
+  div.standard-frame-icon,
+  span.standard-frame-icon {
+    background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/images/2/2b/Action_background.png");
+    background-color: initial;
+  }
+
+  div.standard-frame-icon::after,
+  span.standard-frame-icon::after {
+    background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/images/d/d9/Action_overlay_glassy.png");
+    background-color: initial;
+  }
+
+  div.standard-frame-icon>a:nth-child(2),
+  span.standard-frame-icon>a:nth-child(2) {
+    text-decoration-color: initial;
+    background-image: none;
+  }
+
+  div.item-effects {
+    color: rgb(161, 153, 141);
+    border-bottom-color: rgb(75, 81, 84);
+  }
+
+  .dialog-box.golden-warning,
+  .dialog-box.golden-warning a,
+  .dialog-box.golden-warning a.new,
+  .dialog-box.golden-warning a:visited,
+  .dialog-box.golden-warning a.new:visited {
+    text-shadow: rgb(176, 109, 7) 0px 0.02em 0.2em;
+    color: rgb(255, 229, 151);
+  }
+
+  .dialog-box.quest-milestone,
+  .dialog-box.quest-milestone a.new,
+  .dialog-box.quest-milestone a.new:visited {
+    text-shadow: rgb(0, 104, 173) 0px 0.02em 0.2em;
+    color: rgb(179, 215, 255);
+  }
+
+  .dialog-box.quest-milestone a,
+  .dialog-box.quest-milestone a:visited {
+    text-shadow: rgb(26, 28, 29) 0px 0.02em 0.2em;
+    color: rgb(221, 218, 214);
+  }
+
+  .dialog-box::before {
+    background-color: rgb(26, 28, 29);
+  }
+
+  .dialog-box.quest-milestone::before {
+    background-color: rgb(0, 57, 130);
+  }
+
+  .rarity.white,
+  .rarity.basic {
+    color: rgb(232, 230, 227);
+  }
+
+  .rarity.green,
+  .rarity.dungeon {
+    color: rgb(80, 225, 154);
+  }
+
+  .rarity.blue,
+  .rarity.tomestone {
+    color: rgb(94, 165, 224);
+  }
+
+  .rarity.pink,
+  .rarity.aetherial {
+    color: rgb(255, 96, 170);
+  }
+
+  .rarity.purple,
+  .rarity.relic {
+    color: rgb(144, 95, 196);
+  }
+
+  .weapon-damage-stats th:nth-child(1) {
+    background-image: linear-gradient(to right,
+        rgb(204, 51, 0),
+        rgb(143, 35, 0));
+    border-left-color: rgb(163, 41, 0);
+  }
+
+  .weapon-damage-stats th:nth-child(2) {
+    background-image: linear-gradient(to right,
+        rgb(143, 35, 0),
+        rgb(67, 18, 0));
+  }
+
+  .weapon-damage-stats th:nth-child(3) {
+    background-image: linear-gradient(to right,
+        rgb(67, 18, 0),
+        rgba(0, 0, 0, 0));
+  }
+
+  .armor-defense-stats th:nth-child(1) {
+    background-image: linear-gradient(to right,
+        rgb(204, 51, 0),
+        rgb(67, 18, 0));
+    border-left-color: rgb(163, 41, 0);
+  }
+
+  .armor-defense-stats th:nth-child(2) {
+    background-image: linear-gradient(to right,
+        rgb(67, 18, 0),
+        rgba(0, 0, 0, 0));
+  }
+
+  .weapon-damage-stats td,
+  .armor-defense-stats td {
+    background-image: initial;
+    background-color: rgb(57, 17, 0);
+  }
+
+  .weapon-damage-stats td:nth-child(1),
+  .armor-defense-stats td:nth-child(1) {
+    border-left-color: rgb(163, 41, 0);
+  }
+
+  .weapon-damage-stats td:nth-child(3),
+  .armor-defense-stats td:nth-child(2) {
+    background-image: linear-gradient(to right,
+        rgb(57, 17, 0),
+        rgb(24, 26, 27));
+  }
+
+  .equipment-footer .adv-melding {
+    color: rgb(235, 74, 114);
+  }
+
+  .equipment-footer .equip-props {
+    color: rgb(168, 160, 149);
+  }
+
+  .equipment-footer .equip-props .equip-prop.no {
+    color: rgb(188, 183, 174);
+    text-decoration-color: initial;
+  }
+
+  .equipment-footer .equip-props .equip-prop.yes {
+    color: rgb(97, 255, 97);
+  }
+
+  .infobox-n .statistics.item,
+  .infobox-n .statistics.weapon {
+    background-color: rgb(67, 18, 0);
+    border-bottom-color: rgb(117, 32, 0);
+    border-top-color: rgb(125, 33, 0);
+  }
+
+  .infobox-n .statistics.item.empty,
+  .infobox-n .statistics.weapon.empty {
+    border-color: initial;
+  }
+
+  .infobox-n .statistics .unique {
+    color: rgb(195, 176, 92);
+  }
+
+  .infobox-n .statistics .untradable {
+    color: rgb(89, 210, 92);
+  }
+
+  .infobox-n .details.mount {
+    background-color: rgb(59, 0, 67);
+    border-bottom-color: rgb(103, 0, 117);
+    border-top-color: rgb(110, 0, 125);
+  }
+
+  .infobox-n .details.mount.empty {
+    border-color: initial;
+  }
+
+  .infobox-n .statistics.hunt {
+    text-shadow: rgb(38, 42, 43) 0px 0px 1px;
+  }
+
+  .infobox-n .statistics.hunt.rank-a {
+    background-image: linear-gradient(to right,
+        rgb(182, 2, 2),
+        rgb(68, 66, 0));
+    background-color: initial;
+    border-bottom-color: rgb(140, 84, 0);
+    border-top-color: rgb(163, 98, 0);
+  }
+
+  .infobox-n .statistics.hunt.rank-b {
+    background-image: linear-gradient(to right,
+        rgb(0, 126, 103),
+        rgb(4, 72, 62));
+    background-color: initial;
+    border-bottom-color: rgb(15, 133, 111);
+    border-top-color: rgb(19, 167, 140);
+  }
+
+  .infobox-n .statistics.hunt.rank-s {
+    background-image: linear-gradient(to right,
+        rgb(142, 0, 189),
+        rgb(0, 52, 52));
+    background-color: initial;
+    border-bottom-color: rgb(72, 0, 140);
+    border-top-color: rgb(93, 0, 163);
+  }
+
+  div.nav.class-nav table th:last-child,
+  div.nav.job-nav table th:last-child {
+    border-color: initial;
+  }
+
+  .table.quest> :first-child>tr:first-child,
+  .table.quest>tbody>tr.heading,
+  .table.quest> :first-child>tr:first-child>*,
+  .table.quest>tbody>tr.heading>* {
+    background-color: rgb(154, 98, 14) !important;
+    border-color: rgb(167, 106, 15) !important;
+  }
+
+  .table.quest>tbody>tr>th,
+  .table.quest>tfoot>tr>th,
+  .table.quest>thead>tr>th,
+  table.table>tbody>tr.quest>th {
+    background-color: rgb(154, 98, 14);
+    border-color: rgb(167, 106, 15);
+  }
+
+  .table.quest>tbody>tr:nth-child(2n+1),
+  .table>tbody>tr.quest:nth-child(2n+1) {
+    background-color: rgb(56, 39, 0);
+  }
+
+  div.nav.relic .heading {
+    background-color: rgb(92, 50, 136);
+  }
+
+  div.nav.relic dd,
+  div.nav.relic dt,
+  div.nav.relic table th {
+    border-color: rgb(84, 46, 124);
+  }
+
+  .search-map .map-frame .map-title {
+    background-color: rgb(126, 126, 57);
+    border-color: rgb(154, 154, 70);
+    background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/images/b/b3/Box_overlay.png") !important;
+  }
+
+  .search-map .map-frame .map {
+    border-color: rgb(154, 154, 70);
+  }
+
+  .search-map .map-frame .map .inner-border {
+    border-color: rgb(144, 144, 66);
+  }
+
+  .infobox {
+    border-color: rgb(139, 129, 114);
+    background-color: rgb(27, 30, 31);
+    color: rgb(232, 230, 227);
+  }
+
+  .infobox.bordered td,
+  .infobox.bordered th {
+    border-color: rgb(139, 129, 114);
+  }
+
+  .infobox.bordered .borderless td,
+  .infobox.bordered .borderless th {
+    border-color: initial;
+  }
+
+  body {
+    background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/images/local/ffxiv_bottom_banner3.png");
+    background-color: initial;
+  }
+
+  .vector-menu-tabs,
+  .vector-menu-tabs a,
+  #mw-head .vector-menu-dropdown h3 {
+    background-image: none;
+  }
+
+  div#mw-head ul.vector-menu-content-list>li {
+    background-image: none;
+  }
+
+  div#mw-head ul.vector-menu-content-list>li.selected {
+    background-color: rgb(18, 44, 47);
+  }
+
+  div#mw-head .vector-menu-tabs li a {
+    color: rgb(232, 230, 227);
+  }
+
+  div#simpleSearch {
+    background-color: rgb(24, 26, 27);
+  }
+
+  div#mw-panel ul.vector-menu-content-list>li>a {
+    color: rgb(232, 230, 227);
+  }
+
+  footer.mw-footer ul#footer-places>li>a {
+    color: rgb(232, 230, 227);
+  }
+
+  body {
+    background-color: rgb(35, 38, 40);
+  }
+
+  #mw-page-base {
+    background-color: transparent;
+    background-image: none;
+  }
+
+  #mw-head-base {
+    background-image: initial;
+    background-color: rgba(20, 58, 62, 0.5);
+    border-color: rgb(8, 75, 122);
+  }
+
+  #p-personal a {
+    color: rgb(232, 230, 227);
+  }
+
+  #shortcuts {
+    background-color: rgba(20, 58, 62, 0.5);
+    border-color: rgb(8, 75, 122);
+  }
+
+  #shortcuts a:visited {
+    color: rgb(232, 230, 227);
+  }
+
+  #shortcuts a {
+    color: rgb(232, 230, 227);
+  }
+
+  /* Override Style */
+  .vimvixen-hint {
+    background-color: #7b5300 !important;
+    border-color: #d8b013 !important;
+    color: #f3e8c8 !important;
+  }
+
+  ::placeholder {
+    opacity: 0.5 !important;
+  }
+
+  #edge-translate-panel-body,
+  .MuiTypography-body1,
+  .nfe-quote-text {
+    color: var(--darkreader-neutral-text) !important;
+  }
+
+  gr-main-header {
+    background-color: #0f3a48 !important;
+  }
+
+  .tou-z65h9k,
+  .tou-mignzq,
+  .tou-1b6i2ox,
+  .tou-lnqlqk {
+    background-color: var(--darkreader-neutral-background) !important;
+  }
+
+  .tou-75mvi {
+    background-color: #032029 !important;
+  }
+
+  .tou-ta9e87,
+  .tou-1w3fhi0,
+  .tou-1b8t2us,
+  .tou-py7lfi,
+  .tou-1lpmd9d,
+  .tou-1frrtv8,
+  .tou-17ezmgn {
+    background-color: #0a0a0a !important;
+  }
+
+  .tou-uknfeu {
+    background-color: #231603 !important;
+  }
+
+  .tou-6i3zyv {
+    background-color: #19576c !important;
+  }
+
+}

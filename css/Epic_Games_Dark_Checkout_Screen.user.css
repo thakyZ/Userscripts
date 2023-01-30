@@ -1,0 +1,25 @@
+/* ==UserStyle==
+@name           Epic Games Dark Checkout Screen
+@namespace      NekoBoiNick.Web.EpicGames.Checkout.Dark
+@version        1.0.0
+@description    Makes the checkout window for Epic Games store front dark mode.
+@author         Neko Boi Nick
+@license        MIT
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/Epic_Games_Dark_Checkout_Screen.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+@-moz-document domain("epicgames.com") {
+  :root {
+    --pmt-ui-color-bg-default: rgb(42, 42, 42) !important;
+    --navigation-inactive: rgb(200, 200, 200) !important;
+    --pmt-ui-color-text-primary: rgb(255, 255, 255) !important;
+    --pmt-ui-color-text-secondary: rgb(225, 225, 225) !important;
+    --pmt-ui-color-bg-paper: rgb(21, 21, 21) !important;
+    --price-label: rgb(255, 255, 255) !important;
+  }
+
+  .input-wrapper input::placeholder {
+    color: var(--app-alt-text) !important;
+  }
+}
