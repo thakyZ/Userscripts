@@ -8,21 +8,24 @@
 // @grant        none
 // @license      MIT
 // @run-at       document-end
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/remove_userstyles_ad_boxes/remove_userstyles_ad_boxes.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/remove_userstyles_ad_boxes/remove_userstyles_ad_boxes.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-//- The @grant directives are needed to restore the proper sandbox.
+// - The @grant directives are needed to restore the proper sandbox.
 /* global $, waitForKeyElements */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
-waitForKeyElements (".fallbackDiv", removeFallback, true);
+$(document).ready(() => {
+  const removeFallback = () => {
+    const elements = $(".us-stylecard--short .fallbackDiv");
+    $(elements).each((_, element) => {
+      element.parent().css({ display: "none" });
+    });
+  };
 
-function removeFallback (jNode) {
-  var elements = document.querySelectorAll(".us-stylecard--short .fallbackDiv");
-  elements.forEach(function(e) {
-    e.parentElement.setAttribute("style","display:none;");
-  });
-}
+  waitForKeyElements(".fallbackDiv", removeFallback, true);
+});

@@ -17,8 +17,8 @@
 /* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(function() {
-  const InsertCSS = () => {
+$(document).ready(() => {
+  const insertCSS = () => {
     $("head").append(`
 <style>
   .priceCopy .priceCopy-btn {
@@ -37,46 +37,49 @@ $(document).ready(function() {
 </style>`);
   };
 
-  const AlterTable = (table) => {
+  const alterTable = table => {
     let tbody = "";
     if ($(table).prop("tagName") === "TABLE") {
       tbody = "tbody ";
     }
-    $(`${tbody}tr`, $(table)).each(function() {
+
+    $(`${tbody}tr`, $(table)).each(function () {
       if ($("td:nth-child(3)", $(this)).children("button").length > 0) {
         return;
       }
+
       const tdPrice = $("td:nth-child(3)", $(this));
       const price = $(tdPrice).text();
       const priceFormatted = price.replaceAll(",", "");
       if ($(tdPrice).attr("class") === undefined || $(tdPrice).attr("class") === null) {
         $(tdPrice).attr("class", "priceCopy");
       }
+
       $(tdPrice).html(`<button class="priceCopy-btn">${price}</button>`);
-      $("button", $(tdPrice)).on("click", function() {
+      $("button", $(tdPrice)).on("click", () => {
         GM_setClipboard(priceFormatted);
       });
     });
   };
 
-  const SetupMutationObserver = () => {
+  const setupMutationObserver = () => {
     const targetNode = $(".section")[0];
     const config = { attributes: true, childList: true, subtree: true };
 
-    const callback = (mutationList, observer) => {
+    const callback = (mutationList, _) => {
       for (const mutation of mutationList) {
-        if (mutation.type === 'childList') {
+        if (mutation.type === "childList") {
           if ($(mutation.target).attr("class") === "container") {
             if ($(mutation.target).children("div.table-container.mt-4").length > 0 && $(mutation.target).children("div.table-container.mt-4").children().length >= 1) {
               const table = $(mutation.target).children("div.table-container.mt-4").children()[0];
-              AlterTable($(table));
+              alterTable($(table));
             }
           } else if ($(mutation.target).prop("tagName") === "TBODY") {
-            AlterTable($(mutation.target));
+            alterTable($(mutation.target));
           } else if ($(mutation.target).attr("class") === "table-container mt-4") {
             if ($(mutation.target).children().length >= 1) {
               const table = $(mutation.target).children()[0];
-              AlterTable($(table));
+              alterTable($(table));
             }
           }
         }
@@ -86,17 +89,17 @@ $(document).ready(function() {
     const observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
 
-    $(document).on("unload", function() {
+    $(document).on("unload", () => {
       observer.disconnect();
     });
   };
 
   let id = -1;
-  id = setInterval(function() {
+  id = setInterval(() => {
     if ($(".section").length > 0) {
-      SetupMutationObserver();
+      setupMutationObserver();
       clearInterval(id);
     }
   }, 100);
-  InsertCSS();
+  insertCSS();
 });

@@ -15,24 +15,29 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-//- The @grant directives are needed to restore the proper sandbox.
 /* global $, waitForKeyElements */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
-waitForKeyElements (".Page404", setupMyClass, true);
+$(document).ready(() => {
+  const debug = false;
 
-function setupMyClass (jNode) {
-  var regex = new RegExp("^https:\\/\\/imgur\\.com\\/user\\/[a-zA-Z0-9]+\\/favorites\\/folder\\/[0-9]+\\/[a-zA-Z0-9]+\\/","g");
-  var address = window.location.href;
-  var element = document.getElementsByClassName("Page404");
+  function setupMyClass(jNode) {
+    const regex = /^https:\/\/imgur\.com\/user\/[a-zA-Z0-9]+\/favorites\/folder\/[0-9]+\/[a-zA-Z0-9]+\//g;
+    const address = window.location.href;
+    const element = $(jNode);
 
-  if (element.length > 0) {
-    console.log("length > 0");
-    console.log(address);
-    if (address.match(regex)) {
-      console.log("true");
-      window.location.assign(address.replace(regex,"https://imgur.com/a/"));
-    } else {
-      console.log("false");
+    if (element.length > 0) {
+      if (debug) {
+        console.log("length > 0");
+        console.log(address);
+        console.log(regex.test(address));
+      }
+
+      if (regex.test(address)) {
+        window.location.assign(address.replace(regex, "https://imgur.com/a/"));
+      }
     }
   }
-}
+
+  waitForKeyElements(".Page404", setupMyClass, true);
+});

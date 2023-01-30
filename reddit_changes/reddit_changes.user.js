@@ -15,37 +15,39 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
-/* global $, jQuery, MonkeyConfig */
+/* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(function(){
+$(document).ready(() => {
   let id = -1;
   let kd = -1;
   function removeElement() {
-    let ShopAvatarsElement = $("button:last-child:contains(\"Shop Avatars\")");
+    const ShopAvatarsElement = $("button:last-child:contains(\"Shop Avatars\")");
     if ($(ShopAvatarsElement).length > 0) {
-      $($(ShopAvatarsElement).parent()).css("display","none");
+      $($(ShopAvatarsElement).parent()).css("display", "none");
       return true;
-    } else {
-      return false;
     }
+
+    return false;
   }
-  const DownloadButton = (MenuBarCopy) => {
+
+  const downloadButton = MenuBarCopy => {
     const Button = $(MenuBarCopy).clone();
     $($($(Button).children()[0]).children()[1]).html("<span></span>Download");
     const IconClasses = $($($($(Button).children()[0]).children()[0]).children()[0]).attr("class");
-    $($($($(Button).children()[0]).children()[0]).children()[0]).attr("id","");
+    $($($($(Button).children()[0]).children()[0]).children()[0]).attr("id", "");
     $($($($(Button).children()[0]).children()[0]).children()[0]).attr("class", IconClasses.replace(/icon-award/g, "icon-download"));
-    $($($(Button).children()[0]).children().find("span")[2]).attr("id","download_button");
+    $($($(Button).children()[0]).children().find("span")[2]).attr("id", "download_button");
     $(Button).on("click", () => {
       let Address = window.location.href;
       const Regex = /https:\/\/(old\.|www\.)?reddit.com\/(r\/[a-zA-Z0-9_-]+\/comments\/[a-zA-Z0-9]+\/)/g;
       Address = Address.replace(Regex, "https://redditsave.com/$2");
-      window.open(Address, '_blank');
+      window.open(Address, "_blank");
     });
     return Button;
   };
-  function AddDownloadButton() {
+
+  function addDownloadButton() {
     const MediaContainer = $("div[data-testid=\"post-container\"] div[data-click-id=\"media\"]");
     if ($(MediaContainer).length > 0) {
       const VideoSource = $(MediaContainer).children().find("video > source[src][type]");
@@ -54,26 +56,28 @@ $(document).ready(function(){
         const PostMenuBar = $($($(PostContent)[PostContent.length - 1]).children()[0]);
         const MenuBarLast = $($(PostMenuBar).children()[3]);
         const MenuBarCopy = $($(PostMenuBar).children()[1]);
-        $(DownloadButton(MenuBarCopy)).insertAfter(MenuBarLast);
-        return true;
-      } else {
+        $(downloadButton(MenuBarCopy)).insertAfter(MenuBarLast);
         return true;
       }
-    } else {
-      return false;
+
+      return true;
     }
+
+    return false;
   }
+
   function setIntervalRemove() {
-    id = setInterval(function() {
+    id = setInterval(() => {
       if (removeElement() === true) {
         clearInterval(id);
       }
     }, 100);
-    kd = setInterval(function() {
-      if (AddDownloadButton() === true) {
+    kd = setInterval(() => {
+      if (addDownloadButton() === true) {
         clearInterval(kd);
       }
     }, 100);
   }
+
   setIntervalRemove();
 });

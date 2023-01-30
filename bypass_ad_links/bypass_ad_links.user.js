@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bypass Ad Links
-// @namespace    FireCanCan.Web.Bypass.AdLinks
-// @version      1.0.0
+// @namespace    NekoBoiNick.Web.Bypass.AdLinks
+// @version      1.0.2
 // @description  Bypass Ad Links in any website on the web.
 // @author       Neko Boi Nick
 // @match        *
@@ -21,15 +21,17 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, sqMissionSolver, _, jQuery, MonkeyConfig */
+/* global $, jQuery, MonkeyConfig */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
-const SettingsSaveName = "BypassAdLinks.Settings";
+/* Old save code.
+ * const settingsSaveName = "BypassAdLinks.Settings";
+ */
 
-$(document).ready(function () {
-  const Settings = {websites:[]};
+$(document).ready(() => {
+  const Settings = { websites: [] };
   const config = new MonkeyConfig({
-    title: 'Configure',
+    title: "Configure",
     menuCommand: true,
     params: {
       websites: {
@@ -38,27 +40,29 @@ $(document).ready(function () {
       }
     }
   });
-  const loadSettings = function() {
-    Settings.websites = [...config.get("websites").replace(/,\s?/,",").split(",")];
+  const loadSettings = function () {
+    Settings.websites = [...config.get("websites").replace(/,\s?/, ",").split(",")];
   };
+
   const fixLinks = () => {
     let id = -1;
-    id = setInterval(function() {
-      Settings.websites.forEach(function(website) {
-        let ele = $(`a[href*="https://${website}/"]`);
-        if ($(ele).length > 0) {
-          $(ele).each(function() {
-            $(this).attr("href", $(this).attr("href").replace(new RegExp(`https:\/\/${website}\/quick\?token=[a-zA-Z0-9]+\&url=`,"gi"),""));
-          });
+    id = setInterval(() => {
+      Settings.websites.forEach(website => {
+        const ele = $(`a[href*="https://${website}/"]`);
+        for (let i = 0; i < $(ele).length; i++) {
+          $(ele[i]).attr("href", $(this).attr("href").replace(new RegExp(`https://${website}/quick?token=[a-zA-Z0-9]+&url=`, "gi"), ""));
         }
+
+        clearInterval(id);
       });
     }, 1000);
-  }
-  $(window.location).on('hashchange', function(e){
+  };
+
+  $(window.location).on("hashchange", () => {
     fixLinks();
   });
   fixLinks();
-  GM_registerMenuCommand("Load Settings", function() {
+  GM_registerMenuCommand("Load Settings", () => {
     loadSettings();
   });
   loadSettings();

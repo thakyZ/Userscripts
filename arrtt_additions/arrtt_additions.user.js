@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ARR Triple Triad Additions
 // @namespace    NekoBoiNick.Web.ARRTripleTriad.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds additional features to ARR Triple Triad.
 // @author       Neko Boi Nick
 // @match        https://arrtripletriad.com/*
@@ -25,60 +25,67 @@
 /* global $, jQuery, MonkeyConfig */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(function() {
+$(document).ready(() => {
   const config = new MonkeyConfig({
-    title: 'Configure',
+    title: "Configure",
     menuCommand: true,
     params: {
       background: {
         type: "select",
-        choices: [ "Default", "Dark", "Black", "Light" ],
+        choices: ["Default", "Dark", "Black", "Light"],
         default: "Default"
       }
     },
-    onSave: (val) => {
+    onSave(_) {
       changeBackground();
     }
   });
   const cssKeys = {
     customCSS: {
-      Dark: [ /@media\sall\sand\s\(min-width:\s1024px\)\s\{\n\s*html\s\{\n\s*background:\s\#212121;\n\s*\}\n\s*\}/gim, "@media all and (min-width: 1024px) {\n    html {\n      background: #212121;\n    }\n  }" ],
-      Black: [ /@media\sall\sand\s\(min-width:\s1024px\)\s\{\n\s*html\s\{\n\s*background:\s\#000;\n\s*\}\n\s*\}/gim, "@media all and (min-width: 1024px) {\n    html {\n      background: #000;\n    }\n  }" ],
-      Light: [ /@media\sall\sand\s\(min-width:\s1024px\)\s\{\n\s*html\s\{\n\s*background:\s\#fff;\n\s*\}\n\s*\}\n\s*\#content\s\{\n\s*color:\s\#000;\n\s*}/gim, "@media all and (min-width: 1024px) {\n    html {\n      background: #fff;\n    }\n  }\n  #content {\n    color: #000;\n  }"],
-      replace: (text, type) => {
-        const Type = (type) => {
+      Dark: [/@media\sall\sand\s\(min-width:\s1024px\)\s\{\n\s*html\s\{\n\s*background:\s#212121;\n\s*\}\n\s*\}/gim, "@media all and (min-width: 1024px) {\n    html {\n      background: #212121;\n    }\n  }"],
+      Black: [/@media\sall\sand\s\(min-width:\s1024px\)\s\{\n\s*html\s\{\n\s*background:\s#000;\n\s*\}\n\s*\}/gim, "@media all and (min-width: 1024px) {\n    html {\n      background: #000;\n    }\n  }"],
+      Light: [/@media\sall\sand\s\(min-width:\s1024px\)\s\{\n\s*html\s\{\n\s*background:\s#fff;\n\s*\}\n\s*\}\n\s*#content\s\{\n\s*color:\s#000;\n\s*}/gim, "@media all and (min-width: 1024px) {\n    html {\n      background: #fff;\n    }\n  }\n  #content {\n    color: #000;\n  }"],
+      replace(text, type) {
+        const getType = type => {
           switch (type) {
-            case cssKeys.customCSS.Dark:
-              return cssKeys.customCSS.Dark[1];
-            case cssKeys.customCSS.Black:
-              return cssKeys.customCSS.Black[1];
-            case cssKeys.customCSS.Light:
-              return cssKeys.customCSS.Light[1];
-            default:
-              return "";
+          case cssKeys.customCSS.Dark:
+            return cssKeys.customCSS.Dark[1];
+          case cssKeys.customCSS.Black:
+            return cssKeys.customCSS.Black[1];
+          case cssKeys.customCSS.Light:
+            return cssKeys.customCSS.Light[1];
+          default:
+            return "";
           }
-        }
+        };
+
         const DarkMatch = text.match(cssKeys.customCSS.Dark[0]);
         const BlackMatch = text.match(cssKeys.customCSS.Black[0]);
         const LightMatch = text.match(cssKeys.customCSS.Light[0]);
         if (DarkMatch !== null) {
-          text = text.replace(cssKeys.customCSS.Dark[0], Type(type));
+          text = text.replace(cssKeys.customCSS.Dark[0], getType(type));
         }
+
         if (BlackMatch !== null) {
-          text = text.replace(cssKeys.customCSS.Black[0], Type(type));
+          text = text.replace(cssKeys.customCSS.Black[0], getType(type));
         }
+
         if (LightMatch !== null) {
-          text = text.replace(cssKeys.customCSS.Light[0], Type(type));
+          text = text.replace(cssKeys.customCSS.Light[0], getType(type));
         }
+
         if (DarkMatch === null && BlackMatch === null && LightMatch === null) {
-          text = `${text}${Type(type)}`;
+          text = `${text}${getType(type)}`;
         }
+
         return text;
       }
     }
   };
-  const insertCSS = (object) => {
-    const currentCSS = $("style#customCSS-NekoBoiNick").html();
+  const insertCSS = object => {
+    /* Unknown code.
+     * const currentCSS = $("style#customCSS-NekoBoiNick").html();
+     */
     if ($("head style#customCSS-NekoBoiNick").length === 0) {
       $("head").append(`<style id="customCSS-NekoBoiNick">
   button#copyLodestoneCode {
@@ -97,29 +104,37 @@ $(document).ready(function() {
       if (object.key === "Dark") {
         $("head style#customCSS-NekoBoiNick").text(cssKeys.customCSS.replace($("head style#customCSS-NekoBoiNick").text().toString(), cssKeys.customCSS.Dark));
       }
+
       if (object.key === "Black") {
         $("head style#customCSS-NekoBoiNick").text(cssKeys.customCSS.replace($("head style#customCSS-NekoBoiNick").text().toString(), cssKeys.customCSS.Black));
       }
+
       if (object.key === "Light") {
         $("head style#customCSS-NekoBoiNick").text(cssKeys.customCSS.replace($("head style#customCSS-NekoBoiNick").text().toString(), cssKeys.customCSS.Light));
       }
+
       if (object.key === "Default") {
         $("head style#customCSS-NekoBoiNick").text(cssKeys.customCSS.replace($("head style#customCSS-NekoBoiNick").text().toString(), "default"));
       }
     }
   };
+
   const changeBackground = () => {
     const background = config.get("background");
-    const currentCSS = $("style#customCSS-NekoBoiNick").html();
-    insertCSS({key: background});
-  }
+    /* Unknown code.
+     * const currentCSS = $("style#customCSS-NekoBoiNick").html();
+     */
+    insertCSS({ key: background });
+  };
+
   if (window.location.pathname.match(/\/\w\w\/link-character/gi) !== null) {
-    //$("#content ul li:first-Child").css({"line-height":"32px"});
-    $(`<button class="btn small" type="button" id="copyLodestoneCode">Copy Lodestone Code</button>`).insertAfter($("#content ul li:first-Child span#lodestoneCode"));
-    $("button#copyLodestoneCode").on("click", function() {
+    // $("#content ul li:first-Child").css({"line-height":"32px"});
+    $("<button class=\"btn small\" type=\"button\" id=\"copyLodestoneCode\">Copy Lodestone Code</button>").insertAfter($("#content ul li:first-Child span#lodestoneCode"));
+    $("button#copyLodestoneCode").on("click", () => {
       GM_setClipboard($("span#lodestoneCode").text().toString());
     });
   }
+
   insertCSS();
   changeBackground();
 });
