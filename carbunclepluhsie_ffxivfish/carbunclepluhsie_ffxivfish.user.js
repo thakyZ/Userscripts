@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Fish Tracking App
 // @namespace    NekoBoiNick.Web.CarbunclePluhsie.FFXIVFish
-// @version      1.0.0
+// @version      1.0.1
 // @description  Syncs Fish Tracking to soupcat
 // @author       Neko Boi Nick
 // @match        https://ff14fish.carbuncleplushy.com/*
@@ -15,17 +15,17 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/carbunclepluhsie_ffxivfish/carbunclepluhsie_ffxivfish.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
 /* global $, ViewModel, _ */
 
-var SettingsSaveName = "FishTrackingApp.Settings";
-var DateSaveName = "FishTrackingApp.Date";
+const SettingsSaveName = "FishTrackingApp.Settings";
+const DateSaveName = "FishTrackingApp.Date";
 
-$(document).ready(function() {
-  let getSettings = function() {
-    return JSON.stringify(ViewModel.settings, (key, value) => value instanceof Set ? [...value] : value);
-  };
-  let setSettings = function(settings) {
+$(document).ready(() => {
+  const getSettings = () => JSON.stringify(ViewModel.settings, (_, value) => value instanceof Set ? [...value] : value);
+
+  const setSettings = settings => {
     // Apply the imported settings now.
     settings = JSON.parse(settings);
     // Check if the `settings` is a list or object.
@@ -37,9 +37,10 @@ $(document).ready(function() {
       // Otherwise, it should be valid settings.
       ViewModel.applySettings(settings);
     }
+
     // Update the fish entries.
     // TODO: [NEEDS-OPTIMIZATION]
-    let earthTime = new Date();
+    const earthTime = new Date();
     _(ViewModel.fishEntries).each(entry => {
       entry.update(earthTime, true);
       ViewModel.layout.updatePinnedState(entry);
@@ -49,57 +50,60 @@ $(document).ready(function() {
     ViewModel.updateDisplay(null);
     return true;
   };
-  let getDate = function() {
-    return Date.now();
-  };
-  let compareDate = function(cur, prev) {
+
+  const getDate = () => Date.now();
+
+  const compareDate = (cur, prev) => {
     if (cur > prev) {
       return true;
-    } else {
-      return false;
     }
+
+    return false;
   };
-  let saveSettings = function(force) {
-    var date = GM_getValue(DateSaveName);
-    var settings = getSettings();
-    var settings_prev = GM_getValue(SettingsSaveName);
-    var date_now = getDate();
+
+  const saveSettings = force => {
+    const date = GM_getValue(DateSaveName);
+    const settings = getSettings();
+    const settingsPrev = GM_getValue(SettingsSaveName);
+    const dateNow = getDate();
     if (force) {
       GM_setValue(SettingsSaveName, settings);
-      GM_setValue(DateSaveName, date_now);
+      GM_setValue(DateSaveName, dateNow);
       return false;
-    } else {
-      if (compareDate(date_now, date) && settings != settings_prev) {
-        GM_setValue(SettingsSaveName, settings);
-        GM_setValue(DateSaveName, date_now);
-        return true;
-      } else {
-        return false;
-      }
     }
+
+    if (compareDate(dateNow, date) && settings !== settingsPrev) {
+      GM_setValue(SettingsSaveName, settings);
+      GM_setValue(DateSaveName, dateNow);
+      return true;
+    }
+
+    return false;
   };
-  let loadSettings = function(force) {
-    var date = GM_getValue(DateSaveName);
-    var settings = GM_getValue(SettingsSaveName);
+
+  const loadSettings = force => {
+    const date = GM_getValue(DateSaveName);
+    const settings = GM_getValue(SettingsSaveName);
     if (force) {
       setSettings(settings);
       return true;
-    } else {
-      if (!compareDate(getDate(), date) && settings != getSettings()) {
-        setSettings(settings);
-        return true;
-      } else {
-        return false;
-      }
     }
+
+    if (!compareDate(getDate(), date) && settings !== getSettings()) {
+      setSettings(settings);
+      return true;
+    }
+
+    return false;
   };
-  setInterval(function() {
+
+  setInterval(() => {
     saveSettings();
   }, 15000);
-  GM_registerMenuCommand("Load Settings", function() {
+  GM_registerMenuCommand("Load Settings", () => {
     loadSettings(true);
   });
-  GM_registerMenuCommand("Save Settings", function() {
+  GM_registerMenuCommand("Save Settings", () => {
     saveSettings(true);
   });
 });
