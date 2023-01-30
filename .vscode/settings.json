@@ -1,0 +1,17 @@
+{
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.experimental": {
+    "useFlatConfig": true
+  },
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.options": {
+    "overrideConfigFile": "./eslint.config.mjs"
+  },
+  "eslint.runtime": "C:/Program Files/nodejs/node.exe",
+  "eslint.nodePath": "./node_modules/",
+  "files.associations": {
+    "OnlineClock.Blocked.user.css": "stylus",
+    "FFXIV_Lodestone_Maint_Dark.user.css": "stylus"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "thakyz-userscripts",
+  "version": "1.0.0",
+  "description": "Userscripts by thakyZ",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thakyZ/Userscripts.git"
+  },
+  "keywords": [
+    "userscripts",
+    "css",
+    "greasemonkey",
+    "tampermonkey",
+    "stylish",
+    "stylus"
+  ],
+  "author": "Neko Boi Nick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thakyZ/Userscripts/issues"
+  },
+  "homepage": "https://github.com/thakyZ/Userscripts#readme",
+  "dependencies": {
+    "eslint": "^8.31.0",
+    "eslint-config-greasemonkey": "^1.0.1",
+    "eslint-config-jquery": "^3.0.0",
+    "eslint-config-node": "^4.1.0"
+  },
+  "devDependencies": {
+    "htmlhint": "^1.1.4"
+  }
+}
