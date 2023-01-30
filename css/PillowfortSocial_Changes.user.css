@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Pillowfort Social Chages
 @namespace      NekoBoiNick.Web.PillowfortSocial.Changes
-@version        1.0.0
+@version        1.0.1
 @description    Various chages to Pillowfort
 @author         Neko Boi Nick
 @license        MIT
@@ -9,6 +9,7 @@
 @supportURL     https://github.com/thakyZ/Userscripts/issues
 @homepageURL    https://github.com/thakyZ/Userscripts
 ==/UserStyle== */
+
 @-moz-document domain("pillowfort.social") {
   .blog-home-button {
     background-image: url("https://img3.pillowfort.social/avatars/000/000/003/original/pf-tumblr-icon-sq.png");

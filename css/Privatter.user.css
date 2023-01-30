@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Privatter
 @namespace      NekoBoiNick.Web.Privatter.CSS
-@version        1.0.0
+@version        1.0.1
 @description    Changes some things on privatter.net
 @author         Neko Boi Nick
 @license        MIT
@@ -10,13 +10,14 @@
 @supportURL     https://github.com/thakyZ/Userscripts/issues
 ==/UserStyle== */
 @-moz-document domain("privatter.net") {
+
   .navbar-brand,
   .caret {
     color: #0C0C0D !important;
   }
 
-  .nav-tabs > li.active > a > svg,
-  .nav-tabs > li.active > a {
+  .nav-tabs>li.active>a>svg,
+  .nav-tabs>li.active>a {
     color: #F9F9FA !important;
   }
 

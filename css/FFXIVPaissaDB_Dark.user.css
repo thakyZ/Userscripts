@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Paissa DB Dark
 @namespace      NekoBoiNick.Web.FFXIVPaissaDB.Dark
-@version        1.0.0
+@version        1.0.1
 @description    A dark theme for Paissa DB
 @author         Neko Boi Nick
 @license        MIT
@@ -15,61 +15,82 @@
     --lt-color-gray-750: #000000;
     --lt-color-gray-850: #000000;
   }
+
   html {
     background-color: var(--lt-color-gray-900);
   }
+
   body {
     color: var(--lt-color-gray-100);
   }
+
   .title {
     color: var(--lt-color-gray-300);
   }
+
   .subtitle {
     color: var(--lt-color-gray-200);
   }
+
   .priceCopy .priceCopy-btn {
     color: var(--lt-color-gray-300);
     border-bottom-color: var(--lt-color-gray-300);
   }
+
   .priceCopy .priceCopy-btn:hover {
     color: cyan;
     border-bottom-color: cyan;
   }
+
   a {
     color: #79B8FF;
   }
+
   a:hover {
     color: #8DCCFF;
   }
-  div.container h4.title.is-4.mt-4 + p + p strong span {
+
+  div.container h4.title.is-4.mt-4+p+p strong span {
     color: var(--lt-color-gray-300);
   }
+
   .table {
     background-color: var(--lt-color-gray-700);
     color: var(--lt-color-gray-100);
   }
-  .table thead td, .table thead th {
+
+  .table thead td,
+  .table thead th {
     color: var(--lt-color-gray-100);
   }
+
   .table.is-striped tbody tr:not(.is-selected):nth-child(even) {
     background-color: var(--lt-color-gray-800);
   }
+
   .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even) {
     background-color: var(--lt-color-gray-750);
   }
+
   .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(odd) {
     background-color: var(--lt-color-gray-850);
   }
+
   .dropdown-content {
     background-color: var(--lt-color-gray-800);
   }
+
   .dropdown-item {
     color: var(--lt-color-gray-100);
   }
-  .radio:hover, .checkbox:hover {
+
+  .radio:hover,
+  .checkbox:hover {
     color: var(--lt-color-gray-300);
   }
-  .radio input[type="radio"], .checkbox input[type="checkbox"] {
+
+  .radio input[type="radio"],
+  .checkbox input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
     background: var(--lt-color-gray-800);
@@ -81,7 +102,9 @@
     vertical-align: revert;
     position: relative;
   }
-  .checkbox input[type="checkbox"]::before, .radio input[type="radio"]::before {
+
+  .checkbox input[type="checkbox"]::before,
+  .radio input[type="radio"]::before {
     content: "";
     width: 0.7em;
     height: 0.7em;
@@ -91,10 +114,14 @@
     background-color: CanvasText;
     display: grid;
   }
-  .radio input[type="radio"]::before, .radio input[type="radio"] {
+
+  .radio input[type="radio"]::before,
+  .radio input[type="radio"] {
     border-radius: 100%;
   }
-  .radio input[type="radio"]:checked::before, .checkbox input[type="checkbox"]:checked::before {
+
+  .radio input[type="radio"]:checked::before,
+  .checkbox input[type="checkbox"]:checked::before {
     transform: scale(1) translateX(1px) translateY(1px);
   }
 }

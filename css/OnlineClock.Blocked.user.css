@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           OnlineClock CloudFlare Error - Dark Mode & Hide IP
 @namespace      NekoBoiNick.Web.OnlineClock.BanError.DarkMode
-@version        1.0.0
+@version        1.0.1
 @description    If you've been banned from OnlineClock and get an error message this makes it darkmode.
 @author         Neko Boi Nick
 @license        MIT
@@ -17,7 +17,8 @@
 ==/UserStyle== */
 
 @-moz-document domain("onlineclock.net") {
-  body table tbody tr:last-of-type, body table tbody tr:last-of-type td {
+  body table tbody tr:last-of-type,
+  body table tbody tr:last-of-type td {
     max-height: calc(16px * 17);
     overflow: hidden;
     display: inline-block;
@@ -25,11 +26,11 @@
   if darkmode {
     body {
       background: bgc;
-			color: txtc;
+      color: txtc;
     }
     body table tbody tr td.s {
       background: bgc2;
-			color: txtc;
+      color: txtc;
     }
     body center {
       > img {
@@ -40,7 +41,7 @@
       background-repeat: no-repeat;
       background-position-x: center;
     }
-	  #cf-wrapper {
+    #cf-wrapper {
       position: absolute
       padding: 0
       margin: 0
@@ -49,61 +50,63 @@
       width: 100%
       height: 100%
       ^[0], h1, h2, h3, h4, h5, h6, p, .cf-subheadline {
-      	color: txtc
+        color: txtc;
       }
       .cf-button {
-      	color: txtc
+        color: txtc
       	background-color: bgc
       	border-color: txtlc
       	&:hover {
-            background-color: txtlc
-      	}
+          background-color: txtlc;
+        }
       }
       a {
-      	color: txtlc !important
+        color: txtlc !important
       	&:hover {
-            text-decoration: underline
-      	}
+          text-decoration: underline;
+        }
       }
       #cf-error-details {
-      	^[0], & {
-            background: bgc;
-      	}
-      	.cf-status-item.cf-error-source:after {
-            border-bottom: 18px solid bgc;
-      	}
-      	.cf-error-source:after {
-            background-color: bgc;
-            box-shadow: none;
-      	}
-      	.cf-highlight, .bg-gradient-gray {
-            background: bgc2;
-      	}
-      	.cf-error-footer {
-            border-top: 1px rgba(255, 255, 255, .1) solid;
-      	}
+        ^[0],
+        & {
+          background: bgc;
+        }
+        .cf-status-item.cf-error-source:after {
+          border-bottom: 18px solid bgc;
+        }
+        .cf-error-source:after {
+          background-color: bgc;
+          box-shadow: none;
+        }
+        .cf-highlight,
+        .bg-gradient-gray {
+          background: bgc2;
+        }
+        .cf-error-footer {
+          border-top: 1px rgba(255, 255, 255, 0.1) solid;
+        }
       }
-	  }
-	  //Checking your browser before accessing example.com DDoS protection
-	  body > table > tbody > tr > td[align="center"][valign="middle"] {
+    }
+    //Checking your browser before accessing example.com DDoS protection
+    body > table > tbody > tr > td[align="center"][valign="middle"] {
       position: fixed
       top: 0
       left: 0
       width: 100%
       height: 100%
       > .cf-browser-verification {
-      	margin-top: 35vh
+        margin-top: 35vh
       	^[0], &, > #cf-content > h1 {
-            color: txtc;
-            background: bgc;
-      	}
+          color: txtc;
+          background: bgc;
+        }
       }
       a {
-      	color: txtlc !important
+        color: txtlc !important
       	&:hover {
-            text-decoration: underline
-      	}
+          text-decoration: underline;
+        }
       }
-	  }
+    }
   }
 }

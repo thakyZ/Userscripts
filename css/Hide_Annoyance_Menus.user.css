@@ -1,7 +1,7 @@
 /* ==UserStyle==
     @name           Hide Annoyance Menus
     @namespace      NekoBoiNick.Web.Reddit.Annoyance
-    @version        1.0.0
+    @version        1.0.1
     @description    Hides annoying menus on Reddit.com
     @author         Neko Boi Nick
     @license        MIT
@@ -9,7 +9,9 @@
     @supportURL     https://github.com/thakyZ/Userscripts/issues
     @homepageURL    https://github.com/thakyZ/Userscripts
 ==/UserStyle== */
+
 @-moz-document domain("reddit.com") {
+
   ._2zZ-KGHbWWqrwGlHWXR90y ._1_-T-UyaTFWSKiU5qkmH4p.q_unSaY23rpdd3lDvGZ-._2iuoyPiKHN3kfOoeIQalDT._10BQ7pjWbeYP63SAPNS8Ts.HNozj_dKjQZ59ZsfEegz8,
   ._2zZ-KGHbWWqrwGlHWXR90y #COIN_PURCHASE_DROPDOWN_ID {
     display: none;
