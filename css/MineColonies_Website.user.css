@@ -1,0 +1,46 @@
+/* ==UserStyle==
+    @name           MineColonies Changes
+    @namespace      NekoBoiNick.Web.MineColonies.Changes
+    @version        1.0.0
+    @description    Changes to the MineColonies website
+    @author         Neko Boi Nick
+    @license        MIT
+    @updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/MineColonies_Website.user.css
+    @supportURL     https://github.com/thakyZ/Userscripts/issues
+    @homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+
+@-moz-document domain("minecolonies.ldtteam.com") {
+  #theme-toggle {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+    cursor: pointer;
+  }
+
+  body {
+    font-family: Roboto, sans-serif;
+  }
+
+  .traits,
+  .traitp,
+  .infobox>div>div:last-child>p {
+    background-color: rgb(21, 21, 21) !important;
+    text-align: center;
+  }
+
+  .infobox>div>div>p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+}
