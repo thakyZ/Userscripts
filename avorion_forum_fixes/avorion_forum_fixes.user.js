@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Avorion Forum Fixes
 // @namespace    NekoBoiNick.Avorion.ForumFixes
-// @version      0.1
+// @version      1.0.2
 // @description  Changes some issues with the __old__ Avorion forums.
 // @author       Neko Boi Nick
 // @match        https://www.avorion.net/*
@@ -11,39 +11,62 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/avorion_forum_fixes/avorion_forum_fixes.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
+this.$ = this.jQuery = jQuery.noConflict(true);
 
-(function() {
-  'use strict';
+// Code to add getting all attributes from elements.
+(function (old) {
+  $.fn.attr = function (...args) {
+    if (args.length === 0) {
+      if (this.length === 0) {
+        return null;
+      }
 
-  var newSpoilerTag = document.createElement("div");
-  var oldSpoilerTag = document.getElementById("BBCBox_message_button_1_21");
-  for (var i = 0; i < oldSpoilerTag.attributes.length; i++) {
-    var attr = oldSpoilerTag.attributes.item(i);
-    newSpoilerTag.setAttribute(attr.nodeName, attr.nodeValue);
-  }
-  newSpoilerTag.innerText = "Spoiler";
-  newSpoilerTag.style.setProperty("background-size","cover");
-  newSpoilerTag.style.setProperty("background-color","#E4E4E4","important");
-  newSpoilerTag.style.setProperty("color","#000","important");
-  newSpoilerTag.style.setProperty("padding","1px","important");
-  newSpoilerTag.style.setProperty("padding-left","2px","important");
-  newSpoilerTag.style.setProperty("padding-right","2px","important");
-  newSpoilerTag.style.setProperty("font-size","12px","important");
-  newSpoilerTag.style.setProperty("border","1px #BBB solid","important");
-  newSpoilerTag.style.setProperty("margin-top","0px","important");
-  newSpoilerTag.style.setProperty("min-height","22px","important");
-  newSpoilerTag.style.setProperty("display","inline-block","important");
-  newSpoilerTag.addEventListener("mouseover", function(event) {
-    event.target.style.removeProperty("background-image");
-    event.target.style.setProperty("background-color","#58BE5E","important");
+      const obj = {};
+      $.each(this[0].attributes, function () {
+        if (this.specified) {
+          obj[this.name] = this.value;
+        }
+      });
+      return obj;
+    }
+
+    return old.apply(this, args);
+  };
+})($.fn.attr);
+
+$(document).ready(() => {
+  "use strict";
+
+  const newSpoilerTag = $("<div></div>");
+  const oldSpoilerTag = $("#BBCBox_message_button_1_21");
+  $.each($(oldSpoilerTag).attr().items, (key, value) => {
+    $(newSpoilerTag).attr(key, value);
+  });
+
+  $(newSpoilerTag).text("Spoiler");
+  $(newSpoilerTag).css({
+    backgroundSize: "cover",
+    backgroundColor: "#E4E4E4 !important",
+    color: "#000 !important",
+    padding: "1px 2px 1px 2px !important",
+    fontSize: "12px !important",
+    border: "1px #BBB solid !important",
+    marginTop: "0px !important",
+    minHeight: "22px !important",
+    display: "inline-block !important",
+  });
+  $(newSpoilerTag).on("mouseover", () => {
+    $(this).css("background-image");
+    $(this).css({ backgroundColor: "#58BE5E !important" });
     this.instanceRef.handleButtonMouseOver(this);
   });
-  newSpoilerTag.addEventListener("mouseout", function(event) {
-    event.target.style.removeProperty("background-image");
-    event.target.style.setProperty("background-color","#E4E4E4","important");
-    this.instanceRef.handleButtonMouseOut(this);
+  $(newSpoilerTag).on("mouseover", () => {
+    $(this).css("background-image");
+    $(this).css({ backgroundColor: "#E4E4E4 !important" });
+    this.instanceRef.handleButtonMouseOver(this);
   });
 
-  oldSpoilerTag.parentNode.replaceChild(newSpoilerTag, oldSpoilerTag);
-})();
+  $(oldSpoilerTag).replaceWith(newSpoilerTag);
+});
