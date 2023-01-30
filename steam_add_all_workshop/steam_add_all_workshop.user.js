@@ -1,15 +1,14 @@
 // ==UserScript==
 // @name         Steam Add All Workshop Items to Collection
-// @namespace    NekoBoiNick.Steam.Workshop.COllecton.AddAllItems
-// @version      1.0.0
+// @namespace    NekoBoiNick.Steam.Workshop.Collection.AddAllItems
+// @version      1.0.1
 // @description  Makes GUI to add or remove all items to or from a collection.
 // @author       Neko Boi Nick
-// @match        https://steamcommunity.com/sharedfiles/managecollection/?id=*&activeSection=MySubscribedItems
+// @match        https://steamcommunity.com/sharedfiles/managecollection/?id=*
 // @icon         https://www.google.com/s2/favicons?domain=steamcommunity.com
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // @grant        none
 // ==/UserScript==
-
 /* ===============
  * Code borrows from: https://www.reddit.com/r/CitiesSkylines/comments/8hrdsd/add_all_subscribed_items_to_steam_collections_at/
  * Code is made by u/kluvo2
@@ -26,78 +25,226 @@
  * 7. Refresh the page, your collection will be updated.
  * To see how it looks on the page, see the screenshot: https://imgur.com/a/w8qZ3VM
  */
+/* global jQuery, $ */
+this.$ = this.jQuery = jQuery.noConflict(true);
+$(document).ready(function () {
+  const SetupCSS = () => {
+    $("head").append(`<style id="ASCM"></style>`);
+    $("head style#ASCM").html(`
+.ASCM {
+    position: absolute;
+    top: 120px;
+    width: 30px;
+    height: 30px;
+}
 
-/* global jQuery */
+.ASCM#ASCM_removeall {
+    right: 75px;
+}
 
-(function() {
-  'use strict';
-  setTimeout(function(){
-    // Create "Add" button
-    var btn_add = document.createElement("BUTTON");
-    var collection_window1 = document.querySelector('div.collectionAddItemsSection')
-    collection_window1.insertBefore(btn_add,collection_window1.firstChild);
-    btn_add.setAttribute('id','ASCM_addall');
-    jQuery('button#ASCM_addall').html('+')
-    btn_add.style.position = 'absolute';
-    btn_add.style.top = '110px';
-    btn_add.style.right = '50px';
-    btn_add.style['border-radius'] = '10px';
-    btn_add.style.color = 'white';
-    btn_add.style['font-size'] = '40px';
-    btn_add.style.background = '#00c417';
-    btn_add.style.width = '60px';
-    btn_add.style.height = '60px';
-    btn_add.style['text-decoration'] = 'none';
-    // Create "Remove" button
-    var btn_rem = document.createElement("BUTTON");
-    var collection_window2 = document.querySelector('div.collectionAddItemsSection')
-    collection_window2.insertBefore(btn_rem ,collection_window2.firstChild);
-    btn_rem .setAttribute('id','ASCM_removeall');
-    jQuery('button#ASCM_removeall').html('-')
-    btn_rem.style.position = 'absolute';
-    btn_rem.style.top = '110px';
-    btn_rem.style.right = '120px';
-    btn_rem.style['border-radius'] = '10px';
-    btn_rem.style.color = 'white';
-    btn_rem.style['font-size'] = '40px';
-    btn_rem.style.background = '#c20000';
-    btn_rem.style.width = '60px';
-    btn_rem.style.height = '60px';
-    btn_rem.style['text-decoration'] = 'none';
-    // Bind "Add" button
-    jQuery('button#ASCM_addall').click(function(){
-      var items = [];
-      var collection_name = jQuery('div.manageCollectionHeader div.breadcrumbs a').eq(2).text().trim();
-      var url = new URL(document.location.href);
-      var collection_id = url.searchParams.get('id');
-      jQuery('div#MySubscribedItems div.itemChoice:not(.inCollection)').each(function(){
-        var data = {
-          id: collection_id,
-          sessionid: window.g_sessionID,
-          childid: jQuery(this).attr('id').replace('choice_MySubscribedItems_',''),
-          activeSection: collection_name
-        };
-        addToCollection(data, jQuery(this));
-      });
-    });
-    // Bind "Remove" button
-    jQuery('button#ASCM_removeall').click(function(){
-      jQuery('div#MySubscribedItems div.itemChoice.inCollection').each(function(){
-        window.RemoveChildFromCollection(jQuery(this).attr('id').replace('choice_MySubscribedItems_',''))
-      });
-    });
-    // Function to send a request to add item to a collection
-    function addToCollection(data, object){
-      jQuery.ajax({
-        type: "POST",
-        url: 'https://steamcommunity.com/sharedfiles/addchild',
-        data: data,
-        success: function(response){
-          if(object && response.success == 1){
-            object.addClass('inCollection');
-          }
+.ASCM#ASCM_addall {
+    right: 40px;
+}
+
+.ASCM span {
+    padding: 0 0px !important;
+}
+
+.btn_red_steamui {
+    border-radius: 2px;
+    border: none;
+    padding: 1px;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none !important;
+    color: #EFA9A9 !important;
+    background: transparent;
+    text-shadow: 1px 1px 0px rgba( 0, 0, 0, 0.3 );
+}
+
+
+.btn_red_steamui > span {
+    border-radius: 2px;
+    display: block;
+    background: #6fa720;
+    background: -webkit-linear-gradient( top, #B02222 5%, #8A1B1B 95%);
+    background: linear-gradient( to bottom, #B02222 5%, #8A1B1B 95%);
+    background: linear-gradient( to right, #B02222 5%, #8A1B1B 95%);
+}
+
+.ASCM > span svg path {
+  filter:drop-shadow(1px 1px 0px rgb(0 0 0 / 30%));
+}
+
+.btn_red_steamui:not(.btn_disabled):not(:disabled):not(.btn_active):not(.active):hover {
+    text-decoration: none !important;
+    color: #fff;
+    !important; background: transparent;
+}
+
+.btn_red_steamui:not(.btn_disabled):not(:disabled):not(.btn_active):not(.active):hover > span {
+    background: #8ed629;
+    background: -webkit-linear-gradient( top, #D62929 5%, #A62121 95%);
+    background: linear-gradient( to bottom, #D62929 5%, #A62121 95%);
+    background: linear-gradient( to right, #D62929 5%, #A62121 95%);
+}
+
+.btn_red_steamui.btn_active, btn_red_steamui.active {
+    text-decoration: none !important;
+    color: #fff;
+    !important; background: transparent;
+}
+
+.btn_red_steamui.btn_active > span, btn_red_steamui.active > span {
+    background: #8ed629;
+    background: -webkit-linear-gradient( top, #D62929 5%, #A62121 95%);
+    background: linear-gradient( to bottom, #D62929 5%, #A62121 95%);
+    background: linear-gradient( to right, #D62929 5%, #A62121 95%);
+}
+
+.ASCM span:before {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+
+.ASCM#ASCM_progress {
+    right: 40px;
+    top: 152px;
+    font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+    color: #8f98a0;
+    font-size: 12px;
+    text-align: center;
+    width: 65px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.ASCM#ASCM_progress:hover {
+  cursor: default;
+}
+.ASCM#ASCM_progress {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+}
+`);
+  };
+  let addAllBtn;
+  let remAllBtn;
+  let progress;
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const CreateButtons = () => {
+    if (addAllBtn === undefined && remAllBtn === undefined && progress === undefined && $($("div.collectionAddItemsSection").children()[0]).prop("nodeName") !== "a") {
+      addAllBtn = $(`<a id="ASCM_addall" class="btn_green_steamui btn_medium noicon ASCM"><span><svg width='30' height='30' xmlns='http://www.w3.org/2000/svg'><path d='m12 6h6v6h6v6h-6v6h-6v-6h-6v-6h6z' fill='currentColor'/></svg></span></a>`);
+      $(addAllBtn).insertBefore($($("div.collectionAddItemsSection").children()[0]));
+      remAllBtn = $(`<a id="ASCM_removeall" class="btn_red_steamui btn_medium noicon ASCM"><span><svg width='30' height='30' xmlns='http://www.w3.org/2000/svg'><path d='m6 12h18v6h-18z' fill='currentColor'/></svg></span></a>`);
+      $(remAllBtn).insertAfter($(addAllBtn));
+      progress = $(`<span id="ASCM_progress" class="ASCM"></span>`);
+      $(progress).insertAfter($(remAllBtn));
+      $(addAllBtn).on("click", async function () {
+        $("#ASCM_progress").text(`<Pending>`);
+        let collectionItems = $("div#MySubscribedItems div.itemChoice:not(.inCollection)");
+        let totalItems = $(collectionItems).length;
+        var items = [];
+        var collection_name = $('div.manageCollectionHeader div.breadcrumbs a').eq(2).text().trim();
+        var url = new URL(document.location.href);
+        var collection_id = url.searchParams.get('id');
+        let currentItem = 0;
+        const addToCollection = (object) => {
+          $.ajax({
+            type: "POST",
+            url: 'https://steamcommunity.com/sharedfiles/addchild',
+            data: {
+              id: collection_id,
+              sessionid: window.g_sessionID,
+              childid: $(object).attr('id').replace('choice_MySubscribedItems_', ''),
+              activeSection: collection_name
+            },
+            success: async function (data, textStatus, jqXHR) {
+              if (data && textStatus === "success") {
+                $(object).addClass('inCollection');
+                $("#ASCM_progress").text(`${Math.ceil((currentItem / totalItems) * 100)}%`);
+                currentItem += 1;
+                if (currentItem >= totalItems) {
+                  $("#ASCM_progress").text(`100% Done!`);
+                  await sleep(5000);
+                  $("#ASCM_progress").text("");
+                  currentItem = 0;
+                  totalItems = 0;
+                  window.location.href = window.location.href.match(/&activeSection=(MyItems|MyFavoriteItems|MySubscribedItems)/gi) !== null ?
+                    window.location.href.replace(/&activeSection=(MyItems|MyFavoriteItems|MySubscribedItems)/gi, "&activeSection=MySubscribedItems") :
+                    `${window.location.href}&activeSection=MySubscribedItems`;
+                }
+              }
+            }
+          });
+        }
+        for (var i = 0; i < totalItems; i++) {
+          addToCollection($($(collectionItems)[i]));
+          await sleep(1000);
         }
       });
+      $(remAllBtn).on("click", async function () {
+        let collectionItems = $("div#MySubscribedItems div.itemChoice.inCollection");
+        let totalItems2 = $(collectionItems).length;
+        let currentItem2 = 0;
+        for (var i = 0; i < totalItems2; i++) {
+          window.RemoveChildFromCollection($($(collectionItems)[i]).attr('id').replace('choice_MySubscribedItems_', ''));
+          $("#ASCM_progress").text(`${Math.floor((currentItem2 / totalItems2) * 100)}%`);
+          currentItem2 += 1;
+          if (currentItem2 >= totalItems2) {
+            $("#ASCM_progress").text(`100% Done!`);
+            await sleep(5000);
+            $("#ASCM_progress").text("");
+            currentItem2 = 0;
+          }
+          await sleep(1000);
+        }
+      });
+    };
+  }
+  const SetupMutationObserver = () => {
+    const targetNode = $(".manageCollectionItemsBody")[0];
+    const config = {
+      attributes: true,
+      childList: true,
+      subtree: true
+    };
+    const callback = (mutationList, observer) => {
+      for (const mutation of mutationList) {
+        if (mutation.type === "attributes" || mutation.type === "childList") {
+          if ($(mutation.target).attr("id") === "MySubscribedItemsTab" && $(mutation.target).hasClass("active")) {
+            CreateButtons();
+          } else if ($(mutation.target).attr("id") === "MySubscribedItemsTab" && !$(mutation.target).hasClass("active")) {
+            if (addAllBtn !== undefined && remAllBtn !== undefined) {
+              $(addAllBtn).off("click");
+              $(addAllBtn).remove();
+              addAllBtn = undefined;
+              $(remAllBtn).off("click");
+              $(remAllBtn).remove();
+              remAllBtn = undefined;
+              $(progress).remove();
+              progress = undefined;
+            }
+          }
+        }
+      }
     }
-  }, 0);
-})();
+    const observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
+    $(document).on("unload", function () {
+      observer.disconnect();
+    });
+  };
+  const CheckForPage = () => {
+    if ($("#MySubscribedItemsTab").attr("class").includes("active")) {
+      CreateButtons();
+    }
+  };
+  CheckForPage();
+  SetupCSS();
+  SetupMutationObserver();
+});
