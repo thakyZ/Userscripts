@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Reddit User Profile Links
 // @namespace    NekoBoiNick.Web.Reddit.UserProfileLinks.
-// @version      1.0.0
+// @version      1.0.2
 // @description  Adds links to Reddit User Profiles if provided.
 // @author       thakyZ
 // @match        https://www.reddit.com/user/*
+// @match        https://www.reddit.com/u/*
 // @icon         https://www.google.com/s2/favicons?domain=reddit.com
 // @license      MIT
 // @grant        none
@@ -17,47 +18,213 @@
 /* global $ */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
+/* Css
+ * .nbn.SocialLinkBtn {
+ *   font-size: 12px;
+ *   font-weight: 700;
+ *   line-height: 16px;
+ *   -ms-flex-align: center;
+ *   align-items: center;
+ *   background-color: var(--newRedditTheme-flair);
+ *   border-radius: 9999px;
+ *   color: var(--newRedditTheme-bodyText);
+ *   cursor: pointer;
+ *   display: -ms-flexbox;
+ *   display: flex;
+ *   height: 20px;
+ *   margin-right: 8px;
+ *   padding: 10px 12px;
+ *   white-space: nowrap;
+ * }
+ * .nbn.SocialLinkBtn .nbn.SocialLink {
+ *   width: 100%;
+ *   height: 100%;
+ *   display: -ms-flexbox;
+ *   display: flex;
+ *   padding: 10px 0;
+ * }
+ * .nbn.SocialLinkBtn .nbn.SocialIcon {
+ *   margin-right: 8px;
+ * }
+ */
+
 $(document).ready(() => {
+  const createBtn = (parent, opts) => {
+    $(parent).attr("class", "nbn SocialLinkBtn");
+    const btn = document.createElement("a");
+    $(btn).attr("class", "nbn SocialLink");
+    $(btn).attr("target", "_blank");
+    $(btn).attr("rel", "noopener noreferrer");
+    $(btn).attr("href", opts.href);
+    $(btn).append(`<img class="nbn SocialIcon" src="https://www.google.com/s2/favicons?domain=${opts.domain}">${opts.text}`);
+    $(parent).append(btn);
+    return btn;
+  };
+
+  let removeWatchers = [];
+  const watchForRemoval = (watchElem, parentElem) => {
+    const watcher = new MutationObserver(mutated => {
+      let wasRemoved = false;
+      mutated.forEach(mutant => wasRemoved || mutant.removedNodes.forEach(removed => {
+        wasRemoved = wasRemoved || removed === watchElem;
+      }));
+
+      if (wasRemoved) {
+        parentElem.append(watchElem);
+      }
+    });
+    watcher.observe(parentElem, { childList: true });
+    removeWatchers.push(watcher);
+  };
+
+  const clearRemoveWatchers = () => {
+    removeWatchers.forEach(obs => obs.disconnect());
+    removeWatchers = [];
+  };
+
+  const insertCss = () => {
+    if ($("#nbnCSS").length > 0) {
+      return;
+    }
+
+    const css = $("<link id=\"nbnCSS\" rel=\"stylesheet\" href=\"data:text/css;base64,Lm5ibi5Tb2NpYWxMaW5rQnRuIHtmb250LXNpemU6IDEycHg7Zm9udC13ZWlnaHQ6IDcwMDtsaW5lLWhlaWdodDogMTZweDstbXMtZmxle"
+                + "C1hbGlnbjogY2VudGVyO2FsaWduLWl0ZW1zOiBjZW50ZXI7YmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbmV3UmVkZGl0VGhlbWUtZmxhaXIpO2JvcmRlci1yYWRpdXM6IDk5OTlweDtjb2xvcjogdmFyKC0tbmV3UmVkZGl0VGhlb"
+                + "WUtYm9keVRleHQpO2N1cnNvcjogcG9pbnRlcjtkaXNwbGF5OiAtbXMtZmxleGJveDtkaXNwbGF5OiBmbGV4O2hlaWdodDogMjBweDttYXJnaW4tcmlnaHQ6IDhweDtwYWRkaW5nOiAxMHB4IDEycHg7d2hpdGUtc3BhY2U6IG5vd"
+                + "3JhcDt9Lm5ibi5Tb2NpYWxMaW5rQnRuIC5uYm4uU29jaWFsTGluayB7d2lkdGg6IDEwMCU7aGVpZ2h0OiAxMDAlO2Rpc3BsYXk6IC1tcy1mbGV4Ym94O2Rpc3BsYXk6IGZsZXg7cGFkZGluZzogMTBweCAwO30ubmJuLlNvY2lhb"
+                + "ExpbmtCdG4gLm5ibi5Tb2NpYWxJY29uIHttYXJnaW4tcmlnaHQ6IDhweDt9\">");
+    watchForRemoval(css, $("head")[0]);
+    $("head").append($(css));
+  };
+
+  const cache = {};
+
   const generateLinks = () => {
     const pageUrl = window.location.href;
     const usrUrl = pageUrl.replace(/^https?:\/\/(www.)?reddit.com\/(user|u)\//, "");
-    const userProfileLnk = $(`a[href="/user/${usrUrl}/"]`);
-    let outElement;
-    for (let i = 0, l = userProfileLnk.length; i < l; i++) {
-      const element = userProfileLnk[i];
-      const { innerText } = element;
-      if (/^u\/[a-zA-Z0-9]{3,20}\s·\s[1-9]{1,4}[ymdwsinecrs]$/gi.test(innerText)) {
-        outElement = element;
-        break;
+    const userProfileLnk = document.querySelector(`.ListingLayout-outerContainer > div:last-child > div:last-child > div:last-child > div > div:first-child > div > a[href="/user/${usrUrl}/"] + button + div`);
+    const userSocialLnk = document.querySelector(`.ListingLayout-outerContainer > div:last-child > div:last-child > div:last-child > div > div:first-child > div > a[href="/user/${usrUrl}/"] + button + div + div + nav > ul`);
+    if (!userProfileLnk) {
+      removeWatchers.forEach(obs => obs.disconnect());
+      removeWatchers = [];
+      return;
+    }
+
+    if (cache[usrUrl] !== undefined) {
+      return;
+    }
+
+    insertCss();
+
+    const root = $(userProfileLnk);
+    const inputText = $(root).text();
+    let matchText = 0;
+    // URLs starting with http://, https://, or ftp://
+    const matchPattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/gim;
+    const matchText1 = inputText.match(matchPattern1);
+
+    for (const index in matchText1) {
+      const match = matchText1[index];
+      matchText += 1;
+      const url = match.replace(/https?:\/\/((.+\.)?[a-z0-9]+\.[a-z]+)\/.*/gi, "$1");
+      let user = match.replace(/https?:\/\/(.+\.)?[\w]+\.[\w]+(\/[\w\s]*)*\/(.*)/gi, "$3");
+      if (user === "") {
+        user = "website";
       }
+
+      const buttonRow = document.createElement("li");
+      const directBtn = createBtn(buttonRow, {
+        href: match,
+        domain: url,
+        text: user
+      });
+      userSocialLnk.prepend(buttonRow);
+      watchForRemoval(buttonRow, userSocialLnk);
     }
 
-    if (typeof outElement !== "undefined") {
-      const root = $(outElement).parent();
-      const description = root.children[6];
-      const inputText = description.innerText;
+    // URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+    const matchPattern2 = /(^|[/])(www\.[\S]+(\b|$))/gim;
+    const matchText2 = inputText.match(matchPattern2);
 
-      // URLs starting with http://, https://, or ftp://
-      const replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/gim;
-      let replacedText = inputText.replace(replacePattern1, "<a href=\"$1\" target=\"_blank\">$1</a>");
+    for (const index in matchText2) {
+      const match = matchText2[index];
+      matchText += 1;
+      const url = match.replace(/((.+\.)?[a-z0-9]+\.[a-z]+)\/.*/gi, "$1");
+      let user = match.replace(/(.+\.)?[\w]+\.[\w]+(\/[\w\s]*)*\/(.*)/gi, "$3");
+      if (user === "") {
+        user = "website";
+      }
 
-      // URLs starting with "www." (without // before it, or it'd re-link the ones done above).
-      const replacePattern2 = /(^|[/])(www\.[\S]+(\b|$))/gim;
-      replacedText = replacedText.replace(replacePattern2, "$1<a href=\"http://$2\" target=\"_blank\">$2</a>");
-
-      // Change email addresses to mailto:: links.
-      const replacePattern3 = /(([a-zA-Z0-9\-_.])+@[a-zA-Z_]+?(\.[a-zA-Z]{2,6})+)/gim;
-      replacedText = replacedText.replace(replacePattern3, "<a href=\"mailto:$1\">$1</a>");
-      description.innerHTML = replacedText;
+      const buttonRow = document.createElement("li");
+      const directBtn = createBtn(buttonRow, {
+        href: match,
+        domain: url,
+        text: user
+      });
+      userSocialLnk.prepend(buttonRow);
+      watchForRemoval(buttonRow, userSocialLnk);
     }
+
+    // Change email addresses to mailto:: links.
+    const matchPattern3 = /(([a-zA-Z0-9\-_.])+@[a-zA-Z_]+?(\.[a-zA-Z]{2,6})+)/gim;
+    const matchText3 = inputText.match(matchPattern3);
+
+    for (const index in matchText3) {
+      const match = matchText3[index];
+      matchText += 1;
+      const icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAKCAMAAABcxfTLAAAACVBMVEW+vr7////a2trdmc6vAAAAMUlEQVR42mXLQRIAIAhCUeX+h46Y0NH+InyL4i87MZpJc4oy30cbOmFjLMfhuqiPuwMd6ABk3pQhaQAAAABJRU5ErkJggg==";
+      const buttonRow = document.createElement("li");
+      const directBtn = createBtn(buttonRow, {
+        href: `mailto:${match}`,
+        domain: icon,
+        text: "eMail"
+      });
+      userSocialLnk.prepend(buttonRow);
+      watchForRemoval(buttonRow, userSocialLnk);
+    }
+
+    cache[usrUrl] = matchText;
   };
 
-  window.onhashchange = function () {
+  generateLinks();
+
+  const redditWatcher = window.redditWatcher || (unsafeWindow && unsafeWindow.redditWatcher);
+  if (redditWatcher) {
+    redditWatcher.body.onUpdate(generateLinks);
+    redditWatcher.feed.onChange(clearRemoveWatchers);
+  }
+
+  let lastFirstPost = null;
+
+  (new MutationObserver(() => {
     generateLinks();
+
+    const listing = document.querySelector(".mantine-AppShell-main");
+    const firstPost = listing && listing.querySelector(".ListingLayout-outerContainer");
+    if (firstPost !== lastFirstPost) {
+      lastFirstPost = firstPost;
+      clearRemoveWatchers();
+    }
+  })).observe(document.body, { childList: true, subtree: true });
+
+  const setupMutationObserver = () => {
+    const targetNode = $("body")[0];
+    const config = { attributes: true, childList: true, subtree: true };
+
+    const callback = mutationList => {
+      for (const mutation of mutationList) {
+        if (mutation.type === "childList" && $(mutation.target).attr("class").includes("mantine-AppShell-main")) {
+          generateLinks();
+        }
+      }
+    };
+
+    const observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
+
+    $(document).on("unload", () => {
+      observer.disconnect();
+    });
   };
 
-  /* SetInterval(() => {
-    test();
-  }, 500); */
-  document.addEventListener("scroll", () => generateLinks());
-})();
+  // Old setupMutationObserver();
+});

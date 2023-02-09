@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FFXIV Housing Preview Images
 // @namespace    NekoBoiNick.Web.FFXIVHousing.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Add Preview Popups to FFXIV Housing's Website
 // @author       Neko Boi Nick
 // @match        https://en.ff14housing.com/*
@@ -33,7 +33,7 @@ $(document).ready(() => {
 
   const colorLabel = () => "<small class=\"label label-danger\">Color <i class=\"fa fa-circle-o\"></i></small>";
 
-  const saleLabel = () => "<small class=\"label label-danger\">Color <i class=\"fa fa-circle-o\"></i></small>";
+  const saleLabel = () => "<small class=\"label label-success\"><i class=\"fa fa-cog\"></i> Sale</small>";
 
   const processFooters = objectData => {
     let outString = "";
@@ -103,14 +103,18 @@ $(document).ready(() => {
     $(element).find("a").prop("tagName", "div");
     $(element).find("span.small-box-footer").on("click", () => goToPage(link));
     const itemId = $(element).find("img:first-child").attr("src").toString().replaceAll(/\.\/images\/pic\/([0-9a-fA-F]{8,12})_img1_150\.jpg/gi, "$1");
-    const itemName = $("#main-container div.row div#container div.row > div:first-child").find("span.small-box-footer").clone().children().remove().end().text().toString().replaceAll(/(^\s+|\s+$)/gmi, "");
+    const itemName = $(element).find("span.small-box-footer").clone().children().remove().end().text().toString().replaceAll(/(^\s+|\s+$)/gmi, "");
     const objectData = getObjectData(element);
     const modal = prepareModal(itemId, itemName, objectData);
-    $(modal).find(".carousel-inner item > a").on("click", () => goToPage(link));
     $("#nbnModalContainer").append(modal);
     $("#nbnPreviewModal").modal("show");
-    $("#nbnPreviewModal").on("shown.bs.modal", () => $("#nbnPreviewModal").focus());
-    $("#nbnPreviewModal").on("hidden.bs.modal", () => $("#nbnPreviewModal").find(modal).remove());
+    $("#nbnPreviewModal").on("shown.bs.modal", () => {
+      $("#nbnPreviewModal").focus();
+      $("#nbnPreviewModal").find(".carousel-inner > .item > div").on("click", () => goToPage(link));
+    });
+    $("#nbnPreviewModal").on("hidden.bs.modal", () => {
+      $("#nbnModalContainer").children("#nbnPreviewModal").remove();
+    });
   };
 
   const goToPage = href => {
@@ -136,7 +140,9 @@ $(document).ready(() => {
   };
 
   const handleButton = element => {
-    $(element).find("img:first-child").on("click", () => handlePopUp(element));
+    if (!/\.\/images\/ic\/[a-z0-9]{4,12}_ic\.png/gi.test($(element).find("img:first-child").attr("src"))) {
+      $(element).find("img:first-child").on("click", () => handlePopUp(element));
+    }
   };
 
   const addModalContainer = () => {
