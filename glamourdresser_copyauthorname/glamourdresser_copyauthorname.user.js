@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
 // @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
-// @version      1.0.3
+// @version      1.0.4
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.glamourdresser.com/*
