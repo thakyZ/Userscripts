@@ -13,5 +13,24 @@
   "files.associations": {
     "OnlineClock.Blocked.user.css": "stylus",
     "FFXIV_Lodestone_Maint_Dark.user.css": "stylus"
+  },
+  "editor.defaultFormatter": null,
+  "editor.formatOnPaste": false, // required
+  "editor.formatOnType": false, // required
+  "editor.formatOnSave": false,
+  "[less]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features",
+  },
+  "[sass]": {
+    "editor.defaultFormatter": "syler.sass-indented",
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter",
   }
 }
