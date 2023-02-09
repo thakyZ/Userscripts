@@ -362,44 +362,52 @@ body.wp-admin.nbn_dark #wpcontent #wpbody-content .wrap h1 {
   color: var(--foreground-font-color);
 }
 
-.nbn_dark .widefat thead td {
+.nbn_dark table thead td {
   border-color: var(--bright-border-1);
 }
 
-.nbn_dark .widefat thead th {
+.nbn_dark table thead th {
   border-color: var(--bright-border-1);
 }
 
-.nbn_dark .widefat thead tr td {
+.nbn_dark table thead tr td {
   color: var(--foreground-font-color);
 }
 
-.nbn_dark .widefat thead tr th {
+.nbn_dark table thead tr th {
   color: var(--foreground-font-color);
 }
 
-.nbn_dark .widefat tfoot td {
+.nbn_dark table tbody tr:nth-child(odd) {
+  background-color: var(--dark-background-3) !important;
+}
+
+.nbn_dark table tfoot td {
   border-color: var(--bright-border-1);
 }
 
-.nbn_dark .widefat tfoot th {
+.nbn_dark table tfoot th {
   border-color: var(--bright-border-1);
 }
 
-.nbn_dark .widefat tfoot tr td {
+.nbn_dark table tfoot tr td {
   color: var(--foreground-font-color);
 }
 
-.nbn_dark .widefat tfoot tr th {
+.nbn_dark table tfoot tr th {
   color: var(--foreground-font-color);
 }
 
-.nbn_dark .widefat td {
+.nbn_dark table td {
   color: var(--foreground-font-color);
 }
 
-.nbn_dark .widefat th {
+.nbn_dark table th {
   color: var(--foreground-font-color);
+}
+
+.nbn_dark ul.striped li:nth-child(odd) {
+  background-color: var(--dark-background-3) !important;
 }
 
 .nbn_dark #titlediv #title {
@@ -425,11 +433,11 @@ body.wp-admin.nbn_dark #wpcontent #wpbody-content .wrap h1 {
   background: var(--dark-background-3);
 }
 
-.nbn_dark .striped>tbody:nth-child(odd) {
+>.nbn_dark .striped>tbody:nth-child(odd) {
   background: var(--dark-background-3);
 }
 
-.nbn_dark ul.striped:nth-child(odd) {
+>.nbn_dark ul.striped:nth-child(odd) {
   background: var(--dark-background-3);
 }
 

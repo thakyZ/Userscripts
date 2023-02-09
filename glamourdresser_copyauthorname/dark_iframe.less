@@ -1,0 +1,59 @@
+:root {
+  /* Appears 18 times */
+  --foreground-font-color: #fff;
+  /* Appears 9 times */
+  --accent-font-color: #0080ff;
+  /* Appears 6 times */
+  --dark-background-0: #000;
+  /* Appears 15 times */
+  --dark-background-1: #020303;
+  /* Appears 15 times */
+  --dark-background-2: #090B0D;
+  /* Appears 13 times */
+  --dark-background-3: #1d2327;
+  /* Appears 4 times */
+  --bright-border-0: #a7aaad;
+  /* Appears 2 times */
+  --bright-border-1: #9BADBF;
+}
+
+@color_1: var(--foreground-font-color);
+@color_2: var(--bright-border-0);
+@color_3: #000;
+@color_4: var(--accent-font-color);
+@color_5: var(--bright-border-1);
+@color_6: #2271b1;
+@background_color_1: var(--dark-background-3);
+@background_color_2: var(--dark-background-1);
+@background_color_3: #000;
+@background_color_4: var(--dark-background-2);
+@background_color_5: var(--bright-border-1);
+@background_color_6: #000001;
+@border_color_1: var(--dark-background-0);
+@border_color_2: var(--dark-background-3);
+@border_color_3: var(--bright-border-1);
+@border_color_4: var(--bright-border-0);
+@border_color_5: var(--accent-font-color);
+@border_color_6: var(--dark-background-1);
+@border_color_7: #2271b1;
+@border_top_color_1: transparent;
+@border_top_color_2: var(--bright-border-1);
+@border_right_color_1: var(--bright-border-1);
+@border_right_color_2: var(--dark-background-3);
+@border_bottom_color_1: var(--bright-border-1);
+@outline_color_1: var(--dark-background-1);
+
+body {
+  background-color: @background_color_1;
+  color: @color_1;
+
+  p {
+    a {
+      color: @color_6;
+    }
+
+    a:visited {
+      color: @color_6;
+    }
+  }
+}

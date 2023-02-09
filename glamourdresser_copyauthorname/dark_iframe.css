@@ -1,0 +1,31 @@
+:root {
+  /* Appears 18 times */
+  --foreground-font-color: #fff;
+  /* Appears 9 times */
+  --accent-font-color: #0080ff;
+  /* Appears 6 times */
+  --dark-background-0: #000;
+  /* Appears 15 times */
+  --dark-background-1: #020303;
+  /* Appears 15 times */
+  --dark-background-2: #090B0D;
+  /* Appears 13 times */
+  --dark-background-3: #1d2327;
+  /* Appears 4 times */
+  --bright-border-0: #a7aaad;
+  /* Appears 2 times */
+  --bright-border-1: #9BADBF;
+}
+
+body {
+  background-color: var(--dark-background-3);
+  color: var(--foreground-font-color);
+}
+
+body p a {
+  color: #2271b1;
+}
+
+body p a:visited {
+  color: #2271b1;
+}

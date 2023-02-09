@@ -418,7 +418,7 @@ body.wp-admin.nbn_dark {
     color: @color_1;
   }
 
-  .widefat {
+  table {
     thead {
       td {
         border-color: @border_color_3;
@@ -436,6 +436,12 @@ body.wp-admin.nbn_dark {
         th {
           color: @color_1;
         }
+      }
+    }
+
+    tbody {
+      tr:nth-child(odd) {
+        background-color: @background_color_1 !important;
       }
     }
 
@@ -465,6 +471,12 @@ body.wp-admin.nbn_dark {
 
     th {
       color: @color_1;
+    }
+  }
+
+  ul.striped {
+    li:nth-child(odd) {
+      background-color: @background_color_1 !important;
     }
   }
 

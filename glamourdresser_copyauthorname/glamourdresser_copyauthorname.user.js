@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
 // @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
-// @version      1.0.1
+// @version      1.0.2
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.glamourdresser.com/*
@@ -353,106 +353,50 @@ $(document).ready(() => {
       + "R0b20tbGVmdC1yYWRpdXM6MDtib3JkZXItYm90dG9tLXJpZ2h0LXJhZGl1czowO21hcmdpbjo1cHggMDttYXgtd2lkdGg6MTAwJTtwYWRkaW5nOjAgMTBweDt0ZXh0LWFsaWduOmxlZnR9Lm5ibl9kYXJrIHVsI2FkbWlubWVudSBhLndwLWhhcy1jdXJyZW50LXN1Ym1lbnU6Y"
       + "WZ0ZXJ7Ym9yZGVyLXJpZ2h0LWNvbG9yOnZhcigtLWRhcmstYmFja2dyb3VuZC0zKX0ubmJuX2RhcmsgdWwjYWRtaW5tZW51PmxpLmN1cnJlbnQ+YS5jdXJyZW50OmFmdGVye2JvcmRlci1yaWdodC1jb2xvcjp2YXIoLS1kYXJrLWJhY2tncm91bmQtMyl9"
       + "\"></link>");
-    $("head").append(`<style id="darkFixStyle">
-:root {
-  --e-global-color-accent-dark: #eee;
-  --e-global-color-secondary-dark: #777;
-  --e-global-color-primary-dark: #eee;
-}
-html.wp-dark-mode-active .elementor-widget-posts .elementor-post__read-more {
-  color: var(--e-global-color-accent-dark);
-}
-html.wp-dark-mode-active header .elementor-widget-container a img, div[data-widget_type="theme-site-logo.default"] a img {
-  filter: invert(100%);
-}
-html.wp-dark-mode-active .elementor-widget-author-box .elementor-author-box__name, html.wp-dark-mode-active .elementor-widget-posts .elementor-post__title, .elementor-widget-posts .elementor-post__title a {
-  color: var(--e-global-color-secondary-dark);
-}
-html.wp-dark-mode-active .elementor-widget-heading .elementor-heading-title {
-  color: var(--e-global-color-primary-dark);
-}
-button.elementor-button.action-copy-author {
-  background-color: var( --e-global-color-accent );
-  font-family: nunito sans,Sans-serif;
-  text-decoration-color: initial;
-  text-shadow: rgba(13, 13, 13, 0.3) 0px 0px 10px;
-  color: rgb(229, 224, 216);
-  border-radius: 0 0 0 0;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-size: 13px;
-  width: auto;
-  box-shadow: none;
-  fill: rgb(229, 224, 216);
-  display: inline-block;
-  line-height: 1;
-  text-align: center;
-  transition: all .3s;
-  border: none;
-  box-shadow: 0 0 0 0 #000;
-  transform: translateY(0);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-button.elementor-button.action-copy-author:hover, button.elementor-button.action-copy-author:focus:hover {
-  background-color: #107116 !important;
-}
-button.elementor-button.action-copy-author:active {
-  box-shadow: 0 5px 10px 5px #000;
-  transform: translateY(5px);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-button.elementor-button.action-copy-author:focus {
-  outline: none;
-  background-color: var( --e-global-color-accent ) !important;
-}
-.action-copy-author img.clipboard {
-    max-height: calc(18px * var(--wp-dark-mode-scale));
-    max-width: calc(18px * var(--wp-dark-mode-scale));
-}
-html.wp-dark-mode-active .elementor-element>.elementor-background-overlay {
-  background-image: linear-gradient(180deg,#FFFFFF00 60%,${defaultDarkBG} 100%) !important;
-}
-.elementor-author-box__name {
-  width: fit-content;
-  display: inline-block;
-}
-div:not(.elementor-author-box--biography-yes)[data-widget_type="author-box.default"] div.elementor-widget-container div.elementor-author-box .elementor-author-box__text {
-  min-width: 100%;
-  width: 100%;
-}
-div.elementor-author-box__text div:not(.elementor-button-wrapper):first-child {
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-div.elementor-author-box__text div:first-child h4.elementor-author-box__name {
-    -webkit-box-flex: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    ${calcVariableCSS()}
-}
-.elementor-author-box__text a {
-  align-items: center;
-}
-div:not(.elementor-author-box--biography-yes)[data-widget_type="author-box.default"] div.elementor-widget-container div.elementor-author-box .copy-author-widget {
-  left: ${variableTextLength()}
-}
-.copy-author-widget {
-  position: relative;
-  width: fit-content;
-  display: inline-block;
-}
-.postbox > div.inside {
-  display: inline-block;
-  margin: 0;
-}
-.postbox > div.inside > p {
-    margin: 0 0 1em 0;
-}
-</style>`);
+    $("head").append("<link rel=\"stylesheet\" href=\""
+      + "data:text/css;base64,OnJvb3R7LS1lLWdsb2JhbC1jb2xvci1hY2NlbnQtZGFyazojZWVlOy0tZS1nbG9iYWwtY29sb3Itc2Vjb25kYXJ5LWRhcms6Izc3NzstLWUtZ2xvYmFsLWNvbG9yLXByaW1hcnktZGFyazojZWVlfWh0bWwud3AtZGFyay1tb2RlLWFjdGl2ZSAuZW"
+      + "xlbWVudG9yLXdpZGdldC1wb3N0cyAuZWxlbWVudG9yLXBvc3RfX3JlYWQtbW9yZXtjb2xvcjp2YXIoLS1lLWdsb2JhbC1jb2xvci1hY2NlbnQtZGFyayl9ZGl2W2RhdGEtd2lkZ2V0X3R5cGU9InRoZW1lLXNpdGUtbG9nby5kZWZhdWx0Il0gYSBpbWcsaHRtbC53cC1kYXJrL"
+      + "W1vZGUtYWN0aXZlIGhlYWRlciAuZWxlbWVudG9yLXdpZGdldC1jb250YWluZXIgYSBpbWd7ZmlsdGVyOmludmVydCgxMDAlKX0uZWxlbWVudG9yLXdpZGdldC1wb3N0cyAuZWxlbWVudG9yLXBvc3RfX3RpdGxlIGEsaHRtbC53cC1kYXJrLW1vZGUtYWN0aXZlIC5lbGVtZW50"
+      + "b3Itd2lkZ2V0LWF1dGhvci1ib3ggLmVsZW1lbnRvci1hdXRob3ItYm94X19uYW1lLGh0bWwud3AtZGFyay1tb2RlLWFjdGl2ZSAuZWxlbWVudG9yLXdpZGdldC1wb3N0cyAuZWxlbWVudG9yLXBvc3RfX3RpdGxle2NvbG9yOnZhcigtLWUtZ2xvYmFsLWNvbG9yLXNlY29uZGF"
+      + "yeS1kYXJrKX1odG1sLndwLWRhcmstbW9kZS1hY3RpdmUgLmVsZW1lbnRvci13aWRnZXQtaGVhZGluZyAuZWxlbWVudG9yLWhlYWRpbmctdGl0bGV7Y29sb3I6dmFyKC0tZS1nbG9iYWwtY29sb3ItcHJpbWFyeS1kYXJrKX1idXR0b24uZWxlbWVudG9yLWJ1dHRvbi5hY3Rpb2"
+      + "4tY29weS1hdXRob3J7YmFja2dyb3VuZC1jb2xvcjp2YXIoLS1lLWdsb2JhbC1jb2xvci1hY2NlbnQpO2ZvbnQtZmFtaWx5Om51bml0byBzYW5zLFNhbnMtc2VyaWY7dGV4dC1kZWNvcmF0aW9uLWNvbG9yOmluaXRpYWw7dGV4dC1zaGFkb3c6cmdiYSgxMywxMywxMywuMykgM"
+      + "CAwIDEwcHg7Y29sb3I6I2U1ZTBkODtib3JkZXItcmFkaXVzOjA7dGV4dC10cmFuc2Zvcm06dXBwZXJjYXNlO3RleHQtZGVjb3JhdGlvbjpub25lO2ZvbnQtc2l6ZToxM3B4O3dpZHRoOmF1dG87Ym94LXNoYWRvdzpub25lO2ZpbGw6I2U1ZTBkODtkaXNwbGF5OmlubGluZS1i"
+      + "bG9jaztsaW5lLWhlaWdodDoxO3RleHQtYWxpZ246Y2VudGVyO3RyYW5zaXRpb246YWxsIC4zcztib3JkZXI6bm9uZTtib3gtc2hhZG93OjAgMCAwIDAgIzAwMDt0cmFuc2Zvcm06dHJhbnNsYXRlWSgwKTt0cmFuc2l0aW9uOnRyYW5zZm9ybSAuMnMgZWFzZSxib3gtc2hhZG9"
+      + "3IC4ycyBlYXNlfWJ1dHRvbi5lbGVtZW50b3ItYnV0dG9uLmFjdGlvbi1jb3B5LWF1dGhvcjpmb2N1czpob3ZlcixidXR0b24uZWxlbWVudG9yLWJ1dHRvbi5hY3Rpb24tY29weS1hdXRob3I6aG92ZXJ7YmFja2dyb3VuZC1jb2xvcjojMTA3MTE2IWltcG9ydGFudH1idXR0b2"
+      + "4uZWxlbWVudG9yLWJ1dHRvbi5hY3Rpb24tY29weS1hdXRob3I6YWN0aXZle2JveC1zaGFkb3c6MCA1cHggMTBweCA1cHggIzAwMDt0cmFuc2Zvcm06dHJhbnNsYXRlWSg1cHgpO3RyYW5zaXRpb246dHJhbnNmb3JtIC4ycyBlYXNlLGJveC1zaGFkb3cgLjJzIGVhc2V9YnV0d"
+      + "G9uLmVsZW1lbnRvci1idXR0b24uYWN0aW9uLWNvcHktYXV0aG9yOmZvY3Vze291dGxpbmU6MDtiYWNrZ3JvdW5kLWNvbG9yOnZhcigtLWUtZ2xvYmFsLWNvbG9yLWFjY2VudCkhaW1wb3J0YW50fS5hY3Rpb24tY29weS1hdXRob3IgaW1nLmNsaXBib2FyZHttYXgtaGVpZ2h0"
+      + "OmNhbGMoMThweCAqIHZhcigtLXdwLWRhcmstbW9kZS1zY2FsZSkpO21heC13aWR0aDpjYWxjKDE4cHggKiB2YXIoLS13cC1kYXJrLW1vZGUtc2NhbGUpKX0uZWxlbWVudG9yLWF1dGhvci1ib3hfX25hbWV7d2lkdGg6Zml0LWNvbnRlbnQ7ZGlzcGxheTppbmxpbmUtYmxvY2t"
+      + "9ZGl2Om5vdCguZWxlbWVudG9yLWF1dGhvci1ib3gtLWJpb2dyYXBoeS15ZXMpW2RhdGEtd2lkZ2V0X3R5cGU9ImF1dGhvci1ib3guZGVmYXVsdCJdIGRpdi5lbGVtZW50b3Itd2lkZ2V0LWNvbnRhaW5lciBkaXYuZWxlbWVudG9yLWF1dGhvci1ib3ggLmVsZW1lbnRvci1hdX"
+      + "Rob3ItYm94X190ZXh0e21pbi13aWR0aDoxMDAlO3dpZHRoOjEwMCV9ZGl2LmVsZW1lbnRvci1hdXRob3ItYm94X190ZXh0IGRpdjpub3QoLmVsZW1lbnRvci1idXR0b24td3JhcHBlcik6Zmlyc3QtY2hpbGR7ZGlzcGxheTotbXMtZmxleGJveDtkaXNwbGF5OmZsZXg7LXdlY"
+      + "mtpdC1ib3gtYWxpZ246Y2VudGVyOy1tcy1mbGV4LWFsaWduOmNlbnRlcjthbGlnbi1pdGVtczpjZW50ZXJ9LmVsZW1lbnRvci1hdXRob3ItYm94X190ZXh0IGF7YWxpZ24taXRlbXM6Y2VudGVyfS5jb3B5LWF1dGhvci13aWRnZXR7cG9zaXRpb246cmVsYXRpdmU7d2lkdGg6"
+      + "Zml0LWNvbnRlbnQ7ZGlzcGxheTppbmxpbmUtYmxvY2t9LnBvc3Rib3g+ZGl2Lmluc2lkZXtkaXNwbGF5OmlubGluZS1ibG9jazttYXJnaW46MH0ucG9zdGJveD5kaXYuaW5zaWRlPnB7bWFyZ2luOjAgMCAxZW0gMH0="
+      + "\"></link>");
+    $("head").append(`<style id="darkFixStyle">html.wp-dark-mode-active .elementor-element>.elementor-background-overlay{background-image:linear-gradient(180deg,#FFFFFF00 60%,${defaultDarkBG} 100%) !important;}div.el`
+      + `ementor-author-box__text div:first-child h4.elementor-author-box__name{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;${calcVariableCSS()}}div:not(.elementor-author-box--biography-yes)[data-widget_type="`
+      + `author-box.default"] div.elementor-widget-container div.elementor-author-box .copy-author-widget{left:${variableTextLength()}}</style>`);
   };
 
   setupCSS();
+
+  const handleIframes = () => {
+    if (/https:\/\/(www\.)?glamourdresser\.com\/wp-admin\/post(-new)?\.php/gi.test(window.location.href)) {
+      const iframes = $("iframe");
+      for (const frame in iframes) {
+        if (Object.prototype.hasOwnProperty.call(iframes, frame) && !isNaN(parseInt(frame, 10))) {
+          $(iframes[frame]).ready(() => {
+            const iframe = iframes[frame].contentWindow[0].document;
+            $(iframe).find("head").append("<link rel=\"stylesheet\" href=\""
+              + "data:text/css;base64,OnJvb3R7LS1mb3JlZ3JvdW5kLWZvbnQtY29sb3I6I2ZmZjstLWFjY2VudC1mb250LWNvbG9yOiMwMDgwZmY7LS1kYXJrLWJhY2tncm91bmQtMDojMDAwOy0tZGFyay1iYWNrZ3JvdW5kLTE6IzAyMDMwMzstLWRhcmstYmFja2dyb3VuZC"
+              + "0yOiMwOTBCMEQ7LS1kYXJrLWJhY2tncm91bmQtMzojMWQyMzI3Oy0tYnJpZ2h0LWJvcmRlci0wOiNhN2FhYWQ7LS1icmlnaHQtYm9yZGVyLTE6IzlCQURCRn1ib2R5e2JhY2tncm91bmQtY29sb3I6dmFyKC0tZGFyay1iYWNrZ3JvdW5kLTMpO2NvbG9yOnZhcigtL"
+              + "WZvcmVncm91bmQtZm9udC1jb2xvcil9Ym9keSBwIGF7Y29sb3I6IzIyNzFiMX1ib2R5IHAgYTp2aXNpdGVke2NvbG9yOiMyMjcxYjF9"
+              + "\"></link>");
+          });
+        }
+      }
+    }
+  };
+
+  $(window).on("hashchange", () => {
+    handleIframes();
+  });
 });
