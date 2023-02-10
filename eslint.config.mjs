@@ -18,6 +18,7 @@ const getMonkeyCodeNames = type => {
 
 export default [
   {
+    files: ["**/*.user.js"],
     languageOptions: {
       parserOptions: {
         ecmaVersion: 8,
@@ -653,7 +654,6 @@ export default [
     }
   },
   {
-    files: ["**/css2less.js"],
     languageOptions: {
       parserOptions: {
         ecmaVersion: 8,
