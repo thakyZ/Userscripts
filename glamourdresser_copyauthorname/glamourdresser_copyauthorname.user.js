@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
 // @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
-// @version      1.0.7
+// @version      1.0.8
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.glamourdresser.com/*
@@ -1795,6 +1795,25 @@ $(document).ready(() => {
       + "Z3JvdW5kLWNvbG9yOnZhcigtLXRlbXBfY29sb3ItMCl9Ym9keS5uYm5fZGFyay53cC1hZG1pbiAuYmxvY2stZWRpdG9yIC5lZGl0LXBvc3QtdmlzdWFsLWVkaXRvciAuZWRpdC1wb3N0LXZpc3VhbC1lZGl0b3JfX2NvbnRlbnQtYXJlYSAuaXMtZGVza3RvcC1wcmV2aWV3e2J"
       + "hY2tncm91bmQtY29sb3I6dmFyKC0tdGVtcF9jb2xvci0wKX1ib2R5Lm5ibl9kYXJrLndwLWFkbWluIC5ibG9jay1lZGl0b3IgLmVkaXQtcG9zdC12aXN1YWwtZWRpdG9yIC5lZGl0LXBvc3QtdmlzdWFsLWVkaXRvcl9fY29udGVudC1hcmVhIC5pcy1kZXNrdG9wLXByZXZpZX"
       + "cgLmJsb2NrLWVkaXRvci13cml0aW5nLWZsb3d7YmFja2dyb3VuZC1jb2xvcjp2YXIoLS10ZW1wX2NvbG9yLTApfQ=="
+      + "\"></link>");
+    $("head").append("<link rel=\"stylesheet\" href=\""
+      + "data:text/css;base64,OnJvb3R7LS1lLWdsb2JhbC1jb2xvci1hY2NlbnQtZGFyazojZWVlOy0tZS1nbG9iYWwtY29sb3Itc2Vjb25kYXJ5LWRhcms6Izc3NzstLWUtZ2xvYmFsLWNvbG9yLXByaW1hcnktZGFyazojZWVlfWh0bWwud3AtZGFyay1tb2RlLWFjdGl2ZSAuZW"
+      + "xlbWVudG9yLXdpZGdldC1wb3N0cyAuZWxlbWVudG9yLXBvc3RfX3JlYWQtbW9yZXtjb2xvcjp2YXIoLS1lLWdsb2JhbC1jb2xvci1hY2NlbnQtZGFyayl9aHRtbC53cC1kYXJrLW1vZGUtYWN0aXZlIC5lbGVtZW50b3Itd2lkZ2V0LXBvc3RzIC5lbGVtZW50b3ItcG9zdF9fd"
+      + "Gl0bGV7Y29sb3I6dmFyKC0tZS1nbG9iYWwtY29sb3Itc2Vjb25kYXJ5LWRhcmspfWh0bWwud3AtZGFyay1tb2RlLWFjdGl2ZSBkaXZbZGF0YS13aWRnZXRfdHlwZT0idGhlbWUtc2l0ZS1sb2dvLmRlZmF1bHQiXSBhIGltZyxodG1sLndwLWRhcmstbW9kZS1hY3RpdmUgaGVh"
+      + "ZGVyIC5lbGVtZW50b3Itd2lkZ2V0LWNvbnRhaW5lciBhIGltZ3tmaWx0ZXI6aW52ZXJ0KDEwMCUpfWh0bWwud3AtZGFyay1tb2RlLWFjdGl2ZSAuZWxlbWVudG9yLXdpZGdldC1hdXRob3ItYm94IC5lbGVtZW50b3ItYXV0aG9yLWJveF9fbmFtZXtjb2xvcjp2YXIoLS1lLWd"
+      + "sb2JhbC1jb2xvci1zZWNvbmRhcnktZGFyayl9aHRtbC53cC1kYXJrLW1vZGUtYWN0aXZlIC5lbGVtZW50b3Itd2lkZ2V0LWhlYWRpbmcgLmVsZW1lbnRvci1oZWFkaW5nLXRpdGxle2NvbG9yOnZhcigtLWUtZ2xvYmFsLWNvbG9yLXByaW1hcnktZGFyayl9aHRtbCBidXR0b2"
+      + "4uZWxlbWVudG9yLWJ1dHRvbi5hY3Rpb24tY29weS1hdXRob3J7YmFja2dyb3VuZC1jb2xvcjp2YXIoLS1lLWdsb2JhbC1jb2xvci1hY2NlbnQpO2ZvbnQtZmFtaWx5Om51bml0byBzYW5zLFNhbnMtc2VyaWY7dGV4dC1kZWNvcmF0aW9uOmluaXRpYWw7dGV4dC1zaGFkb3c6c"
+      + "mdiYSgxMywxMywxMywuMykgMCAwIDEwcHg7Y29sb3I6I2U1ZTBkODtib3JkZXItcmFkaXVzOjA7dGV4dC10cmFuc2Zvcm06dXBwZXJjYXNlO2ZvbnQtc2l6ZToxM3B4O3dpZHRoOmF1dG87ZmlsbDojZTVlMGQ4O2Rpc3BsYXk6aW5saW5lLWJsb2NrO2xpbmUtaGVpZ2h0OjE7"
+      + "dGV4dC1hbGlnbjpjZW50ZXI7Ym9yZGVyOm5vbmU7Ym94LXNoYWRvdzowIDAgMCAwICMwMDA7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoMCk7dHJhbnNpdGlvbjp0cmFuc2Zvcm0gLjJzIGVhc2UsYm94LXNoYWRvdyAuMnMgZWFzZX1odG1sIGJ1dHRvbi5lbGVtZW50b3ItYnV0dG9"
+      + "uLmFjdGlvbi1jb3B5LWF1dGhvcjpmb2N1czpob3ZlcixodG1sIGJ1dHRvbi5lbGVtZW50b3ItYnV0dG9uLmFjdGlvbi1jb3B5LWF1dGhvcjpob3ZlcntiYWNrZ3JvdW5kLWNvbG9yOiMxMDcxMTYhaW1wb3J0YW50fWh0bWwgYnV0dG9uLmVsZW1lbnRvci1idXR0b24uYWN0aW"
+      + "9uLWNvcHktYXV0aG9yOmFjdGl2ZXtib3gtc2hhZG93OjAgNXB4IDEwcHggNXB4ICMwMDA7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoNXB4KTt0cmFuc2l0aW9uOnRyYW5zZm9ybSAuMnMgZWFzZSxib3gtc2hhZG93IC4ycyBlYXNlfWh0bWwgYnV0dG9uLmVsZW1lbnRvci1idXR0b"
+      + "24uYWN0aW9uLWNvcHktYXV0aG9yOmZvY3Vze291dGxpbmU6MDtiYWNrZ3JvdW5kLWNvbG9yOnZhcigtLWUtZ2xvYmFsLWNvbG9yLWFjY2VudCkhaW1wb3J0YW50fWh0bWwgYnV0dG9uLmVsZW1lbnRvci1idXR0b24uYWN0aW9uLWNvcHktYXV0aG9yIGltZy5jbGlwYm9hcmR7"
+      + "bWF4LWhlaWdodDpjYWxjKDE4cHggKiB2YXIoLS13cC1kYXJrLW1vZGUtc2NhbGUpKTttYXgtd2lkdGg6Y2FsYygxOHB4ICogdmFyKC0td3AtZGFyay1tb2RlLXNjYWxlKSl9aHRtbCBkaXY6bm90KC5lbGVtZW50b3ItYXV0aG9yLWJveC0tYmlvZ3JhcGh5LXllcylbZGF0YS1"
+      + "3aWRnZXRfdHlwZT0iYXV0aG9yLWJveC5kZWZhdWx0Il0gZGl2LmVsZW1lbnRvci13aWRnZXQtY29udGFpbmVyIGRpdi5lbGVtZW50b3ItYXV0aG9yLWJveCAuZWxlbWVudG9yLWF1dGhvci1ib3hfX3RleHR7bWluLXdpZHRoOjEwMCU7d2lkdGg6MTAwJX1odG1sIC5lbGVtZW"
+      + "50b3ItYXV0aG9yLWJveF9fbmFtZXt3aWR0aDpmaXQtY29udGVudDtkaXNwbGF5OmlubGluZS1ibG9ja31odG1sIGRpdi5lbGVtZW50b3ItYXV0aG9yLWJveF9fdGV4dCBkaXY6bm90KC5lbGVtZW50b3ItYnV0dG9uLXdyYXBwZXIpOmZpcnN0LWNoaWxke2Rpc3BsYXk6LW1zL"
+      + "WZsZXhib3g7ZGlzcGxheTpmbGV4Oy13ZWJraXQtYm94LWFsaWduOmNlbnRlcjstbXMtZmxleC1hbGlnbjpjZW50ZXI7YWxpZ24taXRlbXM6Y2VudGVyfWh0bWwgZGl2LmVsZW1lbnRvci1hdXRob3ItYm94X190ZXh0IGF7YWxpZ24taXRlbXM6Y2VudGVyfWh0bWwgLmNvcHkt"
+      + "YXV0aG9yLXdpZGdldHtwb3NpdGlvbjpyZWxhdGl2ZTt3aWR0aDpmaXQtY29udGVudDtkaXNwbGF5OmlubGluZS1ibG9ja31odG1sIC5wb3N0Ym94PmRpdi5pbnNpZGV7ZGlzcGxheTppbmxpbmUtYmxvY2s7bWFyZ2luOjB9aHRtbCAucG9zdGJveD5kaXYuaW5zaWRlPnB7bWF"
+      + "yZ2luOjAgMCAxZW0gMH0="
       + "\"></link>");
     $("head").append(`<style id="darkFixStyle">html.wp-dark-mode-active .elementor-element>.elementor-background-overlay{background-image:linear-gradient(180deg,#FFFFFF00 60%,${defaultDarkBG} 100%) !important;}div.el`
       + `ementor-author-box__text div:first-child h4.elementor-author-box__name{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;${calcVariableCSS()}}div:not(.elementor-author-box--biography-yes)[data-widget_type="`

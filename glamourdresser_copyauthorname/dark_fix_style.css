@@ -6,19 +6,20 @@
 html.wp-dark-mode-active .elementor-widget-posts .elementor-post__read-more {
   color: var(--e-global-color-accent-dark);
 }
+html.wp-dark-mode-active .elementor-widget-posts .elementor-post__title {
+  color: var(--e-global-color-secondary-dark);
+}
 html.wp-dark-mode-active header .elementor-widget-container a img,
-div[data-widget_type="theme-site-logo.default"] a img {
+html.wp-dark-mode-active div[data-widget_type="theme-site-logo.default"] a img {
   filter: invert(100%);
 }
-html.wp-dark-mode-active .elementor-widget-author-box .elementor-author-box__name,
-html.wp-dark-mode-active .elementor-widget-posts .elementor-post__title,
-.elementor-widget-posts .elementor-post__title a {
+html.wp-dark-mode-active .elementor-widget-author-box .elementor-author-box__name {
   color: var(--e-global-color-secondary-dark);
 }
 html.wp-dark-mode-active .elementor-widget-heading .elementor-heading-title {
   color: var(--e-global-color-primary-dark);
 }
-button.elementor-button.action-copy-author {
+html button.elementor-button.action-copy-author {
   background-color: var(--e-global-color-accent);
   font-family: nunito sans, Sans-serif;
   text-decoration: initial;
@@ -37,50 +38,50 @@ button.elementor-button.action-copy-author {
   transform: translateY(0);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-button.elementor-button.action-copy-author:hover,
-button.elementor-button.action-copy-author:focus:hover {
+html button.elementor-button.action-copy-author:hover,
+html button.elementor-button.action-copy-author:focus:hover {
   background-color: #107116 !important;
 }
-button.elementor-button.action-copy-author:active {
+html button.elementor-button.action-copy-author:active {
   box-shadow: 0 5px 10px 5px #000;
   transform: translateY(5px);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-button.elementor-button.action-copy-author:focus {
+html button.elementor-button.action-copy-author:focus {
   outline: none;
   background-color: var(--e-global-color-accent) !important;
 }
-.action-copy-author img.clipboard {
+html button.elementor-button.action-copy-author img.clipboard {
   max-height: calc(18px * var(--wp-dark-mode-scale));
   max-width: calc(18px * var(--wp-dark-mode-scale));
 }
-.elementor-author-box__name {
-  width: fit-content;
-  display: inline-block;
-}
-div:not(.elementor-author-box--biography-yes)[data-widget_type="author-box.default"] div.elementor-widget-container div.elementor-author-box .elementor-author-box__text {
+html div:not(.elementor-author-box--biography-yes)[data-widget_type="author-box.default"] div.elementor-widget-container div.elementor-author-box .elementor-author-box__text {
   min-width: 100%;
   width: 100%;
 }
-div.elementor-author-box__text div:not(.elementor-button-wrapper):first-child {
+html .elementor-author-box__name {
+  width: fit-content;
+  display: inline-block;
+}
+html div.elementor-author-box__text div:not(.elementor-button-wrapper):first-child {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
 }
-.elementor-author-box__text a {
+html div.elementor-author-box__text a {
   align-items: center;
 }
-.copy-author-widget {
+html .copy-author-widget {
   position: relative;
   width: fit-content;
   display: inline-block;
 }
-.postbox > div.inside {
+html .postbox > div.inside {
   display: inline-block;
   margin: 0;
 }
-.postbox > div.inside > p {
+html .postbox > div.inside > p {
   margin: 0 0 1em 0;
 }
