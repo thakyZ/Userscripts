@@ -1,0 +1,36 @@
+:root {
+  --pppad: 2px;
+  --boxpaddings: 1em;
+  --pppadb: calc(var(--boxpaddings) + var(--pppad));
+  --boxpadding: var(--pppadb) var(--boxpaddings) var(--pppadb) var(--boxpaddings);
+  --lineheight: 0.875rem;
+  --padding: calc(21px - var(--lineheight));
+}
+.codebox_buttons {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  & .buttons {
+    left: 800px;
+    position: absolute;
+    background-color: #3d4852;
+    border-radius: 0.25rem;
+    border-width: 1px;
+    border-color: #22292f;
+    font-size: 0.875rem;
+    width: calc(var(--boxpaddings) + var(--lineheight) + var(--boxpaddings));
+    padding: var(--boxpadding);
+
+    & .row {
+      width: var(--lineheight);
+      height: var(--lineheight);
+      display: inline-block;
+      
+      &:not(:last-child) {
+      }
+      
+      & button {
+      }
+    }
+  }
+}
