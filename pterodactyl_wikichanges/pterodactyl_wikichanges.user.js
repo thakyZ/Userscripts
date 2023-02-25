@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Pterodactyl Wiki Changes
 // @namespace    NekoBoiNick.Web.Pterodactyl.Wiki.Changes
-// @version      1.0.0
+// @version      1.0.1
 // @description  Changes things on the Pterodactyl wiki
 // @author       Neko Boi Nick
 // @match        https://pterodactyl.io/*
@@ -35,12 +35,12 @@ $(document).ready(() => {
     $(parent).prependTo($(container));
     const buttons = $("<div class=\"buttons\"></div>");
     $(container).prepend($(buttons));
-    for (let i = 0; i < codes.length; i++) {
+    for (const element of codes) {
       const row = $("<div class=\"row\"></div>");
-      if (codes[i] !== "") {
+      if (element !== "") {
         const copyButton = $(`<button id="copyLine2">${createSVG()}</button>`);
         $(row).append($(copyButton));
-        $(copyButton).data("code", codes[i]);
+        $(copyButton).data("code", element);
         $(copyButton).on("click", event => {
           GM_setClipboard($(event.currentTarget).data().code);
         });
@@ -53,8 +53,8 @@ $(document).ready(() => {
   const addCopyButtons = codeBox => {
     const code = $(codeBox).html().split("\n");
     const codes = [];
-    for (let i = 0; i < code.length; i++) {
-      let coded = code[i].replaceAll(/<span class="token comment">.*<\/span>/gi, "");
+    for (const element of code) {
+      let coded = element.replaceAll(/<span class="token comment">.*<\/span>/gi, "");
       coded = coded.replaceAll(/<span class="token(?: [\w-]+){1,2}"><span class="token(?: [\w-]+){1,2}">(.*?)(?:<\/span>){1,2}/gi, "$1");
       coded = coded.replaceAll(/<span class="token(?: [\w-]+){1,2}">(.+?)((<\/span>){1,2}|<span class="token(?: [\w-]+){1,2}">)/gi, "$1");
       codes.push(coded.trim());
