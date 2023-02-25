@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gamer Escape Additions
 // @namespace    NekoBoiNick.Web.FFXIV.GamerEscape.Additions
-// @version      1.0.1
+// @version      1.0.2
 // @description  Adds new features to Gamer Escape
 // @author       Neko Boi Nick
 // @match        https://ffxiv.gamerescape.com/wiki/*
@@ -48,34 +48,48 @@ $.fn.onlyText = () => $(this)
   .text();
 
 $.fn.setData = (name, data) => {
-  const prevData = $(this).data(name);
-  for (const [key, value] in Object.entries(data)) {
+  const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
+  if (prevData === undefined) {
+    $(this).data(name, {});
+  }
+
+  for (const [key, value] of Object.entries(data)) {
     if (Object.prototype.hasOwnProperty.call(data, key) || !Object.prototype.hasOwnProperty.call(data, key)) {
       prevData[key] = value;
     }
   }
 
   $(this).data(name, prevData);
+  return $(this);
 };
 
 $.fn.addData = (name, data) => {
-  const prevData = $(this).data(name);
-  for (const [key, value] in Object.entries(data)) {
+  const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
+  if (prevData === undefined) {
+    $(this).data(name, {});
+  }
+
+  for (const [key, value] of Object.entries(data)) {
     if (!Object.prototype.hasOwnProperty.call(data, key)) {
       prevData[key] = value;
     }
   }
 
   $(this).data(name, prevData);
+  return $(this);
 };
 
 $.fn.removeData = (name, keys) => {
-  const prevData = $(this).data(name);
-  for (const element of keys) {
-    prevData.delete(element);
+  const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
+
+  for (const key of keys) {
+    if (Object.prototype.hasOwnProperty.call(prevData, key)) {
+      prevData.delete(key);
+    }
   }
 
   $(this).data(name, prevData);
+  return $(this);
 };
 
 $.fn.modifyStyle = name => {
