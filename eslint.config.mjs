@@ -7,7 +7,9 @@ const getMonkeyCodeNames = type => {
     "GM_getValue",
     "GM_setValue",
     "GM_xmlhttpRequest",
-    "GM_log"
+    "GM_log",
+    "GM_addStyle",
+    "GM_getResourceText"
   ];
   if (type === "string") {
     return names;
