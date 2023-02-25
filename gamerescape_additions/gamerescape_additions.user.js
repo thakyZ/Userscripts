@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gamer Escape Additions
 // @namespace    NekoBoiNick.Web.FFXIV.GamerEscape.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds new features to Gamer Escape
 // @author       Neko Boi Nick
 // @match        https://ffxiv.gamerescape.com/wiki/*
@@ -16,6 +16,8 @@
 // @grant        GM_addStyle
 // @grant        GM_registerMenuCommand
 // @grant        GM_setClipboard
+// @grant        GM_addStyle
+// @grant        GM_getResourceText
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // @require      https://github.com/dawidsadowski/MonkeyConfig/raw/master/monkeyconfig.js
 // @require      https://raw.githubusercontent.com/SloaneFox/code/master/GM4_registerMenuCommand_Submenu_JS_Module.js
@@ -23,10 +25,74 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/gamerescape_additions/gamerescape_additions.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
+// @resource     css https://raw.githubusercontent.com/thakyZ/Userscripts/master/gamerescape_additions/style.css
 // ==/UserScript==
-/* global $, MonkeyConfig */
+/* global $, jQuery, MonkeyConfig */
+this.$ = this.jQuery = jQuery.noConflict(true);
+
+// Pulled from stack overflow: https://stackoverflow.com/a/2771544/1112800
+$.fn.textWidth = () => {
+  const htmlOrg = $(this).html();
+  const htmlCalc = `<span>${htmlOrg}</span>`;
+  $(this).html(htmlCalc);
+  const width = $(this).find("span:first").width();
+  $(this).html(htmlOrg);
+  return width;
+};
+
+$.fn.onlyText = () => $(this)
+  .clone() // Clone the element
+  .children() // Select all the children
+  .remove() // Remove all the children
+  .end() // Again go back to selected element
+  .text();
+
+$.fn.setData = (name, data) => {
+  const prevData = $(this).data(name);
+  for (const [key, value] in Object.entries(data)) {
+    if (Object.prototype.hasOwnProperty.call(data, key) || !Object.prototype.hasOwnProperty.call(data, key)) {
+      prevData[key] = value;
+    }
+  }
+
+  $(this).data(name, prevData);
+};
+
+$.fn.addData = (name, data) => {
+  const prevData = $(this).data(name);
+  for (const [key, value] in Object.entries(data)) {
+    if (!Object.prototype.hasOwnProperty.call(data, key)) {
+      prevData[key] = value;
+    }
+  }
+
+  $(this).data(name, prevData);
+};
+
+$.fn.removeData = (name, keys) => {
+  const prevData = $(this).data(name);
+  for (const element of keys) {
+    prevData.delete(element);
+  }
+
+  $(this).data(name, prevData);
+};
+
+$.fn.modifyStyle = name => {
+  const data = $(this).data(name);
+  let stringBuilder = "";
+  for (const [key, value] in Object.entries(data)) {
+    if (Object.prototype.hasOwnProperty.call(data, key)) {
+      stringBuilder += `--${key}: ${value}; `;
+    }
+  }
+
+  $(this).text(`:root { ${stringBuilder}}`);
+};
 
 $(document).ready(() => {
+  GM_addStyle(GM_getResourceText("css"));
+
   const SettingsSaveName = "GamerEscapeAdditions.Settings";
 
   const config = new MonkeyConfig({
@@ -49,9 +115,11 @@ $(document).ready(() => {
   const disqus = $("#disqus_thread");
   const hideButton = () => "<div id=\"hide-disqus_thead\"><button id=\"hide-disqus_thread-button\"><div id=\"hide-disqus_thread-button-icon\" class=\"fold-icon\"></div></button></div>";
 
-  const marked = ["#d7d8db", "#000", "#ebecf0", "#f9f9f9", "#fffae1"];
+  const marked = ["#d7d8db", "#000", "#ebecf0", "#f9f9f9", "#fffae1"]; // NOSONAR
   const catlinks = $("#catlinks");
-  $("head").append("<style id=\"additions-style\"></style>");
+  const nbnStylesAdditions = $("<style id=\"nbnStylesAdditions\"></style>");
+  $("head").append($(nbnStylesAdditions));
+
   const createFoldButton = () => {
     if ($(catlinks).length > 0) {
       $(catlinks).after(hideButton());
@@ -62,41 +130,7 @@ $(document).ready(() => {
         if (iframe.length > 0 && $(disqus).height() > 109 && $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css("height") !== "") {
           const hideButtonStyleVar = $("iframe[src*=\"https://disqus.com/embed/comments/\"]").height();
           const disqusHeight = $(disqus).height();
-          $("#additions-style")
-            .text(`${$("#additions-style").text()}
-  #hide-disqus_thead {
-    position: relative;
-    left: calc(100% + 32px);
-    height: 0px;
-  }
-  #hide-disqus_thread-button {
-    width: 34px;
-    height: 34px;
-  }
-  div#hide-disqus_thread-button-icon.fold-icon {
-    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0iI0ZGRiIgdmlld0JveD0iNCA0IDE2IDE2Ij48cGF0aCBkPSJNNy40MSwxNS40MUwxMiwxMC44M0wxNi41OSwxNS40MUwxOCwxNEwxMiw4TDYsMTRMNy40MSwxNS40MVoiIC8+PC9zdmc+");
-    height: 24px;
-    transition: transform 0.2s ease-out;
-  }
-  div#hide-disqus_thread-button-icon.fold-icon.unhidden {
-    transform: rotate(0deg);
-  }
-  div#hide-disqus_thread-button-icon.fold-icon.hidden {
-    transform: rotate(180deg);
-  }
-  #disqus_thread[data-hide="false"] iframe[src*="https://disqus.com/embed/comments/"] {
-    height: ${hideButtonStyleVar}px !important;
-  }
-  #disqus_thread[data-hide="true"] iframe[src*="https://disqus.com/embed/comments/"] {
-    height: 0px !important;
-  }
-  #disqus_thread[data-hide] iframe[src*="https://disqus.com/embed/comments/"] {
-    transition: height 0.2s ease-out;
-  }
-  #disqus_thread[data-hide] {
-    height: ${disqusHeight}px !important;
-  }
-`);
+          $(nbnStylesAdditions).setData("css", { hideButtonStyleVar: `${hideButtonStyleVar}px`, disqusHeight: `${disqusHeight}px` }).modifyStyle("css");
           $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css({ height: "" });
           $(disqus).attr("data-hide", "false");
           if (config.get("hide_comments")) {
@@ -129,13 +163,7 @@ $(document).ready(() => {
   };
 
   createFoldButton();
-  const isDark = () => {
-    if ($("body").hasClass("dark")) {
-      return true;
-    }
-
-    return false;
-  };
+  const isDark = () => Boolean($("body").hasClass("dark"));
 
   const darkChanges0 = (_, element) => {
     let convert = null;
@@ -220,7 +248,7 @@ $(document).ready(() => {
       }
     });
     /* eslint-disable-next-line no-unused-vars */
-    const RGBtoHSL = rgb => {
+    const rgbToHsl = rgb => {
       // Choose correct separator
       const sep = rgb.indexOf(",") > -1 ? "," : " ";
       // Turn "rgb(r,g,b)" into [r,g,b]
@@ -242,8 +270,8 @@ $(document).ready(() => {
       // Calculate hue
       // No difference
       if (delta === 0) {
-        h = 0;
-      // eslint-disable-next-line brace-style
+        h = 0; // NOSONAR
+        // eslint-disable-next-line brace-style
       }
       // Red is max
       else if (cmax === r) {
@@ -270,77 +298,7 @@ $(document).ready(() => {
       return "hsl(" + h + "," + s + "%," + l + "%)";
     };
 
-    $("#additions-style")
-      .text(`${$("#additions-style").text()}
-  table.datatable-GEtable3 tr, table.GEtable tr {
-    background-color: ${lighterWhite};
-    color: white;
-  }
-  table.datatable-GEtable3 tr:hover, table.GEtable tr:hover {
-    background-color: ${lighterWhiteHover};
-    color: white;
-  }
-  table.wikitable, table.prettytable {
-    background-color: ${darkerWhite};
-  }
-  table.datatable-yellow tr, .navbox-title, table.navbox th, .navbox-abovebelow, .navbox-group, .navbox-subgroup .navbox-title, .navbox-even {
-    background-color: #0D0D0D;
-  }
-  table.datatable-yellow .hover, .navbox, .navbox-subgroup {
-    background-color: #1A1A1A;
-  }
-  table.wikitable th, table.wikitable td, table.prettytable th, table.prettytable td, table.wikitable th, table.wikitable td, table.prettytable th, table.prettytable td, table.wikitable, table.prettytable,  table.navbox {
-    border-color: #000 !important;
-  }
-  .rightbox {
-    background-color: ${darkerWhite};
-  }
-  .ad {
-    display: none;
-  }
-  .body>div>.content {
-    overflow: hidden;
-  }
-  table.datatable-GEtable tr, table.GEtable tr {
-    background-color: ${darkerWhite};
-  }
-  table[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37, 37, 38); color: white;"]:not(.wikitable) tbody tbody tr:first-child,
-  table[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37, 37, 38); color: white;"]:not(.wikitable) tbody tbody tr:first-child a {
-    color: #101010;
-  }
-  .dark .content div.thumbinner, .dark .nav-page-actions a div.thumbinner, html .dark .content .thumbimage  {
-    background-color: ${darkerWhite};
-    border-color: #000;
-  }
-  html .dark font[color="black"] {
-    color: #fff !important;
-  }
-  .wikitable {
-    color: #fff;
-  }
-  table.datatable-GEtable3 th, table.GEtable th {
-    background-color: transparent;
-  }
-  .copyItemBoxHeaderButton {
-    width: 32px;
-    overflow: visible;
-    height: 0px;
-    float: right;
-    position: relative;
-    right: -32px;
-    bottom: 60px;
-  }
-  .copyItemBoxHeaderButton button {
-    width: 32px;
-    height: 32px;
-  }
-  .copyItemBoxHeaderButton button:hover {
-    cursor: pointer;
-  }
-  .copyItemBoxHeaderButton button i {
-    font-size: 16px;
-  }
-`);
+    $(nbnStylesAdditions).setData("css", { lighterWhite: `${lighterWhite}`, lighterWhiteHover: `${lighterWhiteHover}`, darkerWhite: `${darkerWhite}` }).modifyStyle("css");
   };
 
   if (isDark()) {
@@ -368,8 +326,8 @@ $(document).ready(() => {
 
     const cats = $(categories).find("#mw-normal-catlinks > ul > li");
     if ($(cats).length > 0) {
-      for (let i = 0; i < $(cats).length; i++) {
-        const cat = $($(cats)[i]);
+      for (const element of $(cats)) {
+        const cat = $(element);
         const catText = $(cat).find("a").text().toLowerCase();
         if (catText === "item") {
           return "item";
@@ -400,10 +358,18 @@ $(document).ready(() => {
 
   const createCopyItemButton = () => {
     if (getPageCat() === "item") {
-      const itemBox = $("div.wiki.main table.itembox:first-child > tbody:first-child > tr:first-child > td:first-child");
-      const itemBoxHeader = $(itemBox).find("table > tbody > tr:first-child > td:last-child");
-      if ($(itemBox).length > 0 && $(itemBoxHeader).length > 0) {
-        $("<div class=\"copyItemBoxHeaderButton\"><button id=\"copyItemNameButton\" class=\"btn btn-primary\" type=\"button\"><i class=\"fa fa-clipboard\"></i></button></div>").appendTo($(itemBoxHeader));
+      const itemBoxHeader = $("div.wiki.main table.itembox:first-child > tbody:first-child > tr:first-child > td:first-child table > tbody > tr:first-child > td:last-child");
+      const itemBoxHeaderWidth = $(itemBoxHeader).prop("clientWidth");
+      const copyButtonContainer = $("<div class=\"copyItemBoxHeaderButton\"><button id=\"copyItemNameButton\" class=\"btn btn-primary\" type=\"button\"><i class=\"fa fa-clipboard\"></i></button></div>");
+      if ($(itemBoxHeader).length > 0) {
+        if ($(itemBoxHeader).find("div[style=\"height: 0ex;\"]") !== undefined && $(itemBoxHeader).find("div[style=\"height: 0ex;\"]").length > 0) {
+          $(copyButtonContainer).insertBefore($(itemBoxHeader).find("div[style=\"height: 0ex;\"]"));
+        } else {
+          $(copyButtonContainer).appendTo($(itemBoxHeader));
+        }
+
+        $(copyButtonContainer).css({ marginLeft: (itemBoxHeaderWidth - $(copyButtonContainer).prop("offsetLeft")) + "px" });
+
         $(".copyItemBoxHeaderButton #copyItemNameButton").on("click", () => {
           const itemName = $("div.wiki.main table.itembox:first-child > tbody:first-child > tr:first-child > td:first-child > table > tbody > tr:first-child > td:last-child").clone().children().remove().end().text().replace(/\s+$/gi, "");
           if (itemName !== undefined && itemName !== null && itemName !== "") {

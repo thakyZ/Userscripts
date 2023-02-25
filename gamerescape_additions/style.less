@@ -1,0 +1,219 @@
+
+#hide-disqus_thead {
+  position: relative;
+  left: calc(100% + 32px);
+  height: 0px;
+}
+#hide-disqus_thread-button {
+  width: 34px;
+  height: 34px;
+}
+
+div {
+  &#hide-disqus_thread-button-icon {
+    &.fold-icon {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0iI0ZGRiIgdmlld0JveD0iNCA0IDE2IDE2Ij48cGF0aCBkPSJNNy40MSwxNS40MUwxMiwxMC44M0wxNi41OSwxNS40MUwxOCwxNEwxMiw4TDYsMTRMNy40MSwxNS40MVoiIC8+PC9zdmc+");
+      height: 24px;
+      transition: transform 0.2s ease-out;
+
+      &.unhidden {
+        transform: rotate(0deg);
+      }
+      &.hidden {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+#disqus_thread {
+  &[data-hide="false"] {
+    & iframe {
+      &[src*="https://disqus.com/embed/comments/"] {
+        height: var(--hideButtonStyleVar) !important;
+      }
+    }
+  }
+  &[data-hide="true"] {
+    & iframe {
+      &[src*="https://disqus.com/embed/comments/"] {
+        height: 0px !important;
+      }
+    }
+  }
+  &[data-hide] {
+    height: var(--disqusHeight) !important;
+    & iframe {
+      &[src*="https://disqus.com/embed/comments/"] {
+        transition: height 0.2s ease-out;
+      }
+    }
+  }
+}
+table {
+  &.datatable-GEtable3 {
+    & th {
+      background-color: transparent;
+    }
+    & tr {
+      background-color: var(--lighterWhite);
+      color: white;
+
+      &:hover {
+        background-color: var(--lighterWhiteHover);
+        color: white;
+      }
+    }
+  }
+  &.datatable-GEtable {
+    & th {
+      background-color: transparent;
+    }
+    & tr {
+      background-color: var(--darkerWhite);
+    }
+  }
+  &.GEtable {
+    & th {
+      background-color: transparent;
+    }
+    & tr {
+      background-color: var(--lighterWhite);
+      background-color: var(--darkerWhite);
+      color: white;
+
+      &:hover {
+        background-color: var(--lighterWhiteHover);
+        color: white;
+      }
+    }
+  }
+  &.wikitable {
+    background-color: var(--darkerWhite);
+    border-color: #000 !important;
+
+    & th {
+      border-color: #000 !important;
+    }
+    & td {
+      border-color: #000 !important;
+    }
+  }
+  &.prettytable {
+    background-color: var(--darkerWhite);
+    border-color: #000 !important;
+
+    & th {
+      border-color: #000 !important;
+    }
+    & td {
+      border-color: #000 !important;
+    }
+  }
+  &.datatable-yellow {
+    & tr {
+      background-color: #0D0D0D;
+    }
+    &.hover {
+      background-color: #1A1A1A;
+    }
+  }
+  &.navbox {
+    border-color: #000 !important;
+
+    & th {
+      background-color: #0D0D0D;
+    }
+  }
+  &[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37, 37, 38); color: white;"] {
+    &:not(.wikitable) {
+      & table {
+        & tbody {
+          & tbody {
+            & tr {
+              &:first-child {
+                color: #101010;
+
+                & a {
+                  color: #101010;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.navbox-title, .navbox-abovebelow, .navbox-group, .navbox-subgroup .navbox-title, .navbox-even {
+  background-color: #0D0D0D;
+}
+.navbox, .navbox-subgroup {
+  background-color: #1A1A1A;
+}
+.rightbox {
+  background-color: var(--darkerWhite);
+}
+.ad {
+  display: none;
+}
+.body {
+  & > div {
+    & > .content {
+      overflow: hidden;
+    }
+  }
+}
+.dark {
+  & .content {
+    & div {
+      &.thumbinner {
+        background-color: var(--darkerWhite);
+        border-color: #000;
+      }
+    }
+  }
+  & .nav-page-actions {
+    & a {
+      & div {
+        &.thumbinner {
+          background-color: var(--darkerWhite);
+          border-color: #000;
+        }
+      }
+    }
+  }
+  & .nav-content {
+    & .thumbimage {
+      background-color: var(--darkerWhite);
+      border-color: #000;
+    }
+  }
+  & font {
+    &[color="black"] {
+      color: #fff !important;
+    }
+  }
+}
+.wikitable {
+  color: #FFF;
+}
+.copyItemBoxHeaderButton {
+  vertical-align: middle;
+  display: inline-block;
+
+  & button {
+    width: 32px;
+    height: 32px;
+    padding: 8px 10px 8px 10px;
+    margin-left: 1em;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    & i {
+      font-size: 16px;
+    }
+  }
+}
