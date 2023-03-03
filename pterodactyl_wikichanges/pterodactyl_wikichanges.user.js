@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Pterodactyl Wiki Changes
 // @namespace    NekoBoiNick.Web.Pterodactyl.Wiki.Changes
-// @version      1.0.1
+// @version      1.0.2
 // @description  Changes things on the Pterodactyl wiki
 // @author       Neko Boi Nick
 // @match        https://pterodactyl.io/*
@@ -15,7 +15,7 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/pterodactyl_wikichanges/pterodactyl_wikichanges.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
-// @resource     css https://raw.githubusercontent.com/thakyZ/Userscripts/master/pterodactyl_wikichanges/style.css
+// @resource     css https://raw.githubusercontent.com/thakyZ/Userscripts/master/pterodactyl_wikichanges/style.min.css
 // ==/UserScript==
 /* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);
