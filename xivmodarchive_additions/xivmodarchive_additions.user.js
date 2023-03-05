@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         XIV Mod Archive Additions
 // @namespace    NekoBoiNick.Web.XIVModArchive.Additions
-// @version      1.0.9
+// @version      1.1.0
 // @description  Adds custom things to XIV Mod Archive
 // @author       Neko Boi Nick
 // @match        https://xivmodarchive.com/*
@@ -27,11 +27,11 @@
 $(document).ready(() => {
   const createElements = (resource, replaceObj = {}) => {
     const templateHtml = GM_getResourceText(resource);
-    const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\n<template>\n/gi, "")
-      .replaceAll(/\n<\/template>$/gi, "");
-    let template = $(templateTruncated);
+    const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\r?\n<template>\r?\n {2}/gi, "")
+      .replaceAll(/\r?\n<\/template>$/gi, "");
+    const template = $(templateTruncated);
     for (const [key, value] of Object.entries(replaceObj)) {
-      template = template.replaceAll(key, value);
+      $(template).html($(template).html().replaceAll(key, value));
     }
 
     return template;
@@ -44,9 +44,9 @@ $(document).ready(() => {
     const pagination = $(".pagination");
 
     for (let i = 0; i < $(pagination).length; i++) {
-      const firstElement = createElements("pageNumberElements", { "#": "1" });
+      const firstElement = createElements("pageNumberElements", { "^": "1" });
       // <a class="bg-dark text-light page-link activated" style="border-color: #333333;" href="javascript: goToPage(81)">81</a>
-      const lastElement = createElements("pageNumberElements", { "#": number });
+      const lastElement = createElements("pageNumberElements", { "^": number });
       if (minimum) {
         $(firstElement).insertAfter($("li", pagination[i])[0]);
       }
