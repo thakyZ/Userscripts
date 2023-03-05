@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
 // @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
-// @version      1.1.1.1
+// @version      1.1.2
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.glamourdresser.com/*
@@ -35,61 +35,70 @@
 /* global $, jQuery, MonkeyConfig */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
-$.fn.setData = (name, data) => {
-  const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
-  if (prevData === undefined) {
-    $(this).data(name, {});
-  }
-
-  for (const [key, value] of Object.entries(data)) {
-    if (Object.prototype.hasOwnProperty.call(data, key) || !Object.prototype.hasOwnProperty.call(data, key)) {
-      prevData[key] = value;
+$.fn.setData = function (name, data) {
+  $(this).each((index, element) => {
+    const prevData = $(element).data(name) === undefined ? {} : $(this).data(name);
+    if (prevData === undefined) {
+      $(element).data(name, {});
     }
-  }
 
-  $(this).data(name, prevData);
+    for (const [key, value] of Object.entries(data)) {
+      if (Object.prototype.hasOwnProperty.call(data, key) || !Object.prototype.hasOwnProperty.call(data, key)) {
+        prevData[key] = value;
+      }
+    }
+
+    $(element).data(name, prevData);
+  });
   return $(this);
 };
 
-$.fn.addData = (name, data) => {
-  const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
-  if (prevData === undefined) {
-    $(this).data(name, {});
-  }
-
-  for (const [key, value] of Object.entries(data)) {
-    if (!Object.prototype.hasOwnProperty.call(data, key)) {
-      prevData[key] = value;
+$.fn.addData = function (name, data) {
+  $(this).each((index, element) => {
+    const prevData = $(element).data(name) === undefined ? {} : $(this).data(name);
+    if (prevData === undefined) {
+      $(element).data(name, {});
     }
-  }
 
-  $(this).data(name, prevData);
+    for (const [key, value] of Object.entries(data)) {
+      if (!Object.prototype.hasOwnProperty.call(prevData, key)) {
+        prevData[key] = value;
+      }
+    }
+
+    $(element).data(name, prevData);
+  });
   return $(this);
 };
 
-$.fn.removeData = (name, keys) => {
-  const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
+$.fn.removeData = function (name, keys) {
+  $(this).each((index, element) => {
+    const prevData = $(element).data(name) === undefined ? {} : $(element).data(name);
 
-  for (const key of keys) {
-    if (Object.prototype.hasOwnProperty.call(prevData, key)) {
-      prevData.delete(key);
+    for (const key of keys) {
+      if (Object.prototype.hasOwnProperty.call(prevData, key)) {
+        prevData.delete(key);
+      }
     }
-  }
 
-  $(this).data(name, prevData);
+    $(element).data(name, prevData);
+  });
   return $(this);
 };
 
-$.fn.modifyStyle = name => {
-  const data = $(this).data(name);
-  let stringBuilder = "";
-  for (const [key, value] in Object.entries(data)) {
-    if (Object.prototype.hasOwnProperty.call(data, key)) {
-      stringBuilder += `--${key}: ${value}; `;
+$.fn.modifyStyle = function (name) {
+  $(this).each((index, element) => {
+    const data = $(element).data(name);
+    let stringBuilder = "";
+    for (const [key, value] of Object.entries(data)) {
+      if (Object.prototype.hasOwnProperty.call(data, key)) {
+        stringBuilder += `--${key}: ${value}; `;
+      }
     }
-  }
 
-  $(this).text(`:root { ${stringBuilder}}`);
+    $(element).text(`:root { ${stringBuilder}}`);
+  });
+  return $(this);
 };
 
 $(document).ready(() => {
@@ -108,11 +117,11 @@ $(document).ready(() => {
 
   const createElements = (resource, replaceObj = {}) => {
     const templateHtml = GM_getResourceText(resource);
-    const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\n<template>\n/gi, "")
-      .replaceAll(/\n<\/template>$/gi, "");
-    let template = $(templateTruncated);
+    const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\r?\n<template>\r?\n {2}/gi, "")
+      .replaceAll(/\r?\n<\/template>$/gi, "");
+    const template = $(templateTruncated);
     for (const [key, value] of Object.entries(replaceObj)) {
-      template = template.replaceAll(key, value);
+      $(template).html($(template).html().replaceAll(key, value));
     }
 
     return template;
@@ -272,7 +281,7 @@ $(document).ready(() => {
     GM_addStyle(GM_getResourceText("admin"));
     GM_addStyle(GM_getResourceText("fix"));
     $("head").append("<style id=\"nbnDarkFixStyle\"></style>");
-    $("#nbnDarkFixStyle").setData("css", calcVariableCSS()).setData("css", { defaultDarkBG, variableTextLength: variableTextLength() }).modifyStyle("css");
+    $("#nbnDarkFixStyle").setData("css", calcVariableCSS()).addData("css", { defaultDarkBG, variableTextLength: variableTextLength() }).modifyStyle("css");
   };
 
   setupCSS();
