@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
 // @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
-// @version      1.1.0
+// @version      1.1.1
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.glamourdresser.com/*
@@ -111,7 +111,7 @@ $(document).ready(() => {
     const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\n<template>\n/gi, "")
       .replaceAll(/\n<\/template>$/gi, "");
     let template = $(templateTruncated);
-    for (const [key, value] of replaceObj) {
+    for (const [key, value] of Object.entires(replaceObj)) {
       template = template.replaceAll(key, value);
     }
 

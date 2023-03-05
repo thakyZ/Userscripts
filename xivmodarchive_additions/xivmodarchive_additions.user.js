@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         XIV Mod Archive Additions
 // @namespace    NekoBoiNick.Web.XIVModArchive.Additions
-// @version      1.0.8
+// @version      1.0.9
 // @description  Adds custom things to XIV Mod Archive
 // @author       Neko Boi Nick
 // @match        https://xivmodarchive.com/*
@@ -30,7 +30,7 @@ $(document).ready(() => {
     const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\n<template>\n/gi, "")
       .replaceAll(/\n<\/template>$/gi, "");
     let template = $(templateTruncated);
-    for (const [key, value] of replaceObj) {
+    for (const [key, value] of Object.entries(replaceObj)) {
       template = template.replaceAll(key, value);
     }
 
