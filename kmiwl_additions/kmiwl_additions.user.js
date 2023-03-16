@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Kmiwl Additions
 // @namespace    NekoBoiNick.Web.Kmiwl.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Additional features added to Kmiwl's Website
 // @author       Neko Boi Nick
 // @match        https://ffxiv.kmiwl.de/*
@@ -58,11 +58,11 @@ $(document).ready(() => {
         const _type = type => {
           switch (type) {
           case cssKeys.customCSS.Dark:
-            return cssKeys.customCSS.Dark[1];
+            return cssKeys.customCSS.Dark[1].toString();
           case cssKeys.customCSS.Black:
-            return cssKeys.customCSS.Black[1];
+            return cssKeys.customCSS.Black[1].toString();
           case cssKeys.customCSS.MaterialUI:
-            return cssKeys.customCSS.MaterialUI[1];
+            return cssKeys.customCSS.MaterialUI[1].toString();
           default:
             return "";
           }
