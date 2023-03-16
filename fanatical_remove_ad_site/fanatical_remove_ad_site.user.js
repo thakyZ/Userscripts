@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Fanatical Remove Malware Ad Site
 // @namespace    NekoBoiNick.Web.Fanatical.AntiMalware
-// @version      1.0.1
+// @version      1.0.2
 // @description  Removes known malware ad site from various sites
 // @author       Neko Boi Nick
 // @match        https://isthereanydeal.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=isthereanydeal.com
 // @license      MIT
 // @grant        none
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/fanatical_remove_ad_site/fanatical_remove_ad_site.user.js
@@ -13,17 +14,16 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
-/* global $ */
+/* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
   "use strict";
 
-  const links = $("a");
-  const regex = /^https?:\/\/(www\.)?jdoqocy\.com\/click(-[0-9]+-[0-9]+)\?URL=/g;
-  for (let i = 0; i < links.length; i++) {
-    if (regex.test($(links[i]).attr("href"))) {
-      $(links[i]).attr("href", decodeURIComponent($(links[i]).attr("href").replace(regex, "")));
+  const regex = /^https?:\/\/(www\.)?jdoqocy\.com\/click(-\d+-\d+)\?URL=/g;
+  for (const [, link] of Object.entries($("a"))) {
+    if (regex.test($(link).attr("href"))) {
+      $(link).attr("href", decodeURIComponent($(link).attr("href").replace(regex, "")));
     }
   }
 });
