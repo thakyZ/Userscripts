@@ -1,6 +1,7 @@
 import globals from "globals";
 import prettier from "eslint-config-prettier";
 import prettierPlugin from "eslint-plugin-prettier";
+import markdown from "eslint-plugin-markdown";
 
 const getMonkeyCodeNames = (type) => {
   const names = [
@@ -1076,4 +1077,14 @@ export default [
       "yield-star-spacing": ["error", "both"],
     },
   },
+  {
+    files: ["**/*.md"],
+    plugins: {
+        markdown
+    },
+    processor: "markdown/markdown",
+    settings: {
+        sharedData: "Hello"
+    }
+  }
 ];
