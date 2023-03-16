@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Pastebin Additions
 // @namespace    NekoBoiNick.Web.Pastebin.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds things to Pastebin
 // @author       Neko Boi Nick
 // @match        https://pastebin.com/*
@@ -21,8 +21,8 @@ $(document).ready(() => {
   "use strict";
 
   function checkForProgress(ele) {
-    if ($(ele).html().match(/[%]\[\d+\/\d+\]/gi).length > 0) {
-      $(ele).html($(ele).html().replaceAll(/[%]\[(\d+)\/(\d+)\]/gi, "<progress value=\"$1\" max=\"$2\"/>"));
+    if (/%\[\d+\/\d+\]/gi.test($(ele).html())) {
+      $(ele).html($(ele).html().replaceAll(/%\[(\d+)\/(\d+)\]/gi, '<progress value="$1" max="$2"/>'));
     }
   }
 
