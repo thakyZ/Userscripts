@@ -1,9 +1,9 @@
 /* ==UserStyle==
 @name           Bitwarden Vault Full Width
 @namespace      NekoBoiNick.Web.Bitwarden.FullWidth
+@version        1.0.1
+@description    Full width theme for vault.bitwarden.com (version 1.0.0).
 @author         Neko Boi Nick
-@description    `Full width theme for vault.bitwarden.com (version 1.0.0).`
-@version        1.0.0
 @license        MIT
 @preprocessor   uso
 @updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/Bitwarden_Vault_Full_Width.user.css
@@ -11,7 +11,6 @@
 @homepageURL    https://github.com/thakyZ/Userscripts
 ==/UserStyle== */
 @-moz-document domain("vault.bitwarden.com") {
-
   /* Page */
   .page-content,
   .footer {
@@ -44,19 +43,19 @@
     padding-bottom: 102px;
   }
 
-  body>app-root,
-  body>app-root>app-user-layout {
+  body > app-root,
+  body > app-root > app-user-layout {
     min-height: 100%;
     display: block;
   }
 
-  body>app-root>app-user-layout>app-vault {
+  body > app-root > app-user-layout > app-vault {
     height: auto;
     min-height: calc(100% - 76px);
     display: block;
   }
 
-  app-user-layout>app-vault {
+  app-user-layout > app-vault {
     padding-bottom: 40px;
   }
 
