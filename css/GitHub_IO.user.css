@@ -1,7 +1,7 @@
 /* ==UserStyle==
-@name           Github IO Unknown CHanges
+@name           Github IO Unknown Changes
 @namespace      NekoBoiNick.Web.GithubIO.Changes
-@version        1.0.0
+@version        1.0.1
 @description    Unknown github.io changes
 @author         Neko Boi Nick
 @license        MIT
@@ -11,14 +11,14 @@
 ==/UserStyle== */
 
 @-moz-document domain("github.io") {
-  #container>.toggle {
-    box-shadow: inset 0 2px 2px 0 #4187B2, inset 0 0 2px 0 hsla(203, 47%, 48%, .5), 0 0 2px 2px rgba(0, 0, 0, .5), 0 2px 2px 2px rgba(0, 0, 0, .5);
+  #container > .toggle {
+    box-shadow: inset 0 2px 2px 0 #4187b2, inset 0 0 2px 0 hsla(203, 47%, 48%, 0.5), 0 0 2px 2px rgba(0, 0, 0, 0.5), 0 2px 2px 2px rgba(0, 0, 0, 0.5);
     border-radius: 50%;
-    background-color: #4187B2;
+    background-color: #4187b2;
   }
 
   #container {
-    background-color: #4187B2;
+    background-color: #4187b2;
     box-shadow: 0 0 0 1px #000;
     border-radius: 0%;
   }
@@ -29,9 +29,9 @@
   }
 
   .placeholder {
-    box-shadow: inset 0 0 0 1px #000, inset 0 0 0 2px #4187B2, inset 0 0 0 2px #161616;
+    box-shadow: inset 0 0 0 1px #000, inset 0 0 0 2px #4187b2, inset 0 0 0 2px #161616;
     border-radius: 0%;
-    background: #4187B2;
+    background: #4187b2;
   }
 
   .placeholder .inner {
