@@ -12,10 +12,10 @@ function checkDirectoryPath(directory) {
 }
 
 function walk(dir, done) {
-  var results = [];
+  let results = [];
   fs.readdir(dir, function(err, list) {
     if (err) return done(err);
-    var pending = list.length;
+    let pending = list.length;
     if (!pending) return done(null, results);
     list.forEach(function(file) {
       file = path.resolve(dir, file);
@@ -48,14 +48,14 @@ function parseFiles(files) {
         const userScriptDetect = /\/\/ ==UserScript==\n(?:\/\/ @\w+ +?.+\n)+\/\/ ==\/UserScript==\n\/\* global .+ \*\/\nthis\.\$ = this\.jQuery = jQuery\.noConflict\(true\);/;
         if (userScriptDetect.test(fileData)) {
           const matched = fileData.match(userScriptDetect);
-          const count = matched[0].split(/\r?\n/);
+          const count1 = matched[0].split(/\r?\n/);
         }
       } else if (extension === ".css") {
         const userStyleDetect = /\/\* ==UserStyle==\n(?:@\w+ +?.+\n)+==\/UserStyle== \*\//;
         if (userStyleDetect.test(fileData)) {
           const matched = fileData.match(userStyleDetect);
           console.log(matched[0]);
-          const count = matched[0].split(/\r?\n/);
+          const count2 = matched[0].split(/\r?\n/);
         }
       }
     }
