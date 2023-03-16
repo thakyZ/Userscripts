@@ -1,15 +1,15 @@
 /* ==UserStyle==
 @name           Aether Link Test Changes
 @namespace      NekoBoiNick.Web.FFXIV.Aetherlink.Test
-@version        1.0.0
+@version        1.0.1
 @description    A collection of changes to Aether Link's CSS that I want to test
 @author         Neko Boi Nick
+@license        MIT
 @updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/Aether_Link_Changes.user.css
 @supportURL     https://github.com/thakyZ/Userscripts/issues
 @homepageURL    https://github.com/thakyZ/Userscripts
 ==/UserStyle== */
 @-moz-document domain("aetherlink.app") {
-
   .menu .grid .upper .options .account,
   .menu-collapsed .grid .upper .options .account {
     transition: all 0.7s ease;
