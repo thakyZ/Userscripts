@@ -122,8 +122,8 @@ $(document).ready(() => {
       hideComments: {
         type: "checkbox",
         default: false
-      }
-    }
+      },
+    },
   });
 
   const disqus = $("#disqus_thread");

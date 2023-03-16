@@ -18,16 +18,19 @@ div#hide-disqus_thread-button-icon.fold-icon.unhidden {
 div#hide-disqus_thread-button-icon.fold-icon.hidden {
   transform: rotate(180deg);
 }
-#disqus_thread[data-hide="false"] iframe[src*="https://disqus.com/embed/comments/"] {
+#disqus_thread[data-hide="false"] iframe[src*="https://disqus.com/embed/comments/"]
+{
   height: var(--hideButtonStyleVar) !important;
 }
-#disqus_thread[data-hide="true"] iframe[src*="https://disqus.com/embed/comments/"] {
+#disqus_thread[data-hide="true"] iframe[src*="https://disqus.com/embed/comments/"]
+{
   height: 0px !important;
 }
 #disqus_thread[data-hide] {
   height: var(--disqusHeight) !important;
 }
-#disqus_thread[data-hide] iframe[src*="https://disqus.com/embed/comments/"] {
+#disqus_thread[data-hide] iframe[src*="https://disqus.com/embed/comments/"]
+{
   transition: height 0.2s ease-out;
 }
 table.datatable-GEtable3 th {
@@ -80,21 +83,34 @@ table.prettytable td {
   border-color: #000 !important;
 }
 table.datatable-yellow tr {
-  background-color: #0D0D0D;
+  background-color: #0d0d0d;
 }
 table.datatable-yellow.hover {
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
 }
 table.navbox {
   border-color: #000 !important;
 }
 table.navbox th {
-  background-color: #0D0D0D;
+  background-color: #0d0d0d;
 }
-table[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37, 37, 38); color: white;"]:not(.wikitable) table tbody tbody tr:first-child {
+table[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37, 37, 38); color: white;"]:not(
+    .wikitable
+  )
+  table
+  tbody
+  tbody
+  tr:first-child {
   color: #101010;
 }
-table[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37, 37, 38); color: white;"]:not(.wikitable) table tbody tbody tr:first-child a {
+table[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37, 37, 38); color: white;"]:not(
+    .wikitable
+  )
+  table
+  tbody
+  tbody
+  tr:first-child
+  a {
   color: #101010;
 }
 .navbox-title,
@@ -102,11 +118,11 @@ table[style="background: none 0% 0% / auto repeat scroll padding-box border-box 
 .navbox-group,
 .navbox-subgroup .navbox-title,
 .navbox-even {
-  background-color: #0D0D0D;
+  background-color: #0d0d0d;
 }
 .navbox,
 .navbox-subgroup {
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
 }
 .rightbox {
   background-color: var(--darkerWhite);
@@ -133,7 +149,7 @@ table[style="background: none 0% 0% / auto repeat scroll padding-box border-box 
   color: #fff !important;
 }
 .wikitable {
-  color: #FFF;
+  color: #fff;
 }
 .copyItemBoxHeaderButton {
   vertical-align: middle;
