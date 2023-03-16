@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Console Games Wiki Dark Mode
 @namespace      NekoBoiNick.Web.ConsoleGamesWiki.DarkMode
-@version        1.0.0
+@version        1.0.1
 @description    Makes console games wiki dark moded
 @author         Neko Boi Nick
 @updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/Console_Games_Wiki_Dark_Mode.user.css
@@ -12,19 +12,12 @@
 @-moz-document domain("consolegameswiki.com") {
   html {
     background-color: #181a1b !important;
-  }
-
-  html {
     color-scheme: dark !important;
   }
 
   html,
   body {
     background-color: #181a1b;
-  }
-
-  html,
-  body {
     border-color: #736b5e;
     color: #e8e6e3;
   }
@@ -39,6 +32,7 @@
 
   ::placeholder {
     color: #b2aba1;
+    opacity: 0.5 !important;
   }
 
   input:-webkit-autofill,
@@ -149,15 +143,15 @@
     background-color: rgb(27, 30, 31);
   }
 
-  .smwtable-striped tbody>tr:nth-child(2n) {
+  .smwtable-striped tbody > tr:nth-child(2n) {
     background-color: rgb(30, 32, 33);
   }
 
-  .smwtable-striped tbody>tr:nth-child(2n+1) {
+  .smwtable-striped tbody > tr:nth-child(2n + 1) {
     background-color: rgb(24, 26, 27);
   }
 
-  .smwtable-striped tbody>tr:hover {
+  .smwtable-striped tbody > tr:hover {
     background-color: rgb(34, 36, 38);
   }
 
@@ -169,15 +163,15 @@
     border-top-color: rgb(58, 62, 65);
   }
 
-  .smwtable-clean tr>th {
+  .smwtable-clean tr > th {
     border-top-color: rgb(58, 62, 65);
   }
 
-  .smwtable-clean tr>td {
+  .smwtable-clean tr > td {
     border-top-color: rgb(58, 62, 65);
   }
 
-  .smwtable-clean tbody>tr:nth-child(2n) {
+  .smwtable-clean tbody > tr:nth-child(2n) {
     background-color: rgb(30, 32, 33);
   }
 
@@ -307,8 +301,7 @@
   }
 
   .smw-icon-pen {
-    background-image: linear-gradient(rgba(0, 0, 0, 0),
-        rgba(0, 0, 0, 0)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
       url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAiIGhlaWdodD0iMTUiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMjAiIGhlaWdodD0iMTUiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9JTIyaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmclMjIgd2lkdGg9JTIyMjAlMjIgaGVpZ2h0PSUyMjE1JTIyIHZpZXdCb3g9JTIyMCAwIDIwIDIwJTIyJTNFJTNDdGl0bGUlM0VoaWdobGlnaHQlM0MvdGl0bGUlM0UlM0NwYXRoIGQ9JTIyTTE4LjczIDUuODZsLTMuNTktMy41OWExIDEgMCAwIDAtMS40MSAwbC0xMCAxMGExIDEgMCAwIDAgMCAxLjQxTDQgMTRsLTMgNGg1bDEtMSAuMjkuMjlhMSAxIDAgMCAwIDEuNDEgMGwxMC0xMGExIDEgMCAwIDAgLjAzLTEuNDN6TTcgMTVsLTItMiA5LTkgMiAyeiUyMi8lM0UlM0Mvc3ZnJTNFIiAvPjwvc3ZnPg==");
   }
 
@@ -351,15 +344,9 @@
   }
 
   .autocomplete-arrow-light {
-    background-image: linear-gradient(45deg,
-        rgba(0, 0, 0, 0) 50%,
-        rgb(96, 104, 108) 50%),
-      linear-gradient(135deg,
-        rgb(96, 104, 108) 50%,
-        rgba(0, 0, 0, 0) 50%),
-      linear-gradient(to right,
-        rgb(24, 26, 27),
-        rgb(24, 26, 27));
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0) 50%, rgb(96, 104, 108) 50%),
+      linear-gradient(135deg, rgb(96, 104, 108) 50%, rgba(0, 0, 0, 0) 50%),
+      linear-gradient(to right, rgb(24, 26, 27), rgb(24, 26, 27));
   }
 
   .autocomplete-arrow {
@@ -507,16 +494,16 @@
     color: rgb(225, 134, 143);
   }
 
-  .smw-dropdown>a,
-  .smw-dropdown>button {
+  .smw-dropdown > a,
+  .smw-dropdown > button {
     background-color: rgb(24, 26, 27);
     border-color: rgb(62, 68, 70);
     color: rgb(232, 230, 227);
     text-decoration-color: initial;
   }
 
-  .smw-dropdown>a::before,
-  .smw-dropdown>button::before {
+  .smw-dropdown > a::before,
+  .smw-dropdown > button::before {
     border-left-color: transparent;
     border-right-color: transparent;
     border-top-color: rgb(140, 130, 115);
@@ -546,10 +533,6 @@
     border-color: transparent transparent rgba(130, 121, 107, 0.15);
   }
 
-  .smw-dropdown-menu::before {
-    border-color: transparent transparent rgba(130, 121, 107, 0.15);
-  }
-
   .smw-dropdown-menu::after {
     border-color: transparent transparent rgb(48, 52, 54);
   }
@@ -561,10 +544,6 @@
   .smw-table-cell,
   .smw-table-head {
     border-color: rgb(77, 83, 86);
-  }
-
-  .smw-table-header {
-    background-color: rgb(34, 36, 38);
   }
 
   .smw-table-footer {
@@ -593,12 +572,12 @@
     color: rgb(157, 148, 136);
   }
 
-  .smw-tabs input.nav-tab:checked+label.nav-label {
+  .smw-tabs input.nav-tab:checked + label.nav-label {
     color: rgb(206, 202, 195);
     border-color: rgb(40, 96, 145) rgb(58, 62, 65) rgb(48, 52, 54);
   }
 
-  .smw-tabs input.nav-tab:checked+label.nav-label.cached {
+  .smw-tabs input.nav-tab:checked + label.nav-label.cached {
     border-top-color: rgb(179, 116, 0);
   }
 
@@ -607,14 +586,14 @@
       border-top-color: initial;
     }
 
-    .smw-tabs input.nav-tab:checked+label.nav-label {
+    .smw-tabs input.nav-tab:checked + label.nav-label {
       background-color: rgba(27, 30, 31, 0.66);
       border-left-color: initial !important;
       border-right-color: initial !important;
     }
   }
 
-  .smw-tabset>label {
+  .smw-tabset > label {
     border-top-color: transparent;
     border-right-color: transparent;
     border-left-color: transparent;
@@ -622,53 +601,53 @@
     color: rgb(160, 152, 139);
   }
 
-  .smw-tabset>label::after {
+  .smw-tabset > label::after {
     background-image: initial;
     background-color: rgb(88, 96, 99);
   }
 
-  .smw-tabset>input:focus+label,
-  .smw-tabset>input:checked+label {
+  .smw-tabset > input:focus + label,
+  .smw-tabset > input:checked + label {
     color: rgb(82, 177, 255);
   }
 
-  .smw-tabset>input:focus+label::after,
-  .smw-tabset>input:checked+label::after {
+  .smw-tabset > input:focus + label::after,
+  .smw-tabset > input:checked + label::after {
     background-image: initial;
     background-color: rgb(0, 82, 163);
   }
 
-  .smw-tabset>input:focus+label.smw-indicator-severity-error::after,
-  .smw-tabset>input:checked+label.smw-indicator-severity-error::after {
+  .smw-tabset > input:focus + label.smw-indicator-severity-error::after,
+  .smw-tabset > input:checked + label.smw-indicator-severity-error::after {
     background-image: initial;
     background-color: rgb(166, 28, 28);
   }
 
-  .smw-tabset>input:focus+label.smw-indicator-severity-warning::after,
-  .smw-tabset>input:checked+label.smw-indicator-severity-warning::after {
+  .smw-tabset > input:focus + label.smw-indicator-severity-warning::after,
+  .smw-tabset > input:checked + label.smw-indicator-severity-warning::after {
     background-image: initial;
     background-color: rgb(204, 132, 0);
   }
 
-  .smw-tabset>label:hover {
+  .smw-tabset > label:hover {
     color: rgb(189, 183, 175);
   }
 
-  .smw-tabset>label:hover::after {
+  .smw-tabset > label:hover::after {
     background-image: initial;
     background-color: rgb(51, 55, 58);
   }
 
-  .smw-tabset>input:checked+label {
+  .smw-tabset > input:checked + label {
     border-color: rgb(0, 97, 194) rgb(62, 68, 70) rgb(48, 52, 54);
   }
 
-  .smw-tabset>input:checked+label.smw-indicator-severity-error {
+  .smw-tabset > input:checked + label.smw-indicator-severity-error {
     border-top-color: rgb(149, 25, 25);
     color: rgb(224, 68, 68);
   }
 
-  .smw-tabset>input:checked+label.smw-indicator-severity-warning {
+  .smw-tabset > input:checked + label.smw-indicator-severity-warning {
     border-top-color: rgb(179, 116, 0);
     color: rgb(255, 174, 26);
   }
@@ -677,7 +656,7 @@
     border-top-color: rgb(62, 68, 70);
   }
 
-  .smw-issue-panel>label::after {
+  .smw-issue-panel > label::after {
     background-image: initial;
     background-color: rgb(88, 96, 99);
   }
@@ -701,7 +680,7 @@
     border-color: initial;
   }
 
-  .smwfact .smw-table-row:nth-child(2n+1) {
+  .smwfact .smw-table-row:nth-child(2n + 1) {
     background-color: rgb(27, 30, 31);
   }
 
@@ -738,13 +717,15 @@
     border-color: rgb(72, 78, 81);
   }
 
-  .smw-factbox input.nav-tab:checked+label.nav-label {
+  .smw-factbox input.nav-tab:checked + label.nav-label {
     border-color: rgb(179, 116, 0) rgb(72, 78, 81) rgb(48, 52, 54);
     background-image: initial;
     background-color: rgb(24, 26, 27);
   }
 
-  .smw-factbox input.nav-tab:checked+label#tab-label-facts-attachment.nav-label {
+  .smw-factbox
+    input.nav-tab:checked
+    + label#tab-label-facts-attachment.nav-label {
     border-color: rgb(3, 108, 157) rgb(72, 78, 81) rgb(48, 52, 54);
   }
 
@@ -760,7 +741,10 @@
     border-bottom-color: rgb(8, 75, 122);
   }
 
-  .smw-factbox-view.skin-vector #bodyContent #mw-data-after-content .smw-factbox {
+  .smw-factbox-view.skin-vector
+    #bodyContent
+    #mw-data-after-content
+    .smw-factbox {
     background-image: unset;
     background-color: unset;
     border-left-color: rgb(8, 75, 122);
@@ -784,11 +768,6 @@
 
   .smw-icon-indicator-replication-error {
     background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cstyle type='text/css'%3E* %7B fill:%23e67e22 %7D%3C/style%3E%3Cpath d='M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm1 16H9v-2h2zm0-4H9V4h2z'/%3E%3C/svg%3E%0A");
-    background-color: initial;
-  }
-
-  .smw-icon-indicator-replication-error {
-    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg stroke='%23d33' stroke-width='2.23'%3E%3Ccircle fill='%23ffffff' cx='10' cy='10' r='8.5652'/%3E%3Cpath d='M10,4.188V12.657M10,13.438V15.813'/%3E%3C/g%3E%3C/svg%3E");
     background-color: initial;
   }
 
@@ -885,17 +864,17 @@
     background-color: rgb(38, 42, 43);
   }
 
-  input:checked+.smw-indicator-accordion-tab-label {
+  input:checked + .smw-indicator-accordion-tab-label {
     background-image: initial;
     background-color: rgb(38, 42, 43);
     color: rgb(232, 230, 227);
   }
 
-  .plain input:checked+.smw-indicator-accordion-tab-label {
+  .plain input:checked + .smw-indicator-accordion-tab-label {
     border-bottom-color: initial;
   }
 
-  input:checked+.smw-indicator-accordion-tab-label::after {
+  input:checked + .smw-indicator-accordion-tab-label::after {
     color: rgb(232, 230, 227);
   }
 
@@ -947,7 +926,7 @@
     border-right-color: rgb(53, 58, 60);
   }
 
-  .smw-jsonview-menu+pre {
+  .smw-jsonview-menu + pre {
     background-color: rgb(24, 26, 27);
   }
 
@@ -1011,7 +990,11 @@
     background-color: initial;
   }
 
-  .client-js .sortable:not(.jquery-tablesorter)>*>tr:first-child>th:not(.unsortable),
+  .client-js
+    .sortable:not(.jquery-tablesorter)
+    > *
+    > tr:first-child
+    > th:not(.unsortable),
   .jquery-tablesorter th.headerSort {
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjEiIGhlaWdodD0iOSI+PGRlZnM+PGZpbHRlciBpZD0iZGFya3JlYWRlci1pbWFnZS1maWx0ZXIiPjxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIwLjI0OSAtMC42MTQgLTAuNjcyIDAuMDAwIDEuMDM1IC0wLjY0NiAwLjI4OCAtMC42NjQgMC4wMDAgMS4wMjAgLTAuNjM2IC0wLjYwOSAwLjI1MCAwLjAwMCAwLjk5NCAwLjAwMCAwLjAwMCAwLjAwMCAxLjAwMCAwLjAwMCIgLz48L2ZpbHRlcj48L2RlZnM+PGltYWdlIHdpZHRoPSIyMSIgaGVpZ2h0PSI5IiBmaWx0ZXI9InVybCgjZGFya3JlYWRlci1pbWFnZS1maWx0ZXIpIiB4bGluazpocmVmPSJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBEOTRiV3dnZG1WeWMybHZiajBpTVM0d0lpQmxibU52WkdsdVp6MGlWVlJHTFRnaVB6NEtQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhkcFpIUm9QU0l5TVNJZ2FHVnBaMmgwUFNJNUlpQjJhV1YzUW05NFBTSXdJREFnTWpFZ09TSStDZ2s4Y0dGMGFDQmtQU0pOTVRRdU5TQTFiQzAwSURRdE5DMDBlbTB3TFRGc0xUUXROQzAwSURSNklpOCtDand2YzNablBnbz0iIC8+PC9zdmc+");
   }
@@ -1038,7 +1021,9 @@
 
   ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,
   ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
-  ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
+  ul.mw-gallery-packed-hover
+    li.gallerybox.mw-gallery-focused
+    div.gallerytextwrapper {
     background-image: initial;
     background-color: rgba(24, 26, 27, 0.8);
   }
@@ -1059,10 +1044,6 @@
       border-color: rgb(62, 67, 70);
       background-color: rgb(27, 30, 31);
     }
-  }
-
-  abbr[title] {
-    border-bottom-color: initial;
   }
 
   abbr[title] {
@@ -1135,8 +1116,10 @@
 
     #mw-page-base {
       background-color: rgb(26, 28, 30);
-      background-image: linear-gradient(rgb(24, 26, 27) 50%,
-          rgb(29, 32, 33) 100%);
+      background-image: linear-gradient(
+        rgb(24, 26, 27) 50%,
+        rgb(29, 32, 33) 100%
+      );
     }
 
     ul {
@@ -1214,10 +1197,12 @@
     }
 
     .vector-menu-tabs li {
-      background-image: linear-gradient(to top,
-          rgb(9, 79, 129) 0px,
-          rgb(32, 35, 37) 1px,
-          rgb(24, 26, 27) 100%);
+      background-image: linear-gradient(
+        to top,
+        rgb(9, 79, 129) 0px,
+        rgb(32, 35, 37) 1px,
+        rgb(24, 26, 27) 100%
+      );
     }
 
     .vector-menu-tabs li a {
@@ -1241,41 +1226,35 @@
     }
 
     .vector-menu-tabs #ca-unwatch.icon a::before {
-      background-image: linear-gradient(rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0)),
+      background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
         url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/unwatch-icon.svg?c5368");
     }
 
     .vector-menu-tabs #ca-unwatch.mw-watchlink-temp.icon a::before {
-      background-image: linear-gradient(rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0)),
+      background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
         url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/unwatch-temp-icon.svg?195f5");
     }
 
     .vector-menu-tabs #ca-watch.icon a::before {
-      background-image: linear-gradient(rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0)),
+      background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
         url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/watch-icon.svg?6ab6f");
     }
 
     .vector-menu-tabs #ca-unwatch.icon a:hover::before,
     .vector-menu-tabs #ca-unwatch.icon a:focus::before {
-      background-image: linear-gradient(rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0)),
+      background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
         url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/unwatch-icon-hl.svg?5e652");
     }
 
     .vector-menu-tabs #ca-unwatch.mw-watchlink-temp.icon a:hover::before,
     .vector-menu-tabs #ca-unwatch.mw-watchlink-temp.icon a:focus::before {
-      background-image: linear-gradient(rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0)),
+      background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
         url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/unwatch-temp-icon-hl.svg?f3db6");
     }
 
     .vector-menu-tabs #ca-watch.icon a:hover::before,
     .vector-menu-tabs #ca-watch.icon a:focus::before {
-      background-image: linear-gradient(rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0)),
+      background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
         url("https://ffxiv.consolegameswiki.com/mediawiki/skins/Vector/resources/skins.vector.styles/images/watch-icon-hl.svg?9bf90");
     }
 
@@ -1321,20 +1300,24 @@
     .vector-menu-tabs,
     .vector-menu-tabs a,
     #mw-head .vector-menu-dropdown h3 {
-      background-image: linear-gradient(rgba(51, 55, 57, 0) 0px,
-          rgb(51, 55, 57) 100%);
+      background-image: linear-gradient(
+        rgba(51, 55, 57, 0) 0px,
+        rgb(51, 55, 57) 100%
+      );
     }
 
-    .vector-menu-checkbox:focus+h3 {
+    .vector-menu-checkbox:focus + h3 {
       outline-color: rgb(186, 123, 0);
     }
 
     .vector-menu-portal h3 {
-      background-image: linear-gradient(to right,
-          rgba(53, 57, 59, 0) 0px,
-          rgb(53, 57, 59) 33%,
-          rgb(53, 57, 59) 66%,
-          rgba(53, 57, 59, 0) 100%);
+      background-image: linear-gradient(
+        to right,
+        rgba(53, 57, 59, 0) 0px,
+        rgb(53, 57, 59) 33%,
+        rgb(53, 57, 59) 66%,
+        rgba(53, 57, 59, 0) 100%
+      );
       color: rgb(176, 169, 159);
       border-color: initial;
     }
@@ -1388,8 +1371,7 @@
     }
 
     .magnify a {
-      background-image: linear-gradient(rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0)),
+      background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
         url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/magnify-clip-ltr.svg?8330e");
     }
 
@@ -1398,14 +1380,12 @@
     }
 
     .mw-content-ltr .magnify a {
-      background-image: linear-gradient(rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0)),
+      background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
         url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/magnify-clip-ltr.svg?8330e");
     }
 
     .mw-content-rtl .magnify a {
-      background-image: linear-gradient(rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0)),
+      background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
         url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/magnify-clip-rtl.svg?38fd5");
     }
 
@@ -1573,11 +1553,6 @@
     abbr[title],
     .explain[title] {
       border-bottom-color: initial;
-    }
-
-    abbr[title],
-    .explain[title] {
-      border-bottom-color: initial;
       text-decoration-color: initial;
     }
 
@@ -1585,46 +1560,6 @@
     span.history-deleted {
       text-decoration-color: initial;
       color: rgb(157, 148, 135);
-    }
-
-    div.thumb {
-      background-color: transparent;
-    }
-
-    div.thumbinner {
-      border-color: rgb(62, 67, 70);
-      background-color: rgb(27, 30, 31);
-    }
-
-    .thumbimage {
-      background-color: rgb(24, 26, 27);
-      border-color: rgb(62, 67, 70);
-    }
-
-    .thumbcaption {
-      border-color: initial;
-    }
-
-    .magnify a {
-      background-image: linear-gradient(rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0)),
-        url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/magnify-clip-ltr.svg?8330e");
-    }
-
-    .thumbborder {
-      border-color: rgb(53, 58, 60);
-    }
-
-    .mw-content-ltr .magnify a {
-      background-image: linear-gradient(rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0)),
-        url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/magnify-clip-ltr.svg?8330e");
-    }
-
-    .mw-content-rtl .magnify a {
-      background-image: linear-gradient(rgba(0, 0, 0, 0),
-          rgba(0, 0, 0, 0)),
-        url("https://ffxiv.consolegameswiki.com/mediawiki/resources/src/mediawiki.skinning/images/magnify-clip-rtl.svg?38fd5");
     }
 
     .catlinks ul {
@@ -1655,15 +1590,15 @@
       border-color: rgb(72, 78, 81);
     }
 
-    .wikitable>tr>th,
-    .wikitable>tr>td,
-    .wikitable>*>tr>th,
-    .wikitable>*>tr>td {
+    .wikitable > tr > th,
+    .wikitable > tr > td,
+    .wikitable > * > tr > th,
+    .wikitable > * > tr > td {
       border-color: rgb(72, 78, 81);
     }
 
-    .wikitable>tr>th,
-    .wikitable>*>tr>th {
+    .wikitable > tr > th,
+    .wikitable > * > tr > th {
       background-color: rgb(34, 37, 38);
     }
 
@@ -1743,7 +1678,7 @@
       text-decoration-color: initial;
     }
 
-    .toctogglecheckbox:focus+.toctitle .toctogglelabel {
+    .toctogglecheckbox:focus + .toctitle .toctogglelabel {
       text-decoration-color: initial;
       outline-color: rgb(186, 123, 0);
     }
@@ -1774,7 +1709,9 @@
     border-color: rgb(58, 62, 65) rgb(46, 82, 154) rgb(46, 82, 154);
   }
 
-  #mw-prefsection-smw-srf .oo-ui-fieldsetLayout-header .oo-ui-labelElement-label {
+  #mw-prefsection-smw-srf
+    .oo-ui-fieldsetLayout-header
+    .oo-ui-labelElement-label {
     color: rgb(131, 174, 218);
   }
 
@@ -1867,7 +1804,8 @@
     border-bottom-color: rgb(48, 52, 54);
   }
 
-  .tippy-tooltip.light-border-theme[x-placement^="bottom"] .tippy-arrow::before {
+  .tippy-tooltip.light-border-theme[x-placement^="bottom"]
+    .tippy-arrow::before {
     border-bottom-color: rgba(137, 128, 113, 0.2);
   }
 
@@ -1974,14 +1912,22 @@
     border-bottom-color: rgb(50, 54, 57);
   }
 
-  .tippy-tooltip.light-border-theme.square-border-transparent-arrow[x-placement^="bottom"] .tippy-arrow,
-  .tippy-tooltip.light-border-theme.square-border-light[x-placement^="bottom"] .tippy-arrow,
-  .tippy-tooltip.light-theme.square-border-transparent-arrow[x-placement^="bottom"] .tippy-arrow,
-  .tippy-tooltip.light-theme.square-border-light[x-placement^="bottom"] .tippy-arrow,
-  .tippy-tooltip.light-border-theme.square-border-transparent-arrow[x-placement^="bottom"] .tippy-arrow::after,
-  .tippy-tooltip.light-border-theme.square-border-light[x-placement^="bottom"] .tippy-arrow::after,
-  .tippy-tooltip.light-theme.square-border-transparent-arrow[x-placement^="bottom"] .tippy-arrow::after,
-  .tippy-tooltip.light-theme.square-border-light[x-placement^="bottom"] .tippy-arrow::after {
+  .tippy-tooltip.light-border-theme.square-border-transparent-arrow[x-placement^="bottom"]
+    .tippy-arrow,
+  .tippy-tooltip.light-border-theme.square-border-light[x-placement^="bottom"]
+    .tippy-arrow,
+  .tippy-tooltip.light-theme.square-border-transparent-arrow[x-placement^="bottom"]
+    .tippy-arrow,
+  .tippy-tooltip.light-theme.square-border-light[x-placement^="bottom"]
+    .tippy-arrow,
+  .tippy-tooltip.light-border-theme.square-border-transparent-arrow[x-placement^="bottom"]
+    .tippy-arrow::after,
+  .tippy-tooltip.light-border-theme.square-border-light[x-placement^="bottom"]
+    .tippy-arrow::after,
+  .tippy-tooltip.light-theme.square-border-transparent-arrow[x-placement^="bottom"]
+    .tippy-arrow::after,
+  .tippy-tooltip.light-theme.square-border-light[x-placement^="bottom"]
+    .tippy-arrow::after {
     border-bottom-color: rgb(48, 52, 54);
   }
 
@@ -2028,7 +1974,7 @@
     border-color: initial;
   }
 
-  ol.references>li:target,
+  ol.references > li:target,
   sup.reference:target,
   cite:target {
     background-image: initial;
@@ -2063,13 +2009,14 @@
 
   #mainpagenavigation td {
     background-color: rgb(24, 26, 27);
-    background-image: -webkit-gradient(linear,
-        0% 0%,
-        0% 100%,
-        from(rgb(187, 187, 187)),
-        color-stop(0.02,
-          rgb(255, 255, 255)),
-        to(rgb(238, 238, 238)));
+    background-image: -webkit-gradient(
+      linear,
+      0% 0%,
+      0% 100%,
+      from(rgb(187, 187, 187)),
+      color-stop(0.02, rgb(255, 255, 255)),
+      to(rgb(238, 238, 238))
+    );
   }
 
   #mainpagenavigation td.separator {
@@ -2084,50 +2031,50 @@
     border-color: rgb(72, 78, 81);
   }
 
-  .table>*>tr> :first-child {
+  .table > * > tr > :first-child {
     border-left-color: rgb(72, 78, 81);
   }
 
-  .table>*>tr> :last-child {
+  .table > * > tr > :last-child {
     border-right-color: rgb(72, 78, 81);
   }
 
-  .table>tbody>tr:last-child,
-  .table>tbody>tr:last-child>*,
-  .table>tfoot>tr:last-child>*,
-  .table>caption {
+  .table > tbody > tr:last-child,
+  .table > tbody > tr:last-child > *,
+  .table > tfoot > tr:last-child > *,
+  .table > caption {
     border-bottom-color: rgb(72, 78, 81);
   }
 
-  .table>tbody:first-child>tr:first-child>*,
-  .table>tbody>tr.heading>*,
-  .table>thead>tr:first-child>* {
+  .table > tbody:first-child > tr:first-child > *,
+  .table > tbody > tr.heading > *,
+  .table > thead > tr:first-child > * {
     background-image: url("https://ffxiv.consolegameswiki.com/mediawiki/images/b/b3/Box_overlay.png");
     background-color: rgb(34, 36, 38);
     border-color: rgb(72, 78, 81);
   }
 
-  .table> :first-child>tr:first-child,
-  .table>tbody>tr.heading {
+  .table > :first-child > tr:first-child,
+  .table > tbody > tr.heading {
     background-color: rgb(34, 36, 38);
     border-color: rgb(72, 78, 81) !important;
   }
 
-  .table>tbody>tr>th,
-  .table>tfoot>tr>th {
+  .table > tbody > tr > th,
+  .table > tfoot > tr > th {
     background-color: rgb(38, 41, 42);
     border-color: rgb(72, 78, 81);
   }
 
-  .table>tbody>tr:nth-child(2n+1) {
+  .table > tbody > tr:nth-child(2n + 1) {
     background-color: rgb(31, 33, 35);
     border-color: rgb(72, 78, 81);
   }
 
-  .table>tbody,
-  .table>tbody>tr.heading,
-  .table>tbody>tr>[rowspan],
-  .table>tbody>tr>[colspan] {
+  .table > tbody,
+  .table > tbody > tr.heading,
+  .table > tbody > tr > [rowspan],
+  .table > tbody > tr > [colspan] {
     border-color: rgb(72, 78, 81);
   }
 
@@ -2147,401 +2094,401 @@
     background-color: transparent;
   }
 
-  .table.dps-role> :first-child>tr:first-child,
-  .table.dps-role>tbody>tr.heading,
-  .table.dps-role> :first-child>tr:first-child>*,
-  .table.dps-role>tbody>tr.heading>* {
+  .table.dps-role > :first-child > tr:first-child,
+  .table.dps-role > tbody > tr.heading,
+  .table.dps-role > :first-child > tr:first-child > *,
+  .table.dps-role > tbody > tr.heading > * {
     background-color: rgb(129, 56, 56) !important;
     border-color: rgb(128, 60, 60) !important;
   }
 
-  .table.dps-role>tbody>tr>th,
-  .table.dps-role>tfoot>tr>th,
-  .table.dps-role>thead>tr>th,
-  table.table>tbody>tr.dps-role>th {
+  .table.dps-role > tbody > tr > th,
+  .table.dps-role > tfoot > tr > th,
+  .table.dps-role > thead > tr > th,
+  table.table > tbody > tr.dps-role > th {
     background-color: rgb(44, 85, 65);
     border-color: rgb(77, 84, 87);
   }
 
-  .table.dps-role>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.dps-role:nth-child(2n+1) {
+  .table.dps-role > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.dps-role:nth-child(2n + 1) {
     background-color: rgb(50, 31, 25);
   }
 
-  .table.healer-role> :first-child>tr:first-child,
-  .table.healer-role>tbody>tr.heading,
-  .table.healer-role> :first-child>tr:first-child>*,
-  .table.healer-role>tbody>tr.heading>* {
+  .table.healer-role > :first-child > tr:first-child,
+  .table.healer-role > tbody > tr.heading,
+  .table.healer-role > :first-child > tr:first-child > *,
+  .table.healer-role > tbody > tr.heading > * {
     background-color: rgb(48, 83, 33) !important;
     border-color: rgb(123, 114, 101) !important;
   }
 
-  .table.healer-role>tbody>tr>th,
-  .table.healer-role>tfoot>tr>th,
-  .table.healer-role>thead>tr>th,
-  table.table>tbody>tr.healer-role>th {
+  .table.healer-role > tbody > tr > th,
+  .table.healer-role > tfoot > tr > th,
+  .table.healer-role > thead > tr > th,
+  table.table > tbody > tr.healer-role > th {
     background-color: rgb(44, 85, 65);
     border-color: rgb(77, 84, 87);
   }
 
-  .table.healer-role>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.healer-role:nth-child(2n+1) {
+  .table.healer-role > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.healer-role:nth-child(2n + 1) {
     background-color: rgb(37, 53, 22);
   }
 
-  .table.tanker-role> :first-child>tr:first-child,
-  .table.tanker-role>tbody>tr.heading,
-  .table.tanker-role> :first-child>tr:first-child>*,
-  .table.tanker-role>tbody>tr.heading>* {
+  .table.tanker-role > :first-child > tr:first-child,
+  .table.tanker-role > tbody > tr.heading,
+  .table.tanker-role > :first-child > tr:first-child > *,
+  .table.tanker-role > tbody > tr.heading > * {
     background-color: rgb(51, 92, 139) !important;
     border-color: rgb(58, 90, 128) !important;
   }
 
-  .table.tanker-role>tbody>tr>th,
-  .table.tanker-role>tfoot>tr>th,
-  .table.tanker-role>thead>tr>th,
-  table.table>tbody>tr.tanker-role>th {
+  .table.tanker-role > tbody > tr > th,
+  .table.tanker-role > tfoot > tr > th,
+  .table.tanker-role > thead > tr > th,
+  table.table > tbody > tr.tanker-role > th {
     background-color: rgb(44, 85, 65);
     border-color: rgb(77, 84, 87);
   }
 
-  .table.tanker-role>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.tanker-role:nth-child(2n+1) {
+  .table.tanker-role > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.tanker-role:nth-child(2n + 1) {
     background-color: rgb(39, 42, 44);
   }
 
-  .table.crafting-role> :first-child>tr:first-child,
-  .table.crafting-role>tbody>tr.heading,
-  .table.crafting-role> :first-child>tr:first-child>*,
-  .table.crafting-role>tbody>tr.heading>* {
+  .table.crafting-role > :first-child > tr:first-child,
+  .table.crafting-role > tbody > tr.heading,
+  .table.crafting-role > :first-child > tr:first-child > *,
+  .table.crafting-role > tbody > tr.heading > * {
     background-color: rgb(64, 70, 104) !important;
     border-color: rgb(81, 88, 91) !important;
   }
 
-  .table.crafting-role>tbody>tr>th,
-  .table.crafting-role>tfoot>tr>th,
-  .table.crafting-role>thead>tr>th,
-  table.table>tbody>tr.crafting-role>th {
+  .table.crafting-role > tbody > tr > th,
+  .table.crafting-role > tfoot > tr > th,
+  .table.crafting-role > thead > tr > th,
+  table.table > tbody > tr.crafting-role > th {
     background-color: rgb(44, 85, 65);
     border-color: rgb(77, 84, 87);
   }
 
-  .table.crafting-role>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.crafting-role:nth-child(2n+1) {
+  .table.crafting-role > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.crafting-role:nth-child(2n + 1) {
     background-color: rgb(38, 42, 43);
   }
 
-  .table.gathering-role> :first-child>tr:first-child,
-  .table.gathering-role>tbody>tr.heading,
-  .table.gathering-role> :first-child>tr:first-child>*,
-  .table.gathering-role>tbody>tr.heading>* {
+  .table.gathering-role > :first-child > tr:first-child,
+  .table.gathering-role > tbody > tr.heading,
+  .table.gathering-role > :first-child > tr:first-child > *,
+  .table.gathering-role > tbody > tr.heading > * {
     background-color: rgb(96, 135, 28) !important;
     border-color: rgb(123, 175, 34) !important;
   }
 
-  .table.gathering-role>tbody>tr>th,
-  .table.gathering-role>tfoot>tr>th,
-  .table.gathering-role>thead>tr>th,
-  table.table>tbody>tr.gathering-role>th {
+  .table.gathering-role > tbody > tr > th,
+  .table.gathering-role > tfoot > tr > th,
+  .table.gathering-role > thead > tr > th,
+  table.table > tbody > tr.gathering-role > th {
     background-color: rgb(63, 81, 15);
     border-color: rgb(77, 84, 87);
   }
 
-  .table.gathering-role>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.gathering-role:nth-child(2n+1) {
+  .table.gathering-role > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.gathering-role:nth-child(2n + 1) {
     background-color: rgb(40, 52, 10);
   }
 
-  .table.pet-role> :first-child>tr:first-child,
-  .table.pet-role>tbody>tr.heading,
-  .table.pet-role> :first-child>tr:first-child>*,
-  .table.pet-role>tbody>tr.heading>* {
+  .table.pet-role > :first-child > tr:first-child,
+  .table.pet-role > tbody > tr.heading,
+  .table.pet-role > :first-child > tr:first-child > *,
+  .table.pet-role > tbody > tr.heading > * {
     background-color: rgb(59, 131, 123) !important;
     border-color: rgb(58, 129, 118) !important;
   }
 
-  .table.pet-role>tbody>tr>th,
-  .table.pet-role>tfoot>tr>th,
-  .table.pet-role>thead>tr>th,
-  table.table>tbody>tr.pet-role>th {
+  .table.pet-role > tbody > tr > th,
+  .table.pet-role > tfoot > tr > th,
+  .table.pet-role > thead > tr > th,
+  table.table > tbody > tr.pet-role > th {
     background-color: rgb(44, 85, 65);
     border-color: rgb(77, 84, 87);
   }
 
-  .table.pet-role>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.pet-role:nth-child(2n+1) {
+  .table.pet-role > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.pet-role:nth-child(2n + 1) {
     background-color: rgb(20, 46, 44);
   }
 
-  .table.npc> :first-child>tr:first-child,
-  .table.npc>tbody>tr.heading,
-  .table.npc> :first-child>tr:first-child>*,
-  .table.npc>tbody>tr.heading>* {
+  .table.npc > :first-child > tr:first-child,
+  .table.npc > tbody > tr.heading,
+  .table.npc > :first-child > tr:first-child > *,
+  .table.npc > tbody > tr.heading > * {
     background-color: rgb(102, 163, 41) !important;
     border-color: rgb(78, 155, 39) !important;
   }
 
-  .table.npc>tbody>tr>th,
-  .table.npc>tfoot>tr>th,
-  .table.npc>thead>tr>th,
-  table.table>tbody>tr.npc>th {
+  .table.npc > tbody > tr > th,
+  .table.npc > tfoot > tr > th,
+  .table.npc > thead > tr > th,
+  table.table > tbody > tr.npc > th {
     background-color: rgb(64, 102, 25);
     border-color: rgb(74, 106, 57);
   }
 
-  .table.npc>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.npc:nth-child(2n+1) {
+  .table.npc > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.npc:nth-child(2n + 1) {
     background-color: rgb(36, 59, 14);
   }
 
-  .table.pve> :first-child>tr:first-child,
-  .table.pve>tbody>tr.heading,
-  .table.pve> :first-child>tr:first-child>*,
-  .table.pve>tbody>tr.heading>* {
+  .table.pve > :first-child > tr:first-child,
+  .table.pve > tbody > tr.heading,
+  .table.pve > :first-child > tr:first-child > *,
+  .table.pve > tbody > tr.heading > * {
     background-color: rgb(107, 71, 0) !important;
     border-color: rgb(131, 100, 39) !important;
   }
 
-  .table.pve>tbody>tr>th,
-  .table.pve>tfoot>tr>th,
-  .table.pve>thead>tr>th,
-  table.table>tbody>tr.pve>th {
+  .table.pve > tbody > tr > th,
+  .table.pve > tfoot > tr > th,
+  .table.pve > thead > tr > th,
+  table.table > tbody > tr.pve > th {
     background-color: rgb(72, 49, 0);
     border-color: rgb(104, 85, 47);
   }
 
-  .table.pve>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.pve:nth-child(2n+1) {
+  .table.pve > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.pve:nth-child(2n + 1) {
     background-color: rgb(49, 34, 0);
   }
 
-  .table.equip> :first-child>tr:first-child,
-  .table.equip>tbody>tr.heading,
-  .table.equip> :first-child>tr:first-child>*,
-  .table.equip>tbody>tr.heading>*,
-  .table.item> :first-child>tr:first-child,
-  .table.item>tbody>tr.heading,
-  .table.item> :first-child>tr:first-child>*,
-  .table.item>tbody>tr.heading>* {
+  .table.equip > :first-child > tr:first-child,
+  .table.equip > tbody > tr.heading,
+  .table.equip > :first-child > tr:first-child > *,
+  .table.equip > tbody > tr.heading > *,
+  .table.item > :first-child > tr:first-child,
+  .table.item > tbody > tr.heading,
+  .table.item > :first-child > tr:first-child > *,
+  .table.item > tbody > tr.heading > * {
     background-color: rgb(143, 48, 0) !important;
     border-color: rgb(131, 69, 39) !important;
   }
 
-  .table.equip>tbody>tr>th,
-  .table.equip>tfoot>tr>th,
-  .table.equip>thead>tr>th,
-  table.table>tbody>tr.equip>th,
-  .table.item>tbody>tr>th,
-  .table.item>tfoot>tr>th,
-  .table.item>thead>tr>th,
-  table.table>tbody>tr.item>th {
+  .table.equip > tbody > tr > th,
+  .table.equip > tfoot > tr > th,
+  .table.equip > thead > tr > th,
+  table.table > tbody > tr.equip > th,
+  .table.item > tbody > tr > th,
+  .table.item > tfoot > tr > th,
+  .table.item > thead > tr > th,
+  table.table > tbody > tr.item > th {
     background-color: rgb(97, 32, 0);
     border-color: rgb(104, 66, 47);
   }
 
-  .table.equip>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.equip:nth-child(2n+1),
-  .table.item>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.item:nth-child(2n+1) {
+  .table.equip > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.equip:nth-child(2n + 1),
+  .table.item > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.item:nth-child(2n + 1) {
     background-color: rgb(65, 23, 0);
   }
 
-  .table.skin> :first-child>tr:first-child,
-  .table.skin>tbody>tr.heading,
-  .table.skin> :first-child>tr:first-child>*,
-  .table.skin>tbody>tr.heading>* {
+  .table.skin > :first-child > tr:first-child,
+  .table.skin > tbody > tr.heading,
+  .table.skin > :first-child > tr:first-child > *,
+  .table.skin > tbody > tr.heading > * {
     background-color: rgb(121, 28, 56) !important;
     border-color: rgb(98, 91, 81) !important;
   }
 
-  .table.skin>tbody>tr>th,
-  .table.skin>tfoot>tr>th,
-  .table.skin>thead>tr>th,
-  table.table>tbody>tr.skin>th {
+  .table.skin > tbody > tr > th,
+  .table.skin > tfoot > tr > th,
+  .table.skin > thead > tr > th,
+  table.table > tbody > tr.skin > th {
     background-color: rgb(77, 0, 20);
     border-color: rgb(72, 78, 81);
   }
 
-  .table.skin>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.skin:nth-child(2n+1) {
+  .table.skin > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.skin:nth-child(2n + 1) {
     background-color: rgb(62, 0, 24);
   }
 
-  .table.mech1> :first-child>tr:first-child,
-  .table.mech1>tbody>tr.heading,
-  .table.mech1> :first-child>tr:first-child>*,
-  .table.mech1>tbody>tr.heading>* {
+  .table.mech1 > :first-child > tr:first-child,
+  .table.mech1 > tbody > tr.heading,
+  .table.mech1 > :first-child > tr:first-child > *,
+  .table.mech1 > tbody > tr.heading > * {
     background-color: rgb(43, 87, 130) !important;
     border-color: rgb(61, 90, 121) !important;
   }
 
-  .table.mech1>tbody>tr>th,
-  .table.mech1>tfoot>tr>th,
-  .table.mech1>thead>tr>th,
-  table.table>tbody>tr.mech1>th {
+  .table.mech1 > tbody > tr > th,
+  .table.mech1 > tfoot > tr > th,
+  .table.mech1 > thead > tr > th,
+  table.table > tbody > tr.mech1 > th {
     background-color: rgb(53, 57, 59);
     border-color: rgb(74, 80, 83);
   }
 
-  .table.mech1>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.mech1:nth-child(2n+1) {
+  .table.mech1 > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.mech1:nth-child(2n + 1) {
     background-color: rgb(32, 35, 37);
   }
 
-  .table.mech2> :first-child>tr:first-child,
-  .table.mech2>tbody>tr.heading,
-  .table.mech2> :first-child>tr:first-child>*,
-  .table.mech2>tbody>tr.heading>* {
+  .table.mech2 > :first-child > tr:first-child,
+  .table.mech2 > tbody > tr.heading,
+  .table.mech2 > :first-child > tr:first-child > *,
+  .table.mech2 > tbody > tr.heading > * {
     background-color: rgb(41, 163, 163) !important;
     border-color: rgb(39, 155, 155) !important;
   }
 
-  .table.mech2>tbody>tr>th,
-  .table.mech2>tfoot>tr>th,
-  .table.mech2>thead>tr>th,
-  table.table>tbody>tr.mech2>th {
+  .table.mech2 > tbody > tr > th,
+  .table.mech2 > tfoot > tr > th,
+  .table.mech2 > thead > tr > th,
+  table.table > tbody > tr.mech2 > th {
     background-color: rgb(25, 102, 102);
     border-color: rgb(57, 106, 106);
   }
 
-  .table.mech2>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.mech2:nth-child(2n+1) {
+  .table.mech2 > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.mech2:nth-child(2n + 1) {
     background-color: rgb(14, 59, 59);
   }
 
-  .table.lore> :first-child>tr:first-child,
-  .table.lore>tbody>tr.heading,
-  .table.lore> :first-child>tr:first-child>*,
-  .table.lore>tbody>tr.heading>* {
+  .table.lore > :first-child > tr:first-child,
+  .table.lore > tbody > tr.heading,
+  .table.lore > :first-child > tr:first-child > *,
+  .table.lore > tbody > tr.heading > * {
     background-color: rgb(130, 43, 130) !important;
     border-color: rgb(121, 61, 121) !important;
   }
 
-  .table.lore>tbody>tr>th,
-  .table.lore>tfoot>tr>th,
-  .table.lore>thead>tr>th,
-  table.table>tbody>tr.lore>th {
+  .table.lore > tbody > tr > th,
+  .table.lore > tfoot > tr > th,
+  .table.lore > thead > tr > th,
+  table.table > tbody > tr.lore > th {
     background-color: rgb(84, 28, 84);
     border-color: rgb(74, 80, 83);
   }
 
-  .table.lore>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.lore:nth-child(2n+1) {
+  .table.lore > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.lore:nth-child(2n + 1) {
     background-color: rgb(53, 16, 53);
   }
 
-  .table.location> :first-child>tr:first-child,
-  .table.location>tbody>tr.heading,
-  .table.location> :first-child>tr:first-child>*,
-  .table.location>tbody>tr.heading>* {
+  .table.location > :first-child > tr:first-child,
+  .table.location > tbody > tr.heading,
+  .table.location > :first-child > tr:first-child > *,
+  .table.location > tbody > tr.heading > * {
     background-color: rgb(87, 43, 130) !important;
     border-color: rgb(90, 61, 121) !important;
   }
 
-  .table.location>tbody>tr>th,
-  .table.location>tfoot>tr>th,
-  .table.location>thead>tr>th,
-  table.table>tbody>tr.location>th {
+  .table.location > tbody > tr > th,
+  .table.location > tfoot > tr > th,
+  .table.location > thead > tr > th,
+  table.table > tbody > tr.location > th {
     background-color: rgb(53, 57, 59);
     border-color: rgb(74, 80, 83);
   }
 
-  .table.location>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.location:nth-child(2n+1) {
+  .table.location > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.location:nth-child(2n + 1) {
     background-color: rgb(32, 35, 37);
   }
 
-  .table.promo> :first-child>tr:first-child,
-  .table.promo>tbody>tr.heading,
-  .table.promo> :first-child>tr:first-child>*,
-  .table.promo>tbody>tr.heading>* {
+  .table.promo > :first-child > tr:first-child,
+  .table.promo > tbody > tr.heading,
+  .table.promo > :first-child > tr:first-child > *,
+  .table.promo > tbody > tr.heading > * {
     background-color: rgb(99, 122, 31) !important;
     border-color: rgb(116, 155, 39) !important;
   }
 
-  .table.promo>tbody>tr>th,
-  .table.promo>tfoot>tr>th,
-  .table.promo>thead>tr>th,
-  table.table>tbody>tr.promo>th {
+  .table.promo > tbody > tr > th,
+  .table.promo > tfoot > tr > th,
+  .table.promo > thead > tr > th,
+  table.table > tbody > tr.promo > th {
     background-color: rgb(62, 77, 19);
     border-color: rgb(90, 106, 57);
   }
 
-  .table.promo>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.promo:nth-child(2n+1) {
+  .table.promo > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.promo:nth-child(2n + 1) {
     background-color: rgb(36, 45, 10);
   }
 
-  .table.buff> :first-child>tr:first-child,
-  .table.buff>tbody>tr.heading,
-  .table.buff> :first-child>tr:first-child>*,
-  .table.buff>tbody>tr.heading>* {
+  .table.buff > :first-child > tr:first-child,
+  .table.buff > tbody > tr.heading,
+  .table.buff > :first-child > tr:first-child > *,
+  .table.buff > tbody > tr.heading > * {
     background-color: rgb(34, 124, 124) !important;
     border-color: rgb(58, 117, 117) !important;
   }
 
-  .table.buff>tbody>tr>th,
-  .table.buff>tfoot>tr>th,
-  .table.buff>thead>tr>th,
-  table.table>tbody>tr.buff>th {
+  .table.buff > tbody > tr > th,
+  .table.buff > tfoot > tr > th,
+  .table.buff > thead > tr > th,
+  table.table > tbody > tr.buff > th {
     background-color: rgb(22, 82, 82);
     border-color: rgb(72, 78, 81);
   }
 
-  .table.buff>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.buff:nth-child(2n+1) {
+  .table.buff > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.buff:nth-child(2n + 1) {
     background-color: rgb(15, 52, 52);
   }
 
-  .table.debuff> :first-child>tr:first-child,
-  .table.debuff>tbody>tr.heading,
-  .table.debuff> :first-child>tr:first-child>*,
-  .table.debuff>tbody>tr.heading>* {
+  .table.debuff > :first-child > tr:first-child,
+  .table.debuff > tbody > tr.heading,
+  .table.debuff > :first-child > tr:first-child > *,
+  .table.debuff > tbody > tr.heading > * {
     background-color: rgb(65, 133, 65) !important;
     border-color: rgb(64, 131, 64) !important;
   }
 
-  .table.debuff>tbody>tr>th,
-  .table.debuff>tfoot>tr>th,
-  .table.debuff>thead>tr>th,
-  table.table>tbody>tr.debuff>th {
+  .table.debuff > tbody > tr > th,
+  .table.debuff > tfoot > tr > th,
+  .table.debuff > thead > tr > th,
+  table.table > tbody > tr.debuff > th {
     background-color: rgb(54, 86, 44);
     border-color: rgb(77, 84, 87);
   }
 
-  .table.debuff>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.debuff:nth-child(2n+1) {
+  .table.debuff > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.debuff:nth-child(2n + 1) {
     background-color: rgb(31, 50, 25);
   }
 
-  .table.crafting> :first-child>tr:first-child,
-  .table.crafting>tbody>tr.heading,
-  .table.crafting> :first-child>tr:first-child>*,
-  .table.crafting>tbody>tr.heading>*,
-  .table.recipe> :first-child>tr:first-child,
-  .table.recipe>tbody>tr.heading,
-  .table.recipe> :first-child>tr:first-child>*,
-  .table.recipe>tbody>tr.heading>* {
+  .table.crafting > :first-child > tr:first-child,
+  .table.crafting > tbody > tr.heading,
+  .table.crafting > :first-child > tr:first-child > *,
+  .table.crafting > tbody > tr.heading > *,
+  .table.recipe > :first-child > tr:first-child,
+  .table.recipe > tbody > tr.heading,
+  .table.recipe > :first-child > tr:first-child > *,
+  .table.recipe > tbody > tr.heading > * {
     background-color: rgb(133, 103, 65) !important;
     border-color: rgb(131, 102, 64) !important;
   }
 
-  .table.crafting>tbody>tr>th,
-  .table.crafting>tfoot>tr>th,
-  .table.crafting>thead>tr>th,
-  table.table>tbody>tr.crafting>th,
-  .table.recipe>tbody>tr>th,
-  .table.recipe>tfoot>tr>th,
-  .table.recipe>thead>tr>th,
-  table.table>tbody>tr.recipe>th {
+  .table.crafting > tbody > tr > th,
+  .table.crafting > tfoot > tr > th,
+  .table.crafting > thead > tr > th,
+  table.table > tbody > tr.crafting > th,
+  .table.recipe > tbody > tr > th,
+  .table.recipe > tfoot > tr > th,
+  .table.recipe > thead > tr > th,
+  table.table > tbody > tr.recipe > th {
     background-color: rgb(86, 67, 44);
     border-color: rgb(77, 84, 87);
   }
 
-  .table.crafting>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.crafting:nth-child(2n+1),
-  .table.recipe>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.recipe:nth-child(2n+1) {
+  .table.crafting > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.crafting:nth-child(2n + 1),
+  .table.recipe > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.recipe:nth-child(2n + 1) {
     background-color: rgb(50, 38, 25);
   }
 
@@ -2553,11 +2500,13 @@
 
   div.infobox,
   div.nav .box {
-    background-image: -webkit-gradient(linear,
-        0% 0%,
-        0% 100%,
-        from(rgb(0, 0, 0)),
-        to(rgb(17, 17, 17)));
+    background-image: -webkit-gradient(
+      linear,
+      0% 0%,
+      0% 100%,
+      from(rgb(0, 0, 0)),
+      to(rgb(17, 17, 17))
+    );
   }
 
   div.infobox-n .icon p {
@@ -2796,12 +2745,6 @@
   div.infobox-n.trait .heading,
   div.infobox-n.trait .subheading {
     background-image: initial;
-    background-color: rgb(51, 55, 58);
-  }
-
-  div.infobox-n.trait .heading,
-  div.infobox-n.trait .subheading {
-    background-image: initial;
     background-color: rgb(142, 88, 41);
   }
 
@@ -2998,12 +2941,6 @@
     background-color: rgb(130, 87, 43);
   }
 
-  div.nav.hom dd,
-  div.nav.hom dt,
-  div.nav.hom table th {
-    border-color: rgb(122, 82, 41);
-  }
-
   div.nav.crafting .heading,
   div.nav.recipe .heading {
     background-color: rgb(122, 82, 41);
@@ -3013,7 +2950,6 @@
   div.nav.hom dt,
   div.nav.crafting table th,
   div.nav.recipe dd,
-  div.nav.hom dt,
   div.nav.recipe table th {
     border-color: rgb(145, 97, 48);
   }
@@ -3223,12 +3159,12 @@
     background-color: initial;
   }
 
-  #upperBar ul li:first-child+li a:hover {
+  #upperBar ul li:first-child + li a:hover {
     background-image: url("/images/c/c7/Masthead_hover_background.png");
     background-color: initial;
   }
 
-  #upperBar ul li:first-child+li+li a:hover {
+  #upperBar ul li:first-child + li + li a:hover {
     background-image: url("/images/c/c7/Masthead_hover_background.png");
     background-color: initial;
   }
@@ -3263,11 +3199,13 @@
   div.recipe-box {
     background-color: rgb(24, 26, 27);
     border-color: rgb(72, 78, 81);
-    background-image: -webkit-gradient(linear,
-        0% 0%,
-        0% 100%,
-        from(rgb(255, 255, 255)),
-        to(rgb(238, 238, 238)));
+    background-image: -webkit-gradient(
+      linear,
+      0% 0%,
+      0% 100%,
+      from(rgb(255, 255, 255)),
+      to(rgb(238, 238, 238))
+    );
   }
 
   div.recipe-box::after {
@@ -3310,13 +3248,15 @@
     border-left-color: rgba(110, 102, 90, 0.4);
   }
 
-  .dialogue>dl,
-  .dialogue td>dl {
+  .dialogue > dl,
+  .dialogue td > dl {
     border-left-color: initial;
   }
 
-  body.page-Glob_of_Ectoplasm_salvage_research div.multipleTemplateInstance.multipleTemplate,
-  body.page-Special_FormEdit_Glob_of_Ectoplasm_salvage_research_Glob_of_Ectoplasm_salvage_research div.multipleTemplateInstance {
+  body.page-Glob_of_Ectoplasm_salvage_research
+    div.multipleTemplateInstance.multipleTemplate,
+  body.page-Special_FormEdit_Glob_of_Ectoplasm_salvage_research_Glob_of_Ectoplasm_salvage_research
+    div.multipleTemplateInstance {
     background-image: none !important;
     background-color: initial !important;
     border-color: initial !important;
@@ -3327,7 +3267,7 @@
     background-color: initial;
   }
 
-  .nav~hr {
+  .nav ~ hr {
     background-color: transparent;
   }
 
@@ -3336,24 +3276,24 @@
     background-color: rgb(41, 36, 14);
   }
 
-  .table+.smw-template-furtherresults a {
+  .table + .smw-template-furtherresults a {
     background-image: none;
     background-color: initial;
     color: rgb(102, 177, 250);
   }
 
   span.colorized-description.triple-tick,
-  span.colorized-description.triple-tick>a {
+  span.colorized-description.triple-tick > a {
     color: rgb(244, 152, 77);
   }
 
   span.colorized-description.double-tick,
-  span.colorized-description.double-tick>a {
+  span.colorized-description.double-tick > a {
     color: rgb(255, 255, 61);
   }
 
   span.colorized-description.single-tick,
-  span.colorized-description.single-tick>a {
+  span.colorized-description.single-tick > a {
     color: rgb(104, 245, 127);
   }
 
@@ -3369,8 +3309,8 @@
     background-color: initial;
   }
 
-  div.standard-frame-icon>a:nth-child(2),
-  span.standard-frame-icon>a:nth-child(2) {
+  div.standard-frame-icon > a:nth-child(2),
+  span.standard-frame-icon > a:nth-child(2) {
     text-decoration-color: initial;
     background-image: none;
   }
@@ -3436,35 +3376,45 @@
   }
 
   .weapon-damage-stats th:nth-child(1) {
-    background-image: linear-gradient(to right,
-        rgb(204, 51, 0),
-        rgb(143, 35, 0));
+    background-image: linear-gradient(
+      to right,
+      rgb(204, 51, 0),
+      rgb(143, 35, 0)
+    );
     border-left-color: rgb(163, 41, 0);
   }
 
   .weapon-damage-stats th:nth-child(2) {
-    background-image: linear-gradient(to right,
-        rgb(143, 35, 0),
-        rgb(67, 18, 0));
+    background-image: linear-gradient(
+      to right,
+      rgb(143, 35, 0),
+      rgb(67, 18, 0)
+    );
   }
 
   .weapon-damage-stats th:nth-child(3) {
-    background-image: linear-gradient(to right,
-        rgb(67, 18, 0),
-        rgba(0, 0, 0, 0));
+    background-image: linear-gradient(
+      to right,
+      rgb(67, 18, 0),
+      rgba(0, 0, 0, 0)
+    );
   }
 
   .armor-defense-stats th:nth-child(1) {
-    background-image: linear-gradient(to right,
-        rgb(204, 51, 0),
-        rgb(67, 18, 0));
+    background-image: linear-gradient(
+      to right,
+      rgb(204, 51, 0),
+      rgb(67, 18, 0)
+    );
     border-left-color: rgb(163, 41, 0);
   }
 
   .armor-defense-stats th:nth-child(2) {
-    background-image: linear-gradient(to right,
-        rgb(67, 18, 0),
-        rgba(0, 0, 0, 0));
+    background-image: linear-gradient(
+      to right,
+      rgb(67, 18, 0),
+      rgba(0, 0, 0, 0)
+    );
   }
 
   .weapon-damage-stats td,
@@ -3480,9 +3430,11 @@
 
   .weapon-damage-stats td:nth-child(3),
   .armor-defense-stats td:nth-child(2) {
-    background-image: linear-gradient(to right,
-        rgb(57, 17, 0),
-        rgb(24, 26, 27));
+    background-image: linear-gradient(
+      to right,
+      rgb(57, 17, 0),
+      rgb(24, 26, 27)
+    );
   }
 
   .equipment-footer .adv-melding {
@@ -3537,27 +3489,29 @@
   }
 
   .infobox-n .statistics.hunt.rank-a {
-    background-image: linear-gradient(to right,
-        rgb(182, 2, 2),
-        rgb(68, 66, 0));
+    background-image: linear-gradient(to right, rgb(182, 2, 2), rgb(68, 66, 0));
     background-color: initial;
     border-bottom-color: rgb(140, 84, 0);
     border-top-color: rgb(163, 98, 0);
   }
 
   .infobox-n .statistics.hunt.rank-b {
-    background-image: linear-gradient(to right,
-        rgb(0, 126, 103),
-        rgb(4, 72, 62));
+    background-image: linear-gradient(
+      to right,
+      rgb(0, 126, 103),
+      rgb(4, 72, 62)
+    );
     background-color: initial;
     border-bottom-color: rgb(15, 133, 111);
     border-top-color: rgb(19, 167, 140);
   }
 
   .infobox-n .statistics.hunt.rank-s {
-    background-image: linear-gradient(to right,
-        rgb(142, 0, 189),
-        rgb(0, 52, 52));
+    background-image: linear-gradient(
+      to right,
+      rgb(142, 0, 189),
+      rgb(0, 52, 52)
+    );
     background-color: initial;
     border-bottom-color: rgb(72, 0, 140);
     border-top-color: rgb(93, 0, 163);
@@ -3568,24 +3522,24 @@
     border-color: initial;
   }
 
-  .table.quest> :first-child>tr:first-child,
-  .table.quest>tbody>tr.heading,
-  .table.quest> :first-child>tr:first-child>*,
-  .table.quest>tbody>tr.heading>* {
+  .table.quest > :first-child > tr:first-child,
+  .table.quest > tbody > tr.heading,
+  .table.quest > :first-child > tr:first-child > *,
+  .table.quest > tbody > tr.heading > * {
     background-color: rgb(154, 98, 14) !important;
     border-color: rgb(167, 106, 15) !important;
   }
 
-  .table.quest>tbody>tr>th,
-  .table.quest>tfoot>tr>th,
-  .table.quest>thead>tr>th,
-  table.table>tbody>tr.quest>th {
+  .table.quest > tbody > tr > th,
+  .table.quest > tfoot > tr > th,
+  .table.quest > thead > tr > th,
+  table.table > tbody > tr.quest > th {
     background-color: rgb(154, 98, 14);
     border-color: rgb(167, 106, 15);
   }
 
-  .table.quest>tbody>tr:nth-child(2n+1),
-  .table>tbody>tr.quest:nth-child(2n+1) {
+  .table.quest > tbody > tr:nth-child(2n + 1),
+  .table > tbody > tr.quest:nth-child(2n + 1) {
     background-color: rgb(56, 39, 0);
   }
 
@@ -3640,11 +3594,11 @@
     background-image: none;
   }
 
-  div#mw-head ul.vector-menu-content-list>li {
+  div#mw-head ul.vector-menu-content-list > li {
     background-image: none;
   }
 
-  div#mw-head ul.vector-menu-content-list>li.selected {
+  div#mw-head ul.vector-menu-content-list > li.selected {
     background-color: rgb(18, 44, 47);
   }
 
@@ -3656,16 +3610,12 @@
     background-color: rgb(24, 26, 27);
   }
 
-  div#mw-panel ul.vector-menu-content-list>li>a {
+  div#mw-panel ul.vector-menu-content-list > li > a {
     color: rgb(232, 230, 227);
   }
 
-  footer.mw-footer ul#footer-places>li>a {
+  footer.mw-footer ul#footer-places > li > a {
     color: rgb(232, 230, 227);
-  }
-
-  body {
-    background-color: rgb(35, 38, 40);
   }
 
   #mw-page-base {
@@ -3701,10 +3651,6 @@
     background-color: #7b5300 !important;
     border-color: #d8b013 !important;
     color: #f3e8c8 !important;
-  }
-
-  ::placeholder {
-    opacity: 0.5 !important;
   }
 
   #edge-translate-panel-body,
@@ -3745,5 +3691,4 @@
   .tou-6i3zyv {
     background-color: #19576c !important;
   }
-
 }
