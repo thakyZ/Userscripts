@@ -561,7 +561,7 @@ export default [
   },
   {
     files: ["**/*.js"],
-    exclude: ["**/*.user.js"],
+    ignores: ["**/*.user.js"],
     languageOptions: {
       parserOptions: {
         ecmaVersion: 8,
