@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Fish Tracking App
 // @namespace    NekoBoiNick.Web.CarbunclePluhsie.FFXIVFish
-// @version      1.0.1
+// @version      1.0.2
 // @description  Syncs Fish Tracking to soupcat
 // @author       Neko Boi Nick
 // @match        https://ff14fish.carbuncleplushy.com/*
@@ -23,7 +23,7 @@ const SettingsSaveName = "FishTrackingApp.Settings";
 const DateSaveName = "FishTrackingApp.Date";
 
 $(document).ready(() => {
-  const getSettings = () => JSON.stringify(ViewModel.settings, (_, value) => value instanceof Set ? [...value] : value);
+  const getSettings = () => JSON.stringify(ViewModel.settings, (_, value) => (value instanceof Set ? [...value] : value));
 
   const setSettings = settings => {
     // Apply the imported settings now.
