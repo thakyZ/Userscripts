@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ARR Triple Triad Additions
 // @namespace    NekoBoiNick.Web.ARRTripleTriad.Additions
-// @version      1.0.1
+// @version      1.0.2
 // @description  Adds additional features to ARR Triple Triad.
 // @author       Neko Boi Nick
 // @match        https://arrtripletriad.com/*
@@ -49,11 +49,11 @@ $(document).ready(() => {
         const getType = type => {
           switch (type) {
           case cssKeys.customCSS.Dark:
-            return cssKeys.customCSS.Dark[1];
+            return cssKeys.customCSS.Dark[1].toString();
           case cssKeys.customCSS.Black:
-            return cssKeys.customCSS.Black[1];
+            return cssKeys.customCSS.Black[1].toString();
           case cssKeys.customCSS.Light:
-            return cssKeys.customCSS.Light[1];
+            return cssKeys.customCSS.Light[1].toString();
           default:
             return "";
           }
