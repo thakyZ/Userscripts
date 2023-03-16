@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         No Old Reddit
 // @namespace    NekoBoiNick.Reddit.NoOld
-// @version      0.1
+// @version      0.1.1
 // @description  Changes links that redirect to old reddit so that they use the new design
 // @author       Neko Boi Nick
 // @match        *://*.reddit.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=reddit.com
 // @license      MIT
 // @grant        none
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
