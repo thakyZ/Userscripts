@@ -12,6 +12,7 @@ const getMonkeyCodeNames = (type) => {
     "GM_log",
     "GM_addStyle",
     "GM_getResourceText",
+    "GM_deleteValue"
   ];
   if (type === "string") {
     return names;
