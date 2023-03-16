@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bypass Ad Links
 // @namespace    NekoBoiNick.Web.Bypass.AdLinks
-// @version      1.0.2
+// @version      1.0.3
 // @description  Bypass Ad Links in any website on the web.
 // @author       Neko Boi Nick
 // @match        *
@@ -21,15 +21,11 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, jQuery, MonkeyConfig */
+/* global $, sqMissionSolver, _, jQuery, MonkeyConfig */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
-/* Old save code.
- * const settingsSaveName = "BypassAdLinks.Settings";
- */
-
 $(document).ready(() => {
-  const Settings = { websites: [] };
+  const Settings = {websites:[]};
   const config = new MonkeyConfig({
     title: "Configure",
     menuCommand: true,
@@ -40,17 +36,17 @@ $(document).ready(() => {
       }
     }
   });
-  const loadSettings = function () {
-    Settings.websites = [...config.get("websites").replace(/,\s?/, ",").split(",")];
+  const loadSettings = function() {
+    Settings.websites = [...config.get("websites").replace(/,\s?/,",").split(",")];
   };
 
   const fixLinks = () => {
     let id = -1;
     id = setInterval(() => {
-      Settings.websites.forEach(website => {
-        const ele = $(`a[href*="https://${website}/"]`);
-        for (let i = 0; i < $(ele).length; i++) {
-          $(ele[i]).attr("href", $(this).attr("href").replace(new RegExp(`https://${website}/quick?token=[a-zA-Z0-9]+&url=`, "gi"), ""));
+      Settings.websites.forEach((website) => {
+        const elements = $(`a[href*="https://${website}/"]`);
+        for (const element of Object.entries(elements)) {
+          $(element).attr("href", $(this).attr("href").replace(new RegExp(`https://${website}/quick?token=[a-zA-Z0-9]+&url=`, "gi"), ""));
         }
 
         clearInterval(id);
@@ -58,12 +54,8 @@ $(document).ready(() => {
     }, 1000);
   };
 
-  $(window.location).on("hashchange", () => {
-    fixLinks();
-  });
+  $(window.location).on("hashchange", () => { fixLinks(); });
   fixLinks();
-  GM_registerMenuCommand("Load Settings", () => {
-    loadSettings();
-  });
+  GM_registerMenuCommand("Load Settings", () => { loadSettings(); });
   loadSettings();
 });
