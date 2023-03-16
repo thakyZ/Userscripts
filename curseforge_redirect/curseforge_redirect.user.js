@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Curse Forge Redirect
 // @namespace       NekoBoiNick.Curseforge.Redirect
-// @version         1.0.1
+// @version         1.0.2
 // @description     Redirect Method to redirect to the better curse forge page dedicated to the game you are looking at.
 // @author          Neko Boi Nick
 // @match           *://www.curseforge.com/minecraft/*
@@ -29,15 +29,12 @@ const bannerTitles = ["The Official Mod Hub for", "win awesome prizes"];
 
 $(document).ready(function () {
   const regexp1 = /^(https?:\/\/)(www)(\.curseforge\.com\/)(minecraft\/)(.+)\/(.+)$/i;
-  const regexp2 = /^(https?:\/\/)(minecraft)(\.curseforge\.com\/)(mc-mods\/)([0-9]+)\-(.+)$/i;
+  const regexp2 = /^(https?:\/\/)(minecraft)(\.curseforge\.com\/)(mc-mods\/)(\d+)\-(.+)$/i;
   const loc = window.location.href;
-  let urlrep = "";
   if (regexp2.test(loc)) {
-    urlrep = loc.replace(regexp2, "$1www$3minecraft/mc-mods/$6");
-    window.location.href = urlrep;
-  } else if (regexp2.test(loc)) {
-    urlrep = loc.replace(regexp2, "$1$2$3$4$5$6");
-    window.location.href = urlrep;
+    window.location.href = loc.replace(regexp2, "$1www$3minecraft/mc-mods/$6");
+  } else if (regexp1.test(loc)) {
+    window.location.href = loc.replace(regexp2, "$1$2$3$4$5$6");
   }
   const disableBanner = () => {
     bannerTitles.forEach(function (e) {
