@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           FFXIV Squadron
 @namespace      NekoBoiNick.Web.FFXIVSquadron.Style
-@version        1.0.1
+@version        1.0.2
 @description    Modifications to FFXIV Squadron App
 @author         Neko Boi Nick
 @license        MIT
@@ -20,11 +20,11 @@
   }
 
   body.dark #top-announcement a {
-    color: #6BE1D5;
+    color: #6be1d5;
   }
 
   body.dark #footer a {
-    color: #90FFFF;
+    color: #90ffff;
   }
 
   body.dark #training-list #training-1.active,
