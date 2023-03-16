@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube MP4 Handler
 // @namespace    NekoBoiNick.Web.YouTube.MP4Handler
-// @version      1.0.0
+// @version      1.0.1
 // @description  Uses a protocol to make youtube-dl download MP4's.
 // @author       Neko Boi Nick
 // @match        *://*.youtube.com/*
@@ -14,7 +14,8 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $ */
+/* global $, jQuery */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
   "use strict";
