@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Garland Tools Additions
 // @namespace    NekoBoiNick.Web.GarlandTools.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds various features to Garland Tools
 // @author       Neko Boi Nick
 // @match        https://garlandtools.org/db/*
+// @match        https://www.garlandtools.org/db/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=garlandtools.org
 // @license      MIT
 // @grant        GM_setClipboard
