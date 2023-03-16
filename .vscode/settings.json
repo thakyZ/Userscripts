@@ -6,7 +6,6 @@
     "overrideConfigFile": "./eslint.config.mjs"
   },
   "eslint.runtime": "C:/Program Files/nodejs/node.exe",
-  "eslint.nodePath": "./node_modules/",
   "files.associations": {
     "OnlineClock.Blocked.user.css": "stylus",
     "FFXIV_Lodestone_Maint_Dark.user.css": "stylus",
@@ -17,24 +16,23 @@
   "editor.formatOnType": false, // required
   "editor.formatOnSave": false,
   "[less]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[css]": {
-    "editor.defaultFormatter": "vscode.css-language-features",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[sass]": {
-    "editor.defaultFormatter": "syler.sass-indented",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[scss]": {
-    "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "htmlhint.documentSelector": [
-    "html",
-    "htm",
-    "!template.html"
-  ],
-  "htmlhint.configFile": "./htmlhint.conf"
+  "htmlhint.documentSelector": ["html", "htm", "!template.html"],
+  "htmlhint.configFile": "./htmlhint.conf",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

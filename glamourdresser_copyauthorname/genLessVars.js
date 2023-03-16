@@ -5,7 +5,7 @@ const handleMatches = async (matches, variables, doneAlready, lastCount) => {
   if (matches !== null) {
     for (const match in matches) {
       if (Object.prototype.hasOwnProperty.call(matches, match)) {
-        if (!doneAlready.some(e => e === matches[match])) {
+        if (!doneAlready.some((e) => e === matches[match])) {
           const gotMatch = matches[match];
           variables.push(`--temp_color-${lastCount}: ${gotMatch};`);
           doneAlready.push(gotMatch);
@@ -15,11 +15,18 @@ const handleMatches = async (matches, variables, doneAlready, lastCount) => {
     }
   }
 
-  return { variables, doneAlready, lastCount };
+  return {
+    variables,
+    doneAlready,
+    lastCount,
+  };
 };
 
 const run = async () => {
-  const cssFile = await fs.readFile(path.join(__dirname, "dark_admin.less"), { encoding: "utf-8", flag: "r+" });
+  const cssFile = await fs.readFile(path.join(__dirname, "dark_admin.less"), {
+    encoding: "utf-8",
+    flag: "r+",
+  });
   let cssFileChanged = cssFile.toString();
   const hexMatches = cssFileChanged.toString().match(/^\s+[\w-]+:.*\s?#[a-f0-9]{3,6}(;|\s)/gi);
   const hslMatches = cssFileChanged.toString().match(/hsl\(\d+(deg|rad), \d+%, \d+%\)/gi);
@@ -66,7 +73,13 @@ const run = async () => {
       if (Object.prototype.hasOwnProperty.call(variables, variable)) {
         const lessVariable = variables[variable].replaceAll(/^--([a-z0-9_-]+): .+$/gim, "$1");
         const color = variables[variable].replaceAll(/^--([a-z0-9_-]+): (.+);$/gim, "$2");
-        const lessVariableCamel = lessVariable.replaceAll(/([-_][a-z0-9])/ig, cases => cases.toUpperCase().replaceAll("-", "").replaceAll("_", "").replaceAll(/^\w/gim, cases2 => cases2.toUpperCase()));
+        const lessVariableCamel = lessVariable.replaceAll(/([-_][a-z0-9])/gi, (cases) =>
+          cases
+            .toUpperCase()
+            .replaceAll("-", "")
+            .replaceAll("_", "")
+            .replaceAll(/^\w/gim, (cases2) => cases2.toUpperCase())
+        );
         cssFileChanged = cssFileChanged.replaceAll(`${color}`, `@${lessVariableCamel}`);
         lessVariables.push(`@${lessVariableCamel}: var(--${lessVariable});`);
       }
@@ -77,7 +90,10 @@ const run = async () => {
 
   const outputFile = output + "\n" + lessOutput + "\n" + cssFileChanged;
 
-  await fs.writeFile(path.join(__dirname, "dark_admin_new.less"), outputFile, { encoding: "utf-8", flag: "w+" });
+  await fs.writeFile(path.join(__dirname, "dark_admin_new.less"), outputFile, {
+    encoding: "utf-8",
+    flag: "w+",
+  });
 };
 
 run();

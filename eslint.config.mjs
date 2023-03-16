@@ -1,6 +1,8 @@
 import globals from "globals";
+import prettier from "eslint-config-prettier";
+import prettierPlugin from "eslint-plugin-prettier";
 
-const getMonkeyCodeNames = type => {
+const getMonkeyCodeNames = (type) => {
   const names = [
     "GM_setClipboard",
     "GM_registerMenuCommand",
@@ -9,13 +11,13 @@ const getMonkeyCodeNames = type => {
     "GM_xmlhttpRequest",
     "GM_log",
     "GM_addStyle",
-    "GM_getResourceText"
+    "GM_getResourceText",
   ];
   if (type === "string") {
     return names;
   }
 
-  return Object.assign(...names.map(k => ({ [k]: true })));
+  return Object.assign(...names.map((k) => ({ [k]: true })));
 };
 
 export default [
@@ -31,13 +33,17 @@ export default [
         ...globals.greasemonkey,
         ...globals.jquery,
         ...globals.es6,
-        ...getMonkeyCodeNames()
-      }
+        ...getMonkeyCodeNames(),
+      },
+    },
+    plugins: {
+      prettierPlugin,
     },
     linterOptions: {
-      reportUnusedDisableDirectives: true
+      reportUnusedDisableDirectives: true,
     },
     rules: {
+      ...prettier.rules,
       "comma-dangle": "off",
       "for-direction": "error",
       "getter-return": "error",
@@ -129,15 +135,9 @@ export default [
       "default-case": "error",
       "default-case-last": "error",
       "dot-notation": "error",
-      "dot-location": [
-        "error",
-        "property",
-      ],
+      "dot-location": ["error", "property"],
       eqeqeq: "error",
-      "grouped-accessor-pairs": [
-        "error",
-        "getBeforeSet",
-      ],
+      "grouped-accessor-pairs": ["error", "getBeforeSet"],
       "guard-for-in": "error",
       "no-alert": "error",
       "no-caller": "error",
@@ -174,10 +174,7 @@ export default [
       "no-octal": "error",
       "no-proto": "error",
       "no-redeclare": "off",
-      "no-return-assign": [
-        "error",
-        "always",
-      ],
+      "no-return-assign": ["error", "always"],
       "no-return-await": "error",
       "no-script-url": "error",
       "no-self-assign": [
@@ -239,10 +236,7 @@ export default [
       yoda: "error",
       "no-delete-var": "error",
       "no-label-var": "error",
-      "no-restricted-globals": [
-        "error",
-        "event",
-      ],
+      "no-restricted-globals": ["error", "event"],
       "no-shadow-restricted-names": "error",
       "no-undef-init": "error",
       "no-undef": [
@@ -273,18 +267,9 @@ export default [
         "querystring",
         "colors",
       ],
-      "array-bracket-newline": [
-        "error",
-        "consistent",
-      ],
-      "array-bracket-spacing": [
-        "error",
-        "never",
-      ],
-      "array-element-newline": [
-        "error",
-        "consistent",
-      ],
+      "array-bracket-newline": ["error", "consistent"],
+      "array-bracket-spacing": ["error", "never"],
+      "array-element-newline": ["error", "consistent"],
       "brace-style": [
         "error",
         "1tbs",
@@ -304,7 +289,9 @@ export default [
         {
           // You can also ignore this rule by wrapping the first word in quotes.
           // c8 => https://github.com/bcoe/c8
-          ignorePattern: /pragma|ignore|prettier-ignore|webpack\w+:|c8|type-coverage:/.source,
+          ignorePattern:
+            /pragma|ignore|prettier-ignore|webpack\w+:|c8|type-coverage:/
+              .source,
           ignoreInlineComments: true,
           ignoreConsecutiveComments: true,
         },
@@ -316,10 +303,7 @@ export default [
           after: true,
         },
       ],
-      "comma-style": [
-        "error",
-        "last",
-      ],
+      "comma-style": ["error", "last"],
       "computed-property-spacing": [
         "error",
         "never",
@@ -328,32 +312,17 @@ export default [
         },
       ],
       "eol-last": "error",
-      "func-call-spacing": [
-        "error",
-        "never",
-      ],
+      "func-call-spacing": ["error", "never"],
       "func-name-matching": [
         "error",
         {
           considerPropertyDescriptor: true,
         },
       ],
-      "func-names": [
-        "error",
-        "never",
-      ],
-      "function-call-argument-newline": [
-        "error",
-        "consistent",
-      ],
-      indent: [
-        "error",
-        2
-      ],
-      "jsx-quotes": [
-        "error",
-        "prefer-double",
-      ],
+      "func-names": ["error", "never"],
+      "function-call-argument-newline": ["error", "consistent"],
+      indent: ["error", 2],
+      "jsx-quotes": ["error", "prefer-double"],
       "key-spacing": [
         "error",
         {
@@ -362,10 +331,7 @@ export default [
         },
       ],
       "keyword-spacing": "error",
-      "linebreak-style": [
-        "off",
-        "unix",
-      ],
+      "linebreak-style": ["off", "unix"],
       "lines-between-class-members": [
         "error",
         "always",
@@ -386,10 +352,7 @@ export default [
       // ],
 
       "max-depth": "warn",
-      "max-nested-callbacks": [
-        "warn",
-        4,
-      ],
+      "max-nested-callbacks": ["warn", 4],
       "max-params": [
         "warn",
         {
@@ -403,7 +366,7 @@ export default [
           newIsCap: true,
           capIsNew: true,
           capIsNewExceptions: getMonkeyCodeNames("string"),
-          newIsCapExceptions: getMonkeyCodeNames("string")
+          newIsCapExceptions: getMonkeyCodeNames("string"),
         },
       ],
       "new-parens": "error",
@@ -424,25 +387,13 @@ export default [
       "no-whitespace-before-property": "error",
       "no-trailing-spaces": "error",
       "no-unneeded-ternary": "error",
-      "object-curly-spacing": [
-        "error",
-        "always",
-      ],
+      "object-curly-spacing": ["error", "always"],
       // Disabled because of https://github.com/xojs/eslint-config-xo/issues/27
       // "object-property-newline": "error",
-      "one-var": [
-        "error",
-        "never",
-      ],
+      "one-var": ["error", "never"],
       "one-var-declaration-per-line": "error",
-      "operator-assignment": [
-        "error",
-        "always",
-      ],
-      "operator-linebreak": [
-        "error",
-        "before",
-      ],
+      "operator-assignment": ["error", "always"],
+      "operator-linebreak": ["error", "before"],
       "padded-blocks": [
         "error",
         "never",
@@ -460,14 +411,8 @@ export default [
       ],
       "prefer-exponentiation-operator": "error",
       "prefer-object-spread": "error",
-      "quote-props": [
-        "error",
-        "as-needed",
-      ],
-      quotes: [
-        "error",
-        "double",
-      ],
+      "quote-props": ["error", "as-needed"],
+      quotes: ["error", "double"],
       "semi-spacing": [
         "error",
         {
@@ -475,18 +420,9 @@ export default [
           after: true,
         },
       ],
-      "semi-style": [
-        "error",
-        "last",
-      ],
-      semi: [
-        "error",
-        "always",
-      ],
-      "space-before-blocks": [
-        "error",
-        "always",
-      ],
+      "semi-style": ["error", "last"],
+      semi: ["error", "always"],
+      "space-before-blocks": ["error", "always"],
       "space-before-function-paren": [
         "error",
         {
@@ -495,10 +431,7 @@ export default [
           asyncArrow: "always",
         },
       ],
-      "space-in-parens": [
-        "error",
-        "never",
-      ],
+      "space-in-parens": ["error", "never"],
       "space-infix-ops": "error",
       "space-unary-ops": "error",
       "spaced-comment": [
@@ -506,27 +439,12 @@ export default [
         "always",
         {
           line: {
-            exceptions: [
-              "-",
-              "+",
-              "*",
-            ],
-            markers: [
-              "!",
-              "/",
-              "=>",
-            ],
+            exceptions: ["-", "+", "*"],
+            markers: ["!", "/", "=>"],
           },
           block: {
-            exceptions: [
-              "-",
-              "+",
-              "*",
-            ],
-            markers: [
-              "!",
-              "*",
-            ],
+            exceptions: ["-", "+", "*"],
+            markers: ["!", "*"],
             balanced: true,
           },
         },
@@ -538,19 +456,10 @@ export default [
           before: false,
         },
       ],
-      "template-tag-spacing": [
-        "error",
-        "never",
-      ],
-      "unicode-bom": [
-        "error",
-        "never",
-      ],
+      "template-tag-spacing": ["error", "never"],
+      "unicode-bom": ["error", "never"],
       "arrow-body-style": "error",
-      "arrow-parens": [
-        "error",
-        "as-needed",
-      ],
+      "arrow-parens": ["error", "as-needed"],
       "arrow-spacing": [
         "error",
         {
@@ -559,10 +468,7 @@ export default [
         },
       ],
       "constructor-super": "error",
-      "generator-star-spacing": [
-        "error",
-        "both",
-      ],
+      "generator-star-spacing": ["error", "both"],
       "no-class-assign": "error",
       "no-const-assign": "error",
       "no-constant-binary-expression": "error",
@@ -627,35 +533,35 @@ export default [
       "prefer-rest-params": "error",
       "prefer-spread": "error",
       "require-yield": "error",
-      "rest-spread-spacing": [
-        "error",
-        "never",
-      ],
+      "rest-spread-spacing": ["error", "never"],
       "symbol-description": "error",
       "template-curly-spacing": "error",
-      "yield-star-spacing": [
-        "error",
-        "both",
-      ],
-    }
+      "yield-star-spacing": ["error", "both"],
+    },
   },
   {
-    files: ["**/eslint.config.mjs"],
+    files: ["eslint.config.mjs", "prettier.config.cjs"],
     languageOptions: {
       parserOptions: {
-        ecmaVersion: "latest",
+        ecmaVersion: 2020,
         sourceType: "module",
       },
       globals: {
-        ...globals.node
-      }
+        ...globals.node,
+      },
+    },
+    plugins: {
+      prettierPlugin,
     },
     rules: {
+      ...prettier.rules,
       camelcase: "off",
-      "object-curly-spacing": "off"
-    }
+      "object-curly-spacing": "off",
+    },
   },
   {
+    files: ["**/*.js"],
+    exclude: ["**/*.user.js"],
     languageOptions: {
       parserOptions: {
         ecmaVersion: 8,
@@ -663,13 +569,17 @@ export default [
       globals: {
         ...globals.node,
         ...globals.es6,
-        ...getMonkeyCodeNames()
-      }
+        ...getMonkeyCodeNames(),
+      },
     },
     linterOptions: {
-      reportUnusedDisableDirectives: true
+      reportUnusedDisableDirectives: true,
+    },
+    plugins: {
+      prettierPlugin,
     },
     rules: {
+      ...prettier.rules,
       "comma-dangle": "off",
       "for-direction": "error",
       "getter-return": "error",
@@ -761,15 +671,9 @@ export default [
       "default-case": "error",
       "default-case-last": "error",
       "dot-notation": "error",
-      "dot-location": [
-        "error",
-        "property",
-      ],
+      "dot-location": ["error", "property"],
       eqeqeq: "error",
-      "grouped-accessor-pairs": [
-        "error",
-        "getBeforeSet",
-      ],
+      "grouped-accessor-pairs": ["error", "getBeforeSet"],
       "guard-for-in": "error",
       "no-alert": "error",
       "no-caller": "error",
@@ -806,10 +710,7 @@ export default [
       "no-octal": "error",
       "no-proto": "error",
       "no-redeclare": "off",
-      "no-return-assign": [
-        "error",
-        "always",
-      ],
+      "no-return-assign": ["error", "always"],
       "no-return-await": "error",
       "no-script-url": "error",
       "no-self-assign": [
@@ -871,10 +772,7 @@ export default [
       yoda: "error",
       "no-delete-var": "error",
       "no-label-var": "error",
-      "no-restricted-globals": [
-        "error",
-        "event",
-      ],
+      "no-restricted-globals": ["error", "event"],
       "no-shadow-restricted-names": "error",
       "no-undef-init": "error",
       "no-undef": [
@@ -905,18 +803,9 @@ export default [
         "querystring",
         "colors",
       ],
-      "array-bracket-newline": [
-        "error",
-        "consistent",
-      ],
-      "array-bracket-spacing": [
-        "error",
-        "never",
-      ],
-      "array-element-newline": [
-        "error",
-        "consistent",
-      ],
+      "array-bracket-newline": ["error", "consistent"],
+      "array-bracket-spacing": ["error", "never"],
+      "array-element-newline": ["error", "consistent"],
       "brace-style": [
         "error",
         "1tbs",
@@ -936,7 +825,9 @@ export default [
         {
           // You can also ignore this rule by wrapping the first word in quotes.
           // c8 => https://github.com/bcoe/c8
-          ignorePattern: /pragma|ignore|prettier-ignore|webpack\w+:|c8|type-coverage:/.source,
+          ignorePattern:
+            /pragma|ignore|prettier-ignore|webpack\w+:|c8|type-coverage:/
+              .source,
           ignoreInlineComments: true,
           ignoreConsecutiveComments: true,
         },
@@ -948,10 +839,7 @@ export default [
           after: true,
         },
       ],
-      "comma-style": [
-        "error",
-        "last",
-      ],
+      "comma-style": ["error", "last"],
       "computed-property-spacing": [
         "error",
         "never",
@@ -960,32 +848,17 @@ export default [
         },
       ],
       "eol-last": "error",
-      "func-call-spacing": [
-        "error",
-        "never",
-      ],
+      "func-call-spacing": ["error", "never"],
       "func-name-matching": [
         "error",
         {
           considerPropertyDescriptor: true,
         },
       ],
-      "func-names": [
-        "error",
-        "never",
-      ],
-      "function-call-argument-newline": [
-        "error",
-        "consistent",
-      ],
-      indent: [
-        "error",
-        2
-      ],
-      "jsx-quotes": [
-        "error",
-        "prefer-double",
-      ],
+      "func-names": ["error", "never"],
+      "function-call-argument-newline": ["error", "consistent"],
+      indent: ["error", 2],
+      "jsx-quotes": ["error", "prefer-double"],
       "key-spacing": [
         "error",
         {
@@ -994,10 +867,7 @@ export default [
         },
       ],
       "keyword-spacing": "error",
-      "linebreak-style": [
-        "off",
-        "unix",
-      ],
+      "linebreak-style": ["off", "unix"],
       "lines-between-class-members": [
         "error",
         "always",
@@ -1018,10 +888,7 @@ export default [
       // ],
 
       "max-depth": "warn",
-      "max-nested-callbacks": [
-        "warn",
-        4,
-      ],
+      "max-nested-callbacks": ["warn", 4],
       "max-params": [
         "warn",
         {
@@ -1035,7 +902,7 @@ export default [
           newIsCap: true,
           capIsNew: true,
           capIsNewExceptions: getMonkeyCodeNames("string"),
-          newIsCapExceptions: getMonkeyCodeNames("string")
+          newIsCapExceptions: getMonkeyCodeNames("string"),
         },
       ],
       "new-parens": "error",
@@ -1056,25 +923,13 @@ export default [
       "no-whitespace-before-property": "error",
       "no-trailing-spaces": "error",
       "no-unneeded-ternary": "error",
-      "object-curly-spacing": [
-        "error",
-        "always",
-      ],
+      "object-curly-spacing": ["error", "always"],
       // Disabled because of https://github.com/xojs/eslint-config-xo/issues/27
       // "object-property-newline": "error",
-      "one-var": [
-        "error",
-        "never",
-      ],
+      "one-var": ["error", "never"],
       "one-var-declaration-per-line": "error",
-      "operator-assignment": [
-        "error",
-        "always",
-      ],
-      "operator-linebreak": [
-        "error",
-        "before",
-      ],
+      "operator-assignment": ["error", "always"],
+      "operator-linebreak": ["error", "before"],
       "padded-blocks": [
         "error",
         "never",
@@ -1092,14 +947,8 @@ export default [
       ],
       "prefer-exponentiation-operator": "error",
       "prefer-object-spread": "error",
-      "quote-props": [
-        "error",
-        "as-needed",
-      ],
-      quotes: [
-        "error",
-        "double",
-      ],
+      "quote-props": ["error", "as-needed"],
+      quotes: ["error", "double"],
       "semi-spacing": [
         "error",
         {
@@ -1107,18 +956,9 @@ export default [
           after: true,
         },
       ],
-      "semi-style": [
-        "error",
-        "last",
-      ],
-      semi: [
-        "error",
-        "always",
-      ],
-      "space-before-blocks": [
-        "error",
-        "always",
-      ],
+      "semi-style": ["error", "last"],
+      semi: ["error", "always"],
+      "space-before-blocks": ["error", "always"],
       "space-before-function-paren": [
         "error",
         {
@@ -1127,10 +967,7 @@ export default [
           asyncArrow: "always",
         },
       ],
-      "space-in-parens": [
-        "error",
-        "never",
-      ],
+      "space-in-parens": ["error", "never"],
       "space-infix-ops": "error",
       "space-unary-ops": "error",
       "spaced-comment": [
@@ -1138,27 +975,12 @@ export default [
         "always",
         {
           line: {
-            exceptions: [
-              "-",
-              "+",
-              "*",
-            ],
-            markers: [
-              "!",
-              "/",
-              "=>",
-            ],
+            exceptions: ["-", "+", "*"],
+            markers: ["!", "/", "=>"],
           },
           block: {
-            exceptions: [
-              "-",
-              "+",
-              "*",
-            ],
-            markers: [
-              "!",
-              "*",
-            ],
+            exceptions: ["-", "+", "*"],
+            markers: ["!", "*"],
             balanced: true,
           },
         },
@@ -1170,19 +992,10 @@ export default [
           before: false,
         },
       ],
-      "template-tag-spacing": [
-        "error",
-        "never",
-      ],
-      "unicode-bom": [
-        "error",
-        "never",
-      ],
+      "template-tag-spacing": ["error", "never"],
+      "unicode-bom": ["error", "never"],
       "arrow-body-style": "error",
-      "arrow-parens": [
-        "error",
-        "as-needed",
-      ],
+      "arrow-parens": ["error", "as-needed"],
       "arrow-spacing": [
         "error",
         {
@@ -1191,10 +1004,7 @@ export default [
         },
       ],
       "constructor-super": "error",
-      "generator-star-spacing": [
-        "error",
-        "both",
-      ],
+      "generator-star-spacing": ["error", "both"],
       "no-class-assign": "error",
       "no-const-assign": "error",
       "no-constant-binary-expression": "error",
@@ -1259,16 +1069,10 @@ export default [
       "prefer-rest-params": "error",
       "prefer-spread": "error",
       "require-yield": "error",
-      "rest-spread-spacing": [
-        "error",
-        "never",
-      ],
+      "rest-spread-spacing": ["error", "never"],
       "symbol-description": "error",
       "template-curly-spacing": "error",
-      "yield-star-spacing": [
-        "error",
-        "both",
-      ],
-    }
+      "yield-star-spacing": ["error", "both"],
+    },
   },
 ];
