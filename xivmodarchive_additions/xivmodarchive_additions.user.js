@@ -1,16 +1,20 @@
 // ==UserScript==
 // @name         XIV Mod Archive Additions
 // @namespace    NekoBoiNick.Web.XIVModArchive.Additions
-// @version      1.1.0
+// @version      1.1.1
 // @description  Adds custom things to XIV Mod Archive
 // @author       Neko Boi Nick
 // @match        https://xivmodarchive.com/*
 // @match        https://www.xivmodarchive.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=xivmodarchive.com
 // @license      MIT
+// @grant        unsafeWindow
 // @grant        GM_setClipboard
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
+// @grant        GM.getResourceUrl
+// @grant        GM.xmlHttpRequest
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/xivmodarchive_additions/xivmodarchive_additions.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/xivmodarchive_additions/xivmodarchive_additions.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
@@ -22,7 +26,8 @@
 // @resource     copyAuthorName https://raw.githubusercontent.com/thakyZ/Userscripts/master/xivmodarchive_additions/copyAuthorName.template.html
 // @resource     deleteAllMessages https://raw.githubusercontent.com/thakyZ/Userscripts/master/xivmodarchive_additions/deleteAllMessages.template.html
 // ==/UserScript==
-/* global $, showSpinner, hideSpinner, showError */
+/* global $, jQuery, showSpinner, hideSpinner, showError */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
   const createElements = (resource, replaceObj = {}) => {
@@ -137,7 +142,9 @@ $(document).ready(() => {
       }
     }
 
-    createFirstLastNavElements(pages, getDoMin(), getDoMax(pages));
+    if (/https?:\/\/(www\.)?xivmodarchive\.com\/dashboard.*/i.test(window.location.href) === false) {
+      createFirstLastNavElements(pages, getDoMin(), getDoMax(pages));
+    }
   };
 
   getNumberOfPages();
@@ -172,12 +179,10 @@ $(document).ready(() => {
 
   const encodeRawImageError = "Failed to encode raw image data. Falling back...";
 
-  const setImage = element => {
+  const setImage = async element => {
     let imageEncoded = "";
     try {
-      const image = GM_getResourceText("blankAvatarPng");
-      const base64d = btoa(image);
-      const dataUri = `data:image/jpeg;base64,${base64d}`;
+      const dataUri = await GM.getResourceUrl("blankAvatarPng");
       imageEncoded = dataUri;
     } catch (error) {
       console.group(encodeRawImageError);
@@ -189,29 +194,35 @@ $(document).ready(() => {
     $(element).attr("src", imageEncoded);
   };
 
-  const changeAvatarImage = () => {
+  const changeAvatarImage = async () => {
     const image = $("img[alt=\"User Avatar\"]").length > 0 ? $("img[alt=\"User Avatar\"]") : $("img.rounded-circle");
     if ($(image).attr("src") !== "" && (!$(image).prop("complete") || $(image).prop("naturalHeight") === 0)) {
-      $.ajax({ accepts: "data:image/png", cache: false, url: $(image).attr("src"), error(jqXHR, textStatus, error) {
-        if (error) {
-          console.error("Failed to get the user's avatar.");
-          console.error(error);
-        }
+      try {
+        const request = await GM.xmlHttpRequest({
+          method: "GET",
+          url: $(image).attr("src"),
+          responseType: "",
+          synchronous: true,
+          timeout: 2000
+        });
 
-        console.debug(textStatus);
-
-        if (jqXHR.status === 404 || jqXHR.status === 500) {
-          setImage($(image));
+        if (request.status === 404 || request.status === 500) {
+          await setImage($(image));
         }
-      } });
+      } catch (error) {
+        console.error("Failed to get the user's avatar.");
+        console.error(error);
+      }
     } else if ($(image).attr("src") === "") {
-      setImage($(image));
+      await setImage($(image));
     }
   };
 
   // });
   if (/https:\/\/(www\.)?xivmodarchive\.com\/(modid|user)\//gi.test(window.location.href)) {
-    changeAvatarImage();
+    (async function () {
+      await changeAvatarImage();
+    })();
   }
 
   const changeIconDesigns = () => {
@@ -238,6 +249,8 @@ $(document).ready(() => {
 
   editPages();
 
+  const camelToSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
+
   const doDeleteMessagesError = data => {
     hideSpinner();
     return showError(data);
@@ -252,12 +265,13 @@ $(document).ready(() => {
 
     const inboxId = $(elements[index]).attr("data-inbox_id");
 
+    const data = {};
+    data[camelToSnakeCase("inboxId")] = inboxId;
+
     $.ajax({
       url: "/api/inbox/delete",
       type: "POST",
-
-      /* eslint camelcase: [ "error", { allow: [ "inbox_id" ] } ] */
-      data: JSON.stringify({ inbox_id: inboxId }),
+      data: JSON.stringify(data),
       contentType: "application/json"
     }).fail(data => doDeleteMessagesError(data)).done(data => {
       if (!data.success) {
