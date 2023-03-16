@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit User Profile Links
 // @namespace    NekoBoiNick.Web.Reddit.UserProfileLinks.
-// @version      1.0.3
+// @version      1.0.3.1
 // @description  Adds links to Reddit User Profiles if provided.
 // @author       thakyZ
 // @match        https://www.reddit.com/user/*
@@ -122,18 +122,17 @@ $(document).ready(() => {
     const matchPattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/gim;
     const matchText1 = inputText.match(matchPattern1);
 
-    for (const index in matchText1) {
-      const match = matchText1[index];
+    for (const [, text] of Object.entries(matchText1)) {
       matchText += 1;
-      const url = match.replace(/https?:\/\/((.+\.)?[a-z0-9]+\.[a-z]+)\/.*/gi, "$1");
-      let user = match.replace(/https?:\/\/(.+\.)?\w+\.\w+(\/[\w\s]*)*\/(.*)/gi, "$3");
+      const url = text.replace(/https?:\/\/((.+\.)?[a-z0-9]+\.[a-z]+)\/.*/gi, "$1");
+      let user = text.replace(/https?:\/\/(.+\.)?\w+\.\w+(\/[\w\s]*)*\/(.*)/gi, "$3");
       if (user === "") {
         user = "website";
       }
 
       const buttonRow = document.createElement("li");
-      const directBtn = createBtn(buttonRow, {
-        href: match,
+      createBtn(buttonRow, {
+        href: text,
         domain: url,
         text: user
       });
@@ -145,18 +144,17 @@ $(document).ready(() => {
     const matchPattern2 = /(^|\/)(www\.\S+(\b|$))/gim;
     const matchText2 = inputText.match(matchPattern2);
 
-    for (const index in matchText2) {
-      const match = matchText2[index];
+    for (const [, text] of Object.entries(matchText2)) {
       matchText += 1;
-      const url = match.replace(/((.+\.)?[a-z0-9]+\.[a-z]+)\/.*/gi, "$1");
-      let user = match.replace(/(.+\.)?\w+\.\w+(\/[\w\s]*)*\/(.*)/gi, "$3");
+      const url = text.replace(/((.+\.)?[a-z0-9]+\.[a-z]+)\/.*/gi, "$1");
+      let user = text.replace(/(.+\.)?\w+\.\w+(\/[\w\s]*)*\/(.*)/gi, "$3");
       if (user === "") {
         user = "website";
       }
 
       const buttonRow = document.createElement("li");
-      const directBtn = createBtn(buttonRow, {
-        href: match,
+      createBtn(buttonRow, {
+        href: text,
         domain: url,
         text: user
       });
@@ -168,13 +166,12 @@ $(document).ready(() => {
     const matchPattern3 = /(([a-z0-9\-_.])+@[a-z_]+?(\.[a-z]{2,6})+)/gim;
     const matchText3 = inputText.match(matchPattern3);
 
-    for (const index in matchText3) {
-      const match = matchText3[index];
+    for (const [, text] of Object.entries(matchText3)) {
       matchText += 1;
       const icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAKCAMAAABcxfTLAAAACVBMVEW+vr7////a2trdmc6vAAAAMUlEQVR42mXLQRIAIAhCUeX+h46Y0NH+InyL4i87MZpJc4oy30cbOmFjLMfhuqiPuwMd6ABk3pQhaQAAAABJRU5ErkJggg==";
       const buttonRow = document.createElement("li");
-      const directBtn = createBtn(buttonRow, {
-        href: `mailto:${match}`,
+      createBtn(buttonRow, {
+        href: `mailto:${text}`,
         domain: icon,
         text: "eMail"
       });
@@ -206,6 +203,7 @@ $(document).ready(() => {
     }
   })).observe(document.body, { childList: true, subtree: true });
 
+  /* Old Code
   const setupMutationObserver = () => {
     const targetNode = $("body")[0];
     const config = { attributes: true, childList: true, subtree: true };
@@ -226,5 +224,6 @@ $(document).ready(() => {
     });
   };
 
-  // Old setupMutationObserver();
+  setupMutationObserver();
+  */
 });
