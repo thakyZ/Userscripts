@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Elite Dangerous Community Fix
 @namespace      NekoBoiNick.Web.EliteDangerous.CommunityFix
-@version        1.0.1.1
+@version        1.0.2
 @description    Fixes font issue on the Elite Dangerous Community Website
 @author         Neko Boi Nick
 @license        MIT
@@ -14,6 +14,6 @@
   @import url("https://community.elitedangerous.com/sites/EDSITE_COMM/themes/bootstrap/bootstrap_community/css/webfonts/eurostileltpro.woff.css");
 
   body {
-    font-family: "EurostileLTPro" !important;
+    font-family: "EurostileLTPro", Arial, Helvetica, sans-serif !important;
   }
 }
