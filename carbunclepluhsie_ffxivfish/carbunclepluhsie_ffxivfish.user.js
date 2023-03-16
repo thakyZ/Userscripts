@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Fish Tracking App
 // @namespace    NekoBoiNick.Web.CarbunclePluhsie.FFXIVFish
-// @version      1.0.2
+// @version      1.0.2.1
 // @description  Syncs Fish Tracking to soupcat
 // @author       Neko Boi Nick
 // @match        https://ff14fish.carbuncleplushy.com/*
@@ -53,13 +53,7 @@ $(document).ready(() => {
 
   const getDate = () => Date.now();
 
-  const compareDate = (cur, prev) => {
-    if (cur > prev) {
-      return true;
-    }
-
-    return false;
-  };
+  const compareDate = (cur, prev) => cur > prev;
 
   const saveSettings = force => {
     const date = GM_getValue(DateSaveName);
