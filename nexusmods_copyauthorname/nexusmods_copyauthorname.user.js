@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nexus Mods Copy Author Name
 // @namespace    NekoBoiNick.Web.NexusMods.CopyAuthorName
-// @version      1.0.4
+// @version      1.0.4.1
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.nexusmods.com/*/mods/*
