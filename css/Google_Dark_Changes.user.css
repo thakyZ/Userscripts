@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Google Dark Changes
 @namespace      NekoBoiNick.Web.Google.DarkChanges
-@version        1.0.0
+@version        1.0.1
 @description    `Makes changes to various Google stylus scripts:
                 Dark Theme for Google Docs [V2.0]`
 @author         Neko Boi Nick
@@ -23,12 +23,11 @@ url-prefix("https://calendar.google.com"),
 url-prefix("https://sites.google.com/new"),
 url-prefix("https://sites.google.com/d"),
 url-prefix("https://drive.google.com/") {
-
   /* COLOR VARIABLES */
   body,
   html {
     --bg-light: #525355;
-    --bg-mid: #2D2E30;
+    --bg-mid: #2d2e30;
     --bg-dark: #1f1f1f;
     --text-primary: #ffffff;
     --text-secondary: #ffffff87;
@@ -75,7 +74,7 @@ url-prefix("https://drive.google.com/") {
 
   ul#sheet-menu li.active a,
   ul#sheet-menu li.active a:visited {
-    color: #0086E6
+    color: #0086e6;
   }
 
   #top-bar,
