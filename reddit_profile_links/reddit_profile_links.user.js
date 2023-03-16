@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit User Profile Links
 // @namespace    NekoBoiNick.Web.Reddit.UserProfileLinks.
-// @version      1.0.2
+// @version      1.0.3
 // @description  Adds links to Reddit User Profiles if provided.
 // @author       thakyZ
 // @match        https://www.reddit.com/user/*
@@ -126,7 +126,7 @@ $(document).ready(() => {
       const match = matchText1[index];
       matchText += 1;
       const url = match.replace(/https?:\/\/((.+\.)?[a-z0-9]+\.[a-z]+)\/.*/gi, "$1");
-      let user = match.replace(/https?:\/\/(.+\.)?[\w]+\.[\w]+(\/[\w\s]*)*\/(.*)/gi, "$3");
+      let user = match.replace(/https?:\/\/(.+\.)?\w+\.\w+(\/[\w\s]*)*\/(.*)/gi, "$3");
       if (user === "") {
         user = "website";
       }
@@ -142,14 +142,14 @@ $(document).ready(() => {
     }
 
     // URLs starting with "www." (without // before it, or it'd re-link the ones done above).
-    const matchPattern2 = /(^|[/])(www\.[\S]+(\b|$))/gim;
+    const matchPattern2 = /(^|\/)(www\.\S+(\b|$))/gim;
     const matchText2 = inputText.match(matchPattern2);
 
     for (const index in matchText2) {
       const match = matchText2[index];
       matchText += 1;
       const url = match.replace(/((.+\.)?[a-z0-9]+\.[a-z]+)\/.*/gi, "$1");
-      let user = match.replace(/(.+\.)?[\w]+\.[\w]+(\/[\w\s]*)*\/(.*)/gi, "$3");
+      let user = match.replace(/(.+\.)?\w+\.\w+(\/[\w\s]*)*\/(.*)/gi, "$3");
       if (user === "") {
         user = "website";
       }
@@ -165,7 +165,7 @@ $(document).ready(() => {
     }
 
     // Change email addresses to mailto:: links.
-    const matchPattern3 = /(([a-zA-Z0-9\-_.])+@[a-zA-Z_]+?(\.[a-zA-Z]{2,6})+)/gim;
+    const matchPattern3 = /(([a-z0-9\-_.])+@[a-z_]+?(\.[a-z]{2,6})+)/gim;
     const matchText3 = inputText.match(matchPattern3);
 
     for (const index in matchText3) {
