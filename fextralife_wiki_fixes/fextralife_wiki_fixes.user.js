@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         fExtra Life Wiki Fixes
 // @namespace    NekoBoiNick.Web.FExtraLife.Wiki.Fixes
-// @version      1.0.2
-// @description  Trys to fix some issues about fExtra Life's wiki pages.
+// @version      1.0.3
+// @description  Tries to fix some issues about fExtra Life's wiki pages.
 // @author       NekoBoiNick
 // @match        https://*.wiki.fextralife.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=fextralife.com
 // @grant        GM_log
 // @run-at       document-start
 // @noframes
