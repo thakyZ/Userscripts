@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Cheat Engine Bypass Website
 // @namespace    NekoBoiNick.CheatEngine.Fixes
-// @version      1.0.1
+// @version      1.0.2
 // @description  Bypasses the ad website when downloading cheat engine.
 // @author       NekoBoiNick
 // @match        http://ffsrchmgr.com/*
@@ -21,7 +21,7 @@ $(document).ready(() => {
   "use strict";
 
   const skipButtonClass = ".skip_button";
-  const urlCheck = /^http:\/\/ffsrchmgr.com\/[0-9]+\/[a-zA-Z0-9+_=]+(\?install_id=.+)?$/i;
+  const urlCheck = /^http:\/\/ffsrchmgr.com\/\d+\/[a-z0-9+_=]+(\?install_id=.+)?$/i;
 
   const loc = window.location.href;
 
