@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FFXIV Squadron App
 // @namespace    NekoBoiNick.Web.FFXIVSquadron.SaveLoad
-// @version      1.0.4
+// @version      1.0.5
 // @description  Syncs the FFXIV Sqadron App Data
 // @author       Neko Boi Nick
 // @match        https://www.ffxivsquadron.com/*
@@ -49,13 +49,7 @@ $(document).ready(() => {
 
   const getDate = () => Date.now();
 
-  const compareDate = (cur, prev) => {
-    if (cur > prev) {
-      return true;
-    }
-
-    return false;
-  };
+  const compareDate = (cur, prev) => cur > prev;
 
   const saveSettings = force => {
     const date = GM_getValue(DateSaveName);
@@ -216,8 +210,8 @@ $(document).ready(() => {
     }
 
     const handleActiveChemistries = activeChemistries => {
-      for (let j = 0; j < activeChemistries.length; j++) {
-        const chemImage = $(".img-chem img", $(activeChemistries[j]));
+      for (const [, chemistry] of Object.entries(activeChemistries)) {
+        const chemImage = $(".img-chem img", $(chemistry));
         if ($(chemImage).attr("src") === "images/cra_scrips.png") {
           $(chemImage).attr("src", `${currentSealsImage[1]}`);
           $(chemImage).attr("width", "32");
@@ -235,8 +229,7 @@ $(document).ready(() => {
     const callback = (mutationList, _) => {
       for (const mutation of mutationList) {
         if (mutation.type === "childList" && mutation.addedNodes.length > 0 && $(mutation.addedNodes[0]).attr("class").split(" ")[0] === "result-line") {
-          for (let i = 0; i < mutation.addedNodes.length; i++) {
-            const node = $(mutation.addedNodes[i]);
+          for (const [, node] of Object.entries(mutation.addedNodes)) {
             const chemistries = $(node).children(".stats-and-training").children(".chemistries");
             if (chemistries.length > 0) {
               const activeChemistries = $(chemistries).children("div:not(.title-stat)");
