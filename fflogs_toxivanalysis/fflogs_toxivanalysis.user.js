@@ -1,18 +1,18 @@
 // ==UserScript==
 // @name         FFLogs To XIV Analysis
 // @namespace    NekoBoiNick.Web.FFLogs.ButtonToXIVAnalysis
-// @version      1.0.2
+// @version      1.0.3
 // @description  Adds a button to FFLogs reports to redirect to XIV Analysis
 // @author       Neko Boi Nick
 // @match        https://www.fflogs.com/reports/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=fflogs.com
 // @license      MIT
 // @grant        none
+// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/fflogs_toxivanalysis/fflogs_toxivanalysis.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/fflogs_toxivanalysis/fflogs_toxivanalysis.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
 /* global $, fights */
 this.$ = this.jQuery = jQuery.noConflict(true);
@@ -146,8 +146,8 @@ $(document).ready(() => {
   $($(".report-bar-top-right-section").children()[0]).before(createButton());
   $(".goto-xivanalysis > .xivanalysis-btn").on("click", () => {
     const SiteRegex = /https:\/\/(www\.)?fflogs.com\/reports\/([a-zA-Z0-9]+)\/?(#.*)?/g;
-    const FightRegex = /[#&]fight=(\d{1,}|last)/g;
-    const SourceRegex = /[#&]source=(\d{1,})/g;
+    const FightRegex = /[#&]fight=(\d+|last)/g;
+    const SourceRegex = /[#&]source=(\d+)/g;
     const location = window.location.href;
     if (location.match(SiteRegex) !== null) {
       let computed = `https://xivanalysis.com/fflogs/${window.location.href.replace(SiteRegex, "$2")}`;
@@ -214,8 +214,8 @@ $(document).ready(() => {
                 const xivAnalysisBtn = $("<td class=\"xivanalysis-ply-btn-box\"><div class=\"xivanalysis-plyr-btn xivanalysis-icon\" id=\"icon-9-0-5\"></td>");
                 $(xivAnalysisBtn).insertAfter($("tr td", $(element))[$("tr td", $(element)).length - 1]);
                 $(xivAnalysisBtn).on("click", () => {
-                  const SiteRegex = /https:\/\/(www\.)?fflogs.com\/reports\/([a-zA-Z0-9]+)\/?(#.*)?/g;
-                  const FightRegex = /[#&]fight=(\d{1,}|last)/g;
+                  const SiteRegex = /https:\/\/(www\.)?fflogs.com\/reports\/(\w+)\/?(#.*)?/gi;
+                  const FightRegex = /[#&]fight=(\d+|last)/g;
                   const location = window.location.href;
                   if (location.match(SiteRegex) !== null) {
                     let computed = `https://xivanalysis.com/fflogs/${window.location.href.replace(SiteRegex, "$2")}`;
