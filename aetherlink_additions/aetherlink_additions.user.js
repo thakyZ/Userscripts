@@ -123,12 +123,11 @@ $(document).ready(() => {
     return newName;
   };
 
-  const getModAuthor = () =>
-    checkEveryLetter($(".author").text()
-      .replace(/\s/gi, "_")
-      .replace(/[[(\]){}.]/gi, ""))
-      /* eslint no-control-regex: off */
-      .replace(/\s?[\u0000-\u001F\u007B-\uFFFF]\s?/gi, "");
+  const getModAuthor = () => checkEveryLetter($(".author").text()
+    .replace(/\s/gi, "_")
+    .replace(/[[(\]){}.]/gi, ""))
+    /* eslint no-control-regex: off */
+    .replace(/\s?[\u0000-\u001F\u007B-\uFFFF]\s?/gi, "");
 
   const getModName = () => $(".page-title .active").text()
     .replace(/Bibo\+/gi, "Bibo-Plus")
