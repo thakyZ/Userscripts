@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         No Old Reddit
 // @namespace    NekoBoiNick.Reddit.NoOld
-// @version      0.1.1
+// @version      1.0.0
 // @description  Changes links that redirect to old reddit so that they use the new design
 // @author       Neko Boi Nick
 // @match        *://*.reddit.com/*
@@ -20,15 +20,15 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 $(document).ready(() => {
   "use strict";
   const anchors = $("a");
-  const regex = /^https?:\/\/(np|old)\.reddit\.com/g;
-  for (let index = 0; index < anchors.length; index++) {
-    const attr = $(anchors[index]).attr("href");
-    if (typeof attr !== "undefined" && attr !== false && regex.test($(anchors[index]).attr("href"))) {
-      $(anchors[index]).attr("href", $(anchors[index]).attr("href").replace(regex, "https://reddit.com"));
+  const regex = /^https?:\/\/(np|old)\.reddit\.com/i;
+  for (let anchor of Object.entries(anchors)) {
+    const attr = $(anchor).attr("href");
+    if (typeof attr !== "undefined" && attr !== false && regex.test($(anchor).attr("href"))) {
+      $(anchor).attr("href", $(anchor).attr("href").replace(regex, "https://reddit.com"));
     }
 
-    if (regex.test($(anchors[index]).text())) {
-      $(anchors[index]).text($(anchors[index]).text().replace(regex, "https://reddit.com"));
+    if (regex.test($(anchor).text())) {
+      $(anchor).text($(anchor).text().replace(regex, "https://reddit.com"));
     }
   }
 });
