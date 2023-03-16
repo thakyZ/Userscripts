@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FFXIV Team Craft Additions
 // @namespace    MekoBoiNick.Web.FFXIV.TeamCraft.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds new things to FFXIV Team Craft
 // @author       Neko Boi Nick
 // @match        https://guides.ffxivteamcraft.com/*
