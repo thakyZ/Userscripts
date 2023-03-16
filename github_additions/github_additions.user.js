@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Github Additions
 // @namespace    NekoBoiNick.Web.Github.Additions
-// @version      1.0.2
+// @version      1.0.2.1
 // @description  try to take over the world!
 // @author       Neko Boi Nick
 // @match        https://gist.github.com/*
@@ -69,7 +69,7 @@ $(document).ready(() => {
   };
 
   const checkForProgress = ele => {
-    if ($(ele).html().test(/%\[\d+\/\d+\]/i)) {
+    if (/%\[\d+\/\d+\]/i.test($(ele).html())) {
       $(ele).html($(ele).html().replaceAll(/%\[(\d+)\/(\d+)\]/gi, "<progress class=\"md\" value=\"$1\" max=\"$2\"/>"));
     }
   };
