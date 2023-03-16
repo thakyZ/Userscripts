@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Text Editor for Google Drive Change Default Theme
 // @namespace    NekoBoiNick.Web.GoogledDrive.TextEditor.Theme.Default
-// @version      1.0.0
+// @version      1.0.1
 // @description  Gives an option to change the default theme of the Text Editor for Google Drive
 // @author       Neko Boi Nick
 // @match        https://texteditor.co/
@@ -15,35 +15,31 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, jQuery, ace, te */
+/* global $, jQuery, ace */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(function () {
-  const ThemeSaveName = "TextEditor_GD_DefaultTheme";
-  const SetupMutationObserver = () => {
-    const targetNode = $("body")[0];
-    $("#settingsMenuButton").on("click", (e) => {
+$(document).ready(() => {
+  const themeSaveName = "TextEditor_GD_DefaultTheme";
+  const setupMutationObserver = () => {
+    $("#settingsMenuButton").on("click", () => {
       let ld = -1;
-      ld = setInterval(function () {
-        if ($("#-theme").length > 0) {
-          $("#-theme").on("change", (e) => {
+      ld = setInterval(() => {
+        const theme = $("#-theme");
+        if ($(theme).length > 0) {
+          $(theme).on("change", () => {
             const selectedValue = $("#-theme option:selected").attr("value");
-            GM_setValue(ThemeSaveName, selectedValue);
+            GM_setValue(themeSaveName, selectedValue);
           });
           clearInterval(ld);
         }
       }, 100);
     });
-    let i = 1;
     let kd = -1;
-    kd = setInterval(function () {
+    kd = setInterval(() => {
       if (ace !== undefined) {
-        ace.edit("mainEditor").renderer.on('afterRender', function (e) {
-          const value = GM_getValue(ThemeSaveName);
-          if (value === "ace/theme/chrome" || ace.edit("mainEditor").getOption("theme") === value) {
-            return;
-          }
-          ace.edit("mainEditor").setOptions({ theme: value });
+        ace.edit("mainEditor").renderer.on("afterRender", () => {
+          const value = GM_getValue(themeSaveName);
+          return value === "ace/theme/chrome" || ace.edit("mainEditor").getOption("theme") === value ? false : ace.edit("mainEditor").setOptions({ theme: value });
         });
         clearInterval(kd);
       }
@@ -51,9 +47,9 @@ $(document).ready(function () {
   };
 
   let id = -1;
-  id = setInterval(function () {
+  id = setInterval(() => {
     if ($("#mainEditor").length > 0) {
-      SetupMutationObserver();
+      setupMutationObserver();
       clearInterval(id);
     }
   }, 100);
