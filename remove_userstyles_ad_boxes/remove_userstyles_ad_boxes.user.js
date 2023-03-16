@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Remove UserStyles Ad Boxes
 // @namespace    NekoBoiNick.UserStyles.Ads
-// @version      0.2
+// @version      1.0.0
 // @description  Removes divs for ads on UserStyles
 // @author       NekoBoiNick
 // @match        https://userstyles.org/*
