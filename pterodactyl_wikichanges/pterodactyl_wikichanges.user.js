@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Pterodactyl Wiki Changes
 // @namespace    NekoBoiNick.Web.Pterodactyl.Wiki.Changes
-// @version      1.0.2
+// @version      1.0.3
 // @description  Changes things on the Pterodactyl wiki
 // @author       Neko Boi Nick
 // @match        https://pterodactyl.io/*
