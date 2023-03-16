@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit Changes
 // @namespace    NekoBoiNick.Web.Reddit.CHanges
-// @version      1.0.0
+// @version      1.0.1
 // @description  Does changes for reddit.
 // @author       Neko Boi Nick
 // @match        https://www.reddit.com/*
@@ -22,9 +22,9 @@ $(document).ready(() => {
   let id = -1;
   let kd = -1;
   function removeElement() {
-    const ShopAvatarsElement = $("button:last-child:contains(\"Shop Avatars\")");
-    if ($(ShopAvatarsElement).length > 0) {
-      $($(ShopAvatarsElement).parent()).css("display", "none");
+    const shopAvatarsElement = $("button:last-child:contains(\"Shop Avatars\")");
+    if ($(shopAvatarsElement).length > 0) {
+      $($(shopAvatarsElement).parent()).css("display", "none");
       return true;
     }
 
@@ -32,31 +32,31 @@ $(document).ready(() => {
   }
 
   const downloadButton = MenuBarCopy => {
-    const Button = $(MenuBarCopy).clone();
-    $($($(Button).children()[0]).children()[1]).html("<span></span>Download");
-    const IconClasses = $($($($(Button).children()[0]).children()[0]).children()[0]).attr("class");
-    $($($($(Button).children()[0]).children()[0]).children()[0]).attr("id", "");
-    $($($($(Button).children()[0]).children()[0]).children()[0]).attr("class", IconClasses.replace(/icon-award/g, "icon-download"));
-    $($($(Button).children()[0]).children().find("span")[2]).attr("id", "download_button");
-    $(Button).on("click", () => {
-      let Address = window.location.href;
-      const Regex = /https:\/\/(old\.|www\.)?reddit.com\/(r\/[a-zA-Z0-9_-]+\/comments\/[a-zA-Z0-9]+\/)/g;
-      Address = Address.replace(Regex, "https://redditsave.com/$2");
-      window.open(Address, "_blank");
+    const button = $(MenuBarCopy).clone();
+    $($($(button).children()[0]).children()[1]).html("<span></span>Download");
+    const iconClasses = $($($($(button).children()[0]).children()[0]).children()[0]).attr("class");
+    $($($($(button).children()[0]).children()[0]).children()[0]).attr("id", "");
+    $($($($(button).children()[0]).children()[0]).children()[0]).attr("class", iconClasses.replace(/icon-award/g, "icon-download"));
+    $($($(button).children()[0]).children().find("span")[2]).attr("id", "download_button");
+    $(button).on("click", () => {
+      let address = window.location.href;
+      const regex = /https:\/\/(old\.|www\.)?reddit.com\/(r\/[a-zA-Z0-9_-]+\/comments\/[a-zA-Z0-9]+\/)/g;
+      address = address.replace(regex, "https://redditsave.com/$2");
+      window.open(address, "_blank");
     });
-    return Button;
+    return button;
   };
 
   function addDownloadButton() {
-    const MediaContainer = $("div[data-testid=\"post-container\"] div[data-click-id=\"media\"]");
-    if ($(MediaContainer).length > 0) {
-      const VideoSource = $(MediaContainer).children().find("video > source[src][type]");
-      if ($(VideoSource).length > 0) {
-        const PostContent = $("div[data-testid=\"post-container\"] > div[data-test-id=\"post-content\"]").children();
-        const PostMenuBar = $($($(PostContent)[PostContent.length - 1]).children()[0]);
-        const MenuBarLast = $($(PostMenuBar).children()[3]);
-        const MenuBarCopy = $($(PostMenuBar).children()[1]);
-        $(downloadButton(MenuBarCopy)).insertAfter(MenuBarLast);
+    const mediaContainer = $("div[data-testid=\"post-container\"] div[data-click-id=\"media\"]");
+    if ($(mediaContainer).length > 0) {
+      const videoSource = $(mediaContainer).children().find("video > source[src][type]");
+      if ($(videoSource).length > 0) {
+        const postContent = $("div[data-testid=\"post-container\"] > div[data-test-id=\"post-content\"]").children();
+        const postMenuBar = $($($(postContent)[postContent.length - 1]).children()[0]);
+        const menuBarLast = $($(postMenuBar).children()[3]);
+        const menuBarCopy = $($(postMenuBar).children()[1]);
+        $(downloadButton(menuBarCopy)).insertAfter(menuBarLast);
         return true;
       }
 
