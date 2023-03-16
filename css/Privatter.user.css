@@ -10,17 +10,15 @@
 @supportURL     https://github.com/thakyZ/Userscripts/issues
 ==/UserStyle== */
 @-moz-document domain("privatter.net") {
-
   .navbar-brand,
   .caret {
-    color: #0C0C0D !important;
+    color: #0c0c0d !important;
   }
 
-  .nav-tabs>li.active>a>svg,
-  .nav-tabs>li.active>a {
-    color: #F9F9FA !important;
+  .nav-tabs > li.active > a > svg,
+  .nav-tabs > li.active > a {
+    color: #f9f9fa !important;
   }
-
 
   a[href="/adcookie.php"] {
     display: none;
