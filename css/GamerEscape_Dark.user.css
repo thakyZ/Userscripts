@@ -31,7 +31,7 @@
   .nav-page-actions a:hover,
   .nav-sub a:active,
   .nav-sub a:hover {
-    color: hsla(0, 0%, 100%, .85) !important;
+    color: hsla(0, 0%, 100%, 0.85) !important;
   }
 
   .nav-footer a:link,
