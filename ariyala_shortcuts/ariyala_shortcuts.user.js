@@ -14,7 +14,8 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $ */
+/* global $, jQuery */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
 const jsonConfig = {
   items: [

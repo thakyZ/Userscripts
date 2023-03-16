@@ -4,7 +4,7 @@
   "description": "Userscripts by thakyZ",
   "main": "index.js",
   "scripts": {
-    "test": "crossenv ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.mjs .",
+    "test": "npx cross-env ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.mjs .",
     "lessc": "./node_modules/.bin/lessc",
     "prettier:check": "npx prettier --check .",
     "prettier:write": "npx prettier --write ."

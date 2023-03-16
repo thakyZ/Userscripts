@@ -21,7 +21,7 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, sqMissionSolver, _, jQuery, MonkeyConfig */
+/* global $, jQuery, MonkeyConfig */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {

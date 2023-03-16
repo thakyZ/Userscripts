@@ -17,7 +17,8 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
-/* global $, ViewModel, _ */
+/* global $, jQuery, ViewModel, _ */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
 const SettingsSaveName = "FishTrackingApp.Settings";
 const DateSaveName = "FishTrackingApp.Date";

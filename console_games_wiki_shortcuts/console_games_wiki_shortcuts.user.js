@@ -14,7 +14,7 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
-/* global $ */
+/* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {

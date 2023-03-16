@@ -14,6 +14,7 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
+/* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 // Code to add getting all attributes from elements.
