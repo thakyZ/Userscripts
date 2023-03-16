@@ -22,7 +22,7 @@ $(document).ready(() => {
 
   function checkForProgress(ele) {
     if (/%\[\d+\/\d+\]/gi.test($(ele).html())) {
-      $(ele).html($(ele).html().replaceAll(/%\[(\d+)\/(\d+)\]/gi, '<progress value="$1" max="$2"/>'));
+      $(ele).html($(ele).html().replaceAll(/%\[(\d+)\/(\d+)\]/gi, "<progress value=\"$1\" max=\"$2\"/>"));
     }
   }
 

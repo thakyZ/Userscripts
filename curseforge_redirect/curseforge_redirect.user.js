@@ -24,28 +24,33 @@
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 // Disable any banner with giveaways, as I personally do not want to sign up for them. But only if they contain "Win Awesome Prizes" otherwise others are fine.
-let disable_banner = true;
-const bannerTitles = ["The Official Mod Hub for", "win awesome prizes"];
+// eslint-disable-next-line prefer-const
+let disableBanner = true;
 
-$(document).ready(function () {
+$(document).ready(() => {
+  const bannerTitles = ["The Official Mod Hub for", "win awesome prizes"];
+
   const regexp1 = /^(https?:\/\/)(www)(\.curseforge\.com\/)(minecraft\/)(.+)\/(.+)$/i;
-  const regexp2 = /^(https?:\/\/)(minecraft)(\.curseforge\.com\/)(mc-mods\/)(\d+)\-(.+)$/i;
+  const regexp2 = /^(https?:\/\/)(minecraft)(\.curseforge\.com\/)(mc-mods\/)(\d+)-(.+)$/i;
   const loc = window.location.href;
+
   if (regexp2.test(loc)) {
     window.location.href = loc.replace(regexp2, "$1www$3minecraft/mc-mods/$6");
   } else if (regexp1.test(loc)) {
     window.location.href = loc.replace(regexp2, "$1$2$3$4$5$6");
   }
-  const disableBanner = () => {
-    bannerTitles.forEach(function (e) {
+
+  const doDisableBanner = () => {
+    bannerTitles.forEach(e => {
       if ($("html head ~ div a").length > 0 && $("html head ~ div a").text().includes(e)) {
-        $("html head ~ div").css({ "display": "none" });
+        $("html head ~ div").css({ display: "none" });
       } else if ($("#banner").length > 0 && $("#banner .banner-content p").text().includes(e)) {
-        $("#banner").css({ "display": "none" });
+        $("#banner").css({ display: "none" });
       }
     });
   };
-  if (disable_banner) {
-    disableBanner();
+
+  if (disableBanner) {
+    doDisableBanner();
   }
 });

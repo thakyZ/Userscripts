@@ -27,12 +27,12 @@ $(document).ready(() => {
     CUL: "culinarian",
   };
 
-  const crafterToLong = (crafter) => crafterDictionary[crafter];
+  const crafterToLong = crafter => crafterDictionary[crafter];
 
-  const genStars = (stars) => {
+  const genStars = stars => {
     let outString = "";
     for (let i = 0; i < stars; i++) {
-      outString += '<i class="fa fa-star"></i>';
+      outString += "<i class=\"fa fa-star\"></i>";
     }
 
     return outString;
@@ -43,11 +43,11 @@ $(document).ready(() => {
       stars
     )}</small>`;
 
-  const colorLabel = () => '<small class="label label-danger">Color <i class="fa fa-circle-o"></i></small>';
+  const colorLabel = () => "<small class=\"label label-danger\">Color <i class=\"fa fa-circle-o\"></i></small>";
 
-  const saleLabel = () => '<small class="label label-success"><i class="fa fa-cog"></i> Sale</small>';
+  const saleLabel = () => "<small class=\"label label-success\"><i class=\"fa fa-cog\"></i> Sale</small>";
 
-  const processFooters = (objectData) => {
+  const processFooters = objectData => {
     let outString = "";
 
     if (objectData.crafter !== null) {
@@ -114,7 +114,7 @@ $(document).ready(() => {
       )}</div></div></div></div>`
     );
 
-  const handlePopUp = (element) => {
+  const handlePopUp = element => {
     const link = $(element).find("a").attr("href");
     $(element).find("a").removeAttr("href");
     $(element).find("a").prop("tagName", "div");
@@ -150,18 +150,17 @@ $(document).ready(() => {
     });
   };
 
-  const goToPage = (href) => {
+  const goToPage = href => {
     window.location.href = `https://en.ff14housing.com/${href}`;
   };
 
-  const getObjectData = (element) => {
+  const getObjectData = element => {
     const labels = $(element).find(".small-box-icon > small.label");
     const objectData = { crafter: null, color: false, sale: false };
     for (const [, label] of Object.entries(labels)) {
       const test1 = $(label).text().replaceAll(/(^\s+|\s+$)/gim, "").split(/[\s：.]/);
       if (/^[A-Z]{3}$/g.test(test1[0])) {
-        const testStars =
-          $(label).html().toString().match(/fa-star/gi) === null ? 0 : $(label).html().toString().match(/fa-star/gi).length;
+        const testStars = $(label).html().toString().match(/fa-star/gi) === null ? 0 : $(label).html().toString().match(/fa-star/gi).length;
         objectData.crafter = { class: test1[0], level: test1[2], stars: testStars };
       } else if (test1[0] === "Color") {
         objectData.color = true;
@@ -173,7 +172,7 @@ $(document).ready(() => {
     return objectData;
   };
 
-  const handleButton = (element) => {
+  const handleButton = element => {
     if (!/\.\/images\/ic\/[a-z0-9]{4,12}_ic\.png/gi.test($(element).find("img:first-child").attr("src"))) {
       $(element)
         .find("img:first-child")
@@ -182,7 +181,7 @@ $(document).ready(() => {
   };
 
   const addModalContainer = () => {
-    $('<div id="nbnModalContainer"></div>').insertAfter($("body > *:last-child"));
+    $("<div id=\"nbnModalContainer\"></div>").insertAfter($("body > *:last-child"));
   };
 
   const addButtonHooks = () => {

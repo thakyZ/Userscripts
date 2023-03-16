@@ -25,7 +25,7 @@
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
-  const Settings = {websites:[]};
+  const settings = { websites: [] };
   const config = new MonkeyConfig({
     title: "Configure",
     menuCommand: true,
@@ -36,14 +36,14 @@ $(document).ready(() => {
       }
     }
   });
-  const loadSettings = function() {
-    Settings.websites = [...config.get("websites").replace(/,\s?/,",").split(",")];
+  const loadSettings = () => {
+    settings.websites = [...config.get("websites").replace(/,\s?/, ",").split(",")];
   };
 
   const fixLinks = () => {
     let id = -1;
     id = setInterval(() => {
-      Settings.websites.forEach((website) => {
+      settings.websites.forEach(website => {
         const elements = $(`a[href*="https://${website}/"]`);
         for (const element of Object.entries(elements)) {
           $(element).attr("href", $(this).attr("href").replace(new RegExp(`https://${website}/quick?token=[a-zA-Z0-9]+&url=`, "gi"), ""));
@@ -54,8 +54,8 @@ $(document).ready(() => {
     }, 1000);
   };
 
-  $(window.location).on("hashchange", () => { fixLinks(); });
+  $(window.location).on("hashchange", () => fixLinks());
   fixLinks();
-  GM_registerMenuCommand("Load Settings", () => { loadSettings(); });
+  GM_registerMenuCommand("Load Settings", () => loadSettings());
   loadSettings();
 });

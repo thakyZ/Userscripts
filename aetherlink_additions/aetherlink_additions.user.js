@@ -138,15 +138,15 @@ $(document).ready(() => {
     .replace(/\s?\(F\)$/gi, "-Female")
     .replace(/\s?\(M\)$/gi, "-Female")
     .replace(/(\s-\s|\.|\s\/\s)/gi, "-")
-    .replace(/(\sand\s|\s?[&]\s?)/gi, "+")
+    .replace(/(\sand\s|\s?&\s?)/gi, "+")
     .replace(/Hair (\d+)(\+\d+)/gi, "Hair-$1$2")
     .replace(/\s#(\d+)/gi, "-$1")
     .replace(/\s\(All\sFaces\)/gi, "-All_Faces")
     .replace(/(\[(.*)\]\s?)(.*)/gi, "$3-$2")
     .replace(/\s[\u0000-\u001F\u007B-\uFFFF]\s/gi, "-")
-    .replace(/['"?\\/*:"<>|,!]/gi, "")
+    .replace(/['?\\/*:"<>|,!]/gi, "")
     .replace(/\s?[\u0000-\u001F\u007B-\uFFFF]\s?/gi, "")
-    .replace(/[\s]/gi, "_");
+    .replace(/\s/gi, "_");
 
   const setupMutationObserver = () => {
     const targetNode = $("#__next")[0];

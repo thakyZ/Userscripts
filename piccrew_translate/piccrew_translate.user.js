@@ -14,34 +14,40 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-//- The @grant directives are needed to restore the proper sandbox.
-/* global $, jQuery, waitForKeyElements */
+// The @grant directives are needed to restore the proper sandbox.
+/* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
   "use strict";
   const debug = true;
-  $(document).ready(function(){
-    (function($) {
-      $.fn.detectOriginalText = function($class) {
+  $(document).ready(() => {
+    ($ => {
+      $.fn.detectOriginalText = $class => {
         if (debug) {
           console.log("detectedStrings : " + $($class).length);
         }
+
         return $($class);
-      }
+      };
     })(jQuery);
-    $(document).detectOriginalText(".search-Form_UseRangeLabel").each(function(index) {
-      if ($(this).text() === "個人") {
+
+    $(document).detectOriginalText(".search-Form_UseRangeLabel").each(function () {
+      switch ($(this).text()) {
+      case "個人":
         $(this).text("Personal");
-      }
-      if ($(this).text() === "非商用") {
+        break;
+      case "非商用":
         $(this).text("Non-commercial");
-      }
-      if ($(this).text() === "商用") {
+        break;
+      case "商用":
         $(this).text("Commercial");
-      }
-      if ($(this).text() === "加工") {
+        break;
+      case "加工":
         $(this).text("Processing");
+        break;
+      default:
+        break;
       }
     });
   });

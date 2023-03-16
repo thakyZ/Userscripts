@@ -21,7 +21,7 @@ $(document).ready(() => {
   "use strict";
   const anchors = $("a");
   const regex = /^https?:\/\/(np|old)\.reddit\.com/i;
-  for (let anchor of Object.entries(anchors)) {
+  for (const [, anchor] of Object.entries(anchors)) {
     const attr = $(anchor).attr("href");
     if (typeof attr !== "undefined" && attr !== false && regex.test($(anchor).attr("href"))) {
       $(anchor).attr("href", $(anchor).attr("href").replace(regex, "https://reddit.com"));

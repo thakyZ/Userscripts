@@ -25,7 +25,7 @@ $(document).ready(() => {
     if ($(flashContent).length > 0) {
       const parentElement = $("#pin-clipboard");
       $(flashContent).remove();
-      $(parentElement).on("click", e => {
+      $(parentElement).on("click", () => {
         GM_setClipboard($("input[name=\"pin\"").val());
       });
       clearInterval(id);

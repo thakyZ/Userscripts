@@ -92,7 +92,9 @@ $(document).ready(() => {
     }
   };
   const insertCSS = (object, type) => {
-    const currentCSS = $("style#customCSS-NekoBoiNick").html();
+    /* Soup
+     * const currentCSS = $("style#customCSS-NekoBoiNick").html();
+     */
 
     if ($("head style#customCSS-NekoBoiNick").length === 0) {
       $("head").append("<style id=\"customCSS-NekoBoiNick\"></style>");
@@ -127,13 +129,17 @@ $(document).ready(() => {
 
   const changeBackground = () => {
     const background = config.get("background");
-    const currentCSS = $("style#customCSS-NekoBoiNick").html();
+    /* Soup
+     * const currentCSS = $("style#customCSS-NekoBoiNick").html();
+     */
     insertCSS({ key: background }, "bg");
   };
 
   const changeUI = () => {
     const ui = config.get("ui");
-    const currentCSS = $("style#customCSS-NekoBoiNick").html();
+    /* Soup
+     * const currentCSS = $("style#customCSS-NekoBoiNick").html();
+     */
 
     insertCSS({ key: ui }, "ui");
   };

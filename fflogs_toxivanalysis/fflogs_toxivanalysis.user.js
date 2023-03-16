@@ -176,6 +176,7 @@ $(document).ready(() => {
       if (win) {
         win.focus();
       } else {
+        // eslint-disable-next-line no-alert
         alert("Please allow popups for this website");
       }
     }
@@ -243,6 +244,7 @@ $(document).ready(() => {
                     if (win) {
                       win.focus();
                     } else {
+                      // eslint-disable-next-line no-alert
                       alert("Please allow popups for this website");
                     }
                   }
