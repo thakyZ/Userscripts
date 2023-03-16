@@ -34,12 +34,12 @@
 
   .traits,
   .traitp,
-  .infobox>div>div:last-child>p {
+  .infobox > div > div:last-child > p {
     background-color: rgb(21, 21, 21) !important;
     text-align: center;
   }
 
-  .infobox>div>div>p {
+  .infobox > div > div > p {
     margin-top: 0;
     margin-bottom: 1rem;
   }
