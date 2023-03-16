@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Adfocus Link Remover
 // @namespace    NekoBoiNick.Global.AdFocusLinkRemover
-// @version      1.0.3
+// @version      1.0.3.1
 // @description  Removes AdFocus redirects if possible.
 // @author       Neko Boi Nick
 // @match        *
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=adfoc.us
 // @license      MIT
 // @grant        none
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
