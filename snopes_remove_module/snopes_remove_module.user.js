@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Snopes Remove TP Module
 // @namespace    NekoBoiNick.Snopes.TPModule
-// @version      1.0.1
+// @version      1.0.2
 // @description  Removes Snopes' Stupid TP Module
 // @author       Neko Boi Nick
 // @match        https://www.snopes.com/*
@@ -25,10 +25,9 @@ $(document).ready(() => {
 
   const getClasses = function () {
     const outClasses = [];
-    for (let index = 0; index < otherSearchClasses.length; index++) {
-      const testClass = $(otherSearchClasses[index]);
-      if (testClass !== null) {
-        outClasses.push(testClass);
+    for (const searchClass of otherSearchClasses) {
+      if ($(searchClass).length > 0) {
+        outClasses.push($(searchClass)[0]);
       }
     }
 
@@ -36,11 +35,10 @@ $(document).ready(() => {
   };
 
   const hideClass = function (_class) {
-    if (_class.tagName == "BODY") {
-      otherSearchClasses
-        .forEach((obj, ind, arr) => {
-          _class.classList.remove(obj.substring(1));
-        });
+    if (_class.tagName === "BODY") {
+      otherSearchClasses.forEach(obj => {
+        _class.classList.remove(obj.substring(1));
+      });
     } else {
       _class.remove();
       classesHidden += 1;
@@ -73,14 +71,14 @@ $(document).ready(() => {
   }, 5000);
 
   window.onhashchange = function () {
-    [...Array.from(getClasses()).forEach((element, index, array) => {
+    [...Array.from(getClasses())].forEach(element => {
       if (element.length) {
         Array.from(element).forEach(hideClass);
       }
-    })];
+    });
   };
 
-  document.addEventListener("scroll", () => Array.from(getClasses()).forEach((obj, inx, arr) => {
+  document.addEventListener("scroll", () => Array.from(getClasses()).forEach((obj, _, arr) => {
     if (arr.length > 0) {
       Array.from(obj).forEach(hideClass);
     }
