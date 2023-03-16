@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Paissa DB Dark
 @namespace      NekoBoiNick.Web.FFXIVPaissaDB.Dark
-@version        1.0.1
+@version        1.0.2
 @description    A dark theme for Paissa DB
 @author         Neko Boi Nick
 @license        MIT
@@ -43,14 +43,14 @@
   }
 
   a {
-    color: #79B8FF;
+    color: #79b8ff;
   }
 
   a:hover {
-    color: #8DCCFF;
+    color: #8dccff;
   }
 
-  div.container h4.title.is-4.mt-4+p+p strong span {
+  div.container h4.title.is-4.mt-4 + p + p strong span {
     color: var(--lt-color-gray-300);
   }
 
