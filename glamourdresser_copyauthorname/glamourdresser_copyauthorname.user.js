@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
 // @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
-// @version      1.1.3
+// @version      1.1.4
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.glamourdresser.com/*
@@ -177,6 +177,21 @@ $(document).ready(() => {
     return {};
   };
 
+  const translateNames = {
+    "♰_𝕹𝖎𝖌𝖍𝖙𝖎𝖓𝖌𝖆𝖑𝖊 𝕮𝖚𝖑𝖙 ♰": "Nightingale Cult"
+  };
+
+  const processName = name => {
+    let pre = name;
+    for (const [key, value] of Object.entries(translateNames)) {
+      if (pre === key) {
+        pre = value;
+      }
+    }
+
+    return pre.replace(/\s+$/g, "").replace(/^\s+/g, "").replace(" ", "_");
+  };
+
   const createObjects = () => {
     /* Old code
     const AuthorBoxHeight = () => {
@@ -189,7 +204,9 @@ $(document).ready(() => {
     const tempButton = $(createElements("copyButtonTemplate", { mdiContentCopy }));
     $(creatorInfo()).after($(tempButton));
     $(".action-copy-author").on("click", () => {
-      GM_setClipboard($(".elementor-author-box__name").text().replace(/\s+$/g, "").replace(/^\s+/g, "").replace(" ", "_"));
+      const authorName = $(".elementor-author-box__name").text();
+      const processed = processName(authorName);
+      GM_setClipboard(processed);
     });
   };
 
