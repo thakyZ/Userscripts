@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Avorion Forum Fixes
 // @namespace    NekoBoiNick.Avorion.ForumFixes
-// @version      1.0.2
+// @version      1.0.2.1
 // @description  Changes some issues with the __old__ Avorion forums.
 // @author       Neko Boi Nick
 // @match        https://www.avorion.net/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=www.avorion.net
 // @license      MIT
 // @grant        none
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/avorion_forum_fixes/avorion_forum_fixes.user.js
