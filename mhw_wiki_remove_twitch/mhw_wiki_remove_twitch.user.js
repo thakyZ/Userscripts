@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Monster Hunter World Wiki Remove Twitch Stream
 // @namespace    NekoBoiNick.MonsterHunterWorld.Wiki.RemoveTwitch
-// @version      0.2
+// @version      1.0.0
 // @description  Removes twitch steam and ads from the Monster Hunter World Wiki
 // @author       NekoBoiNick
 // @match        https://monsterhunterworld.wiki.fextralife.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=fextralife.com
 // @grant        none
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
@@ -22,13 +23,13 @@ $(document).ready(() => {
   "use strict";
 
   const setupMyClass = jNode => {
-    const FlexWrapper = $(jNode).width();
-    const Margin = 15;
-    const PageContentWrapperWidth = $("#page-content-wrapper").width();
-    const SetToWidthPageContentWrapper = FlexWrapper - (Margin * 2);
-    const SetToMarginPageContentWrapper = (FlexWrapper - PageContentWrapperWidth) - Margin;
-    $("#page-content-wrapper").css("margin-left", (SetToMarginPageContentWrapper * -1) + "px");
-    $("#page-content-wrapper").css("width", SetToWidthPageContentWrapper + "px");
+    const flexWrapper = $(jNode).width();
+    const margin = 15;
+    const pageContentWrapperWidth = $("#page-content-wrapper").width();
+    const setToWidthPageContentWrapper = flexWrapper - (margin * 2);
+    const setToMarginPageContentWrapper = (flexWrapper - pageContentWrapperWidth) - margin;
+    $("#page-content-wrapper").css("margin-left", (setToMarginPageContentWrapper * -1) + "px");
+    $("#page-content-wrapper").css("width", setToWidthPageContentWrapper + "px");
   };
 
   waitForKeyElements(".Page404", setupMyClass, true);
