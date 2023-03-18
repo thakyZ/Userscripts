@@ -1,3 +1,8 @@
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
 .r-nbnBTNIbuttons {
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
@@ -5,7 +10,7 @@
   box-sizing: border-box;
   display: flex;
   flex-basis: auto;
-  flex-direction: column;
+  flex-direction: row;
   flex-shrink: 0;
   margin-bottom: 0px;
   margin-left: 0px;
@@ -19,12 +24,12 @@
   z-index: 0;
   -ms-flex-pack: center;
   -webkit-box-pack: center;
-  justify-content: center;
+  justify-content: flex-end;
   -webkit-box-align: start;
   align-items: flex-start;
   align-self: stretch;
   min-height: 32px;
-  min-width: 112px;
+  min-width: 68px;
 }
 .r-nbnBTNIbuttons .r-nbnBTNIbuttonRun,
 .r-nbnBTNIbuttons .r-nbnBTNIbuttonStop {
@@ -66,7 +71,11 @@
   align-items: flex-start;
   align-self: stretch;
   min-height: 32px;
-  min-width: 56px;
+  min-width: 40px;
+}
+.r-nbnBTNIbuttons .r-nbnBTNIbuttonRun .r-nbnBTNIbuttonStop,
+.r-nbnBTNIbuttons .r-nbnBTNIbuttonStop .r-nbnBTNIbuttonStop {
+  min-width: 18px;
 }
 .r-nbnBTNIbuttons .r-nbnBTNIbuttonRun .r-nbnBTNIbutton,
 .r-nbnBTNIbuttons .r-nbnBTNIbuttonStop .r-nbnBTNIbutton {
@@ -119,6 +128,28 @@
 .r-nbnBTNIbuttons .r-nbnBTNIbuttonStop .r-nbnBTNIbutton:active {
   background-color: rgba(239, 243, 244, 0.2);
 }
+.r-nbnBTNIbuttons .r-nbnBTNIbuttonRun .r-nbnBTNIbutton .progress-ring,
+.r-nbnBTNIbuttons .r-nbnBTNIbuttonStop .r-nbnBTNIbutton .progress-ring {
+  position: absolute;
+  z-index: 99999;
+  display: inline-block;
+  transform: translate(-3%, -3%);
+}
+.r-nbnBTNIbuttons .r-nbnBTNIbuttonRun .r-nbnBTNIbutton .progress-ring .progress-ring__circle,
+.r-nbnBTNIbuttons .r-nbnBTNIbuttonStop .r-nbnBTNIbutton .progress-ring .progress-ring__circle {
+  transition: 0.35s stroke-dashoffset;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+.r-nbnBTNIbuttons .r-nbnBTNIbuttonRun .r-nbnBTNIbutton .progress-ring .progress-ring__circle.stopping,
+.r-nbnBTNIbuttons .r-nbnBTNIbuttonStop .r-nbnBTNIbutton .progress-ring .progress-ring__circle.stopping {
+  transition: none;
+  animation: blinker 1s linear infinite;
+}
+.r-nbnBTNIbuttons .r-nbnBTNIbuttonRun .r-nbnBTNIbutton .progress-ring .progress-ring__circle.stopped,
+.r-nbnBTNIbuttons .r-nbnBTNIbuttonStop .r-nbnBTNIbutton .progress-ring .progress-ring__circle.stopped {
+  transition: none;
+}
 .r-nbnBTNIbuttons .r-nbnBTNIbuttonRun .r-nbnBTNIbutton .r-nbnBTNIbuttonIcon,
 .r-nbnBTNIbuttons .r-nbnBTNIbuttonStop .r-nbnBTNIbutton .r-nbnBTNIbuttonIcon {
   border: 0 solid black;
@@ -163,7 +194,7 @@
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  height: 20px;
+  height: 32px;
 }
 .r-nbnBTNIbuttons .r-nbnBTNIbuttonRun .r-nbnBTNIbutton .r-nbnBTNIbuttonIcon span,
 .r-nbnBTNIbuttons .r-nbnBTNIbuttonStop .r-nbnBTNIbutton .r-nbnBTNIbuttonIcon span {

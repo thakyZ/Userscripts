@@ -1,3 +1,9 @@
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 .r-nbnBTNIbuttons {
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
@@ -5,7 +11,7 @@
   box-sizing: border-box;
   display: flex;
   flex-basis: auto;
-  flex-direction: column;
+  flex-direction: row;
   flex-shrink: 0;
   margin-bottom: 0px;
   margin-left: 0px;
@@ -19,12 +25,12 @@
   z-index: 0;
   -ms-flex-pack: center;
   -webkit-box-pack: center;
-  justify-content: center;
+  justify-content: flex-end;
   -webkit-box-align: start;
   align-items: flex-start;
   align-self: stretch;
   min-height: 32px;
-  min-width: 112px;
+  min-width: 68px;
 
   & .r-nbnBTNIbuttonRun, .r-nbnBTNIbuttonStop {
     -ms-flex-align: stretch;
@@ -65,7 +71,11 @@
     align-items: flex-start;
     align-self: stretch;
     min-height: 32px;
-    min-width: 56px;
+    min-width: 40px;
+
+    & .r-nbnBTNIbuttonStop {
+      min-width: 18px;
+    }
 
     & .r-nbnBTNIbutton {
       cursor: pointer;
@@ -116,6 +126,30 @@
         background-color: rgba(239, 243, 244, 0.2);
       }
 
+      & .progress-ring {
+        position: absolute;
+        z-index: 99999;
+        display: inline-block;
+        transform: translate(-3%,-3%);
+
+        & .progress-ring__circle {
+          transition: 0.35s stroke-dashoffset;
+          // axis compensation
+          transform: rotate(-90deg);
+          transform-origin: 50% 50%;
+
+          &.stopping {
+            transition: none;
+            animation: blinker 1s linear infinite;
+          }
+          &.stopped {
+            transition: none;
+          }
+        }
+
+        // TODO: Create progress ring flash on stop.
+      }
+
       & .r-nbnBTNIbuttonIcon {
         border: 0 solid black;
         box-sizing: border-box;
@@ -158,7 +192,7 @@
           -ms-user-select: none;
           -webkit-user-select: none;
           user-select: none;
-          height: 20px;
+          height: 32px;
         }
 
         & span {
