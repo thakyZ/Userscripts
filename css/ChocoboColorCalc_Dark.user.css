@@ -1,0 +1,36 @@
+/* ==UserStyle==
+@name           ffxivchocobo.com - 3/19/2023, 2:31:38 PM
+@namespace      NekoBoiNick.Web.FFXIV.ChocoboColorCalc.Dark
+@version        1.0.0
+@description    Makes the chocobo color calculator website darkmoded.
+@author         Neko Boi Nick
+@license        MIT
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/ChocoboColorCalc_Dark.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
+==/UserStyle== */
+
+@-moz-document domain("ffxivchocobo.com") {
+  body {
+    background-color: #101010;
+    color: #f2f2f2;
+  }
+  .select, select, option {
+    background-color: #212121;
+    color: #f2f2f2;
+  }
+  .select:focus {
+    color: #f2f2f2;
+  }
+  .result-img {
+    background-color: #fff;
+    width: 50%;
+    margin: 0 25%;
+    border-radius: 100%;
+  }
+  .colour-picker__colours .colour-picker__colour:not(.active):before {
+    content: "";
+    background-color: #fff;
+    width: fit-content;
+  }
+}
