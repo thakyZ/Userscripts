@@ -15,19 +15,36 @@
 // @grant        GM.getResourceUrl
 // @grant        GM.xmlHttpRequest
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
+// @require      https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/xivmodarchive_additions/xivmodarchive_additions.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/xivmodarchive_additions/xivmodarchive_additions.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
-// @resource     style https://raw.githubusercontent.com/thakyZ/Userscripts/master/xivmodarchive_additions/styles.min.css
-// @resource     blankAvatar https://raw.githubusercontent.com/thakyZ/Userscripts/master/xivmodarchive_additions/blankAvatar.base64
-// @resource     blankAvatarPng https://raw.githubusercontent.com/thakyZ/Userscripts/master/xivmodarchive_additions/blankAvatar.png
-// @resource     pageNumberElements https://raw.githubusercontent.com/thakyZ/Userscripts/master/xivmodarchive_additions/pageNumberElements.template.html
-// @resource     copyAuthorName https://raw.githubusercontent.com/thakyZ/Userscripts/master/xivmodarchive_additions/copyAuthorName.template.html
-// @resource     deleteAllMessages https://raw.githubusercontent.com/thakyZ/Userscripts/master/xivmodarchive_additions/deleteAllMessages.template.html
+// @resource     style https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/styles.min.css
+// @resource     blankAvatar https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/blankAvatar.base64
+// @resource     blankAvatarPng https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/blankAvatar.png
+// @resource     pageNumberElements https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/pageNumberElements.template.html
+// @resource     copyAuthorName https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/copyAuthorName.template.html
+// @resource     deleteAllMessages https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/deleteAllMessages.template.html
 // ==/UserScript==
-/* global $, jQuery, showSpinner, hideSpinner, showError */
+/* global $, jQuery, showSpinner, hideSpinner, showError, errorProgressBar, clearProgressBar, updateProgressBar, createProgressbar */
 this.$ = this.jQuery = jQuery.noConflict(true);
+
+/* eslint-disable no-extend-native */
+String.prototype.width = function (font, size) {
+  const f = font || "arial";
+  const s = size || "12px";
+  const o = $("<div></div>")
+    .text(this)
+    .css({ position: "absolute", float: "left", whiteSpace: "nowrap", visibility: "hidden", font: `${s} ${f}` })
+    .appendTo($("body"));
+  const w = o.width();
+
+  o.remove();
+  return w;
+};
+/* eslint-enable no-extend-native */
 
 $(document).ready(() => {
   const createElements = (resource, replaceObj = {}) => {
@@ -241,9 +258,41 @@ $(document).ready(() => {
   const editPages = () => {
     if (/^https:\/\/(www\.)?xivmodarchive\.com\/?$/gi.test(window.location.href)) {
       const badLink = $("a[href*=\"/search\"]").filter((b, a) => /sponsored=true/gi.test($(a).attr("href")));
-      const oldURL = $(badLink).attr("href");
-      $(badLink).attr("href", oldURL.replaceAll(/&sponsored=true/gi, ""));
-      $(badLink).text("New and Updated Mods");
+      if ($(badLink).length > 0) {
+        const oldURL = $(badLink).attr("href");
+        $(badLink).attr("href", oldURL.replaceAll(/&sponsored=true/gi, ""));
+        $(badLink).text("New and Updated Mods");
+      }
+    }
+
+    // Wrap the header of the mail notification.
+    // Enable tooltip on the mail header.
+    if (/^https:\/\/(www\.)?xivmodarchive\.com\/inbox\/\d+/gi.test(window.location.href)) {
+      const mailHeader = $("body > .container-xl > .jumbotron");
+      if ($(mailHeader).length > 0) {
+        $(mailHeader).addClass("nbnMailHeader");
+        if ($(mailHeader).find("h4.display-5").length > 0) {
+          $(mailHeader).find("h4.display-5").attr("data-toggle", "tooltip");
+          $(mailHeader).find("h4.display-5").attr("data-placement", "bottom");
+          $(mailHeader).find("h4.display-5").attr("title", $(mailHeader).find("h4.display-5").text().replace("Followed Mod Updated: ", ""));
+
+          $("body > .container-xl > .jumbotron.nbnMailHeader h4.display-5[data-toggle=\"tooltip\"]").tooltip(
+            {
+              customClass(_, options) {
+                const newOptions = options + " nbnMailHeader";
+                return newOptions;
+              },
+              offset(data) {
+                const middleForPopper = ($("body").width() - data.popper.width) / 2;
+                const middleForReference = ($("body").width() - data.reference.width) / 2;
+                data.popper.left = middleForPopper;
+                data.reference.left = middleForReference;
+                return data;
+              }
+            }
+          );
+        }
+      }
     }
   };
 
@@ -253,12 +302,34 @@ $(document).ready(() => {
 
   const doDeleteMessagesError = data => {
     hideSpinner();
-    return showError(data);
+    errorProgressBar("nbnDeleteAllMessages", `failed to delete message with ID: ${data[camelToSnakeCase("inboxId")]}`);
+    let message = `failed to delete message:\nTitle: ${data.name}\nID: ${data[camelToSnakeCase("inboxId")]}`;
+    if (typeof data.info !== "undefined") {
+      message += "\nInfo:";
+    }
+
+    showError(message);
+    $("#error-modal").on("shown.bs.modal", () => {
+      const errorModalText = $("#error-modal").find("#error-modal-text");
+      if ($(errorModalText).length > 0) {
+        let inlineMessage = `<p>${$(errorModalText).text().replaceAll("\n", "<br>")}</p>`;
+        if (typeof data.info !== "undefined") {
+          inlineMessage += `<pre>${JSON.stringify(data.info, null, 2).replaceAll("\n", "<br>")}</pre>`;
+        }
+
+        $(errorModalText).html(inlineMessage);
+      }
+    });
+
+    $("#error-modal").on("hidden.bs.modal", () => {
+      $("#error-modal").modal("dispose");
+    });
   };
 
   const deleteMessages = (elements, index) => {
     if (index >= elements.length) {
       hideSpinner();
+      clearProgressBar("nbnDeleteAllMessages");
       window.location.reload();
       return;
     }
@@ -267,16 +338,27 @@ $(document).ready(() => {
 
     const data = {};
     data[camelToSnakeCase("inboxId")] = inboxId;
+    const errorData = data;
+    errorData.info = undefined;
+    errorData.name = $(elements[index])
+      .find("strong:first-child")
+      .text()
+      .replace("Followed Mod Updated: ", "");
 
     $.ajax({
       url: "/api/inbox/delete",
       type: "POST",
       data: JSON.stringify(data),
       contentType: "application/json"
-    }).fail(data => doDeleteMessagesError(data)).done(data => {
+    }).fail(data => {
+      errorData.info = data;
+      doDeleteMessagesError(errorData);
+    }).done(data => {
       if (!data.success) {
-        return doDeleteMessagesError(data);
+        return doDeleteMessagesError(errorData);
       }
+
+      updateProgressBar("nbnDeleteAllMessages", Math.ceil(((index + 1) / $(elements).length) * 100), "Deleting All Messages");
 
       setTimeout(() => {
         deleteMessages($(elements), index + 1);
@@ -300,6 +382,7 @@ $(document).ready(() => {
 
     $("#delete-button").click(() => {
       showSpinner();
+      createProgressbar("nbnDeleteAllMessages", 0, "deleting all messages");
       deleteMessages($(inboxMessages), 0);
     });
   };

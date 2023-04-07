@@ -16,3 +16,33 @@
     max-width: 13%;
   }
 }
+body {
+  & > .container-xl {
+    & > .jumbotron {
+      &.nbnMailHeader {
+        & > h4 {
+          margin-right: 150px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          margin-bottom: 1rem;
+        }
+
+        & > .container-xl {
+          & > .row {
+            & > .col-12 {
+              & > button[type="button"][style="position: absolute; top: -2rem; right: 0rem;"] {
+                top: -2.5rem !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  & > .nbnMailHeader {
+    & > .tooltip-inner {
+      max-width: fit-content;
+    }
+  }
+}
