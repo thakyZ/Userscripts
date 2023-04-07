@@ -154,14 +154,13 @@ if (typeof window !== "undefined") {
       return undefined;
     }
 
-    const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\r?\n<template>\r?\n {2}/gi, "")
-      .replaceAll(/\r?\n<\/template>$/gi, "");
-    const template = $(templateTruncated);
+    const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\r?\n<template>\r?\n {2}/gi, "").replaceAll(/\r?\n<\/template>$/gi, "");
+    let template = $("<div />").append($(templateTruncated).clone()).html();
     for (const [key, value] of Object.entries(replaceObj)) {
-      $(template).html($(template).html().replaceAll(key, value));
+      template = template.replaceAll(key, value);
     }
 
-    return template;
+    return $(template);
   };
 
   $.fn.getUserNameAlts = async (site, id) => {
