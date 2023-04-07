@@ -23,7 +23,6 @@ if (typeof window !== "undefined") {
   };
 }
 
-
 /* eslint-disable-next-line no-shadow-restricted-names */
 (function ($, undefined) {
   "use strict";
@@ -150,6 +149,11 @@ if (typeof window !== "undefined") {
 
   $.fn.createElement = (resource, replaceObj = {}) => {
     const templateHtml = GM_getResourceText(resource);
+
+    if (templateHtml === "") {
+      return undefined;
+    }
+
     const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\r?\n<template>\r?\n {2}/gi, "")
       .replaceAll(/\r?\n<\/template>$/gi, "");
     const template = $(templateTruncated);
