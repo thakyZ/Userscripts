@@ -2,6 +2,8 @@
   --e-global-color-accent-dark: #eee;
   --e-global-color-secondary-dark: #777;
   --e-global-color-primary-dark: #eee;
+  --wp-adminbar-dark: rgb(19, 20, 20);
+  --wp-adminbar-popup-dark: rgb(24, 25, 25);
 }
 
 @e-global-color-accent-dark: var(--e-global-color-accent-dark);
@@ -9,6 +11,8 @@
 @e-global-color-secondary-dark: var(--e-global-color-secondary-dark);
 @e-global-color-primary-dark: var(--e-global-color-primary-dark);
 @wp-dark-mode-scale: var(--wp-dark-mode-scale);
+@wp-adminbar-dark: var(--wp-adminbar-dark);
+@wp-adminbar-popup-dark: var(--wp-adminbar-popup-dark);
 
 html {
   &.wp-dark-mode-active {
@@ -47,6 +51,35 @@ html {
         ) !important;
       }
     }
+    & body {
+      & #wpadminbar {
+        background-color: @wp-adminbar-dark !important;
+        & .menupop {
+          & .ab-sub-wrapper {
+            background-color: @wp-adminbar-popup-dark !important;
+          }
+        }
+        & .shortlink-input {
+          background-color: @wp-adminbar-popup-dark!important;
+        }
+      }
+    }
+    & > #wp-toolbar {
+      & > #wp-admin-bar-top-secondary {
+        & > #wp-admin-bar-search {
+          & #adminbarsearch {
+            & input {
+              &.adminbar-input {
+                &:focus {
+                  background-color: rgb(35, 36, 36);
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
   & button.elementor-button.action-copy-author {
     background-color: @e-global-color-accent;
@@ -65,7 +98,7 @@ html {
     border: none;
     box-shadow: 0 0 0 0 #000;
     transform: translateY(0);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s, transform 0.2s ease, box-shadow 0.2s ease;
 
     &:hover,
     &:focus:hover {

@@ -2,6 +2,27 @@
   --e-global-color-accent-dark: #eee;
   --e-global-color-secondary-dark: #777;
   --e-global-color-primary-dark: #eee;
+  --wp-adminbar-dark: #131414;
+  --wp-adminbar-popup-dark: #181919;
+}
+html {
+  /*& div {
+    &:not(
+        .elementor-author-box--biography-yes
+      )[data-widget_type="author-box.default"] {
+      & div.elementor-widget-container {
+        & div.elementor-author-box {
+          & .elementor-author-box__text {
+            min-width: 100%;
+            width: 100%;
+          }
+          & .copy-author-widget {
+            left: var(--variableTextLength);
+          }
+        }
+      }
+    }
+  }*/
 }
 html.wp-dark-mode-active .elementor-widget-posts .elementor-post__read-more {
   color: var(--e-global-color-accent-dark);
@@ -22,6 +43,19 @@ html.wp-dark-mode-active .elementor-widget-heading .elementor-heading-title {
 html.wp-dark-mode-active.elementor-element > .elementor-background-overlay {
   background-image: linear-gradient(180deg, #ffffff00 60%, var(--defaultDarkBG) 100%) !important;
 }
+html.wp-dark-mode-active body #wpadminbar {
+  background-color: var(--wp-adminbar-dark) !important;
+}
+html.wp-dark-mode-active body #wpadminbar .menupop .ab-sub-wrapper {
+  background-color: var(--wp-adminbar-popup-dark) !important;
+}
+html.wp-dark-mode-active body #wpadminbar .shortlink-input {
+  background-color: var(--wp-adminbar-popup-dark) !important;
+}
+html.wp-dark-mode-active > #wp-toolbar > #wp-admin-bar-top-secondary > #wp-admin-bar-search #adminbarsearch input.adminbar-input:focus {
+  background-color: #232424;
+  color: #fff;
+}
 html button.elementor-button.action-copy-author {
   background-color: var(--e-global-color-accent);
   font-family: nunito sans, Sans-serif;
@@ -39,7 +73,7 @@ html button.elementor-button.action-copy-author {
   border: none;
   box-shadow: 0 0 0 0 #000;
   transform: translateY(0);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s, transform 0.2s ease, box-shadow 0.2s ease;
 }
 html button.elementor-button.action-copy-author:hover,
 html button.elementor-button.action-copy-author:focus:hover {

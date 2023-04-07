@@ -23,14 +23,14 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/glamourdresser_copyauthorname/glamourdresser_copyauthorname.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
-// @resource     admin https://raw.githubusercontent.com/thakyZ/Userscripts/master/glamourdresser_copyauthorname/dark_admin.min.css
-// @resource     fix https://raw.githubusercontent.com/thakyZ/Userscripts/master/glamourdresser_copyauthorname/dark_fix_style.min.css
-// @resource     iframe https://raw.githubusercontent.com/thakyZ/Userscripts/master/glamourdresser_copyauthorname/dark_iframe.min.css
-// @resource     blankAvatar https://raw.githubusercontent.com/thakyZ/Userscripts/master/glamourdresser_copyauthorname/blankAvatar.base64
-// @resource     placeholderImage https://raw.githubusercontent.com/thakyZ/Userscripts/master/glamourdresser_copyauthorname/placeholderImage.base64
-// @resource     blankAvatarJPG https://raw.githubusercontent.com/thakyZ/Userscripts/master/glamourdresser_copyauthorname/blankAvatar.jpg
-// @resource     placeholderImagePNG https://raw.githubusercontent.com/thakyZ/Userscripts/master/glamourdresser_copyauthorname/placeholderImage.png
-// @resource     copyButtonTemplate https://raw.githubusercontent.com/thakyZ/Userscripts/master/glamourdresser_copyauthorname/copyButton.template.html
+// @resource     admin https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/dark_admin.min.css
+// @resource     fix https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/dark_fix_style.min.css
+// @resource     iframe https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/dark_iframe.min.css
+// @resource     blankAvatar https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/blankAvatar.base64
+// @resource     placeholderImage https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/placeholderImage.base64
+// @resource     blankAvatarJPG https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/blankAvatar.jpg
+// @resource     placeholderImagePNG https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/placeholderImage.png
+// @resource     copyButtonTemplate https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/copyButton.template.html
 // ==/UserScript==
 /* global $, jQuery, MonkeyConfig */
 this.$ = this.jQuery = jQuery.noConflict(true);
@@ -178,7 +178,10 @@ $(document).ready(() => {
   };
 
   const translateNames = {
-    "♰ 𝕹𝖎𝖌𝖍𝖙𝖎𝖓𝖌𝖆𝖑𝖊 𝕮𝖚𝖑𝖙 ♰": "Nightingale Cult"
+    "♰ 𝕹𝖎𝖌𝖍𝖙𝖎𝖓𝖌𝖆𝖑𝖊 𝕮𝖚𝖑𝖙 ♰": "Nightingale Cult",
+    nevereatdirt: "Jax",
+    Shylenced: "Shy",
+    超级樱花: "Megasakura"
   };
 
   const processName = name => {
