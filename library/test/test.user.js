@@ -9,7 +9,7 @@
 // @grant        GM_getResourceText
 // @require      https://code.jquery.com/jquery-3.6.0.min.js
 // @require      https://cdn.jsdelivr.net/gh/thakyz/Userscripts/library/nekogaming.userscript.lib.js
-// @resource     example https://raw.githubusercontent.com/thakyZ/Userscripts/master/library/test/elements.template.html
+// @resource     example https://cdn.jsdelivr.net/gh/thakyz/Userscripts/library/test/elements.template.html
 // ==/UserScript==
 /* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);
