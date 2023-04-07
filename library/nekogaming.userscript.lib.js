@@ -3,45 +3,51 @@
  *
  * A library for use in UserScripts, made by Neko Boi Nick.
  *
- * @link   https://github.com/thakyZ/Userscripts/blob/master/library
- * @file   This files defines the MyClass class.
- * @author Neko Boi Nick.
- * @since  1.0.0
+ * @link      https://github.com/thakyZ/Userscripts/blob/master/library
+ * @file      This files defines the MyClass class.
+ * @author    Neko Boi Nick.
+ * @since     1.0.0
+ * @copyright Neko Boi Nick 2023
+ * @depends
+ *   - jQuery 1.8+                     (http://api.jquery.com/)
+ * @license   MIT https://nntoan.mit-license.org
  */
 
-/* global window, GM, XMLHttpRequest */
+/* global window, jQuery, GM, XMLHttpRequest */
 
-function process($) {
-  let debug = false;
+function process(jQuery) {
+  /* eslint-disable-next-line no-shadow-restricted-names */
+  (function ($, undefined) {
+    "use strict";
+    let debug = false;
 
-  /* (Old) Pulled from stack overflow: https://stackoverflow.com/a/2771544/1112800
-   *
-   * $.fn.textWidth = () => {
-   *   const htmlOrg = $(this).html();
-   *   const htmlCalc = `<span>${htmlOrg}</span>`;
-   *   $(this).html(htmlCalc);
-   *   const width = $(this).find("span:first").width();
-   *   $(this).html(htmlOrg);
-   *   return width;
-   * };
-   */
+    /* (Old) Pulled from stack overflow: https://stackoverflow.com/a/2771544/1112800
+    *
+    * $.textWidth = () => {
+    *   const htmlOrg = $(this).html();
+    *   const htmlCalc = `<span>${htmlOrg}</span>`;
+    *   $(this).html(htmlCalc);
+    *   const width = $(this).find("span:first").width();
+    *   $(this).html(htmlOrg);
+    *   return width;
+    * };
+    */
 
-  /* eslint-disable no-extend-native */
-  String.prototype.width = function (font, size) {
-    const f = font || "arial";
-    const s = size || "12px";
-    const o = $("<span></span>")
-      .text(this)
-      .css({ position: "absolute", float: "left", whiteSpace: "nowrap", visibility: "hidden", font: `${s} ${f}` })
-      .appendTo($("body"));
-    const w = o.width();
+    /* eslint-disable no-extend-native */
+    String.prototype.width = function (font, size) {
+      const f = font || "arial";
+      const s = size || "12px";
+      const o = $("<span></span>")
+        .text(this)
+        .css({ position: "absolute", float: "left", whiteSpace: "nowrap", visibility: "hidden", font: `${s} ${f}` })
+        .appendTo($("body"));
+      const w = o.width();
 
-    o.remove();
-    return w;
-  };
-  /* eslint-enable no-extend-native */
+      o.remove();
+      return w;
+    };
+    /* eslint-enable no-extend-native */
 
-  (function () {
     $.fn.setData = function (name, data) {
       $(this).each((_, element) => {
         const prevData = $(element).data(name) === undefined ? {} : $(this).data(name);
@@ -59,9 +65,7 @@ function process($) {
       });
       return $(this);
     };
-  })($.fn);
 
-  (function () {
     $.fn.addData = function (name, data) {
       $(this).each((_, element) => {
         const prevData = $(element).data(name) === undefined ? {} : $(this).data(name);
@@ -79,9 +83,7 @@ function process($) {
       });
       return $(this);
     };
-  })($.fn);
 
-  (function () {
     $.fn.removeData = function (name, keys) {
       $(this).each((_, element) => {
         const prevData = $(element).data(name) === undefined ? {} : $(element).data(name);
@@ -96,9 +98,7 @@ function process($) {
       });
       return $(this);
     };
-  })($.fn);
 
-  (function () {
     $.fn.modifyStyle = function (name) {
       $(this).each((_, element) => {
         const data = $(element).data(name);
@@ -113,35 +113,33 @@ function process($) {
       });
       return $(this);
     };
-  })($.fn);
 
-  function makeRequest(method, url) {
-    return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
-      xhr.onload = function () {
-        if (this.readyState === this.DONE && this.status >= 200 && this.status < 300) {
-          resolve(xhr.responseText);
-        } else {
+    function makeRequest(method, url) {
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.onload = function () {
+          if (this.readyState === this.DONE && this.status >= 200 && this.status < 300) {
+            resolve(xhr.responseText);
+          } else {
+            reject(new Error({
+              status: this.status,
+              statusText: xhr.statusText
+            }));
+          }
+        };
+
+        xhr.onerror = function () {
           reject(new Error({
             status: this.status,
             statusText: xhr.statusText
           }));
-        }
-      };
+        };
 
-      xhr.onerror = function () {
-        reject(new Error({
-          status: this.status,
-          statusText: xhr.statusText
-        }));
-      };
+        xhr.send();
+      });
+    }
 
-      xhr.send();
-    });
-  }
-
-  (function () {
     $.fn.createElement = (resource, replaceObj = {}) => {
       const templateHtml = GM_getResourceText(resource);
       const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\r?\n<template>\r?\n {2}/gi, "")
@@ -153,9 +151,7 @@ function process($) {
 
       return template;
     };
-  })($.fn);
 
-  (function () {
     $.fn.getUserNameAlts = async (site, id) => {
       let userNameAlt = "";
       if (typeof GM === "undefined" || typeof GM.xmlHttpRequest === "undefined") {
@@ -187,38 +183,32 @@ function process($) {
 
       return userNameAlt;
     };
-  })($.fn);
 
-  (function (old) {
-    $.fn.attr = function (...args) {
+    $.fn.getObjectAttr = function (...args) {
       if (args.length === 0) {
         if (this.length === 0) {
           return null;
         }
 
         const obj = {};
-        $.each(this[0].attributes, function () {
-          if (this.specified) {
-            obj[this.name] = this.value;
-          }
+        $.each(this, function (index) {
+          $.each(this[index].attributes, function () {
+            if (this.specified) {
+              obj[this.name] = this.value;
+            }
+          });
         });
         return obj;
       }
-
-      return old.apply(this, args);
     };
-  })($.fn.attr);
 
-  (function () {
     $.fn.onlyText = $element => $($element)
       .clone() // Clone the element
       .children() // Select all the children
       .remove() // Remove all the children
       .end() // Again go back to selected element
       .text();
-  })($.fn);
 
-  (function () {
     $.fn.detectOriginalText = function ($class) {
       if (debug) {
         console.log(`detectedStrings : ${$($class).length}`);
@@ -226,21 +216,19 @@ function process($) {
 
       return $($class);
     };
-  })($.fn);
 
-  (function () {
     $.fn.toggleDebug = function () {
       debug = !debug;
     };
-  })($.fn);
+  })(jQuery);
 }
 
 if (typeof window !== "undefined") {
   window.onload = function () {
-    if (typeof window.jQuery === "undefined" || typeof window.$ === "undefined") {
+    if (typeof jQuery === "undefined") {
       console.warn("JQuery not loaded do not process.");
     } else {
-      process(window.$);
+      process(jQuery);
     }
   };
 }
