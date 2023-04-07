@@ -11,23 +11,27 @@
   border-bottom-width: 2px;
   border-color: #3c3c3c;
   box-shadow: 0px 0px 5px 4px rgba(0, 0, 0, 0.7);
-}
 
-.tray_item {
-  position: relative;
-  display: block;
-}
+  & .tray_item {
+    position: relative;
+    display: block;
 
-.tray_item a {
-  padding: 0 10px 0 25px;
-  display: block;
-  text-align: left;
-  position: relative;
-  line-height: 20px;
-  height: 20px;
-  white-space: nowrap;
-}
+    & .menuIcon {
+      z-index: 9999;
+    }
 
-.tray_item a:hover {
-  background: url("/images/style/menuEntry.png");
+    & a {
+      padding: 0 10px 0 25px;
+      display: block;
+      text-align: left;
+      position: relative;
+      line-height: 20px;
+      height: 20px;
+      white-space: nowrap;
+
+      &:hover {
+        background: url("/images/style/menuEntryHover.png?v=2");
+      }
+    }
+  }
 }
