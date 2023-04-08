@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bypass Ad Links
 // @namespace    NekoBoiNick.Web.Bypass.AdLinks
-// @version      1.0.3
+// @version      1.0.4
 // @description  Bypass Ad Links in any website on the web.
 // @author       Neko Boi Nick
 // @match        *
@@ -44,6 +44,10 @@ $(document).ready(() => {
     let id = -1;
     id = setInterval(() => {
       settings.websites.forEach(website => {
+        if (website === "") {
+          return;
+        }
+
         const elements = $(`a[href*="https://${website}/"]`);
         for (const element of Object.entries(elements)) {
           $(element).attr("href", $(this).attr("href").replace(new RegExp(`https://${website}/quick?token=[a-zA-Z0-9]+&url=`, "gi"), ""));
