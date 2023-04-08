@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Monster Hunter World Wiki Remove Twitch Stream
 // @namespace    NekoBoiNick.MonsterHunterWorld.Wiki.RemoveTwitch
-// @version      1.0.0
+// @version      1.0.1
 // @description  Removes twitch steam and ads from the Monster Hunter World Wiki
 // @author       NekoBoiNick
 // @match        https://monsterhunterworld.wiki.fextralife.com/*
@@ -16,7 +16,7 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
 // - The @grant directives are needed to restore the proper sandbox.
-/* global $, waitForKeyElements */
+/* global $, jQuery, waitForKeyElements */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
