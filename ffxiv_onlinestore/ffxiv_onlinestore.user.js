@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Final Fantasy XIV Online Store Changes
 // @namespace    NekoBoiNick.Web.FFXIV.OnlineStore.Changes
-// @version      1.0.0
+// @version      1.0.1
 // @description  QoL changes for the Final Fantasy XIV Online Store.
 // @author       Neko Boi Nick
 // @match        https://store.finalfantasyxiv.com/*
@@ -17,12 +17,14 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxiv_onlinestore/ffxiv_onlinestore.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
+// @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/ffxiv_onlinestore/style.css
 // ==/UserScript==
 /* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
   "use strict";
+  // GM_addStyle(GM_getResourceText("css"));
   const cacheDataName = "OnlineStoreAPI";
 
   /* Currency and Names:
