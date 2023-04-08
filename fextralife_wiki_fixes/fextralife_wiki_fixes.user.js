@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         fExtra Life Wiki Fixes
 // @namespace    NekoBoiNick.Web.FExtraLife.Wiki.Fixes
-// @version      1.0.3
+// @version      1.0.4
 // @description  Tries to fix some issues about fExtra Life's wiki pages.
 // @author       NekoBoiNick
 // @match        https://*.wiki.fextralife.com/*
@@ -9,8 +9,6 @@
 // @grant        GM_log
 // @run-at       document-start
 // @noframes
-// @compatible   firefox
-// @compatible   chrome
 // @license      MIT
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/fextralife_wiki_fixes/fextralife_wiki_fixes.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/fextralife_wiki_fixes/fextralife_wiki_fixes.user.js
@@ -18,7 +16,7 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
-/* global $ */
+/* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
