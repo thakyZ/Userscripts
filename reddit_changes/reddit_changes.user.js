@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         Reddit Changes
 // @namespace    NekoBoiNick.Web.Reddit.CHanges
-// @version      1.0.1
+// @version      1.0.2
 // @description  Does changes for reddit.
 // @author       Neko Boi Nick
 // @match        https://www.reddit.com/*
 // @match        https://reddit.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=reddit.com
 // @license      MIT
-// @grant        none
+// @grant        unsafeWindow
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/reddit_changes/reddit_changes.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/reddit_changes/reddit_changes.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
@@ -19,16 +19,28 @@
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
-  let id = -1;
-  let kd = -1;
+  const doAllEqual = (arr, val) => arr.every(ele => ele === val);
+
   function removeElement() {
-    const shopAvatarsElement = $("button:last-child:contains(\"Shop Avatars\")");
-    if ($(shopAvatarsElement).length > 0) {
-      $($(shopAvatarsElement).parent()).css("display", "none");
-      return true;
+    const blockElements = [];
+    const outReturn = [];
+
+    blockElements.push($("button:last-child:contains('Shop Avatars')"));
+    blockElements.push($("a[href='/coins'] > *"));
+    blockElements.push($("#COIN_PURCHASE_DROPDOWN_ID"));
+    blockElements.push($("a[href='/premium'] > *"));
+    blockElements.push($("a[href='/premium'] + button > span"));
+    blockElements.push($("button > span:contains('Create Avatar')"));
+    blockElements.push($("a[href*='https://ads.reddit.com'] > *"));
+
+    for (const [, element] of Object.entries(blockElements)) {
+      if ($(element).length > 0) {
+        $($(element).parent()).css("display", "none");
+        outReturn.push(true);
+      }
     }
 
-    return false;
+    return doAllEqual(outReturn, true);
   }
 
   const downloadButton = MenuBarCopy => {
@@ -66,18 +78,50 @@ $(document).ready(() => {
     return false;
   }
 
-  function setIntervalRemove() {
-    id = setInterval(() => {
-      if (removeElement() === true) {
-        clearInterval(id);
-      }
-    }, 100);
-    kd = setInterval(() => {
-      if (addDownloadButton() === true) {
-        clearInterval(kd);
-      }
-    }, 100);
+  let removeWatchers = [];
+
+  /* Unused variable (for now)
+   * const watchForRemoval = (watchElem, parentElem) => {
+   *   const watcher = new MutationObserver(mutated => {
+   *     let wasRemoved = false;
+   *     mutated.forEach(mutant => wasRemoved || mutant.removedNodes.forEach(removed => {
+   *       wasRemoved = wasRemoved || removed === watchElem;
+   *     }));
+   *
+   *     if (wasRemoved) {
+   *       parentElem.append(watchElem);
+   *     }
+   *   });
+   *   watcher.observe(parentElem, { childList: true });
+   *   removeWatchers.push(watcher);
+   * };
+   */
+
+  const clearRemoveWatchers = () => {
+    removeWatchers.forEach(obs => obs.disconnect());
+    removeWatchers = [];
+  };
+
+  const redditWatcher = window.redditWatcher || (unsafeWindow && unsafeWindow.redditWatcher);
+  if (redditWatcher) {
+    redditWatcher.body.onUpdate(addDownloadButton);
+    redditWatcher.body.onUpdate(removeElement);
+    redditWatcher.feed.onUpdate(addDownloadButton);
+    redditWatcher.feed.onChange(clearRemoveWatchers);
   }
 
-  setIntervalRemove();
+  let lastFirstPost = null;
+
+  (new MutationObserver(() => {
+    addDownloadButton();
+    removeElement();
+    clearRemoveWatchers();
+
+    const listing = document.querySelector(".mantine-AppShell-main");
+    const firstPost = listing && listing.querySelector(".ListingLayout-outerContainer");
+    if (firstPost !== lastFirstPost) {
+      lastFirstPost = firstPost;
+      clearRemoveWatchers();
+    }
+  })).observe(document.body, { childList: true, subtree: true });
 });
