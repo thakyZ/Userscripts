@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bad Twitter No Interests
 // @namespace    NekoBoiNick.Web.Twitter.NoInterests
-// @version      1.0.4
+// @version      1.0.5
 // @description  Disables all of what Twitter thinks you are interested in.
 // @author       Neko Boi Nick
 // @match        https://twitter.com/*
@@ -15,8 +15,8 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/badtwitter_nointerests/badtwitter_nointerests.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
-// @resource     style https://raw.githubusercontent.com/thakyZ/Userscripts/master/badtwitter_nointerests/style.min.css
-// @resource     buttons https://raw.githubusercontent.com/thakyZ/Userscripts/master/badtwitter_nointerests/button.template.html
+// @resource     style https://cdn.jsdelivr.net/gh/thakyz/Userscripts/badtwitter_nointerests/style.min.css
+// @resource     buttons https://cdn.jsdelivr.net/gh/thakyz/Userscripts/badtwitter_nointerests/button.template.html
 // ==/UserScript==
 /* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);
@@ -59,12 +59,15 @@ $(document).ready(() => {
         this.setProgress(0);
       },
       get: () => this.element,
+      flashing: false,
       reset() {
         this.element = undefined;
         this.radius = 0;
         this.circumference = 0;
+        this.flashing = false;
       },
       async stop() {
+        this.flashing = true;
         $(this.element).find("circle").css({ strokeDasharray: `${this.circumference} ${this.circumference}`, strokeDashoffset: `${this.circumference}` });
         $(this.element).find("circle").attr("stroke", "rgb(244, 33, 46)");
         $(this.element).find("circle").addClass("stopping");
@@ -76,8 +79,10 @@ $(document).ready(() => {
         await sleep(350);
         $(this.element).find("circle").removeClass("stopped");
         $(this.element).find("circle").attr("stroke", $("a[href=\"/compose/tweet\"].css-4rbku5").css("backgroundColor"));
+        this.flashing = false;
       },
       async end() {
+        this.flashing = true;
         $(this.element).find("circle").css({ strokeDasharray: `${this.circumference} ${this.circumference}`, strokeDashoffset: `${this.circumference}` });
         $(this.element).find("circle").attr("stroke", "rgb(21, 153, 23)");
         $(this.element).find("circle").addClass("stopping");
@@ -89,6 +94,14 @@ $(document).ready(() => {
         await sleep(350);
         $(this.element).find("circle").removeClass("stopped");
         $(this.element).find("circle").attr("stroke", $("a[href=\"/compose/tweet\"].css-4rbku5").css("backgroundColor"));
+        this.flashing = false;
+      },
+      async locked() {
+        while (this.flashing) {
+          await sleep(500);
+        }
+
+        return false;
       }
     },
     reset() {
@@ -101,9 +114,9 @@ $(document).ready(() => {
 
   let id = -1;
   let nextCooldown = 1000;
-  const runTest = (div, index) => {
+  const runTest = async (div, index) => {
     if (index >= div.length || id === -1) {
-      buttonElements.progress.end();
+      await buttonElements.progress.end();
       return;
     }
 
@@ -116,23 +129,26 @@ $(document).ready(() => {
       nextCooldown = 0;
     }
 
-    setTimeout(() => {
-      runTest(div, index + 1);
-    }, nextCooldown);
+    await sleep(nextCooldown);
+    await runTest(div, index + 1);
   };
 
-  const runInterestBlocker = () => {
-    if (id !== -1) {
+  const runInterestBlocker = async () => {
+    if (id !== -1 || (await buttonElements.progress.locked()) === false) {
       return;
     }
 
-    id = setInterval(() => {
-      const div = $("input[type=\"checkbox\"]");
-      if (div.length > 0) {
-        runTest(div, 0);
-        clearInterval(id);
-      }
-    }, 1000);
+    const clearId = () => {
+      id = -1;
+    };
+
+    const div = $("input[type=\"checkbox\"]");
+    if (div.length > 0) {
+      id = 2;
+      await runTest(div, 0);
+      clearInterval(id);
+      clearId();
+    }
   };
 
   const createButtons = target => {
@@ -150,7 +166,9 @@ $(document).ready(() => {
         buttonElements.progress.stop();
       });
       $(buttonElements.runButton).on("click", () => {
-        runInterestBlocker();
+        (async function () {
+          await runInterestBlocker();
+        })();
       });
     }
   };
