@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         Reddit User Profile Links
 // @namespace    NekoBoiNick.Web.Reddit.UserProfileLinks.
-// @version      1.0.3.1
+// @version      1.0.4
 // @description  Adds links to Reddit User Profiles if provided.
 // @author       thakyZ
 // @match        https://www.reddit.com/user/*
 // @match        https://www.reddit.com/u/*
 // @icon         https://www.google.com/s2/favicons?domain=reddit.com
 // @license      MIT
-// @grant        none
+// @grant        unsafeWindow
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/reddit_profile_links/reddit_profile_links.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/reddit_profile_links/reddit_profile_links.user.js
