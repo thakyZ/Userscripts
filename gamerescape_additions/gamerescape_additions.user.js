@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gamer Escape Additions
 // @namespace    NekoBoiNick.Web.FFXIV.GamerEscape.Additions
-// @version      1.0.3
+// @version      1.0.4
 // @description  Adds new features to Gamer Escape
 // @author       Neko Boi Nick
 // @match        https://ffxiv.gamerescape.com/wiki/*
@@ -25,7 +25,7 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/gamerescape_additions/gamerescape_additions.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
-// @resource     css https://raw.githubusercontent.com/thakyZ/Userscripts/master/gamerescape_additions/style.min.css
+// @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/gamerescape_additions/style.min.css
 // ==/UserScript==
 /* global $, jQuery, MonkeyConfig */
 this.$ = this.jQuery = jQuery.noConflict(true);
