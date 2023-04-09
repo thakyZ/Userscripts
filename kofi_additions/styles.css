@@ -22,3 +22,11 @@
 #copy-author-btn.btn-x-small-copy-author .fas {
   font-size: 12px;
 }
+#copy-author-btn + span {
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
+}
