@@ -6,7 +6,7 @@
  * @link      https://github.com/thakyZ/Userscripts/blob/master/library
  * @file      This files defines the MyClass class.
  * @author    Neko Boi Nick.
- * @since     1.0.0
+ * @since     <%= pkg.version %>
  * @copyright Neko Boi Nick 2023
  * @depends
  *   - jQuery 1.8+                     (http://api.jquery.com/)
@@ -14,6 +14,8 @@
  */
 
 /* global window, jQuery, GM, XMLHttpRequest */
+
+import invalidFileNameChars from "./invalidFileNameChars.json";
 
 if (typeof window !== "undefined") {
   window.onload = function () {
@@ -23,7 +25,7 @@ if (typeof window !== "undefined") {
   };
 }
 
-/* eslint-disable-next-line no-shadow-restricted-names */
+// eslint-disable-next-line no-shadow-restricted-names
 (function ($, undefined) {
   "use strict";
   let debug = false;
@@ -40,7 +42,7 @@ if (typeof window !== "undefined") {
   * };
   */
 
-  /* eslint-disable no-extend-native */
+  // eslint-disable-next-line no-extend-native
   String.prototype.width = function (font, size) {
     const f = font || "arial";
     const s = size || "12px";
@@ -53,7 +55,36 @@ if (typeof window !== "undefined") {
     o.remove();
     return w;
   };
-  /* eslint-enable no-extend-native */
+
+  // eslint-disable-next-line no-extend-native
+  String.prototype.checkInvalidChars = function (replaceWith = "") {
+    let output = this;
+
+    for (const char of invalidFileNameChars) {
+      output = output.replaceAll(char, replaceWith);
+    }
+
+    return output;
+  };
+
+  // eslint-disable-next-line no-extend-native
+  String.prototype.isASCII = function (extended = false) {
+    // eslint-disable-next-line no-control-regex
+    return (extended ? /^[\x00-\xFF]*$/ : /^[\x00-\x7F]*$/).test(this);
+  };
+
+  // eslint-disable-next-line no-extend-native
+  String.prototype.checkInvalidAscii = function (replaceWith = "", extended = false) {
+    let output = this;
+
+    for (const i in output) {
+      if (Object.prototype.hasOwnProperty.call(output, i) && !output[i].isASCII(extended)) {
+        output = output.replaceAll(output[i], replaceWith);
+      }
+    }
+
+    return output;
+  };
 
   $.fn.setData = function (name, data) {
     $(this).each((_, element) => {
@@ -163,7 +194,7 @@ if (typeof window !== "undefined") {
     return $(template);
   };
 
-  $.fn.getUserNameAlts = async (site, id) => {
+  $.fn.getUserNameAlts = async (site, id, fallback) => {
     let userNameAlt = "";
     if (typeof GM === "undefined" || typeof GM.xmlHttpRequest === "undefined") {
       try {
@@ -192,7 +223,11 @@ if (typeof window !== "undefined") {
       }
     }
 
-    return userNameAlt;
+    if (Object.prototype.hasOwnProperty.call(userNameAlt, id)) {
+      return userNameAlt[id];
+    }
+
+    return fallback.checkInvalidChars().checkInvalidAscii();
   };
 
   $.fn.getObjectAttr = function (...args) {
