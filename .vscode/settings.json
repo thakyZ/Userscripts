@@ -5,11 +5,13 @@
   "eslint.options": {
     "overrideConfigFile": "./eslint.config.mjs"
   },
-  "eslint.runtime": "C:/Program Files/nodejs/node.exe",
+  "eslint.debug": true,
   "files.associations": {
     "OnlineClock.Blocked.user.css": "stylus",
     "FFXIV_Lodestone_Maint_Dark.user.css": "stylus",
-    "htmlhint.conf": "json"
+    "htmlhint.conf": "json",
+    "*.json": "json",
+    "invalidFileNameChars.json": "jsonc"
   },
   "editor.defaultFormatter": null,
   "editor.formatOnPaste": false, // required
@@ -30,10 +32,13 @@
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "htmlhint.documentSelector": ["html", "htm", "!template.html"],
-  "htmlhint.configFile": "./htmlhint.conf",
+  "htmlhint.documentSelector": [
+    "html",
+    "htm",
+    "!template.html"
+  ],
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "j-brooke.fracturedjsonvsc"
   },
   "cSpell.words": [
     "crafter",

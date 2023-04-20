@@ -98,6 +98,7 @@ $(document).ready(() => {
       },
       async locked() {
         while (this.flashing) {
+          // eslint-disable-next-line no-await-in-loop
           await sleep(500);
         }
 

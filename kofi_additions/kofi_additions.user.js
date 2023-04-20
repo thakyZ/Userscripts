@@ -13,8 +13,11 @@
 // @grant        GM_getResourceText
 // @grant        GM.getResourceUrl
 // @grant        GM.xmlHttpRequest
+// @grant        GM_getValue
+// @grant        GM_setValue
 // @require      https://code.jquery.com/jquery-3.6.0.min.js
 // @require      https://cdn.jsdelivr.net/gh/thakyz/Userscripts/library/nekogaming.userscript.lib.min.js
+// @require      https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/kofi_additions/kofi_additions.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/kofi_additions/kofi_additions.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
@@ -27,6 +30,10 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
   "use strict";
+
+  GM_config.init({
+
+  });
 
   // Site url regex matches.
   const feedRegex = /https:\/\/(www\.)?ko-fi\.com\/feed/i;
@@ -51,21 +58,62 @@ $(document).ready(() => {
     }
   };
 
+  GM_addStyle(GM_getResourceText("css"));
+
+  const transfromModName = function (element) {
+    const text = $(element).parent().prev().text().trim();
+    return text;
+  };
+
+  const addCopyModNameButton = function (element, pageType = 0) {
+    if ($(element).find("#copy-mod-btn").length > 0) {
+      return;
+    }
+
+    const copyModNameButton = $.fn.createElement("copyauthor", {});
+
+    $(copyModNameButton).attr("id", "copy-mod-btn");
+    $(copyModNameButton).removeClass("btn-x-small-copy-author").addClass("btn-x-small-copy-mod-name");
+
+    let placement;
+
+    if (pageType === 0) {
+      placement = element.concat(" > div > div > div:last-child > div:nth-child(2) > ul > li > div:first-child");
+    }
+
+    if (pageType === 0) {
+      $(placement).after("<div class></div>");
+      $(copyModNameButton).removeClass("kfds-right-mrgn-8").addClass("kfds-left-mrgn-8");
+      $(copyModNameButton).removeClass("btn-xs").addClass("btn-sm");
+      $(copyModNameButton).removeClass("btn-x-small-copy-mod-name").addClass("btn-small-copy-mod-name");
+      $(copyModNameButton).addClass("kfds-btn-tertiary-light-s");
+    }
+
+    if (pageType === 0) {
+      $(placement.concat(" + div")).append($(copyModNameButton));
+      $(placement.concat(" + div")).css({ right: "calc(50% - 85px)", position: "absolute" });
+      $(copyModNameButton).on("click", function () {
+        GM_setClipboard(transfromModName(this));
+      });
+    }
+  };
+
   const addCopyAuthorButton = pageType => {
     if ($("#copy-author-btn").length > 0) {
       return;
     }
 
-    GM_addStyle(GM_getResourceText("css"));
+    const copyAuthorButton = $.fn.createElement("copyauthor", {});
 
     let placement;
     let newSpacer;
-    let copyAuthorButton;
 
     if (pageType === 0) {
       placement = $(".shop-item-title + div > div > a:first-child");
     } else if (pageType === 1) {
-      placement = $("body");
+      placement = $("span:contains(\"Creator\") + a");
+    } else if (pageType === 2) {
+      placement = $("div#profile-header-v2 > div > div:first-child > div:first-child > div:last-child > div:nth-child(2)");
     }
 
     // Pre add spacer that already exists.
@@ -73,14 +121,27 @@ $(document).ready(() => {
       const spacer = $($(placement).find("span")[1]);
       newSpacer = $(spacer).clone();
       $(spacer).html("&nbsp;");
+    } else if (pageType === 1) {
+      const flex = $(placement).attr("class").split(" ")[0];
+      const container = $("<div class=\"" + flex + "\"></div>");
+      $(container).insertBefore($(placement));
+      $(container).append($(placement));
+    } else if (pageType === 2) {
+      $(placement).css({ display: "flex", justifyContent: "flex-start", flexDirection: "row", alignItems: "flex-start" });
     }
 
-    if (pageType === 0) {
-      copyAuthorButton = $.fn.createElement("copyauthor", {});
-      $(placement).after($(copyAuthorButton));
+    $(placement).after($(copyAuthorButton));
+
+    if (pageType <= 1) {
       $(copyAuthorButton).after($(newSpacer));
       $(copyAuthorButton).on("click", function () {
-        GM_setClipboard($($(this).parent().find("a.kfds-lyt-row").find("span")[0]).text());
+        GM_setClipboard($($(this).parent().find("a").find("span")[0]).text());
+      });
+    } else if (pageType === 2) {
+      $(placement).children("span").after($(copyAuthorButton));
+      $(copyAuthorButton).css({ margin: "2px 4px" });
+      $(copyAuthorButton).on("click", function () {
+        GM_setClipboard($(this).prev().text());
       });
     }
   };
@@ -96,6 +157,8 @@ $(document).ready(() => {
             if (feedRegex.test(window.location.href)) {
               fixShopGradient();
             }
+          } else if ($("head meta[property=\"og:type\"]").attr("content") === "profile") {
+            addCopyAuthorButton(2);
           } else {
             /* eslint-disable no-lonely-if */
             if (shopItemRegex.test(window.location.href)) {
@@ -104,6 +167,10 @@ $(document).ready(() => {
             } else if (orderDetailsRegex.test(window.location.href)) {
               addCopyAuthorButton(1);
             }
+          }
+        } else if (mutation.type === "attributes") {
+          if (orderDetailsRegex.test(window.location.href) && $(".modal-purchased-shop-item-detail[style*=\"display: block;\"]").length > 0) {
+            addCopyModNameButton(".modal-purchased-shop-item-detail[style*=\"display: block;\"]");
           }
         }
       }
