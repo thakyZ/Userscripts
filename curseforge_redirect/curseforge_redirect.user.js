@@ -10,7 +10,7 @@
 // @match           *://curseforge.com/*
 // @match           *://www.curseforge.com/*
 // @exclude         *://minecraft.curseforge.com/projects/
-// @require         https://code.jquery.com/jquery-3.6.0.min.js
+// @require         https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @icon            https://github.com/thakyZ/Userscripts/raw/master/curseforge_redirect/curse-icon.png
 // @license         MIT
 // @downloadURL     https://raw.githubusercontent.com/thakyz/Userscripts/master/curseforge_redirect/curseforge_redirect.user.js

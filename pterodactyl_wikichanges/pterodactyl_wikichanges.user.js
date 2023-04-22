@@ -10,7 +10,7 @@
 // @grant        GM_setClipboard
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/pterodactyl_wikichanges/pterodactyl_wikichanges.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/pterodactyl_wikichanges/pterodactyl_wikichanges.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues

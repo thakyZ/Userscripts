@@ -12,7 +12,7 @@
 // @grant        GM_registerMenuCommand
 // @grant        GM.xmlHttpRequest
 // @grant        GM_openInTab
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxiv_onlinestore/ffxiv_onlinestore.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxiv_onlinestore/ffxiv_onlinestore.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues

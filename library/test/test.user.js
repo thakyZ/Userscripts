@@ -7,7 +7,7 @@
 // @match        https://www.google.com/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=nekogaming.xyz
 // @grant        GM_getResourceText
-// @require      https://code.jquery.com/jquery-3.6.0.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @require      https://cdn.jsdelivr.net/gh/thakyz/Userscripts/library/nekogaming.userscript.lib.js
 // @resource     example https://cdn.jsdelivr.net/gh/thakyz/Userscripts/library/test/elements.template.html
 // ==/UserScript==

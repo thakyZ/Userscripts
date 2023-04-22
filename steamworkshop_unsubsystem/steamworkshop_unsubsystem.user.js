@@ -7,7 +7,7 @@
 // @match        https://steamcommunity.com/sharedfiles/filedetails/?id=*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=steamcommunity.com
 // @grant        none
-// @require      https://code.jquery.com/jquery-3.6.0.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/steamworkshop_unsubsystem/steamworkshop_unsubsystem.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/steamworkshop_unsubsystem/steamworkshop_unsubsystem.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues

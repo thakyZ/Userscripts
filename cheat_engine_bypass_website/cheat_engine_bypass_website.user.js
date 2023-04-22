@@ -12,7 +12,7 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/cheat_engine_bypass_website/cheat_engine_bypass_website.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // ==/UserScript==
 /* global $, jQuery */
 this.$ = this.jQuery = jQuery.noConflict(true);

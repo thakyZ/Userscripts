@@ -15,7 +15,7 @@
 // @grant        GM_registerMenuCommand
 // @grant        GM_setClipboard
 // @require      https://raw.githubusercontent.com/SloaneFox/code/master/GM4_registerMenuCommand_Submenu_JS_Module.js
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @require      https://raw.github.com/odyniec/MonkeyConfig/master/monkeyconfig.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/arrtt_additions/arrtt_additions.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/arrtt_additions/arrtt_additions.user.js

@@ -7,7 +7,7 @@
 // @match        https://monsterhunterworld.wiki.fextralife.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=fextralife.com
 // @grant        none
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
 // @license      MIT
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/mhw_wiki_remove_twitch/mhw_wiki_remove_twitch.user.js

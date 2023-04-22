@@ -18,7 +18,7 @@
 // @grant        GM_setClipboard
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @require      https://github.com/dawidsadowski/MonkeyConfig/raw/master/monkeyconfig.js
 // @require      https://raw.githubusercontent.com/SloaneFox/code/master/GM4_registerMenuCommand_Submenu_JS_Module.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/gamerescape_additions/gamerescape_additions.user.js
@@ -262,7 +262,7 @@ $(document).ready(() => {
       }
     });
     /* eslint-disable-next-line no-unused-vars */
-    const rgbToHsl = rgb => {
+    const rgbToHsl = rgb => { // NOSONAR
       // Choose correct separator
       const sep = rgb.indexOf(",") > -1 ? "," : " ";
       // Turn "rgb(r,g,b)" into [r,g,b]

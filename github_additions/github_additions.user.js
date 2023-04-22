@@ -9,7 +9,7 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=github.com
 // @license      MIT
 // @grant        GM_setClipboard
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @require      https://github.com/thakyZ/GitHub-userscripts/raw/master/mutations.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/github_additions/github_additions.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/github_additions/github_additions.user.js

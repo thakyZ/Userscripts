@@ -8,7 +8,7 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=aetherlink.app
 // @license      MIT
 // @grant        GM_setClipboard
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/aetherlink_additions/aetherlink_additions.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/aetherlink_additions/aetherlink_additions.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues

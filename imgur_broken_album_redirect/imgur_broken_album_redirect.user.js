@@ -8,7 +8,7 @@
 // @grant        none
 // @license      MIT
 // @run-at       document-end
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/imgur_broken_album_redirect/imgur_broken_album_redirect.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/imgur_broken_album_redirect/imgur_broken_album_redirect.user.js
@@ -22,7 +22,7 @@ $(document).ready(() => {
   const debug = false;
 
   function setupMyClass(jNode) {
-    const regex = /^https:\/\/imgur\.com\/user\/[a-zA-Z0-9]+\/favorites\/folder\/[0-9]+\/[a-zA-Z0-9]+\//g;
+    const regex = /^https:\/\/imgur\.com\/user\/[a-zA-Z0-9]+\/favorites\/folder\/\d+\/[a-zA-Z0-9]+\//g;
     const address = window.location.href;
     const element = $(jNode);
 

@@ -8,7 +8,7 @@
 // @match        https://curseforge.com/*/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=curseforge.com
 // @grant        none
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/curseforge_downloadbutton/curseforge_downloadbutton.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/curseforge_downloadbutton/curseforge_downloadbutton.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
@@ -26,11 +26,7 @@ $(document).ready(() => {
       for (const mutation of mutationList) {
         if (mutation.type === "childList" && $(mutation.target).attr("class") === "tab-content") {
           const isOnFileDL = () => {
-            if ($("section.file-details", $(mutation.target)).length > 0) {
-              return true;
-            }
-
-            return false;
+            return $("section.file-details", $(mutation.target)).length > 0;
           };
 
           if (isOnFileDL() && $("div#menuButton button span").text() === "InstallInstall") {
