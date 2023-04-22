@@ -79,6 +79,7 @@ $(document).ready(() => {
 
     if (pageType === 0) {
       placement = element.concat(" > div > div > div:last-child > div:nth-child(2) > ul > li > div:first-child");
+      $(element.concat(" > div")).css({ maxWidth: $(".modal-purchased-shop-item-detail[style*=\"display: block;\"] > div").css("max-width").replace(/(\d+px)/i, "calc($1 + 48px)") });
     }
 
     if (pageType === 0) {
@@ -91,7 +92,6 @@ $(document).ready(() => {
 
     if (pageType === 0) {
       $(placement.concat(" + div")).append($(copyModNameButton));
-      $(placement.concat(" + div")).css({ right: "calc(50% - 85px)", position: "absolute" });
       $(copyModNameButton).on("click", function () {
         GM_setClipboard(transfromModName(this));
       });
