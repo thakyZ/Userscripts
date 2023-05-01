@@ -1,17 +1,14 @@
 // ==UserScript==
 // @name         Quizlet Unlock
 // @namespace    NekoBoiNick.Web.Quizlet.Unlock
-// @version      1.0.0
-// @description  Unlcoks Quizlet Paywalls
-//               Please do not use this to cheat on tests, I used this to just not have to pay for Quizlet when studying.
+// @version      1.0.1
+// @description  "Unlcoks Quizlet Paywalls. Please do not use this to cheat on tests, I used this to just not have to pay for Quizlet when studying."
 // @author       Neko Boi Nick
 // @match        https://quizlet.com/*
 // @icon         https://www.google.com/s2/favicons?domain=quizlet.com
 // @grant        GM_log
 // @run-at       document-start
 // @noframes
-// @compatible   firefox
-// @compatible   chrome
 // @license      MIT
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/quizlet_unlock/quizlet_unlock.user.js
@@ -25,45 +22,63 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 $(document).ready(() => {
   "use strict";
 
-  window.onhashchange = () => {
-    $(".SetPageTerm").each((_, element) => {
-      if (!$(element).attr("class").contains("is-showing")) {
-        $(element).attr("class", `${$(element).attr("class")} is-showing`);
-        GM_log("Found broken page");
+  function hideLoginButton() {
+    const element = $(".LoginBottomBar").parent();
+    if ($(element).css("display") !== "none") {
+      $(element).attr("style", `${$(element).attr("style")};display:none !important;`);
+    }
+  }
+
+  function unblurTerms() {
+    const children = $(".SetPageTerms-term").children().children().children().children().children();
+    for (const [index, element] of Object.entries(children)) {
+      if (!isNaN(index) && $(element).css("filter") !== "none") {
+        $(element).attr("style", `${$(element).attr("style")};filter:none !important;`);
       }
+    }
+  }
+
+  function showAllTerms() {
+    const terms = $(".SetPageTerm");
+    for (const [index, element] of Object.entries(terms)) {
+      if (!isNaN(index) && !$(element).hasClass("is-showing")) {
+        $(element).add("class", "is-showing");
+        console.log("Found broken page");
+      }
+    }
+  }
+
+  const setupMutationObserver = () => {
+    const targetNode = $("body")[0];
+    const config = { attributes: true, childList: true, subtree: true };
+
+    const callback = mutationList => {
+      for (const mutation of mutationList) {
+        if (mutation.type === "attributes" || mutation.type === "childList" || mutation.type === "subtree") {
+          hideLoginButton();
+          unblurTerms();
+          showAllTerms();
+        }
+      }
+    };
+
+    const observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
+
+    $(document).on("unload", () => {
+      observer.disconnect();
     });
   };
 
-  let checkedForAds = false;
-  let adsHidden = 0;
-  const debug = false;
-
-  function getAds() {
-    return document.getElementsByClassName("SetPageTerm");
-  }
-
-  function hideAd(ad) {
-    if (!ad.classList.contains("is-showing")) {
-      ad.classList.add("is-showing");
-      adsHidden += 1;
-      if (debug) {
-        console.log("Ads hidden: ", adsHidden.toString());
-      }
+  let id = -1;
+  id = setInterval(() => {
+    if ($("body").length > 0) {
+      setupMutationObserver();
+      clearInterval(id);
     }
-  }
+  }, 100);
 
-  setInterval(() => {
-    if (checkedForAds) {
-      return;
-    }
-
-    const ads = getAds();
-
-    if (ads.length) {
-      Array.from(ads).forEach(hideAd);
-      checkedForAds = true;
-    }
-  }, 500);
-
-  document.addEventListener("scroll", () => Array.from(getAds()).forEach(hideAd));
-})();
+  hideLoginButton();
+  unblurTerms();
+  showAllTerms();
+});
