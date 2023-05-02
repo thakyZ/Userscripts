@@ -57,6 +57,7 @@ const getMonkeyCodeNames = (type) => {
     "GM_setValue",
     "GM_unregisterMenuCommand",
     "GM_xmlhttpRequest",
+    "GM_config",
     "unsafeWindow",
   ];
   const customLibraries = [
