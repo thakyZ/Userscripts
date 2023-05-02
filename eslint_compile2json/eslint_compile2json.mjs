@@ -5,6 +5,20 @@ import * as eslintConfig from "../eslint.config.mjs";
 
 const outDirectory = path.join(import.meta.url, "..", "..", "out", "eslint.json").toString().replace("file:\\", "");
 
+/* To remove:
+ * no-constant-binary-expression
+ * no-empty-static-block
+ * no-new-native-nonconstructor
+ */
+
+async function removeTamperMonkeyUndefRules(rules) {
+  const newRules = rules;
+  delete newRules["no-constant-binary-expression"];
+  delete newRules["no-empty-static-block"];
+  delete newRules["no-new-native-nonconstructor"];
+  return newRules;
+}
+
 async function enableAllGlobals(globals) {
   for (var globalVar in globals) {
     if (Object.prototype.hasOwnProperty.call(globals, globalVar) && globals[globalVar] === false) {
@@ -23,6 +37,7 @@ async function loadEslintConfig() {
   newJsonTree.extends = [ "eslint:recommended" ];
   newJsonTree.parserOptions = {...eslintConfig.default[0].languageOptions.parserOptions};
   newJsonTree.rules = {...eslintConfig.default[0].rules};
+  newJsonTree.rules = await removeTamperMonkeyUndefRules(newJsonTree.rules);
   return newJsonTree;
 }
 
