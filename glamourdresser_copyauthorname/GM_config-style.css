@@ -1,0 +1,52 @@
+:root {
+  --body-background: var(--temp_color-20);
+  --body-background-dark: var(--tempColor-10);
+  --body-text: var(--tempColor-10);
+  --body-text-dark: var(--tempColor-15);
+}
+div[id*="_wrapper"] {
+  height: 100%;
+  background: var(--body-background);
+  border-radius: 10px;
+  color: var(--body-text);
+  padding: 20px;
+}
+div[id*="_wrapper"] .config_header {
+  line-height: normal;
+  margin: 0 0 10px 0 !important;
+}
+div[id*="_wrapper"] .select-wrapper select[id*="_field_"] {
+  appearance: none;
+}
+div[id*="_wrapper"] .select-wrapper::after {
+  content: "▼";
+  color: var(--body-text);
+  font-size: 1rem;
+  top: 6px;
+  right: 10px;
+  position: absolute;
+}
+@media (prefers-color-scheme: dark) {
+  div[id*="_wrapper"] {
+    height: 100%;
+    background: var(--body-background-dark);
+    border-radius: 10px;
+    color: var(--body-text-dark);
+    padding: 20px;
+  }
+  div[id*="_wrapper"] .config_header {
+    line-height: normal;
+    margin: 0 0 10px 0 !important;
+  }
+  div[id*="_wrapper"] .select-wrapper select[id*="_field_"] {
+    appearance: none;
+  }
+  div[id*="_wrapper"] .select-wrapper::after {
+    content: "▼";
+    color: var(--body-text-dark);
+    font-size: 1rem;
+    top: 6px;
+    right: 10px;
+    position: absolute;
+  }
+}

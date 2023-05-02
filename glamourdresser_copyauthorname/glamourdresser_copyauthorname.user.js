@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
 // @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
-// @version      1.1.4.2
+// @version      1.1.5
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.glamourdresser.com/*
@@ -16,9 +16,8 @@
 // @grant        GM_setClipboard
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
-// @require      https://raw.githubusercontent.com/SloaneFox/code/master/GM4_registerMenuCommand_Submenu_JS_Module.js
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
-// @require      https://raw.github.com/odyniec/MonkeyConfig/master/monkeyconfig.js
+// @require      https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/glamourdresser_copyauthorname/glamourdresser_copyauthorname.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/glamourdresser_copyauthorname/glamourdresser_copyauthorname.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
@@ -31,8 +30,9 @@
 // @resource     blankAvatarJPG https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/blankAvatar.jpg
 // @resource     placeholderImagePNG https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/placeholderImage.png
 // @resource     copyButtonTemplate https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/copyButton.template.html
+// @resource     GM_config_css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/GM_config/style.min.css
 // ==/UserScript==
-/* global $, jQuery, MonkeyConfig */
+/* global $, jQuery, GM_config */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $.fn.setData = function (name, data) {
@@ -102,18 +102,62 @@ $.fn.modifyStyle = function (name) {
 };
 
 $(document).ready(() => {
-  const config = new MonkeyConfig({
-    title: "Configure",
-    menuCommand: true,
-    params: {
+  const gmConfigCSS = GM_getResourceText("GM_config_css");
+
+  const setupGMConfigFrame = () => {
+    const element = $("<div id=\"GlamourDresser_Additions_Config\"></div>");
+    $("body").append($(element));
+    return element[0];
+  };
+
+  const gmConfigFrame = setupGMConfigFrame();
+
+  GM_config.init({
+    id: "GlamourDresser_Additions_Config",
+    title: "The Glamour Dresser Additions Config",
+    fields: {
       darkDashboard: {
+        label: "Dark Dashboard",
         type: "select",
-        choices: ["Default", "Dark"],
+        options: ["Default", "Dark"],
         default: "Default"
       }
     },
-    onSave: val => changeUI(val)
+    events: {
+      open(doc) {
+        console.log(doc);
+        overwriteGMConfigFrameStyle();
+        for (const [index, element] of Object.entries($("select", gmConfigFrame))) {
+          if (!isNaN(index)) {
+            break;
+          }
+
+          const selectWrapper = $("<div class=\"select-wrapper\"></div>");
+          $(element).before($(selectWrapper));
+          $(selectWrapper).append($(element));
+        }
+      },
+      save: val => { console.log(val); changeUI(val) }
+    },
+    css: gmConfigCSS,
+    frame: gmConfigFrame
   });
+
+  const overwriteGMConfigFrameStyle = () => {
+    $(gmConfigFrame).attr("style", "");
+  };
+
+  const convertFromMonkeyToGMConfig = () => {
+    const old = GM_getValue("_MonkeyConfig_Configure_cfg");
+    if (typeof old !== "undefined") {
+      const rawJSON = old.replaceAll("\\", "");
+      const json = JSON.parse(rawJSON);
+      GM_config.set("darkDashboard", json.darkDashboard);
+      GM_deleteValue("_MonkeyConfig_Configure_cfg");
+    }
+  };
+
+  convertFromMonkeyToGMConfig();
 
   const createElements = (resource, replaceObj = {}) => {
     const templateHtml = GM_getResourceText(resource);
@@ -143,7 +187,7 @@ $(document).ready(() => {
     }
   };
 
-  changeUI(config.get("darkDashboard"));
+  changeUI(GM_config.get("darkDashboard"));
 
   const creatorInfo = () => {
     if (window.location.href.includes("mods") || window.location.href.includes("poses") || window.location.href.includes("presets") || window.location.href.includes("resources")) {
@@ -324,6 +368,12 @@ $(document).ready(() => {
       }
     }
   };
+
+  if (/https:\/\/(www\.)?glamourdresser\.com\/wp-admin/gi.test(window.location.href)) {
+    GM_registerMenuCommand("Config", () => {
+      GM_config.open();
+    });
+  }
 
   handleIframes();
 });
