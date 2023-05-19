@@ -128,7 +128,7 @@ $(document).ready(() => {
         console.log(doc);
         overwriteGMConfigFrameStyle();
         for (const [index, element] of Object.entries($("select", gmConfigFrame))) {
-          if (!isNaN(index)) {
+          if (isNaN(index)) {
             break;
           }
 
@@ -137,7 +137,7 @@ $(document).ready(() => {
           $(selectWrapper).append($(element));
         }
       },
-      save: val => { console.log(val); changeUI(val) }
+      save: val => changeUI(val)
     },
     css: gmConfigCSS,
     frame: gmConfigFrame
@@ -178,7 +178,7 @@ $(document).ready(() => {
       return false;
     }
 
-    if (val.darkDashboard === "Default") {
+    if (val === "Default") {
       if ($("body").attr("class").includes("nbn_dark")) {
         $("body").removeClass("nbn_dark");
       }
