@@ -8,6 +8,7 @@
 @updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/TestStyle.user.css
 ==/UserStyle== */
 
+
 @-moz-document url-prefix("https://privatter.net/") {
 .navbar-brand,
 .caret {
