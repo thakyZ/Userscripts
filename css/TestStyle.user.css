@@ -4,8 +4,8 @@
 @description    Changes some things on privatter.net
 @author         Neko Boi Nick
 @namespace      github.com/thakyZ/Userscripts
-@homepageURL    https://github.com/thakyZ/Userscripts/blob/master/css/Privatter.user.css
-@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/Privatter.user.css
+@homepageURL    https://github.com/thakyZ/Userscripts/blob/master/css/TestStyle.user.css
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/TestStyle.user.css
 ==/UserStyle== */
 
 @-moz-document url-prefix("https://privatter.net/") {
