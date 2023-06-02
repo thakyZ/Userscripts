@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
 // @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
-// @version      1.1.5
+// @version      1.1.6
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.glamourdresser.com/*
@@ -112,41 +112,6 @@ $(document).ready(() => {
 
   const gmConfigFrame = setupGMConfigFrame();
 
-  GM_config.init({
-    id: "GlamourDresser_Additions_Config",
-    title: "The Glamour Dresser Additions Config",
-    fields: {
-      darkDashboard: {
-        label: "Dark Dashboard",
-        type: "select",
-        options: ["Default", "Dark"],
-        default: "Default"
-      }
-    },
-    events: {
-      open(doc) {
-        console.log(doc);
-        overwriteGMConfigFrameStyle();
-        for (const [index, element] of Object.entries($("select", gmConfigFrame))) {
-          if (isNaN(index)) {
-            break;
-          }
-
-          const selectWrapper = $("<div class=\"select-wrapper\"></div>");
-          $(element).before($(selectWrapper));
-          $(selectWrapper).append($(element));
-        }
-      },
-      save: val => changeUI(val)
-    },
-    css: gmConfigCSS,
-    frame: gmConfigFrame
-  });
-
-  const overwriteGMConfigFrameStyle = () => {
-    $(gmConfigFrame).attr("style", "");
-  };
-
   const convertFromMonkeyToGMConfig = () => {
     const old = GM_getValue("_MonkeyConfig_Configure_cfg");
     if (typeof old !== "undefined") {
@@ -156,8 +121,6 @@ $(document).ready(() => {
       GM_deleteValue("_MonkeyConfig_Configure_cfg");
     }
   };
-
-  convertFromMonkeyToGMConfig();
 
   const createElements = (resource, replaceObj = {}) => {
     const templateHtml = GM_getResourceText(resource);
@@ -171,12 +134,12 @@ $(document).ready(() => {
     return template;
   };
 
-  const mdiContentCopy = "M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z";
-
-  const changeUI = val => {
+  const changeUI = () => {
     if (!/https:\/\/(www\.)?glamourdresser\.com\/wp-admin/gi.test(window.location.href)) {
       return false;
     }
+
+    const val = GM_config.get("darkDashboard");
 
     if (val === "Default") {
       if ($("body").attr("class").includes("nbn_dark")) {
@@ -187,15 +150,13 @@ $(document).ready(() => {
     }
   };
 
-  changeUI(GM_config.get("darkDashboard"));
-
   const creatorInfo = () => {
     if (window.location.href.includes("mods") || window.location.href.includes("poses") || window.location.href.includes("presets") || window.location.href.includes("resources")) {
-      return $("div.elementor-author-box__text");
+      return { type: "item", elements: [$("li[itemprop=\"author\"] a"), $("li[itemprop=\"author\"]")] };
     }
 
     if (window.location.href.includes("author")) {
-      return $("div.elementor-author-box__text div:first-child h4");
+      return { type: "author", elements: [$("div.elementor-author-box__text a:first-child"), $("div.elementor-author-box__text")] };
     }
   };
 
@@ -248,10 +209,21 @@ $(document).ready(() => {
       return (-1 * ((174.11 / 2) + ($(creatorInfo()).outerWidth() / 2)));
     };
     */
-    const tempButton = $(createElements("copyButtonTemplate", { mdiContentCopy }));
-    $(creatorInfo()).after($(tempButton));
+    const creatorInfoData = creatorInfo();
+    const tempButton = $(createElements("copyButtonTemplate"));
+    $(creatorInfoData.elements[0]).after($(tempButton));
+
+    if (creatorInfoData.type === "item" && !creatorInfoData.elements[1].hasClass("elementor-kit-5")) {
+      creatorInfoData.elements[1].addClass("elementor-kit-5");
+    } else if (creatorInfoData.type === "author" && true) {
+      // Blank for now.
+    }
+
     $(".action-copy-author").on("click", () => {
-      const authorName = $(".elementor-author-box__name").text();
+      const test = $(creatorInfoData.elements[1]).clone();
+      $($(test).find("span")[1]).remove();
+      const authorName = $(test).text();
+      $(test).remove();
       const processed = processName(authorName);
       GM_setClipboard(processed);
     });
@@ -319,10 +291,6 @@ $(document).ready(() => {
     });
   };
 
-  createPlaceholderImage();
-
-  createObjects();
-
   const addTempModPageImage = () => {
     if (/https:\/\/www\.glamourdresser\.com\/mods\/.+/gi.test(window.location.href)) {
       const mainCarousel = $(".elementor-swiper .elementor-main-swiper .elementor-carousel-image");
@@ -337,8 +305,6 @@ $(document).ready(() => {
     }
   };
 
-  addTempModPageImage();
-
   const iframeCSS = btoa(GM_getResourceText("iframe"));
 
   const setupCSS = () => {
@@ -347,8 +313,6 @@ $(document).ready(() => {
     $("head").append("<style id=\"nbnDarkFixStyle\"></style>");
     $("#nbnDarkFixStyle").setData("css", calcVariableCSS()).addData("css", { defaultDarkBG, variableTextLength: variableTextLength() }).modifyStyle("css");
   };
-
-  setupCSS();
 
   const handleIframes = () => {
     if (/https:\/\/(www\.)?glamourdresser\.com\/wp-admin\/post(-new)?\.php/gi.test(window.location.href)) {
@@ -375,5 +339,110 @@ $(document).ready(() => {
     });
   }
 
-  handleIframes();
+  GM_config.init({
+    id: "GlamourDresser_Additions_Config",
+    title: "The Glamour Dresser Additions Config",
+    fields: {
+      darkDashboard: {
+        label: "Dark Dashboard",
+        type: "selectWrapper",
+        options: ["Default", "Dark"],
+        default: "Default"
+      }
+    },
+    types: {
+      selectWrapper: {
+        default: null,
+        toNode() {
+          const { label, type, options } = this.settings;
+          const { value, id, create } = this;
+          const wrap = create("div", {
+            className: "select-wrapper",
+            id: `${this.configId}_field_${id}`,
+            label: label || "<unknown>"
+          });
+          const select = create("select", {});
+
+          function addLabel(pos, labelEl, parentNode, beforeEl) {
+            if (!beforeEl) {
+              beforeEl = parentNode.parentElement;
+            }
+
+            switch (pos) {
+            case "right": case "below":
+              if (pos === "below") {
+                parentNode.insertAfter(create("br", {}));
+              }
+
+              parentNode.insertAfter(labelEl);
+              break;
+            default:
+              if (pos === "above") {
+                parentNode.insertBefore(create("br", {}), beforeEl);
+              }
+
+              parentNode.insertBefore(labelEl, beforeEl);
+            }
+          }
+
+          const newLabel = label && type !== "button"
+            ? create("label", {
+              id: `${this.configId}_${id}_field_label`,
+              for: `${this.configId}_field_${id}`,
+              className: "field_label"
+            }, label) : null;
+
+          wrap.appendChild(select);
+          this.node = wrap;
+
+          for (let i = 0, len = options.length; i < len; ++i) {
+            const option = options[i];
+            select.appendChild(create("option", {
+              value: option,
+              selected: option === value
+            }, option));
+          }
+
+          if (newLabel) {
+            addLabel("left", newLabel, wrap);
+          }
+
+          return wrap;
+        },
+        toValue() {
+          const { node } = this;
+          return node.getElementsByTagName("select")[0][node.getElementsByTagName("select")[0].selectedIndex].value;
+        },
+        reset() {
+          const { node, _default } = this;
+          for (let i = 0, len = node.getElementsByTagName("select")[0].options.length; i < len; ++i) {
+            if (node.getElementsByTagName("select")[0].options[i].textContent === _default) {
+              node.getElementsByTagName("select")[0].selectedIndex = i;
+            }
+          }
+        }
+      }
+    },
+    events: {
+      init() {
+        GM_config.frame.setAttribute("style", "display:none;");
+        convertFromMonkeyToGMConfig();
+        changeUI();
+        createObjects();
+        createPlaceholderImage();
+        addTempModPageImage();
+        setupCSS();
+        handleIframes();
+      },
+      open() {
+        GM_config.frame.setAttribute("style", "display:block;");
+      },
+      save: val => changeUI(val),
+      close() {
+        GM_config.frame.setAttribute("style", "display:none;");
+      }
+    },
+    css: gmConfigCSS,
+    frame: gmConfigFrame
+  });
 });

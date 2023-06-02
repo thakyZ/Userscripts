@@ -4,6 +4,10 @@
   --e-global-color-primary-dark: #eee;
   --wp-adminbar-dark: rgb(19, 20, 20);
   --wp-adminbar-popup-dark: rgb(24, 25, 25);
+  --nbn-copy-author-button-active-deg: 60deg;
+  --nbn-copy-author-button-active-dark: rgba(202, 248, 128, 0.1);
+  --nbn-copy-author-button-active-light: rgba(113, 206, 126, 0.5);
+  --nbn-copy-author-button-active-aux: rgb(202, 248, 128);
 }
 
 @e-global-color-accent-dark: var(--e-global-color-accent-dark);
@@ -13,6 +17,11 @@
 @wp-dark-mode-scale: var(--wp-dark-mode-scale);
 @wp-adminbar-dark: var(--wp-adminbar-dark);
 @wp-adminbar-popup-dark: var(--wp-adminbar-popup-dark);
+@wp-darkmysite_dark_mode_link_color: var(--darkmysite_dark_mode_link_color);
+@nbn-copy-author-button-active-deg: var(--nbn-copy-author-button-active-deg);
+@nbn-copy-author-button-active-dark: var(--nbn-copy-author-button-active-dark);
+@nbn-copy-author-button-active-light: var(--nbn-copy-author-button-active-light);
+@nbn-copy-author-button-active-aux: var(--nbn-copy-author-button-active-aux);
 
 html {
   &.wp-dark-mode-active {
@@ -81,93 +90,46 @@ html {
       }
     }
   }
-  & button.elementor-button.action-copy-author {
-    background-color: @e-global-color-accent;
-    font-family: nunito sans, Sans-serif;
-    text-decoration: initial;
-    text-shadow: rgba(13, 13, 13, 0.3) 0px 0px 10px;
-    color: rgb(229, 224, 216);
-    border-radius: 0 0 0 0;
-    text-transform: uppercase;
-    font-size: 13px;
-    width: auto;
-    fill: rgb(229, 224, 216);
-    display: inline-block;
-    line-height: 1;
-    text-align: center;
-    border: none;
-    box-shadow: 0 0 0 0 #000;
-    transform: translateY(0);
-    transition: all 0.3s, transform 0.2s ease, box-shadow 0.2s ease;
+  & button {
+    &.elementor-button {
+      &.action-copy-author {
+        background-color: @e-global-color-accent !important;
+        color: @wp-darkmysite_dark_mode_link_color !important;
+        font-family: "Nunito Sans", Sans-serif;
+        font-size: 0.9em;
+        font-weight: normal;
+        transition: all 0.3s !important;
+        margin-left: calc(25px / 2);
 
-    &:hover,
-    &:focus:hover {
-      background-color: #107116 !important;
-    }
+        &:hover,
+        &:focus:hover {
+          background-color: #107116 !important;
+        }
 
-    &:active {
-      box-shadow: 0 5px 10px 5px #000;
-      transform: translateY(5px);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+        &:active {
+          background: @nbn-copy-author-button-active-aux;
+          background: -moz-linear-gradient(@nbn-copy-author-button-active-deg, @nbn-copy-author-button-active-dark 0%, @nbn-copy-author-button-active-light 100%);
+          background: -webkit-linear-gradient(@nbn-copy-author-button-active-deg, @nbn-copy-author-button-active-dark 0%, @nbn-copy-author-button-active-light 100%);
+          background: linear-gradient(@nbn-copy-author-button-active-deg, @nbn-copy-author-button-active-dark 0%, @nbn-copy-author-button-active-light 100%);
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#caf880",endColorstr="#a9b8c3",GradientType=1);
+          transition: all 0.3s !important;
+        }
 
-    &:focus {
-      outline: none;
-      background-color: @e-global-color-accent !important;
-    }
+        &:focus {
+          outline: 0;
+          background-color: @e-global-color-accent !important;
+        }
 
-    & img.clipboard {
-      max-height: calc(18px * @wp-dark-mode-scale);
-      max-width: calc(18px * @wp-dark-mode-scale);
-    }
-  }
-  /*& div {
-    &:not(
-        .elementor-author-box--biography-yes
-      )[data-widget_type="author-box.default"] {
-      & div.elementor-widget-container {
-        & div.elementor-author-box {
-          & .elementor-author-box__text {
-            min-width: 100%;
-            width: 100%;
-          }
-          & .copy-author-widget {
-            left: var(--variableTextLength);
-          }
+        & img.clipboard {
+          max-height: calc(18px * @wp-dark-mode-scale);
+          max-width: calc(18px * @wp-dark-mode-scale);
         }
       }
     }
-  }*/
-  & .elementor-author-box__name {
-    width: fit-content;
-    display: inline-block;
   }
   & div.elementor-author-box__text {
-    & div {
-      &:not(.elementor-button-wrapper) {
-        &:first-child {
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-align: center;
-          -ms-flex-align: center;
-          align-items: center;
-        }
-      }
-    }
-    &:first-child {
-      & h4 {
-        &.elementor-author-box__name {
-          -webkit-box-flex: 1;
-          -ms-flex-positive: 1;
-          flex-grow: 1;
-          width: var(--calcVariableCssWidth);
-          max-width: var(--calcVariableCssMaxWidth);
-          margin-left: var(--calcVariableCssMarginLeft);
-        }
-      }
-    }
     & a {
-      align-items: center;
+      display: inline-block;
     }
   }
   & .copy-author-widget {
