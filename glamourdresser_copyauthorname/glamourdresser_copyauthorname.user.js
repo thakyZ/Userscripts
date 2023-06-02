@@ -30,89 +30,89 @@
 // @resource     blankAvatarJPG https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/blankAvatar.jpg
 // @resource     placeholderImagePNG https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/placeholderImage.png
 // @resource     copyButtonTemplate https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/copyButton.template.html
-// @resource     GM_config_css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/GM_config/style.min.css
+// @resource     GM_config_css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/GM_config-style.min.css
 // ==/UserScript==
 /* global $, jQuery, GM_config */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
-$.fn.setData = function (name, data) {
-  $(this).each((_, element) => {
-    const prevData = $(element).data(name) === undefined ? {} : $(this).data(name);
-    if (prevData === undefined) {
-      $(element).data(name, {});
-    }
-
-    for (const [key, value] of Object.entries(data)) {
-      if (Object.prototype.hasOwnProperty.call(data, key) || !Object.prototype.hasOwnProperty.call(data, key)) {
-        prevData[key] = value;
+$(($) => {
+  $.fn.setData = function (name, data) {
+    $(this).each((_, element) => {
+      const prevData = $(element).data(name) === undefined ? {} : $(this).data(name);
+      if (prevData === undefined) {
+        $(element).data(name, {});
       }
-    }
 
-    $(element).data(name, prevData);
-  });
-  return $(this);
-};
-
-$.fn.addData = function (name, data) {
-  $(this).each((index, element) => {
-    const prevData = $(element).data(name) === undefined ? {} : $(this).data(name);
-    if (prevData === undefined) {
-      $(element).data(name, {});
-    }
-
-    for (const [key, value] of Object.entries(data)) {
-      if (!Object.prototype.hasOwnProperty.call(prevData, key)) {
-        prevData[key] = value;
+      for (const [key, value] of Object.entries(data)) {
+        if (Object.prototype.hasOwnProperty.call(data, key) || !Object.prototype.hasOwnProperty.call(data, key)) {
+          prevData[key] = value;
+        }
       }
-    }
 
-    $(element).data(name, prevData);
-  });
-  return $(this);
-};
+      $(element).data(name, prevData);
+    });
+    return $(this);
+  };
 
-$.fn.removeData = function (name, keys) {
-  $(this).each((index, element) => {
-    const prevData = $(element).data(name) === undefined ? {} : $(element).data(name);
-
-    for (const key of keys) {
-      if (Object.prototype.hasOwnProperty.call(prevData, key)) {
-        prevData.delete(key);
+  $.fn.addData = function (name, data) {
+    $(this).each((index, element) => {
+      const prevData = $(element).data(name) === undefined ? {} : $(this).data(name);
+      if (prevData === undefined) {
+        $(element).data(name, {});
       }
-    }
 
-    $(element).data(name, prevData);
-  });
-  return $(this);
-};
-
-$.fn.modifyStyle = function (name) {
-  $(this).each((index, element) => {
-    const data = $(element).data(name);
-    let stringBuilder = "";
-    for (const [key, value] of Object.entries(data)) {
-      if (Object.prototype.hasOwnProperty.call(data, key)) {
-        stringBuilder += `--${key}: ${value}; `;
+      for (const [key, value] of Object.entries(data)) {
+        if (!Object.prototype.hasOwnProperty.call(prevData, key)) {
+          prevData[key] = value;
+        }
       }
-    }
 
-    $(element).text(`:root { ${stringBuilder}}`);
-  });
-  return $(this);
-};
+      $(element).data(name, prevData);
+    });
+    return $(this);
+  };
 
-$(document).ready(() => {
-  const gmConfigCSS = GM_getResourceText("GM_config_css");
+  $.fn.removeData = function (name, keys) {
+    $(this).each((index, element) => {
+      const prevData = $(element).data(name) === undefined ? {} : $(element).data(name);
+
+      for (const key of keys) {
+        if (Object.prototype.hasOwnProperty.call(prevData, key)) {
+          prevData.delete(key);
+        }
+      }
+
+      $(element).data(name, prevData);
+    });
+    return $(this);
+  };
+
+  $.fn.modifyStyle = function (name) {
+    $(this).each((index, element) => {
+      const data = $(element).data(name);
+      let stringBuilder = "";
+      for (const [key, value] of Object.entries(data)) {
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+          stringBuilder += `--${key}: ${value}; `;
+        }
+      }
+
+      $(element).text(`:root { ${stringBuilder}}`);
+    });
+    return $(this);
+  };
 
   const setupGMConfigFrame = () => {
+    const configWrapper = $("<div class=\"config-wrapper\"></div>");
     const element = $("<div id=\"GlamourDresser_Additions_Config\"></div>");
-    $("body").append($(element));
+    $(configWrapper).append($(element));
+    $("body").append($(configWrapper));
     return element[0];
   };
 
   const gmConfigFrame = setupGMConfigFrame();
 
-  const convertFromMonkeyToGMConfig = () => {
+  function convertFromMonkeyToGMConfig() {
     const old = GM_getValue("_MonkeyConfig_Configure_cfg");
     if (typeof old !== "undefined") {
       const rawJSON = old.replaceAll("\\", "");
@@ -120,9 +120,9 @@ $(document).ready(() => {
       GM_config.set("darkDashboard", json.darkDashboard);
       GM_deleteValue("_MonkeyConfig_Configure_cfg");
     }
-  };
+  }
 
-  const createElements = (resource, replaceObj = {}) => {
+  function createElements(resource, replaceObj = {}) {
     const templateHtml = GM_getResourceText(resource);
     const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\r?\n<template>\r?\n {2}/gi, "")
       .replaceAll(/\r?\n<\/template>$/gi, "");
@@ -132,9 +132,9 @@ $(document).ready(() => {
     }
 
     return template;
-  };
+  }
 
-  const changeUI = () => {
+  function changeUI() {
     if (!/https:\/\/(www\.)?glamourdresser\.com\/wp-admin/gi.test(window.location.href)) {
       return false;
     }
@@ -148,9 +148,9 @@ $(document).ready(() => {
     } else if (!$("body").attr("class").includes("nbn_dark")) {
       $("body").addClass("nbn_dark");
     }
-  };
+  }
 
-  const creatorInfo = () => {
+  function creatorInfo() {
     if (window.location.href.includes("mods") || window.location.href.includes("poses") || window.location.href.includes("presets") || window.location.href.includes("resources")) {
       return { type: "item", elements: [$("li[itemprop=\"author\"] a"), $("li[itemprop=\"author\"]")] };
     }
@@ -158,19 +158,19 @@ $(document).ready(() => {
     if (window.location.href.includes("author")) {
       return { type: "author", elements: [$("div.elementor-author-box__text a:first-child"), $("div.elementor-author-box__text")] };
     }
-  };
+  }
 
   const defaultDarkBG = "#242525";
 
-  const variableTextLength = () => {
+  function variableTextLength() {
     if ($(".elementor-author-box__name a h4").text().toString().length > "a quick brown fox".length) {
       return "calc((100% + 58px) * -1)";
     }
 
     return "-58px;";
-  };
+  }
 
-  const calcVariableCSS = () => {
+  function calcVariableCSS() {
     if ($(".elementor-author-box__name a h4").text().toString().length <= "a quick brown fox".length) {
       return {
         calcVariableCssWidth: "calc(100% - (58px * 2))",
@@ -180,7 +180,7 @@ $(document).ready(() => {
     }
 
     return {};
-  };
+  }
 
   const translateNames = {
     "♰ 𝕹𝖎𝖌𝖍𝖙𝖎𝖓𝖌𝖆𝖑𝖊 𝕮𝖚𝖑𝖙 ♰": "Nightingale Cult",
@@ -189,7 +189,7 @@ $(document).ready(() => {
     超级樱花: "Megasakura"
   };
 
-  const processName = name => {
+  function processName(name) {
     let pre = name.replace(/\s+$/g, "").replace(/^\s+/g, "");
     for (const [key, value] of Object.entries(translateNames)) {
       if (pre === key) {
@@ -198,9 +198,9 @@ $(document).ready(() => {
     }
 
     return pre.replace(" ", "_");
-  };
+  }
 
-  const createObjects = () => {
+  function createObjects() {
     /* Old code
     const AuthorBoxHeight = () => {
       return (-1 * (33 + (($(creatorInfo()).outerHeight() - 33) / 2)));
@@ -210,6 +210,10 @@ $(document).ready(() => {
     };
     */
     const creatorInfoData = creatorInfo();
+    if (!creatorInfoData) {
+      return;
+    }
+
     const tempButton = $(createElements("copyButtonTemplate"));
     $(creatorInfoData.elements[0]).after($(tempButton));
 
@@ -227,11 +231,11 @@ $(document).ready(() => {
       const processed = processName(authorName);
       GM_setClipboard(processed);
     });
-  };
+  }
 
   const encodeRawImageError = "Failed to encode raw image data. Falling back...";
 
-  const getBlankAvatar = () => {
+  function getBlankAvatar() {
     try {
       const image = GM_getResourceText("blankAvatarJPG");
       const base64d = btoa(image);
@@ -243,11 +247,11 @@ $(document).ready(() => {
       console.groupEnd(encodeRawImageError);
       return GM_getResourceText("blankAvatar");
     }
-  };
+  }
 
   const blankAvatar = getBlankAvatar();
 
-  const getPlaceholderImage = () => {
+  function getPlaceholderImage() {
     try {
       const image = GM_getResourceText("placeholderImagePNG");
       const base64d = btoa(image);
@@ -259,11 +263,11 @@ $(document).ready(() => {
       console.groupEnd(encodeRawImageError);
       return GM_getResourceText("placeholderImage");
     }
-  };
+  }
 
   const placeholderImage = getPlaceholderImage();
 
-  const getPlaceholderThumb = () => {
+  function getPlaceholderThumb() {
     try {
       const image = GM_getResourceText("placeholderThumbPNG");
       const base64d = btoa(image);
@@ -275,13 +279,13 @@ $(document).ready(() => {
       console.groupEnd(encodeRawImageError);
       return GM_getResourceText("placeholderThumb");
     }
-  };
+  }
 
   const placeholderThumb = getPlaceholderThumb();
 
   window.prototype += { nbnData: { blankAvatar, placeholderImage, placeholderThumb } };
 
-  const createPlaceholderImage = () => {
+  function createPlaceholderImage() {
     $(".elementor-post.mods").children(".elementor-post__text").each(function () {
       if ($(this).prev().length === 0) {
         const link = $(this).find(".elementor-post__read-more").attr("href");
@@ -289,9 +293,9 @@ $(document).ready(() => {
         $(banner).insertBefore($(this));
       }
     });
-  };
+  }
 
-  const addTempModPageImage = () => {
+  function addTempModPageImage() {
     if (/https:\/\/www\.glamourdresser\.com\/mods\/.+/gi.test(window.location.href)) {
       const mainCarousel = $(".elementor-swiper .elementor-main-swiper .elementor-carousel-image");
       if ($(mainCarousel).length > 0 && $(mainCarousel).first().css("background-image") === `url("${window.location.href}")`) {
@@ -303,18 +307,18 @@ $(document).ready(() => {
         $(thumbCarousel).first().css({ "background-image": `url("${placeholderThumb}")` });
       }
     }
-  };
+  }
 
   const iframeCSS = btoa(GM_getResourceText("iframe"));
 
-  const setupCSS = () => {
+  function setupCSS() {
     GM_addStyle(GM_getResourceText("admin"));
     GM_addStyle(GM_getResourceText("fix"));
     $("head").append("<style id=\"nbnDarkFixStyle\"></style>");
     $("#nbnDarkFixStyle").setData("css", calcVariableCSS()).addData("css", { defaultDarkBG, variableTextLength: variableTextLength() }).modifyStyle("css");
-  };
+  }
 
-  const handleIframes = () => {
+  function handleIframes() {
     if (/https:\/\/(www\.)?glamourdresser\.com\/wp-admin\/post(-new)?\.php/gi.test(window.location.href)) {
       const iframes = $("iframe");
       for (const frame in iframes) {
@@ -331,7 +335,7 @@ $(document).ready(() => {
         }
       }
     }
-  };
+  }
 
   if (/https:\/\/(www\.)?glamourdresser\.com\/wp-admin/gi.test(window.location.href)) {
     GM_registerMenuCommand("Config", () => {
@@ -339,88 +343,17 @@ $(document).ready(() => {
     });
   }
 
+  const gmConfigCSS = GM_getResourceText("GM_config_css");
+
   GM_config.init({
     id: "GlamourDresser_Additions_Config",
     title: "The Glamour Dresser Additions Config",
     fields: {
       darkDashboard: {
         label: "Dark Dashboard",
-        type: "selectWrapper",
+        type: "select",
         options: ["Default", "Dark"],
         default: "Default"
-      }
-    },
-    types: {
-      selectWrapper: {
-        default: null,
-        toNode() {
-          const { label, type, options } = this.settings;
-          const { value, id, create } = this;
-          const wrap = create("div", {
-            className: "select-wrapper",
-            id: `${this.configId}_field_${id}`,
-            label: label || "<unknown>"
-          });
-          const select = create("select", {});
-
-          function addLabel(pos, labelEl, parentNode, beforeEl) {
-            if (!beforeEl) {
-              beforeEl = parentNode.parentElement;
-            }
-
-            switch (pos) {
-            case "right": case "below":
-              if (pos === "below") {
-                parentNode.insertAfter(create("br", {}));
-              }
-
-              parentNode.insertAfter(labelEl);
-              break;
-            default:
-              if (pos === "above") {
-                parentNode.insertBefore(create("br", {}), beforeEl);
-              }
-
-              parentNode.insertBefore(labelEl, beforeEl);
-            }
-          }
-
-          const newLabel = label && type !== "button"
-            ? create("label", {
-              id: `${this.configId}_${id}_field_label`,
-              for: `${this.configId}_field_${id}`,
-              className: "field_label"
-            }, label) : null;
-
-          wrap.appendChild(select);
-          this.node = wrap;
-
-          for (let i = 0, len = options.length; i < len; ++i) {
-            const option = options[i];
-            select.appendChild(create("option", {
-              value: option,
-              selected: option === value
-            }, option));
-          }
-
-          if (newLabel) {
-            addLabel("left", newLabel, wrap);
-          }
-
-          return wrap;
-        },
-        toValue() {
-          const { node } = this;
-          return node.getElementsByTagName("select")[0][node.getElementsByTagName("select")[0].selectedIndex].value;
-        },
-        reset() {
-          const { node, _default } = this;
-          for (let i = 0, len = node.getElementsByTagName("select")[0].options.length; i < len; ++i) {
-            if (node.getElementsByTagName("select")[0].options[i].textContent === _default) {
-              node.getElementsByTagName("select")[0].selectedIndex = i;
-            }
-          }
-        }
       }
     },
     events: {
@@ -437,7 +370,9 @@ $(document).ready(() => {
       open() {
         GM_config.frame.setAttribute("style", "display:block;");
       },
-      save: val => changeUI(val),
+      save(val) {
+        changeUI(val);
+      },
       close() {
         GM_config.frame.setAttribute("style", "display:none;");
       }

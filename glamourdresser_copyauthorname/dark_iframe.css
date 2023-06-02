@@ -16,16 +16,13 @@
   /* Appears 2 times */
   --bright-border-1: #9badbf;
 }
-
 body {
   background-color: var(--dark-background-3);
   color: var(--foreground-font-color);
 }
-
 body p a {
   color: #2271b1;
 }
-
 body p a:visited {
   color: #2271b1;
 }

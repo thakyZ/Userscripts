@@ -50,3 +50,33 @@ div[id*="_wrapper"] .select-wrapper::after {
     position: absolute;
   }
 }
+body.nbn_dark #GlamourDresser_Additions_Config {
+  background: var(--body-background-dark) !important;
+}
+body:not(.nbn_dark) #GlamourDresser_Additions_Config {
+  background: var(--body-background) !important;
+}
+body .config-wrapper {
+  align-items: flex-start;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 20;
+  overflow-x: hidden;
+}
+body .config-wrapper > div {
+  display: block;
+  position: fixed;
+  border-radius: 2px;
+  display: none;
+  margin: auto 0 auto;
+  overflow: hidden;
+  position: relative;
+  width: 768px;
+  z-index: 25;
+}

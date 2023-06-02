@@ -6,3 +6,42 @@
 }
 
 @import "../GM_config/style.less";
+
+body {
+  &.nbn_dark {
+    #GlamourDresser_Additions_Config {
+      background: var(--body-background-dark) !important;
+    }
+  }
+  &:not(.nbn_dark) {
+    #GlamourDresser_Additions_Config {
+      background: var(--body-background) !important;
+    }
+  }
+
+  & .config-wrapper {
+    align-items: flex-start;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+    overflow-x: hidden;
+
+    & > div {
+      display: block;
+      position: fixed;
+      border-radius: 2px;
+      display: none;
+      margin: auto 0 auto;
+      overflow: hidden;
+      position: relative;
+      width: 768px;
+      z-index: 25;
+    }
+  }
+}
