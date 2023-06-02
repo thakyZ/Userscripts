@@ -3,7 +3,7 @@ const fs = require("fs").promises;
 const path = require("path");
 const options = {};
 
-const run = async () => {
+async function run() {
   const cssFile = await fs.readFile(path.join(__dirname, "scss", "app.min.css"), {
     encoding: "utf-8",
     flag: "r+",
@@ -14,6 +14,6 @@ const run = async () => {
     encoding: "utf-8",
     flag: "w+",
   });
-};
+}
 
 run();

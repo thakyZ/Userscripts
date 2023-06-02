@@ -1,11 +1,11 @@
 const fs = require("fs").promises;
 const path = require("path");
 
-const handleMatches = async (matches, variables, doneAlready, lastCount) => {
+async function handleMatches(matches, variables, doneAlready, lastCount) {
   if (matches !== null) {
     for (const match in matches) {
       if (Object.prototype.hasOwnProperty.call(matches, match)) {
-        if (!doneAlready.some(e => e === matches[match])) {
+        if (!doneAlready.some((e) => e === matches[match])) {
           const gotMatch = matches[match];
           variables.push(`--temp_color-${lastCount}: ${gotMatch};`);
           doneAlready.push(gotMatch);
@@ -20,9 +20,9 @@ const handleMatches = async (matches, variables, doneAlready, lastCount) => {
     doneAlready,
     lastCount,
   };
-};
+}
 
-const run = async () => {
+async function run() {
   const cssFile = await fs.readFile(path.join(__dirname, "dark_admin.less"), {
     encoding: "utf-8",
     flag: "r+",
@@ -73,12 +73,12 @@ const run = async () => {
       if (Object.prototype.hasOwnProperty.call(variables, variable)) {
         const lessVariable = variables[variable].replaceAll(/^--([a-z0-9_-]+): .+$/gim, "$1");
         const color = variables[variable].replaceAll(/^--([a-z0-9_-]+): (.+);$/gim, "$2");
-        const lessVariableCamel = lessVariable.replaceAll(/([-_][a-z0-9])/gi, cases =>
+        const lessVariableCamel = lessVariable.replaceAll(/([-_][a-z0-9])/gi, (cases) =>
           cases
             .toUpperCase()
             .replaceAll("-", "")
             .replaceAll("_", "")
-            .replaceAll(/^\w/gim, cases2 => cases2.toUpperCase())
+            .replaceAll(/^\w/gim, (cases2) => cases2.toUpperCase())
         );
         cssFileChanged = cssFileChanged.replaceAll(`${color}`, `@${lessVariableCamel}`);
         lessVariables.push(`@${lessVariableCamel}: var(--${lessVariable});`);
@@ -94,6 +94,6 @@ const run = async () => {
     encoding: "utf-8",
     flag: "w+",
   });
-};
+}
 
 run();

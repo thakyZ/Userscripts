@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
 // @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
-// @version      1.1.6
+// @version      1.1.7
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.glamourdresser.com/*
@@ -22,7 +22,6 @@
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/glamourdresser_copyauthorname/glamourdresser_copyauthorname.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
-// @resource     admin https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/dark_admin.min.css
 // @resource     fix https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/dark_fix_style.min.css
 // @resource     iframe https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/dark_iframe.min.css
 // @resource     blankAvatar https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/blankAvatar.base64
@@ -30,7 +29,7 @@
 // @resource     blankAvatarJPG https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/blankAvatar.jpg
 // @resource     placeholderImagePNG https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/placeholderImage.png
 // @resource     copyButtonTemplate https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/copyButton.template.html
-// @resource     GM_config_css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/GM_config-style.min.css
+// @resource     GMConfigCSS https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/GM_config-style.min.css
 // ==/UserScript==
 /* global $, jQuery, GM_config */
 this.$ = this.jQuery = jQuery.noConflict(true);
@@ -160,27 +159,29 @@ $(($) => {
     }
   }
 
-  const defaultDarkBG = "#242525";
-
-  function variableTextLength() {
-    if ($(".elementor-author-box__name a h4").text().toString().length > "a quick brown fox".length) {
-      return "calc((100% + 58px) * -1)";
-    }
-
-    return "-58px;";
-  }
-
-  function calcVariableCSS() {
-    if ($(".elementor-author-box__name a h4").text().toString().length <= "a quick brown fox".length) {
-      return {
-        calcVariableCssWidth: "calc(100% - (58px * 2))",
-        calcVariableCssMaxWidth: "calc(100% - (58px * 2))",
-        calcVariableCssMarginLeft: "58px"
-      };
-    }
-
-    return {};
-  }
+  /* Old Code
+   * const defaultDarkBG = "#242525";
+   *
+   * function variableTextLength() {
+   *   if ($(".elementor-author-box__name a h4").text().toString().length > "a quick brown fox".length) {
+   *     return "calc((100% + 58px) * -1)";
+   *   }
+   *
+   *   return "-58px;";
+   * }
+   *
+   * function calcVariableCSS() {
+   *   if ($(".elementor-author-box__name a h4").text().toString().length <= "a quick brown fox".length) {
+   *     return {
+   *       calcVariableCssWidth: "calc(100% - (58px * 2))",
+   *       calcVariableCssMaxWidth: "calc(100% - (58px * 2))",
+   *       calcVariableCssMarginLeft: "58px"
+   *     };
+   *   }
+   *
+   *   return {};
+   * }
+   */
 
   const translateNames = {
     "♰ 𝕹𝖎𝖌𝖍𝖙𝖎𝖓𝖌𝖆𝖑𝖊 𝕮𝖚𝖑𝖙 ♰": "Nightingale Cult",
@@ -312,10 +313,11 @@ $(($) => {
   const iframeCSS = btoa(GM_getResourceText("iframe"));
 
   function setupCSS() {
-    GM_addStyle(GM_getResourceText("admin"));
     GM_addStyle(GM_getResourceText("fix"));
-    $("head").append("<style id=\"nbnDarkFixStyle\"></style>");
-    $("#nbnDarkFixStyle").setData("css", calcVariableCSS()).addData("css", { defaultDarkBG, variableTextLength: variableTextLength() }).modifyStyle("css");
+    /* Old code.
+     * $("head").append("<style id=\"nbnDarkFixStyle\"></style>");
+     * $("#nbnDarkFixStyle").setData("css", calcVariableCSS()).addData("css", { defaultDarkBG, variableTextLength: variableTextLength() }).modifyStyle("css");
+     */
   }
 
   function handleIframes() {
@@ -343,7 +345,7 @@ $(($) => {
     });
   }
 
-  const gmConfigCSS = GM_getResourceText("GM_config_css");
+  const gmConfigCSS = GM_getResourceText("GMConfigCSS");
 
   GM_config.init({
     id: "GlamourDresser_Additions_Config",
