@@ -159,7 +159,7 @@ export default function (getMonkeyCodeNames) {
     "no-warning-comments": "warn",
     "no-with": "error",
 
-    // Disabled for now as Firefox doesn"t support named capture groups and I"m tired of getting issues about the use of named capture groups...
+    // Disabled for now as Firefox doesn't support named capture groups and I"m tired of getting issues about the use of named capture groups...
     // "prefer-named-capture-group": "error"
 
     "prefer-promise-reject-errors": [
@@ -179,7 +179,7 @@ export default function (getMonkeyCodeNames) {
     // Disabled for now as it causes too much churn
     // TODO: Enable it in the future when I have time to deal with
     // the churn and the rule is stable and has an autofixer.
-    // Still doesn"t have a fixer as of ESLint 7.24.0.
+    // Still doesn't have a fixer as of ESLint 7.24.0.
     // "require-unicode-regexp": "error",
 
     "wrap-iife": [
@@ -416,7 +416,7 @@ export default function (getMonkeyCodeNames) {
     "template-tag-spacing": ["error", "never"],
     "unicode-bom": ["error", "never"],
     "arrow-body-style": "error",
-    "arrow-parens": ["error", "as-needed"],
+    "arrow-parens": ["error", "always"],
     "arrow-spacing": [
       "error",
       {
@@ -452,6 +452,7 @@ export default function (getMonkeyCodeNames) {
       "error",
       {
         allowNamedFunctions: true,
+        allowUnboundThis: true,
       },
     ],
     "prefer-const": [

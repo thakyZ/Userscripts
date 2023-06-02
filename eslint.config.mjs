@@ -23,7 +23,7 @@ const getInstalledVersion = (_path, name) => {
 }
 
 const ESnode = () => {
-  const json = path.join(__dirname,"node_modules","eslint-config-node","index.json");
+  const json = path.join(__dirname,"node_modules","@nekogaming","eslint-config-node","index.json");
   return JSON.parse(fs.readFileSync(json));
 }
 

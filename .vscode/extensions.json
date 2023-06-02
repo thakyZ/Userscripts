@@ -54,6 +54,7 @@
     "adamhartford.vscode-base64",
     "redhat.vscode-xml",
     "dotjoshjohnson.xml",
-    "redhat.vscode-yaml"
+    "redhat.vscode-yaml",
+    "stylelint.vscode-stylelint"
   ]
 }
