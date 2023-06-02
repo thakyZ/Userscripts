@@ -45,14 +45,21 @@
     "crafter",
     "disqus",
     "Dynamis",
+    "elementor",
     "favorited",
     "gamerescape",
+    "glamourdresser",
     "glyphicon",
+    "iframes",
     "Imgur",
+    "itemprop",
     "Keybinds",
     "NOSONAR",
     "testid",
     "tidyup"
   ],
-  "docwriter.style": "JSDoc"
+  "docwriter.style": "JSDoc",
+  "[html]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  }
 }
