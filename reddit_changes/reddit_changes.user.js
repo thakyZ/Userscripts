@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit Changes
 // @namespace    NekoBoiNick.Web.Reddit.CHanges
-// @version      1.0.2
+// @version      1.0.3
 // @description  Does changes for reddit.
 // @author       Neko Boi Nick
 // @match        https://www.reddit.com/*
@@ -78,6 +78,47 @@ $(document).ready(() => {
     return false;
   }
 
+  function getPathFromUrl(url) {
+    return url.split(/[?#]/)[0];
+  }
+
+  const imageTemplate = "https://i.redd.it/%.png";
+
+  async function fetchImageLink() {
+    const data = await (new Promise((resolve, reject) => {
+      let url = getPathFromUrl(document.location.href);
+      url += ".json";
+      $.get(url, data => {
+        resolve(data);
+      }).fail(error => {
+        if (error) {
+          console.log(error);
+          reject(error);
+        } else {
+          console.log("Failed to fetch post api");
+          reject(new Error("Failed to fetch post api"));
+        }
+      });
+    }));
+
+    return imageTemplate.replace("%", Object.keys(data[0].data.children[0].data.media_metadata)[0]);
+  }
+
+  function transfromImageLinks() {
+    const mediaContainer = $("div[data-testid=\"post-container\"] a > img");
+    if ($(mediaContainer).length > 0) {
+      (async function () {
+        const imageLink = await fetchImageLink();
+        $(mediaContainer).parent().attr("href", imageLink);
+        $(mediaContainer).src("href", imageLink);
+      })();
+
+      return true;
+    }
+
+    return false;
+  }
+
   let removeWatchers = [];
 
   /* Unused variable (for now)
@@ -105,6 +146,7 @@ $(document).ready(() => {
   const redditWatcher = window.redditWatcher || (unsafeWindow && unsafeWindow.redditWatcher);
   if (redditWatcher) {
     redditWatcher.body.onUpdate(addDownloadButton);
+    redditWatcher.body.onChange(transfromImageLinks);
     redditWatcher.body.onUpdate(removeElement);
     redditWatcher.feed.onUpdate(addDownloadButton);
     redditWatcher.feed.onChange(clearRemoveWatchers);
@@ -114,6 +156,7 @@ $(document).ready(() => {
 
   (new MutationObserver(() => {
     addDownloadButton();
+    transfromImageLinks();
     removeElement();
     clearRemoveWatchers();
 
