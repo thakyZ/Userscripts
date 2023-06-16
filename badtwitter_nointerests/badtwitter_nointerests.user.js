@@ -135,7 +135,7 @@ $(document).ready(() => {
   };
 
   const runInterestBlocker = async () => {
-    if (id !== -1 || (await buttonElements.progress.locked()) === false) {
+    if (id !== -1 || (await buttonElements.progress.locked()) !== false) {
       return;
     }
 
