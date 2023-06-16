@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Open URL in Steam Button
 // @namespace    NekoBoiNick.Web.Steam.OpenInClient
-// @version      1.0.1
+// @version      1.0.2
 // @description  Adds a button to open pages in the Steam client.
 // @author       Neko Boi Nick
 // @match        https://steamcommunity.com/*
