@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gamer Escape Additions
 // @namespace    NekoBoiNick.Web.FFXIV.GamerEscape.Additions
-// @version      1.0.4
+// @version      1.0.5
 // @description  Adds new features to Gamer Escape
 // @author       Neko Boi Nick
 // @match        https://ffxiv.gamerescape.com/wiki/*
@@ -126,7 +126,7 @@ $(document).ready(() => {
     },
   });
 
-  const disqus = $("#disqus_thread");
+  let disqus = $("#disqus_thread");
   const hideButton = () => "<div id=\"hide-disqus_thead\"><button id=\"hide-disqus_thread-button\"><div id=\"hide-disqus_thread-button-icon\" class=\"fold-icon\"></div></button></div>";
 
   const marked = ["#d7d8db", "#000", "#ebecf0", "#f9f9f9", "#fffae1"]; // NOSONAR
@@ -142,10 +142,6 @@ $(document).ready(() => {
       id = setInterval(() => {
         const iframe = $("iframe[src*=\"https://disqus.com/embed/comments/\"]");
         if (iframe.length > 0 && $(disqus).height() > 109 && $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css("height") !== "") {
-          const hideButtonStyleVar = $("iframe[src*=\"https://disqus.com/embed/comments/\"]").height();
-          const disqusHeight = $(disqus).height();
-          $(nbnStylesAdditions).setData("css", { hideButtonStyleVar: `${hideButtonStyleVar}px`, disqusHeight: `${disqusHeight}px` }).modifyStyle("css");
-          $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css({ height: "" });
           $(disqus).attr("data-hide", "false");
           if (config.get("hide_comments")) {
             if ($(disqus).attr("data-hide") !== "true") {
@@ -157,6 +153,7 @@ $(document).ready(() => {
           clearInterval(id);
         }
       });
+
       $("#hide-disqus_thread-button").on("click", () => {
         if (!$(disqus).attr("data-hide")) {
           $(disqus).attr("data-hide", "false");
@@ -174,6 +171,43 @@ $(document).ready(() => {
         }
       });
     }
+
+    const setupMutationObserver = () => {
+      const targetNode = $(".wiki.main")[0];
+      const config = { attributes: true, childList: true, subtree: true };
+
+      const callback = (mutationList) => {
+        for (const mutation of mutationList) {
+          if (mutation.type === "childList" || mutation.type === "attributes") {
+            if ($(mutation.target).hasClass("wiki") && $(mutation.target).hasClass("main")) {
+              if (typeof $(mutation.target).children("#hide-disqus_thead").next().attr("srcdoc") !== "undefined") {
+                disqus = $($(mutation.target).children("#hide-disqus_thead").next());
+                const hideButtonStyleVar = $(mutation.target).children("#hide-disqus_thead").next().height();
+                $(mutation.target).children("#hide-disqus_thead").next().attr("style", (_, s) => (s.replace(/min-height: \d+px/gi, "min-height: 1px") || ""));
+                const disqusHeight = $(disqus).height();
+                $(nbnStylesAdditions).setData("css", { hideButtonStyleVar: `${hideButtonStyleVar}px`, disqusHeight: `${disqusHeight}px` }).modifyStyle("css");
+                $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css({ height: "" });
+              } else if ($(mutation.target).children("#hide-disqus_thead").next().attr("id") === "disqus_thread") {
+                disqus = $($(mutation.target).children("#hide-disqus_thead").next());
+                const hideButtonStyleVar = $("iframe[src*=\"https://disqus.com/embed/comments/\"]").height();
+                const disqusHeight = $(disqus).height();
+                $(nbnStylesAdditions).setData("css", { hideButtonStyleVar: `${hideButtonStyleVar}px`, disqusHeight: `${disqusHeight}px` }).modifyStyle("css");
+                $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css({ height: "" });
+              }
+            }
+          }
+        }
+      };
+
+      const observer = new MutationObserver(callback);
+      observer.observe(targetNode, config);
+
+      $(document).on("unload", () => {
+        observer.disconnect();
+      });
+    };
+
+    setupMutationObserver();
   };
 
   createFoldButton();
