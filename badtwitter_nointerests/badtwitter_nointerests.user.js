@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bad Twitter No Interests
 // @namespace    NekoBoiNick.Web.Twitter.NoInterests
-// @version      1.0.5
+// @version      1.0.5.1
 // @description  Disables all of what Twitter thinks you are interested in.
 // @author       Neko Boi Nick
 // @match        https://twitter.com/*
