@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
 // @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
-// @version      1.1.7
+// @version      1.1.8
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.glamourdresser.com/*
@@ -31,10 +31,10 @@
 // @resource     copyButtonTemplate https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/copyButton.template.html
 // @resource     GMConfigCSS https://cdn.jsdelivr.net/gh/thakyz/Userscripts/glamourdresser_copyauthorname/GM_config-style.min.css
 // ==/UserScript==
-/* global $, jQuery, GM_config */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery, GM_config */
+this.jQuery = jQuery.noConflict(true);
 
-$(($) => {
+jQuery(($) => {
   $.fn.setData = function (name, data) {
     $(this).each((_, element) => {
       const prevData = $(element).data(name) === undefined ? {} : $(this).data(name);
