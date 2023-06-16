@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FFLogs To XIV Analysis
 // @namespace    NekoBoiNick.Web.FFLogs.ButtonToXIVAnalysis
-// @version      1.0.3
+// @version      1.0.4
 // @description  Adds a button to FFLogs reports to redirect to XIV Analysis
 // @author       Neko Boi Nick
 // @match        https://www.fflogs.com/reports/*
@@ -206,7 +206,7 @@ $(document).ready(() => {
           };
 
           if (whichTab().check && ($("span#filter-source-text").text() === "All Sources" || $("span#filter-source-text").text() === "All Friendlies")) {
-            $("table.summary-table.report.dataTable tbody tr td.main-table-name.report-table-name", $("#summary")).each((_, element) => {
+            $("table.summary-table.report.dataTable tbody tr td.main-table-name.report-table-name", $("#summary")).each(function (_, element) {
               if ($(element).text().includes("Limit Break")) {
                 return;
               }
@@ -214,7 +214,7 @@ $(document).ready(() => {
               if ($("tr td", $(element)).length === 2) {
                 const xivAnalysisBtn = $("<td class=\"xivanalysis-ply-btn-box\"><div class=\"xivanalysis-plyr-btn xivanalysis-icon\" id=\"icon-9-0-5\"></td>");
                 $(xivAnalysisBtn).insertAfter($("tr td", $(element))[$("tr td", $(element)).length - 1]);
-                $(xivAnalysisBtn).on("click", () => {
+                $(xivAnalysisBtn).on("click", function () {
                   const SiteRegex = /https:\/\/(www\.)?fflogs.com\/reports\/(\w+)\/?(#.*)?/gi;
                   const FightRegex = /[#&]fight=(\d+|last)/g;
                   const location = window.location.href;
@@ -222,7 +222,7 @@ $(document).ready(() => {
                     let computed = `https://xivanalysis.com/fflogs/${window.location.href.replace(SiteRegex, "$2")}`;
                     let sourceId = 0;
                     try {
-                      sourceId = parseInt($($(element).parents("td.main-table-name.report-table-name").parent()).attr("id").split("-")[3], 10);
+                      sourceId = parseInt($($(this).parents("td.main-table-name.report-table-name").parent()).attr("id").split("-")[3], 10);
                     } catch (e) {
                       console.error({ message: "Failed to parse source int", stack: e });
                     }
