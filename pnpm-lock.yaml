@@ -1,7 +1,16 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   ajv@<6.12.3: '>=6.12.3'
+
+dependencies:
+  data-uri-regex:
+    specifier: ^0.1.4
+    version: 0.1.4
 
 devDependencies:
   '@babel/core':
@@ -1087,6 +1096,11 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
     dev: true
+
+  /data-uri-regex@0.1.4:
+    resolution: {integrity: sha512-QnJ3LVGIitKfO1wZ08l+0cpQUNdEGRDKR0kH2prNvbfBUk0zVn7A6KSTvETGqD2BI1h1CgdqY4X8bEjKu4CdXA==}
+    engines: {node: '>=0.12.0'}
+    dev: false
 
   /dateformat@4.6.3:
     resolution: {integrity: sha512-2P0p0pFGzHS5EMnhdxQi7aJN+iMheud0UhG4dlE1DLAlvL8JHjJJTX/CSm4JXwV0Ka5nGk3zC5mcb5bUQUxxMA==}

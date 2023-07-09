@@ -71,5 +71,8 @@
     "overrides": {
       "ajv@<6.12.3": ">=6.12.3"
     }
+  },
+  "dependencies": {
+    "data-uri-regex": "^0.1.4"
   }
 }
