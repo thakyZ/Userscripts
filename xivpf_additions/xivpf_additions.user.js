@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         XIV Party Finder Additions
 // @namespace    NekoBoiNick.Web.XIVPF.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds some additional feature to Ko-Fi
 // @author       Neko Boi Nick
 // @match        https://xivpf.com/listings
@@ -17,12 +17,13 @@
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/xivpf_additions/xivpf_additions.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/xivpf_additions/xivpf_additions.user.js
 // ==/UserScript==
-/* global $, jQuery, List */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery, List */
+this.jQuery = jQuery.noConflict(true);
 
-$(window).on("load", () => {
+this.jQuery(($) => {
   "use strict";
 
+  /* eslint-disable-next-line no-unused-vars */
   let stateWasNull = false;
 
   const state = {
@@ -63,7 +64,7 @@ $(window).on("load", () => {
   }
 
   function setUpList() {
-    let options = {
+    const options = {
       valueNames: [
         "duty",
         "creator",
@@ -71,7 +72,7 @@ $(window).on("load", () => {
         { data: ["centre"] },
       ],
     };
-    let list = new List("container", options);
+    const list = new List("container", options);
     return list;
   }
 
@@ -102,7 +103,7 @@ $(window).on("load", () => {
       return state.centre === "All" || state.centre === item.values().centre || convertDataCenterToRegion(item);
     }
 
-    state.list.filter(item => dataCentreFilter(item) && categoryFilter(item));
+    state.list.filter((item) => dataCentreFilter(item) && categoryFilter(item));
   }
 
   /* eslint-disable no-extend-native */
@@ -211,7 +212,7 @@ $(window).on("load", () => {
       opt.innerText += ` (${count})`;
     }
 
-    $(select).on("change", event => {
+    $(select).on("change", (event) => {
       event.stopPropagation();
       event.preventDefault();
       state.centre = $(select).val();

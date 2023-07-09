@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube MP4 Handler
 // @namespace    NekoBoiNick.Web.YouTube.MP4Handler
-// @version      1.0.1
+// @version      1.0.2
 // @description  Uses a protocol to make youtube-dl download MP4's.
 // @author       Neko Boi Nick
 // @match        *://*.youtube.com/*
@@ -41,13 +41,15 @@ $(document).ready(() => {
 
         const dropdownBox = $("tp-yt-iron-dropdown ytd-menu-popup-renderer[slot=\"dropdown-content\"]");
 
-        $(dropdownBox).css({ maxHeight: `${parseInt($(dropdownBox).css("max-height").replace("px", ""), 10) + 36}px` });
+        $(dropdownBox).css({ maxHeight: `${parseInt($(dropdownBox).css("max-height").replace("px", ""), 10) + 36}px`,
+          maxWidth: `${parseInt($(btn).css("width").replace("px", ""), 10)}px` });
 
         const dropdownContainer = $(dropdownBox).parents().find("tp-yt-iron-dropdown")[1];
         $(dropdownContainer).css({ top: `${parseInt($(dropdownContainer).css("top").replace("px", ""), 10) - 36}px` });
 
         /* Trigger protocol handler */
         $(btn).on("click", () => {
+          console.log(`ytdl:-x --audio-format m4a --audio-quality 0 --no-color ${window.location.href}`);
           window.open(`ytdl:-x --audio-format m4a --audio-quality 0 --no-color ${window.location.href}`, "_blank");
         });
         clearInterval(id);

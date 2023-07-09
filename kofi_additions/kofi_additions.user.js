@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ko-Fi Additions
 // @namespace    NekoBoiNick.Web.KoFi.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds some additional feature to Ko-Fi
 // @author       Neko Boi Nick
 // @match        https://ko-fi.com/*
@@ -25,7 +25,7 @@
 // @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/styles.min.css
 // @resource     copyauthor https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/copyauthor.template.html
 // ==/UserScript==
-/* global $, jQuery */
+/* global $, jQuery, GM_config */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
@@ -43,7 +43,7 @@ $(document).ready(() => {
   // Fix shop gradient function regex and strings.
   const badGradientRegex = /background-image: linear-gradient\(180deg, rgb\(229 211 149 \/ 16%\), rgb\(244 240 229 \/ 30%\)\), url\('(https:\/\/storage.ko-fi.com\/cdn\/useruploads\/post\/.*\..{3,4})'\)/i;
   // OLD: const badGradientRegex = /linear-gradient\(rgba\(229, 211, 149, 0\.16\), rgba\(244, 240, 229, 0\.3\)\), url\("(https:\/\/storage.ko-fi.com\/cdn\/useruploads\/post\/.*\..{3,4})"\)/i;
-  const newGradient = "linear-gradient(180deg, rgb(5 5 5 / 16%), rgb(25 25 25 / 30%))";
+  const _newGradient = "linear-gradient(180deg, rgb(5 5 5 / 16%), rgb(25 25 25 / 30%))";
 
   const fixShopGradient = () => {
     const shops = $(".kfds-c-srf-offer-update-cover");
@@ -52,15 +52,15 @@ $(document).ready(() => {
       const matches = $(element).attr("style").match(badGradientRegex);
       // OLD: const matches = $(element).css("background-image").match(badGradientRegex);
       if (matches !== null && matches.length === 2) {
-        const newGraident = "url('" + matches[1] + "'), " + newGradient;
-        $(element).css({ backgroundImage: newGraident });
+        const newGradient = "url('" + matches[1] + "'), " + _newGradient;
+        $(element).css({ backgroundImage: newGradient });
       }
     }
   };
 
   GM_addStyle(GM_getResourceText("css"));
 
-  const transfromModName = function (element) {
+  const transformModName = function (element) {
     const text = $(element).parent().prev().text().trim();
     return text;
   };
@@ -93,12 +93,12 @@ $(document).ready(() => {
     if (pageType === 0) {
       $(placement.concat(" + div")).append($(copyModNameButton));
       $(copyModNameButton).on("click", function () {
-        GM_setClipboard(transfromModName(this));
+        GM_setClipboard(transformModName(this));
       });
     }
   };
 
-  const addCopyAuthorButton = pageType => {
+  const addCopyAuthorButton = (pageType) => {
     if ($("#copy-author-btn").length > 0) {
       return;
     }
@@ -150,7 +150,7 @@ $(document).ready(() => {
     const targetNode = $("body")[0];
     const config = { attributes: true, childList: true, subtree: true };
 
-    const callback = mutationList => {
+    const callback = (mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.type === "childList") {
           if ($(mutation.target).is("div#feedDiv")) {
