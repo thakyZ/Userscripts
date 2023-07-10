@@ -15,10 +15,10 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   if (!window.location.href.match(/^https:\/\/(store\.)?steam(powered|community)\.com\//)) {
     return;
   }

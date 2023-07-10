@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Curse Forge Redirect
-// @namespace       NekoBoiNick.Curseforge.Redirect
-// @version         1.0.2
+// @namespace       NekoBoiNick.CurseForge.Redirect
+// @version         1.0.3
 // @description     Redirect Method to redirect to the better curse forge page dedicated to the game you are looking at.
 // @author          Neko Boi Nick
 // @match           *://www.curseforge.com/minecraft/*
@@ -41,10 +41,10 @@ $(document).ready(() => {
   }
 
   const doDisableBanner = () => {
-    bannerTitles.forEach(e => {
-      if ($("html head ~ div a").length > 0 && $("html head ~ div a").text().includes(e)) {
+    bannerTitles.forEach((element) => {
+      if ($("html head ~ div a").length > 0 && $("html head ~ div a").text().includes(element)) {
         $("html head ~ div").css({ display: "none" });
-      } else if ($("#banner").length > 0 && $("#banner .banner-content p").text().includes(e)) {
+      } else if ($("#banner").length > 0 && $("#banner .banner-content p").text().includes(element)) {
         $("#banner").css({ display: "none" });
       }
     });

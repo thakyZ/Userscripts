@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ARR Triple Triad Additions
 // @namespace    NekoBoiNick.Web.ARRTripleTriad.Additions
-// @version      1.0.2
+// @version      1.0.3
 // @description  Adds additional features to ARR Triple Triad.
 // @author       Neko Boi Nick
 // @match        https://arrtripletriad.com/*
@@ -22,10 +22,10 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, jQuery, MonkeyConfig */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery, MonkeyConfig */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   const config = new MonkeyConfig({
     title: "Configure",
     menuCommand: true,
@@ -46,7 +46,7 @@ $(document).ready(() => {
       Black: [/@media\sall\sand\s\(min-width:\s1024px\)\s\{\n\s*html\s\{\n\s*background:\s#000;\n\s*\}\n\s*\}/gim, "@media all and (min-width: 1024px) {\n    html {\n      background: #000;\n    }\n  }"],
       Light: [/@media\sall\sand\s\(min-width:\s1024px\)\s\{\n\s*html\s\{\n\s*background:\s#fff;\n\s*\}\n\s*\}\n\s*#content\s\{\n\s*color:\s#000;\n\s*}/gim, "@media all and (min-width: 1024px) {\n    html {\n      background: #fff;\n    }\n  }\n  #content {\n    color: #000;\n  }"],
       replace(text, type) {
-        const getType = type => {
+        function getType(type) {
           switch (type) {
           case cssKeys.customCSS.Dark:
             return cssKeys.customCSS.Dark[1].toString();
@@ -57,7 +57,7 @@ $(document).ready(() => {
           default:
             return "";
           }
-        };
+        }
 
         const DarkMatch = text.match(cssKeys.customCSS.Dark[0]);
         const BlackMatch = text.match(cssKeys.customCSS.Black[0]);
@@ -82,7 +82,7 @@ $(document).ready(() => {
       }
     }
   };
-  const insertCSS = object => {
+  function insertCSS(object) {
     /* Unknown code.
      * const currentCSS = $("style#customCSS-NekoBoiNick").html();
      */
@@ -100,7 +100,7 @@ $(document).ready(() => {
     max-width: 40px;
   }
 </style>`);
-    } else if (object !== undefined && object !== null) {
+    } else if (typeof object !== "undefined" && object !== null) {
       if (object.key === "Dark") {
         $("head style#customCSS-NekoBoiNick").text(cssKeys.customCSS.replace($("head style#customCSS-NekoBoiNick").text().toString(), cssKeys.customCSS.Dark));
       }
@@ -117,15 +117,15 @@ $(document).ready(() => {
         $("head style#customCSS-NekoBoiNick").text(cssKeys.customCSS.replace($("head style#customCSS-NekoBoiNick").text().toString(), "default"));
       }
     }
-  };
+  }
 
-  const changeBackground = () => {
+  function changeBackground() {
     const background = config.get("background");
     /* Unknown code.
      * const currentCSS = $("style#customCSS-NekoBoiNick").html();
      */
     insertCSS({ key: background });
-  };
+  }
 
   if (window.location.pathname.match(/\/\w\w\/link-character/gi) !== null) {
     // $("#content ul li:first-Child").css({"line-height":"32px"});

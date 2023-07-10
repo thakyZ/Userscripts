@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Fish Tracking App
 // @namespace    NekoBoiNick.Web.CarbunclePluhsie.FFXIVFish
-// @version      1.0.2.1
-// @description  Syncs Fish Tracking to soupcat
+// @version      1.0.3
+// @description  Syncs Fish Tracking to the browser's local storage.
 // @author       Neko Boi Nick
 // @match        https://ff14fish.carbuncleplushy.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=ff14fish.carbuncleplushy.com
@@ -17,16 +17,16 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // ==/UserScript==
-/* global $, jQuery, ViewModel, _ */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery, ViewModel, _ */
+this.jQuery = jQuery.noConflict(true);
 
 const SettingsSaveName = "FishTrackingApp.Settings";
 const DateSaveName = "FishTrackingApp.Date";
 
-$(document).ready(() => {
+this.jQuery(() => {
   const getSettings = () => JSON.stringify(ViewModel.settings, (_, value) => (value instanceof Set ? [...value] : value));
 
-  const setSettings = settings => {
+  function setSettings(settings) {
     // Apply the imported settings now.
     settings = JSON.parse(settings);
     // Check if the `settings` is a list or object.
@@ -40,23 +40,29 @@ $(document).ready(() => {
     }
 
     // Update the fish entries.
-    // TODO: [NEEDS-OPTIMIZATION]
     const earthTime = new Date();
-    _(ViewModel.fishEntries).each(entry => {
+
+    console.debug("Starting fish entries.");
+    for (const entry of ViewModel.fishEntries) {
+      console.debug(entry);
+    }
+
+    for (const entry of _(ViewModel.fishEntries)) {
       entry.update(earthTime, true);
       ViewModel.layout.updatePinnedState(entry);
       ViewModel.layout.updateCaughtState(entry);
-    });
+    }
+
     // Update the display to update the fish table as well.
     ViewModel.updateDisplay(null);
     return true;
-  };
+  }
 
   const getDate = () => Date.now();
 
   const compareDate = (cur, prev) => cur > prev;
 
-  const saveSettings = force => {
+  function saveSettings(force) {
     const date = GM_getValue(DateSaveName);
     const settings = getSettings();
     const settingsPrev = GM_getValue(SettingsSaveName);
@@ -74,9 +80,9 @@ $(document).ready(() => {
     }
 
     return false;
-  };
+  }
 
-  const loadSettings = force => {
+  function loadSettings(force) {
     const date = GM_getValue(DateSaveName);
     const settings = GM_getValue(SettingsSaveName);
     if (force) {
@@ -90,7 +96,7 @@ $(document).ready(() => {
     }
 
     return false;
-  };
+  }
 
   setInterval(() => {
     saveSettings();

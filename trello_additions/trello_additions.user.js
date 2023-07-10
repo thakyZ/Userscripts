@@ -23,10 +23,10 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global jQuery, GM_config */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global GM_config */
+this.jQuery = jQuery.noConflict(true);
 
-jQuery(() => {
+this.jQuery(($) => {
   "use strict";
   let gmConfigCSS = "";
 

@@ -2,7 +2,7 @@
 // @name         Discord Image Embed Zoom No Resize
 // @namespace    NekoBoiNick.Web.Discord.ImageNoResize
 // @version      1.0.0
-// @description  Disables the resizing of images when clicking the embeded image in discord.
+// @description  Disables the resizing of images when clicking the embedded image in discord.
 // @author       Neko Boi Nick
 // @match        https://discord.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=discord.com

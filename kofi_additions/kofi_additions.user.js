@@ -25,10 +25,10 @@
 // @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/styles.min.css
 // @resource     copyauthor https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/copyauthor.template.html
 // ==/UserScript==
-/* global $, jQuery, GM_config */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery, GM_config */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   "use strict";
 
   GM_config.init({

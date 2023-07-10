@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Aether Link Additions
-// @namespace    NekoBoiNick.Web.FFXIV.Aetherlink.Additionms
-// @version      1.0.1
+// @namespace    NekoBoiNick.Web.FFXIV.Aetherlink.Additions
+// @version      1.0.2
 // @description  Adds new features to Aether Link.
 // @author       Neko Boi Nick
 // @match        https://*.aetherlink.app/*
@@ -14,12 +14,11 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
-  "use strict";
-  const transliterate = word => {
+this.jQuery(($) => {
+  function transliterate(word) {
     let answer = "";
     const a = {};
 
@@ -95,7 +94,7 @@ $(document).ready(() => {
     a["ι"] = "I";
 
     for (const i in word) {
-      if (Object.prototype.hasOwnProperty.call(word, i)) {
+      if (Object.hasOwn(word, i)) {
         if (a[word[i]] === undefined) {
           answer += word[i];
         } else {
@@ -105,9 +104,9 @@ $(document).ready(() => {
     }
 
     return answer;
-  };
+  }
 
-  const checkEveryLetter = name => {
+  function checkEveryLetter(name) {
     let newName = "";
     for (let i = 0; i < name.length; i++) {
       const code = name.codePointAt(i);
@@ -121,7 +120,7 @@ $(document).ready(() => {
     }
 
     return newName;
-  };
+  }
 
   const getModAuthor = () => checkEveryLetter($(".author").text()
     .replace(/\s/gi, "_")
@@ -148,26 +147,26 @@ $(document).ready(() => {
     .replace(/\s?[\u0000-\u001F\u007B-\uFFFF]\s?/gi, "")
     .replace(/\s/gi, "_");
 
-  const setupMutationObserver = () => {
-    const targetNode = $("#__next")[0];
-    const config = { attributes: false, childList: true, subtree: true };
-
-    const callback = mutationList => {
-      for (const mutation of mutationList) {
-        if (mutation.type === "childList") {
-          if ($(mutation.target).attr("id") === "__next") {
-            const downloadsButton = $(".downloads");
-            if ($(downloadsButton).length <= 0) {
-              return;
-            }
-
-            $(downloadsButton).on("click", () => {
-              GM_setClipboard(`[${getModAuthor()}] ${getModName()}`);
-            });
+  function callback(mutationList) {
+    for (const mutation of mutationList) {
+      if (mutation.type === "childList") {
+        if ($(mutation.target).attr("id") === "__next") {
+          const downloadsButton = $(".downloads");
+          if ($(downloadsButton).length <= 0) {
+            return;
           }
+
+          $(downloadsButton).on("click", () => {
+            GM_setClipboard(`[${getModAuthor()}] ${getModName()}`);
+          });
         }
       }
-    };
+    }
+  }
+
+  function setupMutationObserver() {
+    const targetNode = $("#__next")[0];
+    const config = { attributes: false, childList: true, subtree: true };
 
     const observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
@@ -175,7 +174,7 @@ $(document).ready(() => {
     $(document).on("unload", () => {
       observer.disconnect();
     });
-  };
+  }
 
   setupMutationObserver();
 });
