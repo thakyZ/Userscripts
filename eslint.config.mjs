@@ -74,22 +74,56 @@ const getMonkeyCodeNames = (type) => {
   return Object.assign(...names.concat(customLibraries).map((k) => ({ [k]: "readonly" })));
 };
 
+const removableGlobalVars = [
+  "$"
+];
+
+function removeGlobalVars(name, global) {
+  let temp_global = global;
+  if (typeof global === "object") {
+    for (const removeThis of removableGlobalVars) {
+      temp_global = Object.fromEntries(
+        Object.entries(temp_global)
+          .map(
+            ([key, value]) => {
+              if (key === removeThis) {
+                if (typeof value === "boolean") {
+                  return [key, false]
+                }
+                return null
+              }
+              return [key, value]
+            }
+          ).filter((x) => x !== null)
+        )
+    }
+  } else if (typeof global === "array") {
+    for (const removeThis of removableGlobalVars) {
+      temp_global = temp_global.filter(x => x !== removeThis);
+    }
+  } else if (typeof global === "undefined") {
+    console.error(new Error(`Argument global of property ${name} is 'undefined'.`));
+  } else {
+    console.warn(`Argument global of property ${name} is not a type of 'object' or 'array' but is instead a '${typeof global}'.`);
+  }
+  return temp_global;
+}
+
 export default [
   {
     files: ["**/*.user.js"],
     ignores: ["build/*.*", "library/*.*"],
     languageOptions: {
       parserOptions: {
-        ecmaVersion: 8,
+        ecmaVersion: 13,
         sourceType: "script",
       },
       globals: {
-        ...globals.browser,
-        ...globals.greasemonkey,
-        ...globals.jquery,
-        ...globals.es6,
-        ...ESgreasemonkey.globals,
-        ...getMonkeyCodeNames("customGlobal"),
+        ...removeGlobalVars("browser", globals.browser),
+        ...removeGlobalVars("greasemonkey", globals.greasemonkey),
+        ...removeGlobalVars("jquery", globals.jquery),
+        ...removeGlobalVars("ESgreasemonkey", ESgreasemonkey.globals),
+        ...removeGlobalVars("getMonkeyCodeNames", getMonkeyCodeNames("customGlobal")),
       },
     },
     plugins: {
@@ -107,11 +141,11 @@ export default [
     files: ["eslint.config.mjs", "prettier.config.cjs", "build/rules-*.mjs"],
     languageOptions: {
       parserOptions: {
-        ecmaVersion: 2020,
+        ecmaVersion: 2022,
         sourceType: "module",
       },
       globals: {
-        ...globals.node,
+        ...removeGlobalVars("node", globals.node),
       },
     },
     plugins: {
@@ -128,12 +162,11 @@ export default [
     ignores: ["**/*.user.js", "build/*.*", "library/*.*"],
     languageOptions: {
       parserOptions: {
-        ecmaVersion: 8,
+        ecmaVersion: 13,
       },
       globals: {
-        ...globals.node,
-        ...globals.es6,
-        ...ESgreasemonkey.globals
+        ...removeGlobalVars("node", globals.node),
+        ...removeGlobalVars("ESgreasemonkey", ESgreasemonkey.globals),
       },
     },
     linterOptions: {
@@ -161,8 +194,8 @@ export default [
       },
       parser: babelParser,
       globals: {
-        ...globals.node,
-        ...ESgreasemonkey.globals
+        ...removeGlobalVars("node", globals.node),
+        ...removeGlobalVars("ESgreasemonkey", ESgreasemonkey.globals),
       },
     },
     linterOptions: {

@@ -3,7 +3,7 @@
 const fs = require("fs");
 
 module.exports = function (grunt) {
-  const parseErrorObj = obj => obj.error === null || typeof obj.error === "undefined" ? `${obj.message}` : `${obj.message}\n${obj.error.stack}`;
+  const parseErrorObj = (obj) => obj.error === null || typeof obj.error === "undefined" ? `${obj.message}` : `${obj.message}\n${obj.error.stack}`;
 
   const filePath = `${__dirname}/../library/nekogaming.userscript.lib.js`;
 

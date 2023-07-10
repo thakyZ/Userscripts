@@ -1,11 +1,11 @@
 "use strict";
 
-module.exports = function (grunt) {
-  const fs = require("fs");
-  const fsUtils = require("nodejs-fs-utils");
-  const stripJSONComments = require("strip-json-comments");
+module.exports = async function (grunt) {
   const filename = grunt.option("filename");
-  const distpaths = [
+  const fs = await import("fs");
+  const fsUtils = await import("nodejs-fs-utils");
+  const stripJSONComments = await import("strip-json-comments");
+  const distPaths = [
     "library/" + filename,
     "library/invalidFileNameChars.json",
     "library/" + filename.replace(".js", ".min.map"),
@@ -25,12 +25,12 @@ module.exports = function (grunt) {
     const flags = Object.keys(this.flags);
 
     // Combine all output target paths
-    const paths = [].concat(stored, flags).filter(path => path !== "*");
+    const paths = [].concat(stored, flags).filter((path) => path !== "*");
 
     // Ensure the dist files are pure ASCII
-    let nonascii = false;
+    let nonAscii = false;
 
-    distpaths.forEach(filename => {
+    distPaths.forEach((filename) => {
       let i;
       let c;
       let text = fs.readFileSync(filename, "utf8");
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
       // eslint-disable-next-line no-control-regex
       if (/\x0d\x0a/.test(text)) {
         grunt.log.writeln(filename + ": Incorrect line endings (\\r\\n)");
-        nonascii = true;
+        nonAscii = true;
       }
 
       // Strip json comments
@@ -66,11 +66,11 @@ module.exports = function (grunt) {
           }
         }
 
-        nonascii = true;
+        nonAscii = true;
       }
 
       // Optionally copy dist files to other locations
-      paths.forEach(path => {
+      paths.forEach((path) => {
         if (!/\/$/.test(path)) {
           path += "/";
         }
@@ -81,7 +81,7 @@ module.exports = function (grunt) {
       });
     });
 
-    return !nonascii;
+    return !nonAscii;
   });
 
   // Clean-up
@@ -96,18 +96,18 @@ module.exports = function (grunt) {
         const flags = Object.keys(this.flags);
 
         // Combine all output target paths
-        return [].concat(stored, flags).filter(path => path !== "*");
+        return [].concat(stored, flags).filter((path) => path !== "*");
       } catch (error) {
         grunt.log.error(error.stack);
       }
     };
 
-    cleanPaths.forEach(filename => {
-      try {
-        fsUtils.rmdirsSync(filename);
+    (async () => {
+      for await (const filename of cleanPaths) {
+        try {
+          await fsUtils.promises.rmdirs(filename);
 
-        paths().forEach(path => {
-          try {
+          for await (const path of paths()) {
             if (path.startsWith("library/")) {
               return;
             }
@@ -122,13 +122,11 @@ module.exports = function (grunt) {
               fsUtils.rmdirsSync(filename);
               grunt.log.writeln("File '" + filename + "' removed.");
             }
-          } catch (error) {
-            grunt.log.error(error.stack);
           }
-        });
-      } catch (error) {
-        grunt.log.error(error.stack);
+        } catch (error) {
+          grunt.log.error(error.stack);
+        }
       }
-    });
+    })();
   });
 };
