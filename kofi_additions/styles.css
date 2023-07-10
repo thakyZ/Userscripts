@@ -30,7 +30,15 @@
   user-select: none;
   /* Standard syntax */
 }
-#nbnMassStatus {
+#nbnMass label {
+  min-height: unset;
+  margin-top: auto;
+  margin-bottom: auto;
+  max-width: 53px;
+  min-width: 53px;
+  margin-left: auto;
+}
+#nbnMass #nbnMassStatus {
   flex-grow: 1;
   justify-content: center;
   display: flex;
@@ -46,14 +54,14 @@
   text-transform: none;
   overflow: visible;
 }
-#nbnMassStatus[status="none"] {
+#nbnMass #nbnMassStatus[status="none"] {
   display: none;
 }
-#nbnMassStatus[status="fail"] {
+#nbnMass #nbnMassStatus[status="fail"] {
   background-color: var(--dialog-warning-text-color);
   min-height: 17px;
 }
-#nbnMassStatus[status="success"] {
+#nbnMass #nbnMassStatus[status="success"] {
   background-color: var(--text-success);
   min-height: 17px;
 }

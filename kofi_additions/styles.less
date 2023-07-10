@@ -32,34 +32,44 @@
     user-select: none; /* Standard syntax */
   }
 }
-
-#nbnMassStatus {
-  flex-grow: 1;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  color: var(--text-default-white);
-  padding: 3px 10px;
-  border-radius: 8px;
-  border: none;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  text-transform: none;
-  overflow: visible;
-
-  &[status="none"] {
-	  display: none;
+#nbnMass {
+  & label {
+    min-height: unset;
+    margin-top: auto;
+    margin-bottom: auto;
+    max-width: 53px;
+    min-width: 53px;
+    margin-left: auto;
   }
 
-  &[status="fail"] {
-	  background-color: var(--dialog-warning-text-color);
-	  min-height: 17px;
-  }
+  & #nbnMassStatus {
+    flex-grow: 1;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    color: var(--text-default-white);
+    padding: 3px 10px;
+    border-radius: 8px;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    text-transform: none;
+    overflow: visible;
 
-  &[status="success"] {
-	  background-color: var(--text-success);
-	  min-height: 17px;
+    &[status="none"] {
+      display: none;
+    }
+
+    &[status="fail"] {
+      background-color: var(--dialog-warning-text-color);
+      min-height: 17px;
+    }
+
+    &[status="success"] {
+      background-color: var(--text-success);
+      min-height: 17px;
+    }
   }
 }
