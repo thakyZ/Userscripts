@@ -30,3 +30,30 @@
   user-select: none;
   /* Standard syntax */
 }
+#nbnMassStatus {
+  flex-grow: 1;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  color: var(--text-default-white);
+  padding: 3px 10px;
+  border-radius: 8px;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-transform: none;
+  overflow: visible;
+}
+#nbnMassStatus[status="none"] {
+  display: none;
+}
+#nbnMassStatus[status="fail"] {
+  background-color: var(--dialog-warning-text-color);
+  min-height: 17px;
+}
+#nbnMassStatus[status="success"] {
+  background-color: var(--text-success);
+  min-height: 17px;
+}
