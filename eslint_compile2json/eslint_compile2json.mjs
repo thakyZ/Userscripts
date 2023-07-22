@@ -21,7 +21,7 @@ async function removeTamperMonkeyUndefRules(rules) {
 
 async function enableAllGlobals(globals) {
   for (var globalVar in globals) {
-    if (Object.prototype.hasOwnProperty.call(globals, globalVar) && globals[globalVar] === false) {
+    if (Object.hasOwn(globals, globalVar) && globals[globalVar] === false) {
       globals[globalVar] = true;
     }
   }
