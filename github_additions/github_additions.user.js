@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Github Additions
 // @namespace    NekoBoiNick.Web.Github.Additions
-// @version      1.0.2.1
+// @version      1.0.2.2
 // @description  try to take over the world!
 // @author       Neko Boi Nick
 // @match        https://gist.github.com/*
@@ -57,7 +57,7 @@ $(document).ready(() => {
     }
   </style>`);
 
-  const addButton = (wrap, code) => {
+  function addButton(wrap, code) {
     if ($(wrap).length > 0 && $(wrap).attr("class") !== undefined && !$(wrap).attr("class").split(" ").contains("gh-csc-wrap")) {
       copyId++;
       // See comments from sindresorhus/refined-github/issues/1278
@@ -66,13 +66,13 @@ $(document).ready(() => {
       $(wrap).attr("class", `${$(wrap).attr("class")} gh-csc-wrap`);
       $(wrap).before($(copyButton).clone(), $(wrap).children()[0]);
     }
-  };
+  }
 
-  const checkForProgress = ele => {
+  function checkForProgress(ele) {
     if (/%\[\d+\/\d+\]/i.test($(ele).html())) {
       $(ele).html($(ele).html().replaceAll(/%\[(\d+)\/(\d+)\]/gi, "<progress class=\"md\" value=\"$1\" max=\"$2\"/>"));
     }
-  };
+  }
 
   const init = () => {
     const markdown = $(markdownSelector);
