@@ -60,6 +60,10 @@ $(document).ready(() => {
     flex-shrink: 0;
     position: relative;
   }
+  #new-client-id, #new-client-secret {
+    font-family: monospace;
+
+  }
   .xivanalysis-btn {
     align-items: center;
     justify-content: center;
@@ -206,7 +210,7 @@ $(document).ready(() => {
           };
 
           if (whichTab().check && ($("span#filter-source-text").text() === "All Sources" || $("span#filter-source-text").text() === "All Friendlies")) {
-            $("table.summary-table.report.dataTable tbody tr td.main-table-name.report-table-name", $("#summary")).each(function (_, element) {
+            $("table.summary-table.report.dataTable tbody tr td.main-table-name.report-table-name", $("#summary")).each((_, element) => {
               if ($(element).text().includes("Limit Break")) {
                 return;
               }

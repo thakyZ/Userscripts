@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit Changes
 // @namespace    NekoBoiNick.Web.Reddit.CHanges
-// @version      1.0.3
+// @version      1.0.3.1
 // @description  Does changes for reddit.
 // @author       Neko Boi Nick
 // @match        https://www.reddit.com/*
@@ -15,11 +15,13 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
-  const doAllEqual = (arr, val) => arr.every(ele => ele === val);
+this.jQuery(($) => {
+  function doAllEqual(arr, val) {
+    return arr.every((ele) => ele === val);
+  }
 
   function removeElement() {
     const blockElements = [];
@@ -43,7 +45,7 @@ $(document).ready(() => {
     return doAllEqual(outReturn, true);
   }
 
-  const downloadButton = MenuBarCopy => {
+  function downloadButton(MenuBarCopy) {
     const button = $(MenuBarCopy).clone();
     $($($(button).children()[0]).children()[1]).html("<span></span>Download");
     const iconClasses = $($($($(button).children()[0]).children()[0]).children()[0]).attr("class");
@@ -57,7 +59,7 @@ $(document).ready(() => {
       window.open(address, "_blank");
     });
     return button;
-  };
+  }
 
   function addDownloadButton() {
     const mediaContainer = $("div[data-testid=\"post-container\"] div[data-click-id=\"media\"]");
@@ -88,14 +90,14 @@ $(document).ready(() => {
     const data = await (new Promise((resolve, reject) => {
       let url = getPathFromUrl(document.location.href);
       url += ".json";
-      $.get(url, data => {
+      $.get(url, (data) => {
         resolve(data);
-      }).fail(error => {
+      }).fail((error) => {
         if (error) {
-          console.log(error);
+          console.error(error);
           reject(error);
         } else {
-          console.log("Failed to fetch post api");
+          console.error("Failed to fetch post api");
           reject(new Error("Failed to fetch post api"));
         }
       });
@@ -104,7 +106,7 @@ $(document).ready(() => {
     return imageTemplate.replace("%", Object.keys(data[0].data.children[0].data.media_metadata)[0]);
   }
 
-  function transfromImageLinks() {
+  function transformImageLinks() {
     const mediaContainer = $("div[data-testid=\"post-container\"] a > img");
     if ($(mediaContainer).length > 0) {
       (async function () {
@@ -139,14 +141,14 @@ $(document).ready(() => {
    */
 
   const clearRemoveWatchers = () => {
-    removeWatchers.forEach(obs => obs.disconnect()); // NOSONAR
+    removeWatchers.forEach((obs) => obs.disconnect()); // NOSONAR
     removeWatchers = [];
   };
 
   const redditWatcher = window.redditWatcher || (unsafeWindow && unsafeWindow.redditWatcher);
   if (redditWatcher) {
     redditWatcher.body.onUpdate(addDownloadButton);
-    redditWatcher.body.onChange(transfromImageLinks);
+    redditWatcher.body.onChange(transformImageLinks);
     redditWatcher.body.onUpdate(removeElement);
     redditWatcher.feed.onUpdate(addDownloadButton);
     redditWatcher.feed.onChange(clearRemoveWatchers);
@@ -156,7 +158,7 @@ $(document).ready(() => {
 
   (new MutationObserver(() => {
     addDownloadButton();
-    transfromImageLinks();
+    transformImageLinks();
     removeElement();
     clearRemoveWatchers();
 

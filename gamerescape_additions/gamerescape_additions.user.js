@@ -27,84 +27,84 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/gamerescape_additions/style.min.css
 // ==/UserScript==
-/* global $, jQuery, MonkeyConfig */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery, MonkeyConfig */
+this.jQuery = jQuery.noConflict(true);
 
-// Pulled from stack overflow: https://stackoverflow.com/a/2771544/1112800
-$.fn.textWidth = () => {
-  const htmlOrg = $(this).html();
-  const htmlCalc = `<span>${htmlOrg}</span>`;
-  $(this).html(htmlCalc);
-  const width = $(this).find("span:first").width();
-  $(this).html(htmlOrg);
-  return width;
-};
+this.jkQuery(($) => {
+  // Pulled from stack overflow: https://stackoverflow.com/a/2771544/1112800
+  $.fn.textWidth = () => {
+    const htmlOrg = $(this).html();
+    const htmlCalc = `<span>${htmlOrg}</span>`;
+    $(this).html(htmlCalc);
+    const width = $(this).find("span:first").width();
+    $(this).html(htmlOrg);
+    return width;
+  };
 
-$.fn.onlyText = () => $(this)
-  .clone() // Clone the element
-  .children() // Select all the children
-  .remove() // Remove all the children
-  .end() // Again go back to selected element
-  .text();
+  $.fn.onlyText = () => $(this)
+    .clone() // Clone the element
+    .children() // Select all the children
+    .remove() // Remove all the children
+    .end() // Again go back to selected element
+    .text();
 
-$.fn.setData = (name, data) => {
-  const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
-  if (prevData === undefined) {
-    $(this).data(name, {});
-  }
-
-  for (const [key, value] of Object.entries(data)) {
-    if (Object.prototype.hasOwnProperty.call(data, key) || !Object.prototype.hasOwnProperty.call(data, key)) {
-      prevData[key] = value;
+  $.fn.setData = (name, data) => {
+    const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
+    if (prevData === undefined) {
+      $(this).data(name, {});
     }
-  }
 
-  $(this).data(name, prevData);
-  return $(this);
-};
-
-$.fn.addData = (name, data) => {
-  const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
-  if (prevData === undefined) {
-    $(this).data(name, {});
-  }
-
-  for (const [key, value] of Object.entries(data)) {
-    if (!Object.prototype.hasOwnProperty.call(data, key)) {
-      prevData[key] = value;
+    for (const [key, value] of Object.entries(data)) {
+      if (Object.hasOwn(data, key) || !Object.hasOwn(data, key)) {
+        prevData[key] = value;
+      }
     }
-  }
 
-  $(this).data(name, prevData);
-  return $(this);
-};
+    $(this).data(name, prevData);
+    return $(this);
+  };
 
-$.fn.removeData = (name, keys) => {
-  const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
-
-  for (const key of keys) {
-    if (Object.prototype.hasOwnProperty.call(prevData, key)) {
-      prevData.delete(key);
+  $.fn.addData = (name, data) => {
+    const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
+    if (prevData === undefined) {
+      $(this).data(name, {});
     }
-  }
 
-  $(this).data(name, prevData);
-  return $(this);
-};
-
-$.fn.modifyStyle = name => {
-  const data = $(this).data(name);
-  let stringBuilder = "";
-  for (const [key, value] in Object.entries(data)) {
-    if (Object.prototype.hasOwnProperty.call(data, key)) {
-      stringBuilder += `--${key}: ${value}; `;
+    for (const [key, value] of Object.entries(data)) {
+      if (!Object.hasOwn(data, key)) {
+        prevData[key] = value;
+      }
     }
-  }
 
-  $(this).text(`:root { ${stringBuilder}}`);
-};
+    $(this).data(name, prevData);
+    return $(this);
+  };
 
-$(document).ready(() => {
+  $.fn.removeData = (name, keys) => {
+    const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
+
+    for (const key of keys) {
+      if (Object.hasOwn(prevData, key)) {
+        prevData.delete(key);
+      }
+    }
+
+    $(this).data(name, prevData);
+    return $(this);
+  };
+
+  $.fn.modifyStyle = (name) => {
+    const data = $(this).data(name);
+    let stringBuilder = "";
+    for (const [key, value] in Object.entries(data)) {
+      if (Object.hasOwn(data, key)) {
+        stringBuilder += `--${key}: ${value}; `;
+      }
+    }
+
+    $(this).text(`:root { ${stringBuilder}}`);
+  };
+
   GM_addStyle(GM_getResourceText("css"));
 
   const SettingsSaveName = "GamerEscapeAdditions.Settings";
@@ -295,8 +295,9 @@ $(document).ready(() => {
         }
       }
     });
+
     /* eslint-disable-next-line no-unused-vars */
-    const rgbToHsl = rgb => { // NOSONAR
+    function rgbToHsl(rgb) { // NOSONAR
       // Choose correct separator
       const sep = rgb.indexOf(",") > -1 ? "," : " ";
       // Turn "rgb(r,g,b)" into [r,g,b]
@@ -344,7 +345,7 @@ $(document).ready(() => {
       s = Number((s * 100).toFixed(1));
       l = Number((l * 100).toFixed(1));
       return "hsl(" + h + "," + s + "%," + l + "%)";
-    };
+    }
 
     $(nbnStylesAdditions).setData("css", { lighterWhite: `${lighterWhite}`, lighterWhiteHover: `${lighterWhiteHover}`, darkerWhite: `${darkerWhite}` }).modifyStyle("css");
   };
@@ -353,7 +354,7 @@ $(document).ready(() => {
     darkChanges();
   }
 
-  const filterCatListByNumberOfMembers = count => {
+  function filterCatListByNumberOfMembers(count) {
     if (/https:\/\/ffxiv\.gamerescape\.com\/(wiki\/Special:Categories|w\/index\.php\?title=Special:Categories).*/gi.test(window.location.href)) {
       $(".mw-spcontent ul").find("li").each((i, e) => {
         const text = $(e).clone().children().remove().end().text().replaceAll(/.*\(([\d,]+)\smembers?\).*/gi, "$1").replaceAll(/,/gi, "");
@@ -362,7 +363,7 @@ $(document).ready(() => {
         }
       });
     }
-  };
+  }
 
   filterCatListByNumberOfMembers(1000);
 
@@ -404,7 +405,7 @@ $(document).ready(() => {
     }
   };
 
-  const createCopyItemButton = () => {
+  function createCopyItemButton() {
     if (getPageCat() === "item") {
       const itemBoxHeader = $("div.wiki.main table.itembox:first-child > tbody:first-child > tr:first-child > td:first-child table > tbody > tr:first-child > td:last-child");
       const itemBoxHeaderWidth = $(itemBoxHeader).prop("clientWidth");
@@ -426,7 +427,7 @@ $(document).ready(() => {
         });
       }
     }
-  };
+  }
 
   createCopyItemButton();
 });

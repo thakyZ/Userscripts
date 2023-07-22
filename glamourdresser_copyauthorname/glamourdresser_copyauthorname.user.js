@@ -43,7 +43,7 @@ this.jQuery(($) => {
       }
 
       for (const [key, value] of Object.entries(data)) {
-        if (Object.prototype.hasOwnProperty.call(data, key) || !Object.prototype.hasOwnProperty.call(data, key)) {
+        if (Object.hasOwn(data, key) || !Object.hasOwn(data, key)) {
           prevData[key] = value;
         }
       }
@@ -61,7 +61,7 @@ this.jQuery(($) => {
       }
 
       for (const [key, value] of Object.entries(data)) {
-        if (!Object.prototype.hasOwnProperty.call(prevData, key)) {
+        if (!Object.hasOwn(prevData, key)) {
           prevData[key] = value;
         }
       }
@@ -76,7 +76,7 @@ this.jQuery(($) => {
       const prevData = $(element).data(name) === undefined ? {} : $(element).data(name);
 
       for (const key of keys) {
-        if (Object.prototype.hasOwnProperty.call(prevData, key)) {
+        if (Object.hasOwn(prevData, key)) {
           prevData.delete(key);
         }
       }
@@ -91,7 +91,7 @@ this.jQuery(($) => {
       const data = $(element).data(name);
       let stringBuilder = "";
       for (const [key, value] of Object.entries(data)) {
-        if (Object.prototype.hasOwnProperty.call(data, key)) {
+        if (Object.hasOwn(data, key)) {
           stringBuilder += `--${key}: ${value}; `;
         }
       }
@@ -324,7 +324,7 @@ this.jQuery(($) => {
     if (/https:\/\/(www\.)?glamourdresser\.com\/wp-admin\/post(-new)?\.php/gi.test(window.location.href)) {
       const iframes = $("iframe");
       for (const frame in iframes) {
-        if (Object.prototype.hasOwnProperty.call(iframes, frame) && !isNaN(parseInt(frame, 10))) {
+        if (Object.hasOwn(iframes, frame) && !isNaN(parseInt(frame, 10))) {
           $(iframes[frame]).ready(() => {
             if (iframes[frame].contentDocument !== undefined || iframes[frame].contentDocument !== null) {
               const iframe = iframes[frame].contentDocument;

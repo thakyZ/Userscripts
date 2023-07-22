@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chocolatey Default to Packages
 // @namespace    NekoBoiNick.Web.Chocolatey.Default2Packages
-// @version      1.0.0
+// @version      1.0.0.1
 // @description  When going to chocolatey's main page from another website will redirect instead to packages.
 // @author       Neko Boi Nick
 // @match        https://chocolatey.org/*
@@ -15,10 +15,10 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery((_) => {
   "use strict";
 
   async function redirect() {

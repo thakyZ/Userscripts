@@ -63,7 +63,7 @@ if (typeof window !== "undefined") {
       }
 
       for (const [key, value] of Object.entries(data)) {
-        if (Object.prototype.hasOwnProperty.call(data, key) || !Object.prototype.hasOwnProperty.call(data, key)) {
+        if (Object.hasOwn(data, key) || !Object.hasOwn(data, key)) {
           prevData[key] = value;
         }
       }
@@ -81,7 +81,7 @@ if (typeof window !== "undefined") {
       }
 
       for (const [key, value] of Object.entries(data)) {
-        if (!Object.prototype.hasOwnProperty.call(prevData, key)) {
+        if (!Object.hasOwn(prevData, key)) {
           prevData[key] = value;
         }
       }
@@ -96,7 +96,7 @@ if (typeof window !== "undefined") {
       const prevData = $(element).data(name) === undefined ? {} : $(element).data(name);
 
       for (const key of keys) {
-        if (Object.prototype.hasOwnProperty.call(prevData, key)) {
+        if (Object.hasOwn(prevData, key)) {
           prevData.delete(key);
         }
       }
@@ -111,7 +111,7 @@ if (typeof window !== "undefined") {
       const data = $(element).data(name);
       let stringBuilder = "";
       for (const [key, value] of Object.entries(data)) {
-        if (Object.prototype.hasOwnProperty.call(data, key)) {
+        if (Object.hasOwn(data, key)) {
           stringBuilder += `--${key}: ${value}; `;
         }
       }
@@ -213,7 +213,7 @@ if (typeof window !== "undefined") {
     }
   };
 
-  $.fn.onlyText = $element => $($element)
+  $.fn.onlyText = ($element) => $($element)
     .clone() // Clone the element
     .children() // Select all the children
     .remove() // Remove all the children

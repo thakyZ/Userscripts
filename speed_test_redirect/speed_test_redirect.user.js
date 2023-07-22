@@ -2,7 +2,7 @@
 // @name         Speed Test Redirect
 // @namespace    NekoBoiNick.Web.Search.SpeedTest
 // @copyright    2023, Neko Boi Nick
-// @version      1.0.2
+// @version      1.0.2.1
 // @license      MIT
 // @description  Redirects the search engine to a proper speed test site.
 // @author       Neko Boi Nick
@@ -11,6 +11,7 @@
 // @match        *://*.bing.com/*
 // @match        *://*.yahoo.com/*
 // @match        *://*.yandex.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=speedtest.net
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @grant        unsafeWindow
@@ -19,6 +20,7 @@
 // @grant        GM_addStyle
 // @grant        GM_registerMenuCommand
 // @run-at       document-start
+// @noframes
 // @require      https://raw.githubusercontent.com/SloaneFox/code/master/GM4_registerMenuCommand_Submenu_JS_Module.js
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @require      https://raw.github.com/odyniec/MonkeyConfig/master/monkeyconfig.js
@@ -27,10 +29,10 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, jQuery, MonkeyConfig */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery, MonkeyConfig */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+jQuery((_) => {
   "use strict";
 
   const config = new MonkeyConfig({
@@ -88,7 +90,7 @@ $(document).ready(() => {
     }
   };
 
-  const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
+  const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
   for (const [service, regex] of Object.entries(services)) {
     if (config.get(`for${capitalizeFirstLetter(service)}`) && regex.test(loc)) {

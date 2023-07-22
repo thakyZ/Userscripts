@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Discord Image Embed Zoom No Resize
 // @namespace    NekoBoiNick.Web.Discord.ImageNoResize
-// @version      1.0.0
+// @version      1.0.0.1
 // @description  Disables the resizing of images when clicking the embedded image in discord.
 // @author       Neko Boi Nick
 // @match        https://discord.com/*
@@ -14,10 +14,10 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   "use strict";
 
   function main() {

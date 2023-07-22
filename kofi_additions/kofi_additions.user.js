@@ -24,6 +24,7 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/styles.min.css
 // @resource     copyauthor https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/copyauthor.template.html
+// @resource     notifButtons https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/notifButtons.template.html
 // ==/UserScript==
 /* global jQuery, GM_config */
 this.jQuery = jQuery.noConflict(true);
@@ -35,6 +36,84 @@ this.jQuery(($) => {
 
   });
 
+  const sleep = (ms) => new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+
+  const DEBUG = false;
+
+  function consoleDebug(obj) {
+    if (DEBUG) {
+      console.debug(obj);
+    }
+  }
+
+  function consoleDebug(...obj) {
+    if (DEBUG) {
+      console.debug(obj);
+    }
+  }
+
+  function consoleDebug(msg) {
+    if (DEBUG) {
+      console.debug(msg);
+    }
+  }
+
+  function consoleDebug(msg, ...substr) {
+    if (DEBUG) {
+      console.debug(msg, substr);
+    }
+  }
+
+  let notificationScrollCache = 0;
+
+  function runNotificationModifyMass(operation) {
+    const getOperation = () => {
+      const _operation = operation.replace("nbn", "");
+      let output = "input[id*=\"%type%\"]:%status%";
+      if (_operation.endsWith("NC")) {
+        output = output.replace("%type%", "followee_notification_content_email_");
+      } else if (_operation.endsWith("NP")) {
+        output = output.replace("%type%", "followee_notification_product_services_email_");
+      } else if (_operation.endsWith("PN")) {
+        output = output.replace("%type%", "followee_notification_content_push_");
+      }
+
+      if (_operation.startsWith("D")) {
+        output = output.replace("%status%", "checked");
+      } else if (_operation.startsWith("E")) {
+        output = output.replace("%status%", "not(:checked)");
+      }
+
+      return output;
+    };
+
+    return new Promise((resolve, reject) => {
+      (async function () {
+        for (const [key, value] of Object.entries($(getOperation()))) {
+          if (!isNaN(key)) {
+            consoleDebug("Setup: " + $(value).parents(".faq-wrapper").find("div:first-child div").text());
+            notificationScrollCache = $("html, body").prop("scrollTop");
+            $(value).click(function () {
+              $("html, body").animate({ scrollTop: notificationScrollCache }, 800);
+              consoleDebug("Clicked: " + $(this).parents(".faq-wrapper").find("div:first-child div").text());
+            });
+            // Disable for now:
+            // $(value).click();
+            await sleep(3000); // eslint-disable-line no-await-in-loop
+          }
+        }
+      })().then((error) => {
+        if (error) {
+          reject(error, false);
+        }
+
+        resolve(undefined, true);
+      });
+    });
+  }
+
   // Site url regex matches.
   const feedRegex = /https:\/\/(www\.)?ko-fi\.com\/feed/i;
   const shopItemRegex = /https:\/\/(www\.)?ko-fi\.com\/s\/[a-z0-9]+/i;
@@ -45,7 +124,37 @@ this.jQuery(($) => {
   // OLD: const badGradientRegex = /linear-gradient\(rgba\(229, 211, 149, 0\.16\), rgba\(244, 240, 229, 0\.3\)\), url\("(https:\/\/storage.ko-fi.com\/cdn\/useruploads\/post\/.*\..{3,4})"\)/i;
   const _newGradient = "linear-gradient(180deg, rgb(5 5 5 / 16%), rgb(25 25 25 / 30%))";
 
-  const fixShopGradient = () => {
+  function showStatus(error, status) {
+    if (status === false) {
+      $("#nbnMassStatus").attr("status", "fail");
+      $("#nbnMassStatus").text("Error: " + error.nessage);
+    } else {
+      $("#nbnMassStatus").attr("status", "success");
+      $("#nbnMassStatus").text("Sucess!");
+    }
+  }
+
+  function createNotificationsMass() {
+    const notifButtons = $.fn.createElement("notifButtons", {});
+
+    const creatorsIFollowBox = $("#mainView > div > div:nth-child(3) > div:first-child > div:last-child");
+    if ($(creatorsIFollowBox).attr("id") === "nbnMass") {
+      return;
+    }
+
+    $(creatorsIFollowBox).after($(notifButtons));
+
+    $(notifButtons).children().find("button").each((index, element) => {
+      $(element).on("click", function () {
+        $("#nbnMassStatus").attr("status", "running");
+        $("#nbnMassStatus").text("Running...");
+        runNotificationModifyMass($(this).attr("id"))
+          .then((error, status) => showStatus(error, status));
+      });
+    });
+  }
+
+  function fixShopGradient() {
     const shops = $(".kfds-c-srf-offer-update-cover");
 
     for (const [, element] of Object.entries(shops)) {
@@ -56,16 +165,16 @@ this.jQuery(($) => {
         $(element).css({ backgroundImage: newGradient });
       }
     }
-  };
+  }
 
   GM_addStyle(GM_getResourceText("css"));
 
-  const transformModName = function (element) {
+  function transformModName(element) {
     const text = $(element).parent().prev().text().trim();
     return text;
-  };
+  }
 
-  const addCopyModNameButton = function (element, pageType = 0) {
+  function addCopyModNameButton(element, pageType = 0) {
     if ($(element).find("#copy-mod-btn").length > 0) {
       return;
     }
@@ -96,9 +205,9 @@ this.jQuery(($) => {
         GM_setClipboard(transformModName(this));
       });
     }
-  };
+  }
 
-  const addCopyAuthorButton = (pageType) => {
+  function addCopyAuthorButton(pageType) {
     if ($("#copy-author-btn").length > 0) {
       return;
     }
@@ -144,37 +253,41 @@ this.jQuery(($) => {
         GM_setClipboard($(this).prev().text());
       });
     }
-  };
+  }
 
-  const setupMutationObserver = () => {
-    const targetNode = $("body")[0];
-    const config = { attributes: true, childList: true, subtree: true };
-
-    const callback = (mutationList) => {
-      for (const mutation of mutationList) {
-        if (mutation.type === "childList") {
-          if ($(mutation.target).is("div#feedDiv")) {
-            if (feedRegex.test(window.location.href)) {
-              fixShopGradient();
-            }
-          } else if ($("head meta[property=\"og:type\"]").attr("content") === "profile") {
-            addCopyAuthorButton(2);
-          } else {
-            /* eslint-disable no-lonely-if */
-            if (shopItemRegex.test(window.location.href)) {
-            /* eslint-enable no-lonely-if */
-              addCopyAuthorButton(0);
-            } else if (orderDetailsRegex.test(window.location.href)) {
-              addCopyAuthorButton(1);
-            }
+  function callback(mutationList) {
+    for (const mutation of mutationList) {
+      if (mutation.type === "childList") {
+        if ($(mutation.target).is("div#feedDiv")) {
+          if (feedRegex.test(window.location.href)) {
+            fixShopGradient();
           }
-        } else if (mutation.type === "attributes") {
-          if (orderDetailsRegex.test(window.location.href) && $(".modal-purchased-shop-item-detail[style*=\"display: block;\"]").length > 0) {
-            addCopyModNameButton(".modal-purchased-shop-item-detail[style*=\"display: block;\"]");
+        } else if ($("head meta[property=\"og:type\"]").attr("content") === "profile") {
+          addCopyAuthorButton(2);
+        } else {
+          /* eslint-disable no-lonely-if */
+          if (shopItemRegex.test(window.location.href)) {
+            /* eslint-enable no-lonely-if */
+            addCopyAuthorButton(0);
+          } else if (orderDetailsRegex.test(window.location.href)) {
+            addCopyAuthorButton(1);
           }
         }
+      } else if (mutation.type === "attributes") {
+        if (orderDetailsRegex.test(window.location.href) && $(".modal-purchased-shop-item-detail[style*=\"display: block;\"]").length > 0) {
+          addCopyModNameButton(".modal-purchased-shop-item-detail[style*=\"display: block;\"]");
+        }
       }
-    };
+
+      if (/https:\/\/ko-fi\.com\/manage\/notifications.*/gi.test(window.location.href)) {
+        createNotificationsMass();
+      }
+    }
+  }
+
+  function setupMutationObserver() {
+    const targetNode = $("body")[0];
+    const config = { attributes: true, childList: true, subtree: true };
 
     const observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
@@ -182,7 +295,11 @@ this.jQuery(($) => {
     $(document).on("unload", () => {
       observer.disconnect();
     });
-  };
+  }
 
   setupMutationObserver();
+
+  GM_config.init({
+
+  });
 });

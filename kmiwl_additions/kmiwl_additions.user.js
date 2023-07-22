@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Kmiwl Additions
 // @namespace    NekoBoiNick.Web.Kmiwl.Additions
-// @version      1.0.1
+// @version      1.0.1.1
 // @description  Additional features added to Kmiwl's Website
 // @author       Neko Boi Nick
 // @match        https://ffxiv.kmiwl.de/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=kmiwl.de
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=https://ffxiv.kmiwl.de
 // @license      MIT
 // @grant        GM_getValue
 // @grant        GM_setValue
@@ -22,10 +22,10 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, jQuery, MonkeyConfig */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery, MonkeyConfig */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   const config = new MonkeyConfig({
     title: "Configure",
     menuCommand: true,
@@ -55,7 +55,7 @@ $(document).ready(() => {
       Black: [/body\{background:#000;\}/gim, "body{background:#000;}"],
       MaterialUI: [/\\#cache\\\{background-image:url\\\(\\"\\"\\\);\\\}/gim, `#cache{background-image:url("${materialUIImg}");}`],
       replace(text, type) {
-        const _type = type => {
+        const _type = (type) => {
           switch (type) {
           case cssKeys.customCSS.Dark:
             return cssKeys.customCSS.Dark[1].toString();

@@ -2,8 +2,7 @@
   --pppad: 2px;
   --boxpaddings: 1em;
   --pppadb: calc(var(--boxpaddings) + var(--pppad));
-  --boxpadding: var(--pppadb) var(--boxpaddings) var(--boxpaddings)
-    var(--boxpaddings);
+  --boxpadding: var(--pppadb) var(--boxpaddings) var(--boxpaddings) var(--boxpaddings);
   --lineheight: 0.875rem;
   --padding: calc(21px - var(--lineheight));
 }

@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Remove UserStyles Ad Boxes
 // @namespace    NekoBoiNick.UserStyles.Ads
-// @version      1.0.0
+// @version      1.0.0.1
 // @description  Removes divs for ads on UserStyles
 // @author       NekoBoiNick
 // @match        https://userstyles.org/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=userstyles.org
 // @grant        none
 // @license      MIT
 // @run-at       document-end
@@ -16,16 +17,16 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
 // - The @grant directives are needed to restore the proper sandbox.
-/* global $, waitForKeyElements */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery, waitForKeyElements */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
-  const removeFallback = () => {
+this.jQuery(($) => {
+  function removeFallback() {
     const elements = $(".us-stylecard--short .fallbackDiv");
     $(elements).each((_, element) => {
       element.parent().css({ display: "none" });
     });
-  };
+  }
 
   waitForKeyElements(".fallbackDiv", removeFallback, true);
 });

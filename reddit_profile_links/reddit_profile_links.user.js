@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit User Profile Links
 // @namespace    NekoBoiNick.Web.Reddit.UserProfileLinks.
-// @version      1.0.4
+// @version      1.0.4.1
 // @description  Adds links to Reddit User Profiles if provided.
 // @author       thakyZ
 // @match        https://www.reddit.com/user/*
@@ -15,8 +15,8 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $ */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
 /* Css
  * .nbn.SocialLinkBtn {
@@ -48,7 +48,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
  * }
  */
 
-$(document).ready(() => {
+this.jQuery(($) => {
   const createBtn = (parent, opts) => {
     $(parent).attr("class", "nbn SocialLinkBtn");
     const btn = document.createElement("a");
@@ -62,27 +62,33 @@ $(document).ready(() => {
   };
 
   let removeWatchers = [];
-  const watchForRemoval = (watchElem, parentElem) => {
-    const watcher = new MutationObserver(mutated => {
+  function watchForRemoval(watchElem, parentElem) {
+    function callback(mutationList) {
       let wasRemoved = false;
-      mutated.forEach(mutant => wasRemoved || mutant.removedNodes.forEach(removed => {
-        wasRemoved = wasRemoved || removed === watchElem;
-      }));
+      for (const mutant of mutationList) {
+        if (!wasRemoved) {
+          for (const removed of mutant.removedNodes) {
+            wasRemoved = wasRemoved || removed === watchElem;
+          }
+        }
+      }
 
       if (wasRemoved) {
         parentElem.append(watchElem);
       }
-    });
+    }
+
+    const watcher = new MutationObserver(callback);
     watcher.observe(parentElem, { childList: true });
     removeWatchers.push(watcher);
-  };
+  }
 
-  const clearRemoveWatchers = () => {
-    removeWatchers.forEach(obs => obs.disconnect());
+  function clearRemoveWatchers() {
+    removeWatchers.forEach((obs) => obs.disconnect());
     removeWatchers = [];
-  };
+  }
 
-  const insertCss = () => {
+  function insertCss() {
     if ($("#nbnCSS").length > 0) {
       return;
     }
@@ -94,17 +100,17 @@ $(document).ready(() => {
                 + "ExpbmtCdG4gLm5ibi5Tb2NpYWxJY29uIHttYXJnaW4tcmlnaHQ6IDhweDt9\">");
     watchForRemoval(css, $("head")[0]);
     $("head").append($(css));
-  };
+  }
 
   const cache = {};
 
-  const generateLinks = () => {
+  function generateLinks() {
     const pageUrl = window.location.href;
     const usrUrl = pageUrl.replace(/^https?:\/\/(www.)?reddit.com\/(user|u)\//, "");
     const userProfileLnk = document.querySelector(`.ListingLayout-outerContainer > div:last-child > div:last-child > div:last-child > div > div:first-child > div > a[href="/user/${usrUrl}/"] + button + div`);
     const userSocialLnk = document.querySelector(`.ListingLayout-outerContainer > div:last-child > div:last-child > div:last-child > div > div:first-child > div > a[href="/user/${usrUrl}/"] + button + div + div + nav > ul`);
     if (!userProfileLnk) {
-      removeWatchers.forEach(obs => obs.disconnect());
+      removeWatchers.forEach((obs) => obs.disconnect());
       removeWatchers = [];
       return;
     }
@@ -180,7 +186,7 @@ $(document).ready(() => {
     }
 
     cache[usrUrl] = matchText;
-  };
+  }
 
   generateLinks();
 
