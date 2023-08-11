@@ -80,6 +80,8 @@
   },
   "dependencies": {
     "data-uri-regex": "^0.1.4",
-    "jquery": "^3.7.0"
+    "he": "^1.2.0",
+    "jquery": "^3.7.0",
+    "node-html-parser": "^6.1.5"
   }
 }
