@@ -12,6 +12,12 @@
   flex: 0 0 13%;
   max-width: 13%;
 }
+body > .container-xl > .jumbotron .inbox-message div {
+  border-left: 0.5em solid #6c757d;
+}
+body > .container-xl > .jumbotron .new-message div {
+  border-left: 0.5em solid #007bff;
+}
 body > .container-xl > .jumbotron.nbnMailHeader > h4 {
   margin-right: 150px;
   text-overflow: ellipsis;
