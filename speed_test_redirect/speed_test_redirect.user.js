@@ -80,13 +80,13 @@ jQuery((_) => {
 
   const fromSiteChoice = () => {
     switch (config.get("redirectSite")) {
-    case "Measurement Lab":
-      return redirectSites[0];
-    case "Ookla":
-      return redirectSites[1];
-    case "Fast":
-    default:
-      return redirectSites[2];
+      case "Measurement Lab":
+        return redirectSites[0];
+      case "Ookla":
+        return redirectSites[1];
+      case "Fast":
+      default:
+        return redirectSites[2];
     }
   };
 

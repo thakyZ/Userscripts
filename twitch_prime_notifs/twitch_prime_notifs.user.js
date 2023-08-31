@@ -37,7 +37,7 @@ $(document).ready(() => {
     return test;
   };
 
-  const hideClass = _class => {
+  const hideClass = (_class) => {
     _class.style.cssText += "display:none";
     classesHidden += 1;
     if (debug) {
@@ -52,7 +52,7 @@ $(document).ready(() => {
 
     const classes = getClasses();
     if (classes.length > 0) {
-      classes.forEach(obj => {
+      classes.forEach((obj) => {
         hideClass(obj);
       });
       checkedForClasses = true;

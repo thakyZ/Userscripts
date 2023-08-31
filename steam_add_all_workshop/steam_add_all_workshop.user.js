@@ -221,7 +221,7 @@ $(document).ready(() => {
       childList: true,
       subtree: true,
     };
-    const callback = mutationList => {
+    const callback = (mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.type === "attributes" || mutation.type === "childList") {
           if ($(mutation.target).attr("id") === "MySubscribedItemsTab" && $(mutation.target).hasClass("active")) {

@@ -1,0 +1,57 @@
+#GM_Config_ID {
+  background-color: #333;
+  color: #fff;
+
+  & .field_list_scroll_wrapper {
+    min-height: -moz-available;
+    overflow-x: none;
+    overflow-y: scroll;
+    margin-top: 1em;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    background-color: #1b1b1b;
+    max-width: 85%
+  }
+
+  & ul {
+    padding-inline-start: 0;
+
+    & li {
+      list-style-type: none;
+
+      &:last-child {
+        & button {
+          min-width: 15rem;
+        }
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 1em;
+
+        & .field_list_label {
+          margin-right: 1em;
+          color: #eee;
+          font-family: monospace;
+        }
+
+        & .field_list_input_label {
+          margin-right: 1em;
+        }
+
+        & input {
+          margin-right: 1em;
+
+          &[type="number"] {
+            -moz-appearance: textfield;
+
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
