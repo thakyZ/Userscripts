@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FFXIV Lodestone Additions
 // @namespace    NekoBoiNick.Web.FFXIV.Lodestone.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Adds various things to the FFXIV Lodestone.
 // @author       Neko Boi Nick
 // @match        https://*.finalfantasyxiv.com/lodestone/*
@@ -56,6 +56,19 @@ jQuery(($) => {
     $(frame).attr("style", newStyle.join(";"));
   }
 
+  function updateListItems(list, ignore = null) {
+    const listItems = $(list).find(".field_list_index:not(:last-child)").find(".field_list_label");
+    for (let i = 0, ilen = listItems.length; i < ilen; ++i) {
+      if (i === ignore) {
+        continue;
+      } else if (i > ignore) {
+        $(listItems[i]).text(`${i - 1}`);
+      } else {
+        $(listItems[i]).text(`${i}`);
+      }
+    }
+  }
+
   function modifyGrandCompanyLogo() {
   }
 
@@ -105,7 +118,7 @@ jQuery(($) => {
       className: "field_list_label"
     }));
 
-    for (const [key, subValue] of Object.entries(value[i])) {
+    for (const [key, subValue] of Object.entries(value)) {
       // Create the field label
       listIndex.appendChild(create("label", {
         innerHTML: convertKeyToTitle(key),
@@ -134,7 +147,8 @@ jQuery(($) => {
       className: "field_list_add",
       onclick(event) {
         const index = $(event.target).closest("li")[0];
-        index.parentNode.remove(index);
+        updateListItems($(event.target).closest("ul"), $(event.target).closest("ul").find("li").index(index));
+        index.remove(index);
       }
     });
 
@@ -234,7 +248,7 @@ jQuery(($) => {
           listScrollWrapper.appendChild(list);
 
           for (let i = 0; i < value.length; i++) {
-            createListElement({ list, create, configId, value, id, i, target: null });
+            createListElement({ list, create, configId, value: value[i], id, i, target: null });
           }
 
           const listIndexLast = create("li", {
@@ -255,7 +269,7 @@ jQuery(($) => {
             onclick(event) {
               const list = $(event.target).closest("ul")[0];
               const newListIndex = $(event.target).closest("ul").find("li").length - 1;
-              createListElement({ list, create, configId, value, id, i: newListIndex, target: event.target });
+              createListElement({ list, create, configId, value: { fcName: "", iconId: 0, url: "" }, id, i: newListIndex, target: $(event.target).parent() });
             }
           });
 
@@ -305,13 +319,14 @@ jQuery(($) => {
           if (this.wrapper) {
             const listIndexes = this.wrapper.getElementsByTagName("li");
 
-            // Join the field values together separated by slashes
-            for (let i = 0, ilen = listIndexes.length - 1; i < ilen; ++i) {
-              const inputs = listIndexes[i].getElementsByTagName("input");
-
-              if (i < ilen - 2) {
-                listIndexes[i].parentNode.remove(listIndexes[i]);
+            // Join the field values together seperated by slashes
+            for (let i = 0, ilen = listIndexes.length; i < ilen; ++i) {
+              if (i > 0 && i < ilen - 1) {
+                listIndexes[i].remove(listIndexes[i]);
+                ilen--;
+                i--;
               } else {
+                const inputs = $(listIndexes[i]).find("input");
                 for (let j = 0, jlen = inputs.length; j < jlen; ++j) {
                   // Don't save values that aren't numbers
                   inputs[j].value = j === 1 ? 0 : "";
