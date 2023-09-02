@@ -148,21 +148,21 @@ this.jQuery(($) => {
       let transformValue = "";
 
       switch (label) {
-      case "north america":
-        transformValue = "NA";
-        break;
-      case "europe":
-        transformValue = "EU";
-        break;
-      case "japan":
-        transformValue = "JA";
-        break;
-      case "oceania":
-        transformValue = "OC";
-        break;
-      default:
-        transformValue = undefined;
-        break;
+        case "north america":
+          transformValue = "NA";
+          break;
+        case "europe":
+          transformValue = "EU";
+          break;
+        case "japan":
+          transformValue = "JA";
+          break;
+        case "oceania":
+          transformValue = "OC";
+          break;
+        default:
+          transformValue = undefined;
+          break;
       }
 
       const newOption = `<option value="${transformValue}">${label.capitalizeSentence()} (${getTotalListings(optgroup)})</option>`;

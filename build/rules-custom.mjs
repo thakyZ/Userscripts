@@ -278,7 +278,11 @@ export default function (getMonkeyCodeNames) {
     ],
     "func-names": ["error", "never"],
     "function-call-argument-newline": ["error", "consistent"],
-    indent: ["error", 2],
+    indent: ["error", 2,
+      {
+        SwitchCase: 1,
+      }
+    ],
     "jsx-quotes": ["error", "prefer-double"],
     "key-spacing": [
       "error",

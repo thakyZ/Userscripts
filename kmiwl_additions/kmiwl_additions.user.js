@@ -57,14 +57,14 @@ this.jQuery(($) => {
       replace(text, type) {
         const _type = (type) => {
           switch (type) {
-          case cssKeys.customCSS.Dark:
-            return cssKeys.customCSS.Dark[1].toString();
-          case cssKeys.customCSS.Black:
-            return cssKeys.customCSS.Black[1].toString();
-          case cssKeys.customCSS.MaterialUI:
-            return cssKeys.customCSS.MaterialUI[1].toString();
-          default:
-            return "";
+            case cssKeys.customCSS.Dark:
+              return cssKeys.customCSS.Dark[1].toString();
+            case cssKeys.customCSS.Black:
+              return cssKeys.customCSS.Black[1].toString();
+            case cssKeys.customCSS.MaterialUI:
+              return cssKeys.customCSS.MaterialUI[1].toString();
+            default:
+              return "";
           }
         };
 
