@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Twitter Additions
 // @namespace    NekoBoiNick.Web.Twitter.Additions
-// @version      1.0.0
+// @version      1.0.1
 // @description  Changes things on Twitter.
 // @author       Neko Boi Nick
 // @match        https://twitter.com/*
@@ -93,8 +93,8 @@ this.jQuery(($) => {
     }
   }
 
-  /* Bot Sentinal Move Elements */
-  function botSentinalMoveElements() {
+  /* Bot Sentinel Move Elements */
+  function botSentinelMoveElements() {
     const div = $("div.bot-sentinel-account-status");
 
     if ($(div).length > 0) {
@@ -112,9 +112,9 @@ this.jQuery(($) => {
         }
 
         if ($(element).css("max-height") !== "20px") {
-          console.debug(`[botSentinalMoveElements] Element css "max-height": "${$(element).css("max-height")}"`);
+          console.debug(`[botSentinelMoveElements] Element css "max-height": "${$(element).css("max-height")}"`);
           $(element).attr("nbn-style", "max-height:20px");
-          console.debug(`[botSentinalMoveElements] Element attr "nbn-style": "${$(element).attr("nbn-style")}"`);
+          console.debug(`[botSentinelMoveElements] Element attr "nbn-style": "${$(element).attr("nbn-style")}"`);
         }
       }
     }
@@ -125,7 +125,7 @@ this.jQuery(($) => {
       if (mutation.type === "childList") {
         if ($(mutation.target).is("article[data-testid=\"tweet\"]") || $(mutation.target).is("article[role=\"article\"]")) {
           twitterAdditions();
-          botSentinalMoveElements();
+          botSentinelMoveElements();
         }
 
         twitterFollowsYouFix();
@@ -147,8 +147,6 @@ this.jQuery(($) => {
     $(document).on("unload", () => {
       observer.disconnect();
     });
-
-    GM_addStyle(GM_getResourceText("style"));
   }
 
   setupMutationObserver();
