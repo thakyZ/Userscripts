@@ -19,7 +19,7 @@
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
-// @require      https://github.com/dawidsadowski/MonkeyConfig/raw/master/monkeyconfig.js
+// @require      https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @require      https://raw.githubusercontent.com/SloaneFox/code/master/GM4_registerMenuCommand_Submenu_JS_Module.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/gamerescape_additions/gamerescape_additions.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/gamerescape_additions/gamerescape_additions.user.js
@@ -27,84 +27,84 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/gamerescape_additions/style.min.css
 // ==/UserScript==
-/* global jQuery, MonkeyConfig */
-this.jQuery = jQuery.noConflict(true);
+/* global $, jQuery, MonkeyConfig */
+this.$ = this.jQuery = jQuery.noConflict(true);
 
-this.jkQuery(($) => {
-  // Pulled from stack overflow: https://stackoverflow.com/a/2771544/1112800
-  $.fn.textWidth = () => {
-    const htmlOrg = $(this).html();
-    const htmlCalc = `<span>${htmlOrg}</span>`;
-    $(this).html(htmlCalc);
-    const width = $(this).find("span:first").width();
-    $(this).html(htmlOrg);
-    return width;
-  };
+// Pulled from stack overflow: https://stackoverflow.com/a/2771544/1112800
+$.fn.textWidth = () => {
+  const htmlOrg = $(this).html();
+  const htmlCalc = `<span>${htmlOrg}</span>`;
+  $(this).html(htmlCalc);
+  const width = $(this).find("span:first").width();
+  $(this).html(htmlOrg);
+  return width;
+};
 
-  $.fn.onlyText = () => $(this)
-    .clone() // Clone the element
-    .children() // Select all the children
-    .remove() // Remove all the children
-    .end() // Again go back to selected element
-    .text();
+$.fn.onlyText = () => $(this)
+  .clone() // Clone the element
+  .children() // Select all the children
+  .remove() // Remove all the children
+  .end() // Again go back to selected element
+  .text();
 
-  $.fn.setData = (name, data) => {
-    const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
-    if (prevData === undefined) {
-      $(this).data(name, {});
+$.fn.setData = (name, data) => {
+  const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
+  if (prevData === undefined) {
+    $(this).data(name, {});
+  }
+
+  for (const [key, value] of Object.entries(data)) {
+    if (Object.hasOwn(data, key) || !Object.hasOwn(data, key)) {
+      prevData[key] = value;
     }
+  }
 
-    for (const [key, value] of Object.entries(data)) {
-      if (Object.hasOwn(data, key) || !Object.hasOwn(data, key)) {
-        prevData[key] = value;
-      }
+  $(this).data(name, prevData);
+  return $(this);
+};
+
+$.fn.addData = (name, data) => {
+  const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
+  if (prevData === undefined) {
+    $(this).data(name, {});
+  }
+
+  for (const [key, value] of Object.entries(data)) {
+    if (!Object.hasOwn(data, key)) {
+      prevData[key] = value;
     }
+  }
 
-    $(this).data(name, prevData);
-    return $(this);
-  };
+  $(this).data(name, prevData);
+  return $(this);
+};
 
-  $.fn.addData = (name, data) => {
-    const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
-    if (prevData === undefined) {
-      $(this).data(name, {});
+$.fn.removeData = (name, keys) => {
+  const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
+
+  for (const key of keys) {
+    if (Object.hasOwn(prevData, key)) {
+      prevData.delete(key);
     }
+  }
 
-    for (const [key, value] of Object.entries(data)) {
-      if (!Object.hasOwn(data, key)) {
-        prevData[key] = value;
-      }
+  $(this).data(name, prevData);
+  return $(this);
+};
+
+$.fn.modifyStyle = (name) => {
+  const data = $(this).data(name);
+  let stringBuilder = "";
+  for (const [key, value] in Object.entries(data)) {
+    if (Object.hasOwn(data, key)) {
+      stringBuilder += `--${key}: ${value}; `;
     }
+  }
 
-    $(this).data(name, prevData);
-    return $(this);
-  };
+  $(this).text(`:root { ${stringBuilder}}`);
+};
 
-  $.fn.removeData = (name, keys) => {
-    const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
-
-    for (const key of keys) {
-      if (Object.hasOwn(prevData, key)) {
-        prevData.delete(key);
-      }
-    }
-
-    $(this).data(name, prevData);
-    return $(this);
-  };
-
-  $.fn.modifyStyle = (name) => {
-    const data = $(this).data(name);
-    let stringBuilder = "";
-    for (const [key, value] in Object.entries(data)) {
-      if (Object.hasOwn(data, key)) {
-        stringBuilder += `--${key}: ${value}; `;
-      }
-    }
-
-    $(this).text(`:root { ${stringBuilder}}`);
-  };
-
+$(document).ready(() => {
   GM_addStyle(GM_getResourceText("css"));
 
   const SettingsSaveName = "GamerEscapeAdditions.Settings";
@@ -130,13 +130,48 @@ this.jkQuery(($) => {
   const hideButton = () => "<div id=\"hide-disqus_thead\"><button id=\"hide-disqus_thread-button\"><div id=\"hide-disqus_thread-button-icon\" class=\"fold-icon\"></div></button></div>";
 
   const marked = ["#d7d8db", "#000", "#ebecf0", "#f9f9f9", "#fffae1"]; // NOSONAR
-  const catlinks = $("#catlinks");
+  const categoryLinks = $("#catlinks");
   const nbnStylesAdditions = $("<style id=\"nbnStylesAdditions\"></style>");
   $("head").append($(nbnStylesAdditions));
 
-  const createFoldButton = () => {
-    if ($(catlinks).length > 0) {
-      $(catlinks).after(hideButton());
+  function callbackFoldButton(mutationList) {
+    for (const mutation of mutationList) {
+      if (mutation.type === "childList" || mutation.type === "attributes") {
+        if ($(mutation.target).hasClass("wiki") && $(mutation.target).hasClass("main")) {
+          if (typeof $(mutation.target).children("#hide-disqus_thead").next().attr("srcdoc") !== "undefined") {
+            disqus = $($(mutation.target).children("#hide-disqus_thead").next());
+            const hideButtonStyleVar = $(mutation.target).children("#hide-disqus_thead").next().height();
+            $(mutation.target).children("#hide-disqus_thead").next().attr("style", (_, s) => (s.replace(/min-height: \d+px/gi, "min-height: 1px") || ""));
+            const disqusHeight = $(disqus).height();
+            $(nbnStylesAdditions).setData("css", { hideButtonStyleVar: `${hideButtonStyleVar}px`, disqusHeight: `${disqusHeight}px` }).modifyStyle("css");
+            $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css({ height: "" });
+          } else if ($(mutation.target).children("#hide-disqus_thead").next().attr("id") === "disqus_thread") {
+            disqus = $($(mutation.target).children("#hide-disqus_thead").next());
+            const hideButtonStyleVar = $("iframe[src*=\"https://disqus.com/embed/comments/\"]").height();
+            const disqusHeight = $(disqus).height();
+            $(nbnStylesAdditions).setData("css", { hideButtonStyleVar: `${hideButtonStyleVar}px`, disqusHeight: `${disqusHeight}px` }).modifyStyle("css");
+            $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css({ height: "" });
+          }
+        }
+      }
+    }
+  }
+
+  function setupFoldButtonMutationObserver() {
+    const targetNode = $(".wiki.main")[0];
+    const config = { attributes: true, childList: true, subtree: true };
+
+    const observer = new MutationObserver(callbackFoldButton);
+    observer.observe(targetNode, config);
+
+    $(document).on("unload", () => {
+      observer.disconnect();
+    });
+  }
+
+  function createFoldButton() {
+    if ($(categoryLinks).length > 0) {
+      $(categoryLinks).after(hideButton());
       let id = -1;
       // Const height = -1;
       id = setInterval(() => {
@@ -172,48 +207,13 @@ this.jkQuery(($) => {
       });
     }
 
-    const setupMutationObserver = () => {
-      const targetNode = $(".wiki.main")[0];
-      const config = { attributes: true, childList: true, subtree: true };
-
-      const callback = (mutationList) => {
-        for (const mutation of mutationList) {
-          if (mutation.type === "childList" || mutation.type === "attributes") {
-            if ($(mutation.target).hasClass("wiki") && $(mutation.target).hasClass("main")) {
-              if (typeof $(mutation.target).children("#hide-disqus_thead").next().attr("srcdoc") !== "undefined") {
-                disqus = $($(mutation.target).children("#hide-disqus_thead").next());
-                const hideButtonStyleVar = $(mutation.target).children("#hide-disqus_thead").next().height();
-                $(mutation.target).children("#hide-disqus_thead").next().attr("style", (_, s) => (s.replace(/min-height: \d+px/gi, "min-height: 1px") || ""));
-                const disqusHeight = $(disqus).height();
-                $(nbnStylesAdditions).setData("css", { hideButtonStyleVar: `${hideButtonStyleVar}px`, disqusHeight: `${disqusHeight}px` }).modifyStyle("css");
-                $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css({ height: "" });
-              } else if ($(mutation.target).children("#hide-disqus_thead").next().attr("id") === "disqus_thread") {
-                disqus = $($(mutation.target).children("#hide-disqus_thead").next());
-                const hideButtonStyleVar = $("iframe[src*=\"https://disqus.com/embed/comments/\"]").height();
-                const disqusHeight = $(disqus).height();
-                $(nbnStylesAdditions).setData("css", { hideButtonStyleVar: `${hideButtonStyleVar}px`, disqusHeight: `${disqusHeight}px` }).modifyStyle("css");
-                $("iframe[src*=\"https://disqus.com/embed/comments/\"]").css({ height: "" });
-              }
-            }
-          }
-        }
-      };
-
-      const observer = new MutationObserver(callback);
-      observer.observe(targetNode, config);
-
-      $(document).on("unload", () => {
-        observer.disconnect();
-      });
-    };
-
-    setupMutationObserver();
-  };
+    setupFoldButtonMutationObserver();
+  }
 
   createFoldButton();
   const isDark = () => Boolean($("body").hasClass("dark"));
 
-  const darkChanges0 = (_, element) => {
+  function darkChanges0(_, element) {
     let convert = null;
     if ($(element).parents(".arrquestbox").length > 0) {
       return;
@@ -265,12 +265,12 @@ this.jkQuery(($) => {
     if ($(element).css("color") === "rgb(0, 0, 0)") {
       $(element).css({ color: "white" });
     }
-  };
+  }
 
   const darkerWhite = "#252526";
   const lighterWhite = "#2F2F30";
   const lighterWhiteHover = "#39393A";
-  const darkChanges = () => {
+  function darkChanges() {
     marked[0] = lighterWhite;
     marked[1] = "white";
     marked[2] = lighterWhiteHover;
@@ -310,9 +310,9 @@ this.jkQuery(($) => {
       g /= 255;
       b /= 255;
       // Find greatest and smallest channel values
-      const cmin = Math.min(r, g, b);
-      const cmax = Math.max(r, g, b);
-      const delta = cmax - cmin;
+      const cMin = Math.min(r, g, b);
+      const cMax = Math.max(r, g, b);
+      const delta = cMax - cMin;
       let h = 0;
       let s = 0;
       let l = 0;
@@ -323,9 +323,9 @@ this.jkQuery(($) => {
         // eslint-disable-next-line brace-style
       }
       // Red is max
-      else if (cmax === r) {
+      else if (cMax === r) {
         h = ((g - b) / delta) % 6;
-      } else if (cmax === g) {
+      } else if (cMax === g) {
         h = ((b - r) / delta) + 2;
       } else {
         h = ((r - g) / delta) + 4;
@@ -338,7 +338,7 @@ this.jkQuery(($) => {
       }
 
       // Calculate lightness
-      l = (cmax + cmin) / 2;
+      l = (cMax + cMin) / 2;
       // Calculate saturation
       s = delta === 0 ? 0 : delta / (1 - Math.abs((2 * l) - 1));
       // Multiply l and s by 100
@@ -348,7 +348,7 @@ this.jkQuery(($) => {
     }
 
     $(nbnStylesAdditions).setData("css", { lighterWhite: `${lighterWhite}`, lighterWhiteHover: `${lighterWhiteHover}`, darkerWhite: `${darkerWhite}` }).modifyStyle("css");
-  };
+  }
 
   if (isDark()) {
     darkChanges();
@@ -367,46 +367,46 @@ this.jkQuery(($) => {
 
   filterCatListByNumberOfMembers(1000);
 
-  const getPageCat = () => {
+  function getPageCategory() {
     const categories = $("#catlinks");
     if ($(categories).length === 0) {
       return null;
     }
 
-    const cats = $(categories).find("#mw-normal-catlinks > ul > li");
-    if ($(cats).length > 0) {
-      for (const element of $(cats)) {
-        const cat = $(element);
-        const catText = $(cat).find("a").text().toLowerCase();
-        if (catText === "item") {
+    const subCategories = $(categories).find("#mw-normal-catlinks > ul > li");
+    if ($(subCategories).length > 0) {
+      for (const element of $(subCategories)) {
+        const categoryElement = $(element);
+        const categoryText = $(categoryElement).find("a").text().toLowerCase();
+        if (categoryText === "item") {
           return "item";
         }
 
-        if (catText === "merchant") {
+        if (categoryText === "merchant") {
           return "merchant";
         }
 
-        if (catText === "achievement") {
+        if (categoryText === "achievement") {
           return "achievement";
         }
 
-        if (catText === "action") {
+        if (categoryText === "action") {
           return "action";
         }
 
-        if (catText === "armor") {
+        if (categoryText === "armor") {
           return "armor";
         }
 
-        if (catText === "bestiary") {
+        if (categoryText === "bestiary") {
           return "bestiary";
         }
       }
     }
-  };
+  }
 
   function createCopyItemButton() {
-    if (getPageCat() === "item") {
+    if (getPageCategory() === "item") {
       const itemBoxHeader = $("div.wiki.main table.itembox:first-child > tbody:first-child > tr:first-child > td:first-child table > tbody > tr:first-child > td:last-child");
       const itemBoxHeaderWidth = $(itemBoxHeader).prop("clientWidth");
       const copyButtonContainer = $("<div class=\"copyItemBoxHeaderButton\"><button id=\"copyItemNameButton\" class=\"btn btn-primary\" type=\"button\"><i class=\"fa fa-clipboard\"></i></button></div>");
