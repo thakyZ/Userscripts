@@ -35,11 +35,12 @@
 // @resource     GMConfigCSS https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/GM_config-style.min.css
 // @resource     modalTemplate https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/modal.template.html
 // ==/UserScript==
+/* cSpell:ignore createProgressbar */
 /* global $, jQuery, showSpinner, hideSpinner, showError, errorProgressBar, clearProgressBar, updateProgressBar, createProgressbar, GM_config */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 /* eslint-disable no-extend-native */
-String.prototype.width = function (font, size) {
+String.prototype.width = function (font, size) { // NOSONAR
   const f = font || "arial";
   const s = size || "12px";
   const o = $("<div></div>")
@@ -184,6 +185,7 @@ $(document).ready(() => {
   function getNumberOfPages() {
     let pages = 0;
     let data;
+    /* CSpell:ignoreRegExp \/https\?:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/user\\\/\\d\+\/i */
     if (/https?:\/\/(www\.)?xivmodarchive\.com\/user\/\d+/i.test(window.location.href)) {
       if ($("body div.container-xl.my-3 .jumbotron .row.px-4 pre").length === 0) {
         return;
@@ -207,6 +209,7 @@ $(document).ready(() => {
       }
     }
 
+    /* CSpell:ignoreRegExp \/https\?:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/dashboard\.\*\/i */
     if (/https?:\/\/(www\.)?xivmodarchive\.com\/dashboard.*/i.test(window.location.href) === false) {
       createFirstLastNavElements(pages, getDoMin(), getDoMax(pages));
     }
@@ -219,6 +222,7 @@ $(document).ready(() => {
   function doCopyTask(element, userNameAlt) {
     const translatedName = translateName(element.text().toString(), element.attr("href").replace(/\/user\//gi, ""), userNameAlt).replaceAll(/^\s+/gi, "").replaceAll(/\s+$/gi, "");
 
+    /* CSpell:ignoreRegExp \/https:\\\/\\\/\(www\\\.\)\?xivmodarchive\.com\\\/modid\\\//gi */
     if (GM_config.get("copyAuthorNamePlusModName") && /https:\/\/(www\.)?xivmodarchive.com\/modid\//gi.test(window.location.href)) {
       const modPage = $("#modpage-frame-left .jumbotron .row:first-child h1");
 
@@ -261,9 +265,9 @@ $(document).ready(() => {
       });
     })();
   }
-  // Trying to do document-on-ready in document-on-ready is a bit redundent.
+  // Trying to do document-on-ready in document-on-ready is a bit redundant.
   // $(document).on("ready", () => {
-  // Trying to do window-on-load in document-on-ready seems to have an issue that when the tab isn't foused right away,
+  // Trying to do window-on-load in document-on-ready seems to have an issue that when the tab isn't focused right away,
   // the image does not get replaced at all.
   // $(window).on("load", () => {
 
@@ -308,6 +312,7 @@ $(document).ready(() => {
   }
 
   // });
+  /* CSpell:ignoreRegExp \/https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/\(modid\|user\)\\\/\/gi */
   if (/https:\/\/(www\.)?xivmodarchive\.com\/(modid|user)\//gi.test(window.location.href)) {
     (async function () {
       await changeAvatarImage();
@@ -326,6 +331,7 @@ $(document).ready(() => {
   }
 
   function editPages() {
+    /* CSpell:ignoreRegExp \/\^https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/\?\$\/gi */
     if (/^https:\/\/(www\.)?xivmodarchive\.com\/?$/gi.test(window.location.href)) {
       const badLink = $("a[href*=\"/search\"]").filter((b, a) => /sponsored=true/gi.test($(a).attr("href")));
       if ($(badLink).length > 0) {
@@ -337,6 +343,7 @@ $(document).ready(() => {
 
     // Wrap the header of the mail notification.
     // Enable tooltip on the mail header.
+    /* CSpell:ignoreRegExp \/\^https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/inbox\\\/\\d\+\/gi */
     if (/^https:\/\/(www\.)?xivmodarchive\.com\/inbox\/\d+/gi.test(window.location.href)) {
       const mailHeader = $("body > .container-xl > .jumbotron");
       if ($(mailHeader).length > 0) {
@@ -560,6 +567,7 @@ $(document).ready(() => {
   const gmConfigFrame = setupGMConfigFrame();
 
   function modifyInboxScreen() {
+    /* CSpell:ignoreRegExp \/\https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/inbox\\\/\?\/gi */
     if (!/https:\/\/(www\.)?xivmodarchive\.com\/inbox\/?/gi.test(window.location.href)) {
       return;
     }
@@ -569,12 +577,14 @@ $(document).ready(() => {
       // Disabled because spam-ey
       (async function () {
         return;
+        // Disabled due to possible increased network traffic for the host.
         /* eslint-disable-next-line */
-        await addAnchorsToInboxMessages();
+        await addAnchorsToInboxMessages(); // NOSONAR
       })();
     }
   }
 
+  /* CSpell:ignoreRegExp \/\^https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/\/ */
   if (/^https:\/\/(www\.)?xivmodarchive\.com\//.test(window.location.href)) {
     GM_registerMenuCommand("Config", () => {
       GM_config.open();
