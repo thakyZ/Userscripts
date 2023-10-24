@@ -18,11 +18,31 @@
 // ==/UserScript==
 /* global $ */
 
+/* Code for later
+ *
+ * var runProcess = (elements) => new Promise((resolve) => {
+ *   var req = new XMLHttpRequest();
+ *   req.addEventListener("load", (evt, e, a) => {resolve([evt.srcElement.responseURL, evt.srcElement.status])});
+ *   req.open("GET", elements.href);
+ *   req.send();
+ * });
+ * var _ = (async function() {
+ *   var elements=document.querySelectorAll("tab-container div.js-preview-panel a");
+ *   var returns = {};
+ *   for await (const element of elements) {
+ *     var test=await runProcess(element);
+ *     returns[test[0]] = test[1]
+ *   }
+ *   console.log(returns);
+ * })();
+ */
+
 $(document).ready(() => {
   "use strict";
   let copyId = 0;
   const markdownSelector = ".markdown-body, .markdown-format";
   const codeSelector = "pre:not(.gh-csc-pre)";
+  // CSpell:ignoreRegExp /(?<=class="| )(?:tooltipped(?:-\w+)?|octicon(?:-\w+)?)(?="| )/
   const copyButton = $(`<clipboard-copy class="btn btn-sm tooltipped tooltipped-w gh-csc-button" aria-label="Copy to clipboard" data-copied-hint="Copied!">
       <svg aria-hidden="true" class="octicon octicon-clippy" height="16" viewBox="0 0 14 16" width="14">
         <path fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path>
@@ -60,6 +80,7 @@ $(document).ready(() => {
   function addButton(wrap, code) {
     if ($(wrap).length > 0 && $(wrap).attr("class") !== undefined && !$(wrap).attr("class").split(" ").contains("gh-csc-wrap")) {
       copyId++;
+      /* CSpell:ignore sindresorhus */
       // See comments from sindresorhus/refined-github/issues/1278
       $(code).attr("id", `gh-csc-${copyId}`);
       $(copyButton).attr("for", `gh-csc-${copyId}`);
@@ -107,6 +128,7 @@ $(document).ready(() => {
     });
   };
 
+  // CSpell:ignoreRegExp /ghmo:\w+/
   document.addEventListener("turbo:render", init);
   document.addEventListener("ghmo:container", init);
   document.addEventListener("ghmo:comments", init);
