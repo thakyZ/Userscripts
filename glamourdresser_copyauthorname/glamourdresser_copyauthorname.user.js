@@ -313,6 +313,7 @@ this.jQuery(($) => {
   const swiperTooDarkRegex = /background-image: (linear-gradient\(rgba\(\d+, \d+, \d+, [\d.]+\), rgba\(\d+, \d+, \d+, [\d.]+\)\), )/gi;
 
   function testImageSwiperIsDarker() {
+    // CSpell:ignoreRegExp /darkmysite_dark_mode_enabled/
     if (!$("html").hasClass("darkmysite_dark_mode_enabled")) {
       return;
     }
