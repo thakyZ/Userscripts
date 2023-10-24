@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
 // @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
-// @version      1.1.9
+// @version      1.2.0
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.glamourdresser.com/*
@@ -310,7 +310,50 @@ this.jQuery(($) => {
     }
   }
 
+  const swiperTooDarkRegex = /background-image: (linear-gradient\(rgba\(\d+, \d+, \d+, [\d.]+\), rgba\(\d+, \d+, \d+, [\d.]+\)\), )/gi;
+
+  function testImageSwiperIsDarker() {
+    if (!$("html").hasClass("darkmysite_dark_mode_enabled")) {
+      return;
+    }
+
+    const styles = $("div.elementor-carousel-image[style*=\"linear-gradient(rgba(\"][aria-label]");
+
+    for (const [index, element] of Object.entries(styles)) {
+      if (isNaN(index)) {
+        break;
+      }
+
+      if (swiperTooDarkRegex.test($(element).attr("style"))) {
+        const newStyle = $(element).attr("style").replace(swiperTooDarkRegex, "background-image: ");
+        $(element).attr("style", newStyle);
+      }
+    }
+  }
+
   const iframeCSS = btoa(GM_getResourceText("iframe"));
+
+  function callback(mutationList) {
+    for (const mutation of mutationList) {
+      if (mutation.type === "attributes") {
+        if ($(mutation.target).hasClass("elementor-carousel-image")) {
+          testImageSwiperIsDarker();
+        }
+      }
+    }
+  }
+
+  function setupMutationObserver() {
+    const targetNode = $("body")[0];
+    const config = { attributes: true, childList: true, subtree: true };
+
+    const observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
+
+    $(document).on("unload", () => {
+      observer.disconnect();
+    });
+  }
 
   function setupCSS() {
     GM_addStyle(GM_getResourceText("fix"));
@@ -368,6 +411,7 @@ this.jQuery(($) => {
         addTempModPageImage();
         setupCSS();
         handleIframes();
+        setupMutationObserver();
       },
       open() {
         GM_config.frame.setAttribute("style", "display:block;");
