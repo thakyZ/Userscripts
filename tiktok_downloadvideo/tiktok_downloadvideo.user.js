@@ -1,3 +1,5 @@
+/* CSpell:ignore tiktok */
+/* CSpell:ignore tiktak */
 // ==UserScript==
 // @name         TikTok Download Video
 // @namespace    NekoBoiNick.Web.TikTok.SaveVideo
@@ -178,7 +180,7 @@ this.jQuery(($) => {
       request.setRequestHeader("Range", "bytes=0-");
       request.setRequestHeader("Referer", "https://www.tiktok.com/");
       request.setRequestHeader("Connection", "keep-alive");
-      request.setRequestHeader("Cookie", "ttwid=1%7CHAsVQWPAFGyBYtZIobmy4-rUrsm5e-UnJ7RgGJnF3Ms%7C1690470045%7C8d79db607b7cca1113d744e8f9fcefdd0f54d6957f25496218540f6a79fd3ab8; tt_chain_token=AGvvVvBLpXi9EQZ3RXmx1g==; msToken=jgZ5aHlyibUy0fG4J4e1t7dfIKAondm8h9_qkFvcGYiVVj0DT_PQPiXEA5detmmMmdoZdtyJKfAzJXSTDP9zesk2L2xA-GGfaDeCRXLKjxsMCEoNDb4T6S6bTXxIBOS0IdLN; passport_csrf_token=e377d30e9d116dab1eed60b13885f3ef; passport_csrf_token_default=e377d30e9d116dab1eed60b13885f3ef; tt-target-idc-sign=HykYQGsGmpaAVcZr8fnARyosnwk-6aL9ymxtHLr9ncB3PfEai2c1dL-Q-hrrEaWo5qmyyHgAWpH3vD_Ui1klDcGBeGwcYT8JNsfrPIH20RViv27SAu9fHH9XioXF4BY9S1SYvL6wJ9R9QtpJmdT9ESXjr8HqYQh06PdrPJ91rd1TWKVZxUks6vQpeaJiAhMUlpT2J-waLas2svNcUhlWSBehW-IAJCE1zEVjlwBqNx0KJsTkhvOn5ylTrBugjwvQykhkzjI3LZpWUlJFQtO1iPHKvffMLOpk9CIC1bt0wgm_h2c5zt8Zjw9kKZtqTfF32nVzpzv2vD0TTkWT9yfB6SmJwEVsoF99DDAy679hObx_Kgo4r90vuzuineYnKzY4Evu63hT7Wb5nix8NQa4Uwxm-bKs4PSLr_B9MDQ8Z-1Exm5ADyuHo21VX_V9s8jRHvb6etRnjvh9S_lp0x1hl9bWF9pnE7rAbPiCdgQQg0Khvn0YR9hnd3E7OCOIjCYYw; tt_csrf_token=06hIEd20-l3Hxf1G4j83WypKylZ2jgRquZa4; s_v_web_id=verify_ljvsoiyy_4AYS74Ua_wRUv_45XW_988P_5PlYDhPOCT7F");
+      request.setRequestHeader("Cookie", "");
       */
 
       // XHR Open
@@ -223,8 +225,8 @@ this.jQuery(($) => {
       scriptNode.textContent = `(${funcToRun.toString()})()`;
     }
 
-    const targ = D.getElementsByTagName("head")[0] || D.body || D.documentElement;
-    targ.appendChild(scriptNode);
+    const tArg = D.getElementsByTagName("head")[0] || D.body || D.documentElement;
+    tArg.appendChild(scriptNode);
   }
 
   addJSNode(null, null, interceptAjax);
@@ -288,6 +290,7 @@ this.jQuery(($) => {
   }
 
   function fixLinks() {
+    /* CSpell:ignoreRegExp #tiktak */
     if (document.querySelectorAll("#tiktak-download-button").length > 0) {
       return;
     }

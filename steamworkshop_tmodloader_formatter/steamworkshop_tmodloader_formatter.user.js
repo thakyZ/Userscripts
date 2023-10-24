@@ -25,6 +25,7 @@
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
+  /* CSpell:ignoreRegExp "teamworkshop_tmodloader_formatter_data" */
   GM_deleteValue("teamworkshop_tmodloader_formatter_data");
 
   const config = new MonkeyConfig({
@@ -60,6 +61,7 @@ $(document).ready(() => {
     });
   };
 
+  /* CSpell:ignoreRegExp .tmodloadericon */
   const styleElement = $("<style>.tmodloadericon{width:16px;height:16px;display:inline-block;}</style>");
   const parseCSSIcon = (id) => {
     const currentHtml = $(styleElement).html();

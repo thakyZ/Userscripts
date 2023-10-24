@@ -157,6 +157,7 @@ this.jQuery((jAlpha) => {
     });
   }
 
+  // CSpell:ignoreRegExp /ghmo:\w+/
   on(document, "turbo:render ghmo:updatable ghmo:container ghmo:comments", init);
   init();
 });
