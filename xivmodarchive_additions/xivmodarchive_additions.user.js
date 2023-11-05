@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         XIV Mod Archive Additions
 // @namespace    NekoBoiNick.Web.XIVModArchive.Additions
-// @version      1.1.1
+// @version      1.1.3
 // @description  Adds custom things to XIV Mod Archive
 // @author       Neko Boi Nick
 // @match        https://xivmodarchive.com/*
@@ -14,9 +14,14 @@
 // @grant        GM_getResourceText
 // @grant        GM.getResourceUrl
 // @grant        GM.xmlHttpRequest
+// @grant        GM_registerMenuCommand
+// @connect      api.nekogaming.xyz
+// @connect      cdn.discordapp.com
+// @connect      static.xivmodarchive.com
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // @require      https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
 // @require      https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js
+// @require      https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/xivmodarchive_additions/xivmodarchive_additions.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/xivmodarchive_additions/xivmodarchive_additions.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
@@ -27,12 +32,15 @@
 // @resource     pageNumberElements https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/pageNumberElements.template.html
 // @resource     copyAuthorName https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/copyAuthorName.template.html
 // @resource     deleteAllMessages https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/deleteAllMessages.template.html
+// @resource     GMConfigCSS https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/GM_config-style.min.css
+// @resource     modalTemplate https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/modal.template.html
 // ==/UserScript==
-/* global $, jQuery, showSpinner, hideSpinner, showError, errorProgressBar, clearProgressBar, updateProgressBar, createProgressbar */
+/* cSpell:ignore createProgressbar */
+/* global $, jQuery, showSpinner, hideSpinner, showError, errorProgressBar, clearProgressBar, updateProgressBar, createProgressbar, GM_config */
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 /* eslint-disable no-extend-native */
-String.prototype.width = function (font, size) {
+String.prototype.width = function (font, size) { // NOSONAR
   const f = font || "arial";
   const s = size || "12px";
   const o = $("<div></div>")
@@ -47,7 +55,11 @@ String.prototype.width = function (font, size) {
 /* eslint-enable no-extend-native */
 
 $(document).ready(() => {
-  const createElements = (resource, replaceObj = {}) => {
+  const sleep = (ms) => new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+
+  function createElements(resource, replaceObj = {}) {
     const templateHtml = GM_getResourceText(resource);
     const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\r?\n<template>\r?\n {2}/gi, "")
       .replaceAll(/\r?\n<\/template>$/gi, "");
@@ -57,9 +69,9 @@ $(document).ready(() => {
     }
 
     return template;
-  };
+  }
 
-  const createFirstLastNavElements = (number, minimum, maximum) => {
+  function createFirstLastNavElements(number, minimum, maximum) {
     /* Unknown unused variable
      * const endElements = [];
      */
@@ -77,25 +89,62 @@ $(document).ready(() => {
         $(lastElement).insertBefore($("li", pagination[i])[$("li", pagination[i]).length - 1]);
       }
     }
-  };
+  }
 
-  let userNameAlt = {};
+  async function getUserNameAlts(userId) {
+    try {
+      const request = await GM.xmlHttpRequest({
+        method: "GET",
+        url: "https://api.nekogaming.xyz/ffxiv/xma/names/get.php",
+        data: `id=${userId}`,
+        responseType: "json",
+        timeout: 2000
+      });
 
-  const getUserNameAlts = () => {
-    const req = new XMLHttpRequest();
-    req.onload = () => {
-      if (req.readyState === req.DONE && req.status === 200) {
-        userNameAlt = JSON.parse(req.responseText);
+      if (request.status === 404 || request.status === 500) {
+        console.error(request);
       }
-    };
 
-    req.open("GET", "https://api.nekogaming.xyz/ffxiv/xma/names/get.php");
-    req.send();
-  };
+      if (request.DONE === 4 && request.status === 200) {
+        return request.response;
+      }
+    } catch (error) {
+      console.error("Failed to get the user's avatar.");
+      console.error(error);
+    }
 
-  getUserNameAlts();
+    return [];
+  }
 
-  const normalizeNames = name => {
+  async function getUserNameAlts() {
+    try {
+      const request = await GM.xmlHttpRequest({
+        method: "GET",
+        url: "https://api.nekogaming.xyz/ffxiv/xma/names/get.php",
+        responseType: "json",
+        timeout: 2000
+      });
+      if (request.status === 404 || request.status === 500) {
+        console.error(request);
+      }
+
+      if (request.DONE === 4 && request.status === 200) {
+        return request.response;
+      }
+    } catch (error) {
+      console.error("Failed to get the user's avatar.");
+      console.error(error);
+    }
+
+    return [];
+  }
+
+  /* Don't fetch this every time anymore.
+   * let userNameAlt = {};
+   * getUserNameAlts();
+   */
+
+  function normalizeNames(name) {
     try {
       return name.normalize();
     } catch (e) {
@@ -103,27 +152,27 @@ $(document).ready(() => {
       console.log(e);
       return name;
     }
-  };
+  }
 
-  const translateName = (name, userId = undefined) => {
+  function translateName(name, userId = undefined, userNameAlt = {}) {
     const parsedUserId = userId && !isNaN(userId) ? parseInt(userId, 10) : 0;
     if (parsedUserId !== 0 && userNameAlt[parsedUserId] !== undefined) {
       return normalizeNames(userNameAlt[parsedUserId]);
     }
 
     return normalizeNames(name);
-  };
+  }
 
-  const getDoMin = () => {
+  function getDoMin() {
     const paginationChildren = $("li", $($(".pagination")[0]));
     if ($($(paginationChildren)[0]).text() !== "1") {
       return !($($(paginationChildren)[1]).text() === "1" && $($(paginationChildren)[0]).text() === "Previous");
     }
 
     return false;
-  };
+  }
 
-  const getDoMax = number => {
+  function getDoMax(number) {
     const paginationChildren = $("li", $($(".pagination")[0]));
     const paginationChildLength = $(paginationChildren).length;
     if ($($(paginationChildren)[paginationChildLength - 1]).text() === "Next") {
@@ -131,11 +180,12 @@ $(document).ready(() => {
     }
 
     return false;
-  };
+  }
 
-  const getNumberOfPages = () => {
+  function getNumberOfPages() {
     let pages = 0;
     let data;
+    /* CSpell:ignoreRegExp \/https\?:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/user\\\/\\d\+\/i */
     if (/https?:\/\/(www\.)?xivmodarchive\.com\/user\/\d+/i.test(window.location.href)) {
       if ($("body div.container-xl.my-3 .jumbotron .row.px-4 pre").length === 0) {
         return;
@@ -159,44 +209,71 @@ $(document).ready(() => {
       }
     }
 
+    /* CSpell:ignoreRegExp \/https\?:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/dashboard\.\*\/i */
     if (/https?:\/\/(www\.)?xivmodarchive\.com\/dashboard.*/i.test(window.location.href) === false) {
       createFirstLastNavElements(pages, getDoMin(), getDoMax(pages));
     }
-  };
+  }
 
-  getNumberOfPages();
-
-  const createCustomStyles = () => {
+  function createCustomStyles() {
     GM_addStyle(GM_getResourceText("style"));
-  };
+  }
 
-  createCustomStyles();
+  function doCopyTask(element, userNameAlt) {
+    const translatedName = translateName(element.text().toString(), element.attr("href").replace(/\/user\//gi, ""), userNameAlt).replaceAll(/^\s+/gi, "").replaceAll(/\s+$/gi, "");
 
-  const createCopyName = () => {
-    const authorColumn = $(".container-xl.my-3.mod-page .jumbotron.py-3.px-3.my-0 .row.no-gutters.border.rounded");
-    const authorName = $("div.col-8", $(authorColumn));
-    $(authorName).attr("class", "col-7");
-    $(authorName).addClass("col-7-extra");
-    $(createElements("copyAuthorName")).insertAfter(authorName);
-    $("#copyNameButton").on("click", e => {
-      if (e.shiftKey) {
-        GM_setClipboard($($(".user-card-link")[1]).attr("href").replace(/\/user\//gi, ""));
-      } else {
-        GM_setClipboard(translateName($($(".user-card-link")[1]).text().toString(), $($(".user-card-link")[1]).attr("href").replace(/\/user\//gi, "")));
+    /* CSpell:ignoreRegExp \/https:\\\/\\\/\(www\\\.\)\?xivmodarchive\.com\\\/modid\\\//gi */
+    if (GM_config.get("copyAuthorNamePlusModName") && /https:\/\/(www\.)?xivmodarchive.com\/modid\//gi.test(window.location.href)) {
+      const modPage = $("#modpage-frame-left .jumbotron .row:first-child h1");
+
+      if (modPage.length === 0 || modPage.length > 1) {
+        console.error(`Mod Title was either not found or too many found. Length was ${modPage.length}`);
+        return;
       }
-    });
-  };
 
-  createCopyName();
-  // Trying to do document-on-ready in document-on-ready is a bit redundent.
+      const modName = modPage.text().replace(/\s+$/gi, "").replaceAll(" ", "_").replaceAll(" and ", "+").replaceAll(/(.) ?\((.*)\) ?(.)/gi, "$1-$2-$3");
+      const output = GM_config.get("authorNamePlusModNameFormat").replaceAll("%u", translatedName).replaceAll("%m", modName);
+      GM_setClipboard(output);
+    } else {
+      GM_setClipboard(translatedName);
+    }
+  }
+
+  function createCopyName() {
+    (async function () {
+      const authorColumn = $(".container-xl.my-3.mod-page .jumbotron.py-3.px-3.my-0 .row.no-gutters.border.rounded");
+      if (authorColumn.length === 0) {
+        return;
+      }
+
+      const authorName = $("div.col-8", $(authorColumn));
+      const userNameAlt = await getUserNameAlts($($(".user-card-link")[1]).attr("href").replace(/\/user\//gi, ""));
+      $(authorName).attr("class", "col-7");
+      $(authorName).addClass("col-7-extra");
+      $(createElements("copyAuthorName")).insertAfter(authorName);
+      $("#copyNameButton").on("click", (e) => {
+        if ($(".user-card-link:nth-child(1)").length === 0) {
+          console.warn("User card link was not found");
+          return;
+        }
+
+        if (e.shiftKey) {
+          GM_setClipboard($(".user-card-link:nth-child(1)").attr("href").replace(/\/user\//gi, ""));
+        } else {
+          doCopyTask($(".user-card-link:nth-child(1)"), userNameAlt);
+        }
+      });
+    })();
+  }
+  // Trying to do document-on-ready in document-on-ready is a bit redundant.
   // $(document).on("ready", () => {
-  // Trying to do window-on-load in document-on-ready seems to have an issue that when the tab isn't foused right away,
+  // Trying to do window-on-load in document-on-ready seems to have an issue that when the tab isn't focused right away,
   // the image does not get replaced at all.
   // $(window).on("load", () => {
 
   const encodeRawImageError = "Failed to encode raw image data. Falling back...";
 
-  const setImage = async element => {
+  async function setImage(element) {
     let imageEncoded = "";
     try {
       const dataUri = await GM.getResourceUrl("blankAvatarPng");
@@ -209,9 +286,9 @@ $(document).ready(() => {
     }
 
     $(element).attr("src", imageEncoded);
-  };
+  }
 
-  const changeAvatarImage = async () => {
+  async function changeAvatarImage() {
     const image = $("img[alt=\"User Avatar\"]").length > 0 ? $("img[alt=\"User Avatar\"]") : $("img.rounded-circle");
     if ($(image).attr("src") !== "" && (!$(image).prop("complete") || $(image).prop("naturalHeight") === 0)) {
       try {
@@ -219,7 +296,6 @@ $(document).ready(() => {
           method: "GET",
           url: $(image).attr("src"),
           responseType: "",
-          synchronous: true,
           timeout: 2000
         });
 
@@ -233,16 +309,17 @@ $(document).ready(() => {
     } else if ($(image).attr("src") === "") {
       await setImage($(image));
     }
-  };
+  }
 
   // });
+  /* CSpell:ignoreRegExp \/https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/\(modid\|user\)\\\/\/gi */
   if (/https:\/\/(www\.)?xivmodarchive\.com\/(modid|user)\//gi.test(window.location.href)) {
     (async function () {
       await changeAvatarImage();
     })();
   }
 
-  const changeIconDesigns = () => {
+  function changeIconDesigns() {
     const container = $(".container-xl.my-3.mod-page .col-4 .jumbotron.py-3.my-2 .emoji-set");
     const views = $(".emoji-block.views div.inner", container);
     const downloads = $(".emoji-block.downloads div.inner", container);
@@ -251,11 +328,10 @@ $(document).ready(() => {
     downloads.children("span.emoji").html("<i class=\"fa fa-save\"></i>");
     following.children("span.emoji").html("<i class=\"fa fa-thumbtack\"></i>");
     $("head").append("<style>.emoji-block i.fa{vertical-align: middle;}</style>");
-  };
+  }
 
-  changeIconDesigns();
-
-  const editPages = () => {
+  function editPages() {
+    /* CSpell:ignoreRegExp \/\^https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/\?\$\/gi */
     if (/^https:\/\/(www\.)?xivmodarchive\.com\/?$/gi.test(window.location.href)) {
       const badLink = $("a[href*=\"/search\"]").filter((b, a) => /sponsored=true/gi.test($(a).attr("href")));
       if ($(badLink).length > 0) {
@@ -267,6 +343,7 @@ $(document).ready(() => {
 
     // Wrap the header of the mail notification.
     // Enable tooltip on the mail header.
+    /* CSpell:ignoreRegExp \/\^https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/inbox\\\/\\d\+\/gi */
     if (/^https:\/\/(www\.)?xivmodarchive\.com\/inbox\/\d+/gi.test(window.location.href)) {
       const mailHeader = $("body > .container-xl > .jumbotron");
       if ($(mailHeader).length > 0) {
@@ -294,13 +371,11 @@ $(document).ready(() => {
         }
       }
     }
-  };
+  }
 
-  editPages();
+  const camelToSnakeCase = (str) => str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
 
-  const camelToSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
-
-  const doDeleteMessagesError = data => {
+  function doDeleteMessagesError(data) {
     hideSpinner();
     errorProgressBar("nbnDeleteAllMessages", `failed to delete message with ID: ${data[camelToSnakeCase("inboxId")]}`);
     let message = `failed to delete message:\nTitle: ${data.name}\nID: ${data[camelToSnakeCase("inboxId")]}`;
@@ -324,9 +399,9 @@ $(document).ready(() => {
     $("#error-modal").on("hidden.bs.modal", () => {
       $("#error-modal").modal("dispose");
     });
-  };
+  }
 
-  const deleteMessages = (elements, index) => {
+  async function deleteMessages(elements, index) {
     if (index >= elements.length) {
       hideSpinner();
       clearProgressBar("nbnDeleteAllMessages");
@@ -336,42 +411,66 @@ $(document).ready(() => {
 
     const inboxId = $(elements[index]).attr("data-inbox_id");
 
-    const data = {};
-    data[camelToSnakeCase("inboxId")] = inboxId;
-    const errorData = data;
+    /* eslint-disable-next-line camelcase */
+    const errorData = { inbox_id: parseInt(inboxId, 10) };
     errorData.info = undefined;
-    errorData.name = $(elements[index])
-      .find("strong:first-child")
-      .text()
-      .replace("Followed Mod Updated: ", "");
+    /**
+     * Unused now...
+     * let infoElement = $(elements[index]).find("strong:first-child");
+     *
+     * if (infoElement.length === 0) {
+     *   infoElement = $(elements[index]).find("a:first-child");
+     * }
+     *
+     * if (infoElement.length === 0) {
+     *   await deleteMessages($(elements), index + 1);
+     * }
+     *
+     * errorData.name = infoElement.text()
+     *   .replace("Followed Mod Updated: ", "");
+     **/
 
-    $.ajax({
-      url: "/api/inbox/delete",
-      type: "POST",
-      data: JSON.stringify(data),
-      contentType: "application/json"
-    }).fail(data => {
-      errorData.info = data;
-      doDeleteMessagesError(errorData);
-    }).done(data => {
-      if (!data.success) {
+    let request;
+
+    try {
+      request = await GM.xmlHttpRequest({
+        method: "POST",
+        url: "/api/inbox/delete",
+        /* eslint-disable-next-line camelcase */
+        data: JSON.stringify({ inbox_id: parseInt(inboxId, 10) }),
+        responseType: "json",
+        timeout: 2000,
+        headers: {
+          "Content-Type": "application/json",
+          Origin: "https://www.xivmodarchive.com",
+          Referer: `https://www.xivmodarchive.com/inbox/${inboxId}`
+        }
+      });
+
+      if (request.statusText.toLowerCase() !== "ok") {
         return doDeleteMessagesError(errorData);
       }
 
       updateProgressBar("nbnDeleteAllMessages", Math.ceil(((index + 1) / $(elements).length) * 100), "Deleting All Messages");
 
-      setTimeout(() => {
-        deleteMessages($(elements), index + 1);
-      }, 1000);
-    });
-  };
+      await sleep(1000);
+      await deleteMessages($(elements), index + 1);
+    } catch (error) {
+      console.error(error);
+      console.log(request);
 
-  const addDeleteAllInbox = () => {
-    if (!/https:\/\/(www\.)?xivmodarchive\.com\/inbox\/?$/gi.test(window.location.href)) {
+      errorData.info = request;
+      return doDeleteMessagesError(errorData);
+    }
+  }
+
+  function addDeleteAllInbox() {
+    const deleteAllMessageBtn = $(createElements("deleteAllMessages"));
+
+    if ($("body .container-xl .jumbotron .container-xl #delete-button").length > 0) {
       return;
     }
 
-    const deleteAllMessageBtn = $(createElements("deleteAllMessages"));
     $(deleteAllMessageBtn).insertAfter($("body .container-xl .jumbotron .display-5"));
 
     const inboxMessages = $("body .container-xl .jumbotron .container-xl .inbox-message");
@@ -383,9 +482,223 @@ $(document).ready(() => {
     $("#delete-button").click(() => {
       showSpinner();
       createProgressbar("nbnDeleteAllMessages", 0, "deleting all messages");
-      deleteMessages($(inboxMessages), 0);
+      (async function () {
+        await deleteMessages($(inboxMessages), 0);
+      })();
     });
+  }
+
+  async function getInboxMessageModId(inboxMessageId) {
+    let request;
+
+    try {
+      request = await GM.xmlHttpRequest({
+        method: "GET",
+        url: `/inbox/${inboxMessageId}`,
+        timeout: 2000
+      });
+
+      if (typeof request.statusText === "undefined" || request.statusText.toLowerCase() !== "ok") {
+        return undefined;
+      }
+
+      const getHref = $(request.responseText).find(".jumbotron .container-xl em a").attr("href");
+
+      if (typeof getHref === "undefined") {
+        console.error(new Error("getHref is of type undefined"));
+        console.debug(request);
+        return undefined;
+      }
+
+      return getHref;
+    } catch (error) {
+      console.error(error);
+      console.debug(request);
+
+      return undefined;
+    }
+  }
+
+  $.fn.outerHTML = function () {
+    return $("<div />").append(this.eq(0).clone()).html();
   };
 
-  addDeleteAllInbox();
+  async function addAnchorsToInboxMessages() {
+    const inboxMessages = $("body .container-xl .jumbotron .container-xl .inbox-message");
+
+    for await (const [inboxIndex, inboxElement] of Object.entries(inboxMessages)) {
+      if (isNaN(inboxIndex)) {
+        return;
+      }
+
+      const previousStrong = $(inboxElement).children().find("strong");
+      const newHref = await getInboxMessageModId($(inboxElement).attr("data-inbox_id"));
+
+      if (typeof newHref === "undefined" || newHref.name === "Error") {
+        continue;
+      }
+
+      if (typeof newHref !== "string") {
+        console.debug({ type: (typeof newHref), value: newHref });
+      }
+
+      for await (const [strongIndex, strongElement] of Object.entries(previousStrong)) {
+        if (isNaN(strongIndex)) {
+          return;
+        }
+
+        const oldStrongElement = $(strongElement).clone();
+
+        const newLink = $(`<a class="text-light" href="${newHref}">${$(oldStrongElement).outerHTML()}</a>`);
+
+        $(strongElement).replaceWith($(newLink));
+      }
+
+      await sleep(1000);
+    }
+  }
+
+  const setupGMConfigFrame = () => {
+    const configWrapper = $(createElements("modalTemplate", { exampleModal: GM_config.id, exampleModalLabel: `${GM_config.id}_label` }));
+    $("body").append(configWrapper);
+    return configWrapper[0];
+  };
+
+  const gmConfigFrame = setupGMConfigFrame();
+
+  function modifyInboxScreen() {
+    /* CSpell:ignoreRegExp \/\https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/inbox\\\/\?\/gi */
+    if (!/https:\/\/(www\.)?xivmodarchive\.com\/inbox\/?/gi.test(window.location.href)) {
+      return;
+    }
+
+    addDeleteAllInbox();
+    if (GM_config.get("addAnchorsToInboxMessages")) {
+      // Disabled because spam-ey
+      (async function () {
+        return;
+        // Disabled due to possible increased network traffic for the host.
+        /* eslint-disable-next-line */
+        await addAnchorsToInboxMessages(); // NOSONAR
+      })();
+    }
+  }
+
+  /* CSpell:ignoreRegExp \/\^https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/\/ */
+  if (/^https:\/\/(www\.)?xivmodarchive\.com\//.test(window.location.href)) {
+    GM_registerMenuCommand("Config", () => {
+      GM_config.open();
+    });
+  }
+
+  /* eslint-disable-next-line camelcase */
+  function modifyGM_configFrame(frame) {
+    $(frame).attr("style", "background-color:unset !important;display:block;");
+    $(frame).find(`#${GM_config.id}_wrapper`).addClass("modal-dialog");
+    const oldChildren = $(frame).find(`#${GM_config.id}_wrapper`).find(`div[id*="${GM_config.id}_"]:not(#${GM_config.id}_content)`);
+    const modalContent = $(`<div class="modal-content" id="${GM_config.id}_content"></div>`);
+    $(frame).find(`#${GM_config.id}_wrapper`).append(modalContent);
+
+    if (oldChildren.length === 0) {
+      console.error("old child elements of gmConfigFrame were not found.");
+      return;
+    }
+
+    for (const [index, element] of Object.entries(oldChildren)) {
+      if (isNaN(index)) {
+        continue;
+      }
+
+      $(element).appendTo($(modalContent));
+    }
+
+    const header = $(modalContent).find(`#${GM_config.id}_header`);
+    const headerText = header.text();
+    header.addClass("modal-header");
+
+    header.html(`<h5 class="modal-title" id="${GM_config.id}_label">${headerText}</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>`);
+
+    const sections = $(modalContent).find(`div[id*="${GM_config.id}_section_*]`);
+    const modalBody = $("<div class=\"modal-body\"></div>");
+    $(header).after(modalBody);
+
+    for (const [index, element] of Object.entries(sections)) {
+      if (isNaN(index)) {
+        continue;
+      }
+
+      $(element).appendTo($(modalBody));
+    }
+
+    const modalFooter = $(modalContent).find(`${GM_config.id}_buttons_holder`);
+    modalFooter.addClass("modal-footer");
+    const closeButton = modalFooter.find(`${GM_config.id}_closeBtn`);
+    closeButton.attr("data-dismiss", "modal");
+    closeButton.addClass("btn", "btn-secondary");
+    const saveButton = modalFooter.find(`${GM_config.id}_saveBtn`);
+    saveButton.addClass("btn", "btn-primary");
+  }
+
+  const gmConfigCSS = GM_getResourceText("GMConfigCSS");
+
+  GM_config.init({
+    id: "XMA_Additions_Config",
+    title: "XIV Mod Archive Additions Config",
+    fields: {
+      addAnchorsToInboxMessages: {
+        label: "Add Anchors to Inbox Messages",
+        type: "checkbox",
+        default: false
+      },
+      copyAuthorNamePlusModName: {
+        label: "Copy Author Name plus the Mod Name",
+        type: "checkbox",
+        default: false
+      },
+      authorNamePlusModNameFormat: {
+        label: "Author Name plus Mod name Format",
+        type: "textbox",
+        default: "[%u] %m"
+      },
+      debug: {
+        label: "Debug",
+        type: "checkbox",
+        default: false
+      }
+    },
+    events: {
+      init() {
+        /**
+         * Unused.
+         * GM_config.frame.setAttribute("style", "display:none;");
+         */
+
+        modifyInboxScreen();
+        editPages();
+        getNumberOfPages();
+        createCustomStyles();
+        createCopyName();
+        changeIconDesigns();
+      },
+      open() {
+        /**
+         * Unused.
+         * GM_config.frame.setAttribute("style", "display:block;");
+         */
+        modifyGM_configFrame(GM_config.frame);
+        unsafeWindow.$(GM_config.frame).modal("show");
+      },
+      save(val) {
+        console.debug(val);
+      },
+      close() {
+        /**
+         * Unused.
+         * GM_config.frame.setAttribute("style", "display:none;");
+         */
+      }
+    },
+    css: gmConfigCSS,
+    frame: gmConfigFrame
+  });
 });

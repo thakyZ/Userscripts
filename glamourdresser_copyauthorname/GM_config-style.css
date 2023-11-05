@@ -56,6 +56,10 @@ body.nbn_dark #GlamourDresser_Additions_Config {
 body:not(.nbn_dark) #GlamourDresser_Additions_Config {
   background: var(--body-background) !important;
 }
+body #GlamourDresser_Additions_Config_buttons_holder {
+  color: #000;
+  text-align: right;
+}
 body #GlamourDresser_Additions_Config {
   inset: calc(50% - 150px) auto auto calc(50% - 300px);
   margin: 0px;
@@ -66,6 +70,68 @@ body #GlamourDresser_Additions_Config {
   background: transparent !important;
   width: 600px;
   height: 300px;
+  background: #fff;
+}
+body #GlamourDresser_Additions_Config * {
+  font-family: arial, tahoma, myriad pro, sans-serif;
+}
+body #GlamourDresser_Additions_Config input[type="radio"] {
+  margin-right: 8px;
+}
+body #GlamourDresser_Additions_Config .indent40 {
+  margin-left: 40%;
+}
+body #GlamourDresser_Additions_Config .field_label {
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 6px;
+}
+body #GlamourDresser_Additions_Config .radio_label {
+  font-size: 12px;
+}
+body #GlamourDresser_Additions_Config .block {
+  display: block;
+}
+body #GlamourDresser_Additions_Config .saveclose_buttons {
+  margin: 16px 10px 10px;
+  padding: 2px 12px;
+}
+body #GlamourDresser_Additions_Config .reset,
+body #GlamourDresser_Additions_Config .reset a {
+  color: #000;
+  text-align: right;
+}
+body #GlamourDresser_Additions_Config .config_header {
+  font-size: 20pt;
+  margin: 0;
+}
+body #GlamourDresser_Additions_Config .config_desc,
+body #GlamourDresser_Additions_Config .section_desc,
+body #GlamourDresser_Additions_Config .reset {
+  font-size: 9pt;
+}
+body #GlamourDresser_Additions_Config .center {
+  text-align: center;
+}
+body #GlamourDresser_Additions_Config .section_header_holder {
+  margin-top: 8px;
+}
+body #GlamourDresser_Additions_Config .config_var {
+  margin: 0 0 4px;
+}
+body #GlamourDresser_Additions_Config .section_header {
+  background: #414141;
+  border: 1px solid #000;
+  color: #fff;
+  font-size: 13pt;
+  margin: 0;
+}
+body #GlamourDresser_Additions_Config .section_desc {
+  background: #efefef;
+  border: 1px solid #ccc;
+  color: #575757;
+  font-size: 9pt;
+  margin: 0 0 6px;
 }
 body .config-wrapper {
   align-items: flex-start;

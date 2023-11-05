@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Quizlet Unlock
 // @namespace    NekoBoiNick.Web.Quizlet.Unlock
-// @version      1.0.1
+// @version      1.0.1.1
 // @description  "Unlcoks Quizlet Paywalls. Please do not use this to cheat on tests, I used this to just not have to pay for Quizlet when studying."
 // @author       Neko Boi Nick
 // @match        https://quizlet.com/*
@@ -48,11 +48,11 @@ $(document).ready(() => {
     }
   }
 
-  const setupMutationObserver = () => {
+  function setupMutationObserver() {
     const targetNode = $("body")[0];
     const config = { attributes: true, childList: true, subtree: true };
 
-    const callback = mutationList => {
+    function callback(mutationList) {
       for (const mutation of mutationList) {
         if (mutation.type === "attributes" || mutation.type === "childList" || mutation.type === "subtree") {
           hideLoginButton();
@@ -60,7 +60,7 @@ $(document).ready(() => {
           showAllTerms();
         }
       }
-    };
+    }
 
     const observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
@@ -68,7 +68,7 @@ $(document).ready(() => {
     $(document).on("unload", () => {
       observer.disconnect();
     });
-  };
+  }
 
   let id = -1;
   id = setInterval(() => {

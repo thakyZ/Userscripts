@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
 // @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
-// @version      1.1.9
+// @version      1.2.0
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
 // @match        https://www.glamourdresser.com/*
@@ -43,7 +43,7 @@ this.jQuery(($) => {
       }
 
       for (const [key, value] of Object.entries(data)) {
-        if (Object.prototype.hasOwnProperty.call(data, key) || !Object.prototype.hasOwnProperty.call(data, key)) {
+        if (Object.hasOwn(data, key) || !Object.hasOwn(data, key)) {
           prevData[key] = value;
         }
       }
@@ -61,7 +61,7 @@ this.jQuery(($) => {
       }
 
       for (const [key, value] of Object.entries(data)) {
-        if (!Object.prototype.hasOwnProperty.call(prevData, key)) {
+        if (!Object.hasOwn(prevData, key)) {
           prevData[key] = value;
         }
       }
@@ -76,7 +76,7 @@ this.jQuery(($) => {
       const prevData = $(element).data(name) === undefined ? {} : $(element).data(name);
 
       for (const key of keys) {
-        if (Object.prototype.hasOwnProperty.call(prevData, key)) {
+        if (Object.hasOwn(prevData, key)) {
           prevData.delete(key);
         }
       }
@@ -91,7 +91,7 @@ this.jQuery(($) => {
       const data = $(element).data(name);
       let stringBuilder = "";
       for (const [key, value] of Object.entries(data)) {
-        if (Object.prototype.hasOwnProperty.call(data, key)) {
+        if (Object.hasOwn(data, key)) {
           stringBuilder += `--${key}: ${value}; `;
         }
       }
@@ -310,7 +310,51 @@ this.jQuery(($) => {
     }
   }
 
+  const swiperTooDarkRegex = /background-image: (linear-gradient\(rgba\(\d+, \d+, \d+, [\d.]+\), rgba\(\d+, \d+, \d+, [\d.]+\)\), )/gi;
+
+  function testImageSwiperIsDarker() {
+    // CSpell:ignoreRegExp /darkmysite_dark_mode_enabled/
+    if (!$("html").hasClass("darkmysite_dark_mode_enabled")) {
+      return;
+    }
+
+    const styles = $("div.elementor-carousel-image[style*=\"linear-gradient(rgba(\"][aria-label]");
+
+    for (const [index, element] of Object.entries(styles)) {
+      if (isNaN(index)) {
+        break;
+      }
+
+      if (swiperTooDarkRegex.test($(element).attr("style"))) {
+        const newStyle = $(element).attr("style").replace(swiperTooDarkRegex, "background-image: ");
+        $(element).attr("style", newStyle);
+      }
+    }
+  }
+
   const iframeCSS = btoa(GM_getResourceText("iframe"));
+
+  function callback(mutationList) {
+    for (const mutation of mutationList) {
+      if (mutation.type === "attributes") {
+        if ($(mutation.target).hasClass("elementor-carousel-image")) {
+          testImageSwiperIsDarker();
+        }
+      }
+    }
+  }
+
+  function setupMutationObserver() {
+    const targetNode = $("body")[0];
+    const config = { attributes: true, childList: true, subtree: true };
+
+    const observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
+
+    $(document).on("unload", () => {
+      observer.disconnect();
+    });
+  }
 
   function setupCSS() {
     GM_addStyle(GM_getResourceText("fix"));
@@ -324,7 +368,7 @@ this.jQuery(($) => {
     if (/https:\/\/(www\.)?glamourdresser\.com\/wp-admin\/post(-new)?\.php/gi.test(window.location.href)) {
       const iframes = $("iframe");
       for (const frame in iframes) {
-        if (Object.prototype.hasOwnProperty.call(iframes, frame) && !isNaN(parseInt(frame, 10))) {
+        if (Object.hasOwn(iframes, frame) && !isNaN(parseInt(frame, 10))) {
           $(iframes[frame]).ready(() => {
             if (iframes[frame].contentDocument !== undefined || iframes[frame].contentDocument !== null) {
               const iframe = iframes[frame].contentDocument;
@@ -368,6 +412,7 @@ this.jQuery(($) => {
         addTempModPageImage();
         setupCSS();
         handleIframes();
+        setupMutationObserver();
       },
       open() {
         GM_config.frame.setAttribute("style", "display:block;");

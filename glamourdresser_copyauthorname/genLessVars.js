@@ -4,7 +4,7 @@ const path = require("path");
 async function handleMatches(matches, variables, doneAlready, lastCount) {
   if (matches !== null) {
     for (const match in matches) {
-      if (Object.prototype.hasOwnProperty.call(matches, match)) {
+      if (Object.hasOwn(matches, match)) {
         if (!doneAlready.some((e) => e === matches[match])) {
           const gotMatch = matches[match];
           variables.push(`--temp_color-${lastCount}: ${gotMatch};`);
@@ -70,7 +70,7 @@ async function run() {
 
   if (variables.length > 0) {
     for (const variable in variables) {
-      if (Object.prototype.hasOwnProperty.call(variables, variable)) {
+      if (Object.hasOwn(variables, variable)) {
         const lessVariable = variables[variable].replaceAll(/^--([a-z0-9_-]+): .+$/gim, "$1");
         const color = variables[variable].replaceAll(/^--([a-z0-9_-]+): (.+);$/gim, "$2");
         const lessVariableCamel = lessVariable.replaceAll(/([-_][a-z0-9])/gi, (cases) =>

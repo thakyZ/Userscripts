@@ -55,7 +55,7 @@ function parseFileKeys() {
   const files = getFiles();
   const items = {};
   for (const [key, value] of Object.entries(files)) {
-    if (Object.prototype.hasOwnProperty.call(items, value) === false) {
+    if (Object.hasOwn(items, value) === false) {
       items[value] = {
         files: [],
         options: {

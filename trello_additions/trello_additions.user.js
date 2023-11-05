@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Trello Additions
 // @namespace    NekoBoiNick.Web.Trello.Additions
-// @version      1.0.0
+// @version      1.0.0.1
 // @description  Adds features to trello specifically for FFXIV mods.
 // @author       Neko Boi Nick
 // @match        https://trello.com/*
@@ -23,7 +23,7 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global GM_config */
+/* global jQuery, GM_config */
 this.jQuery = jQuery.noConflict(true);
 
 this.jQuery(($) => {

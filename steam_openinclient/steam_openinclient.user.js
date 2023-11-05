@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Open URL in Steam Button
 // @namespace    NekoBoiNick.Web.Steam.OpenInClient
-// @version      1.0.2
+// @version      1.0.3
 // @description  Adds a button to open pages in the Steam client.
 // @author       Neko Boi Nick
 // @match        https://steamcommunity.com/*
@@ -9,7 +9,7 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=store.steampowered.com
 // @license      MIT
 // @grant        GM_addStyle
-// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/steam_openinclient/steam_openinclient.user.js
 // @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/steam_openinclient/steam_openinclient.user.js
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
@@ -28,8 +28,12 @@ this.jQuery(($) => {
   const steamOpenUrl = "steam://openurl/";
   const globalHeader = $("#global_header .content");
   const openButton = createOpenButton();
-  if ($("#global_actions .user_avatar.playerAvatar").length > 0) {
-    $("#global_actions .user_avatar.playerAvatar").after(openButton);
+  if ($("#global_actions").children().length > 0) {
+    $("#global_actions").children().last().after(openButton);
+    if ($("#global_actions").children().find(".user_avatar").length === 0) {
+      console.log($(openButton).find(".open-in-steam").length);
+      $(".open-in-steam").css({ marginTop: "2px" });
+    }
   } else {
     $(globalHeader).append(openButton);
   }

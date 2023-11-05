@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         XIV Party Finder Additions
-// @namespace    NekoBoiNick.Web.XIVPF.Additions
-// @version      1.0.1
+// @namespace    NekoBoiNick.Web.XivPF.Additions
+// @version      1.0.1.1
 // @description  Adds some additional feature to Ko-Fi
 // @author       Neko Boi Nick
 // @match        https://xivpf.com/listings
@@ -56,7 +56,7 @@ this.jQuery(($) => {
       }
 
       for (const key in saved) {
-        if (Object.prototype.hasOwnProperty.call(saved, key)) {
+        if (Object.hasOwn(saved, key)) {
           state[key] = saved[key];
         }
       }
@@ -148,21 +148,21 @@ this.jQuery(($) => {
       let transformValue = "";
 
       switch (label) {
-      case "north america":
-        transformValue = "NA";
-        break;
-      case "europe":
-        transformValue = "EU";
-        break;
-      case "japan":
-        transformValue = "JA";
-        break;
-      case "oceania":
-        transformValue = "OC";
-        break;
-      default:
-        transformValue = undefined;
-        break;
+        case "north america":
+          transformValue = "NA";
+          break;
+        case "europe":
+          transformValue = "EU";
+          break;
+        case "japan":
+          transformValue = "JA";
+          break;
+        case "oceania":
+          transformValue = "OC";
+          break;
+        default:
+          transformValue = undefined;
+          break;
       }
 
       const newOption = `<option value="${transformValue}">${label.capitalizeSentence()} (${getTotalListings(optgroup)})</option>`;
@@ -185,7 +185,7 @@ this.jQuery(($) => {
 
       const { centre } = elem.dataset;
 
-      if (!Object.prototype.hasOwnProperty.call(dataCentres, centre)) {
+      if (!Object.hasOwn(dataCentres, centre)) {
         dataCentres[centre] = 0;
       }
 
@@ -201,7 +201,7 @@ this.jQuery(($) => {
 
       let count = 0;
 
-      if (Object.prototype.hasOwnProperty.call(dataCentres, centre)) {
+      if (Object.hasOwn(dataCentres, centre)) {
         count = dataCentres[centre];
       }
 

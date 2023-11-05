@@ -48,14 +48,14 @@ this.jQuery(($) => {
       replace(text, type) {
         function getType(type) {
           switch (type) {
-          case cssKeys.customCSS.Dark:
-            return cssKeys.customCSS.Dark[1].toString();
-          case cssKeys.customCSS.Black:
-            return cssKeys.customCSS.Black[1].toString();
-          case cssKeys.customCSS.Light:
-            return cssKeys.customCSS.Light[1].toString();
-          default:
-            return "";
+            case cssKeys.customCSS.Dark:
+              return cssKeys.customCSS.Dark[1].toString();
+            case cssKeys.customCSS.Black:
+              return cssKeys.customCSS.Black[1].toString();
+            case cssKeys.customCSS.Light:
+              return cssKeys.customCSS.Light[1].toString();
+            default:
+              return "";
           }
         }
 

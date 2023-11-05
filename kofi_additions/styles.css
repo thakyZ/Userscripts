@@ -65,3 +65,7 @@
   background-color: var(--text-success);
   min-height: 17px;
 }
+#nbnMass #nbnMassStatus[status="running"] {
+  background-color: var(--error-text-color);
+  min-height: 17px;
+}

@@ -19,19 +19,19 @@ GM_config.init({
           }
 
           switch (pos) {
-          case "right": case "below":
-            if (pos === "below") {
-              parentNode.insertAfter(create("br", {}));
-            }
+            case "right": case "below":
+              if (pos === "below") {
+                parentNode.insertAfter(create("br", {}));
+              }
 
-            parentNode.insertAfter(labelEl);
-            break;
-          default:
-            if (pos === "above") {
-              parentNode.insertBefore(create("br", {}), beforeEl);
-            }
+              parentNode.insertAfter(labelEl);
+              break;
+            default:
+              if (pos === "above") {
+                parentNode.insertBefore(create("br", {}), beforeEl);
+              }
 
-            parentNode.insertBefore(labelEl, beforeEl);
+              parentNode.insertBefore(labelEl, beforeEl);
           }
         }
 

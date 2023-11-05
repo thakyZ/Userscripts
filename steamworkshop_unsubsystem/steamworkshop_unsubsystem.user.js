@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Steam Workshop Unsubscribe Systematically
 // @namespace    NekoBoiNick.Web.Steam.Workshop.UnSubSystematically.
-// @version      1.0.0
+// @version      1.0.0.1
 // @description  Adds a new button to unsubscribe from a collection systematically instead of all at once.
 // @author       Neko Boi Nick
 // @match        https://steamcommunity.com/sharedfiles/filedetails/?id=*
@@ -13,10 +13,10 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   "use strict";
   function unSubSystematically() {
     const subbedMods = $("[class^='general_btn subscribe toggled']").children();

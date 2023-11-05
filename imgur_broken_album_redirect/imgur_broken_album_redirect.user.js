@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Imgur Broken Album Redirect Script
 // @namespace    NekoBoiNick.Imgur.BrokenAlbum
-// @version      1.0.0
+// @version      1.0.0.1
 // @description  Redirects the favorited albums to a working link
 // @author       Neko Boi Nick
 // @match        https://imgur.com/user/*
@@ -16,10 +16,10 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, waitForKeyElements */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global waitForKeyElements */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   const debug = false;
 
   function setupMyClass(jNode) {

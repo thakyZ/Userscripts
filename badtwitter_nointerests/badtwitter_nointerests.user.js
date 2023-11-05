@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bad Twitter No Interests
 // @namespace    NekoBoiNick.Web.Twitter.NoInterests
-// @version      1.0.5.2
+// @version      1.0.5.3
 // @description  Disables all of what Twitter thinks you are interested in.
 // @author       Neko Boi Nick
 // @match        https://twitter.com/*
@@ -30,7 +30,7 @@ this.jQuery(function ($) {
     + "13.41,12L16.29,9.12L14.88,7.71L12,10.59\"></path>",
     RUN: "<path d=\"M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,16.5L16,12L10,7.5V16.5Z\"></path>"
   };
-  const createElements = (resource, replaceObj = {}) => {
+  function createElements(resource, replaceObj = {}) {
     const templateHtml = GM_getResourceText(resource);
     const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\r?\n<template>\r?\n {2}/gi, "")
       .replaceAll(/\r?\n<\/template>$/gi, "");
@@ -40,7 +40,7 @@ this.jQuery(function ($) {
     }
 
     return template;
-  };
+  }
 
   const sleep = (ms) => new Promise((resolve) => {
     setTimeout(resolve, ms);
@@ -122,7 +122,7 @@ this.jQuery(function ($) {
 
   let id = -1;
   let nextCooldown = 1000;
-  const runTest = async (div, index) => {
+  async function runTest(div, index) {
     if (index >= div.length || id === -1) {
       await buttonElements.progress.end();
       return;
@@ -142,9 +142,9 @@ this.jQuery(function ($) {
 
     await sleep(nextCooldown);
     await runTest(div, index + 1);
-  };
+  }
 
-  const runInterestBlocker = async () => {
+  async function runInterestBlocker() {
     if (id !== -1 || (await buttonElements.progress.locked()) !== false) {
       return;
     }
@@ -160,9 +160,9 @@ this.jQuery(function ($) {
       clearInterval(id);
       clearId();
     }
-  };
+  }
 
-  const createButtons = (target) => {
+  function createButtons(target) {
     const titleBar = $(target).find("span:contains(\"Interests\")");
     const descBox = $(target).find("span:contains(\"These are some of the interests matched to you based on your profile\")");
     if (typeof buttonElements.buttons === "undefined" && descBox.length > 0 && titleBar.length > 0) {
@@ -182,18 +182,18 @@ this.jQuery(function ($) {
         })();
       });
     }
-  };
+  }
 
   GM_addStyle(GM_getResourceText("style"));
 
-  const setupMutationObserver = () => {
+  function setupMutationObserver() {
     const targetNode = $("body")[0];
     const config = { attributes: true, childList: true, subtree: true };
 
     const callback = (mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.type === "childList") {
-          if ($(mutation.target).is("section[aria-label=\"Section details\"]>div:last-child>div") || $(mutation.target).is("section[aria-label=\"Section details\"]")) {
+          if ($(mutation.target).is("section[aria-label=\"Section details\"] > div:last-child > div") || $(mutation.target).is("section[aria-label=\"Section details\"]")) {
             if (/https:\/\/twitter\.com\/settings\/your_twitter_data\/twitter_interests/i.test(window.location.href)) {
               createButtons($(mutation.target).parent().parent());
             }
@@ -212,7 +212,7 @@ this.jQuery(function ($) {
     $(document).on("unload", () => {
       observer.disconnect();
     });
-  };
+  }
 
   setupMutationObserver();
 });

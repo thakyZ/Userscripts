@@ -25,6 +25,7 @@
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
+  /* CSpell:ignoreRegExp "teamworkshop_tmodloader_formatter_data" */
   GM_deleteValue("teamworkshop_tmodloader_formatter_data");
 
   const config = new MonkeyConfig({
@@ -38,7 +39,7 @@ $(document).ready(() => {
     },
   });
   let itemIcons;
-  const checkItemsSet = cb => {
+  const checkItemsSet = (cb) => {
     const value = config.get("key");
     return value !== undefined && value !== "" ? sendItems(value, cb) : null;
   };
@@ -60,8 +61,9 @@ $(document).ready(() => {
     });
   };
 
+  /* CSpell:ignoreRegExp .tmodloadericon */
   const styleElement = $("<style>.tmodloadericon{width:16px;height:16px;display:inline-block;}</style>");
-  const parseCSSIcon = id => {
+  const parseCSSIcon = (id) => {
     const currentHtml = $(styleElement).html();
     return currentHtml.indexOf(`.tmodloadericon.item-${id}`) > -1 ? null : $(styleElement).html(currentHtml.concat(`.tmodloadericon.item-${id}{background-image:url("${itemIcons[id]}");}`));
   };

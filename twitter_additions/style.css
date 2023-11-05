@@ -1,0 +1,15 @@
+section[aria-label="Sign up"] a[nbn-style="margin-bottom:12px"] {
+  margin-bottom: 12px;
+}
+section[aria-label="Sign up"] a[nbn-style="hover:toggle(background-color:rgb(255,255,255);background-color:rgb(230,230,230))"] {
+  background-color: #ffffff;
+}
+section[aria-label="Sign up"] a[nbn-style="hover:toggle(background-color:rgb(255,255,255);background-color:rgb(230,230,230))"]:hover {
+  background-color: #e6e6e6;
+}
+div.bot-sentinel-account-status[nbn-style="max-height:20px"] {
+  max-height: 20px;
+}
+div[dir="auto"][nbn-style="max-height:20px"] {
+  max-height: 20px;
+}
