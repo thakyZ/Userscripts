@@ -15,7 +15,7 @@
 // @grant        GM.xmlHttpRequest
 // @grant        GM_getValue
 // @grant        GM_setValue
-// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
 // @require      https://cdn.jsdelivr.net/gh/thakyz/Userscripts/library/nekogaming.userscript.lib.min.js
 // @require      https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/kofi_additions/kofi_additions.user.js
@@ -23,18 +23,19 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/styles.min.css
-// @resource     copyauthor https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/copyauthor.template.html
-// @resource     notifButtons https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/notifButtons.template.html
+// @resource     copyAuthor https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/copyauthor.template.html
+// @resource     notificationButtons https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/notifButtons.template.html
 // ==/UserScript==
 /* global jQuery, GM_config */
 this.jQuery = jQuery.noConflict(true);
 
+// cSpell:ignore followee, useruploads, coffeeshop
+// cSpell:ignoreRegExp /(?<="\.?)kfds(?=\-)/
+// cSpell:ignoreRegExp /(?<=\-(?:right|left)\-)mrgn(?=-\d+\")/
+// cSpell:ignoreRegExp /(?<=\?)txid(?=\=)/
+
 this.jQuery(($) => {
   "use strict";
-
-  GM_config.init({
-
-  });
 
   const sleep = (ms) => new Promise((resolve) => {
     setTimeout(resolve, ms);
@@ -68,7 +69,7 @@ this.jQuery(($) => {
 
   let notificationScrollCache = 0;
 
-  function runNotificationModifyMass(operation) {
+  async function runNotificationModifyMass(operation) {
     const getOperation = () => {
       const _operation = operation.replace("nbn", "");
       let output = "input[id*=\"%type%\"]:%status%";
@@ -89,29 +90,29 @@ this.jQuery(($) => {
       return output;
     };
 
-    return new Promise((resolve, reject) => {
-      (async function () {
-        for (const [key, value] of Object.entries($(getOperation()))) {
-          if (!isNaN(key)) {
-            consoleDebug("Setup: " + $(value).parents(".faq-wrapper").find("div:first-child div").text());
-            notificationScrollCache = $("html, body").prop("scrollTop");
-            $(value).click(function () {
-              $("html, body").animate({ scrollTop: notificationScrollCache }, 800);
-              consoleDebug("Clicked: " + $(this).parents(".faq-wrapper").find("div:first-child div").text());
-            });
-            // Disable for now:
-            // $(value).click();
-            await sleep(3000); // eslint-disable-line no-await-in-loop
-          }
+    try {
+      for await (const [index, element] of Object.entries($(getOperation()))) {
+        if (isNaN(Number(index))) {
+          continue;
         }
-      })().then((error) => {
-        if (error) {
-          reject(error, false);
-        }
+        consoleDebug("Setup: " + $(element).parents(".faq-wrapper").find("div:first-child div").text());
+        notificationScrollCache = $("html, body").prop("scrollTop");
+        $(element).click(function () {
+          $("html, body").animate({ scrollTop: notificationScrollCache }, 800);
+          consoleDebug("Clicked: " + $(this).parents(".faq-wrapper").find("div:first-child div").text());
+        });
+        // Disable for now:
+        $(element).click();
+        await sleep(3000);
+      }
+    } catch (error) {
+      if (error) {
+        return Promise.reject([error, false]);
+      }
+    }
 
-        resolve(undefined, true);
-      });
-    });
+
+    return Promise.resolve([undefined, true]);
   }
 
   // Site url regex matches.
@@ -121,35 +122,40 @@ this.jQuery(($) => {
 
   // Fix shop gradient function regex and strings.
   const badGradientRegex = /background-image: linear-gradient\(180deg, rgb\(229 211 149 \/ 16%\), rgb\(244 240 229 \/ 30%\)\), url\('(https:\/\/storage.ko-fi.com\/cdn\/useruploads\/post\/.*\..{3,4})'\)/i;
-  // OLD: const badGradientRegex = /linear-gradient\(rgba\(229, 211, 149, 0\.16\), rgba\(244, 240, 229, 0\.3\)\), url\("(https:\/\/storage.ko-fi.com\/cdn\/useruploads\/post\/.*\..{3,4})"\)/i;
+  /**
+   * OLD:
+   * const badGradientRegex = /linear-gradient\(rgba\(229, 211, 149, 0\.16\), rgba\(244, 240, 229, 0\.3\)\), url\("(https:\/\/storage.ko-fi.com\/cdn\/useruploads\/post\/.*\..{3,4})"\)/i;
+   */
   const _newGradient = "linear-gradient(180deg, rgb(5 5 5 / 16%), rgb(25 25 25 / 30%))";
 
   function showStatus(error, status) {
     if (status === false) {
       $("#nbnMassStatus").attr("status", "fail");
-      $("#nbnMassStatus").text("Error: " + error.nessage);
+      $("#nbnMassStatus").text("Error: " + error.message);
     } else {
       $("#nbnMassStatus").attr("status", "success");
-      $("#nbnMassStatus").text("Sucess!");
+      $("#nbnMassStatus").text("Success!");
     }
   }
 
   function createNotificationsMass() {
-    const notifButtons = $.fn.createElement("notifButtons", {});
+    const notificationButtons = $.fn.createElement("notificationButtons", {});
 
     const creatorsIFollowBox = $("#mainView > div > div:nth-child(3) > div:first-child > div:last-child");
     if ($(creatorsIFollowBox).attr("id") === "nbnMass") {
       return;
     }
 
-    $(creatorsIFollowBox).after($(notifButtons));
+    $(creatorsIFollowBox).after($(notificationButtons));
 
-    $(notifButtons).children().find("button").each((index, element) => {
+    $(notificationButtons).children().find("button").each((index, element) => {
       $(element).on("click", function () {
-        $("#nbnMassStatus").attr("status", "running");
-        $("#nbnMassStatus").text("Running...");
-        runNotificationModifyMass($(this).attr("id"))
-          .then((error, status) => showStatus(error, status));
+        (async function() {
+          $("#nbnMassStatus").attr("status", "running");
+          $("#nbnMassStatus").text("Running...");
+          const (error, status) = await runNotificationModifyMass($(this).attr("id"));
+          showStatus(error, status);
+        })();
       });
     });
   }
@@ -159,7 +165,10 @@ this.jQuery(($) => {
 
     for (const [, element] of Object.entries(shops)) {
       const matches = $(element).attr("style").match(badGradientRegex);
-      // OLD: const matches = $(element).css("background-image").match(badGradientRegex);
+      /**
+       * OLD:
+       * const matches = $(element).css("background-image").match(badGradientRegex);
+       */
       if (matches !== null && matches.length === 2) {
         const newGradient = "url('" + matches[1] + "'), " + _newGradient;
         $(element).css({ backgroundImage: newGradient });
@@ -179,7 +188,7 @@ this.jQuery(($) => {
       return;
     }
 
-    const copyModNameButton = $.fn.createElement("copyauthor", {});
+    const copyModNameButton = $.fn.createElement("copyAuthor", {});
 
     $(copyModNameButton).attr("id", "copy-mod-btn");
     $(copyModNameButton).removeClass("btn-x-small-copy-author").addClass("btn-x-small-copy-mod-name");
@@ -201,6 +210,10 @@ this.jQuery(($) => {
 
     if (pageType === 0) {
       $(placement.concat(" + div")).append($(copyModNameButton));
+      /**
+       * OLD:
+       * $(placement.concat(" + div")).css({ right: "calc(50% - 85px)", position: "absolute" });
+       */
       $(copyModNameButton).on("click", function () {
         GM_setClipboard(transformModName(this));
       });
@@ -212,7 +225,7 @@ this.jQuery(($) => {
       return;
     }
 
-    const copyAuthorButton = $.fn.createElement("copyauthor", {});
+    const copyAuthorButton = $.fn.createElement("copyAuthor", {});
 
     let placement;
     let newSpacer;

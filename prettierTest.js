@@ -80,4 +80,6 @@ function getFileLength() {
   return items;
 }
 
-export const fileLengths = getFileLength();
+module.exports = {
+  fileLengths: getFileLength(),
+};

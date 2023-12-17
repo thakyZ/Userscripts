@@ -1,7 +1,7 @@
 {
   "name": "thakyz-userscripts",
   "version": "1.0.0",
-  "description": "Userscripts by thakyZ",
+  "description": "UserScripts by thakyZ",
   "main": "index.js",
   "scripts": {
     "lint": "pnpx cross-env ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.mjs .",
@@ -22,6 +22,11 @@
     "stylish",
     "stylus"
   ],
+  "author": {
+    "name": "Neko Boi Nick",
+    "email": "950594+thakyZ@users.noreply.github.com",
+    "url": "https://github.com/thakyZ"
+  },
   "author": "Neko Boi Nick",
   "license": "MIT",
   "bugs": {
