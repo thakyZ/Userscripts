@@ -2,7 +2,21 @@
     "version": "0.2",
     "ignorePaths": [],
     "dictionaryDefinitions": [],
-    "dictionaries": [],
+    "dictionaries": [
+      "en_US",
+      "companies",
+      "softwareTerms",
+      "misc",
+      "typescript",
+      "node",
+      "powershell",
+      "html",
+      "css",
+      "bash",
+      "fonts",
+      "filetypes",
+      "npm"
+    ],
     "words": [
         "♰ 𝕹𝖎𝖌𝖍𝖙𝖎𝖓𝖌𝖆𝖑𝖊 𝕮𝖚𝖑𝖙 ♰",
         "Aetherlink",
