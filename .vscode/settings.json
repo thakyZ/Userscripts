@@ -10,7 +10,7 @@
     "OnlineClock.Blocked.user.css": "stylus",
     "FFXIV_Lodestone_Maint_Dark.user.css": "stylus",
     "htmlhint.conf": "json",
-    "*.json": "json",
+    "*.json": "jsonc",
     "invalidFileNameChars.json": "jsonc"
   },
   "editor.defaultFormatter": null,
