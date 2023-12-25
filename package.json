@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "pnpx cross-env ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.mjs .",
+    "compile:eslint": "pnpx cross-env ESLINT_USE_FLAT_CONFIG=true node ./build/eslint_compile2json/eslint_compile2json.mjs",
     "lessc": "pnpx ./node_modules/.bin/lessc",
     "prettier:check": "pnpx prettier --check .",
     "prettier:write": "pnpx prettier --write .",
