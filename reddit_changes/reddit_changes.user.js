@@ -86,12 +86,25 @@ this.jQuery(($) => {
 
   const imageTemplate = "https://i.redd.it/%.png";
 
-  async function fetchImageLink() {
-    const data = await (new Promise((resolve, reject) => {
+  function fetchImageLink(imageIndex = -1) {
+    return new Promise((resolve, reject) => {
       let url = getPathFromUrl(document.location.href);
       url += ".json";
       $.get(url, (data) => {
-        resolve(data);
+        let imageId = "";
+        const imageIds = Object.keys(data[0].data.children[0].data.media_metadata);
+
+        if (imageIndex === -1) {
+          imageId = imageIds[0];
+        } else {
+          if (imageIds.length < imageIndex) {
+            reject(new Error(`Value of argument imageIndex [${imageIndex}] is larger than the count of imageIds [${imageIds.length}]`))
+          }
+
+          imageId = imageIds[imageIndex];
+        }
+
+        resolve(imageTemplate.replace("%", imageId));
       }).fail((error) => {
         if (error) {
           console.error(error);
@@ -101,13 +114,12 @@ this.jQuery(($) => {
           reject(new Error("Failed to fetch post api"));
         }
       });
-    }));
-
-    return imageTemplate.replace("%", Object.keys(data[0].data.children[0].data.media_metadata)[0]);
+    });
   }
 
   function transformImageLinks() {
     const mediaContainer = $("div[data-testid=\"post-container\"] a > img");
+    const mediaCarousel = $("div[data-testid=\"post-container\"] > div[data-test-id=\"post-content\"] ul");
     if ($(mediaContainer).length > 0) {
       (async function () {
         const imageLink = await fetchImageLink();
@@ -116,6 +128,26 @@ this.jQuery(($) => {
       })();
 
       return true;
+    }
+
+    if ($(mediaCarousel).length > 0) {
+      const carouselItems = $(mediaCarousel).find("li a > div > img");
+
+      if ($(carouselItems).length > 0) {
+        for (const [index, element] of Object.entries(carouselItems)) {
+          if (isNaN(Number(index))) {
+            continue;
+          }
+
+          (async function () {
+            const imageLink = await fetchImageLink();
+            $(element).parents("a").attr("href", imageLink);
+            $(element).attr("src", imageLink);
+          })();
+        }
+
+        return true;
+      }
     }
 
     return false;
