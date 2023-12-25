@@ -40,7 +40,6 @@ if (typeof window !== "undefined") {
   * };
   */
 
-  /* eslint-disable no-extend-native */
   String.prototype.width = function (font, size) {
     const f = font || "arial";
     const s = size || "12px";
@@ -53,7 +52,6 @@ if (typeof window !== "undefined") {
     o.remove();
     return w;
   };
-  /* eslint-enable no-extend-native */
 
   $.fn.setData = function (name, data) {
     $(this).each((_, element) => {
