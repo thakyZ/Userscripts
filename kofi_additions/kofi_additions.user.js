@@ -33,86 +33,233 @@ this.jQuery = jQuery.noConflict(true);
 // cSpell:ignoreRegExp /(?<="\.?)kfds(?=\-)/
 // cSpell:ignoreRegExp /(?<=\-(?:right|left)\-)mrgn(?=-\d+\")/
 // cSpell:ignoreRegExp /(?<=\?)txid(?=\=)/
+// cSpell:ignoreRegExp /\b\.?swal2\-\w+\b/
 
 this.jQuery(($) => {
   "use strict";
 
-  const sleep = (ms) => new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
+  const waitTime = 10000;
 
+  /**
+   * Sleep function, sleeps asynchronously
+   * @param {int} ms Milliseconds to sleep for
+   * @returns Promise<void>
+   */
+  function sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
+
+  /**
+   * {boolean} Debug variable.
+   */
   const DEBUG = false;
 
+  /**
+   * Debugs to console if {DEBUG} is true.
+   * @param {any} obj The message to send to the debugger
+   */
   function consoleDebug(obj) {
     if (DEBUG) {
       console.debug(obj);
     }
   }
 
+  /**
+   * Debugs to console if {DEBUG} is true.
+   * @param  {...any} obj The message to send to the debugger
+   */
   function consoleDebug(...obj) {
     if (DEBUG) {
       console.debug(obj);
     }
   }
 
+  /**
+   * Debugs to console if {DEBUG} is true.
+   * @param {string} msg The message to send to the debugger
+   */
   function consoleDebug(msg) {
     if (DEBUG) {
       console.debug(msg);
     }
   }
 
+  /**
+   * Debugs to console if {DEBUG} is true.
+   * @param {any} msg The message to send to the debugger
+   * @param  {...any} substr Optional parameters for the debugger's message.
+   */
   function consoleDebug(msg, ...substr) {
     if (DEBUG) {
       console.debug(msg, substr);
     }
   }
 
+  /**
+   * {number} Static private cached number for the document scrolled position in manage notifications.
+   */
   let notificationScrollCache = 0;
 
-  async function runNotificationModifyMass(operation) {
-    const getOperation = () => {
-      const _operation = operation.replace("nbn", "");
-      let output = "input[id*=\"%type%\"]:%status%";
-      if (_operation.endsWith("NC")) {
-        output = output.replace("%type%", "followee_notification_content_email_");
-      } else if (_operation.endsWith("NP")) {
-        output = output.replace("%type%", "followee_notification_product_services_email_");
-      } else if (_operation.endsWith("PN")) {
-        output = output.replace("%type%", "followee_notification_content_push_");
-      }
+  /**
+   * Constant definitions for operations.
+   * @typedef {NCD|NCE|NPD|NPE|PND|PNE} Operation
+   */
 
-      if (_operation.startsWith("D")) {
-        output = output.replace("%status%", "checked");
-      } else if (_operation.startsWith("E")) {
-        output = output.replace("%status%", "not(:checked)");
-      }
+  /**
+   * Detects which operation we want to run.
+   * @param {Operation} operation The operation for the task.
+   * @returns {string} The selector string of the items we want to modify.
+   */
+  function getOperation(operation) {
+    const _operation = operation.replace("nbn", "");
+    let output = "input[id*=\"%type%\"]:%status%";
+    if (_operation.endsWith("NC")) {
+      output = output.replace("%type%", "followee_notification_content_email_");
+    } else if (_operation.endsWith("NP")) {
+      output = output.replace("%type%", "followee_notification_product_services_email_");
+    } else if (_operation.endsWith("PN")) {
+      output = output.replace("%type%", "followee_notification_content_push_");
+    }
 
-      return output;
-    };
+    if (_operation.startsWith("D")) {
+      output = output.replace("%status%", "checked");
+    } else if (_operation.startsWith("E")) {
+      output = output.replace("%status%", "not(:checked)");
+    }
 
-    try {
-      for await (const [index, element] of Object.entries($(getOperation()))) {
+    return output;
+  }
+
+  /**
+   * Test if the error box exists in the set.
+   * @returns {[string | Error, bool]}
+   */
+  function testIfErrorBoxExists() {
+    const foundShownContainers = $("body > .swal2-container.swal2-shown");
+    if (foundShownContainers.length > 0) {
+      for (const [index, element] of Object.entries(foundShownContainers)) {
         if (isNaN(Number(index))) {
           continue;
         }
-        consoleDebug("Setup: " + $(element).parents(".faq-wrapper").find("div:first-child div").text());
-        notificationScrollCache = $("html, body").prop("scrollTop");
-        $(element).click(function () {
-          $("html, body").animate({ scrollTop: notificationScrollCache }, 800);
-          consoleDebug("Clicked: " + $(this).parents(".faq-wrapper").find("div:first-child div").text());
-        });
-        // Disable for now:
-        $(element).click();
-        await sleep(3000);
-      }
-    } catch (error) {
-      if (error) {
-        return Promise.reject([error, false]);
+
+        const warningIcon = $(element).children().find(".swal2-icon.swal2-warning");
+        if (warningIcon.length > 0 && $(warningIcon[0]).css("display") !== "none") {
+          const message = $(element).children().find(".swal2-contentwrapper > .swal2-content").text();
+          return [new Error(message), false];
+        }
       }
     }
 
+    return ["None", true];
+  }
 
-    return Promise.resolve([undefined, true]);
+  /**
+   *
+   * @param {Element} element
+   * @param {Operation} operation
+   * @param {number} waitTime
+   * @returns {Promise<string | boolean>}
+   */
+  function clickFeedReducer(element, operation, waitTime) {
+    return new Promise((resolve, reject) => {
+      /*
+      $(element).click(async function () {
+        consoleDebug("Clicked: " + $(this).parents(".faq-wrapper").find("div:first-child div").text());
+        await sleep(1000);
+        const [message, returned] = testIfErrorBoxExists();
+        $("html, body").animate({ scrollTop: notificationScrollCache }, 800);
+        await sleep(waitTime);
+        if (returned) {
+          resolve(true);
+        } else {
+          reject(message);
+        }
+      });
+      $(element).click();
+      */
+      (async function() {
+        try {
+          let id = "";
+          if ($(element).is("input")) {
+            id = $(element).attr("id").split("_").at(-1);
+          }
+
+          if (operation.endsWith("D") && !$(element).is(":checked")) {
+            console.warn(`Attempted operation ${operation} on element when not checked.`, element);
+            return;
+          }
+
+          if (operation.endsWith("E") && !$(element).is(":checked")) {
+            console.warn(`Attempted operation ${operation} on element when is checked.`, element);
+            return;
+          }
+
+          switch (operation) {
+            case "NCD":
+            case "NCE":
+              unsafeWindow.toggleIsSubscribedToGalleryBlogEmail(id, $(element)[0].checked);
+              break;
+            case "NPD":
+            case "NPE":
+              unsafeWindow.toggleIsSubscribedToProductServicesEmail(id, $(element)[0].checked);
+              break;
+            case "PND":
+            case "PNE":
+              unsafeWindow.toggleIsSubscribedToPush(id, $(element)[0].checked);
+              break;
+            default:
+              throw new Error(`Invalid operation ${operation}.`);
+          }
+        } catch (error) {
+          console.error(`Failed to run operation ${operation} on element.`, element, error);
+          reject(error);
+          await sleep(waitTime);
+          return;
+        }
+
+        resolve(true);
+        await sleep(waitTime);
+      })();
+    });
+  }
+
+  /**
+   * Run the notification setting mass apply loop.
+   * @param {"ENC"|"DNC"|"ENP"|"DNP"|"ENP"|"DNP"|"EPN"|"DPN"} operation The operation for the task.
+   * @returns {Promise<Error | undefined, boolean>}
+   */
+  async function runNotificationModifyMass(operation) {
+    try {
+      for (const [index, element] of Object.entries($(getOperation(operation)))) {
+        const start = new Date();
+        if (isNaN(Number(index)) || Number(index) === 0) {
+          continue;
+        }
+
+        consoleDebug("Setup: " + $(element).parents(".faq-wrapper").find("div:first-child div").text());
+        notificationScrollCache = $("html, body").prop("scrollTop");
+        /* eslint-disable-next-line no-await-in-loop */
+        const returned = await clickFeedReducer(element, waitTime);
+
+        if (typeof returned === "string") {
+          throw new Error(returned);
+        }
+
+        const end = new Date();
+        const difference = Math.ceil((end.getTime() - start.getTime()) / 1000);
+        if (difference < 3) {
+          throw new Error("Awaited too short " + difference);
+        }
+      }
+    } catch (error) {
+      if (error) {
+        return Promise.reject(error);
+      }
+    }
+
+    return Promise.resolve(undefined);
   }
 
   // Site url regex matches.
@@ -128,8 +275,13 @@ this.jQuery(($) => {
    */
   const _newGradient = "linear-gradient(180deg, rgb(5 5 5 / 16%), rgb(25 25 25 / 30%))";
 
+  /**
+   * Shows the status on the progress bar in the notifications area.
+   * @param {Error | undefined} error The error returned from the notification setting mass apply loop.
+   * @param {boolean} status The return stats of the notification setting mass apply loop.
+   */
   function showStatus(error, status) {
-    if (status === false) {
+    if (status === false || typeof error !== "undefined") {
       $("#nbnMassStatus").attr("status", "fail");
       $("#nbnMassStatus").text("Error: " + error.message);
     } else {
@@ -138,26 +290,61 @@ this.jQuery(($) => {
     }
   }
 
+  /**
+   * The then function for when the mass loop option buttons return successfully (or not(?))
+   * @param {any} resolved The resolved promise output from the mass loop option buttons' task.
+   */
+  function forEachButtonThen(resolved) {
+    showStatus(resolved, typeof resolved === "undefined");
+  }
+
+  /**
+   * The catch (or error) function for when the mass loop option buttons get rejected.
+   * @param {any} rejected The rejected promise output from the mass loop option buttons' task.
+   */
+  function forEachButtonCatch(rejected) {
+    try {
+      showStatus(rejected, typeof rejected === "undefined");
+    } catch (error) {
+      showStatus(error, false);
+      console.error(rejected);
+    }
+  }
+
+  /**
+   * Function to run when looping through each of the buttons in the notification setting mass apply area.
+   * @param {index} index The index of the element. (probably not needed.)
+   * @param {Element} element The element to apply the onClick event handler to.
+   */
+  function foreachButton(index, element) {
+    $(element).on("click", function () {
+      $("#nbnMassStatus").attr("status", "running");
+      $("#nbnMassStatus").text("Running...");
+      runNotificationModifyMass($(this).attr("id"))
+        .then(forEachButtonThen)
+        .catch(forEachButtonCatch);
+    });
+  }
+
+  /**
+   * Function to create buttons to alter the notification settings on mass.
+   */
   function createNotificationsMass() {
     const notificationButtons = $.fn.createElement("notificationButtons", {});
 
-    const creatorsIFollowBox = $("#mainView > div > div:nth-child(3) > div:first-child > div:last-child");
-    if ($(creatorsIFollowBox).attr("id") === "nbnMass") {
-      return;
+    const creatorsIFollowBox = $("#mainView > div > div:nth-child(3) > div:first-child > div:last-child:not([id=\"nbnMass\"])");
+
+    const buttons = $(notificationButtons).children().find("button");
+
+    for (const [index, element] of Object.entries(buttons)) {
+      if (isNaN(Number(index))) {
+        continue;
+      }
+
+      foreachButton(index, element);
     }
 
     $(creatorsIFollowBox).after($(notificationButtons));
-
-    $(notificationButtons).children().find("button").each((index, element) => {
-      $(element).on("click", function () {
-        (async function() {
-          $("#nbnMassStatus").attr("status", "running");
-          $("#nbnMassStatus").text("Running...");
-          const (error, status) = await runNotificationModifyMass($(this).attr("id"));
-          showStatus(error, status);
-        })();
-      });
-    });
   }
 
   function fixShopGradient() {
@@ -313,6 +500,6 @@ this.jQuery(($) => {
   setupMutationObserver();
 
   GM_config.init({
-
+    id: "Ko-Fi_Additions_Config"
   });
 });
