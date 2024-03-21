@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         XIV Mod Archive Additions
 // @namespace    NekoBoiNick.Web.XIVModArchive.Additions
-// @version      1.1.3
+// @version      1.1.4
 // @description  Adds custom things to XIV Mod Archive
 // @author       Neko Boi Nick
 // @match        https://xivmodarchive.com/*
@@ -18,7 +18,7 @@
 // @connect      api.nekogaming.xyz
 // @connect      cdn.discordapp.com
 // @connect      static.xivmodarchive.com
-// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
 // @require      https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js
 // @require      https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js
 // @require      https://openuserjs.org/src/libs/sizzle/GM_config.js
@@ -36,29 +36,48 @@
 // @resource     modalTemplate https://cdn.jsdelivr.net/gh/thakyz/Userscripts/xivmodarchive_additions/modal.template.html
 // ==/UserScript==
 /* cSpell:ignore createProgressbar */
-/* global $, jQuery, showSpinner, hideSpinner, showError, errorProgressBar, clearProgressBar, updateProgressBar, createProgressbar, GM_config */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery, showSpinner, hideSpinner, showError, errorProgressBar, clearProgressBar, updateProgressBar, createProgressbar, GM_config */
+this.jQuery = jQuery.noConflict(true);
 
-/* eslint-disable no-extend-native */
-String.prototype.width = function (font, size) { // NOSONAR
-  const f = font || "arial";
-  const s = size || "12px";
-  const o = $("<div></div>")
-    .text(this)
-    .css({ position: "absolute", float: "left", whiteSpace: "nowrap", visibility: "hidden", font: `${s} ${f}` })
-    .appendTo($("body"));
-  const w = o.width();
+this.jQuery(($) => {
+  /**
+   * Function to get the width of the text provided.
+   * @param {String | undefined} font A valid font name. Fallbacks are handled by the browser. Undefined uses "arial"
+   * @param {Number | String | undefined} size The size of the font (if typeof number is provided pixels will be used, and if nothing is provided 12px size will be used)
+   * @returns {Number} The width of the font.
+   */
+  String.prototype.width = function (font = undefined, size = undefined) { // NOSONAR
+    const f = typeof font === "undefined" ? "arial" : font;
+    const s = typeof size === "undefined" ? "12px" : (typeof size === "number" ? `${size}px` : size);
+    const o = $("<div></div>")
+      .text(this)
+      .css({ position: "absolute", float: "left", whiteSpace: "nowrap", visibility: "hidden", font: `${s} ${f}` })
+      .appendTo($("body"));
+    const w = o.width();
 
-  o.remove();
-  return w;
-};
-/* eslint-enable no-extend-native */
+    o.remove();
+    return w;
+  };
 
-$(document).ready(() => {
+  $.fn.outerHTML = function () {
+    return $("<div />").append(this.eq(0).clone()).html();
+  };
+
+  /**
+   * Sleep until number of milliseconds are over.
+   * @param {Number} ms Milliseconds to wait to continue.
+   * @returns {Promise<void>} The completed sleep task.
+   */
   const sleep = (ms) => new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 
+  /**
+   * Creates a template from the UserScript meta resources.
+   * @param {*} resource The template name from UserScript resources.
+   * @param {Object} replaceObj The object containing information about replacement in the template.
+   * @returns {Element} An element.
+   */
   function createElements(resource, replaceObj = {}) {
     const templateHtml = GM_getResourceText(resource);
     const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\r?\n<template>\r?\n {2}/gi, "")
@@ -71,6 +90,12 @@ $(document).ready(() => {
     return template;
   }
 
+  /**
+   * Creates a button to navigate to the first page and last page of searches.
+   * @param {Number} number The current page integer that the user is on.
+   * @param {Boolean} minimum The minimum page index to create.
+   * @param {Boolean} maximum The maximum page index to create.
+   */
   function createFirstLastNavElements(number, minimum, maximum) {
     /* Unknown unused variable
      * const endElements = [];
@@ -91,6 +116,11 @@ $(document).ready(() => {
     }
   }
 
+  /**
+   * Invokes an api to get a normalized name of a user based on the ID of the user.
+   * @param {Number} userId The ID of a user.
+   * @returns {String} The alternative name of a user.
+   */
   async function getUserNameAlts(userId) {
     try {
       const request = await GM.xmlHttpRequest({
@@ -116,6 +146,10 @@ $(document).ready(() => {
     return [];
   }
 
+  /**
+   * Invokes an api to get a normalized name of all users in the database.
+   * @returns {String} The alternative name of a user.
+   */
   async function getUserNameAlts() {
     try {
       const request = await GM.xmlHttpRequest({
@@ -144,6 +178,11 @@ $(document).ready(() => {
    * getUserNameAlts();
    */
 
+  /**
+   * Attempts to get a normalized name of the user.
+   * @param {String} name Name of the user.
+   * @returns {String} Normalized name (buggy and incomplete)
+   */
   function normalizeNames(name) {
     try {
       return name.normalize();
@@ -154,8 +193,15 @@ $(document).ready(() => {
     }
   }
 
+  /**
+   * Try to translate the name and try to normalize it.
+   * @param {String} name The current display name of the user.
+   * @param {Number | undefined} userId The user id of the user.
+   * @param {Object} userNameAlt Object containing information of the alt id.
+   * @returns {String} A normalized name.
+   */
   function translateName(name, userId = undefined, userNameAlt = {}) {
-    const parsedUserId = userId && !isNaN(userId) ? parseInt(userId, 10) : 0;
+    const parsedUserId = typeof userId !== "undefined" && !isNaN(userId) ? parseInt(userId, 10) : 0;
     if (parsedUserId !== 0 && userNameAlt[parsedUserId] !== undefined) {
       return normalizeNames(userNameAlt[parsedUserId]);
     }
@@ -163,6 +209,10 @@ $(document).ready(() => {
     return normalizeNames(name);
   }
 
+  /**
+   * Attempts to get the minimum page available.
+   * @returns {Boolean} Status if successful.
+   */
   function getDoMin() {
     const paginationChildren = $("li", $($(".pagination")[0]));
     if ($($(paginationChildren)[0]).text() !== "1") {
@@ -172,6 +222,11 @@ $(document).ready(() => {
     return false;
   }
 
+  /**
+   * Attempts to get the maximum page available.
+   * @param {Number} number The maximum page.
+   * @returns {Boolean} Status if successful.
+   */
   function getDoMax(number) {
     const paginationChildren = $("li", $($(".pagination")[0]));
     const paginationChildLength = $(paginationChildren).length;
@@ -353,21 +408,19 @@ $(document).ready(() => {
           $(mailHeader).find("h4.display-5").attr("data-placement", "bottom");
           $(mailHeader).find("h4.display-5").attr("title", $(mailHeader).find("h4.display-5").text().replace("Followed Mod Updated: ", ""));
 
-          $("body > .container-xl > .jumbotron.nbnMailHeader h4.display-5[data-toggle=\"tooltip\"]").tooltip(
-            {
-              customClass(_, options) {
-                const newOptions = options + " nbnMailHeader";
-                return newOptions;
-              },
-              offset(data) {
-                const middleForPopper = ($("body").width() - data.popper.width) / 2;
-                const middleForReference = ($("body").width() - data.reference.width) / 2;
-                data.popper.left = middleForPopper;
-                data.reference.left = middleForReference;
-                return data;
-              }
+          $("body > .container-xl > .jumbotron.nbnMailHeader h4.display-5[data-toggle=\"tooltip\"]").tooltip({
+            customClass(_, options) {
+              const newOptions = options + " nbnMailHeader";
+              return newOptions;
+            },
+            offset(data) {
+              const middleForPopper = ($("body").width() - data.popper.width) / 2;
+              const middleForReference = ($("body").width() - data.reference.width) / 2;
+              data.popper.left = middleForPopper;
+              data.reference.left = middleForReference;
+              return data;
             }
-          );
+          });
         }
       }
     }
@@ -411,7 +464,6 @@ $(document).ready(() => {
 
     const inboxId = $(elements[index]).attr("data-inbox_id");
 
-    /* eslint-disable-next-line camelcase */
     const errorData = { inbox_id: parseInt(inboxId, 10) };
     errorData.info = undefined;
     /**
@@ -428,7 +480,7 @@ $(document).ready(() => {
      *
      * errorData.name = infoElement.text()
      *   .replace("Followed Mod Updated: ", "");
-     **/
+     */
 
     let request;
 
@@ -436,7 +488,6 @@ $(document).ready(() => {
       request = await GM.xmlHttpRequest({
         method: "POST",
         url: "/api/inbox/delete",
-        /* eslint-disable-next-line camelcase */
         data: JSON.stringify({ inbox_id: parseInt(inboxId, 10) }),
         responseType: "json",
         timeout: 2000,
@@ -488,6 +539,14 @@ $(document).ready(() => {
     });
   }
 
+  // TODO: Cache the mod ids.
+  // TODO: Find a way to get the mod id without making the message marked as read.
+
+  /**
+   * Get the mod if of the inbox message.
+   * @param {Number} inboxMessageId The message id of a inbox message.
+   * @returns {String | undefined} Returns the href of the mod, or returns undefined if failed.
+   */
   async function getInboxMessageModId(inboxMessageId) {
     let request;
 
@@ -519,23 +578,82 @@ $(document).ready(() => {
     }
   }
 
+  /**
+   * Get the mod if of the inbox message.
+   * @param {String} inboxMessageId The message id of a inbox message.
+   * @returns {String | undefined} Returns the href of the mod, or returns undefined if failed.
+   */
+  async function getInboxMessageModId(inboxMessageId, action) {
+    let request;
+
+    let stringBuilder = "https://www.xivmodarchive.com/search?sortby=";
+
+    if (action === "updated") {
+      stringBuilder += "time_edited";
+    } else if (action === "released") {
+      stringBuilder += "time_posted";
+    } else {
+      stringBuilder += "rank";
+    }
+
+    stringBuilder += "&basic_text=" + encodeURIComponent(inboxMessageId);
+
+    try {
+      request = await GM.xmlHttpRequest({
+        method: "GET",
+        url: stringBuilder,
+        timeout: 2000
+      });
+
+      if (typeof request.statusText === "undefined" || request.statusText.toLowerCase() !== "ok") {
+        return undefined;
+      }
+
+      const getHref = $(request.responseText).find(".jumbotron .container-xl em a").attr("href");
+
+      if (typeof getHref === "undefined") {
+        console.error(new Error("getHref is of type undefined"));
+        console.debug(request);
+        return undefined;
+      }
+
+      return getHref;
+    } catch (error) {
+      console.error(error);
+      console.debug(request);
+
+      return undefined;
+    }
+  }
+
   $.fn.outerHTML = function () {
     return $("<div />").append(this.eq(0).clone()).html();
   };
 
   async function addAnchorsToInboxMessages() {
     const inboxMessages = $("body .container-xl .jumbotron .container-xl .inbox-message");
+    let index = 0;
+    let progress = 0;
+    showSpinner();
+    createProgressbar("nbnAddAnchorsToInboxMessages", 0, "Adding anchors to all inbox messages");
+
+    if (index >= $(inboxMessages).length) {
+      hideSpinner();
+      clearProgressBar("nbnDeleteAllMessages");
+      return;
+    }
 
     for await (const [inboxIndex, inboxElement] of Object.entries(inboxMessages)) {
-      if (isNaN(inboxIndex)) {
-        return;
+      if (isNaN(Number(inboxIndex))) {
+        continue;
       }
 
       const previousStrong = $(inboxElement).children().find("strong");
       const newHref = await getInboxMessageModId($(inboxElement).attr("data-inbox_id"));
 
       if (typeof newHref === "undefined" || newHref.name === "Error") {
-        continue;
+        errorProgressBar("nbnAddAnchorsToInboxMessages", `failed to add anchor to inbox message with id: ${$(inboxElement).attr("data-inbox_id")}`);
+        break;
       }
 
       if (typeof newHref !== "string") {
@@ -543,8 +661,8 @@ $(document).ready(() => {
       }
 
       for await (const [strongIndex, strongElement] of Object.entries(previousStrong)) {
-        if (isNaN(strongIndex)) {
-          return;
+        if (isNaN(Number(strongIndex))) {
+          continue;
         }
 
         const oldStrongElement = $(strongElement).clone();
@@ -554,12 +672,15 @@ $(document).ready(() => {
         $(strongElement).replaceWith($(newLink));
       }
 
+      updateProgressBar("nbnAddAnchorsToInboxMessages", progress, "Adding anchors to all inbox messages");
       await sleep(1000);
+      index++;
+      progress = Math.ceil(((index + 1) / $(inboxMessages).length) * 100);
     }
   }
 
   const setupGMConfigFrame = () => {
-    const configWrapper = $(createElements("modalTemplate", { exampleModal: GM_config.id, exampleModalLabel: `${GM_config.id}_label` }));
+    const configWrapper = $(createElements("modalTemplate", { "%modal_id%": GM_config.id, "%modal_label%": `${GM_config.id}_label` }));
     $("body").append(configWrapper);
     return configWrapper[0];
   };
@@ -576,9 +697,8 @@ $(document).ready(() => {
     if (GM_config.get("addAnchorsToInboxMessages")) {
       // Disabled because spam-ey
       (async function () {
-        return;
+        // A return;
         // Disabled due to possible increased network traffic for the host.
-        /* eslint-disable-next-line */
         await addAnchorsToInboxMessages(); // NOSONAR
       })();
     }
@@ -587,11 +707,19 @@ $(document).ready(() => {
   /* CSpell:ignoreRegExp \/\^https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/\/ */
   if (/^https:\/\/(www\.)?xivmodarchive\.com\//.test(window.location.href)) {
     GM_registerMenuCommand("Config", () => {
+      if ($(`#${GM_config.id}`).attr("role") !== "dialog" && $(`#${GM_config.id}`).hasAttr("style")) {
+        unsafeWindow.$(GM_config.frame).modal("show");
+      }
+
       GM_config.open();
     });
   }
 
-  /* eslint-disable-next-line camelcase */
+  /**
+   *
+   * @param {*} frame
+   * @returns
+   */
   function modifyGM_configFrame(frame) {
     $(frame).attr("style", "background-color:unset !important;display:block;");
     $(frame).find(`#${GM_config.id}_wrapper`).addClass("modal-dialog");
@@ -600,7 +728,7 @@ $(document).ready(() => {
     $(frame).find(`#${GM_config.id}_wrapper`).append(modalContent);
 
     if (oldChildren.length === 0) {
-      console.error("old child elements of gmConfigFrame were not found.");
+      console.error("Old child elements of gmConfigFrame were not found.");
       return;
     }
 
@@ -664,6 +792,12 @@ $(document).ready(() => {
         label: "Debug",
         type: "checkbox",
         default: false
+      },
+      cachedModIds: {
+        label: "Cached Mod Ids",
+        type: "textbox",
+        hidden: true,
+        default: "{}"
       }
     },
     events: {

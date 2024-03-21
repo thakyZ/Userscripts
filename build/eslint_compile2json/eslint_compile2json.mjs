@@ -1,9 +1,10 @@
 import * as fsSync from "fs";
 import { promises as fs } from "fs";
 import * as path from "path";
-import * as eslintConfig from "../eslint.config.mjs";
+import * as eslintConfig from "../../eslint.config.mjs";
+import * as rulesCustom from "../rules-custom.mjs";
 
-const outDirectory = path.join(import.meta.url, "..", "..", "out", "eslint.json").toString().replace("file:\\", "");
+const outDirectory = path.join(import.meta.url, "..", "..", "..", "out", "eslint.json").toString().replace("file:\\", "");
 
 /* To remove:
  * no-constant-binary-expression

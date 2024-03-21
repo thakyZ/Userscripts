@@ -15,7 +15,7 @@
 // @grant        GM.xmlHttpRequest
 // @grant        GM_getValue
 // @grant        GM_setValue
-// @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
+// @require      https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js
 // @require      https://cdn.jsdelivr.net/gh/thakyz/Userscripts/library/nekogaming.userscript.lib.min.js
 // @require      https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/kofi_additions/kofi_additions.user.js
@@ -23,95 +23,261 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/styles.min.css
-// @resource     copyauthor https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/copyauthor.template.html
-// @resource     notifButtons https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/notifButtons.template.html
+// @resource     copyAuthor https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/copyauthor.template.html
+// @resource     notificationButtons https://cdn.jsdelivr.net/gh/thakyz/Userscripts/kofi_additions/notifButtons.template.html
 // ==/UserScript==
 /* global jQuery, GM_config */
 this.jQuery = jQuery.noConflict(true);
 
+// cSpell:ignore followee, useruploads, coffeeshop
+// cSpell:ignoreRegExp /(?<="\.?)kfds(?=\-)/
+// cSpell:ignoreRegExp /(?<=\-(?:right|left)\-)mrgn(?=-\d+\")/
+// cSpell:ignoreRegExp /(?<=\?)txid(?=\=)/
+// cSpell:ignoreRegExp /\b\.?swal2\-\w+\b/
+
 this.jQuery(($) => {
   "use strict";
 
-  GM_config.init({
+  const waitTime = 10000;
 
-  });
+  /**
+   * Sleep function, sleeps asynchronously
+   * @param {int} ms Milliseconds to sleep for
+   * @returns Promise<void>
+   */
+  function sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
 
-  const sleep = (ms) => new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-
+  /**
+   * {boolean} Debug variable.
+   */
   const DEBUG = false;
 
+  /**
+   * Debugs to console if {DEBUG} is true.
+   * @param {any} obj The message to send to the debugger
+   */
   function consoleDebug(obj) {
     if (DEBUG) {
       console.debug(obj);
     }
   }
 
+  /**
+   * Debugs to console if {DEBUG} is true.
+   * @param  {...any} obj The message to send to the debugger
+   */
   function consoleDebug(...obj) {
     if (DEBUG) {
       console.debug(obj);
     }
   }
 
+  /**
+   * Debugs to console if {DEBUG} is true.
+   * @param {string} msg The message to send to the debugger
+   */
   function consoleDebug(msg) {
     if (DEBUG) {
       console.debug(msg);
     }
   }
 
+  /**
+   * Debugs to console if {DEBUG} is true.
+   * @param {any} msg The message to send to the debugger
+   * @param  {...any} substr Optional parameters for the debugger's message.
+   */
   function consoleDebug(msg, ...substr) {
     if (DEBUG) {
       console.debug(msg, substr);
     }
   }
 
+  /**
+   * {number} Static private cached number for the document scrolled position in manage notifications.
+   */
   let notificationScrollCache = 0;
 
-  function runNotificationModifyMass(operation) {
-    const getOperation = () => {
-      const _operation = operation.replace("nbn", "");
-      let output = "input[id*=\"%type%\"]:%status%";
-      if (_operation.endsWith("NC")) {
-        output = output.replace("%type%", "followee_notification_content_email_");
-      } else if (_operation.endsWith("NP")) {
-        output = output.replace("%type%", "followee_notification_product_services_email_");
-      } else if (_operation.endsWith("PN")) {
-        output = output.replace("%type%", "followee_notification_content_push_");
+  /**
+   * Constant definitions for operations.
+   * @typedef {"ENC"|"DNC"|"ENP"|"DNP"|"ENP"|"DNP"|"EPN"|"DPN"} Operation
+   */
+
+  /**
+   * Detects which operation we want to run.
+   * @param {Operation} operation The operation for the task.
+   * @returns {string} The selector string of the items we want to modify.
+   */
+  function getOperation(operation) {
+    const _operation = operation.replace("nbn", "");
+    let output = "input[id*=\"%type%\"]:%status%";
+    if (_operation.endsWith("NC")) {
+      output = output.replace("%type%", "followee_notification_content_email_");
+    } else if (_operation.endsWith("NP")) {
+      output = output.replace("%type%", "followee_notification_product_services_email_");
+    } else if (_operation.endsWith("PN")) {
+      output = output.replace("%type%", "followee_notification_content_push_");
+    }
+
+    if (_operation.startsWith("D")) {
+      output = output.replace("%status%", "checked");
+    } else if (_operation.startsWith("E")) {
+      output = output.replace("%status%", "not(:checked)");
+    }
+
+    return output;
+  }
+
+  /**
+   * Test if the error box exists in the set.
+   * @returns {[string | Error, bool]}
+   */
+  function testIfErrorBoxExists() {
+    const foundShownContainers = $("body > .swal2-container.swal2-shown");
+    if (foundShownContainers.length > 0) {
+      for (const [index, element] of Object.entries(foundShownContainers)) {
+        if (isNaN(Number(index))) {
+          continue;
+        }
+
+        const warningIcon = $(element).children().find(".swal2-icon.swal2-warning");
+        if (warningIcon.length > 0 && $(warningIcon[0]).css("display") !== "none") {
+          const message = $(element).children().find(".swal2-contentwrapper > .swal2-content").text();
+          return [new Error(message), false];
+        }
       }
+    }
 
-      if (_operation.startsWith("D")) {
-        output = output.replace("%status%", "checked");
-      } else if (_operation.startsWith("E")) {
-        output = output.replace("%status%", "not(:checked)");
-      }
+    return ["None", true];
+  }
 
-      return output;
-    };
-
+  /**
+   *
+   * @param {Element} element
+   * @param {Operation} operation
+   * @param {number} waitTime
+   * @returns {Promise<string | boolean>}
+   */
+  function clickFeedReducer(element, id, operation, waitTime) {
     return new Promise((resolve, reject) => {
-      (async function () {
-        for (const [key, value] of Object.entries($(getOperation()))) {
-          if (!isNaN(key)) {
-            consoleDebug("Setup: " + $(value).parents(".faq-wrapper").find("div:first-child div").text());
-            notificationScrollCache = $("html, body").prop("scrollTop");
-            $(value).click(function () {
-              $("html, body").animate({ scrollTop: notificationScrollCache }, 800);
-              consoleDebug("Clicked: " + $(this).parents(".faq-wrapper").find("div:first-child div").text());
-            });
-            // Disable for now:
-            // $(value).click();
-            await sleep(3000); // eslint-disable-line no-await-in-loop
-          }
+      /*
+      $(element).click(async function () {
+        consoleDebug("Clicked: " + $(this).parents(".faq-wrapper").find("div:first-child div").text());
+        await sleep(1000);
+        const [message, returned] = testIfErrorBoxExists();
+        $("html, body").animate({ scrollTop: notificationScrollCache }, 800);
+        await sleep(waitTime);
+        if (returned) {
+          resolve(true);
+        } else {
+          reject(message);
         }
-      })().then((error) => {
-        if (error) {
-          reject(error, false);
+      });
+      $(element).click();
+      */
+      (async function() {
+        try {
+          operation = operation.replace("nbn", "");
+
+          if (operation.startsWith("D") && !$(element).is(":checked")) {
+            console.warn(`Attempted operation ${operation} on element when not checked.`, element);
+            return;
+          }
+
+          if (operation.startsWith("E") && !$(element).is(":checked")) {
+            console.warn(`Attempted operation ${operation} on element when is checked.`, element);
+            return;
+          }
+
+          switch (operation) {
+            case "DNC":
+              unsafeWindow.toggleIsSubscribedToGalleryBlogEmail(id, $(element)[0].checked);
+              $(element).removeAttr("checked");
+              break;
+            case "ENC":
+              unsafeWindow.toggleIsSubscribedToGalleryBlogEmail(id, $(element)[0].checked);
+              $(element).attr("checked");
+              break;
+            case "DNP":
+              unsafeWindow.toggleIsSubscribedToProductServicesEmail(id, $(element)[0].checked);
+              $(element).removeAttr("checked");
+              break;
+            case "ENP":
+              unsafeWindow.toggleIsSubscribedToProductServicesEmail(id, $(element)[0].checked);
+              $(element).attr("checked");
+              break;
+            case "DPN":
+              unsafeWindow.toggleIsSubscribedToPush(id, $(element)[0].checked);
+              $(element).removeAttr("checked");
+              break;
+            case "EPN":
+              unsafeWindow.toggleIsSubscribedToPush(id, $(element)[0].checked);
+              $(element).attr("checked");
+              break;
+            case "DAL":
+            case "EAL":
+              break;
+            default:
+              throw new Error(`Invalid operation ${operation}.`);
+          }
+        } catch (error) {
+          console.error(`Failed to run operation ${operation} on element.`, element, error);
+          await sleep(waitTime);
+          reject(error);
+          return;
         }
 
-        resolve(undefined, true);
-      });
+        await sleep(waitTime);
+        resolve(true);
+      })();
     });
+  }
+
+  /**
+   * Run the notification setting mass apply loop.
+   * @param {Operation} operation The operation for the task.
+   * @returns {Promise<Error | undefined, boolean>}
+   */
+  async function runNotificationModifyMass(operation) {
+    try {
+      for await (const [index, element] of Object.entries($(getOperation(operation)))) {
+        const start = new Date();
+        if (isNaN(Number(index)) || Number(index) === 0) {
+          continue;
+        }
+
+        consoleDebug("Setup: " + $(element).parents(".faq-wrapper").find("div:first-child div").text());
+        notificationScrollCache = $("html, body").prop("scrollTop");
+        /* eslint-disable-next-line no-await-in-loop */
+        let id = "";
+
+        if (Number(index) > 0 && $(element).is("input")) {
+          id = $(element).attr("id").split("_").at(-1);
+        }
+
+        const returned = await clickFeedReducer(element, id, operation, waitTime);
+
+        if (typeof returned === "string") {
+          throw new Error(returned);
+        }
+
+        const end = new Date();
+        const difference = Math.ceil((end.getTime() - start.getTime()) / 1000);
+        if (difference < 3) {
+          throw new Error("Awaited too short " + difference);
+        }
+      }
+    } catch (error) {
+      if (error) {
+        return Promise.reject(error);
+      }
+    }
+
+    return Promise.resolve(undefined);
   }
 
   // Site url regex matches.
@@ -121,37 +287,82 @@ this.jQuery(($) => {
 
   // Fix shop gradient function regex and strings.
   const badGradientRegex = /background-image: linear-gradient\(180deg, rgb\(229 211 149 \/ 16%\), rgb\(244 240 229 \/ 30%\)\), url\('(https:\/\/storage.ko-fi.com\/cdn\/useruploads\/post\/.*\..{3,4})'\)/i;
-  // OLD: const badGradientRegex = /linear-gradient\(rgba\(229, 211, 149, 0\.16\), rgba\(244, 240, 229, 0\.3\)\), url\("(https:\/\/storage.ko-fi.com\/cdn\/useruploads\/post\/.*\..{3,4})"\)/i;
+  /**
+   * OLD:
+   * const badGradientRegex = /linear-gradient\(rgba\(229, 211, 149, 0\.16\), rgba\(244, 240, 229, 0\.3\)\), url\("(https:\/\/storage.ko-fi.com\/cdn\/useruploads\/post\/.*\..{3,4})"\)/i;
+   */
   const _newGradient = "linear-gradient(180deg, rgb(5 5 5 / 16%), rgb(25 25 25 / 30%))";
 
+  /**
+   * Shows the status on the progress bar in the notifications area.
+   * @param {Error | undefined} error The error returned from the notification setting mass apply loop.
+   * @param {boolean} status The return stats of the notification setting mass apply loop.
+   */
   function showStatus(error, status) {
-    if (status === false) {
+    if (status === false || typeof error !== "undefined") {
       $("#nbnMassStatus").attr("status", "fail");
-      $("#nbnMassStatus").text("Error: " + error.nessage);
+      $("#nbnMassStatus").text("Error: " + error.message);
     } else {
       $("#nbnMassStatus").attr("status", "success");
-      $("#nbnMassStatus").text("Sucess!");
+      $("#nbnMassStatus").text("Success!");
     }
   }
 
-  function createNotificationsMass() {
-    const notifButtons = $.fn.createElement("notifButtons", {});
+  /**
+   * The then function for when the mass loop option buttons return successfully (or not(?))
+   * @param {any} resolved The resolved promise output from the mass loop option buttons' task.
+   */
+  function forEachButtonThen(resolved) {
+    showStatus(resolved, typeof resolved === "undefined");
+  }
 
-    const creatorsIFollowBox = $("#mainView > div > div:nth-child(3) > div:first-child > div:last-child");
-    if ($(creatorsIFollowBox).attr("id") === "nbnMass") {
-      return;
+  /**
+   * The catch (or error) function for when the mass loop option buttons get rejected.
+   * @param {any} rejected The rejected promise output from the mass loop option buttons' task.
+   */
+  function forEachButtonCatch(rejected) {
+    try {
+      showStatus(rejected, typeof rejected === "undefined");
+    } catch (error) {
+      showStatus(error, false);
+      console.error(rejected);
+    }
+  }
+
+  /**
+   * Function to run when looping through each of the buttons in the notification setting mass apply area.
+   * @param {index} index The index of the element. (probably not needed.)
+   * @param {Element} element The element to apply the onClick event handler to.
+   */
+  function foreachButton(index, element) {
+    $(element).on("click", function () {
+      $("#nbnMassStatus").attr("status", "running");
+      $("#nbnMassStatus").text("Running...");
+      runNotificationModifyMass($(this).attr("id"))
+        .then(forEachButtonThen)
+        .catch(forEachButtonCatch);
+    });
+  }
+
+  /**
+   * Function to create buttons to alter the notification settings on mass.
+   */
+  function createNotificationsMass() {
+    const notificationButtons = $.fn.createElement("notificationButtons", {});
+
+    const creatorsIFollowBox = $("#mainView > div > div:nth-child(3) > div:first-child > div:last-child:not([id=\"nbnMass\"])");
+
+    const buttons = $(notificationButtons).children().find("button");
+
+    for (const [index, element] of Object.entries(buttons)) {
+      if (isNaN(Number(index))) {
+        continue;
+      }
+
+      foreachButton(index, element);
     }
 
-    $(creatorsIFollowBox).after($(notifButtons));
-
-    $(notifButtons).children().find("button").each((index, element) => {
-      $(element).on("click", function () {
-        $("#nbnMassStatus").attr("status", "running");
-        $("#nbnMassStatus").text("Running...");
-        runNotificationModifyMass($(this).attr("id"))
-          .then((error, status) => showStatus(error, status));
-      });
-    });
+    $(creatorsIFollowBox).after($(notificationButtons));
   }
 
   function fixShopGradient() {
@@ -159,7 +370,10 @@ this.jQuery(($) => {
 
     for (const [, element] of Object.entries(shops)) {
       const matches = $(element).attr("style").match(badGradientRegex);
-      // OLD: const matches = $(element).css("background-image").match(badGradientRegex);
+      /**
+       * OLD:
+       * const matches = $(element).css("background-image").match(badGradientRegex);
+       */
       if (matches !== null && matches.length === 2) {
         const newGradient = "url('" + matches[1] + "'), " + _newGradient;
         $(element).css({ backgroundImage: newGradient });
@@ -179,7 +393,7 @@ this.jQuery(($) => {
       return;
     }
 
-    const copyModNameButton = $.fn.createElement("copyauthor", {});
+    const copyModNameButton = $.fn.createElement("copyAuthor", {});
 
     $(copyModNameButton).attr("id", "copy-mod-btn");
     $(copyModNameButton).removeClass("btn-x-small-copy-author").addClass("btn-x-small-copy-mod-name");
@@ -201,6 +415,10 @@ this.jQuery(($) => {
 
     if (pageType === 0) {
       $(placement.concat(" + div")).append($(copyModNameButton));
+      /**
+       * OLD:
+       * $(placement.concat(" + div")).css({ right: "calc(50% - 85px)", position: "absolute" });
+       */
       $(copyModNameButton).on("click", function () {
         GM_setClipboard(transformModName(this));
       });
@@ -212,7 +430,7 @@ this.jQuery(($) => {
       return;
     }
 
-    const copyAuthorButton = $.fn.createElement("copyauthor", {});
+    const copyAuthorButton = $.fn.createElement("copyAuthor", {});
 
     let placement;
     let newSpacer;
@@ -300,6 +518,6 @@ this.jQuery(($) => {
   setupMutationObserver();
 
   GM_config.init({
-
+    id: "Ko-Fi_Additions_Config"
   });
 });

@@ -15,7 +15,6 @@ module.exports = {
   proseWrap: "never",
   insertPragma: false,
   overrides: [
-
     {
       files: "**/*.html",
       options: {
@@ -40,6 +39,12 @@ module.exports = {
       files: [ "**/*.user.css" ],
       options: {
         rangeStart: 12
+      }
+    },
+    {
+      files: [ "**/*.user.less" ],
+      options: {
+        printWidth: 250,
       }
     },
     ...fileLengths

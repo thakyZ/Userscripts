@@ -108,7 +108,15 @@ export default function (getMonkeyCodeNames) {
     "no-empty-pattern": "error",
     "no-eq-null": "error",
     "no-eval": "error",
-    "no-extend-native": "error",
+    "no-extend-native": [
+      "error",
+      {
+        "exceptions": [
+          "Object",
+          "String"
+        ]
+      }
+    ],
     "no-extra-bind": "error",
     "no-extra-label": "error",
     "no-fallthrough": "error",
@@ -236,8 +244,10 @@ export default function (getMonkeyCodeNames) {
     camelcase: [
       "error",
       {
-        properties: "always",
+        properties: "never",
+        ignoreDestructuring: true,
         ignoreGlobals: true,
+        allow: [ "\\b\\w+GM_\\w+\\b" ]
       },
     ],
     "capitalized-comments": [
@@ -247,7 +257,7 @@ export default function (getMonkeyCodeNames) {
         // You can also ignore this rule by wrapping the first word in quotes.
         // c8 => https://github.com/bcoe/c8
         ignorePattern:
-          /pragma|ignore|prettier-ignore|webpack\w+:|c8|type-coverage:/
+          /pragma|ignore|prettier-ignore|webpack\w+:|c8|type-coverage:|cSpell:/
             .source,
         ignoreInlineComments: true,
         ignoreConsecutiveComments: true,
@@ -278,9 +288,11 @@ export default function (getMonkeyCodeNames) {
     ],
     "func-names": ["error", "never"],
     "function-call-argument-newline": ["error", "consistent"],
-    indent: ["error", 2,
+    indent: [
+      "error",
+      2,
       {
-        SwitchCase: 1,
+        "SwitchCase": 1
       }
     ],
     "jsx-quotes": ["error", "prefer-double"],
@@ -320,7 +332,7 @@ export default function (getMonkeyCodeNames) {
         max: 4,
       },
     ],
-    "max-statements-per-line": "error",
+    "max-statements-per-line": "off",
     "new-cap": [
       "error",
       {
@@ -385,7 +397,7 @@ export default function (getMonkeyCodeNames) {
     semi: ["error", "always"],
     "space-before-blocks": ["error", "always"],
     "space-before-function-paren": [
-      "error",
+      "off",
       {
         anonymous: "always",
         named: "never",
@@ -418,6 +430,10 @@ export default function (getMonkeyCodeNames) {
       },
     ],
     "template-tag-spacing": ["error", "never"],
+    "unicode-bom": [
+      "error",
+      "never"
+    ],
     "unicode-bom": ["error", "never"],
     "arrow-body-style": "error",
     "arrow-parens": ["error", "always"],
@@ -496,5 +512,6 @@ export default function (getMonkeyCodeNames) {
     "symbol-description": "error",
     "template-curly-spacing": "error",
     "yield-star-spacing": ["error", "both"],
+    "vue/array-element-newline": "off",
   };
 }

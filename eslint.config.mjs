@@ -115,7 +115,7 @@ export default [
     ignores: ["build/*.*", "library/*.*"],
     languageOptions: {
       parserOptions: {
-        ecmaVersion: 13,
+        ecmaVersion: 2020,
         sourceType: "script",
       },
       globals: {

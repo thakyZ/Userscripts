@@ -1,0 +1,62 @@
+.config-wrapper,
+.config-wrapper .reset,
+.config-wrapper .reset a,
+.config-wrapper div[id*="_buttons_holder"] {
+  color: var(--config-wrapper-foreground) !important;
+}
+
+button#copyLodestoneCode {
+  border: 0;
+  bottom: 2px;
+  position: relative;
+}
+
+#content ul li {
+  line-height: 32px;
+}
+
+#compactCards img {
+  max-width: 40px;
+}
+
+.config-wrapper {
+  position: fixed;
+  top: var(--config-wrapper-top);
+  left: var(--config-wrapper-left);
+}
+
+.config-wrapper #GMConfigID {
+  font-family: Arial;
+  padding: 2rem;
+  background: var(--config-wrapper-background);
+  border: 0.1rem solid #101010;
+  border-radius: 0.625rem;
+  box-shadow: #000 0 1rem 2rem 5px;
+}
+
+.config-wrapper div[id*="_section_"].section_header_holder div[id*="_var"].config_var select {
+  background: var(--config-wrapper-background);
+  border: 1px solid #404040;
+  border-radius: 0.25rem;
+  padding: 0.1rem;
+  color: var(--config-wrapper-foreground);
+}
+
+.config-wrapper div[id*="_section_"].section_header_holder div[id*="_var"].config_var select option {
+  border: 1px solid #404040;
+}
+
+.config-wrapper .saveclose_buttons {
+  font-family: Arial;
+  background: var(--config-wrapper-background);
+  border: var(--config-wrapper-btn-border);
+  -webkit-border-radius: var(--config-wrapper-btn-border-radius-spec);
+  -moz-border-radius: var(--config-wrapper-btn-border-radius-spec);
+  border-radius: var(--config-wrapper-btn-border-radius);
+  color: var(--config-wrapper-foreground);
+}
+
+.config-wrapper .saveclose_buttons:hover,
+.config-wrapper div[id*="_section_"].section_header_holder div[id*="_var"].config_var select:hover {
+  background: var(--config-wrapper-background-hover);
+}

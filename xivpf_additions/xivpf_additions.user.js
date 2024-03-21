@@ -106,7 +106,6 @@ this.jQuery(($) => {
     state.list.filter((item) => dataCentreFilter(item) && categoryFilter(item));
   }
 
-  /* eslint-disable no-extend-native */
   // Fetched from: https://www.freecodecamp.org/news/how-to-capitalize-words-in-javascript/#iterate-over-each-word
   String.prototype.capitalizeSentence = function () {
     const words = this.split(" ");
@@ -117,7 +116,6 @@ this.jQuery(($) => {
 
     return words.join(" ");
   };
-  /* eslint-enable no-extend-native */
 
   function getTotalListings(optgroup) {
     const options = $(optgroup).find("option");
