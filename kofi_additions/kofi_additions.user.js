@@ -104,7 +104,7 @@ this.jQuery(($) => {
 
   /**
    * Constant definitions for operations.
-   * @typedef {NCD|NCE|NPD|NPE|PND|PNE} Operation
+   * @typedef {"ENC"|"DNC"|"ENP"|"DNP"|"ENP"|"DNP"|"EPN"|"DPN"} Operation
    */
 
   /**
@@ -162,7 +162,7 @@ this.jQuery(($) => {
    * @param {number} waitTime
    * @returns {Promise<string | boolean>}
    */
-  function clickFeedReducer(element, operation, waitTime) {
+  function clickFeedReducer(element, id, operation, waitTime) {
     return new Promise((resolve, reject) => {
       /*
       $(element).click(async function () {
@@ -181,58 +181,70 @@ this.jQuery(($) => {
       */
       (async function() {
         try {
-          let id = "";
-          if ($(element).is("input")) {
-            id = $(element).attr("id").split("_").at(-1);
-          }
+          operation = operation.replace("nbn", "");
 
-          if (operation.endsWith("D") && !$(element).is(":checked")) {
+          if (operation.startsWith("D") && !$(element).is(":checked")) {
             console.warn(`Attempted operation ${operation} on element when not checked.`, element);
             return;
           }
 
-          if (operation.endsWith("E") && !$(element).is(":checked")) {
+          if (operation.startsWith("E") && !$(element).is(":checked")) {
             console.warn(`Attempted operation ${operation} on element when is checked.`, element);
             return;
           }
 
           switch (operation) {
-            case "NCD":
-            case "NCE":
+            case "DNC":
               unsafeWindow.toggleIsSubscribedToGalleryBlogEmail(id, $(element)[0].checked);
+              $(element).removeAttr("checked");
               break;
-            case "NPD":
-            case "NPE":
+            case "ENC":
+              unsafeWindow.toggleIsSubscribedToGalleryBlogEmail(id, $(element)[0].checked);
+              $(element).attr("checked");
+              break;
+            case "DNP":
               unsafeWindow.toggleIsSubscribedToProductServicesEmail(id, $(element)[0].checked);
+              $(element).removeAttr("checked");
               break;
-            case "PND":
-            case "PNE":
+            case "ENP":
+              unsafeWindow.toggleIsSubscribedToProductServicesEmail(id, $(element)[0].checked);
+              $(element).attr("checked");
+              break;
+            case "DPN":
               unsafeWindow.toggleIsSubscribedToPush(id, $(element)[0].checked);
+              $(element).removeAttr("checked");
+              break;
+            case "EPN":
+              unsafeWindow.toggleIsSubscribedToPush(id, $(element)[0].checked);
+              $(element).attr("checked");
+              break;
+            case "DAL":
+            case "EAL":
               break;
             default:
               throw new Error(`Invalid operation ${operation}.`);
           }
         } catch (error) {
           console.error(`Failed to run operation ${operation} on element.`, element, error);
-          reject(error);
           await sleep(waitTime);
+          reject(error);
           return;
         }
 
-        resolve(true);
         await sleep(waitTime);
+        resolve(true);
       })();
     });
   }
 
   /**
    * Run the notification setting mass apply loop.
-   * @param {"ENC"|"DNC"|"ENP"|"DNP"|"ENP"|"DNP"|"EPN"|"DPN"} operation The operation for the task.
+   * @param {Operation} operation The operation for the task.
    * @returns {Promise<Error | undefined, boolean>}
    */
   async function runNotificationModifyMass(operation) {
     try {
-      for (const [index, element] of Object.entries($(getOperation(operation)))) {
+      for await (const [index, element] of Object.entries($(getOperation(operation)))) {
         const start = new Date();
         if (isNaN(Number(index)) || Number(index) === 0) {
           continue;
@@ -241,7 +253,13 @@ this.jQuery(($) => {
         consoleDebug("Setup: " + $(element).parents(".faq-wrapper").find("div:first-child div").text());
         notificationScrollCache = $("html, body").prop("scrollTop");
         /* eslint-disable-next-line no-await-in-loop */
-        const returned = await clickFeedReducer(element, waitTime);
+        let id = "";
+
+        if (Number(index) > 0 && $(element).is("input")) {
+          id = $(element).attr("id").split("_").at(-1);
+        }
+
+        const returned = await clickFeedReducer(element, id, operation, waitTime);
 
         if (typeof returned === "string") {
           throw new Error(returned);

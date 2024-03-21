@@ -1,50 +1,65 @@
 {
+  "[css]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "thakyZ.vs-code-prettier-eslint-nekoboinick"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "thakyZ.vs-code-prettier-eslint-nekoboinick"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+  "[sass]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+  "css.validate": false,
+  "docwriter.style": "JSDoc",
+  "editor.defaultFormatter": null,
+  "editor.formatOnPaste": false, // required
+  "editor.formatOnSave": false,
+  "editor.formatOnType": false, // required
+  "eslint.debug": true,
   "eslint.experimental.useFlatConfig": true,
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
   "eslint.options": {
     "overrideConfigFile": "./eslint.config.mjs"
   },
-  "eslint.debug": true,
   "files.associations": {
-    "OnlineClock.Blocked.user.css": "stylus",
+    "*.json": "jsonc",
     "FFXIV_Lodestone_Maint_Dark.user.css": "stylus",
     "htmlhint.conf": "json",
-    "*.json": "jsonc",
-    "invalidFileNameChars.json": "jsonc"
-  },
-  "editor.defaultFormatter": null,
-  "editor.formatOnPaste": false, // required
-  "editor.formatOnType": false, // required
-  "editor.formatOnSave": false,
-  "[less]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-  },
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[sass]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[scss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "invalidFileNameChars.json": "jsonc",
+    "OnlineClock.Blocked.user.css": "stylus"
   },
   "htmlhint.documentSelector": [
     "html",
     "htm",
     "!template.html"
   ],
-  "[json]": {
-    "editor.defaultFormatter": "j-brooke.fracturedjsonvsc"
-  },
-  "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "docwriter.style": "JSDoc",
-  "[html]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-  }
+  "stylelint.config": null,
+  "stylelint.enable": true,
+  "stylelint.configFile": ".stylelintrc.js",
+  "stylelint.packageManager": "pnpm",
+  "stylelint.reportNeedlessDisables": true,
+  "stylelint.configBasedir": "${workspaceDir}",
+  "stylelint.validate": [
+    "css",
+    "scss",
+    "less"
+  ],
+  "vs-code-prettier-eslint.prettierLast": true
 }
