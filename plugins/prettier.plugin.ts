@@ -1,28 +1,22 @@
 import { WebpackPluginInstance, Compiler } from "webpack";
-import { format, getSupportInfo } from "prettier";
-import path from "path";
-import fs from "fs/promises";
-
-const DEFAULT_EXTENSIONS = getSupportInfo()
-    .languages
-    .map(l => l.extensions)
-    .reduce((a, b) => (a ?? []).concat(b ?? []), [])
-    ?? [
-        ".css",
-        ".graphql",
-        ".js",
-        ".json",
-        ".jsx",
-        ".less",
-        ".sass",
-        ".scss",
-        ".ts",
-        ".tsx",
-        ".vue",
-        ".yaml",
-    ];
+import { SupportInfo, format, getSupportInfo } from "prettier";
+import * as path from "node:path";
+import * as fs from "node:fs";
 
 export default class PrettierPlugin implements WebpackPluginInstance {
+  DEFAULT_EXTENSIONS: string[] = [".css", ".graphql", ".js", ".json", ".jsx", ".less", ".sass", ".scss", ".ts", ".tsx", ".vue", ".yaml"]
+
+  constructor() {
+    (async () => {
+      const supportInfo: SupportInfo = await getSupportInfo();
+      const langs: string[] | undefined = supportInfo.languages
+        .map(l => l.extensions)
+        .reduce((a, b) => (a ?? []).concat(b ?? []), []);
+      if (typeof langs !== "undefined") {
+        this.DEFAULT_EXTENSIONS = langs;
+      }
+    })();
+  }
 
     encoding: string = "utf-8";
 
@@ -30,7 +24,7 @@ export default class PrettierPlugin implements WebpackPluginInstance {
         compiler.hooks.emit.tap("PrettierPlugin", async (compilation) => {
             const promises: Promise<void>[] = [];
             for (const filepath of compilation.fileDependencies) {
-                if (DEFAULT_EXTENSIONS.some(ext => filepath.endsWith(ext))) {
+                if (this.DEFAULT_EXTENSIONS.some(ext => filepath.endsWith(ext))) {
                     await this.formatFile(filepath);
                 }
             }

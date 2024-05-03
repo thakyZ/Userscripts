@@ -1,53 +1,29 @@
 {
-    "conventionalCommits.scopes": [
-        "headers",
-        "webpack",
-        "npm"
-    ],
-    "eslint.experimental.useFlatConfig": true,
-    "eslint.format.enable": true,
-    "eslint.lintTask.enable": true,
-    "eslint.options": {
-      "overrideConfigFile": "./eslint.config.mjs"
-    },
-    "eslint.debug": true,
-    "files.associations": {
-      "OnlineClock.Blocked.user.css": "stylus",
-      "FFXIV_Lodestone_Maint_Dark.user.css": "stylus",
-      "htmlhint.conf": "json",
-      "*.json": "json",
-      "invalidFileNameChars.json": "jsonc"
-    },
-    "editor.defaultFormatter": null,
-    "editor.formatOnPaste": false, // required
-    "editor.formatOnType": false, // required
-    "editor.formatOnSave": false,
-    "[less]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[javascript]": {
-      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-    },
-    "[css]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[sass]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[scss]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "htmlhint.documentSelector": [
-      "html",
-      "htm",
-      "!template.html"
-    ],
-    "[json]": {
-      "editor.defaultFormatter": "j-brooke.fracturedjsonvsc"
-    },
-    "cSpell.words": [
-      "crafter",
-      "glyphicon"
-    ],
-    "docwriter.style": "JSDoc"
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.options": {"overrideConfigFile": "./eslint.config.mjs"},
+  "eslint.debug": true,
+  "files.associations": {
+    "OnlineClock.Blocked.user.css"       : "stylus",
+    "FFXIV_Lodestone_Maint_Dark.user.css": "stylus",
+    "htmlhint.conf"                      : "jsonc" ,
+    "*.json"                             : "jsonc" ,
+    "*.json5"          : "jsonc"
+  },
+  "editor.defaultFormatter": null,
+  "editor.formatOnPaste": false,  // required
+  "editor.formatOnType": false,  // required
+  "editor.formatOnSave": false,
+  "[less]": {"editor.defaultFormatter": "thakyZ.vs-code-prettier-eslint-nekoboinick"},
+  "[javascript]": {"editor.defaultFormatter": "thakyZ.vs-code-prettier-eslint-nekoboinick"},
+  "[typescript]": {"editor.defaultFormatter": "thakyZ.vs-code-prettier-eslint-nekoboinick"},
+  "[css]": {"editor.defaultFormatter": "thakyZ.vs-code-prettier-eslint-nekoboinick"},
+  "[sass]": {"editor.defaultFormatter": "thakyZ.vs-code-prettier-eslint-nekoboinick"},
+  "[scss]": {"editor.defaultFormatter": "thakyZ.vs-code-prettier-eslint-nekoboinick"},
+  "[jsonc]": {"editor.defaultFormatter": "j-brooke.fracturedjsonvsc"},
+  "[json]": {"editor.defaultFormatter": "j-brooke.fracturedjsonvsc"},
+  "cSpell.words": ["crafter", "glyphicon"],
+  "docwriter.style": "JSDoc",
+  "htmlhint.documentSelector": ["html", "htm", "!template.html"],
 }

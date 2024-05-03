@@ -1,14 +1,39 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+/** @type {PlatformPath} */
+const path = require("node:path");
 
+/**
+ *
+ * @typedef {FileKeyOptions}
+ * @property {number} rangeStart
+ */
+
+/**
+ *
+ * @typedef {FileKey}
+ * @property {string[]} files
+ * @property {FileKeyOptions} options
+ */
+
+/** @type {string[]} */
 const blacklistedDir = [".git", ".vscode", "node_modules"];
 
+/**
+ * Get list of files.
+ * @param {string} directory
+ * @returns {string[]}
+ */
 function walk(directory) {
+  /** @type {string[]} */
   let results = [];
+  /** @type {string[]} */
   const directoryItems = fs.readdirSync(directory);
-  for (const [, file] of Object.entries(directoryItems)) {
-    if (blacklistedDir.includes(file) === false) {
+
+  for (const file of directoryItems) {
+    if (!blacklistedDir.includes(file)) {
+      /** @type {string} */
       const filePath = path.resolve(directory, file);
+      /** @type {fs.Stats} */
       const stats = fs.statSync(filePath);
 
       if (stats && stats.isDirectory()) {
@@ -22,27 +47,57 @@ function walk(directory) {
   return results;
 }
 
+
+/**
+ * Get list of files.
+ * @returns {FileKey[]}
+ */
 function getFiles() {
-  const results = {};
+  /** @type {FileKey[]} */
+  const results = [];
+  /** @type {string[]} */
   const files = walk(__dirname);
 
-  for (const [, file] of Object.entries(files)) {
+  for (const file of files) {
+    /** @type {string} */
     const extension = path.extname(file);
+    /** @type {string} */
     const fileData = fs.readFileSync(file, { encoding: "utf-8", flag: "r+" });
+
     if (extension === ".js") {
       const userScriptJQueryDetect = /\/\/ ==UserScript==\n(?:\/\/ @.+\n)+\/\/ ==\/UserScript==\n\/\* global .*? \*\/\nthis\.\$ = this\.jQuery = jQuery\.noConflict\(true\);/;
       const userScriptDetect = /\/\/ ==UserScript==\n(?:\/\/ @.+\n)+\/\/ ==\/UserScript==/;
+
       if (userScriptJQueryDetect.test(fileData)) {
+        /** @type {RegExpMatchArray | null} */
         const matched = fileData.match(userScriptJQueryDetect);
+
+        if (matched === null) {
+          continue;
+        }
+
         results[`**/${path.basename(file)}`] = matched[0].split("\n").length;
       } else if (userScriptDetect.test(fileData)) {
+        /** @type {RegExpMatchArray | null} */
         const matched = fileData.match(userScriptDetect);
+
+        if (matched === null) {
+          continue;
+        }
+
         results[`**/${path.basename(file)}`] = matched[0].split("\n").length;
       }
     } else if (extension === ".css") {
       const userStyleDetect = /\/\* ==UserStyle==\n(?:@\w+ +?.+\n)+==\/UserStyle== \*\//;
+
       if (userStyleDetect.test(fileData)) {
+        /** @type {RegExpMatchArray | null} */
         const matched = fileData.match(userStyleDetect);
+
+        if (matched === null) {
+          continue;
+        }
+
         results[`**/${path.basename(file)}`] = matched[0].split("\n").length;
       }
     }
@@ -51,16 +106,23 @@ function getFiles() {
   return results;
 }
 
+/**
+ * Parse files per keys.
+ * @returns {FileKey[]}
+ */
 function parseFileKeys() {
+  /** @type {{[key: string]: string}} */
   const files = getFiles();
+  /** @type {FileKey[]} */
   const items = {};
+
   for (const [key, value] of Object.entries(files)) {
-    if (Object.prototype.hasOwnProperty.call(items, value) === false) {
+    if (!Object.hasOwn(items, value)) {
       items[value] = {
         files: [],
         options: {
-          rangeStart: value
-        }
+          rangeStart: value,
+        },
       };
     }
 
@@ -70,14 +132,9 @@ function parseFileKeys() {
   return items;
 }
 
-function getFileLength() {
-  const keys = parseFileKeys();
-  const items = [];
-  for (const [, value] of Object.entries(keys)) {
-    items.push(value);
-  }
+/** @type {object[]} */
+const fileLengths = parseFileKeys()
 
-  return items;
-}
-
-export const fileLengths = getFileLength();
+module.exports = {
+  fileLengths,
+};

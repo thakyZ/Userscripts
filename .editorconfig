@@ -1,8 +1,20 @@
+# https://EditorConfig.org
+
+# is this the topmost EditorConfig file?
+root = true
+
 [*]
+charset = utf-8
 indent_size = 2
 tab_width = 2
 indent_style = space
+insert_final_newline = true
+trim_trailing_whitespaces = true
 end_of_line = lf
 
-[*.js]
-max_line_length = 150
+[*.{js,ts}]
+quote_type = double
+
+[*.{yml,yaml}]
+indent_size = 4
+tab_width = 4

@@ -4,11 +4,11 @@ import prettierPlugin from "eslint-plugin-prettier";
 import markdown from "eslint-plugin-markdown";
 import customRules from "./build/rules-custom.mjs";
 import babelParser from "@babel/eslint-parser";
-import ESgreasemonkey from "eslint-config-greasemonkey";
-import ESimport from "eslint-plugin-import";
-import * as path from "path";
-import * as fs from "fs";
-import * as url from "url";
+import greasemonkey from "eslint-config-greasemonkey";
+import eslintImport from "eslint-plugin-import";
+import * as path from "node:path";
+import * as fs from "node:fs";
+import * as url from "node:url";
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -75,7 +75,7 @@ const getMonkeyCodeNames = (type) => {
 
 export default [
   {
-    files: ["**/*.user.js"],
+    files: ["**/*.user.ts"],
     ignores: ["build/*.*", "library/*.*"],
     languageOptions: {
       parserOptions: {
@@ -87,7 +87,7 @@ export default [
         ...globals.greasemonkey,
         ...globals.jquery,
         ...globals.es6,
-        ...ESgreasemonkey.globals,
+        ...greasemonkey.globals,
         ...getMonkeyCodeNames("customGlobal"),
       },
     },
@@ -132,7 +132,7 @@ export default [
       globals: {
         ...globals.node,
         ...globals.es6,
-        ...ESgreasemonkey.globals
+        ...greasemonkey.globals
       },
     },
     linterOptions: {
@@ -161,7 +161,7 @@ export default [
       parser: babelParser,
       globals: {
         ...globals.node,
-        ...ESgreasemonkey.globals
+        ...greasemonkey.globals
       },
     },
     linterOptions: {
