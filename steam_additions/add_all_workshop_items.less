@@ -1,0 +1,91 @@
+.ascm {
+  position: absolute;
+  top: 120px;
+  width: 30px;
+  height: 30px;
+
+  &#ascm-removeall {
+    right: 75px;
+  }
+
+  &#ascm-addall {
+    right: 40px;
+  }
+
+  &#ascm-progress {
+    right: 40px;
+    top: 152px;
+    font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+    color: #8f98a0;
+    font-size: 12px;
+    text-align: center;
+    width: 65px;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-touch-callout: none; /* iOS Safari */
+    user-select: none; /* Non-prefixed version, currently */
+
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  & span {
+    padding: 0 !important;
+
+    & svg path {
+      filter: drop-shadow(1px 1px 0 rgb(0 0 0 / 30%));
+    }
+
+    &::before {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+    }
+  }
+}
+
+.btn-red-steamui {
+  border-radius: 2px;
+  border: none;
+  padding: 1px;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: #efa9a9 !important;
+  background: transparent;
+  text-shadow: 1px 1px 0 rgba(0 0 0 / 30%);
+
+  & > span {
+    border-radius: 2px;
+    display: block;
+    background: #6fa720;
+    background: linear-gradient(to bottom, #b02222 5%, #8a1b1b 95%);
+    background: linear-gradient(to right, #b02222 5%, #8a1b1b 95%);
+  }
+
+  &.btn-active,
+  &.active {
+    text-decoration: none !important;
+    color: #fff;
+    background: transparent;
+
+    & > span {
+      background: #8ed629;
+      background: linear-gradient(to bottom, #d62929 5%, #a62121 95%);
+      background: linear-gradient(to right, #d62929 5%, #a62121 95%);
+    }
+  }
+
+  &:not(.btn-disabled, :disabled, .btn-active, .active):hover {
+    text-decoration: none !important;
+    color: #fff;
+    background: transparent;
+
+    & > span {
+      background: #8ed629;
+      background: linear-gradient(to bottom, #d62929 5%, #a62121 95%);
+      background: linear-gradient(to right, #d62929 5%, #a62121 95%);
+    }
+  }
+}
