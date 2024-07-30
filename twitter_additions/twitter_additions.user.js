@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Twitter Additions
 // @namespace    NekoBoiNick.Web.Twitter.Additions
-// @version      1.0.1
+// @version      1.0.2
 // @description  Changes things on Twitter.
 // @author       Neko Boi Nick
 // @match        https://twitter.com/*
+// @match        https://x.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
 // @grant        unsafeWindow
 // @grant        GM_addStyle
