@@ -1,14 +1,18 @@
 // ==UserScript==
 // @name         Bad Twitter No Interests
 // @namespace    NekoBoiNick.Web.Twitter.NoInterests
-// @version      1.0.5.3
+// @version      1.0.5.4
 // @description  Disables all of what Twitter thinks you are interested in.
 // @author       Neko Boi Nick
 // @match        https://twitter.com/*
+// @match        https://x.com/*
 // @match        https://twitter.com/settings/*
+// @match        https://x.com/settings/*
 // @match        https://twitter.com/settings/your_twitter_data/*
+// @match        https://x.com/settings/your_twitter_data/*
 // @match        https://twitter.com/settings/your_twitter_data/twitter_interests
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
+// @match        https://x.com/settings/your_twitter_data/twitter_interests
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=x.com
 // @grant        unsafeWindow
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
@@ -194,13 +198,13 @@ this.jQuery(function ($) {
       for (const mutation of mutationList) {
         if (mutation.type === "childList") {
           if ($(mutation.target).is("section[aria-label=\"Section details\"] > div:last-child > div") || $(mutation.target).is("section[aria-label=\"Section details\"]")) {
-            if (/https:\/\/twitter\.com\/settings\/your_twitter_data\/twitter_interests/i.test(window.location.href)) {
+            if (/https:\/\/(twitter|x)\.com\/settings\/your_twitter_data\/twitter_interests/i.test(window.location.href)) {
               createButtons($(mutation.target).parent().parent());
             }
           }
         }
 
-        if (typeof buttonElements.buttons !== "undefined" && /https:\/\/twitter\.com\/settings\/your_twitter_data\/twitter_interests/i.test(window.location.href) === false) {
+        if (typeof buttonElements.buttons !== "undefined" && /https:\/\/(twitter|x)\.com\/settings\/your_twitter_data\/twitter_interests/i.test(window.location.href) === false) {
           buttonElements.reset();
         }
       }
