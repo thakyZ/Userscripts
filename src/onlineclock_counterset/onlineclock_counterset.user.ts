@@ -1,18 +1,3 @@
-// ==UserScript==
-// @name         Online Clock Counter Set
-// @namespace    NekoBoiNick.Web.OnlineClock.Counter.SpecificSet
-// @version      1.0.1
-// @description  Adds a text box that allows you to set the Counter so you can count down.
-// @author       Neko Boi Nick
-// @match        https://counter.onlineclock.net/
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=onlineclock.net
-// @grant        none
-// @require      https://code.jquery.com/jquery-3.6.0.min.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/onlineclock_counterset/onlineclock_counterset.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/onlineclock_counterset/onlineclock_counterset.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
 /* global $, SetCounterCookie, formatCounterForTitle */
 this.$ = this.jQuery = jQuery.noConflict(true);
 

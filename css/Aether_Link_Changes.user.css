@@ -9,7 +9,10 @@
 @supportURL     https://github.com/thakyZ/Userscripts/issues
 @homepageURL    https://github.com/thakyZ/Userscripts
 ==/UserStyle== */
+
+
 @-moz-document domain("aetherlink.app") {
+
   .menu .grid .upper .options .account,
   .menu-collapsed .grid .upper .options .account {
     transition: all 0.7s ease;

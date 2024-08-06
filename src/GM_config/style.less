@@ -1,0 +1,66 @@
+@bodyBackground: var(--body-background);
+@bodyBackgroundDark: var(--body-background-dark);
+@bodyText: var(--body-text);
+@bodyTextDark: var(--body-text-dark);
+
+div[id*="_wrapper"] {
+	height: 100%;
+	background: @bodyBackground;
+	border-radius: 10px;
+  color: @bodyText;
+  padding: 20px;
+
+  & .config_header {
+    line-height: normal;
+    margin: 0 0 10px 0 !important;
+  }
+
+  & .select-wrapper {
+    & select {
+      &[id*="_field_"] {
+        appearance: none;
+      }
+    }
+
+    &::after {
+      content: "▼";
+      color: @bodyText;
+      font-size: 1rem;
+      top: 6px;
+      right: 10px;
+      position: absolute;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  div[id*="_wrapper"] {
+    height: 100%;
+    background: @bodyBackgroundDark;
+    border-radius: 10px;
+    color: @bodyTextDark;
+    padding: 20px;
+
+    & .config_header {
+      line-height: normal;
+      margin: 0 0 10px 0 !important;
+    }
+
+    & .select-wrapper {
+      & select {
+        &[id*="_field_"] {
+          appearance: none;
+        }
+      }
+
+      &::after {
+        content: "▼";
+        color: @bodyTextDark;
+        font-size: 1rem;
+        top: 6px;
+        right: 10px;
+        position: absolute;
+      }
+    }
+  }
+}

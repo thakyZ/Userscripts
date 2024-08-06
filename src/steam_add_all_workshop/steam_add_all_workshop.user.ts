@@ -1,18 +1,3 @@
-// ==UserScript==
-// @name         Steam Add All Workshop Items to Collection
-// @namespace    NekoBoiNick.Steam.Workshop.Collection.AddAllItems
-// @version      1.0.2
-// @description  Makes GUI to add or remove all items to or from a collection.
-// @author       Neko Boi Nick
-// @match        https://steamcommunity.com/sharedfiles/managecollection/?id=*
-// @icon         https://www.google.com/s2/favicons?domain=steamcommunity.com
-// @grant        none
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/steam_add_all_workshop/steam_add_all_workshop.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/steam_add_all_workshop/steam_add_all_workshop.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
 /* ===============
  * Code borrows from: https://www.reddit.com/r/CitiesSkylines/comments/8hrdsd/add_all_subscribed_items_to_steam_collections_at/
  * Code is made by u/kluvo2
@@ -29,28 +14,28 @@
  * 7. Refresh the page, your collection will be updated.
  * To see how it looks on the page, see the screenshot: https://imgur.com/a/w8qZ3VM
  */
-/* global jQuery, $ */
-this.$ = this.jQuery = jQuery.noConflict(true);
+// cSpell:ignore steamui, noicon
+import jQuery from "jquery";
 
-$(document).ready(() => {
+jQuery(($) => {
   const setupCSS = () => {
-    $("head").append(`<style id="ASCM">
-  .ASCM {
+    $("head").append(`<style id="add-all-subscribed-collection-manager">
+  .add-all-subscribed-collection-manager {
       position: absolute;
       top: 120px;
       width: 30px;
       height: 30px;
   }
 
-  .ASCM#ASCM_removeall {
+  .add-all-subscribed-collection-manager#add-all-subscribed-collection-manager_removeall {
       right: 75px;
   }
 
-  .ASCM#ASCM_addall {
+  .add-all-subscribed-collection-manager#add-all-subscribed-collection-manager_addall {
       right: 40px;
   }
 
-  .ASCM span {
+  .add-all-subscribed-collection-manager span {
       padding: 0 0px !important;
   }
 
@@ -76,7 +61,7 @@ $(document).ready(() => {
       background: linear-gradient( to right, #B02222 5%, #8A1B1B 95%);
   }
 
-  .ASCM > span svg path {
+  .add-all-subscribed-collection-manager > span svg path {
     filter:drop-shadow(1px 1px 0px rgb(0 0 0 / 30%));
   }
 
@@ -106,13 +91,13 @@ $(document).ready(() => {
       background: linear-gradient( to right, #D62929 5%, #A62121 95%);
   }
 
-  .ASCM span:before {
+  .add-all-subscribed-collection-manager span:before {
       width: 30px;
       height: 30px;
       display: inline-block;
   }
 
-  .ASCM#ASCM_progress {
+  .add-all-subscribed-collection-manager#add-all-subscribed-collection-manager_progress {
       right: 40px;
       top: 152px;
       font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
@@ -123,10 +108,10 @@ $(document).ready(() => {
       overflow: hidden;
       white-space: nowrap;
   }
-  .ASCM#ASCM_progress:hover {
+  .add-all-subscribed-collection-manager#add-all-subscribed-collection-manager_progress:hover {
     cursor: default;
   }
-  .ASCM#ASCM_progress {
+  .add-all-subscribed-collection-manager#add-all-subscribed-collection-manager_progress {
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
       -khtml-user-select: none; /* Konqueror HTML */
@@ -145,14 +130,14 @@ $(document).ready(() => {
   });
   const createButtons = () => {
     if (addAllBtn === undefined && remAllBtn === undefined && progress === undefined && $($("div.collectionAddItemsSection").children()[0]).prop("nodeName") !== "a") {
-      addAllBtn = $("<a id=\"ASCM_addall\" class=\"btn_green_steamui btn_medium noicon ASCM\"><span><svg width='30' height='30' xmlns='http://www.w3.org/2000/svg'><path d='m12 6h6v6h6v6h-6v6h-6v-6h-6v-6h6z' fill='currentColor'/></svg></span></a>");
+      addAllBtn = $("<a id=\"add-all-subscribed-collection-manager_addall\" class=\"btn_green_steamui btn_medium noicon add-all-subscribed-collection-manager\"><span><svg width='30' height='30' xmlns='http://www.w3.org/2000/svg'><path d='m12 6h6v6h6v6h-6v6h-6v-6h-6v-6h6z' fill='currentColor'/></svg></span></a>");
       $(addAllBtn).insertBefore($($("div.collectionAddItemsSection").children()[0]));
-      remAllBtn = $("<a id=\"ASCM_removeall\" class=\"btn_red_steamui btn_medium noicon ASCM\"><span><svg width='30' height='30' xmlns='http://www.w3.org/2000/svg'><path d='m6 12h18v6h-18z' fill='currentColor'/></svg></span></a>");
+      remAllBtn = $("<a id=\"add-all-subscribed-collection-manager_removeall\" class=\"btn_red_steamui btn_medium noicon add-all-subscribed-collection-manager\"><span><svg width='30' height='30' xmlns='http://www.w3.org/2000/svg'><path d='m6 12h18v6h-18z' fill='currentColor'/></svg></span></a>");
       $(remAllBtn).insertAfter($(addAllBtn));
-      progress = $("<span id=\"ASCM_progress\" class=\"ASCM\"></span>");
+      progress = $("<span id=\"add-all-subscribed-collection-manager_progress\" class=\"add-all-subscribed-collection-manager\"></span>");
       $(progress).insertAfter($(remAllBtn));
       $(addAllBtn).on("click", async () => {
-        $("#ASCM_progress").text("<Pending>");
+        $("#add-all-subscribed-collection-manager_progress").text("<Pending>");
         const collectionItems = $("div#MySubscribedItems div.itemChoice:not(.inCollection)");
         const totalItems = $(collectionItems).length;
         const collectionName = $("div.manageCollectionHeader div.breadcrumbs a").eq(2).text().trim();
@@ -171,11 +156,11 @@ $(document).ready(() => {
             async success(data, textStatus) {
               if (data && textStatus === "success") {
                 $(object).addClass("inCollection");
-                $("#ASCM_progress").text(`${Math.ceil((index / totalItems) * 100)}%`);
+                $("#add-all-subscribed-collection-manager_progress").text(`${Math.ceil((index / totalItems) * 100)}%`);
                 if (index >= totalItems) {
-                  $("#ASCM_progress").text("100% Done!");
+                  $("#add-all-subscribed-collection-manager_progress").text("100% Done!");
                   await sleep(5000);
-                  $("#ASCM_progress").text("");
+                  $("#add-all-subscribed-collection-manager_progress").text("");
                   window.location.href
                     = /&activeSection=(MyItems|MyFavoriteItems|MySubscribedItems)/gi.test(window.location.href)
                       ? window.location.href.replace(/&activeSection=(MyItems|MyFavoriteItems|MySubscribedItems)/gi, "&activeSection=MySubscribedItems")
@@ -199,12 +184,12 @@ $(document).ready(() => {
         for (const [index, item] of Object.entries(collectionItems)) {
           // eslint-disable-next-line new-cap
           window.RemoveChildFromCollection($($(item).attr("id").replace("choice_MySubscribedItems_", "")));
-          $("#ASCM_progress").text(`${Math.floor((index / totalItems2) * 100)}%`);
+          $("#add-all-subscribed-collection-manager_progress").text(`${Math.floor((index / totalItems2) * 100)}%`);
           if (index >= totalItems2) {
-            $("#ASCM_progress").text("100% Done!");
+            $("#add-all-subscribed-collection-manager_progress").text("100% Done!");
             // eslint-disable-next-line no-await-in-loop
             await sleep(5000);
-            $("#ASCM_progress").text("");
+            $("#add-all-subscribed-collection-manager_progress").text("");
           }
 
           // eslint-disable-next-line no-await-in-loop
@@ -221,7 +206,7 @@ $(document).ready(() => {
       childList: true,
       subtree: true,
     };
-    const callback = mutationList => {
+    const callback = (mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.type === "attributes" || mutation.type === "childList") {
           if ($(mutation.target).attr("id") === "MySubscribedItemsTab" && $(mutation.target).hasClass("active")) {

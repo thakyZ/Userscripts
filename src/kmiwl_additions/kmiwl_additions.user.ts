@@ -1,31 +1,7 @@
-// ==UserScript==
-// @name         Kmiwl Additions
-// @namespace    NekoBoiNick.Web.Kmiwl.Additions
-// @version      1.0.1
-// @description  Additional features added to Kmiwl's Website
-// @author       Neko Boi Nick
-// @match        https://ffxiv.kmiwl.de/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=kmiwl.de
-// @license      MIT
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        unsafeWindow
-// @grant        GM_addStyle
-// @grant        GM_deleteValue
-// @grant        GM_registerMenuCommand
-// @grant        GM_setClipboard
-// @require      https://raw.githubusercontent.com/SloaneFox/code/master/GM4_registerMenuCommand_Submenu_JS_Module.js
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @require      https://raw.github.com/odyniec/MonkeyConfig/master/monkeyconfig.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/kmiwl_additions/kmiwl_additions.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/kmiwl_additions/kmiwl_additions.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
-/* global $, jQuery, MonkeyConfig */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global MonkeyConfig */
+import jQuery from "jquery";
 
-$(document).ready(() => {
+jQuery(($) => {
   const config = new MonkeyConfig({
     title: "Configure",
     menuCommand: true,
@@ -55,16 +31,16 @@ $(document).ready(() => {
       Black: [/body\{background:#000;\}/gim, "body{background:#000;}"],
       MaterialUI: [/\\#cache\\\{background-image:url\\\(\\"\\"\\\);\\\}/gim, `#cache{background-image:url("${materialUIImg}");}`],
       replace(text, type) {
-        const _type = type => {
+        const _type = (type) => {
           switch (type) {
-          case cssKeys.customCSS.Dark:
-            return cssKeys.customCSS.Dark[1].toString();
-          case cssKeys.customCSS.Black:
-            return cssKeys.customCSS.Black[1].toString();
-          case cssKeys.customCSS.MaterialUI:
-            return cssKeys.customCSS.MaterialUI[1].toString();
-          default:
-            return "";
+            case cssKeys.customCSS.Dark:
+              return cssKeys.customCSS.Dark[1].toString();
+            case cssKeys.customCSS.Black:
+              return cssKeys.customCSS.Black[1].toString();
+            case cssKeys.customCSS.MaterialUI:
+              return cssKeys.customCSS.MaterialUI[1].toString();
+            default:
+              return "";
           }
         };
 

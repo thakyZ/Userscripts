@@ -1,36 +1,7 @@
-// ==UserScript==
-// @name         Speed Test Redirect
-// @namespace    NekoBoiNick.Web.Search.SpeedTest
-// @copyright    2023, Neko Boi Nick
-// @version      1.0.2
-// @license      MIT
-// @description  Redirects the search engine to a proper speed test site.
-// @author       Neko Boi Nick
-// @match        *://*.google.com/*
-// @match        *://*.duckduckgo.com/*
-// @match        *://*.bing.com/*
-// @match        *://*.yahoo.com/*
-// @match        *://*.yandex.com/*
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        unsafeWindow
-// @grant        GM.getValue
-// @grant        GM.setValue
-// @grant        GM_addStyle
-// @grant        GM_registerMenuCommand
-// @run-at       document-start
-// @require      https://raw.githubusercontent.com/SloaneFox/code/master/GM4_registerMenuCommand_Submenu_JS_Module.js
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @require      https://raw.github.com/odyniec/MonkeyConfig/master/monkeyconfig.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/speed_test_redirect/speed_test_redirect.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/speed_test_redirect/speed_test_redirect.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
-/* global $, jQuery, MonkeyConfig */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global MonkeyConfig */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+jQuery((_) => {
   "use strict";
 
   const config = new MonkeyConfig({
@@ -78,17 +49,17 @@ $(document).ready(() => {
 
   const fromSiteChoice = () => {
     switch (config.get("redirectSite")) {
-    case "Measurement Lab":
-      return redirectSites[0];
-    case "Ookla":
-      return redirectSites[1];
-    case "Fast":
-    default:
-      return redirectSites[2];
+      case "Measurement Lab":
+        return redirectSites[0];
+      case "Ookla":
+        return redirectSites[1];
+      case "Fast":
+      default:
+        return redirectSites[2];
     }
   };
 
-  const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
+  const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
   for (const [service, regex] of Object.entries(services)) {
     if (config.get(`for${capitalizeFirstLetter(service)}`) && regex.test(loc)) {

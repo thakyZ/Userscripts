@@ -1,31 +1,7 @@
-// ==UserScript==
-// @name         FFXIV Squadron App
-// @namespace    NekoBoiNick.Web.FFXIVSquadron.SaveLoad
-// @version      1.0.5
-// @description  Syncs the FFXIV Sqadron App Data
-// @author       Neko Boi Nick
-// @match        https://www.ffxivsquadron.com/*
-// @match        https://ffxivsquadron.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=ffxivsquadron.com
-// @license      MIT
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        unsafeWindow
-// @grant        GM_addStyle
-// @grant        GM_deleteValue
-// @grant        GM_xmlhttpRequest
-// @grant        GM_registerMenuCommand
-// @require      https://raw.githubusercontent.com/SloaneFox/code/master/GM4_registerMenuCommand_Submenu_JS_Module.js
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxivsquadron_saveload/ffxivsquadron_saveload.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxivsquadron_saveload/ffxivsquadron_saveload.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
-/* global $, sqMissionSolver, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global sqMissionSolver */
+import jQuery from "jquery";
 
-$(document).ready(() => {
+jQuery(($) => {
   const SettingsSaveName = "FFXIVSquadronApp.Settings";
   const DateSaveName = "FFXIVSquadronApp.Date";
   const IconUrlSaveName = "FFXIVSquadronApp.IronUrl";

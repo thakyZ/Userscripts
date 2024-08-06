@@ -1,23 +1,6 @@
-// ==UserScript==
-// @name         Steam Workshop Delete Facebook
-// @namespace    NekoBoiNick.Steam.Community.Workshop.Facebook
-// @version      0.1
-// @description  Deletes Facebook tags in SteamWorkshop Item Pages.
-// @author       Neko Boi Nick
-// @match        https://steamcommunity.com/sharedfiles/filedetails/?id=*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=steamcommunity.com
-// @license      MIT
-// @grant        none
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/steamworkshop_deletefacebook/steamworkshop_deletefacebook.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/steamworkshop_deletefacebook/steamworkshop_deletefacebook.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+import jQuery from "jquery";
 
-$(document).ready(() => {
+jQuery(($) => {
   "use strict";
 
   const otherSearchClass = ".fbc-badge";

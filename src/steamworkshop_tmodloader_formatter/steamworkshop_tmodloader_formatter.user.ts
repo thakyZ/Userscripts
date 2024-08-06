@@ -1,30 +1,7 @@
-// ==UserScript==
-// @name         TModLoader Workshop Page Formatter
-// @namespace    NekoBoiNick.Web.Steam.Workshop.TModLoader
-// @version      1.0.1
-// @description  Format TModLoader workshop pages.
-// @author       Neko Boi Nick
-// @match        https://steamcommunity.com/sharedfiles/filedetails/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=steamcommunity.com
-// @license      MIT
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        unsafeWindow
-// @grant        GM_addStyle
-// @grant        GM_deleteValue
-// @grant        GM_registerMenuCommand
-// @require      https://raw.githubusercontent.com/SloaneFox/code/master/GM4_registerMenuCommand_Submenu_JS_Module.js
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @require      https://raw.github.com/odyniec/MonkeyConfig/master/monkeyconfig.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/steamworkshop_tmodloader_formatter/steamworkshop_tmodloader_formatter.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/steamworkshop_tmodloader_formatter/steamworkshop_tmodloader_formatter.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
-/* global $, jQuery, MonkeyConfig */
-this.$ = this.jQuery = jQuery.noConflict(true);
+import jQuery from "jquery";
 
-$(document).ready(() => {
+jQuery(($) => {
+  /* CSpell:ignoreRegExp "teamworkshop_tmodloader_formatter_data" */
   GM_deleteValue("teamworkshop_tmodloader_formatter_data");
 
   const config = new MonkeyConfig({
@@ -38,7 +15,7 @@ $(document).ready(() => {
     },
   });
   let itemIcons;
-  const checkItemsSet = cb => {
+  const checkItemsSet = (cb) => {
     const value = config.get("key");
     return value !== undefined && value !== "" ? sendItems(value, cb) : null;
   };
@@ -60,8 +37,9 @@ $(document).ready(() => {
     });
   };
 
+  /* CSpell:ignoreRegExp .tmodloadericon */
   const styleElement = $("<style>.tmodloadericon{width:16px;height:16px;display:inline-block;}</style>");
-  const parseCSSIcon = id => {
+  const parseCSSIcon = (id) => {
     const currentHtml = $(styleElement).html();
     return currentHtml.indexOf(`.tmodloadericon.item-${id}`) > -1 ? null : $(styleElement).html(currentHtml.concat(`.tmodloadericon.item-${id}{background-image:url("${itemIcons[id]}");}`));
   };

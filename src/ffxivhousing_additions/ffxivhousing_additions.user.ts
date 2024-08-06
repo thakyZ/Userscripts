@@ -1,21 +1,6 @@
-// ==UserScript==
-// @name         FFXIV Housing Preview Images
-// @namespace    NekoBoiNick.Web.FFXIVHousing.Additions
-// @version      1.0.2
-// @description  Add Preview Popups to FFXIV Housing's Website
-// @author       Neko Boi Nick
-// @match        https://en.ff14housing.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=ff14housing.com
-// @grant        none
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxivhousing_additions/ffxivhousing_additions.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxivhousing_additions/ffxivhousing_additions.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
-/* global $ */
-// this.$ = this.jQuery = jQuery.noConflict(true);
+import jQuery from "jquery";
 
-$(document).ready(() => {
+jQuery(($) => {
   const crafterDictionary = {
     CRP: "carpenter",
     BSM: "blacksmith",
@@ -107,17 +92,12 @@ $(document).ready(() => {
    * </div>
    */
 
-  const prepareModal = (itemId, itemName, objectData) =>
-    $(
-      `<div id="nbnPreviewModal" class="modal fade" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">${itemName}</h4></div><div class="modal-body"><div class="panel"><div class="panel-body"><div id="carousel-example-generic" class="carousel slide" data-interval="false" style="max-width:600px;margin: 0 auto;"><ol class="carousel-indicators"><li data-target="#carousel-example-generic" data-slide-to="0" class=""></li><li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li></ol><div class="carousel-inner"><div class="item active"><div><img src="./images/pic/${itemId}_img1.jpg" alt="${itemName}"></div></div><div class="item"><div><img src="./images/pic/${itemId}_img2.jpg" alt="${itemName}"></div></div></div><a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"><span class="glyphicon glyphicon-chevron-left text-white"></span></a><a class="right carousel-control" href="#carousel-example-generic" data-slide="next"><span class="glyphicon glyphicon-chevron-right text-white"></span></a></div></div></div></div><div class="modal-footer">${processFooters(
-        objectData
-      )}</div></div></div></div>`
-    );
+  const prepareModal = (itemId, itemName, objectData) => $(`<div id="nbnPreviewModal" class="modal fade" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title">${itemName}</h4></div><div class="modal-body"><div class="panel"><div class="panel-body"><div id="carousel-example-generic" class="carousel slide" data-interval="false" style="max-width:600px;margin: 0 auto;"><ol class="carousel-indicators"><li data-target="#carousel-example-generic" data-slide-to="0" class=""></li><li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li></ol><div class="carousel-inner"><div class="item active"><div><img src="./images/pic/${itemId}_img1.jpg" alt="${itemName}"></div></div><div class="item"><div><img src="./images/pic/${itemId}_img2.jpg" alt="${itemName}"></div></div></div><a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"><span class="glyphicon glyphicon-chevron-left text-white"></span></a><a class="right carousel-control" href="#carousel-example-generic" data-slide="next"><span class="glyphicon glyphicon-chevron-right text-white"></span></a></div></div></div></div><div class="modal-footer">${processFooters(objectData)}</div></div></div></div>`);
 
   const handlePopUp = element => {
     const link = $(element).find("a").attr("href");
     $(element).find("a").removeAttr("href");
-    $(element).find("a").prop("tagName", "div");
+    unsafeWindow.$(element).find("a").prop("tagName", "div");
     $(element)
       .find("span.small-box-footer")
       .on("click", () => goToPage(link));
@@ -138,14 +118,14 @@ $(document).ready(() => {
     const objectData = getObjectData(element);
     const modal = prepareModal(itemId, itemName, objectData);
     $("#nbnModalContainer").append(modal);
-    $("#nbnPreviewModal").modal("show");
-    $("#nbnPreviewModal").on("shown.bs.modal", () => {
-      $("#nbnPreviewModal").focus();
+    unsafeWindow.$("#nbnPreviewModal").modal("show");
+    unsafeWindow.$("#nbnPreviewModal").on("shown.bs.modal", () => {
+      unsafeWindow.$("#nbnPreviewModal").focus();
       $("#nbnPreviewModal")
         .find(".carousel-inner > .item > div")
         .on("click", () => goToPage(link));
     });
-    $("#nbnPreviewModal").on("hidden.bs.modal", () => {
+    unsafeWindow.$("#nbnPreviewModal").on("hidden.bs.modal", () => {
       $("#nbnModalContainer").children("#nbnPreviewModal").remove();
     });
   };
@@ -176,7 +156,9 @@ $(document).ready(() => {
     if (!/\.\/images\/ic\/[a-z0-9]{4,12}_ic\.png/gi.test($(element).find("img:first-child").attr("src"))) {
       $(element)
         .find("img:first-child")
-        .on("click", () => handlePopUp(element));
+        .on("click", function () {
+          handlePopUp($(this).parents()[3]);
+        });
     }
   };
 

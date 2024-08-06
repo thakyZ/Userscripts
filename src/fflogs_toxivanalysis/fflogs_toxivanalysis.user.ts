@@ -1,23 +1,7 @@
-// ==UserScript==
-// @name         FFLogs To XIV Analysis
-// @namespace    NekoBoiNick.Web.FFLogs.ButtonToXIVAnalysis
-// @version      1.0.3
-// @description  Adds a button to FFLogs reports to redirect to XIV Analysis
-// @author       Neko Boi Nick
-// @match        https://www.fflogs.com/reports/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=fflogs.com
-// @license      MIT
-// @grant        none
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/fflogs_toxivanalysis/fflogs_toxivanalysis.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/fflogs_toxivanalysis/fflogs_toxivanalysis.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
-/* global $, fights */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global fights */
+import jQuery from "jquery";
 
-$(document).ready(() => {
+jQuery(($) => {
   /* Unused mainmenu variable
    * const mainMenu = $("#main-menu");
    */
@@ -59,6 +43,10 @@ $(document).ready(() => {
   .goto-xivanalysis {
     flex-shrink: 0;
     position: relative;
+  }
+  #new-client-id, #new-client-secret {
+    font-family: monospace;
+
   }
   .xivanalysis-btn {
     align-items: center;
@@ -126,7 +114,7 @@ $(document).ready(() => {
     padding: 0 !important;
     min-width: 22px !important;
   }
-  .xivanalysis-plyr-btn {
+  .xivanalysis-player-btn {
     cursor: pointer;
     max-height: 15px;
     min-width: 18px;
@@ -136,7 +124,7 @@ $(document).ready(() => {
     border: 1px solid #323232;
     border-radius: 4px;
   }
-  .xivanalysis-plyr-btn:hover {
+  .xivanalysis-player-btn:hover {
     background: linear-gradient(90deg, #144662 0%, #13784D 100%);
   }
 </style>`);
@@ -145,7 +133,7 @@ $(document).ready(() => {
   createCSS();
   $($(".report-bar-top-right-section").children()[0]).before(createButton());
   $(".goto-xivanalysis > .xivanalysis-btn").on("click", () => {
-    const SiteRegex = /https:\/\/(www\.)?fflogs.com\/reports\/([a-zA-Z0-9]+)\/?(#.*)?/g;
+    const SiteRegex = /https:\/\/(www\.)?fflogs\.com\/reports\/([a-zA-Z0-9]+)\/?(#.*)?/g;
     const FightRegex = /[#&]fight=(\d+|last)/g;
     const SourceRegex = /[#&]source=(\d+)/g;
     const location = window.location.href;
@@ -212,17 +200,17 @@ $(document).ready(() => {
               }
 
               if ($("tr td", $(element)).length === 2) {
-                const xivAnalysisBtn = $("<td class=\"xivanalysis-ply-btn-box\"><div class=\"xivanalysis-plyr-btn xivanalysis-icon\" id=\"icon-9-0-5\"></td>");
+                const xivAnalysisBtn = $("<td class=\"xivanalysis-ply-btn-box\"><div class=\"xivanalysis-player-btn xivanalysis-icon\" id=\"icon-9-0-5\"></td>");
                 $(xivAnalysisBtn).insertAfter($("tr td", $(element))[$("tr td", $(element)).length - 1]);
-                $(xivAnalysisBtn).on("click", () => {
-                  const SiteRegex = /https:\/\/(www\.)?fflogs.com\/reports\/(\w+)\/?(#.*)?/gi;
+                $(xivAnalysisBtn).on("click", function () {
+                  const SiteRegex = /https:\/\/(www\.)?fflogs\.com\/reports\/(\w+)\/?(#.*)?/gi;
                   const FightRegex = /[#&]fight=(\d+|last)/g;
                   const location = window.location.href;
                   if (location.match(SiteRegex) !== null) {
                     let computed = `https://xivanalysis.com/fflogs/${window.location.href.replace(SiteRegex, "$2")}`;
                     let sourceId = 0;
                     try {
-                      sourceId = parseInt($($(element).parents("td.main-table-name.report-table-name").parent()).attr("id").split("-")[3], 10);
+                      sourceId = parseInt($($(this).parents("td.main-table-name.report-table-name").parent()).attr("id").split("-")[3], 10);
                     } catch (e) {
                       console.error({ message: "Failed to parse source int", stack: e });
                     }

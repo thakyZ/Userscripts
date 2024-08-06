@@ -1,45 +1,28 @@
-// ==UserScript==
-// @name         Avorion Forum Fixes
-// @namespace    NekoBoiNick.Avorion.ForumFixes
-// @version      1.0.2.1
-// @description  Changes some issues with the __old__ Avorion forums.
-// @author       Neko Boi Nick
-// @match        https://www.avorion.net/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=www.avorion.net
-// @license      MIT
-// @grant        none
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/avorion_forum_fixes/avorion_forum_fixes.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/avorion_forum_fixes/avorion_forum_fixes.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+import { _jQuery as jQuery } from "../library/index.js";
 
-// Code to add getting all attributes from elements.
-(function (old) {
-  $.fn.attr = function (...args) {
-    if (args.length === 0) {
-      if (this.length === 0) {
-        return null;
+jQuery(($) => {
+  "use strict";
+
+  // Code to add getting all attributes from elements.
+  (function (old) {
+    $.fn.attr = function (...args) {
+      if (args.length === 0) {
+        if (this.length === 0) {
+          return null;
+        }
+
+        const obj = {};
+        $.each(this[0].attributes, function () {
+          if (this.specified) {
+            obj[this.name] = this.value;
+          }
+        });
+        return obj;
       }
 
-      const obj = {};
-      $.each(this[0].attributes, function () {
-        if (this.specified) {
-          obj[this.name] = this.value;
-        }
-      });
-      return obj;
-    }
-
-    return old.apply(this, args);
-  };
-})($.fn.attr);
-
-$(document).ready(() => {
-  "use strict";
+      return old.apply(this, args);
+    };
+  })($.fn.attr);
 
   const newSpoilerTag = $("<div></div>");
   const oldSpoilerTag = $("#BBCBox_message_button_1_21");

@@ -1,0 +1,510 @@
+// ==UserStyle==
+// @name           Visual Studio Marketplace
+// @namespace      NekoBoiNick.Web.VisualStudio.Marketplace
+// @version        1.0.0
+// @description    A new userstyle
+// @author         Neko Boi Nick
+// @preprocessor   less
+// ==/UserStyle==
+
+@-moz-document domain("marketplace.visualstudio.com") {
+  @color_1: var(--foreground-dark-1);
+  @color_2: var(--foreground-anchor-dark-1);
+  @color_3: var(--foreground-dark-2);
+  @background_color_1: var(--background-dark-1);
+  @border_color_1: var(--border-dark-1);
+
+  :root {
+    --background-dark-1: #323232;
+    --background-dark-2: #212121;
+    --background-dark-2-trans: #21212100;
+    --border-dark-1: #101010;
+    --communication-foreground: #32beffff;
+    --foreground-anchor-dark-1: var(--communication-foreground, #32beffff);
+    --foreground-dark-1: #fff;
+    --foreground-dark-2: #aaa;
+  }
+
+  body {
+    > .gallery-item-cluster.categories {
+      > .item-grid-container {
+        > .grid-item {
+          > .category-entry {
+            > a {
+              color: @color_1;
+
+              .main-cell {
+                border-color: @border_color_1 !important;
+              }
+            }
+
+            background: var(--background-dark-1);
+          }
+        }
+      }
+
+      > .section-header {
+        color: @color_3;
+      }
+    }
+
+    > .content-section-market {
+      > .gallery-home-page {
+        > [class*="carousel-wrapperHomePage"] {
+          > ul.carousel {
+            > li.carousel-item {
+              > .gallery-item-card-container {
+                > [class*="gallery-item-cardHomePage"] {
+                  > .core-info-cell.name {
+                    > .item-title {
+                      color: @color_1;
+                    }
+                  }
+
+                  > .core-info-cell {
+                    > .core-info-second-row {
+                      > .publisher {
+                        > span {
+                          color: @color_3;
+                        }
+                      }
+                    }
+                  }
+
+                  > .cover {
+                    > .core-info-cell {
+                      > .installs {
+                        color: @color_3;
+                      }
+                    }
+                  }
+
+                  > .description {
+                    color: @color_3;
+                  }
+
+                  background: var(--background-dark-2);
+                  border-color: @border_color_1;
+                }
+
+                > .gallery-item-card {
+                  > .core-info-cell.name {
+                    > .item-title {
+                      color: @color_1;
+                    }
+                  }
+
+                  > .core-info-cell {
+                    > .core-info-second-row {
+                      > .publisher {
+                        > span {
+                          color: @color_3;
+                        }
+                      }
+                    }
+                  }
+
+                  > .cover {
+                    > .core-info-cell {
+                      > .installs {
+                        color: @color_3;
+                      }
+                    }
+                  }
+
+                  > .description {
+                    color: @color_3;
+                  }
+
+                  background: var(--background-dark-2);
+                  border-color: @border_color_1;
+                }
+
+                > .text-fadeout {
+                  background-image: linear-gradient(to right, var(--background-dark-2-trans), var(--background-dark-2));
+                }
+              }
+            }
+          }
+        }
+
+        > .categorized-list {
+          > .header-container {
+            > .filters-container {
+              > table {
+                > [role="presentation"] {
+                  > div {
+                    > .filter-menu {
+                      color: @color_1;
+                    }
+
+                    > .filter-title {
+                      color: @color_3;
+                    }
+                  }
+                }
+              }
+            }
+
+            > .section-header {
+              color: @color_3;
+            }
+          }
+
+          > .item-list-container {
+            > .item-grid-container {
+              > div {
+                > .item-row-container {
+                  > div {
+                    > .gallery-item-card-container {
+                      > [class*="gallery-item-cardHomePage"] {
+                        > .core-info-cell {
+                          > .name {
+                            > .item-title {
+                              color: @color_1;
+                            }
+                          }
+
+                          > .core-info-second-row {
+                            > .publisher {
+                              > span {
+                                color: @color_3;
+                              }
+                            }
+                          }
+                        }
+
+                        > .cover {
+                          > .core-info-cell {
+                            > .installs {
+                              color: @color_3;
+                            }
+                          }
+                        }
+
+                        > .description {
+                          color: @color_3;
+                        }
+
+                        background: var(--background-dark-2);
+                        border-color: @border_color_1;
+                      }
+
+                      > .gallery-item-card {
+                        > .core-info-cell {
+                          > .name {
+                            > .item-title {
+                              color: @color_1;
+                            }
+                          }
+
+                          > .core-info-second-row {
+                            > .publisher {
+                              span {
+                                color: @color_3;
+                              }
+                            }
+                          }
+                        }
+
+                        > .cover {
+                          > .core-info-cell {
+                            > .installs {
+                              color: @color_3;
+                            }
+                          }
+                        }
+
+                        > .description {
+                          color: @color_3;
+                        }
+
+                        background: var(--background-dark-2);
+                        border-color: @border_color_1;
+                      }
+
+                      > .text-fadeout {
+                        background-image: linear-gradient(to right, var(--background-dark-2-trans), var(--background-dark-2));
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .results-found {
+            color: @color_3;
+          }
+        }
+
+        > .tabs-control-content {
+          > .tab-collection-container {
+            > .tab-collection {
+              > .tab-collection-left {
+                > a {
+                  border-color: @border_color_1;
+                }
+
+                .tab {
+                  border-color: @border_color_1;
+                  color: @color_1;
+
+                  &:hover {
+                    &:not(:nth-child(1)) {
+                      background: var(--background-dark-2);
+                    }
+                  }
+                }
+              }
+            }
+
+            background: var(--background-dark-1);
+            border-color: @border_color_1;
+            color: @color_1;
+          }
+
+          > .tab-collection {
+            > .tab-collection-right {
+              > a {
+                &:not([class*="ms-Button"]) {
+                  color: @color_2;
+                }
+              }
+            }
+          }
+        }
+
+        .homepage-searchbox-container {
+          display: flex;
+        }
+
+        background: var(--background-dark-2);
+        color: @color_1;
+
+        .homepage-searchbox-wrapper {
+          .homepage-searchbox-container {
+            background-color: @background_color_1;
+            border-color: @border_color_1;
+
+            input {
+              background-color: @background_color_1;
+              color: @color_1;
+            }
+          }
+        }
+      }
+    }
+
+    > .main-content.category-main-content {
+      > .categorized-list {
+        .header-container {
+          .filters-container {
+            table {
+              [role="presentation"] {
+                div {
+                  .filter-menu {
+                    color: @color_1;
+                  }
+
+                  .filter-title {
+                    color: @color_3;
+                  }
+                }
+              }
+            }
+          }
+
+          .section-header {
+            color: @color_3;
+          }
+        }
+
+        > .item-list-container {
+          > .item-grid-container {
+            > div {
+              > .item-row-container {
+                > div {
+                  > .gallery-item-card-container {
+                    > [class*="gallery-item-cardHomePage"] {
+                      > .core-info-cell {
+                        > .name {
+                          > .item-title {
+                            color: @color_1;
+                          }
+                        }
+
+                        > .core-info-second-row {
+                          > .publisher {
+                            > span {
+                              color: @color_3;
+                            }
+                          }
+                        }
+                      }
+
+                      > .cover {
+                        > .core-info-cell {
+                          > .installs {
+                            color: @color_3;
+                          }
+                        }
+                      }
+
+                      > .description {
+                        color: @color_3;
+                      }
+
+                      background: var(--background-dark-2);
+                      border-color: @border_color_1;
+                    }
+
+                    > .gallery-item-card {
+                      > .core-info-cell {
+                        > .name {
+                          > .item-title {
+                            color: @color_1;
+                          }
+                        }
+
+                        > .core-info-second-row {
+                          > .publisher {
+                            > span {
+                              color: @color_3;
+                            }
+                          }
+                        }
+                      }
+
+                      > .cover {
+                        > .core-info-cell {
+                          > .installs {
+                            color: @color_3;
+                          }
+                        }
+                      }
+
+                      > .description {
+                        color: @color_3;
+                      }
+
+                      background: var(--background-dark-2);
+                      border-color: @border_color_1;
+                    }
+
+                    > .text-fadeout {
+                      background-image: linear-gradient(to right, var(--background-dark-2-trans), var(--background-dark-2));
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .results-found {
+          color: @color_3;
+        }
+      }
+
+      > .category-container {
+        > .filters-container {
+          > .tab-collection-container {
+            > .tab-collection {
+              > .tab-collection-left {
+                > td {
+                  border-color: @border_color_1;
+                }
+
+                > .tab {
+                  border-color: @border_color_1;
+                  color: @color_1;
+
+                  &:hover {
+                    &:not(:nth-child(1)) {
+                      background: var(--background-dark-2);
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          > .tab-collection {
+            > .tab-collection-right {
+              > a {
+                &:not([class*="ms-Button"]) {
+                  color: @color_2;
+                }
+              }
+            }
+          }
+
+          background: var(--background-dark-1);
+          border-color: @border_color_1;
+          color: @color_1;
+        }
+      }
+
+      background: var(--background-dark-2);
+      color: @color_1;
+
+      .searchbar-container {
+        .searchbar {
+          background-color: @background_color_1;
+          border-color: @border_color_1;
+
+          input {
+            background-color: @background_color_1;
+            color: @color_1;
+          }
+        }
+      }
+    }
+
+    background: var(--background-dark-1) !important;
+    color: @color_1;
+
+    .menu-popup {
+      .menu {
+        background: var(--background-dark-2);
+        border-color: @border_color_1 !important;
+        box-shadow: 3px 3px 3px #00000080;
+
+        .menu-item {
+          &:hover {
+            background: var(--background-dark-1) !important;
+          }
+        }
+
+        .menu-item.hover {
+          background: var(--background-dark-1) !important;
+        }
+      }
+    }
+
+    #gallery-footer {
+      footer {
+        #ux-footer {
+          ul.links {
+            a {
+              color: @color_2 !important;
+            }
+          }
+
+          [id="rightBaseFooter"] {
+            color: @color_3 !important;
+
+            [class*="microsoftLogo"] {
+              filter: invert(100%);
+            }
+          }
+
+          [class*="linkListTitle"] {
+            color: @color_3;
+          }
+        }
+      }
+    }
+  }
+}

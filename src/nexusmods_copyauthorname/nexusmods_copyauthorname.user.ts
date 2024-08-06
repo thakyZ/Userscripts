@@ -1,29 +1,12 @@
-// ==UserScript==
-// @name         Nexus Mods Copy Author Name
-// @namespace    NekoBoiNick.Web.NexusMods.CopyAuthorName
-// @version      1.0.4.1
-// @description  Adds a copy author name button to Nexus Mods mod page.
-// @author       Neko Boi Nick
-// @match        https://www.nexusmods.com/*/mods/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=nexusmods.com
-// @grant        GM_setClipboard
-// @license      MIT
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/nexusmods_copyauthorname/nexusmods_copyauthorname.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/nexusmods_copyauthorname/nexusmods_copyauthorname.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
-/* global $, checkAB */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global checkAB */
+import jQuery from "jquery";
 
-setInterval(() => {
-  if (unsafeWindow.blockingAds) {
-    checkAB(false);
-  }
-}, 100);
-
-$(document).ready(() => {
+jQuery(($) => {
+  setInterval(() => {
+    if (unsafeWindow.blockingAds) {
+      checkAB(false);
+    }
+  }, 100);
   const creatorInfo = $("#fileinfo .sideitem:not(.timestamp)")[0];
   const uploaderInfo = $("#fileinfo .sideitem:not(.timestamp)")[1];
   const infos = [creatorInfo, uploaderInfo];

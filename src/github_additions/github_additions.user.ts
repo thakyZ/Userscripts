@@ -1,34 +1,37 @@
-// ==UserScript==
-// @name         Github Additions
-// @namespace    NekoBoiNick.Web.Github.Additions
-// @version      1.0.2.1
-// @description  try to take over the world!
-// @author       Neko Boi Nick
-// @match        https://gist.github.com/*
-// @match        https://github.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=github.com
-// @license      MIT
-// @grant        GM_setClipboard
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @require      https://github.com/thakyZ/GitHub-userscripts/raw/master/mutations.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/github_additions/github_additions.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/github_additions/github_additions.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
-/* global $ */
+/* global on */
+this.jAlpha = this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+/* Code for later
+ *
+ * var runProcess = (elements) => new Promise((resolve) => {
+ *   var req = new XMLHttpRequest();
+ *   req.addEventListener("load", (evt, e, a) => {resolve([evt.srcElement.responseURL, evt.srcElement.status])});
+ *   req.open("GET", elements.href);
+ *   req.send();
+ * });
+ * var _ = (async function() {
+ *   var elements=document.querySelectorAll("tab-container div.js-preview-panel a");
+ *   var returns = {};
+ *   for await (const element of elements) {
+ *     var test=await runProcess(element);
+ *     returns[test[0]] = test[1]
+ *   }
+ *   console.log(returns);
+ * })();
+ */
+
+this.jQuery((jAlpha) => {
   "use strict";
   let copyId = 0;
   const markdownSelector = ".markdown-body, .markdown-format";
   const codeSelector = "pre:not(.gh-csc-pre)";
-  const copyButton = $(`<clipboard-copy class="btn btn-sm tooltipped tooltipped-w gh-csc-button" aria-label="Copy to clipboard" data-copied-hint="Copied!">
+  // CSpell:ignoreRegExp /(?<=class="| )(?:tooltipped(?:-\w+)?|octicon(?:-\w+)?)(?="| )/
+  const copyButton = jAlpha(`<clipboard-copy class="btn btn-sm tooltipped tooltipped-w gh-csc-button" aria-label="Copy to clipboard" data-copied-hint="Copied!">
       <svg aria-hidden="true" class="octicon octicon-clippy" height="16" viewBox="0 0 14 16" width="14">
         <path fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path>
       </svg>
     </clipboard-copy>`);
-  $("head").append(`<style>
+  jAlpha("head").append(`<style>
     .gh-csc-wrap {
       position: relative;
     }
@@ -57,58 +60,82 @@ $(document).ready(() => {
     }
   </style>`);
 
-  const addButton = (wrap, code) => {
-    if ($(wrap).length > 0 && $(wrap).attr("class") !== undefined && !$(wrap).attr("class").split(" ").contains("gh-csc-wrap")) {
+  function addButton(wrap, code) {
+    if (jAlpha(wrap).length > 0 && jAlpha(wrap).attr("class") !== undefined && !jAlpha(wrap).attr("class").split(" ").contains("gh-csc-wrap")) {
       copyId++;
+      /* CSpell:ignore sindresorhus */
       // See comments from sindresorhus/refined-github/issues/1278
-      $(code).attr("id", `gh-csc-${copyId}`);
-      $(copyButton).attr("for", `gh-csc-${copyId}`);
-      $(wrap).attr("class", `${$(wrap).attr("class")} gh-csc-wrap`);
-      $(wrap).before($(copyButton).clone(), $(wrap).children()[0]);
+      jAlpha(code).attr("id", `gh-csc-${copyId}`);
+      jAlpha(copyButton).attr("for", `gh-csc-${copyId}`);
+      jAlpha(wrap).attr("class", `${jAlpha(wrap).attr("class")} gh-csc-wrap`);
+      jAlpha(wrap).before(jAlpha(copyButton).clone(), jAlpha(wrap).children()[0]);
     }
-  };
+  }
 
-  const checkForProgress = ele => {
-    if (/%\[\d+\/\d+\]/i.test($(ele).html())) {
-      $(ele).html($(ele).html().replaceAll(/%\[(\d+)\/(\d+)\]/gi, "<progress class=\"md\" value=\"$1\" max=\"$2\"/>"));
+  function updateForkCheckbox(element) {
+    if (element !== undefined && element !== null && jAlpha(element).prop("checked") === true) {
+      jAlpha(element).prop("checked", false);
+      jAlpha(element).attr("aria-checked", false);
+      jAlpha(element).removeAttr("checked");
+      jAlpha(element).removeAttr("value");
     }
-  };
+  }
 
-  const init = () => {
-    const markdown = $(markdownSelector);
-    if (markdown.length > 0) {
-      $(markdownSelector).each(() => {
-        $($(codeSelector), $(this)).each(() => {
-          const code = $($("code"), $(this));
-          const wrap = $(this).parent()[0];
+  function checkForProgress(ele) {
+    if (/%\[\d+\/\d+\]/i.test(jAlpha(ele).html())) {
+      jAlpha(ele).html(jAlpha(ele).html().replaceAll(/%\[(\d+)\/(\d+)\]/gi, "<progress class=\"md\" value=\"jAlpha1\" max=\"jAlpha2\"/>"));
+    }
+  }
+
+  let oneBranchFork;
+
+  function init() {
+    const markdown = jAlpha(markdownSelector);
+    if (markdown !== null && markdown.length > 0) {
+      jAlpha(markdownSelector).each(() => {
+        jAlpha(jAlpha(codeSelector), jAlpha(this)).each(() => {
+          const code = jAlpha(jAlpha("code"), jAlpha(this));
+          const wrap = jAlpha(this).parent()[0];
           if (code.length > 0) {
             // Pre > code
-            addButton($(this), $(code));
-          } else if ($(wrap).attr("class").split(" ").contains("highlight")) {
+            addButton(jAlpha(this), jAlpha(code));
+          } else if (jAlpha(wrap).attr("class").split(" ").contains("highlight")) {
             // Div.highlight > pre
-            addButton($(wrap), $(this));
+            addButton(jAlpha(wrap), jAlpha(this));
           }
         });
       });
     }
 
     if (/https:\/\/github\.com\/.+\/.+\/fork/gi.test(window.location.href)) {
-      const oneBranchFork = $("form#fork_repository input[type=\"checkbox\"]#fork_repository_one_branch_fork");
-      if (oneBranchFork && $(oneBranchFork).prop("checked") === true) {
-        $(oneBranchFork).prop("checked", false);
+      oneBranchFork = jAlpha(jAlpha("form label:contains(\"Copy the\")").parents()[1]).find("div input[type=\"checkbox\"]");
+      jAlpha(oneBranchFork).on("change hashchange", (event) => {
+        console.log(event);
+        updateForkCheckbox(oneBranchFork);
+      });
+      updateForkCheckbox(oneBranchFork);
+    } else {
+      try {
+        if (oneBranchFork !== undefined) {
+          jAlpha(oneBranchFork).off("change hashchange");
+          oneBranchFork = undefined;
+        }
+      } catch (error) {
+        if (error) {
+          console.debug(error);
+        }
       }
     }
 
-    const variableHeader = $(".file");
-    $(variableHeader).each(() => {
-      if ($(this).attr("id").split("-")[$(this).attr("id").split("-").length - 1] === "md") {
-        checkForProgress($(this));
+    const variableHeader = jAlpha(".file");
+    jAlpha(variableHeader).each(() => {
+      if (jAlpha(this).attr("id").split("-")[jAlpha(this).attr("id").split("-").length - 1] === "md") {
+        checkForProgress(jAlpha(this));
       }
     });
-  };
+  }
 
-  document.addEventListener("turbo:render", init);
-  document.addEventListener("ghmo:container", init);
-  document.addEventListener("ghmo:comments", init);
+  // CSpell:ignoreRegExp /ghmo:\w+/
+  on(document, "turbo:render ghmo:updatable ghmo:container ghmo:comments", init);
   init();
 });

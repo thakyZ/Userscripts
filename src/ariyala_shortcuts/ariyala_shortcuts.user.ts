@@ -1,49 +1,30 @@
-// ==UserScript==
-// @name         Ariyala's FFXIV Toolkit Bookmarks
-// @namespace    NekoBoiNick.Web.AriyalaFFXIV.Shortcuts
-// @version      1.0.3
-// @license      MIT
-// @description  Adds a small box for shortcuts on the Wiki.
-// @author       Neko Boi Nick
-// @match        https://ffxiv.ariyala.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=ffxiv.ariyala.com
-// @grant        GM_addStyle
-// @grant        GM_getResourceText
-// @require      https://code.jquery.com/jquery-3.6.0.min.js
-// @require      https://cdn.jsdelivr.net/gh/thakyz/Userscripts/library/nekogaming.userscript.lib.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/ariyala_shortcuts/ariyala_shortcuts.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/ariyala_shortcuts/ariyala_shortcuts.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/ariyala_shortcuts/styles.min.css
-// @resource     items https://cdn.jsdelivr.net/gh/thakyz/Userscripts/ariyala_shortcuts/item.template.html
-// ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+import { jQuery } from "../library/index.js";
 
-const jsonConfig = {
-  items: [
-    {
-      icon: "BLU",
-      name: "Lvl 60",
-      url: "1DEGU",
-      id: "blu_level_60_melds",
-    },
-  ],
-};
+jQuery(($) => {
+  const jsonConfig = {
+    items: [
+      {
+        icon: "BLU",
+        name: "Lvl 60",
+        // cSpell:ignore 1DEGU
+        url: "1DEGU",
+        id: "blu_level_60_melds",
+      },
+    ],
+  };
 
-$(document).ready(() => {
   GM_addStyle(GM_getResourceText("css"));
 
-  const item = [];
+  const item: HTMLElement[] = [];
 
-  $.each(jsonConfig.items, (_, value) => {
-    item.push($.fn.createElement("items", { "#{{id}}": value.id, "#{{icon}}": value.icon, "#{{url}}": value.url, "#{{name}}": value.name }));
-  });
-  const templateTray = () => "<div class=\"tray\" id=\"bookmarks\"></div>";
+  for (const [index, value] of Object.entries(jsonConfig.items)) {
+    if (isNaN(Number(index))) continue;
+    item.push($.createElement("items", { "#{{id}}": value.id, "#{{icon}}": value.icon, "#{{url}}": value.url, "#{{name}}": value.name }).value!);
+  }
 
-  $("#body").append(templateTray());
-  $.each(item, (_, value) => {
+  $("#body").append("<div class=\"tray\" id=\"bookmarks\"></div>");
+  for (const [index, value] of Object.entries(item)) {
+    if (isNaN(Number(index))) continue;
     $("#bookmarks").append(value);
-  });
+  }
 });

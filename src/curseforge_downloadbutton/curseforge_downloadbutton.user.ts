@@ -1,52 +1,36 @@
-// ==UserScript==
-// @name         Curse Forge Default Download Button
-// @namespace    NekoBoiNick.Web.CurseForge.DownloadButton
-// @version      1.0.2
-// @description  Changes the "Install" button to a Download Button by default.
-// @author       Neko Boi Nick
-// @match        https://beta.curseforge.com/*/*
-// @match        https://curseforge.com/*/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=curseforge.com
-// @grant        none
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/curseforge_downloadbutton/curseforge_downloadbutton.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/curseforge_downloadbutton/curseforge_downloadbutton.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+import { isNotANumber, jQuery, JQuery } from "../library/index.js";
 
-$(document).ready(() => {
-  const setupMutationObserver = () => {
-    const targetNode = $("section.tab-content")[0];
-    const config = { attributes: true, childList: true, subtree: true };
+jQuery(($) => {
+  function isOnFileDL(mutation: MutationRecord) {
+    return $("section.file-details", $(mutation.target)).length > 0;
+  }
 
-    const callback = (mutationList, _) => {
-      for (const mutation of mutationList) {
-        if (mutation.type === "childList" && $(mutation.target).attr("class") === "tab-content") {
-          const isOnFileDL = () => {
-            if ($("section.file-details", $(mutation.target)).length > 0) {
-              return true;
-            }
-
-            return false;
-          };
-
-          if (isOnFileDL() && $("div#menuButton button span").text() === "InstallInstall") {
-            if ($("section.file-details h2 #menuButton", $(mutation.target)).length > 0) {
-              $("section.file-details h2 #menuButton button:not(\".btn-more-options\")", $(mutation.target)).off("click");
-              $("section.file-details h2 #menuButton button:not(\".btn-more-options\")", $(mutation.target)).html("");
-              $("section.file-details h2 #menuButton button:not(\".btn-more-options\")", $(mutation.target)).html($("section.file-details h2 #menuButton .more-options li:last-child a", $(mutation.target)).html());
-              $("section.file-details h2 #menuButton button:not(\".btn-more-options\")", $(mutation.target)).on("click", e => {
-                e.stopPropagation();
-                window.open($("section.file-details h2 #menuButton .more-options li:last-child a", $(mutation.target)).attr("href"));
-              });
-            }
+  function callback(mutations: MutationRecord[]) {
+    for (const mutation of mutations) {
+      if (mutation.type === "childList" && $(mutation.target).attr("class") === "tab-content") {
+        if (isOnFileDL(mutation) && $("div#menuButton button span").text() === "InstallInstall") {
+          if ($(mutation.target).find("section.file-details h2 #menuButton").length > 0) {
+            const moreOptionsButton: JQuery<HTMLButtonElement> = $(mutation.target).find<HTMLButtonElement>("section.file-details h2 #menuButton button:not(\".btn-more-options\")");
+            moreOptionsButton.off("click");
+            moreOptionsButton.html("");
+            const anchor: JQuery<HTMLAnchorElement> = $(mutation.target).find<HTMLAnchorElement>("section.file-details h2 #menuButton .more-options li:last-child a");
+            moreOptionsButton.html(anchor.html());
+            moreOptionsButton.on("click", function (event: MouseEvent) {
+              if (event.target === null) return;
+              event.stopPropagation();
+              const anchor: JQuery<HTMLAnchorElement> = $(event.target).find<HTMLAnchorElement>("section.file-details h2 #menuButton .more-options li:last-child a");
+              const href: string | undefined = anchor.attr("href");
+              window.open();
+            });
           }
         }
       }
-    };
+    }
+  }
+
+  function setupMutationObserver() {
+    const targetNode: HTMLElement = $<HTMLElement>("section.tab-content")[0];
+    const config = { attributes: true, childList: true, subtree: true };
 
     const observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
@@ -54,38 +38,41 @@ $(document).ready(() => {
     $(document).on("unload", () => {
       observer.disconnect();
     });
-  };
+  }
 
-  if ($(".project-header .actions #menuButton").length > 0) {
-    $(".project-header .actions #menuButton button:not(\".btn-more-options\")").off("click");
-    $(".project-header .actions #menuButton button:not(\".btn-more-options\")").html("");
-    $(".project-header .actions #menuButton button:not(\".btn-more-options\")").html($(".project-header .actions #menuButton .more-options li:last-child a").html());
-    $(".project-header .actions #menuButton button:not(\".btn-more-options\")").on("click", e => {
-      e.stopPropagation();
-      window.open($(".project-header .actions #menuButton .more-options li:last-child a").attr("href"));
+  if ($<HTMLElement>(".project-header .actions #menuButton").length > 0) {
+    $<HTMLButtonElement>(".project-header .actions #menuButton button:not(\".btn-more-options\")").off("click");
+    $<HTMLButtonElement>(".project-header .actions #menuButton button:not(\".btn-more-options\")").html("");
+    $<HTMLButtonElement>(".project-header .actions #menuButton button:not(\".btn-more-options\")").html($<HTMLAnchorElement>(".project-header .actions #menuButton .more-options li:last-child a").html());
+    $<HTMLButtonElement>(".project-header .actions #menuButton button:not(\".btn-more-options\")").on("click", (event) => {
+      event.stopPropagation();
+      window.open($<HTMLAnchorElement>(".project-header .actions #menuButton .more-options li:last-child a").attr("href"));
     });
-    if ($("section.file-details h2 #menuButton").length > 0) {
-      $("section.file-details h2 #menuButton button:not(\".btn-more-options\")").off("click");
-      $("section.file-details h2 #menuButton button:not(\".btn-more-options\")").html("");
-      $("section.file-details h2 #menuButton button:not(\".btn-more-options\")").html($("section.file-details h2 #menuButton .more-options li:last-child a").html());
-      $("section.file-details h2 #menuButton button:not(\".btn-more-options\")").on("click", e => {
-        e.stopPropagation();
-        window.open($("section.file-details h2 #menuButton .more-options li:last-child a").attr("href"));
+    if ($<HTMLElement>("section.file-details h2 #menuButton").length > 0) {
+      $<HTMLButtonElement>("section.file-details h2 #menuButton button:not(\".btn-more-options\")").off("click");
+      $<HTMLButtonElement>("section.file-details h2 #menuButton button:not(\".btn-more-options\")").html("");
+      $<HTMLButtonElement>("section.file-details h2 #menuButton button:not(\".btn-more-options\")").html($<HTMLAnchorElement>("section.file-details h2 #menuButton .more-options li:last-child a").html());
+      $<HTMLButtonElement>("section.file-details h2 #menuButton button:not(\".btn-more-options\")").on("click", (event) => {
+        event.stopPropagation();
+        window.open($<HTMLAnchorElement>("section.file-details h2 #menuButton .more-options li:last-child a").attr("href"));
       });
     }
 
     setupMutationObserver();
   }
 
-  if ($(".project-card").length > 0) {
-    $(".project-card").each(function () {
-      $("#menuButton button:not(\".btn-more-options\")", $(this)).html("");
-      $("#menuButton button:not(\".btn-more-options\")", $(this)).html($("#menuButton .more-options li:last-child a").html());
-      $("#menuButton button:not(\".btn-more-options\")", $(this)).on("click", function (e) {
-        e.stopPropagation();
-        window.open($(".more-options li:last-child a", $(this).parent()).attr("href"));
+  if ($<HTMLElement>(".project-card").length > 0) {
+    for (const [, element] of Object.entries($<HTMLElement>(".project-card")).filter((x) => !isNotANumber(x[0]))) {
+      const moreOptionsButton: JQuery<HTMLButtonElement> = $(element).find<HTMLButtonElement>("#menuButton button:not(\".btn-more-options\")");
+      moreOptionsButton.html("");
+      const anchor: JQuery<HTMLAnchorElement> = $<HTMLAnchorElement>("#menuButton .more-options li:last-child a");
+      moreOptionsButton.html(anchor.html());
+      moreOptionsButton.on("click", function (event) {
+        event.stopPropagation();
+        const anchor: JQuery<HTMLAnchorElement> = $(this).parent().find<HTMLAnchorElement>(".more-options li:last-child a");
+        window.open(anchor.attr("href"));
       });
-    });
+    }
   }
   // Let id = -1;
   // id = setInterval(function() {

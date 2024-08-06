@@ -1,33 +1,12 @@
-// ==UserScript==
-// @name         Bad Twitter No Interests
-// @namespace    NekoBoiNick.Web.Twitter.NoInterests
-// @version      1.0.5
-// @description  Disables all of what Twitter thinks you are interested in.
-// @author       Neko Boi Nick
-// @match        https://twitter.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
-// @grant        unsafeWindow
-// @grant        GM_addStyle
-// @grant        GM_getResourceText
-// @grant        GM.getResourceUrl
-// @require      https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/badtwitter_nointerests/badtwitter_nointerests.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/badtwitter_nointerests/badtwitter_nointerests.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// @resource     style https://cdn.jsdelivr.net/gh/thakyz/Userscripts/badtwitter_nointerests/style.min.css
-// @resource     buttons https://cdn.jsdelivr.net/gh/thakyz/Userscripts/badtwitter_nointerests/button.template.html
-// ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+import { _jQuery as jQuery } from "../library/index.js";
 
-$(document).ready(() => {
+jQuery(($) => {
   const twitterIcon = {
     STOP: "<path d=\"M8.27,3L3,8.27V15.73L8.27,21H15.73C17.5,19.24 21,15.73 21,15.73V8.27L15.73,3M9.1,5H14.9L19,9.1V14.9L14.9,19H9.1L5,14.9V9.1M9.12,7.71L7.71,9.12L10.59,12L7.71,14.88L9.12,16.29L12,13.41L14.88,16.29L16.29,14.88L"
-        + "13.41,12L16.29,9.12L14.88,7.71L12,10.59\"></path>",
+    + "13.41,12L16.29,9.12L14.88,7.71L12,10.59\"></path>",
     RUN: "<path d=\"M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,16.5L16,12L10,7.5V16.5Z\"></path>"
   };
-  const createElements = (resource, replaceObj = {}) => {
+  function createElements(resource, replaceObj = {}) {
     const templateHtml = GM_getResourceText(resource);
     const templateTruncated = templateHtml.replaceAll(/^<!DOCTYPE html>\r?\n<template>\r?\n {2}/gi, "")
       .replaceAll(/\r?\n<\/template>$/gi, "");
@@ -37,10 +16,10 @@ $(document).ready(() => {
     }
 
     return template;
-  };
+  }
 
-  const sleep = ms => new Promise(r => {
-    setTimeout(r, ms);
+  const sleep = (ms) => new Promise((resolve) => {
+    setTimeout(resolve, ms);
   });
 
   const buttonElements = { buttons: undefined, stopButton: undefined, runButton: undefined,
@@ -95,6 +74,10 @@ $(document).ready(() => {
         $(this.element).find("circle").removeClass("stopped");
         $(this.element).find("circle").attr("stroke", $("a[href=\"/compose/tweet\"].css-4rbku5").css("backgroundColor"));
         this.flashing = false;
+        $("html, body").css({
+          overflow: "auto",
+          height: "auto"
+        });
       },
       async locked() {
         while (this.flashing) {
@@ -115,7 +98,7 @@ $(document).ready(() => {
 
   let id = -1;
   let nextCooldown = 1000;
-  const runTest = async (div, index) => {
+  async function runTest(div, index) {
     if (index >= div.length || id === -1) {
       await buttonElements.progress.end();
       return;
@@ -124,6 +107,9 @@ $(document).ready(() => {
     buttonElements.progress.setProgress(Math.ceil((index / $(div).length) * 100));
 
     if ($($(div[index]).prev()[0]).children().find("svg").length > 0) {
+      $($(div[index]).prev()[0]).children().click(() => {
+        $("html, body").animate({ scrollTop: 0 }, 800);
+      });
       $($(div[index]).prev()[0]).children().click();
       nextCooldown = 1000;
     } else {
@@ -132,10 +118,10 @@ $(document).ready(() => {
 
     await sleep(nextCooldown);
     await runTest(div, index + 1);
-  };
+  }
 
-  const runInterestBlocker = async () => {
-    if (id !== -1 || (await buttonElements.progress.locked()) === false) {
+  async function runInterestBlocker() {
+    if (id !== -1 || (await buttonElements.progress.locked()) !== false) {
       return;
     }
 
@@ -150,9 +136,9 @@ $(document).ready(() => {
       clearInterval(id);
       clearId();
     }
-  };
+  }
 
-  const createButtons = target => {
+  function createButtons(target) {
     const titleBar = $(target).find("span:contains(\"Interests\")");
     const descBox = $(target).find("span:contains(\"These are some of the interests matched to you based on your profile\")");
     if (typeof buttonElements.buttons === "undefined" && descBox.length > 0 && titleBar.length > 0) {
@@ -172,25 +158,25 @@ $(document).ready(() => {
         })();
       });
     }
-  };
+  }
 
   GM_addStyle(GM_getResourceText("style"));
 
-  const setupMutationObserver = () => {
+  function setupMutationObserver() {
     const targetNode = $("body")[0];
     const config = { attributes: true, childList: true, subtree: true };
 
-    const callback = mutationList => {
+    const callback = (mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.type === "childList") {
-          if ($(mutation.target).is("section[aria-label=\"Section details\"]>div:last-child>div") || $(mutation.target).is("section[aria-label=\"Section details\"]")) {
-            if (/https:\/\/twitter\.com\/settings\/your_twitter_data\/twitter_interests/i.test(window.location.href)) {
+          if ($(mutation.target).is("section[aria-label=\"Section details\"] > div:last-child > div") || $(mutation.target).is("section[aria-label=\"Section details\"]")) {
+            if (/https:\/\/(twitter|x)\.com\/settings\/your_twitter_data\/twitter_interests/i.test(window.location.href)) {
               createButtons($(mutation.target).parent().parent());
             }
           }
         }
 
-        if (typeof buttonElements.buttons !== "undefined" && /https:\/\/twitter\.com\/settings\/your_twitter_data\/twitter_interests/i.test(window.location.href) === false) {
+        if (typeof buttonElements.buttons !== "undefined" && /https:\/\/(twitter|x)\.com\/settings\/your_twitter_data\/twitter_interests/i.test(window.location.href) === false) {
           buttonElements.reset();
         }
       }
@@ -202,7 +188,7 @@ $(document).ready(() => {
     $(document).on("unload", () => {
       observer.disconnect();
     });
-  };
+  }
 
   setupMutationObserver();
 });

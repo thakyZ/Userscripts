@@ -1,25 +1,8 @@
-// ==UserScript==
-// @name         Monster Hunter World Wiki Remove Twitch Stream
-// @namespace    NekoBoiNick.MonsterHunterWorld.Wiki.RemoveTwitch
-// @version      1.0.1
-// @description  Removes twitch steam and ads from the Monster Hunter World Wiki
-// @author       NekoBoiNick
-// @match        https://monsterhunterworld.wiki.fextralife.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=fextralife.com
-// @grant        none
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
-// @license      MIT
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/mhw_wiki_remove_twitch/mhw_wiki_remove_twitch.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/mhw_wiki_remove_twitch/mhw_wiki_remove_twitch.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
 // - The @grant directives are needed to restore the proper sandbox.
-/* global $, jQuery, waitForKeyElements */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* waitForKeyElements */
+import jQuery from "jquery";
 
-$(document).ready(() => {
+jQuery(($) => {
   "use strict";
 
   const setupMyClass = jNode => {

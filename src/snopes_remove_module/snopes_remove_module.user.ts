@@ -1,23 +1,6 @@
-// ==UserScript==
-// @name         Snopes Remove TP Module
-// @namespace    NekoBoiNick.Snopes.TPModule
-// @version      1.0.2
-// @description  Removes Snopes' Stupid TP Module
-// @author       Neko Boi Nick
-// @match        https://www.snopes.com/*
-// @icon         https://www.google.com/s2/favicons?domain=snopes.com
-// @grant        none
-// @license      MIT
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/snopes_remove_module/snopes_remove_module.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/snopes_remove_module/snopes_remove_module.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// ==/UserScript==
-/* global $ */
-this.$ = this.jQuery = jQuery.noConflict(true);
+import jQuery from "jquery";
 
-$(document).ready(() => {
+jQuery(($) => {
   const otherSearchClasses = [".tp-modal", ".tp-modal-open", ".tp-banner", ".tp-active"];
   let checkedForClasses = false;
   let classesHidden = 0;

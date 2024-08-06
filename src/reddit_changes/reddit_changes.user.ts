@@ -1,25 +1,9 @@
-// ==UserScript==
-// @name         Reddit Changes
-// @namespace    NekoBoiNick.Web.Reddit.CHanges
-// @version      1.0.2
-// @description  Does changes for reddit.
-// @author       Neko Boi Nick
-// @match        https://www.reddit.com/*
-// @match        https://reddit.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=reddit.com
-// @license      MIT
-// @grant        unsafeWindow
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/reddit_changes/reddit_changes.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/reddit_changes/reddit_changes.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+import jQuery from "jquery";
 
-$(document).ready(() => {
-  const doAllEqual = (arr, val) => arr.every(ele => ele === val);
+jQuery(($) => {
+  function doAllEqual(arr, val) {
+    return arr.every((ele) => ele === val);
+  }
 
   function removeElement() {
     const blockElements = [];
@@ -43,7 +27,7 @@ $(document).ready(() => {
     return doAllEqual(outReturn, true);
   }
 
-  const downloadButton = MenuBarCopy => {
+  function downloadButton(MenuBarCopy) {
     const button = $(MenuBarCopy).clone();
     $($($(button).children()[0]).children()[1]).html("<span></span>Download");
     const iconClasses = $($($($(button).children()[0]).children()[0]).children()[0]).attr("class");
@@ -57,7 +41,7 @@ $(document).ready(() => {
       window.open(address, "_blank");
     });
     return button;
-  };
+  }
 
   function addDownloadButton() {
     const mediaContainer = $("div[data-testid=\"post-container\"] div[data-click-id=\"media\"]");
@@ -73,6 +57,79 @@ $(document).ready(() => {
       }
 
       return true;
+    }
+
+    return false;
+  }
+
+  function getPathFromUrl(url) {
+    return url.split(/[?#]/)[0];
+  }
+
+  const imageTemplate = "https://i.redd.it/%.png";
+
+  function fetchImageLink(imageIndex = -1) {
+    return new Promise((resolve, reject) => {
+      let url = getPathFromUrl(document.location.href);
+      url += ".json";
+      $.get(url, (data) => {
+        let imageId = "";
+        const imageIds = Object.keys(data[0].data.children[0].data.media_metadata);
+
+        if (imageIndex === -1) {
+          imageId = imageIds[0];
+        } else {
+          if (imageIds.length < imageIndex) {
+            reject(new Error(`Value of argument imageIndex [${imageIndex}] is larger than the count of imageIds [${imageIds.length}]`))
+          }
+
+          imageId = imageIds[imageIndex];
+        }
+
+        resolve(imageTemplate.replace("%", imageId));
+      }).fail((error) => {
+        if (error) {
+          console.error(error);
+          reject(error);
+        } else {
+          console.error("Failed to fetch post api");
+          reject(new Error("Failed to fetch post api"));
+        }
+      });
+    });
+  }
+
+  function transformImageLinks() {
+    const mediaContainer = $("div[data-testid=\"post-container\"] a > img");
+    const mediaCarousel = $("div[data-testid=\"post-container\"] > div[data-test-id=\"post-content\"] ul");
+    if ($(mediaContainer).length > 0) {
+      (async function () {
+        const imageLink = await fetchImageLink();
+        $(mediaContainer).parent().attr("href", imageLink);
+        $(mediaContainer).src("href", imageLink);
+      })();
+
+      return true;
+    }
+
+    if ($(mediaCarousel).length > 0) {
+      const carouselItems = $(mediaCarousel).find("li a > div > img");
+
+      if ($(carouselItems).length > 0) {
+        for (const [index, element] of Object.entries(carouselItems)) {
+          if (isNaN(Number(index))) {
+            continue;
+          }
+
+          (async function () {
+            const imageLink = await fetchImageLink();
+            $(element).parents("a").attr("href", imageLink);
+            $(element).attr("src", imageLink);
+          })();
+        }
+
+        return true;
+      }
     }
 
     return false;
@@ -98,13 +155,14 @@ $(document).ready(() => {
    */
 
   const clearRemoveWatchers = () => {
-    removeWatchers.forEach(obs => obs.disconnect());
+    removeWatchers.forEach((obs) => obs.disconnect()); // NOSONAR
     removeWatchers = [];
   };
 
   const redditWatcher = window.redditWatcher || (unsafeWindow && unsafeWindow.redditWatcher);
   if (redditWatcher) {
     redditWatcher.body.onUpdate(addDownloadButton);
+    redditWatcher.body.onChange(transformImageLinks);
     redditWatcher.body.onUpdate(removeElement);
     redditWatcher.feed.onUpdate(addDownloadButton);
     redditWatcher.feed.onChange(clearRemoveWatchers);
@@ -114,6 +172,7 @@ $(document).ready(() => {
 
   (new MutationObserver(() => {
     addDownloadButton();
+    transformImageLinks();
     removeElement();
     clearRemoveWatchers();
 

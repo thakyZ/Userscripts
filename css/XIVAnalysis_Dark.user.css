@@ -1,13 +1,13 @@
 /* ==UserStyle==
-  @name           XIV Analysis Dark
-  @namespace      NekoBoiNick.Web.XIVAnalysis.Dark
-  @version        1.0.1
-  @description    Makes XIV Analysis darkmode
-  @author         Neko Boi Nick
-  @license        MIT
-  @updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/XIVAnalysis_Dark.user.css
-  @supportURL     https://github.com/thakyZ/Userscripts/issues
-  @homepageURL    https://github.com/thakyZ/Userscripts
+@name           XIV Analysis Dark
+@namespace      NekoBoiNick.Web.XIVAnalysis.Dark
+@version        1.0.1
+@description    Makes XIV Analysis darkmode
+@author         Neko Boi Nick
+@license        MIT
+@updateURL      https://raw.githubusercontent.com/thakyz/Userscripts/master/css/XIVAnalysis_Dark.user.css
+@supportURL     https://github.com/thakyZ/Userscripts/issues
+@homepageURL    https://github.com/thakyZ/Userscripts
 ==/UserStyle== */
 
 @-moz-document domain("xivanalysis.com") {

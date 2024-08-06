@@ -1,26 +1,6 @@
-// ==UserScript==
-// @name         Pterodactyl Wiki Changes
-// @namespace    NekoBoiNick.Web.Pterodactyl.Wiki.Changes
-// @version      1.0.4
-// @description  Changes things on the Pterodactyl wiki
-// @author       Neko Boi Nick
-// @match        https://pterodactyl.io/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=pterodactyl.io
-// @license      MIT
-// @grant        GM_setClipboard
-// @grant        GM_addStyle
-// @grant        GM_getResourceText
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/pterodactyl_wikichanges/pterodactyl_wikichanges.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/pterodactyl_wikichanges/pterodactyl_wikichanges.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/pterodactyl_wikichanges/style.min.css
-// ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+import jQuery from "jquery";
 
-$(document).ready(() => {
+jQuery(($) => {
   "use strict";
   GM_addStyle(GM_getResourceText("css"));
 
@@ -28,7 +8,7 @@ $(document).ready(() => {
 
   const createSVG = () => `<svg viewbox="0 0 24 24" width="0.875rem" height="0.875rem" fill="#fff"><path d="${mdiContentCopy}"/></svg>`;
 
-  const modifyCodeBox = (codeBox, codes) => {
+  function modifyCodeBox(codeBox, codes) {
     const parent = $(codeBox).parent().parent();
     const container = $("<div class=\"codebox_buttons\"></div>");
     $(container).insertBefore($(parent));
@@ -41,16 +21,16 @@ $(document).ready(() => {
         const copyButton = $(`<button id="copyLine2">${createSVG()}</button>`);
         $(row).append($(copyButton));
         $(copyButton).data("code", element);
-        $(copyButton).on("click", event => {
+        $(copyButton).on("click", (event) => {
           GM_setClipboard($(event.currentTarget).data().code);
         });
       }
 
       $(buttons).append($(row));
     }
-  };
+  }
 
-  const addCopyButtons = codeBox => {
+  function addCopyButtons(codeBox) {
     const code = $(codeBox).html().split("\n");
     const codes = [];
     for (const element of code) {
@@ -65,22 +45,22 @@ $(document).ready(() => {
     }
 
     modifyCodeBox(codeBox, codes);
-  };
+  }
 
-  const detectScriptBoxes = () => {
+  function detectScriptBoxes() {
     const codeBoxes = $(".content > div[class*=\"language-\"] > pre[class*=\"language-\"]:not(.language-text) code");
     if (codeBoxes.length > 0) {
       $(codeBoxes).each((index, element) => {
         addCopyButtons(element);
       });
     }
-  };
+  }
 
-  const setupMutationObserver = () => {
+  function setupMutationObserver() {
     const targetNode = $("#app")[0];
     const config = { attributes: true, childList: true, subtree: true };
 
-    const callback = mutationList => {
+    function callback(mutationList) {
       for (const mutation of mutationList) {
         console.log(mutation);
         if (mutation.type === "childList") {
@@ -89,7 +69,7 @@ $(document).ready(() => {
           }
         }
       }
-    };
+    }
 
     const observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
@@ -97,7 +77,7 @@ $(document).ready(() => {
     $(document).on("unload", () => {
       observer.disconnect();
     });
-  };
+  }
 
   setupMutationObserver();
   detectScriptBoxes();

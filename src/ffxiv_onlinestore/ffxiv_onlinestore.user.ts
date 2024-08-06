@@ -1,28 +1,6 @@
-// ==UserScript==
-// @name         Final Fantasy XIV Online Store Changes
-// @namespace    NekoBoiNick.Web.FFXIV.OnlineStore.Changes
-// @version      1.0.1
-// @description  QoL changes for the Final Fantasy XIV Online Store.
-// @author       Neko Boi Nick
-// @match        https://store.finalfantasyxiv.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=finalfantasyxiv.com
-// @license      MIT
-// @grant        GM_setValue
-// @grant        GM_getValue
-// @grant        GM_registerMenuCommand
-// @grant        GM.xmlHttpRequest
-// @grant        GM_openInTab
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @downloadURL  https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxiv_onlinestore/ffxiv_onlinestore.user.js
-// @updateURL    https://raw.githubusercontent.com/thakyz/Userscripts/master/ffxiv_onlinestore/ffxiv_onlinestore.user.js
-// @supportURL   https://github.com/thakyZ/Userscripts/issues
-// @homepageURL  https://github.com/thakyZ/Userscripts
-// @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/ffxiv_onlinestore/style.css
-// ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+import jQuery from "jquery";
 
-$(document).ready(() => {
+jQuery(($) => {
   "use strict";
   // GM_addStyle(GM_getResourceText("css"));
   const cacheDataName = "OnlineStoreAPI";
@@ -37,54 +15,57 @@ $(document).ready(() => {
    * de-de: GBP
    * de-de: EUR
    */
-  const getUserDisplayPreferences = () => {
+  function getUserDisplayPreferences() {
     const langHeader = $(".global-header-lang-main");
+    /* CSpell:ignoreRegExp \/\^https:\\\/\\\/store\\\.finalfantasyxiv\\\.com\\\/ffxivstore\\\/\(\\w\{2\}-\\w\{2\}\)\\\/\.\*\/gi */
     const langName = window.location.href.replaceAll(/^https:\/\/store\.finalfantasyxiv\.com\/ffxivstore\/(\w{2}-\w{2})\/.*/gi, "$1");
     const langLabel = langHeader.find(".global-header-lang-label").text().replaceAll(/^\s*/gi, "").replaceAll(/\s*$/gi, "");
 
     return { name: langName, currency: langLabel };
-  };
+  }
 
   let data = {};
 
-  const get = async uri => new Promise((resolve, reject) => {
-    try {
-      GM.xmlHttpRequest({
-        method: "GET",
-        url: uri,
-        headers: {
-          referer: "https://store.finalfantasyxiv.com/",
-          origin: "https://store.finalfantasyxiv.com"
-        },
-        onload(response) {
-          if (response.status === 200) {
-            const text = response.responseText;
-            return resolve(text);
-          }
+  async function get(uri) {
+    return new Promise((resolve, reject) => {
+      try {
+        GM.xmlHttpRequest({
+          method: "GET",
+          url: uri,
+          headers: {
+            referer: "https://store.finalfantasyxiv.com/",
+            origin: "https://store.finalfantasyxiv.com"
+          },
+          onload(response) {
+            if (response.status === 200) {
+              const text = response.responseText;
+              return resolve(text);
+            }
 
-          return reject(Error("failed"));
-        }
-      });
-    } catch (error) {
-      console.error(`Failed to get the product data at the uri: ${uri}\n${error}`);
-      reject(Error("failed"));
-    }
-  });
+            return reject(Error("failed"));
+          }
+        });
+      } catch (error) {
+        console.error(`Failed to get the product data at the uri: ${uri}\n${error}`);
+        reject(Error("failed"));
+      }
+    });
+  }
 
   /* Online store product API
    * https://api.store.finalfantasyxiv.com/ffxivcatalog/api/products/?lang=en-us&currency=USD&limit=1000
    */
-  const getCache = async () => {
+  async function getCache() {
     const pref = getUserDisplayPreferences();
     const uri = `https://api.store.finalfantasyxiv.com/ffxivcatalog/api/products/?lang=${pref.name}&currency=${pref.currency}&limit=1000`;
-    let _string = "";
+    let tempString = "";
     try {
       const response = await get(uri);
       try {
         const json = JSON.parse(response);
         const date = new Date().toISOString();
         const cachedData = { date, data: json };
-        _string = JSON.stringify(cachedData);
+        tempString = JSON.stringify(cachedData);
       } catch (error) {
         console.error(`Failed to parse and cache product information at uri ${uri}\n${error}`);
         return undefined;
@@ -94,36 +75,36 @@ $(document).ready(() => {
       return undefined;
     }
 
-    return _string;
-  };
+    return tempString;
+  }
 
-  const loadCache = async () => {
-    let _data = GM_getValue(cacheDataName);
+  async function loadCache() {
+    let tempData = GM_getValue(cacheDataName);
 
-    if (_data === undefined) {
+    if (tempData === undefined) {
       const value = await getCache();
       GM_setValue(cacheDataName, value);
-      _data = value;
+      tempData = value;
       console.log("Fetched and cached product data");
     }
 
-    let _json = JSON.parse(_data);
+    let tempJson = JSON.parse(tempData);
     const date = new Date();
-    const _date = date.getTime();
-    const olddate = new Date(Date.parse(_json.date));
-    const _olddate = olddate.getTime();
-    const futureDate = new Date(olddate.setMonth(olddate.getMonth() + 1)).getTime();
+    const newDate = date.getTime();
+    const oldDate = new Date(Date.parse(tempJson.date));
+    const newOldDate = oldDate.getTime();
+    const futureDate = new Date(oldDate.setMonth(oldDate.getMonth() + 1)).getTime();
 
-    if (_date >= _olddate && _date >= futureDate) {
+    if (newDate >= newOldDate && newDate >= futureDate) {
       const value = await getCache();
       GM_setValue(cacheDataName, value);
-      _data = value;
-      _json = JSON.parse(_data);
+      tempData = value;
+      tempJson = JSON.parse(tempData);
       console.log("Fetched and cached product data");
     }
 
-    data = _json;
-  };
+    data = tempJson;
+  }
 
   (async () => {
     try {
@@ -134,20 +115,21 @@ $(document).ready(() => {
     }
   })();
 
-  const getObjectUri = element => {
+  function getObjectUri(element) {
     const thumbUri = $(element).find("div.item-card-image img").attr("src");
-    const item = data.data.products.find(item => item.thumbnailUrl === thumbUri);
+    const item = data.data.products.find((item) => item.thumbnailUrl === thumbUri);
     console.log(data);
     const pref = getUserDisplayPreferences();
     return `https://store.finalfantasyxiv.com/ffxivstore/${pref.name}/product/${item.id}`;
-  };
+  }
 
-  const detectListings = () => {
+  function detectListings() {
     const itemsListed = $(".main .container .panel .content .item-liquid-box .item-liquid-cell");
     if (itemsListed.length > 0) {
       $(itemsListed).each((index, element) => {
+        // CSpell:ignore evented
         if ($(element).data("evented") !== true) {
-          $(element).on("contextmenu", eventObject => {
+          $(element).on("contextmenu", (eventObject) => {
             if (eventObject.shiftKey) {
               const uri = getObjectUri(eventObject.currentTarget);
               GM_openInTab(uri);
@@ -157,15 +139,16 @@ $(document).ready(() => {
         }
       });
     }
-  };
+  }
 
   const setupMutationObserver = () => {
     const targetNode = $(".main .container .panel .content")[0];
     const config = { attributes: true, childList: true, subtree: true };
 
-    const callback = mutationList => {
+    const callback = (mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.type === "childList") {
+          /* CSpell:ignore container-navi */
           if ($(mutation.target).hasClass("container-navi")) {
             detectListings();
           }
