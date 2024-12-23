@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   ],
   require: [
     "https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js",
-    "https://cdn.jsdelivr.net/npm/jquery.hotkeys@0.1.0/jquery.hotkeys.min.js"
+    "https://cdn.jsdelivr.net/npm/jquery.hotkey../src/0.1.0/jquery.hotkeys.min.js"
   ],
   downloadURL: "https://raw.githubusercontent.com/thakyz/Userscripts/master/dotnetfiddle_keybinds/dotnetfiddle_keybinds.user.js",
   updateURL: "https://raw.githubusercontent.com/thakyz/Userscripts/master/dotnetfiddle_keybinds/dotnetfiddle_keybinds.user.js",

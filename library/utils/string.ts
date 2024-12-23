@@ -11,7 +11,7 @@ export function transliterate(word: string): string {
 
   for (const i in word.split("")) {
     const translated = translateCharacter(word[i])
-    if (typeof translated === undefined) {
+    if (!) {
       answer += word[i];
     } else {
       answer += translated;
@@ -28,7 +28,9 @@ export function checkEveryLetter(name: string) {
   for (let i = 0; i < name.length; i++) {
     const code: number | undefined = name.codePointAt(i);
 
-    if (!code) continue;
+    if (!code) {
+      continue;
+    }
 
     if (code - 119808 >= 0 && code - 119808 < 1025) {
       newName += String.fromCodePoint(((code - 119808) % 52) + 65);
@@ -52,23 +54,23 @@ export function modifyModAuthorName(name: string): string {
 
 export function modifyModName(name: string): string {
   return name
-  .replace(/Bibo\+/gi, "Bibo-Plus")
-  .replace(/B\+/gi, "Bibo-Plus")
-  .replace(/\s?[[(]TBSE(\/FTM)?[\])]/gi, "-TBSE$1")
-  .replace(/TBSE\/(FTM)/gi, "TBSE-$1")
-  .replace(/\s?\[([^\]]+)\]$/g, "-$1")
-  .replace(/\s?\(F\)$/gi, "-Female")
-  .replace(/\s?\(M\)$/gi, "-Female")
-  .replace(/\s-\s|\.|\s\/\s/g, "-")
-  .replace(/\sand\s|\s?&\s?/gi, "+")
-  .replace(/Hair (\d+)(\+\d+)/gi, "Hair-$1$2")
-  .replace(/\s#(\d+)/g, "-$1")
-  .replace(/\s\(All\sFaces\)/gi, "-All_Faces")
-  .replace(/\[([^\]]+)\]\s?(.*)/g, "$2-$1")
-  .replace(/\s[\u0000-\u001F\u007B-\uFFFF]\s/g, "-")
-  .replace(/['?\\/*:"<>|,!]/g, "")
-  .replace(/\s?[\u0000-\u001F\u007B-\uFFFF]\s?/g, "")
-  .replace(/\s/g, "_");
+    .replace(/Bibo\+/gi, "Bibo-Plus")
+    .replace(/B\+/gi, "Bibo-Plus")
+    .replace(/\s?[[(]TBSE(\/FTM)?[\])]/gi, "-TBSE$1")
+    .replace(/TBSE\/(FTM)/gi, "TBSE-$1")
+    .replace(/\s?\[([^\]]+)\]$/g, "-$1")
+    .replace(/\s?\(F\)$/gi, "-Female")
+    .replace(/\s?\(M\)$/gi, "-Female")
+    .replace(/\s-\s|\.|\s\/\s/g, "-")
+    .replace(/\sand\s|\s?&\s?/gi, "+")
+    .replace(/Hair (\d+)(\+\d+)/gi, "Hair-$1$2")
+    .replace(/\s#(\d+)/g, "-$1")
+    .replace(/\s\(All\sFaces\)/gi, "-All_Faces")
+    .replace(/\[([^\]]+)\]\s?(.*)/g, "$2-$1")
+    .replace(/\s[\u0000-\u001F\u007B-\uFFFF]\s/g, "-")
+    .replace(/['?\\/*:"<>|,!]/g, "")
+    .replace(/\s?[\u0000-\u001F\u007B-\uFFFF]\s?/g, "")
+    .replace(/\s/g, "_");
 }
 
 export function measureStringWidth(text: string, font?: string, size?: number | string): number | undefined {

@@ -42,7 +42,7 @@
       const test1 = regex.test(href);
       const { attributes: attrs } = x;
 
-      if (attrs.length === 0 || typeof attrs === "undefined" || attrs === null) {
+      if (attrs.length === 0 || !attrs || attrs === null) {
         if (DEBUG === true) {
           console.debug(`Attributes from element at index ${i} is null.`);
         }
@@ -52,7 +52,7 @@
 
       const onclickAttr = attrs.onclick;
 
-      if (typeof onclickAttr === "undefined" || onclickAttr === null) {
+      if (!onclickAttr || onclickAttr === null) {
         if (DEBUG === true) {
           console.debug(`Attributes from element at index ${i} does not contain key "onclick".`);
         }
@@ -71,7 +71,7 @@
     for (const [i, x] of Object.entries(arrayFiltered)) {
       const { attributes: attrs } = x;
 
-      if (attrs.length === 0 || typeof attrs === "undefined" || attrs === null) {
+      if (attrs.length === 0 || !attrs || attrs === null) {
         if (DEBUG === true) {
           console.debug(`Attributes from element at index ${i} is null.`);
         }
@@ -81,7 +81,7 @@
 
       const patchedAttr = attrs.nbn_patched;
 
-      if (typeof patchedAttr !== "undefined" && patchedAttr !== null) {
+      if (patchedAttr && patchedAttr !== null) {
         if (DEBUG === true) {
           console.debug(`Attributes from element at index ${i} does is already patched and contains key "nbn_patched".`);
         }

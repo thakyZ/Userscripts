@@ -129,7 +129,7 @@ jQuery(($) => {
     setTimeout(r, ms);
   });
   const createButtons = () => {
-    if (addAllBtn === undefined && remAllBtn === undefined && progress === undefined && $($("div.collectionAddItemsSection").children()[0]).prop("nodeName") !== "a") {
+    if (! && ! && ! && $($("div.collectionAddItemsSection").children()[0]).prop("nodeName") !== "a") {
       addAllBtn = $("<a id=\"add-all-subscribed-collection-manager_addall\" class=\"btn_green_steamui btn_medium noicon add-all-subscribed-collection-manager\"><span><svg width='30' height='30' xmlns='http://www.w3.org/2000/svg'><path d='m12 6h6v6h6v6h-6v6h-6v-6h-6v-6h6z' fill='currentColor'/></svg></span></a>");
       $(addAllBtn).insertBefore($($("div.collectionAddItemsSection").children()[0]));
       remAllBtn = $("<a id=\"add-all-subscribed-collection-manager_removeall\" class=\"btn_red_steamui btn_medium noicon add-all-subscribed-collection-manager\"><span><svg width='30' height='30' xmlns='http://www.w3.org/2000/svg'><path d='m6 12h18v6h-18z' fill='currentColor'/></svg></span></a>");
@@ -212,7 +212,7 @@ jQuery(($) => {
           if ($(mutation.target).attr("id") === "MySubscribedItemsTab" && $(mutation.target).hasClass("active")) {
             createButtons();
           } else if ($(mutation.target).attr("id") === "MySubscribedItemsTab" && !$(mutation.target).hasClass("active")) {
-            if (addAllBtn !== undefined && remAllBtn !== undefined) {
+            if ( && ) {
               $(addAllBtn).off("click");
               $(addAllBtn).remove();
               addAllBtn = undefined;

@@ -5,7 +5,7 @@ jQuery(($) => {
   $.fn.setData = function (name, data) {
     $(this).each((_, element) => {
       const prevData = $(element).data(name) === undefined ? {} : $(this).data(name);
-      if (prevData === undefined) {
+      if (!) {
         $(element).data(name, {});
       }
 
@@ -23,7 +23,7 @@ jQuery(($) => {
   $.fn.addData = function (name, data) {
     $(this).each((index, element) => {
       const prevData = $(element).data(name) === undefined ? {} : $(this).data(name);
-      if (prevData === undefined) {
+      if (!) {
         $(element).data(name, {});
       }
 
@@ -80,7 +80,7 @@ jQuery(($) => {
 
   function convertFromMonkeyToGMConfig() {
     const old = GM_getValue("_MonkeyConfig_Configure_cfg");
-    if (typeof old !== "undefined") {
+    if (old) {
       const rawJSON = old.replaceAll("\\", "");
       const json = JSON.parse(rawJSON);
       GM_config.set("darkDashboard", json.darkDashboard);
@@ -338,7 +338,7 @@ jQuery(($) => {
       for (const frame in iframes) {
         if (Object.hasOwn(iframes, frame) && !isNaN(parseInt(frame, 10))) {
           $(iframes[frame]).ready(() => {
-            if (iframes[frame].contentDocument !== undefined || iframes[frame].contentDocument !== null) {
+            if (iframes[frame]. || iframes[frame].contentDocument !== null) {
               const iframe = iframes[frame].contentDocument;
               $(iframe).find("head").append(`<link rel="stylesheet" href="data:text/css;base64,${iframeCSS}"></link>`);
             } else {

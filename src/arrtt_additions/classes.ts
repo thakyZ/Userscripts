@@ -1,4 +1,4 @@
-import { CssObject, Nullable } from "../../library/index.js";
+import { CssObject, Nullable } from "../../../library/index.js";
 
 /* eslint-disable no-unused-vars */
 export enum ThemeType {
@@ -69,7 +69,7 @@ export class CssKeys {
       });
 
       $("head").appendCssBlock(cssBlock, "customCSS-NekoBoiNick");
-    } else if (typeof object !== "undefined" && object !== null) {
+    } else if (object && object !== null) {
       $("head style#customCSS-NekoBoiNick").text(this.customCss.replace($("head style#customCSS-NekoBoiNick").text().toString(), object.key));
     }
   }

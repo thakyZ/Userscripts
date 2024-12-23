@@ -1,4 +1,4 @@
-import List from "t@list.js";
+import List from "list.js";
 
 export interface State {
   allowed: string[];

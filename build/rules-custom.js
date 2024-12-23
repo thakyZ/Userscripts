@@ -158,7 +158,17 @@ export default {
     "array-bracket-spacing": ["error", "never"],
     "array-element-newline": ["error", "consistent"],
     "brace-style": ["error", "1tbs", { allowSingleLine: false }],
-    camelcase: ["error", { properties: "never", ignoreDestructuring: true, ignoreGlobals: true, allow: [/\b\w+GM_\w+\b/.source] }],
+    camelcase: [
+      "error",
+      {
+        properties: "never",
+        ignoreDestructuring: true,
+        ignoreGlobals: true,
+        allow: [
+          "^GM_",
+        ],
+      },
+    ],
     // You can also ignore this rule by wrapping the first word in quotes.
     // c8 => https://github.com/bcoe/c8
     "capitalized-comments": [

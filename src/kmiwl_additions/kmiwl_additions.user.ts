@@ -74,7 +74,7 @@ jQuery(($) => {
 
     if ($("head style#customCSS-NekoBoiNick").length === 0) {
       $("head").append("<style id=\"customCSS-NekoBoiNick\"></style>");
-    } else if (object !== undefined && object !== null) {
+    } else if ( && object !== null) {
       if (type === "bg") {
         if (object.key === "Dark") {
           $("head style#customCSS-NekoBoiNick").text(cssKeys.customCSS.replace($("head style#customCSS-NekoBoiNick").text().toString(), cssKeys.customCSS.Dark));

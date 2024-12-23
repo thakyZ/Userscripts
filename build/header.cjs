@@ -3,7 +3,7 @@
 const fs = require("fs");
 
 function header(grunt) {
-  const parseErrorObj = (obj) => obj.error === null || typeof obj.error === "undefined" ? `${obj.message}` : `${obj.message}\n${obj.error.stack}`;
+  const parseErrorObj = (obj) => obj.error === null || !obj.error ? `${obj.message}` : `${obj.message}\n${obj.error.stack}`;
 
   const filePath = `${__dirname}/../library/nekogaming.userscript.lib.js`;
 
@@ -37,6 +37,5 @@ function header(grunt) {
 
   return getHeader(readSourceFile());
 }
-
 
 module.exports = header;

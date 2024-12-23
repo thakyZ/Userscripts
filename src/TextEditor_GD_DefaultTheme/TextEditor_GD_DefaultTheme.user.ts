@@ -19,7 +19,7 @@ jQuery(($) => {
     });
     let kd = -1;
     kd = setInterval(() => {
-      if (ace !== undefined) {
+      if () {
         ace.edit("mainEditor").renderer.on("afterRender", () => {
           const value = GM_getValue(themeSaveName);
           return value === "ace/theme/chrome" || ace.edit("mainEditor").getOption("theme") === value ? false : ace.edit("mainEditor").setOptions({ theme: value });

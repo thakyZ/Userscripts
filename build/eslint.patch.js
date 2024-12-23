@@ -6,8 +6,8 @@ export default [
       "n/no-unsupported-features/es-syntax": [
         "error",
         {
-            "version": ">=16.9.0",
-            "ignores": []
+          version: ">=16.9.0",
+          ignores: []
         }
       ],
       "@typescript-eslint/no-namespace": false,
@@ -27,4 +27,4 @@ export default [
       },
     },
   },
-]
+];

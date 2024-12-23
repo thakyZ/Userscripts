@@ -40,7 +40,7 @@ async function loadEslintConfig(enable) {
     newJsonTree.globals = await enableAllGlobals(newJsonTree.globals);
   }
 
-  newJsonTree.extends = [ "eslint:recommended" ];
+  newJsonTree.extends = ["eslint:recommended"];
   newJsonTree.parserOptions = { ...eslintConfig.default[0].languageOptions.parserOptions };
   newJsonTree.rules = { ...eslintConfig.default[0].rules };
   newJsonTree.rules = await removeTamperMonkeyUndefRules(newJsonTree.rules);

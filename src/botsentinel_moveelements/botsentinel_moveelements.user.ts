@@ -1,4 +1,4 @@
-import { _jQuery as jQuery } from "../library/index.js";
+import { _jQuery as jQuery } from "../../library/index.js";
 
 jQuery(($) => {
   "use strict";

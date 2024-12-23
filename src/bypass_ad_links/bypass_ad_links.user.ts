@@ -1,4 +1,4 @@
-import { isNotANumber, assertIsString, isString, _jQuery as jQuery } from "../library/index.js";
+import { isNotANumber, assertIsString, isString, _jQuery as jQuery } from "../../library/index.js";
 import { GM_configStruct as GMConfig } from "../gm_config.js";
 import { Settings } from "./classes.js";
 

@@ -49,8 +49,8 @@ function build(grunt) {
 
   grunt.registerMultiTask(
     "build",
-    "Build jQuery ECMAScript modules, " +
-    "(include/exclude modules with +/- flags), embed date/version",
+    "Build jQuery ECMAScript modules, "
+    + "(include/exclude modules with +/- flags), embed date/version",
     async () => {
       const done = this.async();
 
@@ -89,7 +89,6 @@ function build(grunt) {
           if (list) {
             prepend = prepend ? `${prepend}/` : "";
             list.forEach((module) => {
-
               // Exclude var modules as well
               if (module === "var") {
                 excludeList(
@@ -125,17 +124,15 @@ function build(grunt) {
          *  the src directory starting with + or - to indicate
          *  whether it should be included or excluded
          */
-        const excluder = flag => {
+        const excluder = (flag) => {
           let additional;
           const m = /^(\+|-)([\w/-]+)$/.exec(flag);
           const exclude = m[1] === "-";
           const module = m[2];
 
           if (exclude) {
-
             // Can't exclude certain modules
             if (minimum.indexOf(module) === -1) {
-
               // Add to excluded
               if (excluded.indexOf(module) === -1) {
                 grunt.log.writeln(flag);
@@ -145,7 +142,6 @@ function build(grunt) {
                 // These are the removable dependencies
                 // It's fine if the directory is not there
                 try {
-
                   // `selector` is a special case as we don't just remove
                   // the module, but we replace it with `selector-native`
                   // which re-uses parts of the `src/selector` folder.
@@ -218,8 +214,8 @@ function build(grunt) {
           const index = excluded.indexOf("exports/global");
 
           setOverride(`${srcFolder}/exports/global.js`,
-            "import jQuery from \"../core.js\";\n\n" +
-            "jQuery.noConflict = function() {};");
+            "import jQuery from \"../core.js\";\n\n"
+            + "jQuery.noConflict = function() {};");
           excluded.splice(index, 1);
         }
 
@@ -251,22 +247,20 @@ function build(grunt) {
 
         // Turn off opt-in if necessary
         if (!optIn) {
-
           // Remove the default inclusions, they will be overwritten with the explicitly
           // included ones.
           setOverride(inputRollupOptions.input, "");
-
         }
 
         // Import the explicitly included modules.
         if (included.length) {
           setOverride(inputRollupOptions.input,
             getOverride(inputRollupOptions.input) + included
-              .map(module => `import "./${module}.js";`)
+              .map((module) => `import "./${module}.js";`)
               .join("\n"));
         }
 
-        const bundle = [{plugins: [rollupFileOverrides(fileOverrides)]}];
+        const bundle = [{ plugins: [rollupFileOverrides(fileOverrides)] }];
         // Disable:
         // const bundle = await rollup.rollup({
         //   ...inputRollupOptions,

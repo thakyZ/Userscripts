@@ -9,7 +9,7 @@ jQuery(($) => {
       const secondArticleChildDiv = $(firstArticle).children().find("div:nth-child(2)");
       if ($(secondArticleChildDiv).length > 0) {
         const secondArticleChildDivClasses = $(secondArticleChildDiv).attr("class");
-        if (typeof secondArticleChildDivClasses !== "undefined" && typeof secondArticleChildDivClasses.split !== "undefined") {
+        if (secondArticleChildDivClasses && secondArticleChildDivClasses.split) {
           if (secondArticleChildDivClasses.split(" ").includes("twMediaDownloader_media_button")) {
             $(firstArticleChildDiv).insertAfter(firstArticleChildDiv);
           } else {

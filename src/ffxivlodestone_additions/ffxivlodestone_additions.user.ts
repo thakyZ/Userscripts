@@ -151,7 +151,7 @@ jQuery(($) => {
          * GM_config.frame.setAttribute("style", "display:block;");
          */
         modifyGM_configFrame(GM_config.frame);
-        console.log(`($.fn.createElement !== undefined) ?= ${typeof $.fn.createElement !== "undefined"}`);
+        console.log(`($.) ?= ${typeof $.fn.createElement !== "undefined"}`);
       },
       save(vales) {
         console.debug(vales);

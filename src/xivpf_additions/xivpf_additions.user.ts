@@ -1,7 +1,7 @@
+import { DataCenterWorldType, DataCenters, ListItemValues, PartyFinderCategory, State } from "./classes.js";
+import List, { ListItem, ListOptions } from "list.js";
+import { isNotANumber, isString } from "../../library/index.js";
 import jQuery from "jquery";
-import { isString, isNotANumber } from "library/index.js";
-import { State, DataCenters, ListItemValues, DataCenterWorldType } from "./classes.js";
-import List from "list.js";
 
 jQuery(($) => {
   "use strict";
@@ -27,9 +27,9 @@ jQuery(($) => {
       stateWasNull = true;
     } else {
       try {
-        saved = JSON.parse(storageString);
+        saved = (JSON.parse(storageString) as State);
 
-        if (!Array.isArray(saved.allowed!)) {
+        if (!Array.isArray(saved.allowed)) {
           saved = state;
           stateWasNull = true;
         }
@@ -51,8 +51,8 @@ jQuery(($) => {
     }
   }
 
-  function setUpList() {
-    const options: List.ListOptions = {
+  function setUpList(): List {
+    const options: ListOptions = {
       valueNames: [
         "duty",
         "creator",
@@ -60,39 +60,31 @@ jQuery(($) => {
         { data: ["centre"] },
       ],
     };
-    const list = new List("container", options);
+
+    const list: List = new List("container", options);
 
     return list;
   }
 
   function convertDataCenterToRegion(values: ListItemValues) {
-    let output = false;
-
-    if (state.centre === "NA" && (values.centre === "Aether" || values.centre === "Crystal" || values.centre === "Dynamis" || values.centre === "Primal")) {
-      output = true;
-    } else if (state.centre === "EU" && (values.centre === "Chaos" || values.centre === "Light")) { // NOSONAR
-      output = true;
-    } else if (state.centre === "JA" && (values.centre === "Elemental" || values.centre === "Gaia" || values.centre === "Mana" || values.centre === "Meteor")) { // NOSONAR
-      output = true;
-    } else if (state.centre === "OC" && (values.centre === "Materia")) { // NOSONAR
-      output = true;
-    } // NOSONAR
-
-    return output;
+    return (state.centre === "NA" && (values.centre === "Aether" || values.centre === "Crystal" || values.centre === "Dynamis" || values.centre === "Primal"))
+        || (state.centre === "EU" && (values.centre === "Chaos" || values.centre === "Light"))
+        || (state.centre === "JA" && (values.centre === "Elemental" || values.centre === "Gaia" || values.centre === "Mana" || values.centre === "Meteor"))
+        || (state.centre === "OC" && (values.centre === "Materia"));
   }
 
   function refilter() {
-    function categoryFilter(item: List.ListItem) {
-      const category: PartyFinderCategory | undefined = item.elm.dataset["pfCategory"];
+    function categoryFilter(item: ListItem) {
+      const category: PartyFinderCategory | undefined = (item.elm.dataset["pfCategory"] as PartyFinderCategory);
 
-      return typeof category !== "undefined" && (category === "unknown" || state.allowed.includes(category));
+      return category && (category === "unknown" || state.allowed.includes(category));
     }
 
     function dataCentreFilter(values: ListItemValues) {
       return state.centre === "All" || state.centre === values.centre || convertDataCenterToRegion(values);
     }
 
-    state.list?.filter((item) => dataCentreFilter((item.values() as ListItemValues)) && categoryFilter(item));
+    state.list?.filter((item: ListItem) => dataCentreFilter((item.values() as ListItemValues)) && categoryFilter(item));
   }
 
   // Fetched from: https://www.freecodecamp.org/news/how-to-capitalize-words-in-javascript/#iterate-over-each-word
@@ -135,7 +127,7 @@ jQuery(($) => {
 
       const label = $(optgroup).attr("label");
 
-      if (typeof label === "undefined") {
+      if (!label) {
         continue;
       }
 

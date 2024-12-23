@@ -1,4 +1,4 @@
-import { isNotANumber, jQuery, JQuery } from "../library/index.js";
+import { isNotANumber, jQuery, JQuery } from "../../library/index.js";
 
 jQuery(($) => {
   function isOnFileDL(mutation: MutationRecord) {

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   ],
   require: [
     "https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js",
-    "https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js",
+    "https://cdn.jsdelivr.net/npm/popper.j../src/1.16.1/dist/umd/popper.min.js",
     "https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js",
     "https://openuserjs.org/src/libs/sizzle/GM_config.js"
   ],

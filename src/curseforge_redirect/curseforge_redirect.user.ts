@@ -23,7 +23,7 @@ jQuery(($) => {
 
       const expectedType = object === GM ? "object" : "function";
 
-      if (typeof object === "undefined") {
+      if (!object) {
         throw new Error(`The global ${expectedType} ${object} is not defined.`);
       }
     }
@@ -31,7 +31,7 @@ jQuery(($) => {
 
   function propagateDefaultWhitelist() {
     const config = GM_getValue("whitelisted");
-    if (typeof config === "undefined" || config === null) {
+    if (!config || config === null) {
       GM_setValue("whitelisted", JSON.stringify(defaultWhiteListedLegacyPages));
     }
   }

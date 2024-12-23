@@ -1,12 +1,12 @@
-import { MonkeyCodeType } from "./build/eslint.lib.js";
-/* eslint-disable-next-line n/no-extraneous-import */
 import { FlatCompat } from "@eslint/eslintrc";
+import { MonkeyCodeType } from "./build/eslint.lib.js";
 import custom from "./build/rules-custom.js";
 import { fileURLToPath } from "node:url";
 import { getMonkeyCodeNames } from "./build/eslint.lib.js";
 import globals from "globals";
 import greasemonkey from "eslint-config-greasemonkey";
 import js from "@eslint/js";
+import nodePlugin from "eslint-plugin-n";
 import path from "node:path";
 import react from "eslint-plugin-react";
 import typescript from "typescript-eslint";
@@ -21,14 +21,13 @@ const compat = new FlatCompat({
 });
 
 function mapConfig(config) {
-  if (config.rules && Object.entries(config.rules).filter(x => x[0] === "@typescript-eslint/await-thenable").length > 0) {
-    config.files = [ "**/*.ts" ];
+  if (config.rules && Object.entries(config.rules).filter((x) => x[0] === "@typescript-eslint/await-thenable").length > 0) {
+    config.files = ["**/*.ts"];
     config.languageOptions = { parserOptions: { project: "./tsconfig.eslint.json" } };
   }
 
   return config;
 }
-
 
 const settingsCompat = compat.config({
   settings: {
@@ -40,18 +39,30 @@ const settingsCompat = compat.config({
       flowVersion: "0.53",
     },
     node: {
+      allowExperimental: true,
       version: ">=16.9.0",
+      ignores: [
+        "localStorage",
+      ],
     },
+    tsconfigPath: "./tsconfig.eslint.json",
+    resolvePaths: [
+      "./",
+      "../",
+      "../../",
+      "./node_modules/@types/",
+      "../node_modules/@types/",
+      "../../node_modules/@types/",
+    ],
   },
 });
 
-let config = [
+const config = [
   react.configs.flat.recommended,
-  ...typescript.configs.recommended,
   ...typescript.configs.recommendedTypeChecked.map(mapConfig),
   ...compat.extends("stylelint", "stylelint/jest", "prettier"),
+  nodePlugin.configs["flat/recommended-script"],
   ...compat.plugins("prettier", "markdown"),
-  ...settingsCompat,
   {
     ignores: [
       "./node_modules",
@@ -63,13 +74,6 @@ let config = [
     },
     rules: {
       "no-console": "off",
-      "n/no-unsupported-features/es-syntax": [
-        "error",
-        {
-          "version": ">=16.9.0",
-          "ignores": []
-        }
-      ],
     },
   },
   {
@@ -105,6 +109,22 @@ let config = [
       "no-undef": "off",
       "dot-notation": "off",
       "@typescript-eslint/no-namespace": "off",
+      "n/no-unsupported-features/node-builtins": [
+        "error",
+        {
+          allowExperimental: true,
+          version: ">=16.9.0",
+          ignores: [
+            "localStorage",
+          ],
+        },
+      ],
+      "n/no-missing-import": [
+        "error",
+        {
+          tsconfigPath: "./tsconfig.eslint.json",
+        }
+      ]
     },
   },
   {
@@ -137,19 +157,30 @@ let config = [
     rules: {
       ...custom.rules,
       "no-console": "off",
+      "@typescript-eslint/no-require-imports": "off",
     },
-  },/*
+  },
   {
     files: [
-      "**\/*.md",
+      "**/*.{cjs,js,jsx,mjs}",
+    ],
+    rules: {
+      "@typescript-eslint/no-unused-vars": "off",
+    },
+  },
+  {
+    files: [
+      "**/*.md",
     ],
     processor: "markdown/markdown",
     settings: {
       sharedData: "Hello",
     },
-  },*/
+  },
+  ...settingsCompat,
 ];
 
+// Disabled:
 // config = patchRules(config);
 
 export default config;

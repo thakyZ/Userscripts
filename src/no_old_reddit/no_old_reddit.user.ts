@@ -6,7 +6,7 @@ jQuery(($) => {
   const regex = /^https?:\/\/(np|old)\.reddit\.com/i;
   for (const [, anchor] of Object.entries(anchors)) {
     const attr = $(anchor).attr("href");
-    if (typeof attr !== "undefined" && attr !== false && regex.test($(anchor).attr("href"))) {
+    if (attr && attr !== false && regex.test($(anchor).attr("href"))) {
       $(anchor).attr("href", $(anchor).attr("href").replace(regex, "https://reddit.com"));
     }
 

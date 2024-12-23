@@ -64,7 +64,7 @@ export interface INetworkResponse<TContext = any> {
 
 class NetworkResponse<TContext = any> implements INetworkResponse<TContext> {
   constructor(res: XMLHttpRequest | GM.Response<TContext> | GM.ProgressResponse<TContext>, prog?: ProgressEvent) {
-    if (typeof prog !== "undefined" || isType<XMLHttpRequest>(res)) {
+    if (prog || isType<XMLHttpRequest>(res)) {
       assertIsType<XMLHttpRequest>(res);
       this._readyState = (EMath.clamp(res.readyState, 0, 4) as ReadyState);
       this._response = (res.response as unknown);
@@ -75,7 +75,7 @@ class NetworkResponse<TContext = any> implements INetworkResponse<TContext> {
       this._status = res.status;
       this._statusText = res.statusText;
 
-      if (typeof prog !== "undefined") {
+      if (prog) {
         this._lengthComputable = prog.lengthComputable;
         this._loaded = prog.loaded;
         this._total = prog.total;
@@ -315,25 +315,25 @@ export interface INetworkRequest<TContext = any> {
 
 export class NetworkRequest<TContext = any> implements INetworkRequest<TContext> {
   constructor(input: INetworkRequest<TContext>) {
-    this.url                = input.url;
-    this.method             = input.method;
-    this.binary             = input.binary;
-    this.context            = input.context;
-    this.data               = this.handleData(input.data);
-    this.headers            = input.headers;
-    this.overrideMimeType   = input.overrideMimeType;
-    this.user               = input.user;
-    this.password           = input.password;
-    this.responseType       = input.responseType;
-    this.synchronous        = input.synchronous;
-    this.timeout            = input.timeout;
-    this.upload             = input.upload;
-    this.onabort            = input.onabort;
-    this.onerror            = input.onerror;
-    this.onload             = input.onload;
-    this.onprogress         = input.onprogress;
-    this.onreadystatechange = input.onreadystatechange;
-    this.ontimeout          = input.ontimeout;
+    this.url /*               */ = input.url;
+    this.method /*            */ = input.method;
+    this.binary /*            */ = input.binary;
+    this.context /*           */ = input.context;
+    this.data /*              */ = this.handleData(input.data);
+    this.headers /*           */ = input.headers;
+    this.overrideMimeType /*  */ = input.overrideMimeType;
+    this.user /*              */ = input.user;
+    this.password /*          */ = input.password;
+    this.responseType /*      */ = input.responseType;
+    this.synchronous /*       */ = input.synchronous;
+    this.timeout /*           */ = input.timeout;
+    this.upload /*            */ = input.upload;
+    this.onabort /*           */ = input.onabort;
+    this.onerror /*           */ = input.onerror;
+    this.onload /*            */ = input.onload;
+    this.onprogress /*        */ = input.onprogress;
+    this.onreadystatechange /**/ = input.onreadystatechange;
+    this.ontimeout /*         */ = input.ontimeout;
   }
 
   private handleData(input: string | Record<string, any> | undefined): string | undefined {
@@ -341,7 +341,7 @@ export class NetworkRequest<TContext = any> implements INetworkRequest<TContext>
       return input;
     }
 
-    if (typeof input === "undefined") {
+    if (!input) {
       return input;
     }
 
@@ -349,12 +349,14 @@ export class NetworkRequest<TContext = any> implements INetworkRequest<TContext>
 
     if (typeof input["dataType"] !== "undefined" && input["dataType"] === "url") {
       let sb = "?";
-      const entries: [string, any][] = Object.entries(input).filter(x => x[0] === "dataType");
+      const entries: [string, any][] = Object.entries(input).filter((x: [string, any]) => x[0] === "dataType");
 
       for (let i = 0; i < entries.length; i++) {
-        if (i !== 0) sb += "&";
+        if (i !== 0) {
+          sb += "&";
+        }
 
-        const [ key, value ] = (entries[i] as [string, unknown]);
+        const [key, value] = (entries[i] as [string, unknown]);
 
         assertIsString(value);
         sb += `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
@@ -555,7 +557,7 @@ export function makeRequestGM<TContext = any>(request: NetworkRequest<TContext>)
 
         reject(new Error(res.statusText));
       },
-    }
+    };
 
     GM.xmlHttpRequest(_request);
   });
@@ -621,14 +623,14 @@ function makeRequestNative<TContext = any>(request: NetworkRequest): Promise<INe
       }
 
       resolve(res);
-    }
+    };
 
     xhr.send();
   });
 }
 
 export async function makeRequest<TContext = any>(request: NetworkRequest<TContext>): Promise<INetworkResponse<TContext>> {
-  if (typeof GM === "undefined" || typeof GM.xmlHttpRequest === "undefined") {
+  if (!GM || !GM.xmlHttpRequest) {
     return makeRequestNative<TContext>(request);
   }
 

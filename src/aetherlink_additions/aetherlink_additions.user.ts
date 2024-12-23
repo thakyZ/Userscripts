@@ -1,5 +1,4 @@
-import { jQuery } from "../library/index.js";
-import { modifyModAuthorName, modifyModName } from "../library/index.js";
+import { jQuery, modifyModAuthorName, modifyModName } from "../../library/index.js";
 
 jQuery(($) => {
   const getModAuthor = () => modifyModAuthorName($(".author").text());
@@ -11,6 +10,7 @@ jQuery(($) => {
       if (mutation.type === "childList") {
         if ($(mutation.target).attr("id") === "__next") {
           const downloadsButton = $(".downloads");
+
           if ($(downloadsButton).length <= 0) {
             return;
           }
@@ -28,6 +28,7 @@ jQuery(($) => {
     const config = { attributes: false, childList: true, subtree: true };
 
     const observer = new MutationObserver(callback);
+
     observer.observe(targetNode, config);
 
     $(document).on("unload", () => {

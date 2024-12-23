@@ -8,7 +8,7 @@ import { measureStringWidth } from "./string.js";
 
 export type JQuery<TElement extends Element = HTMLElement> = globalThis.JQuery<TElement>;
 export type JQueryStatic = globalThis.JQueryStatic;
-export type { JQueryStatic as $ }
+export type { JQueryStatic as $ };
 export { jQuery };
 export type DataElementRecord = Record<string, string | number | boolean | symbol | object | null>;
 
@@ -29,7 +29,6 @@ export class JQueryStaticMultiReturn<R> {
     this.obj = obj;
   }
 }
-
 
 // #region Static Method
 jQuery.extend($, {
@@ -60,7 +59,7 @@ jQuery.extend($, {
       timeout: 2000
     };
 
-    if (id && typeof request.data !== "undefined") {
+    if (id && request.data) {
       assertIsType<Record<string, any>>(request.data);
       request.data["id"] = id;
     }
@@ -71,7 +70,7 @@ jQuery.extend($, {
 
     return new JQueryStaticMultiReturn(this, userNameAlt);
   },
-  async makeRequest(this: JQueryStatic, request: INetworkRequest): Promise<JQueryStaticMultiReturn<INetworkResponse<any>>> {
+  async makeRequest(this: JQueryStatic, request: INetworkRequest): Promise<JQueryStaticMultiReturn<INetworkResponse>> {
     const req = await makeRequest(new NetworkRequest(request));
 
     return new JQueryStaticMultiReturn(this, req);
@@ -84,7 +83,7 @@ jQuery.extend($, {
     return new JQueryStaticMultiReturn(this, $<TElement>(query)[0]);
   },
   toggleDebug(this: JQueryStatic): JQueryStaticMultiReturn<boolean> {
-    if (typeof window.NbnUserScripts.Debug === "undefined") window.NbnUserScripts.Debug = false;
+    window.NbnUserScripts.Debug ||= false;
 
     window.NbnUserScripts.Debug = !window.NbnUserScripts.Debug;
 
@@ -239,14 +238,18 @@ jQuery.fn.extend({
   getFirstIndex<TElement extends Element = HTMLElement>(this: JQuery<TElement>, index: number): JQuery<TElement> {
     const gottenIndex = this.get(index);
 
-    if (!gottenIndex) throw new Error(`Failed to get element at index ${index}.`);
+    if (!gottenIndex) {
+      throw new Error(`Failed to get element at index ${index}.`);
+    }
 
     return $<TElement>(gottenIndex);
   },
   getLastIndex<TElement extends Element = HTMLElement>(this: JQuery<TElement>, index: number): JQuery<TElement> {
     const gottenIndex = this.get(this.toArray().length - (index + 1));
 
-    if (!gottenIndex) throw new Error(`Failed to get element at index ${index}.`);
+    if (!gottenIndex) {
+      throw new Error(`Failed to get element at index ${index}.`);
+    }
 
     return $<TElement>(gottenIndex);
   },

@@ -271,7 +271,7 @@ this.jQuery(($) => {
    * @param {boolean} status The return stats of the notification setting mass apply loop.
    */
   function showStatus(error, status) {
-    if (status === false || typeof error !== "undefined") {
+    if (status === false || error) {
       $("#nbnMassStatus").attr("status", "fail");
       $("#nbnMassStatus").text("Error: " + error.message);
     } else {
@@ -285,7 +285,7 @@ this.jQuery(($) => {
    * @param {any} resolved The resolved promise output from the mass loop option buttons' task.
    */
   function forEachButtonThen(resolved) {
-    showStatus(resolved, typeof resolved === "undefined");
+    showStatus(resolved, !resolved);
   }
 
   /**
@@ -294,7 +294,7 @@ this.jQuery(($) => {
    */
   function forEachButtonCatch(rejected) {
     try {
-      showStatus(rejected, typeof rejected === "undefined");
+      showStatus(rejected, !rejected);
     } catch (error) {
       showStatus(error, false);
       console.error(rejected);

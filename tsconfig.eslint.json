@@ -3,5 +3,6 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./.eslint",
+    "noEmit": true,
   }
 }

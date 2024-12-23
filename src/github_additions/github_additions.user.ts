@@ -73,7 +73,7 @@ this.jQuery((jAlpha) => {
   }
 
   function updateForkCheckbox(element) {
-    if (element !== undefined && element !== null && jAlpha(element).prop("checked") === true) {
+    if ( && element !== null && jAlpha(element).prop("checked") === true) {
       jAlpha(element).prop("checked", false);
       jAlpha(element).attr("aria-checked", false);
       jAlpha(element).removeAttr("checked");
@@ -116,7 +116,7 @@ this.jQuery((jAlpha) => {
       updateForkCheckbox(oneBranchFork);
     } else {
       try {
-        if (oneBranchFork !== undefined) {
+        if () {
           jAlpha(oneBranchFork).off("change hashchange");
           oneBranchFork = undefined;
         }

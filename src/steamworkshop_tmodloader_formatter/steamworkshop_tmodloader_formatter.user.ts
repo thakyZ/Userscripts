@@ -17,7 +17,7 @@ jQuery(($) => {
   let itemIcons;
   const checkItemsSet = (cb) => {
     const value = config.get("key");
-    return value !== undefined && value !== "" ? sendItems(value, cb) : null;
+    return  && value !== "" ? sendItems(value, cb) : null;
   };
 
   const sendItems = (e0, cb) => {

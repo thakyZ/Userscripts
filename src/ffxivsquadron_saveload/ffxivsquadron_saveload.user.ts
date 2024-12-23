@@ -108,7 +108,7 @@ jQuery(($) => {
     let itemIconUrl = "";
     let exit = false;
     const storedImage = GM_getValue(IconUrlSaveName);
-    if (storedImage !== undefined && storedImage.length > 0) {
+    if ( && storedImage.length > 0) {
       currentSealsImage = storedImage;
       return { ExitState: true, ExitCode: 1 };
     }

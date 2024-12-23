@@ -45,10 +45,10 @@ jQuery(($) => {
 
     const onLoadFunction = (event) => {
       try {
-        const readyState = typeof event.target === "undefined" ? event.readyState : event.target.readyState;
-        // A const response = typeof event.target === "undefined" ? event.response : event.target.response;
-        // const responseText = typeof event.target === "undefined" ? event.responseText : event.target.responseText;
-        // const responseHeaders = typeof event.target === "undefined" ? event.responseHeaders : event.target.responseHeaders;
+        const readyState = !event.target ? event.readyState : event.target.readyState;
+        // A const response = !event.target ? event.response : event.target.response;
+        // const responseText = !event.target ? event.responseText : event.target.responseText;
+        // const responseHeaders = !event.target ? event.responseHeaders : event.target.responseHeaders;
         console.debug("saveAs", "onload", event);
         console.info("onload", "xhr.readyState", readyState); // NOTE: readyState will be
 
@@ -89,8 +89,8 @@ jQuery(($) => {
     };
 
     // Create XHR Request
-    if ((typeof GM !== "undefined" || GM !== null)
-        && (typeof GM.xmlHttpRequest !== "undefined" || GM.xmlHttpRequest !== null)) {
+    if ((GM || GM !== null)
+        && (GM.xmlHttpRequest || GM.xmlHttpRequest !== null)) {
       /* Unused
         GM.xmlHttpRequest({
         method: "GET",
@@ -278,7 +278,7 @@ jQuery(($) => {
     const commentIcon = $("span[data-e2e=\"browse-comment-icon\"]");
     const infoContainer = $("div[class*=\"-DivInfoContainer\"] > button");
     const actionItemContainer = $("div[class*=\"-DivActionItemContainer\"] > button:last-child");
-    if (typeof commentIcon !== "undefined" && commentIcon.length > 0) {
+    if (commentIcon && commentIcon.length > 0) {
       for (const [, element] of Object.entries(commentIcon)) {
         const cIParent = $(element).parent();
         downloadButton = $(cIParent).clone(true);
@@ -291,8 +291,8 @@ jQuery(($) => {
         $(downloadButton).insertAfter(cIParent);
         $(downloadButton).on("click", () => downloadVideo());
       }
-    } else if (typeof infoContainer !== "undefined" && infoContainer.length > 0
-               && typeof actionItemContainer !== "undefined" && actionItemContainer.length > 0) {
+    } else if (infoContainer && infoContainer.length > 0
+               && actionItemContainer && actionItemContainer.length > 0) {
       for (const [index, element] of Object.entries(infoContainer)) {
         if (index > 1 || isNaN(index)) {
           return;

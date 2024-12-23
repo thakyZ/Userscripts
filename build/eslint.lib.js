@@ -137,6 +137,7 @@ export function getMonkeyCodeNames(type) {
     "GM_setValue",
     "GM_unregisterMenuCommand",
     "GM_xmlhttpRequest",
+    "GM_configStruct",
     "unsafeWindow",
   ];
 
@@ -157,7 +158,7 @@ export function getMonkeyCodeNames(type) {
     output = Object.fromEntries(names.concat(customLibraries).map((k) => [k, "readonly"]));
   }
 
-  return output
+  return output;
 }
 
 /** @type {string[]} */
@@ -169,21 +170,30 @@ function any(array, cb) {
   return array.filter((x, i, a) => cb(x, i, a)).length > 0;
 }
 
+/* eslint-disable-next-line no-unused-vars */
 function anyRecurse(array, other, cb) {
   return any(array, (x, i, a) => any(other, (y, j, b) => cb(x, y, i, j, a, b)));
 }
 
 function objectsEqual(a, b) {
-  if (a === b) return true;
+  if (a === b) {
+    return true;
+  }
 
-  if (a === null || b === null) return false;
+  if (a === null || b === null) {
+    return false;
+  }
 
-  if (typeof a === "undefined" || typeof b === "undefined") return false;
+  if (!a || !b) {
+    return false;
+  }
 
   const _a = Object.entries(a);
   const _b = Object.entries(b);
 
-  if (_a.length !== _b.length) return false;
+  if (_a.length !== _b.length) {
+    return false;
+  }
 
   // If you don't care about the order of the elements inside
   // the array, you should sort both arrays here.
@@ -191,39 +201,61 @@ function objectsEqual(a, b) {
   // you might want to clone your array first.
 
   for (let i = 0; i < _a.length; ++i) {
-    if (typeof _a[i][0] !== typeof _b[i][0]) return false;
+    if (typeof _a[i][0] !== typeof _b[i][0]) {
+      return false;
+    }
 
-    if (_a[i][0] !== _b[i][0]) return false;
+    if (_a[i][0] !== _b[i][0]) {
+      return false;
+    }
 
-    if (typeof _a[i][1] !== typeof _b[i][1]) return false;
+    if (typeof _a[i][1] !== typeof _b[i][1]) {
+      return false;
+    }
 
     if (typeof _a[i][1] === "object" && typeof _b[i][1] === "object") {
       if (Array.isArray(_a[i][1]) && Array.isArray(_b[i][1])) {
-        if (!arraysEqual(_a[i][1], _b[i][1])) return false;
+        if (!arraysEqual(_a[i][1], _b[i][1])) {
+          return false;
+        }
       } else if (!Array.isArray(_a[i][1]) && !Array.isArray(_b[i][1])) {
-        if (!objectsEqual(_a[i][1], _b[i][1])) return false;
+        if (!objectsEqual(_a[i][1], _b[i][1])) {
+          return false;
+        }
       } else {
         return false;
       }
     }
 
-    if (_a[i][1] !== _b[i][1]) return false;
+    if (_a[i][1] !== _b[i][1]) {
+      return false;
+    }
   }
 
   return true;
 }
 
 function arraysEqual(a, b) {
-  if (a === b) return true;
+  if (a === b) {
+    return true;
+  }
 
-  if (a === null || b === null) return false;
+  if (a === null || b === null) {
+    return false;
+  }
 
-  if (typeof a === "undefined" || typeof b === "undefined") return false;
+  if (!a || !b) {
+    return false;
+  }
 
-  if (a.length !== b.length) return false;
+  if (a.length !== b.length) {
+    return false;
+  }
 
   try {
-    if (JSON.stringify(a) === JSON.stringify(b)) return true;
+    if (JSON.stringify(a) === JSON.stringify(b)) {
+      return true;
+    }
   } catch {
     // Do nothing...
   }
@@ -234,19 +266,27 @@ function arraysEqual(a, b) {
   // you might want to clone your array first.
 
   for (let i = 0; i < a.length; ++i) {
-    if (typeof a[i] !== typeof b[i]) return false;
+    if (typeof a[i] !== typeof b[i]) {
+      return false;
+    }
 
     if (typeof a[i] === "object" && typeof b[i] === "object") {
       if (Array.isArray(a[i]) && Array.isArray(b[i])) {
-        if (!arraysEqual(a[i], b[i])) return false;
+        if (!arraysEqual(a[i], b[i])) {
+          return false;
+        }
       } else if (!Array.isArray(a[i]) && !Array.isArray(b[i])) {
-        if (!objectsEqual(a[i], b[i])) return false;
+        if (!objectsEqual(a[i], b[i])) {
+          return false;
+        }
       } else {
         return false;
       }
     }
 
-    if (a[i] !== b[i]) return false;
+    if (a[i] !== b[i]) {
+      return false;
+    }
   }
 
   return true;
@@ -260,8 +300,10 @@ function mergeArray(a, b) {
     const aVal = _a[i];
     const bVal = _b[i];
 
-    if ((typeof aVal === "string" || typeof aVal === "number") &&
-         typeof aVal === typeof bVal && aVal === bVal) continue;
+    if ((typeof aVal === "string" || typeof aVal === "number")
+        && typeof aVal === typeof bVal && aVal === bVal) {
+      continue;
+    }
 
     if (bVal === false) {
       delete _a[i];
@@ -280,29 +322,37 @@ function mergeArray(a, b) {
 }
 
 export function mergeObjects(objs, original) {
-  const backup = {...original};
+  const backup = { ...original };
   let output = {};
+
   for (const obj of objs) {
     output = mergeObject(output, obj);
   }
-  return mergeObject(output, original);
+
+  return mergeObject(output, backup);
 }
 
 function mergeObject(a, b) {
-  const _a = Object.entries({...a});
-  const _b = Object.entries({...b});
+  const _a = Object.entries({ ...a });
+  const _b = Object.entries({ ...b });
 
   for (let i = 0; i < _a.length; ++i) {
     const aKey = _a[i][0]; const aVal = _a[i][1];
 
-    if (typeof aKey === "undefined" || aKey === null) continue;
+    if (!aKey || aKey === null) {
+      continue;
+    }
 
-    if (!any(_b, (x) => x[0] === aKey)) continue;
+    if (!any(_b, (x) => x[0] === aKey)) {
+      continue;
+    }
 
     const bVal = _b.find((x) => x[0] === aKey)[1];
 
-    if ((typeof aVal === "string" || typeof aVal === "number") &&
-         typeof aVal === typeof bVal && aVal === bVal) continue;
+    if ((typeof aVal === "string" || typeof aVal === "number")
+        && typeof aVal === typeof bVal && aVal === bVal) {
+      continue;
+    }
 
     if (bVal === false) {
       delete _a[i];
@@ -321,11 +371,11 @@ function mergeObject(a, b) {
 }
 
 function checkForFileMatch(input, patch) {
-  if (typeof patch.match !== "undefined" && typeof input.files !== "undefined") {
-    return any(input.files, (x => x.includes(patch.match)))
+  if (patch.match && input.files) {
+    return any(input.files, ((x) => x.includes(patch.match)));
   }
 
-  return typeof patch.match === "undefined";
+  return !patch.match;
 }
 
 function hasObjectKey(key, input) {
@@ -356,12 +406,12 @@ function getApplicablePatches(input, patch) {
 
 export function patchRules(array) {
   return array.map((item) => {
-    const output = {...item};
+    const output = { ...item };
     const outputArray = Object.entries(output);
 
     for (const patch of patches) {
-      const anyFile = typeof patch.match === "undefined";
-      const filesDefined = typeof patch.files !== "undefined";
+      const anyFile = !patch.match;
+      const filesDefined = patch.files;
 
       if (anyFile || (filesDefined && checkForFileMatch(output, patch))) {
         const _patches = getApplicablePatches(outputArray, patch);

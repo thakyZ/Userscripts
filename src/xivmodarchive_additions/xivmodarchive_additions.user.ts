@@ -1,10 +1,12 @@
 import "./xma.d.ts";
 import "../../types/gm_config.d.ts";
-import { JQuery, assertIsType, isString, isType, isValid, jQuery } from "../../library/index.js";
+import { INetworkResponse, JQuery, assertIsType, isString, isType, isValid, jQuery } from "../../library/index.js";
 import { isNotANumber } from "../../library/index.js";
 // A cS\pell:ignoreRegExp /\/https\?:\\\/\\\/\(?:www\\\.\)\?xivmodarchive\\\.com\\\/(?:dashboard|user|modid)(?:\\\/\.\*)\/[gim]*/
 
 jQuery(($) => {
+  const config: GM_configStruct = null!;
+
   /**
    * Creates a button to navigate to the first page and last page of searches.
    * @param number The current page integer that the user is on.
@@ -15,19 +17,20 @@ jQuery(($) => {
     /* Unknown unused variable
      * const endElements = [];
      */
-    const pagination = $(".pagination");
+    const paginationList = $(".pagination");
 
-    for (let i = 0; i < $(pagination).length; i++) {
-      const firstElement = $.createElements<HTMLLIElement>("pageNumberElements", { "^": "1" }).value;
+    for (let i = 0; i < $(paginationList).length; i++) {
+      const pagination: HTMLElement | undefined = paginationList.get(i);
+      const firstElement = $.createElement<HTMLLIElement>("pageNumberElements", { "^": "1" }).value;
       // <a class="bg-dark text-light page-link activated" style="border-color: #333333;" href="javascript: goToPage(81)">81</a>
-      const lastElement = $.createElements<HTMLLIElement>("pageNumberElements", { "^": number }).value;
+      const lastElement = $.createElement<HTMLLIElement>("pageNumberElements", { "^": number }).value;
 
-      if (minimum) {
-        $(firstElement).insertAfter($("li", pagination[i])[0]);
+      if (minimum && pagination && firstElement) {
+        $(pagination).find("li").first().after(firstElement);
       }
 
-      if (maximum) {
-        $(lastElement).insertBefore($("li", pagination[i])[$("li", pagination[i]).length - 1]);
+      if (maximum && pagination && lastElement) {
+        $(pagination).find("li").last().before(lastElement);
       }
     }
   }
@@ -61,9 +64,9 @@ jQuery(($) => {
    * @returns A normalized name.
    */
   function translateName(name: string, userId?: number | string, userNameAlt?: Record<number, string>): string {
-    const parsedUserId: number | undefined = !isValid(userId) ? 0 : (isString(userId) ? parseInt(userId!.toString(), 10) : (!isNotANumber(userId) ? Number(userId) : 0));
+    const parsedUserId: number | undefined = isValid(userId) ? (isString(userId) ? parseInt(userId!.toString(), 10) : (isNotANumber(userId) ? 0 : Number(userId))) : 0;
 
-    if (parsedUserId !== 0 && typeof userNameAlt !== "undefined" && Object.hasOwn(userNameAlt, parsedUserId)) {
+    if (parsedUserId !== 0 && userNameAlt && Object.hasOwn(userNameAlt, parsedUserId)) {
       return normalizeNames(userNameAlt[parsedUserId]);
     }
 
@@ -78,7 +81,7 @@ jQuery(($) => {
     const paginationChildren = $(".pagination").first().find<HTMLLIElement>("li");
 
     if ($(paginationChildren).first().text() !== "1") {
-      return !($(paginationChildren).getIndex(2).text() === "1" && $(paginationChildren).first().text() === "Previous");
+      return !($(paginationChildren).getFirstIndex(2).text() === "1" && $(paginationChildren).first().text() === "Previous");
     }
 
     return false;
@@ -90,11 +93,10 @@ jQuery(($) => {
    * @returns {Boolean} Status if successful.
    */
   function getDoMax(number: number): boolean {
-    const paginationChildren = $("li", $($(".pagination")[0]));
-    const paginationChildLength = $(paginationChildren).length;
+    const paginationChildren = $(".pagination").first().find<HTMLLIElement>("li");
 
     if ($(paginationChildren).last().text() === "Next") {
-      return !($(paginationChildren).last().text() === "Next" && $(paginationChildren).getLast(2).text() === `${number}`);
+      return !($(paginationChildren).last().text() === "Next" && $(paginationChildren).getLastIndex(2).text() === `${number}`);
     }
 
     return false;
@@ -138,7 +140,7 @@ jQuery(($) => {
     GM_addStyle(GM_getResourceText("style"));
   }
 
-  function doCopyTask<TElement extends Element = HTMLElement>(element: TElement | JQuery<TElement>, userNameAlt: string) {
+  function doCopyTask<TElement extends Element = HTMLElement>(element: TElement | JQuery<TElement>, userNameAlt: Record<number, string>) {
     if (!isType<JQuery<TElement>>(element)) {
       element = $(element);
     }
@@ -156,7 +158,8 @@ jQuery(($) => {
       }
 
       const modName: string = modPage.text().replace(/\s+$/gi, "").replaceAll(" ", "_").replaceAll(" and ", "+").replaceAll(/(.) ?\((.*)\) ?(.)/g, "$1-$2-$3");
-      const output: string = config.get("authorNamePlusModNameFormat").replaceAll("%u", translatedName).replaceAll("%m", modName);
+      const authorNamePlusModNameFormat: string = config.get("authorNamePlusModNameFormat").valueOf().toString();
+      const output: string = authorNamePlusModNameFormat.replaceAll("%u", translatedName).replaceAll("%m", modName);
 
       GM_setClipboard(output);
     } else {
@@ -180,7 +183,7 @@ jQuery(($) => {
         return;
       }
 
-      const userNameAlt = await $.getUserNameAlts("xma", url).value;
+      const userNameAlt = (await $.getUserNameAlts("xma", url)).value;
 
       if (!userNameAlt) {
         return;
@@ -188,7 +191,7 @@ jQuery(($) => {
 
       $(authorName).attr("class", "col-7");
       $(authorName).addClass("col-7-extra");
-      const copyButton = $.createElement("copyAuthorName").value
+      const copyButton = $.createElement("copyAuthorName").value;
 
       if (!copyButton) {
         return;
@@ -218,7 +221,7 @@ jQuery(($) => {
 
   const encodeRawImageError: string = "Failed to encode raw image data. Falling back...";
 
-  async function setImage(element) {
+  async function setImage(element: JQuery<HTMLImageElement>): Promise<void> {
     let imageEncoded = "";
 
     try {
@@ -232,42 +235,34 @@ jQuery(($) => {
       imageEncoded = GM_getResourceText("blankAvatar");
     }
 
-    $(element).attr("src", imageEncoded);
+    element.attr("src", imageEncoded);
   }
 
-  async function changeAvatarImage() {
+  async function changeAvatarImage(): Promise<void> {
     const image: JQuery<HTMLImageElement> = $<HTMLImageElement>("img[alt=\"User Avatar\"]").length > 0 ? $<HTMLImageElement>("img[alt=\"User Avatar\"]") : $<HTMLImageElement>("img.rounded-circle");
-    const imageSrc: string | undefined = $(image).attr("src");
+    const imageSrc: string | undefined = image.attr("src");
 
-    if (typeof imageSrc !== "undefined" && (!$(image).prop("complete") || $(image).prop("naturalHeight") === 0)) {
+    if (imageSrc && (!image.prop("complete") || image.prop("naturalHeight") === 0)) {
       try {
-        const request = await $.
-        GM.xmlHttpRequest({
-          method: "GET",
-          url: imageSrc,
-          responseType: "",
-          timeout: 2000
-        });
+        const request: INetworkResponse<any> = (await $.makeRequest({ method: "GET", url: imageSrc, timeout: 2000 })).value;
 
         if (request.status === 404 || request.status === 500) {
-          await setImage($(image));
+          await setImage(image);
         }
       } catch (error) {
         console.error("Failed to get the user's avatar.");
         console.error(error);
       }
-    } else if ($(image).attr("src") === "") {
-      await setImage($(image));
+    } else if (image.attr("src") === "") {
+      await setImage(image);
     }
   }
 
-  if (/https:\/\/(?:www\.)?xivmodarchive\.com\/(modid|user)\//gi.test(window.location.href)) {
-    (async function () {
-      await changeAvatarImage();
-    })();
+  if (/https:\/\/(?:www\.)?xivmodarchive\.com\/(?:modid|user)\//i.test(window.location.href)) {
+    changeAvatarImage().then(() => console.info("success"), (reason) => console.error(reason ?? "failed"));
   }
 
-  function changeIconDesigns() {
+  function changeIconDesigns(): void {
     const container = $(".container-xl.my-3.mod-page .col-4 .jumbotron.py-3.my-2 .emoji-set");
     const views = $(".emoji-block.views div.inner", container);
     const downloads = $(".emoji-block.downloads div.inner", container);
@@ -279,12 +274,16 @@ jQuery(($) => {
     $("head").append("<style>.emoji-block i.fa{vertical-align: middle;}</style>");
   }
 
-  function editPages() {
-    if (/^https:\/\/(?:www\.)?xivmodarchive\.com\/?$/gi.test(window.location.href)) {
-      const badLink = $("a[href*=\"/search\"]").filter((b, a) => /sponsored=true/gi.test($(a).attr("href")));
+  function editPages(): void {
+    if (/^https:\/\/(?:www\.)?xivmodarchive\.com\/?$/i.test(window.location.href)) {
+      const badLink = $("a[href*=\"/search\"]").filter((b, a) => !isNotANumber(b) && /sponsored=true/i.test($(a).attr("href") ?? ""));
 
       if ($(badLink).length > 0) {
         const oldURL = $(badLink).attr("href");
+
+        if (!oldURL) {
+          return;
+        }
 
         $(badLink).attr("href", oldURL.replaceAll(/&sponsored=true/gi, ""));
         $(badLink).text("New and Updated Mods");
@@ -293,7 +292,7 @@ jQuery(($) => {
 
     // Wrap the header of the mail notification.
     // Enable tooltip on the mail header.
-    if (/^https:\/\/(?:www\.)?xivmodarchive\.com\/inbox\/\d+/gi.test(window.location.href)) {
+    if (/^https:\/\/(?:www\.)?xivmodarchive\.com\/inbox\/\d+/i.test(window.location.href)) {
       const mailHeader = $("body > .container-xl > .jumbotron");
 
       if ($(mailHeader).length > 0) {
@@ -304,16 +303,18 @@ jQuery(($) => {
           $(mailHeader).find("h4.display-5").attr("data-placement", "bottom");
           $(mailHeader).find("h4.display-5").attr("title", $(mailHeader).find("h4.display-5").text().replace("Followed Mod Updated: ", ""));
 
-          $("body > .container-xl > .jumbotron.nbnMailHeader h4.display-5[data-toggle=\"tooltip\"]").tooltip({
-            customClass(_, options) {
-              const newOptions = options + " nbnMailHeader";
+          $<HTMLHeadingElement>("body > .container-xl > .jumbotron.nbnMailHeader h4.display-5[data-toggle=\"tooltip\"]").tooltip({
+            customClass(_, options: string): string {
+              const newOptions = `${options} nbnMailHeader`;
 
               return newOptions;
             },
-            offset(data) {
+            offset(data): typeof data {
               const width = $("body").width();
 
-              if (!width) return data;
+              if (!width) {
+                return data;
+              }
 
               const middleForPopper = (width - data.popper.width) / 2;
               const middleForReference = (width - data.reference.width) / 2;
@@ -336,7 +337,7 @@ jQuery(($) => {
     errorProgressBar("nbnDeleteAllMessages", `failed to delete message with ID: ${data[camelToSnakeCase("inboxId")]}`);
     let message = `failed to delete message:\nTitle: ${data.name}\nID: ${data[camelToSnakeCase("inboxId")]}`;
 
-    if (typeof data.info !== "undefined") {
+    if (data.info) {
       message += "\nInfo:";
     }
 
@@ -347,7 +348,7 @@ jQuery(($) => {
       if ($(errorModalText).length > 0) {
         let inlineMessage = `<p>${$(errorModalText).text().replaceAll("\n", "<br>")}</p>`;
 
-        if (typeof data.info !== "undefined") {
+        if (data.info) {
           inlineMessage += `<pre>${JSON.stringify(data.info, null, 2).replaceAll("\n", "<br>")}</pre>`;
         }
 
@@ -473,13 +474,13 @@ jQuery(($) => {
         timeout: 2000
       });
 
-      if (typeof request.statusText === "undefined" || request.statusText.toLowerCase() !== "ok") {
+      if (!request.statusText || request.statusText.toLowerCase() !== "ok") {
         return undefined;
       }
 
       const getHref = $(request.responseText).find(".jumbotron .container-xl em a").attr("href");
 
-      if (typeof getHref === "undefined") {
+      if (!getHref) {
         console.error(new Error("getHref is of type undefined"));
         console.debug(request);
 
@@ -522,13 +523,13 @@ jQuery(($) => {
         timeout: 2000
       });
 
-      if (typeof request.statusText === "undefined" || request.statusText.toLowerCase() !== "ok") {
+      if (!request.statusText || request.statusText.toLowerCase() !== "ok") {
         return undefined;
       }
 
       const getHref = $(request.responseText).find(".jumbotron .container-xl em a").attr("href");
 
-      if (typeof getHref === "undefined") {
+      if (!getHref) {
         console.error(new Error("getHref is of type undefined"));
         console.debug(request);
 
@@ -571,7 +572,7 @@ jQuery(($) => {
       const previousStrong = $(inboxElement).children().find("strong");
       const newHref = await getInboxMessageModId($(inboxElement).attr("data-inbox_id"));
 
-      if (typeof newHref === "undefined" || newHref.name === "Error") {
+      if (!newHref || newHref.name === "Error") {
         errorProgressBar("nbnAddAnchorsToInboxMessages", `failed to add anchor to inbox message with id: ${$(inboxElement).attr("data-inbox_id")}`);
         break;
       }
@@ -599,36 +600,33 @@ jQuery(($) => {
     }
   }
 
-  const setupGMConfigFrame = () => {
-    const configWrapper = $(createElements("modalTemplate", { "%modal_id%": GM_config.id, "%modal_label%": `${GM_config.id}_label` }));
+  function setupGMConfigFrame(): HTMLElement | undefined {
+    const configWrapper = $.createElement("modalTemplate", { "%modal_id%": GM_config.id, "%modal_label%": `${GM_config.id}_label` }).value;
+
+    if (!configWrapper) {
+      return undefined;
+    }
 
     $("body").append(configWrapper);
 
-    return configWrapper[0];
+    return configWrapper;
   };
 
-  const gmConfigFrame = setupGMConfigFrame();
+  const gmConfigFrame: HTMLElement | undefined = setupGMConfigFrame();
 
   function modifyInboxScreen() {
-    /* CSpell:ignoreRegExp \/\https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/inbox\\\/\?\/gi */
-    if (!/https:\/\/(www\.)?xivmodarchive\.com\/inbox\/?/gi.test(window.location.href)) {
+    if (!/https:\/\/(?:www\.)?xivmodarchive\.com\/inbox\/?/gi.test(window.location.href)) {
       return;
     }
 
     addDeleteAllInbox();
 
     if (GM_config.get("addAnchorsToInboxMessages")) {
-      // Disabled because spam-ey
-      (async function () {
-        // A return;
-        // Disabled due to possible increased network traffic for the host.
-        await addAnchorsToInboxMessages(); // NOSONAR
-      })();
+      addAnchorsToInboxMessages().then(() => console.info("success"), (reason) => console.error(reason ?? "failed"));
     }
   }
 
-  /* CSpell:ignoreRegExp \/\^https:\\\/\\\/\(www\\\.\)\?xivmodarchive\\\.com\\\/\/ */
-  if (/^https:\/\/(www\.)?xivmodarchive\.com\//.test(window.location.href)) {
+  if (/^https:\/\/(?:www\.)?xivmodarchive\.com\//.test(window.location.href)) {
     GM_registerMenuCommand("Config", () => {
       if ($(`#${config.id}`).attr("role") !== "dialog" && $(`#${config.id}`).hasAttr("style")) {
         unsafeWindow.$(config.frame).modal("show");
@@ -642,11 +640,15 @@ jQuery(($) => {
    * @param frame
    * @returns
    */
-  function modifyGM_configFrame(frame: HTMLElement): void {
+  function modifyGM_configFrame(frame: HTMLElement | undefined): void {
+    if (!frame) {
+      return;
+    }
+
     $(frame).attr("style", "background-color:unset !important;display:block;");
     $(frame).find(`#${config.id}_wrapper`).addClass("modal-dialog");
     const oldChildren = $(frame).find(`#${config.id}_wrapper`).find<HTMLDivElement>(`div[id*="${config.id}_"]:not(#${config.id}_content)`);
-    const modalContent = $<HTMLDivElement(`<div class="modal-content" id="${config.id}_content"></div>`);
+    const modalContent = $<HTMLDivElement>(`<div class="modal-content" id="${config.id}_content"></div>`);
 
     $(frame).find(`#${config.id}_wrapper`).append(modalContent);
 
@@ -657,7 +659,9 @@ jQuery(($) => {
     }
 
     for (const [index, element] of Object.entries(oldChildren)) {
-      if (isNotANumber(index)) continue;
+      if (isNotANumber(index)) {
+        continue;
+      }
 
       $(element).appendTo($(modalContent));
     }
@@ -675,7 +679,9 @@ jQuery(($) => {
     $(header).after(modalBody);
 
     for (const [index, element] of Object.entries(sections)) {
-      if (isNotANumber(index)) continue;
+      if (isNotANumber(index)) {
+        continue;
+      }
 
       $(element).appendTo($(modalBody));
     }
@@ -694,33 +700,33 @@ jQuery(($) => {
 
   const gmConfigCSS = GM_getResourceText("GMConfigCSS");
 
-  const config = new GM_configStruct({
+  config = new GM_configStruct({
     id: "XMA_Additions_Config",
     title: "XIV Mod Archive Additions Config",
     fields: {
       addAnchorsToInboxMessages: {
-        label: "Add Anchors to Inbox Messages",
         type: "checkbox",
+        label: "Add Anchors to Inbox Messages",
         default: false
       },
       copyAuthorNamePlusModName: {
-        label: "Copy Author Name plus the Mod Name",
         type: "checkbox",
+        label: "Copy Author Name plus the Mod Name",
         default: false
       },
       authorNamePlusModNameFormat: {
+        type: "text",
         label: "Author Name plus Mod name Format",
-        type: "textbox",
         default: "[%u] %m"
       },
       debug: {
+        type: "text",
         label: "Debug",
-        type: "checkbox",
         default: false
       },
       cachedModIds: {
+        type: "text",
         label: "Cached Mod Ids",
-        type: "textbox",
         hidden: true,
         default: "{}"
       }
@@ -744,8 +750,8 @@ jQuery(($) => {
          * Unused.
          * GM_config.frame.setAttribute("style", "display:block;");
          */
-        modifyGM_configFrame(GM_config.frame);
-        unsafeWindow.$(GM_config.frame).modal("show");
+        modifyGM_configFrame(this.frame);
+        GMCompat.unsafeWindow.$(this.frame).modal("show");
       },
       save(val) {
         console.debug(val);

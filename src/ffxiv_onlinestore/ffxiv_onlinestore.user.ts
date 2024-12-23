@@ -81,7 +81,7 @@ jQuery(($) => {
   async function loadCache() {
     let tempData = GM_getValue(cacheDataName);
 
-    if (tempData === undefined) {
+    if (!) {
       const value = await getCache();
       GM_setValue(cacheDataName, value);
       tempData = value;

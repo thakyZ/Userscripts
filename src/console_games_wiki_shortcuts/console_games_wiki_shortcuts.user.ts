@@ -1,4 +1,4 @@
-import { CssObject, _jQuery as jQuery, _JQuery as JQuery } from "../library/index.js";
+import { CssObject, _jQuery as jQuery, _JQuery as JQuery } from "../../library/index.js";
 
 jQuery(($) => {
   "use strict";

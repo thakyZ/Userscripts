@@ -52,7 +52,7 @@ jQuery(($) => {
    */
   function setupCSS(css, id) {
     /* Test for if the head element already contains such a object. */
-    if (typeof id !== "undefined") {
+    if (id) {
       if ($("head").find(`#${id}`).length > 0) {
         console.warn(`Document's head element already contains style with id: ${id}`);
         return;
@@ -66,7 +66,7 @@ jQuery(($) => {
 
     /** @type {string} */
     let element = "<style";
-    if (typeof id !== "undefined") {
+    if (id) {
       element += ` id="${id}"`
     }
     element += `>${css}</style>`;
@@ -114,7 +114,7 @@ jQuery(($) => {
      * @returns {void}
      */
     function createButtons() {
-      if (addAllBtn === undefined && remAllBtn === undefined && progress === undefined && $($("div.collectionAddItemsSection").children()[0]).prop("nodeName") !== "a") {
+      if (! && ! && ! && $($("div.collectionAddItemsSection").children()[0]).prop("nodeName") !== "a") {
         addAllBtn = $("<a id=\"add-all-subscribed-collection-manager-addall\" class=\"btn-green-steamui btn_medium noicon add-all-subscribed-collection-manager\"><span><svg width='30' height='30' xmlns='http://www.w3.org/2000/svg'><path d='m12 6h6v6h6v6h-6v6h-6v-6h-6v-6h6z' fill='currentColor'/></svg></span></a>");
         $(addAllBtn).insertBefore($($("div.collectionAddItemsSection").children()[0]));
         remAllBtn = $("<a id=\"add-all-subscribed-collection-manager-removeall\" class=\"btn-red-steamui btn_medium noicon add-all-subscribed-collection-manager\"><span><svg width='30' height='30' xmlns='http://www.w3.org/2000/svg'><path d='m6 12h18v6h-18z' fill='currentColor'/></svg></span></a>");
@@ -214,7 +214,7 @@ jQuery(($) => {
             if ($(mutation.target).attr("id") === "MySubscribedItemsTab" && $(mutation.target).hasClass("active")) {
               createButtons();
             } else if ($(mutation.target).attr("id") === "MySubscribedItemsTab" && !$(mutation.target).hasClass("active")) {
-              if (addAllBtn !== undefined && remAllBtn !== undefined) {
+              if ( && ) {
                 $(addAllBtn).off("click");
                 $(addAllBtn).remove();
                 addAllBtn = undefined;

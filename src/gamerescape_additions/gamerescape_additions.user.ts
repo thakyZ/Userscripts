@@ -20,7 +20,7 @@ jQuery(($) => {
 
   $.fn.setData = (name, data) => {
     const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
-    if (prevData === undefined) {
+    if (!) {
       $(this).data(name, {});
     }
 
@@ -36,7 +36,7 @@ jQuery(($) => {
 
   $.fn.addData = (name, data) => {
     const prevData = $(this).data(name) === undefined ? {} : $(this).data(name);
-    if (prevData === undefined) {
+    if (!) {
       $(this).data(name, {});
     }
 
@@ -392,7 +392,7 @@ jQuery(($) => {
 
         $(".copyItemBoxHeaderButton #copyItemNameButton").on("click", () => {
           const itemName = $("div.wiki.main table.itembox:first-child > tbody:first-child > tr:first-child > td:first-child > table > tbody > tr:first-child > td:last-child").clone().children().remove().end().text().replace(/\s+$/gi, "");
-          if (itemName !== undefined && itemName !== null && itemName !== "") {
+          if ( && itemName !== null && itemName !== "") {
             GM_setClipboard(itemName);
           }
         });

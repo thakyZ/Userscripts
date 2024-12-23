@@ -1,4 +1,4 @@
-import { _jQuery as jQuery } from "../library/index.js";
+import { _jQuery as jQuery } from "../../library/index.js";
 
 jQuery(($) => {
   const twitterIcon = {
@@ -141,7 +141,7 @@ jQuery(($) => {
   function createButtons(target) {
     const titleBar = $(target).find("span:contains(\"Interests\")");
     const descBox = $(target).find("span:contains(\"These are some of the interests matched to you based on your profile\")");
-    if (typeof buttonElements.buttons === "undefined" && descBox.length > 0 && titleBar.length > 0) {
+    if (!buttonElements.buttons && descBox.length > 0 && titleBar.length > 0) {
       buttonElements.buttons = createElements("buttons", { TwitterIconRun: twitterIcon.RUN, TwitterIconStop: twitterIcon.STOP });
       $("section[aria-label=\"Section details\"]>div:first-child>div>div>div>div").append($(buttonElements.buttons));
       buttonElements.stopButton = $(buttonElements.buttons).find("div[aria-label=\"Stop this now\"][role=\"button\"]");
@@ -176,7 +176,7 @@ jQuery(($) => {
           }
         }
 
-        if (typeof buttonElements.buttons !== "undefined" && /https:\/\/(twitter|x)\.com\/settings\/your_twitter_data\/twitter_interests/i.test(window.location.href) === false) {
+        if (buttonElements.buttons && /https:\/\/(twitter|x)\.com\/settings\/your_twitter_data\/twitter_interests/i.test(window.location.href) === false) {
           buttonElements.reset();
         }
       }
