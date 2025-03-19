@@ -111,11 +111,8 @@ export default function (getMonkeyCodeNames) {
     "no-extend-native": [
       "error",
       {
-        "exceptions": [
-          "Object",
-          "String"
-        ]
-      }
+        exceptions: ["Object", "String"],
+      },
     ],
     "no-extra-bind": "error",
     "no-extra-label": "error",
@@ -247,7 +244,7 @@ export default function (getMonkeyCodeNames) {
         properties: "never",
         ignoreDestructuring: true,
         ignoreGlobals: true,
-        allow: [ "\\b\\w+GM_\\w+\\b" ]
+        allow: ["\\b\\w+GM_\\w+\\b"],
       },
     ],
     "capitalized-comments": [
@@ -292,8 +289,8 @@ export default function (getMonkeyCodeNames) {
       "error",
       2,
       {
-        "SwitchCase": 1
-      }
+        SwitchCase: 1,
+      },
     ],
     "jsx-quotes": ["error", "prefer-double"],
     "key-spacing": [
@@ -413,7 +410,7 @@ export default function (getMonkeyCodeNames) {
       {
         line: {
           exceptions: ["-", "+", "*"],
-          markers: ["!", "/", "=>"],
+          markers: ["!", "/", "=>", "#region", "#endregion", "@ts-check"],
         },
         block: {
           exceptions: ["-", "+", "*"],
@@ -430,10 +427,6 @@ export default function (getMonkeyCodeNames) {
       },
     ],
     "template-tag-spacing": ["error", "never"],
-    "unicode-bom": [
-      "error",
-      "never"
-    ],
     "unicode-bom": ["error", "never"],
     "arrow-body-style": "error",
     "arrow-parens": ["error", "always"],

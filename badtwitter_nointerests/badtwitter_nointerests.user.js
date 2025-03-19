@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Bad Twitter No Interests
-// @namespace    NekoBoiNick.Web.Twitter.NoInterests
+// @namespace    NekoBoiNick.Web
 // @version      1.0.5.4
 // @description  Disables all of what Twitter thinks you are interested in.
 // @author       Neko Boi Nick
@@ -76,7 +76,7 @@ this.jQuery(function ($) {
       async stop() {
         this.flashing = true;
         $(this.element).find("circle").css({ strokeDasharray: `${this.circumference} ${this.circumference}`, strokeDashoffset: `${this.circumference}` });
-        $(this.element).find("circle").attr("stroke", "rgb(244, 33, 46)");
+        $(this.element).find("circle").attr("stroke", "rgb(244 33 46)");
         $(this.element).find("circle").addClass("stopping");
         this.setProgress(100);
         await sleep(2500);
@@ -91,7 +91,7 @@ this.jQuery(function ($) {
       async end() {
         this.flashing = true;
         $(this.element).find("circle").css({ strokeDasharray: `${this.circumference} ${this.circumference}`, strokeDashoffset: `${this.circumference}` });
-        $(this.element).find("circle").attr("stroke", "rgb(21, 153, 23)");
+        $(this.element).find("circle").attr("stroke", "rgb(21 153 23)");
         $(this.element).find("circle").addClass("stopping");
         this.setProgress(100);
         await sleep(2500);
@@ -178,12 +178,24 @@ this.jQuery(function ($) {
       $(buttonElements.stopButton).on("click", () => {
         clearInterval(id);
         id = -1;
-        buttonElements.progress.stop();
+        buttonElements.progress.stop().then(
+          (value) => {
+            console.error(value);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
       });
       $(buttonElements.runButton).on("click", () => {
-        (async function () {
-          await runInterestBlocker();
-        })();
+        runInterestBlocker().then(
+          (value) => {
+            console.error(value);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
       });
     }
   }

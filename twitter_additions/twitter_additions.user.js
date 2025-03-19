@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         Twitter Additions
-// @namespace    NekoBoiNick.Web.Twitter.Additions
+// @namespace    NekoBoiNick.Web
 // @version      1.0.2
 // @description  Changes things on Twitter.
 // @author       Neko Boi Nick
 // @match        https://twitter.com/*
 // @match        https://x.com/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=twitter.com
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=x.com
 // @grant        unsafeWindow
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
@@ -53,7 +53,7 @@ this.jQuery(($) => {
           const signInButton = $(signUpButton).clone(true, true);
           $(signInButton).appendTo(signUpSectionButtonAnchor.parent());
           $(signInButton).attr("href", "/login");
-          $(signInButton).attr("nbn-style", "hover:toggle(background-color:rgb(255,255,255);background-color:rgb(230,230,230))");
+          $(signInButton).attr("nbn-style", "hover:toggle(background-color:rgb(255 255 255);background-color:rgb(230 230 230))");
           $(signInButton).attr("style", $(signInButton).attr("style").replaceAll(/ *background-color: *rgb\(255, *255, *255\);/gi));
 
           if ($(signInButton).find("div span span").length > 0) {

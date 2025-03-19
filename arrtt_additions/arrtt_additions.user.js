@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         ARR Triple Triad Additions
-// @namespace    NekoBoiNick.Web.ARRTripleTriad.Additions
+// @namespace    NekoBoiNick.Web
 // @version      1.0.3
 // @description  Adds additional features to ARR Triple Triad.
 // @author       Neko Boi Nick
@@ -36,7 +36,7 @@ this.jQuery(($) => {
         default: "Default"
       }
     },
-    onSave(_) {
+    onSave() {
       changeBackground();
     }
   });

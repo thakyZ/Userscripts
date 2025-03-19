@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Garland Tools Additions
-// @namespace    NekoBoiNick.Web.GarlandTools.Additions
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1
 // @description  Adds various features to Garland Tools
 // @author       Neko Boi Nick

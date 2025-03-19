@@ -66,14 +66,14 @@ export default {
   compile_css: () =>
     new Promise((resolve, reject) => {
       compileCSS()
-        .then((output) => {
+        .then(output => {
           if (output.success === false) {
             reject(output.error);
           } else {
             resolve(output.data);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           reject(error);
         });
     }),

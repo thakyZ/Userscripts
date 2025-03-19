@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Text Editor for Google Drive Change Default Theme
-// @namespace    NekoBoiNick.Web.GoogledDrive.TextEditor.Theme.Default
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1
 // @description  Gives an option to change the default theme of the Text Editor for Google Drive
 // @author       Neko Boi Nick

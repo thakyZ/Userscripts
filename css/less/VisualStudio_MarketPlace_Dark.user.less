@@ -48,6 +48,27 @@
       }
     }
 
+    > .category-container {
+      > .filters-container {
+        > .tab-collection-container {
+          > .tab-collection {
+            > .tab-collection-left {
+              > .tab {
+                border-color: @border_color_1;
+                color: @color_1;
+
+                &:hover {
+                  &:not(:nth-child(1)) {
+                    background: var(--background-dark-2);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     > .content-section-market {
       > .gallery-home-page {
         > [class*="carousel-wrapperHomePage"] {
@@ -414,17 +435,6 @@
               > .tab-collection-left {
                 > td {
                   border-color: @border_color_1;
-                }
-
-                > .tab {
-                  border-color: @border_color_1;
-                  color: @color_1;
-
-                  &:hover {
-                    &:not(:nth-child(1)) {
-                      background: var(--background-dark-2);
-                    }
-                  }
                 }
               }
             }

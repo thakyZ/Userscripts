@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Trello Additions
-// @namespace    NekoBoiNick.Web.Trello.Additions
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0.1
 // @description  Adds features to trello specifically for FFXIV mods.
 // @author       Neko Boi Nick

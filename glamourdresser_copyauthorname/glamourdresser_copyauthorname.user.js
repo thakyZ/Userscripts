@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Glamour Dresser Copy Author Name
-// @namespace    NekoBoiNick.Web.GlamourDresser.CopyAuthorName
+// @namespace    NekoBoiNick.Web
 // @version      1.2.0
 // @description  Adds a copy author name button to Nexus Mods mod page.
 // @author       Neko Boi Nick
@@ -9,9 +9,9 @@
 // @license      MIT
 // @grant        GM_getValue
 // @grant        GM_setValue
+// @grant        GM_deleteValue
 // @grant        unsafeWindow
 // @grant        GM_addStyle
-// @grant        GM_deleteValue
 // @grant        GM_registerMenuCommand
 // @grant        GM_setClipboard
 // @grant        GM_addStyle
@@ -383,6 +383,31 @@ this.jQuery(($) => {
     }
   }
 
+  /**
+   * Tests if the user is logged into The Glamour Dresser.
+   * @returns {boolean}
+   */
+  function isLoggedIn() {
+    return $("body > div#wpadminbar").length > 0 || $("nav > #menu-menu-1 > li.login").css("display") === "none";
+  }
+
+  /**
+   * Ensures that the author section on mod pages are properly set to dark and the font color is correct ontop of showing the avatar.
+   * @returns {void}
+   */
+  function ensureAuthorSectionIsFixed() {
+    if (!isLoggedIn() && /https:\/\/www\.glamourdresser\.com\/mods\/(?!page\/\d+).+$/g.test(window.location.href)) {
+      const authorSection = $("body > .l-theme-wrapper > .l-main-wrapper > .container > .p-blog-single > .row .o-main-sidebar > .widget > .type-mods.mods > section:first-child");
+      if (typeof authorSection.css("background-color").replace(/^rgb\(/, "").replace(/\)$/, "").split(", ").map((x) => Number(x)).filter((x) => !isNaN(x)).find((x) => x > 23) !== "undefined") {
+        authorSection.css("background-color", "rgb(23 23 23)");
+        const authorAvatar = authorSection.find("img");
+        if (typeof authorAvatar.attr("src") === "undefined" || authorAvatar.attr("src") === "") {
+          // TODO: handle the avatar not showing.
+        }
+      }
+    }
+  }
+
   if (/https:\/\/(www\.)?glamourdresser\.com\/wp-admin/gi.test(window.location.href)) {
     GM_registerMenuCommand("Config", () => {
       GM_config.open();
@@ -413,6 +438,15 @@ this.jQuery(($) => {
         setupCSS();
         handleIframes();
         setupMutationObserver();
+        unsafeWindow.nbn = {};
+        unsafeWindow.nbn.$ = $;
+        const title = $("body > div:not(#wpadminbar) a[href=\"https://www.glamourdresser.com\"].darkmysite_processed > img.darkmysite_processed");
+        if (title.length > 0 && !title.css("filter").includes("invert(")) {
+          title.css({ filter: "invert(100%)" });
+        }
+
+        GM_addStyle(".search-filter-component-combobox,.search-filter-input-text{background-color:unset !important;}.search-filter-component-combobox-base__listbox,.search-filter-component-popup{background-color:var(--darkmysite_dark_mode_bg) !important}.search-filter-component-combobox-base__listbox{color:var(--darkmysite_dark_mode_text_color) !important}");
+        ensureAuthorSectionIsFixed();
       },
       open() {
         GM_config.frame.setAttribute("style", "display:block;");

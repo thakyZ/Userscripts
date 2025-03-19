@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         fExtra Life Wiki Fixes
-// @namespace    NekoBoiNick.Web.FExtraLife.Wiki.Fixes
+// @namespace    NekoBoiNick.Web
 // @version      1.0.4
 // @description  Tries to fix some issues about fExtra Life's wiki pages.
 // @author       NekoBoiNick

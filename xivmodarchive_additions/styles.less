@@ -2,31 +2,33 @@
   width: auto !important;
   min-width: 2.5rem;
 }
+
 .col-7 {
   &.col-7-extra {
     flex: 0 0 60% !important;
     max-width: 60% !important;
-    -ms-flex: 0 0 60%;
   }
 }
+
 .col-2 {
   &.col-2-less {
-    -ms-flex: 0 0 13%;
     flex: 0 0 13%;
     max-width: 13%;
   }
 }
+
 body {
   & > .container-xl {
     & > .jumbotron {
       & .inbox-message div {
         border-left: 0.5em solid #6c757d;
       }
+
       & .new-message div {
         border-left: 0.5em solid #007bff;
       }
-      
-      &.nbnMailHeader {
+
+      &.nbn-mail-header {
         & > h4 {
           margin-right: 150px;
           text-overflow: ellipsis;
@@ -38,8 +40,12 @@ body {
         & > .container-xl {
           & > .row {
             & > .col-12 {
-              & > button[type="button"][style="position: absolute; top: -2rem; right: 0rem;"] {
-                top: -2.5rem !important;
+              & > button {
+                &[type="button"] {
+                  &[style="position: absolute; top: -2rem; right: 0rem;"] {
+                    top: -2.5rem !important;
+                  }
+                }
               }
             }
           }
@@ -47,7 +53,8 @@ body {
       }
     }
   }
-  & > .nbnMailHeader {
+
+  & > .nbn-mail-header {
     & > .tooltip-inner {
       max-width: fit-content;
     }

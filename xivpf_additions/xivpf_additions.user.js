@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         XIV Party Finder Additions
-// @namespace    NekoBoiNick.Web.XivPF.Additions
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1.1
 // @description  Adds some additional feature to Ko-Fi
 // @author       Neko Boi Nick

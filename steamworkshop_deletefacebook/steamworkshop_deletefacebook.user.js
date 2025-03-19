@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam Workshop Delete Facebook
-// @namespace    NekoBoiNick.Steam.Community.Workshop.Facebook
+// @namespace    NekoBoiNick.Web
 // @version      0.1
 // @description  Deletes Facebook tags in SteamWorkshop Item Pages.
 // @author       Neko Boi Nick

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         TModLoader Workshop Page Formatter
-// @namespace    NekoBoiNick.Web.Steam.Workshop.TModLoader
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1
 // @description  Format TModLoader workshop pages.
 // @author       Neko Boi Nick
@@ -25,7 +25,6 @@
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 $(document).ready(() => {
-  /* CSpell:ignoreRegExp "teamworkshop_tmodloader_formatter_data" */
   GM_deleteValue("teamworkshop_tmodloader_formatter_data");
 
   const config = new MonkeyConfig({
@@ -61,7 +60,6 @@ $(document).ready(() => {
     });
   };
 
-  /* CSpell:ignoreRegExp .tmodloadericon */
   const styleElement = $("<style>.tmodloadericon{width:16px;height:16px;display:inline-block;}</style>");
   const parseCSSIcon = (id) => {
     const currentHtml = $(styleElement).html();

@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Remove UserStyles Ad Boxes
-// @namespace    NekoBoiNick.UserStyles.Ads
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0.1
 // @description  Removes divs for ads on UserStyles
-// @author       NekoBoiNick
+// @author       Neko Boi Nick
 // @match        https://userstyles.org/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=userstyles.org
 // @grant        none

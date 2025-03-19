@@ -49,12 +49,8 @@ module.exports = function (Release) {
      * Publish to distribution repo and npm
      * @param {Function} callback
      */
-    dist() {}
+    dist() {},
   });
 };
 
-module.exports.dependencies = [
-  "archiver@5.2.0",
-  "shelljs@0.8.4",
-  "inquirer@8.0.0"
-];
+module.exports.dependencies = ["archiver@5.2.0", "shelljs@0.8.4", "inquirer@8.0.0"];

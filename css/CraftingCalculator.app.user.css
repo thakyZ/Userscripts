@@ -12,40 +12,40 @@
 
 @-moz-document domain("craftingcalculator.app") {
   .jumbotron {
-    background-color: rgb(22, 22, 22);
+    background-color: rgb(22 22 22);
   }
 
   body {
     color: #eee;
-    background-color: rgb(33, 33, 33);
+    background-color: rgb(33 33 33);
   }
 
   .bg-light {
-    background-color: rgb(22, 22, 22) !important;
+    background-color: rgb(22 22 22) !important;
   }
 
   .card {
-    background-color: rgb(15, 15, 15);
+    background-color: rgb(15 15 15);
   }
 
   .list-group-item {
-    background-color: rgb(22, 22, 22);
+    background-color: rgb(22 22 22);
   }
 
   .form-control {
-    background-color: rgb(22, 22, 22);
-    border-color: rgb(15, 15, 15);
-    color: rgb(200, 200, 200);
+    background-color: rgb(22 22 22);
+    border-color: rgb(15 15 15);
+    color: rgb(200 200 200);
   }
 
   .mf-select .mf-select-selected {
-    background-color: rgb(22, 22, 22);
-    border-color: rgb(15, 15, 15);
-    color: rgb(200, 200, 200);
+    background-color: rgb(22 22 22);
+    border-color: rgb(15 15 15);
+    color: rgb(200 200 200);
   }
 
   .mf-select-dropdown {
-    background-color: rgb(22, 22, 22);
+    background-color: rgb(22 22 22);
     color: #eee;
   }
 
@@ -54,22 +54,22 @@
   }
 
   .mf-select-dropdown .mf-search-container input[type="search"] {
-    border-color: rgb(15, 15, 15) !important;
-    background-color: rgb(22, 22, 22);
+    border-color: rgb(15 15 15) !important;
+    background-color: rgb(22 22 22);
   }
 
   .btn-outline-dark {
-    color: rgb(150, 150, 150);
-    border-color: rgb(150, 150, 150);
+    color: rgb(150 150 150);
+    border-color: rgb(150 150 150);
   }
 
   .btn-outline-dark:hover {
     background-color: #454545;
-    border-color: rgb(150, 150, 150);
+    border-color: rgb(150 150 150);
   }
 
   .form-control:disabled,
   .form-control[readonly] {
-    background-color: rgb(15, 15, 15);
+    background-color: rgb(15 15 15);
   }
 }

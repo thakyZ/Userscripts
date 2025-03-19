@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Monster Hunter World Wiki Remove Twitch Stream
-// @namespace    NekoBoiNick.MonsterHunterWorld.Wiki.RemoveTwitch
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1
 // @description  Removes twitch steam and ads from the Monster Hunter World Wiki
 // @author       NekoBoiNick

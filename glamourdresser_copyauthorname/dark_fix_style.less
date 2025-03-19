@@ -1,13 +1,14 @@
+/* stylelint-disable selector-class-pattern -- These class names are not mine */
 :root {
   --e-global-color-accent-dark: #eee;
   --e-global-color-secondary-dark: #777;
   --e-global-color-primary-dark: #eee;
-  --wp-adminbar-dark: rgb(19, 20, 20);
-  --wp-adminbar-popup-dark: rgb(24, 25, 25);
+  --wp-adminbar-dark: rgb(19 20 20);
+  --wp-adminbar-popup-dark: rgb(24 25 25);
   --nbn-copy-author-button-active-deg: 60deg;
-  --nbn-copy-author-button-active-dark: rgba(202, 248, 128, 0.1);
-  --nbn-copy-author-button-active-light: rgba(113, 206, 126, 0.5);
-  --nbn-copy-author-button-active-aux: rgb(202, 248, 128);
+  --nbn-copy-author-button-active-dark: rgba(202 248 128 / 10%);
+  --nbn-copy-author-button-active-light: rgba(113 206 126 / 50%);
+  --nbn-copy-author-button-active-aux: rgb(202 248 128);
 }
 
 @e-global-color-accent-dark: var(--e-global-color-accent-dark);
@@ -17,11 +18,12 @@
 @wp-dark-mode-scale: var(--wp-dark-mode-scale);
 @wp-adminbar-dark: var(--wp-adminbar-dark);
 @wp-adminbar-popup-dark: var(--wp-adminbar-popup-dark);
-@wp-darkmysite_dark_mode_link_color: var(--darkmysite_dark_mode_link_color);
+@wp-darmsite_dark_mode_link_color: var(--wp-darkmysite_dark_mode_link_color);
 @nbn-copy-author-button-active-deg: var(--nbn-copy-author-button-active-deg);
-@nbn-copy-author-button-active-dark: var(--nbn-copy-author-button-active-dark);
-@nbn-copy-author-button-active-light: var(--nbn-copy-author-button-active-light);
+@nbn-copy-author-button-active-dark: var(--nbn-copyauthor-button-active-dark);
+@nbn-copy-author-button-active-light: var(--nbn-copyauthor-button-active-light);
 @nbn-copy-author-button-active-aux: var(--nbn-copy-author-button-active-aux);
+@default-dark-bg: var(--defaultDarkBG);
 
 html {
   &.wp-dark-mode-active {
@@ -29,10 +31,12 @@ html {
       & .elementor-post__read-more {
         color: @e-global-color-accent-dark;
       }
+
       & .elementor-post__title {
         color: @e-global-color-secondary-dark;
       }
     }
+
     & header .elementor-widget-container,
     & div[data-widget_type="theme-site-logo.default"] {
       & a {
@@ -41,38 +45,45 @@ html {
         }
       }
     }
+
     & .elementor-widget-author-box {
       & .elementor-author-box__name {
         color: @e-global-color-secondary-dark;
       }
     }
+
     & .elementor-widget-heading {
       & .elementor-heading-title {
         color: @e-global-color-primary-dark;
       }
     }
+
     &.elementor-element {
       & > .elementor-background-overlay {
         background-image: linear-gradient(
           180deg,
-          #ffffff00 60%,
-          var(--defaultDarkBG) 100%
+          #fff0 60%,
+          @default-dark-bg 100%
         ) !important;
       }
     }
+
     & body {
       & #wpadminbar {
         background-color: @wp-adminbar-dark !important;
+
         & .menupop {
           & .ab-sub-wrapper {
             background-color: @wp-adminbar-popup-dark !important;
           }
         }
+
         & .shortlink-input {
           background-color: @wp-adminbar-popup-dark!important;
         }
       }
     }
+
     & > #wp-toolbar {
       & > #wp-admin-bar-top-secondary {
         & > #wp-admin-bar-search {
@@ -80,7 +91,7 @@ html {
             & input {
               &.adminbar-input {
                 &:focus {
-                  background-color: rgb(35, 36, 36);
+                  background-color: rgb(35 36 36);
                   color: #fff;
                 }
               }
@@ -90,27 +101,25 @@ html {
       }
     }
   }
+
   & button {
     &.elementor-button {
       &.action-copy-author {
         background-color: @e-global-color-accent !important;
-        color: @wp-darkmysite_dark_mode_link_color !important;
-        font-family: "Nunito Sans", Sans-serif;
+        color: @wp-darmsite_dark_mode_link_color !important;
+        font-family: "Nunito Sans", sans-serif;
         font-size: 0.9em;
         font-weight: normal;
         transition: all 0.3s !important;
         margin-left: calc(25px / 2);
 
-        &:hover,
-        &:focus:hover {
-          background-color: #107116 !important;
-        }
-
         &:active {
           background: @nbn-copy-author-button-active-aux;
-          background: -moz-linear-gradient(@nbn-copy-author-button-active-deg, @nbn-copy-author-button-active-dark 0%, @nbn-copy-author-button-active-light 100%);
-          background: -webkit-linear-gradient(@nbn-copy-author-button-active-deg, @nbn-copy-author-button-active-dark 0%, @nbn-copy-author-button-active-light 100%);
-          background: linear-gradient(@nbn-copy-author-button-active-deg, @nbn-copy-author-button-active-dark 0%, @nbn-copy-author-button-active-light 100%);
+          background: linear-gradient(
+            @nbn-copy-author-button-active-deg,
+            @nbn-copy-author-button-active-dark 0%,
+            @nbn-copy-author-button-active-light 100%
+          );
           filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#caf880",endColorstr="#a9b8c3",GradientType=1);
           transition: all 0.3s !important;
         }
@@ -120,6 +129,11 @@ html {
           background-color: @e-global-color-accent !important;
         }
 
+        &:hover,
+        &:focus:hover {
+          background-color: #107116 !important;
+        }
+
         & img.clipboard {
           max-height: calc(18px * @wp-dark-mode-scale);
           max-width: calc(18px * @wp-dark-mode-scale);
@@ -127,22 +141,26 @@ html {
       }
     }
   }
+
   & div.elementor-author-box__text {
     & a {
       display: inline-block;
     }
   }
+
   & .copy-author-widget {
     position: relative;
     width: fit-content;
     display: inline-block;
   }
+
   & .postbox {
     & > div.inside {
       display: inline-block;
       margin: 0;
+
       & > p {
-        margin: 0 0 1em 0;
+        margin: 0 0 1em;
       }
     }
   }

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Poipiku Enable Context Menu
-// @namespace    NekoBoiNick.Web.Poipiku.ContextMenuEnable
+// @namespace    NekoBoiNick.Web
 // @version      1.0.2.1
 // @description  Enables the context menu on Poipiku
 // @author       Neko Boi Nick

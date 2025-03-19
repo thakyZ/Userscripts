@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Game Resources Search Fix
-// @namespace    NekoBoiNick.Web.GameResources.SearchFix
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1
 // @description  Fixes search when blocking ads.
 // @author       Neko Boi Nick

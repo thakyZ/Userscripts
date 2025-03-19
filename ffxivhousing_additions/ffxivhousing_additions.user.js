@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         FFXIV Housing Preview Images
-// @namespace    NekoBoiNick.Web.FFXIVHousing.Additions
+// @namespace    NekoBoiNick.Web
 // @version      1.0.2
 // @description  Add Preview Popups to FFXIV Housing's Website
 // @author       Neko Boi Nick

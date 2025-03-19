@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Quizlet Unlock
-// @namespace    NekoBoiNick.Web.Quizlet.Unlock
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1.1
 // @description  "Unlcoks Quizlet Paywalls. Please do not use this to cheat on tests, I used this to just not have to pay for Quizlet when studying."
 // @author       Neko Boi Nick

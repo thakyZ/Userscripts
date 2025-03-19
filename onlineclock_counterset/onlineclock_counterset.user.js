@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Online Clock Counter Set
-// @namespace    NekoBoiNick.Web.OnlineClock.Counter.SpecificSet
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1
 // @description  Adds a text box that allows you to set the Counter so you can count down.
 // @author       Neko Boi Nick

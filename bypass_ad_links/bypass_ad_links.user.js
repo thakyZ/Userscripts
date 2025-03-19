@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Bypass Ad Links
-// @namespace    NekoBoiNick.Web.Bypass.AdLinks
+// @namespace    NekoBoiNick.Web
 // @version      1.0.5
 // @description  Bypass Ad Links in any website on the web.
 // @author       Neko Boi Nick

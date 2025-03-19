@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         JSMacros Docs Fix
-// @namespace    NekoBoiNick.Web.WagYourTail.JSMacros.Docs.Fix
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0
 // @description  The website for documenation of JSMacros has a bit of a bug this will fix it.
 // @author       Neko Boi Nick

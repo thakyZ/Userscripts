@@ -1,10 +1,12 @@
-import * as fsSync from "fs";
-import { promises as fs } from "fs";
+import * as fs from "fs";
 import * as path from "path";
 import * as eslintConfig from "../../eslint.config.mjs";
-import * as rulesCustom from "../rules-custom.mjs";
+import rulesCustom from "../rules-custom.mjs";
 
-const outDirectory = path.join(import.meta.url, "..", "..", "..", "out", "eslint.json").toString().replace("file:\\", "");
+const outDirectory = path
+  .join(import.meta.url, "..", "..", "..", "out", "eslint.json")
+  .toString()
+  .replace("file:\\", "");
 
 /* To remove:
  * no-constant-binary-expression
@@ -12,7 +14,11 @@ const outDirectory = path.join(import.meta.url, "..", "..", "..", "out", "eslint
  * no-new-native-nonconstructor
  */
 
-async function removeTamperMonkeyUndefRules(rules) {
+/**
+ * @param {Record<String, unknown>} rules
+ * @returns {Record<String, unknown>}
+ */
+function removeTamperMonkeyUndefRules(rules) {
   const newRules = rules;
   delete newRules["no-constant-binary-expression"];
   delete newRules["no-empty-static-block"];
@@ -20,35 +26,59 @@ async function removeTamperMonkeyUndefRules(rules) {
   return newRules;
 }
 
-async function enableAllGlobals(globals) {
-  for (var globalVar in globals) {
-    if (Object.hasOwn(globals, globalVar) && globals[globalVar] === false) {
-      globals[globalVar] = true;
+/**
+ * @param {Record<String, String | Boolean>} globals
+ * @returns {Record<String, Boolean>}
+ */
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+function enableAllGlobals(globals) {
+  /** @type {Record<String, Boolean>} */
+  const output = {};
+
+  for (const globalVar of Object.keys(globals)) {
+    if (globals[globalVar] === false) {
+      output[globalVar] = true;
+    } else if (typeof globals[globalVar] === "string") {
+      output[globalVar] = true;
+    } else {
+      output[globalVar] = globals[globalVar];
     }
   }
-  return globals;
+
+  return output;
 }
 
-async function loadEslintConfig() {
+function loadEslintConfig() {
   const newJsonTree = {};
 
-  newJsonTree.env = { es6: true, greasemonkey: true, browser: true, jquery: true },
-  newJsonTree.globals = {...eslintConfig.default[0].languageOptions.globals};
-  //newJsonTree.globals = await enableAllGlobals(newJsonTree.globals);
-  newJsonTree.extends = [ "eslint:recommended" ];
-  newJsonTree.parserOptions = {...eslintConfig.default[0].languageOptions.parserOptions};
-  newJsonTree.rules = {...eslintConfig.default[0].rules};
-  newJsonTree.rules = await removeTamperMonkeyUndefRules(newJsonTree.rules);
+  newJsonTree.env = {
+    es6: true,
+    greasemonkey: true,
+    browser: true,
+    jquery: true,
+  };
+
+  newJsonTree.globals = {
+    ...(eslintConfig.default[0].languageOptions?.globals ?? []),
+  };
+
+  // DISABLED:
+  // newJsonTree.globals = await enableAllGlobals(newJsonTree.globals);
+
+  newJsonTree.extends = ["eslint:recommended"];
+  newJsonTree.parserOptions = {
+    ...(eslintConfig.default[0].languageOptions?.parserOptions ?? []),
+  };
+  /** @typedef {typeof FlatConfig} */
+  newJsonTree.rules = { ...eslintConfig.default[0].rules };
+  newJsonTree.rules = removeTamperMonkeyUndefRules(newJsonTree.rules);
   return newJsonTree;
 }
 
 async function run() {
-  const newEslintConfig = await loadEslintConfig();
+  const newEslintConfig = loadEslintConfig();
   const json = JSON.stringify(newEslintConfig, null, 2);
-  await fs.writeFile(outDirectory, json, { flag: "w+" });
+  await fs.promises.writeFile(outDirectory, json, { flag: "w+" });
 }
 
-(async function() {
-  await run();
-})();
-
+run().catch((reason) => console.error(reason));

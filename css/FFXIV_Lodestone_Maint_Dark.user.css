@@ -211,7 +211,7 @@
   }
 
   .ffxiv_pr_cross_menu_background {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(0 0 0);
     background-image: initial;
   }
 
@@ -221,24 +221,24 @@
   }
 
   .ffxiv_pr_cross_menu__inner {
-    background-color: rgb(31, 33, 35);
+    background-color: rgb(31 33 35);
     background-image: initial;
     box-shadow: rgba(24, 26, 27, 0.75) 0 1px 0 0 inset, rgba(0, 0, 0, 0.1) 0 -1px 0 0 inset, rgba(0, 0, 0, 0.5) 0 2px 4px 0;
   }
 
   .ffxiv_pr_cross_menu__header {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     background-image: initial;
   }
 
   .ffxiv_pr_cross_menu__title {
     background-color: initial;
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBRUFBQUFCQUNBTUFBQUNkdDRIc0FBQUFCR2RCVFVFQUFMR1BDL3hoQlFBQUFBRnpVa2RDQUs3T0hPa0FBQUo1VUV4VVJRQUFBTFl6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNN1l6TTdZek03WXpNMTJHWXJVQUFBRFNkRkpPVXdBR0EvVDVBdnNCL3YzYkZaNE9CS2dlM1h6elV1azZpQmx6Vjd0cFE5VHVIOFlQbkJnTlVkT3R0RzNXSU8zMVBEZkw2RVFVTThWTmdXdDQvRWYzVEt3TXNESjc5aVo5U3BKSVdiOEtYSlU3blNLOFZPOUM4VVcybEtzUUNGKzVDei9rSnhmVkpBZXg0eTdsdlN4K3g0K1JPZnJTWjVBMlN3a3FHcE9YeVJLM3FZSWhRTFhQVHlQbVpoYkR6SHFKbG01Ymd6VE5mempnTFdqQXNuWmRFNkJUbzZmUnJxWnl4SFdrakxOV29xRTlZd1diMzdyaDUvS2xxa0dmV0IyR1dpbndZQnhlVU9xTFZZcHdtb0IzM3I3QjNCY0VZVGtBQUFQd1NVUkJWRmpEcFZmM1E5TkFGQTYyaFpaV3FCVEszbE5SWk10U0VVV0dpbHNSQkJWVW5PQUdYTGozM252dnZmZmVlOXhmWkhLNVhDN0pwUmZ3L2RCZTdyM3ZTL0x1clhCY1Y2UWI5My9TK3VILzhLV2ZsbllaNjVYQVdUNEdnYnl1NGlmT0FrSFJBSUNTemtNRHc4ODRHNVphQVpRMW5jZlBOZ05aRnNkMW51QUJnUTk2enpBZU9WcTk0NU5INEVFRUExL2htb1RYNlhsVC9Td3ZYK1NTK0I1ZURJSURZSmkwTEN2a0FmRHRiZE1lODcvOVFXeHdRUWdEZjRjMzlBOWRCdGNwMGwyZk9qbExaSVNUNjg3MjFtZ1hSTXdYMXNVVEVEN2N4N0MzZmZ3aG9oZThLSkFlb0pWcUc3Y2dVYjAxSURjWkFtTGhWWXhKSWtpbjRTMk9YTTFlakUwRWVHY0pEM01jTy80UVNnVENOT252THpCWXl4cjVGakdjRzNvdFF6NjVzVkE1K2RGTUlyU0I2OGR5eW5PdEJUU1psVlV5aGZPcU0xbXduZCtmam5WVXgyUUJIWW0rMXdPQUpQN0Zucno3c3A3alZvTkVuYVFEbm1RZ245RENmL3pQMzJCRE1mMFlXend5REdySlJLc2hnK3dVK1B5RjdpaloydGR4NmVUVy9JRGQ0U1lOa1hXdE1pWkxSZS9Nc3hFcE16UkdybU1EYWhZcENWYXE3dnh0bFp2L1hUWkh2dmtJVmVIdTdiQ1JCRGtxQWpjZmZGKy80N3Q0NzV0TXFSSytCTUVNZFFncm5xOVBKTlcvM2EvTEpvRXFYZEdHZ2YyeE1uT2VYanM2alczT0Q5ZG9reVNkNjRoK1F4dURHUzVyRHRHdWpIdTZ4S1ZpQnJkYUY0QVVvenlXaXh4djBjbzhRcVdvZlk1YXhqaTc1NEt6QUIxek41MzcwMUpjK2FacHlOTjk0V1dDVk91ZTNSZjNUYldzbWxlRllsa3NVZzY4ZjdjZTd0OWtGczBja2NCZmpNOWpzaUlNN3ZkalYxMHgzdXZnUlJ1UkUxZGdEQ2V5NjdaRE1KeU9xaG1SazA3aEdCWWJLUHhIaFQ1MWlxSVFjaVhjQU1FbTNpNkZwdGpPSzNvYUlLakFmWWVQN1d4Q2tXeVFvQzgrQTQ0cklaeHVNUmtrS0JPY2pScEVRVDZSMFlKenh4Z2dnR203VUd3T3Z2S3dsQTN6TE5VQVFTOVluZjJFNVdCZ1RwQmU3Q0VNRDl0cU5zRkZhTmxjNmhQejJRb0syK0VFTnFrR1pTa0lZMC9KZmNocFo3MFlUaFBJMXNPUXFRUitSWnM2bVlHWk5RQnhGN0R0a0NWeXE0M0Z1OEVNL0F6Y0h1YVMzZG1PYTM2YTB6UEJWY2x3bFhMWUN5bmZpQlJOSHZHUlZvbEFtL2lWWnZZY2FwK0c0TFlVUDYxMkovTGplRjM4OEdiUjVQQmU2cnpZZ05oTlJYcGRZUzQ2L1cwNklTSk45TjVMcVByZVVheG9DOEtIZVRaYnE2M0VJZGpJSmdEUm9WT1V1dHZEWkdXN0R2Nk5Zb1FZVis3R1ExMUlSQWFweXFmakExeWF5YTRqZmxkdzhBci9LS3R5WDZkOU5yNSs1V2lhYmdVTTJSRjZZN09uVUVzNHNjVVR2RENVUGZnWFYrbmp6V0djRWRtalJLVkZTWE9pTmREZ1Y4Y3RFaCtmeUZuR2k2ZHcwT2hueTM2aFhGVEh3NCtQZW5IVXJCWSt1YWlmYS84QWxNS1d2NnJXVm9BQUFBQUFTVVZPUks1Q1lJST0iIC8+PC9zdmc+");
-    color: rgb(168, 160, 149);
+    color: rgb(168 160 149);
   }
 
   .ffxiv_pr_cross_menu__banner {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     background-image: initial;
     box-shadow: rgba(24, 26, 27, 0.25) 0 1px 0 0 inset, rgba(0, 0, 0, 0.5) 0 1px 2px 0;
   }
@@ -248,7 +248,7 @@
   }
 
   .ffxiv_pr_cross_menu__product_site__title {
-    color: rgb(168, 160, 149);
+    color: rgb(168 160 149);
   }
 
   .ffxiv_pr_cross_menu_button_jp {
@@ -365,17 +365,17 @@
 
   @media screen and (max-width: 414px) {
     .ffxiv_pr_cross_menu__header {
-      background-color: rgb(24, 26, 27);
+      background-color: rgb(24 26 27);
       background-image: initial;
     }
   }
 
   .txt_durability_calc_010 {
-    color: rgb(255, 216, 97);
+    color: rgb(255 216 97);
   }
 
   .txt_durability_calc_099 {
-    color: rgb(216, 212, 207);
+    color: rgb(216 212 207);
   }
 
   #eorzeadb_tooltip div,
@@ -405,24 +405,24 @@
     background-color: transparent;
     background-image: initial;
     border-color: initial;
-    color: rgb(200, 195, 188);
+    color: rgb(200 195 188);
     outline-color: initial;
   }
 
   #eorzeadb_tooltip li {
-    color: rgb(200, 195, 188);
+    color: rgb(200 195 188);
     list-style-image: initial;
   }
 
   #eorzeadb_tooltip a {
     background-color: transparent;
     background-image: initial;
-    color: rgb(114, 190, 230);
+    color: rgb(114 190 230);
     text-decoration-color: initial;
   }
 
   #eorzeadb_tooltip a:hover {
-    color: rgb(114, 208, 255);
+    color: rgb(114 208 255);
     text-decoration-color: initial;
   }
 
@@ -432,9 +432,9 @@
   }
 
   #eorzeadb_tooltip .db-view__item__text__level__inner {
-    background-color: rgb(15, 16, 17);
+    background-color: rgb(15 16 17);
     background-image: initial;
-    border-color: rgb(120, 112, 99);
+    border-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-view__item__hq_switch {
@@ -453,10 +453,10 @@
   }
 
   #eorzeadb_tooltip .db-view__item_level {
-    background-color: rgb(15, 16, 17);
+    background-color: rgb(15 16 17);
     background-image: initial;
-    border-color: rgb(120, 112, 99);
-    color: rgb(200, 195, 188);
+    border-color: rgb(120 112 99);
+    color: rgb(200 195 188);
   }
 
   #eorzeadb_tooltip .db-view__item_spec__value {
@@ -471,107 +471,107 @@
   }
 
   #eorzeadb_tooltip .db-view__data {
-    background-color: rgb(38, 42, 43);
-    border-color: rgb(120, 112, 99);
+    background-color: rgb(38 42 43);
+    border-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-view__data__head {
-    background-color: rgb(23, 25, 26);
+    background-color: rgb(23 25 26);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
-    color: rgb(197, 171, 92);
+    border-bottom-color: rgb(120 112 99);
+    color: rgb(197 171 92);
   }
 
   #eorzeadb_tooltip .db-view__data__inner {
-    background-color: rgb(38, 42, 43);
+    background-color: rgb(38 42 43);
     background-image: initial;
-    border-color: rgb(131, 121, 107);
+    border-color: rgb(131 121 107);
   }
 
   #eorzeadb_tooltip .db-view__data__inner--silver {
-    border-color: rgb(100, 93, 82);
+    border-color: rgb(100 93 82);
   }
 
   #eorzeadb_tooltip .db-view__data__inner--gold {
-    border-color: rgb(126, 110, 65);
+    border-color: rgb(126 110 65);
   }
 
   #eorzeadb_tooltip .db-view__data__inner__wrapper {
-    border-color: rgb(120, 112, 99);
+    border-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-view__data__title {
-    background-color: rgb(23, 25, 26);
+    background-color: rgb(23 25 26);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
-    color: rgb(200, 196, 189);
+    border-bottom-color: rgb(120 112 99);
+    color: rgb(200 196 189);
   }
 
   #eorzeadb_tooltip .db-view__data__title--reward {
-    background-color: rgb(35, 38, 39);
+    background-color: rgb(35 38 39);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
+    border-bottom-color: rgb(120 112 99);
     border-top-color: initial;
   }
 
   #eorzeadb_tooltip .db-view__data__title--quest_reward {
-    background-color: rgb(35, 38, 39);
+    background-color: rgb(35 38 39);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
-    border-top-color: rgb(120, 112, 99);
-    color: rgb(200, 196, 189);
+    border-bottom-color: rgb(120 112 99);
+    border-top-color: rgb(120 112 99);
+    color: rgb(200 196 189);
   }
 
   #eorzeadb_tooltip .db-view__data__title--quest_reward_list {
-    background-color: rgb(23, 25, 26);
+    background-color: rgb(23 25 26);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
+    border-bottom-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-view__data__title--achievement {
-    background-color: rgb(35, 38, 39);
+    background-color: rgb(35 38 39);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
-    border-top-color: rgb(120, 112, 99);
+    border-bottom-color: rgb(120 112 99);
+    border-top-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-view__data__title--silver {
-    background-color: rgb(64, 69, 72);
+    background-color: rgb(64 69 72);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
-    color: rgb(200, 196, 189);
+    border-bottom-color: rgb(120 112 99);
+    color: rgb(200 196 189);
   }
 
   #eorzeadb_tooltip .db-view__data__title--gold {
-    background-color: rgb(82, 70, 41);
+    background-color: rgb(82 70 41);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
-    color: rgb(255, 225, 133);
+    border-bottom-color: rgb(120 112 99);
+    color: rgb(255 225 133);
   }
 
   #eorzeadb_tooltip .db-view__data__title--boss_reward {
-    background-color: rgb(23, 25, 26);
-    border-top-color: rgb(120, 112, 99);
-    color: rgb(200, 196, 189);
+    background-color: rgb(23 25 26);
+    border-top-color: rgb(120 112 99);
+    color: rgb(200 196 189);
   }
 
   #eorzeadb_tooltip .db-view__data__title_content_info {
-    background-color: rgb(35, 38, 39);
+    background-color: rgb(35 38 39);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
-    border-top-color: rgb(120, 112, 99);
+    border-bottom-color: rgb(120 112 99);
+    border-top-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-view__data__boss_list li.boss a {
-    color: rgb(231, 161, 63);
+    color: rgb(231 161 63);
   }
 
   #eorzeadb_tooltip .db-view__data__boss_list li.boss a:hover {
-    color: rgb(255, 174, 61);
+    color: rgb(255 174 61);
   }
 
   #eorzeadb_tooltip .db-view__data__reward {
-    border-top-color: rgb(120, 112, 99);
+    border-top-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-view__data__reward__treasure {
@@ -605,11 +605,11 @@
   }*/
 
   #eorzeadb_tooltip .db-view__data__item_list {
-    border-bottom-color: rgb(120, 112, 99);
+    border-bottom-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-view__data__action strong {
-    color: rgb(170, 208, 95);
+    color: rgb(170 208 95);
   }
 
    /*#eorzeadb_tooltip .db-view__quest__reward__seals_common {
@@ -640,7 +640,7 @@
   #eorzeadb_tooltip .db-view__quest__past_season_event {
     background-color: initial;
     background-image: url(https://img.finalfantasyxiv.com/lds/h/U/2feVt3B2_qVJgToE0WLfLlvXf8.png);
-    color: rgb(255, 202, 97);
+    color: rgb(255 202 97);
   }
 
   #eorzeadb_tooltip .db-view__quest__past_season_event::before {
@@ -656,7 +656,7 @@
   #eorzeadb_tooltip .db-view__quest__wedding {
     background-color: initial;
     background-image: url(https://img.finalfantasyxiv.com/lds/h/O/ohDglDgWalR7okImTJgoWWoEd8.png);
-    color: rgb(97, 202, 255);
+    color: rgb(97 202 255);
   }
 
   #eorzeadb_tooltip .db-view__quest__wedding::before {
@@ -687,7 +687,7 @@
   #eorzeadb_tooltip .db-view__treasure_box_popup__title {
     background-color: initial;
     background-image: url(https://img.finalfantasyxiv.com/lds/h/Y/AiW00HK8xPGmogFALgxuV_JAIY.png);
-    color: rgb(197, 171, 92);
+    color: rgb(197 171 92);
   }
 
   #eorzeadb_tooltip .db-view__treasure_box_popup__title::before {
@@ -716,12 +716,12 @@
   }*/
 
   #eorzeadb_tooltip .db-view__treasure_box_popup__treasure_items__box {
-    border-bottom-color: rgb(120, 112, 99);
-    border-right-color: rgb(120, 112, 99);
+    border-bottom-color: rgb(120 112 99);
+    border-right-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-view__item_view p {
-    color: rgb(178, 172, 162);
+    color: rgb(178 172 162);
   }
 
   /*#eorzeadb_tooltip .db-view__gathering__point__01 {
@@ -761,44 +761,44 @@
 
   #eorzeadb_tooltip .db-table th a,
   #eorzeadb_tooltip .db-table td a {
-    color: rgb(114, 190, 230);
+    color: rgb(114 190 230);
   }
 
   #eorzeadb_tooltip .db-table th a:hover,
   #eorzeadb_tooltip .db-table td a:hover {
-    color: rgb(114, 208, 255);
+    color: rgb(114 208 255);
   }
 
   #eorzeadb_tooltip .db-table__wrapper {
-    border-color: rgb(131, 121, 107);
+    border-color: rgb(131 121 107);
   }
 
   #eorzeadb_tooltip .db-table__head--light {
-    background-color: rgb(23, 25, 26);
+    background-color: rgb(23 25 26);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
-    border-right-color: rgb(120, 112, 99);
+    border-bottom-color: rgb(120 112 99);
+    border-right-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-table__head--dark {
-    background-color: rgb(27, 29, 30);
+    background-color: rgb(27 29 30);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
-    border-right-color: rgb(120, 112, 99);
+    border-bottom-color: rgb(120 112 99);
+    border-right-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-table__body--light {
-    background-color: rgb(35, 38, 39);
+    background-color: rgb(35 38 39);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
-    border-right-color: rgb(120, 112, 99);
+    border-bottom-color: rgb(120 112 99);
+    border-right-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-table__body--dark {
-    background-color: rgb(38, 42, 43);
+    background-color: rgb(38 42 43);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
-    border-right-color: rgb(120, 112, 99);
+    border-bottom-color: rgb(120 112 99);
+    border-right-color: rgb(120 112 99);
   }
 
   /*#eorzeadb_tooltip .db-table__class_icon {
@@ -822,27 +822,27 @@
   }
 
   #eorzeadb_tooltip .item_detail_box .txt_green {
-    color: rgb(180, 210, 107) !important;
+    color: rgb(180 210 107) !important;
   }
 
   #eorzeadb_tooltip .item_detail_box .txt_red {
-    color: rgb(229, 104, 118) !important;
+    color: rgb(229 104 118) !important;
   }
 
   #eorzeadb_tooltip .item_detail_box .eorzeadb_tooltip_txt_notes {
-    color: rgb(218, 70, 94) !important;
+    color: rgb(218 70 94) !important;
   }
 
   #eorzeadb_tooltip .item_detail_box .txt_yellow {
-    color: rgb(177, 170, 160) !important;
+    color: rgb(177 170 160) !important;
   }
 
   #eorzeadb_tooltip .item_detail_box .txt_yellow_02 {
-    color: rgb(223, 215, 122) !important;
+    color: rgb(223 215 122) !important;
   }
 
   #eorzeadb_tooltip .item_detail_box .txt_white {
-    color: rgb(200, 195, 188) !important;
+    color: rgb(200 195 188) !important;
   }
 
   /*#eorzeadb_tooltip .db-tooltip__l_main {
@@ -888,7 +888,7 @@
   #eorzeadb_tooltip .db-tooltip__quest__past_season_event {
     background-color: initial;
     background-image: url(https://img.finalfantasyxiv.com/lds/h/g/r5RAYxxHuAL_zLga11rJ_B-uOc.png);
-    color: rgb(255, 202, 97);
+    color: rgb(255 202 97);
   }
 
   #eorzeadb_tooltip .db-tooltip__quest__past_season_event::before {
@@ -904,7 +904,7 @@
   #eorzeadb_tooltip .db-tooltip__quest__wedding {
     background-color: initial;
     background-image: url(https://img.finalfantasyxiv.com/lds/h/e/dOZlOqPGE5YiYpW04QjgfUsVOE.png);
-    color: rgb(97, 202, 255);
+    color: rgb(97 202 255);
   }
 
   #eorzeadb_tooltip .db-tooltip__quest__wedding::before {
@@ -1020,7 +1020,7 @@
   #eorzeadb_tooltip .db-tooltip-shop__place li {
     background-color: initial;
     background-image: url(https://img.finalfantasyxiv.com/lds/h/K/PAmt576nxFrhKLd5zf3FagyuOU.png);
-    color: rgb(200, 195, 188);
+    color: rgb(200 195 188);
   }*/
 
   #eorzeadb_tooltip .padbtnlt {
@@ -1225,10 +1225,10 @@
   }
 
   .eorzeadb_tooltip__text {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     background-image: initial;
     box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
-    color: rgb(192, 186, 178);
+    color: rgb(192 186 178);
   }
 
   a {
@@ -1248,7 +1248,7 @@
   }
 
   button:focus {
-    outline-color: rgb(186, 123, 0);
+    outline-color: rgb(186 123 0);
   }
 
   *,
@@ -1259,8 +1259,8 @@
 
   html,
   body {
-    background-color: rgb(50, 54, 56);
-    color: rgb(186, 180, 171);
+    background-color: rgb(50 54 56);
+    color: rgb(186 180 171);
   }
 
   .txt-rarity_common,
@@ -1268,7 +1268,7 @@
   #eorzeadb_tooltip .db-view__item__text__name.txt-rarity_common,
   #eorzeadb_tooltip .db-tooltip__item__name.white_item,
   #eorzeadb_tooltip .db-tooltip__item__name.txt-rarity_common {
-    color: rgb(224, 222, 218);
+    color: rgb(224 222 218);
   }
 
   .txt-rarity_uncommon,
@@ -1276,7 +1276,7 @@
   #eorzeadb_tooltip .db-view__item__text__name.txt-rarity_uncommon,
   #eorzeadb_tooltip .db-tooltip__item__name.green_item,
   #eorzeadb_tooltip .db-tooltip__item__name.txt-rarity_uncommon {
-    color: rgb(160, 255, 160);
+    color: rgb(160 255 160);
   }
 
   .txt-rarity_magic,
@@ -1284,19 +1284,19 @@
   #eorzeadb_tooltip .db-view__item__text__name.txt-rarity_magic,
   #eorzeadb_tooltip .db-tooltip__item__name.aetherial_item,
   #eorzeadb_tooltip .db-tooltip__item__name.txt-rarity_magic {
-    color: rgb(214, 134, 180);
+    color: rgb(214 134 180);
   }
 
   .txt-rarity_artifact,
   #eorzeadb_tooltip .db-view__item__text__name.txt-rarity_artifact,
   #eorzeadb_tooltip .db-tooltip__item__name.txt-rarity_artifact {
-    color: rgb(228, 220, 122);
+    color: rgb(228 220 122);
   }
 
   .txt-rarity_legend,
   #eorzeadb_tooltip .db-view__item__text__name.txt-rarity_legend,
   #eorzeadb_tooltip .db-tooltip__item__name.txt-rarity_legend {
-    color: rgb(255, 163, 97);
+    color: rgb(255 163 97);
   }
 
   .txt-rarity_epic,
@@ -1304,7 +1304,7 @@
   #eorzeadb_tooltip .db-view__item__text__name.txt-rarity_epic,
   #eorzeadb_tooltip .db-tooltip__item__name.purple_item,
   #eorzeadb_tooltip .db-tooltip__item__name.txt-rarity_epic {
-    color: rgb(168, 124, 255);
+    color: rgb(168 124 255);
   }
 
   .txt-rarity_rare,
@@ -1312,17 +1312,17 @@
   #eorzeadb_tooltip .db-view__item__text__name.txt-rarity_rare,
   #eorzeadb_tooltip .db-tooltip__item__name.blue_item,
   #eorzeadb_tooltip .db-tooltip__item__name.txt-rarity_rare {
-    color: rgb(88, 170, 255);
+    color: rgb(88 170 255);
   }
 
   .txt_durability_calc_000,
   #eorzeadb_tooltip .db-tooltip__materia__txt--param {
-    color: rgb(229, 104, 118);
+    color: rgb(229 104 118);
   }
 
   .txt_durability_calc_100,
   #eorzeadb_tooltip .db-view__data__reward__item__condition {
-    color: rgb(172, 219, 80);
+    color: rgb(172 219 80);
   }
 
   .ic__01176159ca99ff01cc6dd8ae82137ad54202eba6,
@@ -1458,7 +1458,7 @@
   #eorzeadb_tooltip .db-tooltip__item-info__list li span,
   #eorzeadb_tooltip .db-tooltip-shop__name,
   #eorzeadb_tooltip .db-command__header {
-    color: rgb(200, 195, 188);
+    color: rgb(200 195 188);
   }
 
   #eorzeadb_tooltip .db-view__icon--main::before,
@@ -1481,13 +1481,13 @@
   #eorzeadb_tooltip .item_detail_box .mirageitem p,
   #eorzeadb_tooltip .db-tooltip__item__mirage p,
   #eorzeadb_tooltip .db-command__header span {
-    color: rgb(152, 143, 129);
+    color: rgb(152 143 129);
   }
 
   #eorzeadb_tooltip .db-view__item__icon .staining,
   #eorzeadb_tooltip .db-list__item__icon .staining,
   #eorzeadb_tooltip .db-tooltip__item__icon .staining {
-    border-color: rgb(119, 111, 98);
+    border-color: rgb(119 111 98);
   }
 
   #eorzeadb_tooltip .db-view__comment_count li span,
@@ -1498,7 +1498,7 @@
   #eorzeadb_tooltip .db-view__quest__reward__name,
   #eorzeadb_tooltip .db-view__treasure_box_popup__map_coordinates span,
   #eorzeadb_tooltip .db-view__treasure_box_popup__token__name {
-    color: rgb(197, 171, 92);
+    color: rgb(197 171 92);
   }
 
   #eorzeadb_tooltip .db-view__item_spec__name,
@@ -1520,17 +1520,17 @@
   #eorzeadb_tooltip .db-tooltip__item_repair__title,
   #eorzeadb_tooltip .db-tooltip__item-info__list li,
   #eorzeadb_tooltip .db-tooltip__basic_bonus li span {
-    color: rgb(177, 170, 160);
+    color: rgb(177 170 160);
   }
 
   #eorzeadb_tooltip .db-view__sub_title,
   #eorzeadb_tooltip .db-tooltip__sub_title {
-    color: rgb(168, 160, 149);
+    color: rgb(168 160 149);
   }
 
   #eorzeadb_tooltip .db-view__series_bonus--title,
   #eorzeadb_tooltip .db-tooltip__series_bonus--title {
-    color: rgb(165, 217, 128);
+    color: rgb(165 217 128);
   }
 
   #eorzeadb_tooltip .db-view__materia_socket .socket,
@@ -1546,7 +1546,7 @@
   #eorzeadb_tooltip .db-tooltip__cannot_materia_prohibition,
   #eorzeadb_tooltip .db-tooltip__unsellable,
   #eorzeadb_tooltip .db-tooltip__market_notsell {
-    color: rgb(217, 128, 151);
+    color: rgb(217 128 151);
   }
 
   #eorzeadb_tooltip .db-view__data__head__tooltip,
@@ -1558,21 +1558,21 @@
   #eorzeadb_tooltip .db-view__data__title--ordercondition,
   #eorzeadb_tooltip .db-view__data__title--required_ingredients,
   #eorzeadb_tooltip .db-view__data__title--gathering_spot {
-    background-color: rgb(35, 38, 39);
+    background-color: rgb(35 38 39);
     background-image: initial;
-    border-bottom-color: rgb(120, 112, 99);
+    border-bottom-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-view__data__reward.odd,
   #eorzeadb_tooltip .db-view__data__item_list:nth-child(2n),
   #eorzeadb_tooltip .db-view__treasure_box_popup__treasure_items--even {
-    background-color: rgb(35, 38, 39);
+    background-color: rgb(35 38 39);
     background-image: initial;
   }
 
   #eorzeadb_tooltip .db-view__data__reward__item.odd,
   #eorzeadb_tooltip .db-view__data__action {
-    background-color: rgb(46, 50, 52);
+    background-color: rgb(46 50 52);
     background-image: initial;
   }
 
@@ -1592,37 +1592,37 @@
   #eorzeadb_tooltip .db-view__quest__reward__notes,
   #eorzeadb_tooltip .db-view__treasure_box_popup__notes,
   #eorzeadb_tooltip .db-view__achievement__text__notes {
-    color: rgb(218, 70, 94);
+    color: rgb(218 70 94);
   }
 
   #eorzeadb_tooltip .db-view__data__item_list:nth-child(2n + 1),
   #eorzeadb_tooltip .db-view__treasure_box_popup__treasure_items--odd {
-    background-color: rgb(38, 42, 43);
+    background-color: rgb(38 42 43);
     background-image: initial;
   }
 
   #eorzeadb_tooltip .db-view__quest__general_annotation,
   #eorzeadb_tooltip .db-tooltip__quest__general_annotation {
-    border-color: rgb(90, 151, 61);
+    border-color: rgb(90 151 61);
   }
 
   #eorzeadb_tooltip .db-view__quest__general_annotation__inner,
   #eorzeadb_tooltip .db-tooltip__quest__general_annotation__inner {
-    background-color: rgb(37, 62, 25);
+    background-color: rgb(37 62 25);
     background-image: initial;
-    border-color: rgb(82, 136, 54);
-    color: rgb(150, 255, 97);
+    border-color: rgb(82 136 54);
+    color: rgb(150 255 97);
   }
 
   #eorzeadb_tooltip .db-view__treasure_box_popup__treasure_items,
   #eorzeadb_tooltip .db-table {
-    border-left-color: rgb(120, 112, 99);
-    border-top-color: rgb(120, 112, 99);
+    border-left-color: rgb(120 112 99);
+    border-top-color: rgb(120 112 99);
   }
 
   #eorzeadb_tooltip .db-view__gathering__area,
   #eorzeadb_tooltip .db-view__achievement__point {
-    color: rgb(197, 171, 91);
+    color: rgb(197 171 91);
   }
 
   #eorzeadb_tooltip .db-list__item__icon__cover,
@@ -1647,15 +1647,15 @@
 
   #eorzeadb_tooltip .db-tooltip__item__icon .ic_masterpiece,
   #eorzeadb_tooltip .db-tooltip__item__name .icon {
-    color: rgb(232, 230, 227);
-    text-shadow: rgb(0, 0, 0) 0 0 2px;
+    color: rgb(232 230 227);
+    text-shadow: rgb(0 0 0) 0 0 2px;
   }
 
   #eorzeadb_tooltip .db-tooltip__item__title,
   #eorzeadb_tooltip .db-shop__item__title {
-    background-color: rgb(35, 38, 39);
+    background-color: rgb(35 38 39);
     background-image: initial;
-    color: rgb(200, 195, 188);
+    color: rgb(200 195 188);
   }
 
   #eorzeadb_tooltip .db-tooltip__item_spec__value,
@@ -1683,12 +1683,12 @@
   textarea::-webkit-input-placeholder,
   input::placeholder,
   textarea::placeholder {
-    color: rgb(182, 176, 166);
+    color: rgb(182 176 166);
   }
 
   .main,
   .container {
-    background-color: rgb(23, 32, 36);
+    background-color: rgb(23 32 36);
   }
 
   @media screen and (min-width: 880px) {
@@ -1699,31 +1699,31 @@
 
   input[type="checkbox"].c-checkbox:checked + label,
   input[type="radio"].c-radio:checked + label {
-    color: rgb(234, 141, 48);
+    color: rgb(234 141 48);
   }
 
   input[type="checkbox"].c-checkbox + label::before,
   input[type="radio"].c-radio + label::before {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     background-image: initial;
-    box-shadow: rgb(86, 93, 97) 0 0 2px 0 inset;
+    box-shadow: rgb(86 93 97) 0 0 2px 0 inset;
   }
 
   input[type="checkbox"].c-checkbox + label::after {
-    border-bottom-color: rgb(163, 90, 16);
-    border-left-color: rgb(163, 90, 16);
+    border-bottom-color: rgb(163 90 16);
+    border-left-color: rgb(163 90 16);
   }
 
   input[type="radio"].c-radio + label::after {
-    background-color: rgb(183, 101, 18);
+    background-color: rgb(183 101 18);
   }
 
   .c-select {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBQ0FBQUFBZ0NBTUFBQUJFcElyR0FBQUFCR2RCVFVFQUFMR1BDL3hoQlFBQUFBRnpVa2RDQUs3T0hPa0FBQUJSVUV4VVJRQUFBRVZLVFVWS1RVVktUVVZLVFVWS1RVVktUVVZLVFVWS1RVVktUVVZLVFVWS1RVVktUVVZLVFVWS1RVVktUVVZLVFVWS1RVVktUVVZLVFVWS1RVVktUVVZLVFVWS1RVVktUVVZLVFVWS1RSZmJrOFFBQUFBYWRGSk9Vd0Q0b0orZVNVZ0RBdmY1SmhVQjJtQVJLbENiRmw4WVRwcmZ2UWRwNFFBQUFIRkpSRUZVT012dGt0a09nQ0FNQk91QnhmdSsrdjhmcWdFRkpkUkVuOTIzN1V6VGhBRHc1MFdHdW5WSCtUalpnaFVGNHM2VGxGWTByU0NpVERpY3FMRjljUXpGKzh1Q2pQZUJ2YUo0aU1BWkhuNHp2UHhpTU53WUxEOE5uaC9HbmdpNUY5Y0d6N1h4eEFIS3VaUC8zLzJVRFJNRkNQWGtPU3dWQUFBQUFFbEZUa1N1UW1DQyIgLz48L3N2Zz4=");
     border-color: initial;
     box-shadow: rgba(24, 26, 27, 0.25) 0 1px 0 0 inset, rgba(0, 0, 0, 0.1) 0 -1px 0 0 inset, rgba(24, 26, 27, 0.25) 1px 0 0 0 inset, rgba(0, 0, 0, 0.1) -1px 0 0 0 inset;
-    color: rgb(186, 180, 171);
+    color: rgb(186 180 171);
     outline-color: initial;
   }
 
@@ -1732,23 +1732,23 @@
   }
 
   .c-select.is-error {
-    background-color: rgb(61, 52, 0);
-    border-color: rgb(137, 36, 5);
+    background-color: rgb(61 52 0);
+    border-color: rgb(137 36 5);
     box-shadow: rgba(126, 33, 5, 0.25) 0 1px 0 0 inset, rgba(0, 0, 0, 0.1) 0 -1px 0 0 inset, rgba(126, 33, 5, 0.25) 1px 0 0 0 inset, rgba(0, 0, 0, 0.1) -1px 0 0 0 inset;
   }
 
   .selectbox {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     box-shadow: rgba(24, 26, 27, 0.25) 0 1px 0 0 inset, rgba(0, 0, 0, 0.1) 0 -1px 0 0 inset, rgba(24, 26, 27, 0.25) 1px 0 0 0 inset, rgba(0, 0, 0, 0.1) -1px 0 0 0 inset;
-    color: rgb(186, 180, 171);
+    color: rgb(186 180 171);
   }
 
   .selectbox.is-open {
-    box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px 0 inset, rgb(86, 93, 97) 0 0 2px 0 inset;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 1px 2px 0 inset, rgb(86 93 97) 0 0 2px 0 inset;
   }
 
   .selectbox.is-error {
-    background-color: rgb(61, 52, 0);
+    background-color: rgb(61 52 0);
     box-shadow: rgba(126, 33, 5, 0.25) 0 1px 0 0 inset, rgba(0, 0, 0, 0.1) 0 -1px 0 0 inset, rgba(126, 33, 5, 0.25) 1px 0 0 0 inset, rgba(0, 0, 0, 0.1) -1px 0 0 0 inset;
   }
 
@@ -1757,18 +1757,18 @@
   }
 
   .selectbox-body {
-    background-color: rgb(24, 26, 27);
-    box-shadow: rgb(86, 93, 97) 0 0 2px 0 inset;
+    background-color: rgb(24 26 27);
+    box-shadow: rgb(86 93 97) 0 0 2px 0 inset;
   }
 
   .selectbox.is-error .selectbox-body {
-    background-color: rgb(61, 52, 0);
-    box-shadow: rgb(126, 33, 5) 0 0 2px 0 inset;
+    background-color: rgb(61 52 0);
+    box-shadow: rgb(126 33 5) 0 0 2px 0 inset;
   }
 
   .selectbox-search-input {
-    background-color: rgb(24, 26, 27);
-    border-color: rgb(63, 69, 71);
+    background-color: rgb(24 26 27);
+    border-color: rgb(63 69 71);
   }
 
   .selectbox-search-input::after {
@@ -1776,7 +1776,7 @@
   }
 
   .selectbox-search-input input[type="search"] {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     background-image: none;
     border-color: initial;
     outline-color: initial;
@@ -1787,33 +1787,33 @@
   }
 
   .selectbox-option:hover {
-    background-color: rgb(53, 57, 59);
+    background-color: rgb(53 57 59);
   }
 
   input[type="text"].c-text {
     background-color: initial;
     background-image: none;
-    border-color: rgb(63, 69, 71);
+    border-color: rgb(63 69 71);
     outline-color: initial;
   }
 
   input[type="text"].c-text.is-error {
-    background-color: rgb(61, 52, 0);
-    border-color: rgb(137, 36, 5);
+    background-color: rgb(61 52 0);
+    border-color: rgb(137 36 5);
   }
 
   input[type="text"].c-text:focus {
-    border-color: rgb(163, 90, 16);
+    border-color: rgb(163 90 16);
   }
 
   .btn.btn-black::after {
     background-color: initial;
-    background-image: linear-gradient(to right, rgb(82, 89, 92) 0%, rgb(74, 80, 83) 100%);
+    background-image: linear-gradient(to right, rgb(82 89 92) 0%, rgb(74 80 83) 100%);
   }
 
   .btn.btn-yellow {
     background-color: initial;
-    background-image: linear-gradient(to right, rgb(116, 80, 7) 0%, rgb(102, 80, 4) 100%);
+    background-image: linear-gradient(to right, rgb(116 80 7) 0%, rgb(102 80 4) 100%);
   }
 
   .btn.btn-yellow span {
@@ -1822,12 +1822,12 @@
 
   .btn.btn-yellow::after {
     background-color: initial;
-    background-image: linear-gradient(to right, rgb(106, 80, 5) 0%, rgb(88, 71, 3) 100%);
+    background-image: linear-gradient(to right, rgb(106 80 5) 0%, rgb(88 71 3) 100%);
   }
 
   .btn.btn-aqua {
     background-color: initial;
-    background-image: linear-gradient(to right, rgb(9, 78, 147) 0%, rgb(5, 84, 123) 100%);
+    background-image: linear-gradient(to right, rgb(9 78 147) 0%, rgb(5 84 123) 100%);
   }
 
   .btn.btn-aqua span {
@@ -1836,7 +1836,7 @@
 
   .btn.btn-aqua::after {
     background-color: initial;
-    background-image: linear-gradient(to right, rgb(7, 80, 132) 0%, rgb(5, 70, 101) 100%);
+    background-image: linear-gradient(to right, rgb(7 80 132) 0%, rgb(5 70 101) 100%);
   }
 
   .btn.btn-aqua.is-disabled span {
@@ -1845,12 +1845,12 @@
 
   .btn.btn-orange {
     background-color: initial;
-    background-image: linear-gradient(to right, rgb(183, 101, 18) 0%, rgb(128, 64, 0) 100%);
+    background-image: linear-gradient(to right, rgb(183 101 18) 0%, rgb(128 64 0) 100%);
   }
 
   .btn.btn-orange::after {
     background-color: initial;
-    background-image: linear-gradient(to right, rgb(173, 87, 0) 0%, rgb(112, 56, 0) 100%);
+    background-image: linear-gradient(to right, rgb(173 87 0) 0%, rgb(112 56 0) 100%);
   }
 
   .btn.btn-yellow.btn-cart::before {
@@ -1864,12 +1864,12 @@
   .btn-thumbnail:hover::after,
   .btn-thumbnail:active::after,
   .btn-thumbnail.is-active::after {
-    box-shadow: rgb(204, 136, 0) 0 0 0 3px inset;
+    box-shadow: rgb(204 136 0) 0 0 0 3px inset;
   }
 
   .selectbox-search-input input[type="search"]::placeholder,
   input[type="text"].c-text::placeholder {
-    color: rgb(199, 194, 187);
+    color: rgb(199 194 187);
   }
 
   .btn.btn-black,
@@ -1878,33 +1878,33 @@
   .btn.btn-aqua.is-disabled,
   .btn.btn-aqua.is-disabled:hover {
     background-color: initial;
-    background-image: linear-gradient(to right, rgb(55, 60, 62) 0%, rgb(86, 93, 97) 100%);
+    background-image: linear-gradient(to right, rgb(55 60 62) 0%, rgb(86 93 97) 100%);
   }
 
   @media screen and (max-width: 879px) {
     .btn {
-      color: rgb(232, 230, 227);
+      color: rgb(232 230 227);
     }
   }
 
   @media screen and (min-width: 880px) {
     .btn {
-      color: rgb(232, 230, 227);
+      color: rgb(232 230 227);
     }
   }
 
   .btn-rounded {
-    background-color: rgb(23, 32, 36);
+    background-color: rgb(23 32 36);
     background-image: url(https://cache.store.finalfantasyxiv.com/static/assets/img/misc/ico/angle_right.png?var=10202335061515);
     box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0;
   }
 
   .btn-rounded:hover {
-    background-color: rgb(61, 52, 0);
+    background-color: rgb(61 52 0);
   }
 
   .btn-rounded.is-disabled:hover {
-    background-color: rgb(23, 32, 36);
+    background-color: rgb(23 32 36);
   }
 
   .btn-rounded.is-shortage {
@@ -1919,53 +1919,53 @@
 
   .box-attention.is-strong {
     background-color: transparent;
-    box-shadow: rgb(172, 22, 8) 0 0 0 2px inset;
-    color: rgb(246, 77, 62);
+    box-shadow: rgb(172 22 8) 0 0 0 2px inset;
+    color: rgb(246 77 62);
   }
 
   .box-attention a {
-    color: rgb(61, 190, 255);
+    color: rgb(61 190 255);
   }
 
   .box-attention a:hover {
-    color: rgb(26, 178, 255);
+    color: rgb(26 178 255);
   }
 
   .box-caution {
-    background-color: rgb(47, 40, 0);
-    box-shadow: rgb(173, 116, 0) 0 0 4px 1px;
-    color: rgb(246, 77, 62);
+    background-color: rgb(47 40 0);
+    box-shadow: rgb(173 116 0) 0 0 4px 1px;
+    color: rgb(246 77 62);
   }
 
   .box-table-th {
-    background-color: rgb(23, 32, 36);
-    color: rgb(155, 147, 134);
+    background-color: rgb(23 32 36);
+    color: rgb(155 147 134);
   }
 
   .box-attention,
   .box-table-th.is-dark {
-    background-color: rgb(28, 34, 37);
+    background-color: rgb(28 34 37);
   }
 
   @media screen and (max-width: 879px) {
     .box-table-th.sm\:is-dark {
-      background-color: rgb(28, 34, 37);
+      background-color: rgb(28 34 37);
     }
   }
 
   @media screen and (min-width: 880px) {
     .box-table-th.md\:is-dark {
-      background-color: rgb(28, 34, 37);
+      background-color: rgb(28 34 37);
     }
   }
 
   .box-scroll {
-    background-color: rgb(27, 29, 30);
-    box-shadow: rgb(86, 93, 97) 0 0 2px 0 inset;
+    background-color: rgb(27 29 30);
+    box-shadow: rgb(86 93 97) 0 0 2px 0 inset;
   }
 
   .box-popup {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     box-shadow: rgba(0, 0, 0, 0.25) 0 2px 8px 0;
   }
 
@@ -1974,7 +1974,7 @@
   }
 
   .box-dropshadow {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     box-shadow: rgba(53, 58, 60, 0.5) 0 0 4px 0;
   }
 
@@ -1984,24 +1984,24 @@
 
   .btn-dropshadow {
     background-color: initial;
-    background-image: linear-gradient(to right, rgb(55, 60, 62) 0%, rgb(86, 93, 97) 100%);
-    color: rgb(232, 230, 227);
+    background-image: linear-gradient(to right, rgb(55 60 62) 0%, rgb(86 93 97) 100%);
+    color: rgb(232 230 227);
   }
 
   .btn-dropshadow::before {
     background-color: initial;
-    background-image: linear-gradient(to right, rgb(82, 89, 92) 0%, rgb(74, 80, 83) 100%);
+    background-image: linear-gradient(to right, rgb(82 89 92) 0%, rgb(74 80 83) 100%);
   }
 
   .btn-dropshadow::after {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
   }
 
   .btn-dropshadow.is-active {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     background-image: initial;
     box-shadow: rgba(53, 58, 60, 0.5) 0 0 4px 0;
-    color: rgb(155, 147, 134);
+    color: rgb(155 147 134);
   }
 
   .ico-new {
@@ -2060,11 +2060,11 @@
   .ico.women_hairstyle,
   .ico.unisex_hairstyle,
   .ico.head_gimmick {
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
   }
 
   .ico.character_unit {
-    background-color: rgb(49, 122, 49);
+    background-color: rgb(49 122 49);
   }
 
   .ico.character_unit::before {
@@ -2072,7 +2072,7 @@
   }
 
   .ico.serviceaccount {
-    background-color: rgb(30, 102, 102);
+    background-color: rgb(30 102 102);
   }
 
   .ico.serviceaccount::before {
@@ -2088,7 +2088,7 @@
   }
 
   .ico.head_gimmick {
-    background-color: rgb(143, 114, 57);
+    background-color: rgb(143 114 57);
   }
 
   .ico.head_gimmick::before {
@@ -2096,7 +2096,7 @@
   }
 
   .ico.unisex_hairstyle {
-    background-color: rgb(98, 62, 135);
+    background-color: rgb(98 62 135);
   }
 
   .ico.mens_hairstyle::before,
@@ -2145,12 +2145,12 @@
 
   .ico.women_clothing,
   .ico.women_hairstyle {
-    background-color: rgb(142, 22, 62);
+    background-color: rgb(142 22 62);
   }
 
   .ico.mens_clothing,
   .ico.mens_hairstyle {
-    background-color: rgb(22, 62, 142);
+    background-color: rgb(22 62 142);
   }
 
   @media screen and (max-width: 879px) {
@@ -2199,7 +2199,7 @@
 
   .headline-dropshadow,
   .bg-dropshadow {
-    background-color: rgb(23, 32, 36);
+    background-color: rgb(23 32 36);
   }
 
   .headline-dropshadow.is-xsmall {
@@ -2207,17 +2207,17 @@
   }
 
   .line-base::before {
-    background-color: rgb(53, 58, 60);
+    background-color: rgb(53 58 60);
   }
 
   .toast-error {
-    background-color: rgb(143, 42, 42);
+    background-color: rgb(143 42 42);
     box-shadow: rgba(0, 0, 0, 0.25) 0 2px 8px 0;
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
   }
 
   .item-card {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0;
   }
 
@@ -2226,7 +2226,7 @@
   }
 
   .item-card-rank-ico span {
-    color: rgb(186, 226, 255);
+    color: rgb(186 226 255);
   }
 
   .item-card-rank-ico.rank-1 {
@@ -2246,7 +2246,7 @@
   }
 
   .item-card-landscape .item-card-rank.rank-1 {
-    color: rgb(221, 194, 87);
+    color: rgb(221 194 87);
   }
 
   .item-card-landscape .item-card-rank.rank-1::before {
@@ -2254,7 +2254,7 @@
   }
 
   .item-card-landscape .item-card-rank.rank-2 {
-    color: rgb(152, 143, 129);
+    color: rgb(152 143 129);
   }
 
   .item-card-landscape .item-card-rank.rank-2::before {
@@ -2262,7 +2262,7 @@
   }
 
   .item-card-landscape .item-card-rank.rank-3 {
-    color: rgb(221, 155, 88);
+    color: rgb(221 155 88);
   }
 
   .item-card-landscape .item-card-rank.rank-3::before {
@@ -2271,7 +2271,7 @@
 
   .item-list-next,
   .item-list-prev {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     box-shadow: rgba(24, 26, 27, 0.1) 0 1px 0 0 inset, rgba(0, 0, 0, 0.1) 0 -1px 0 0 inset, rgba(0, 0, 0, 0.25) 0 0 8px 0;
   }
 
@@ -2286,97 +2286,97 @@
   .headline-dropshadow.is-small,
   .item-card-price,
   .item-card-name {
-    color: rgb(155, 147, 134);
+    color: rgb(155 147 134);
   }
 
   .video-4x3,
   .video-16x9,
   .modal-overlay {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(0 0 0);
   }
 
   .item-card-price-sale,
   .is-sale .item-card-price-tax {
-    color: rgb(246, 77, 62);
+    color: rgb(246 77 62);
   }
 
   @media screen and (min-width: 880px) {
     .tooltip-nav {
-      background-color: rgb(24, 26, 27);
+      background-color: rgb(24 26 27);
       box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
-      color: rgb(184, 178, 169);
+      color: rgb(184 178 169);
       text-shadow: none;
     }
   }
 
   .global-header {
-    background-color: rgb(20, 22, 23);
+    background-color: rgb(20 22 23);
   }
 
   @media screen and (min-width: 880px) {
     .global-header-lang-select {
-      background-color: rgb(29, 31, 32);
+      background-color: rgb(29 31 32);
       box-shadow: rgba(0, 0, 0, 0.4) 0 2px 3px 0;
     }
 
     .global-header-lang-selected:hover {
-      background-color: rgb(45, 49, 51);
+      background-color: rgb(45 49 51);
       box-shadow: rgba(0, 0, 0, 0.4) 0 2px 3px 0;
     }
 
     .global-header-lang-selected:active {
-      background-color: rgb(38, 42, 43);
+      background-color: rgb(38 42 43);
       box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px inset, rgba(24, 26, 27, 0.15) 0 1px 0;
     }
 
     .global-header-lang-name,
     .global-header-lang-label {
-      color: rgb(168, 160, 149);
+      color: rgb(168 160 149);
     }
 
     .global-header-lang-option .global-header-lang-name {
-      color: rgb(85, 157, 233);
+      color: rgb(85 157 233);
     }
 
     .global-header-lang-option:hover .global-header-lang-name {
-      color: rgb(97, 173, 255);
+      color: rgb(97 173 255);
       text-decoration-color: initial;
     }
 
     .global-header-lang-option:hover,
     .global-header-lang-selected {
-      background-color: rgb(38, 42, 43);
+      background-color: rgb(38 42 43);
     }
   }
 
   .global-footer {
-    background-color: rgb(50, 54, 56);
+    background-color: rgb(50 54 56);
   }
 
   .global-footer-navi {
-    background-color: rgb(56, 61, 64);
-    color: rgb(200, 195, 188);
+    background-color: rgb(56 61 64);
+    color: rgb(200 195 188);
   }
 
   .global-footer-navi-buttons a {
-    background-color: rgb(50, 54, 56);
-    color: rgb(200, 195, 188);
+    background-color: rgb(50 54 56);
+    color: rgb(200 195 188);
   }
 
   .global-footer-navi-buttons a:hover {
-    background-color: rgb(68, 73, 76);
+    background-color: rgb(68 73 76);
   }
 
   .global-footer-navi-separator::before {
-    background-color: rgb(96, 104, 108);
+    background-color: rgb(96 104 108);
   }
 
   .global-footer-icons .esrb a:last-of-type {
-    color: rgb(200, 195, 188);
+    color: rgb(200 195 188);
   }
 
   .global-footer-copyright p {
-    color: rgb(168, 160, 149);
+    color: rgb(168 160 149);
   }
 
   .global-footer-copyright p.is-weak {
@@ -2390,7 +2390,7 @@
 
   @media screen and (max-width: 879px) {
     .global-footer-scrolltop {
-      background-color: rgb(60, 65, 68);
+      background-color: rgb(60 65 68);
     }
 
     .global-footer-navi-links a {
@@ -2399,7 +2399,7 @@
   }
 
   .shop-header {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
   }
 
   html[lang="fr"] .shop-header-logo::before {
@@ -2407,14 +2407,14 @@
   }
 
   .shop-header-info {
-    color: rgb(232, 230, 227);
-    text-shadow: rgb(86, 93, 97) 0 0 4px, rgb(86, 93, 97) 0 0 4px;
+    color: rgb(232 230 227);
+    text-shadow: rgb(86 93 97) 0 0 4px, rgb(86 93 97) 0 0 4px;
   }
 
   .shop-header-info-account,
   .shop-header-info-crysta {
     background-color: initial;
-    background-image: linear-gradient(to right, rgb(72, 78, 81) 0%, rgba(72, 78, 81, 0) 100%);
+    background-image: linear-gradient(to right, rgb(72 78 81) 0%, rgba(72, 78, 81, 0) 100%);
   }
 
   .shop-header-info-account::before {
@@ -2426,11 +2426,11 @@
   }
 
   .shop-header-login a {
-    color: rgb(163, 155, 143);
+    color: rgb(163 155 143);
   }
 
   .shop-header-login a:hover {
-    color: rgb(218, 82, 70);
+    color: rgb(218 82 70);
   }
 
   .shop-header-login a::before {
@@ -2446,11 +2446,11 @@
   }
 
   .shop-header-cart-counter {
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
   }
 
   .shop-header-cart-counter::after {
-    background-color: rgb(163, 43, 33);
+    background-color: rgb(163 43 33);
   }
 
   .shop-header-cart-counter.is-empty::after,
@@ -2466,16 +2466,16 @@
 
   @media screen and (max-width: 879px) {
     .shop-header-overlay {
-      background-color: rgb(0, 0, 0);
+      background-color: rgb(0 0 0);
       background-image: initial;
     }
 
     .shop-header-menu {
-      background-color: rgb(0, 0, 204);
+      background-color: rgb(0 0 204);
     }
 
     .shop-header-main {
-      background-color: rgb(24, 26, 27);
+      background-color: rgb(24 26 27);
     }
 
     .shop-header-toggle::before {
@@ -2532,7 +2532,7 @@
 
     .md-menu-lv-1-label span,
     .md-menu-lv-2-label span {
-      color: rgb(167, 159, 148);
+      color: rgb(167 159 148);
     }
 
     .md-menu-lv-1-label {
@@ -2553,7 +2553,7 @@
 
     .md-menu,
     .md-menu-category {
-      background-color: rgb(28, 34, 37);
+      background-color: rgb(28 34 37);
     }
 
     .md-menu-pickup,
@@ -2565,13 +2565,13 @@
     .main.is-pc .md-menu-lv-1-btn:hover,
     .main.is-pc .md-menu-lv-2-btn:hover,
     .main.is-pc .md-menu-back-btn:hover {
-      background-color: rgb(24, 26, 27);
+      background-color: rgb(24 26 27);
     }
   }
 
   @media screen and (max-width: 879px) {
     .sm-menu-overlay {
-      background-color: rgb(0, 0, 0);
+      background-color: rgb(0 0 0);
     }
 
     .sm-menu-label {
@@ -2579,29 +2579,29 @@
     }
 
     .sm-menu-label span {
-      color: rgb(167, 159, 148);
+      color: rgb(167 159 148);
     }
 
     .sm-menu-lang {
-      border-top-color: rgb(63, 68, 71);
+      border-top-color: rgb(63 68 71);
     }
 
     .sm-menu-main,
     .sm-menu-close {
-      background-color: rgb(28, 34, 37);
+      background-color: rgb(28 34 37);
     }
 
     .sm-menu-btn:active,
     .sm-menu-btn.is-selected,
     .sm-menu-lang-option.is-selected,
     .sm-menu-lang-option:hover {
-      background-color: rgb(24, 26, 27);
+      background-color: rgb(24 26 27);
     }
   }
 
   .topic-path {
     background-color: initial;
-    background-image: linear-gradient(to right, rgb(28, 34, 37) 0%, rgb(24, 26, 27) 100%);
+    background-image: linear-gradient(to right, rgb(28 34 37) 0%, rgb(24 26 27) 100%);
   }
 
   .rotation-banner-prev::after {
@@ -2614,7 +2614,7 @@
 
   .rotation-banner-prev::before,
   .rotation-banner-next::before {
-    background-color: rgb(30, 32, 33);
+    background-color: rgb(30 32 33);
   }
 
   @media screen and (max-width: 879px) {
@@ -2633,35 +2633,35 @@
   }
 
   .item-about-btnbox {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
     box-shadow: rgba(53, 58, 60, 0.5) 0 0 4px 0;
   }
 
   .item-about-notice {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
   }
 
   .item-about-attention a {
-    color: rgb(61, 190, 255);
+    color: rgb(61 190 255);
   }
 
   .item-about-attention a:hover {
-    color: rgb(26, 178, 255);
+    color: rgb(26 178 255);
   }
 
   .item-about-price-sale,
   .item-about-attention.is-strong {
-    color: rgb(246, 77, 62);
+    color: rgb(246 77 62);
   }
 
   @media screen and (min-width: 880px) {
     .item-about-modal-overlay {
-      background-color: rgb(0, 0, 0);
+      background-color: rgb(0 0 0);
     }
   }
 
   .item-list-filter-category td {
-    border-right-color: rgb(82, 89, 93);
+    border-right-color: rgb(82 89 93);
   }
 
   .item-list-filter-category td:last-of-type {
@@ -2677,50 +2677,50 @@
   }
 
   .tc-orange {
-    color: rgb(234, 141, 48);
+    color: rgb(234 141 48);
   }
 
   .tc-gray {
-    color: rgb(155, 147, 134);
+    color: rgb(155 147 134);
   }
 
   .tc-lightgray {
-    color: rgb(196, 191, 183);
+    color: rgb(196 191 183);
   }
 
   .bg-base {
-    background-color: rgb(23, 32, 36);
+    background-color: rgb(23 32 36);
   }
 
   .bg-base-strong {
-    background-color: rgb(28, 34, 37);
+    background-color: rgb(28 34 37);
   }
 
   .bg-red {
-    background-color: rgb(143, 42, 42);
+    background-color: rgb(143 42 42);
   }
 
   .item-list-filter-category a.is-active,
   .tc-base,
   .tc-darkgray {
-    color: rgb(186, 180, 171);
+    color: rgb(186 180 171);
   }
 
   .item-ranking-list .item-card:hover .item-card-name,
   .character-box:hover .character-box-name,
   .tc-link:hover {
-    color: rgb(26, 178, 255);
+    color: rgb(26 178 255);
   }
 
   .character-box-name,
   .tc-blue,
   .tc-link {
-    color: rgb(61, 190, 255);
+    color: rgb(61 190 255);
   }
 
   .cart-price-total span,
   .tc-red {
-    color: rgb(246, 77, 62);
+    color: rgb(246 77 62);
   }
 
   .cart-account-error,
@@ -2738,13 +2738,13 @@
   .hover\:text-white:hover,
   .focus\:text-black:focus,
   .focus\:text-white:focus {
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
   }
 
   .tc-link-yellow,
   .cart-account-error .tc-link,
   .toast-error .tc-link {
-    color: rgb(255, 218, 33);
+    color: rgb(255 218 33);
   }
 
   .bg-transparent,
@@ -2756,13 +2756,13 @@
   .bg-black,
   .hover\:bg-black:hover,
   .focus\:bg-black:focus {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(0 0 0);
   }
 
   .bg-white,
   .hover\:bg-white:hover,
   .focus\:bg-white:focus {
-    background-color: rgb(24, 26, 27);
+    background-color: rgb(24 26 27);
   }
 
   .border-transparent,
@@ -2774,13 +2774,13 @@
   .border-black,
   .hover\:border-black:hover,
   .focus\:border-black:focus {
-    border-color: rgb(140, 130, 115);
+    border-color: rgb(140 130 115);
   }
 
   .border-white,
   .hover\:border-white:hover,
   .focus\:border-white:focus {
-    border-color: rgb(48, 52, 54);
+    border-color: rgb(48 52 54);
   }
 
   .outline-none,
@@ -2868,13 +2868,13 @@
     .sm\:bg-black,
     .sm\:hover\:bg-black:hover,
     .sm\:focus\:bg-black:focus {
-      background-color: rgb(0, 0, 0);
+      background-color: rgb(0 0 0);
     }
 
     .sm\:bg-white,
     .sm\:hover\:bg-white:hover,
     .sm\:focus\:bg-white:focus {
-      background-color: rgb(24, 26, 27);
+      background-color: rgb(24 26 27);
     }
 
     .sm\:border-transparent,
@@ -2886,13 +2886,13 @@
     .sm\:border-black,
     .sm\:hover\:border-black:hover,
     .sm\:focus\:border-black:focus {
-      border-color: rgb(140, 130, 115);
+      border-color: rgb(140 130 115);
     }
 
     .sm\:border-white,
     .sm\:hover\:border-white:hover,
     .sm\:focus\:border-white:focus {
-      border-color: rgb(48, 52, 54);
+      border-color: rgb(48 52 54);
     }
 
     .sm\:outline-none,
@@ -2924,7 +2924,7 @@
     .sm\:hover\:text-white:hover,
     .sm\:focus\:text-black:focus,
     .sm\:focus\:text-white:focus {
-      color: rgb(232, 230, 227);
+      color: rgb(232 230 227);
     }
 
     .sm\:shadow,
@@ -2998,13 +2998,13 @@
     .md\:bg-black,
     .md\:hover\:bg-black:hover,
     .md\:focus\:bg-black:focus {
-      background-color: rgb(0, 0, 0);
+      background-color: rgb(0 0 0);
     }
 
     .md\:bg-white,
     .md\:hover\:bg-white:hover,
     .md\:focus\:bg-white:focus {
-      background-color: rgb(24, 26, 27);
+      background-color: rgb(24 26 27);
     }
 
     .md\:border-transparent,
@@ -3016,13 +3016,13 @@
     .md\:border-black,
     .md\:hover\:border-black:hover,
     .md\:focus\:border-black:focus {
-      border-color: rgb(140, 130, 115);
+      border-color: rgb(140 130 115);
     }
 
     .md\:border-white,
     .md\:hover\:border-white:hover,
     .md\:focus\:border-white:focus {
-      border-color: rgb(48, 52, 54);
+      border-color: rgb(48 52 54);
     }
 
     .md\:outline-none,
@@ -3054,7 +3054,7 @@
     .md\:hover\:text-white:hover,
     .md\:focus\:text-black:focus,
     .md\:focus\:text-white:focus {
-      color: rgb(232, 230, 227);
+      color: rgb(232 230 227);
     }
 
     .md\:shadow,
@@ -3129,7 +3129,7 @@
   .ps .ps__rail-y:focus,
   .ps .ps__rail-x.ps--clicking,
   .ps .ps__rail-y.ps--clicking {
-    background-color: rgb(34, 36, 38);
+    background-color: rgb(34 36 38);
   }
 
   :root {
@@ -3205,7 +3205,7 @@
   }
 
   .swiper-cube .swiper-cube-shadow::before {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(0 0 0);
     background-image: initial;
   }
 
@@ -3264,7 +3264,7 @@
 
   .ps__thumb-x,
   .ps__thumb-y {
-    background-color: rgb(72, 78, 81);
+    background-color: rgb(72 78 81);
   }
 
   .ps__rail-x:hover > .ps__thumb-x,
@@ -3273,7 +3273,7 @@
   .ps__rail-y:hover > .ps__thumb-y,
   .ps__rail-y:focus > .ps__thumb-y,
   .ps__rail-y.ps--clicking .ps__thumb-y {
-    background-color: rgb(82, 88, 92);
+    background-color: rgb(82 88 92);
   }
 
   .swiper-pagination-bullet-active,
@@ -3286,7 +3286,7 @@
   html {
     background-color: #181a1b !important;
     background-image: initial;
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
   }
 
   html,
@@ -3367,7 +3367,7 @@
 
   legend,
   .whitetxt {
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
   }
 
   .t-underline,
@@ -3378,31 +3378,31 @@
 
   @media screen and (max-width: 640px) {
     .sp-whitetxt {
-      color: rgb(232, 230, 227);
+      color: rgb(232 230 227);
     }
   }
 
   .blacktxt {
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
   }
 
   @media screen and (max-width: 640px) {
     .sp-blacktxt {
-      color: rgb(232, 230, 227);
+      color: rgb(232 230 227);
     }
   }
 
   .errortxt {
-    color: rgb(255, 26, 26);
+    color: rgb(255 26 26);
   }
 
   html,
   body {
-    background-color: rgb(33, 36, 37);
+    background-color: rgb(33 36 37);
   }
 
   a {
-    color: rgb(255, 38, 38);
+    color: rgb(255 38 38);
   }
 
   a:hover {
@@ -3410,7 +3410,7 @@
   }
 
   .notice {
-    color: rgb(255, 140, 56);
+    color: rgb(255 140 56);
   }
 
   @media screen and (max-width: 640px) {
@@ -3421,7 +3421,7 @@
   }
 
   .background-white {
-    background-color: rgb(24, 26, 27) !important;
+    background-color: rgb(24 26 27) !important;
   }
 
   .next-button,
@@ -3429,25 +3429,25 @@
   .common-button,
   .btnavi1,
   .btnavi2 {
-    background-color: rgb(143, 61, 0);
-    border-color: rgb(82, 88, 92);
-    color: rgb(232, 230, 227);
+    background-color: rgb(143 61 0);
+    border-color: rgb(82 88 92);
+    color: rgb(232 230 227);
   }
 
   .next-button:hover,
   .common-button:hover,
   .btnavi1:hover {
-    background-color: rgb(170, 72, 0);
+    background-color: rgb(170 72 0);
   }
 
   .prev-button,
   .btnavi2 {
-    background-color: rgb(77, 83, 86);
+    background-color: rgb(77 83 86);
   }
 
   .prev-button:hover,
   .btnavi2:hover {
-    background-color: rgb(72, 82, 106);
+    background-color: rgb(72 82 106);
   }
 
   .button,
@@ -3462,24 +3462,24 @@
     .common-button,
     .btnavi1,
     .btnavi2 {
-      border-color: rgb(82, 88, 92);
+      border-color: rgb(82 88 92);
     }
 
     .next-button:hover,
     .btnavi1:hover {
-      background-color: rgb(170, 72, 0);
+      background-color: rgb(170 72 0);
     }
 
     .prev-button:hover,
     .btnavi2:hover {
-      background-color: rgb(72, 82, 106);
+      background-color: rgb(72 82 106);
     }
   }
 
   hr.line-1,
   .inf-border1,
   .inf-border2 {
-    background-color: rgb(43, 46, 48);
+    background-color: rgb(43 46 48);
     border-color: initial;
   }
 
@@ -3500,7 +3500,7 @@
   }*/
 
   .icon-link a {
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
     text-decoration-color: initial;
   }
 
@@ -3509,7 +3509,7 @@
   }
 
   .icon-link.link-notice a {
-    color: rgb(255, 38, 38);
+    color: rgb(255 38 38);
   }
 
   @media screen and (max-width: 640px) {
@@ -3531,7 +3531,7 @@
   }
 
   #header {
-    background-color: rgb(26, 28, 29);
+    background-color: rgb(26 28 29);
   }
 
   /*#header-logo {
@@ -3549,11 +3549,11 @@
   }
 
   #footer {
-    background-color: rgb(26, 28, 29);
+    background-color: rgb(26 28 29);
   }
 
   #footer a {
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
     text-decoration-color: initial;
   }
 
@@ -3562,7 +3562,7 @@
   }
 
   #footer-navi dt {
-    color: rgb(157, 149, 136);
+    color: rgb(157 149 136);
   }
 
   /*#footer-navi a {
@@ -3571,7 +3571,7 @@
 
   @media screen and (max-width: 640px) {
     #footer-navi dl {
-      background-color: rgb(26, 28, 29);
+      background-color: rgb(26 28 29);
     }
 
     /*#footer-navi a {
@@ -3580,12 +3580,12 @@
   }
 
   #footer-copyright {
-    background-color: rgb(26, 28, 29);
-    color: rgb(232, 230, 227);
+    background-color: rgb(26 28 29);
+    color: rgb(232 230 227);
   }
 
   #wrapfooteresrb {
-    background-color: rgb(26, 28, 29);
+    background-color: rgb(26 28 29);
   }
 
   /*#wrapfooteresrb #esrb_img {
@@ -3593,18 +3593,18 @@
   }*/
 
   #main {
-    background-color: rgb(33, 36, 37);
+    background-color: rgb(33 36 37);
   }
 
   .content-box-frame {
-    background-color: rgb(24, 26, 27);
-    border-color: rgb(62, 68, 70);
+    background-color: rgb(24 26 27);
+    border-color: rgb(62 68 70);
   }
 
   .content-box-header {
-    /*background-color: rgb(57, 62, 64);
+    /*background-color: rgb(57 62 64);
     background-image: url(https://cache.secure.square-enix.com/account/content/flat/responsive/img/contentbox/header/icon_pc.png?ver=09202340062726);*/
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
   }
 
   .content-box-header.without-title {
@@ -3613,13 +3613,13 @@
 
   .inf-largeheadertext,
   .content-box-subheader {
-    background-color: rgb(43, 46, 48);
-    border-color: rgb(67, 72, 75);
+    background-color: rgb(43 46 48);
+    border-color: rgb(67 72 75);
   }
 
   @media screen and (max-width: 640px) {
     .content-box-frame {
-      border-color: rgb(62, 68, 70) initial;
+      border-color: rgb(62 68 70) initial;
     }
 
     /*.content-box-header {
@@ -3634,7 +3634,7 @@
   }
 
   .float-table-row {
-    border-bottom-color: rgb(62, 68, 70);
+    border-bottom-color: rgb(62 68 70);
   }
 
   .float-table-row:last-child {
@@ -3642,8 +3642,8 @@
   }
 
   .float-table-th {
-    background-color: rgb(72, 82, 106);
-    color: rgb(232, 230, 227);
+    background-color: rgb(72 82 106);
+    color: rgb(232 230 227);
   }
 
   /*.float-table-th.with-arrow {
@@ -3651,21 +3651,21 @@
   }*/
 
   .float-table-th .float-table-notice {
-    color: rgb(255, 236, 26);
+    color: rgb(255 236 26);
   }
 
   .float-table-td .float-table-notice {
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
   }
 
   .float-table-required {
-    color: rgb(255, 106, 106);
+    color: rgb(255 106 106);
   }
 
   .float-table,
   .float-table-select,
   .float-table-input {
-    border-color: rgb(82, 88, 92);
+    border-color: rgb(82 88 92);
   }
 
   @media screen and (max-width: 640px) {
@@ -3680,20 +3680,20 @@
   }
 
   .float-label {
-    /*background-color: rgb(53, 49, 0);
+    /*background-color: rgb(53 49 0);
     background-image: url(https://cache.secure.square-enix.com/account/content/flat/responsive/img/misc/icon/float_label/pc.png?ver=09202340062726);*/
-    border-color: rgb(82, 88, 92);
-    color: rgb(232, 230, 227);
+    border-color: rgb(82 88 92);
+    color: rgb(232 230 227);
   }
 
   .float-label:hover {
-    background-color: rgb(78, 73, 0);
+    background-color: rgb(78 73 0);
   }
 
   .float-label-disabled,
   .float-label-disabled:hover {
-    background-color: rgb(33, 36, 37);
-    color: rgb(168, 160, 149);
+    background-color: rgb(33 36 37);
+    color: rgb(168 160 149);
   }
 
   /*@media screen and (max-width: 640px) {
@@ -3703,12 +3703,12 @@
   }*/
 
   #header-language-select {
-    background-color: rgb(57, 62, 64);
+    background-color: rgb(57 62 64);
     border-color: transparent;
   }
 
   #header-language-select li:hover {
-    background-color: rgb(86, 93, 97);
+    background-color: rgb(86 93 97);
   }
 
   /*#header-language-select li:first-child {
@@ -3716,7 +3716,7 @@
   }*/
 
   #header-language-select a {
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
   }
 
   /*#lang-en a {
@@ -3733,35 +3733,35 @@
 
   #login-button,
   #signup-button {
-    background-color: rgb(122, 0, 0);
-    border-color: rgb(82, 88, 92);
-    color: rgb(232, 230, 227);
+    background-color: rgb(122 0 0);
+    border-color: rgb(82 88 92);
+    color: rgb(232 230 227);
   }
 
   #login-button:hover {
-    background-color: rgb(156, 0, 0);
+    background-color: rgb(156 0 0);
   }
 
   #signup-button {
-    background-color: rgb(0, 86, 114);
+    background-color: rgb(0 86 114);
   }
 
   #signup-button:hover {
-    background-color: rgb(0, 116, 153);
+    background-color: rgb(0 116 153);
   }
 
   .login-input dt {
-    background-color: rgb(65, 71, 73);
-    border-bottom-color: rgb(82, 88, 92);
-    border-left-color: rgb(82, 88, 92);
-    border-top-color: rgb(82, 88, 92);
+    background-color: rgb(65 71 73);
+    border-bottom-color: rgb(82 88 92);
+    border-left-color: rgb(82 88 92);
+    border-top-color: rgb(82 88 92);
   }
 
   .login-input dd {
-    background-color: rgb(24, 26, 27);
-    border-bottom-color: rgb(82, 88, 92);
-    border-right-color: rgb(82, 88, 92);
-    border-top-color: rgb(82, 88, 92);
+    background-color: rgb(24 26 27);
+    border-bottom-color: rgb(82 88 92);
+    border-right-color: rgb(82 88 92);
+    border-top-color: rgb(82 88 92);
   }
 
   /*#login-input-id dt {
@@ -3769,8 +3769,8 @@
   }*/
 
   #login-input-id dd input[readonly] {
-    background-color: rgb(65, 71, 73);
-    color: rgb(232, 230, 227);
+    background-color: rgb(65 71 73);
+    color: rgb(232 230 227);
   }
 
   /*#login-input-password dt {
@@ -3789,8 +3789,8 @@
   @media screen and (max-width: 640px) {
     #login-button,
     #signup-button {
-      border-color: rgb(82, 88, 92);
-      color: rgb(232, 230, 227);
+      border-color: rgb(82 88 92);
+      color: rgb(232 230 227);
     }
 
     .login-input dd {
@@ -3798,7 +3798,7 @@
     }
 
     .login-input dd input {
-      border-color: rgb(82, 88, 92);
+      border-color: rgb(82 88 92);
     }
 
     /*#login-input-id dt {
@@ -3812,14 +3812,14 @@
 
   .news-date,
   .inf-roundheader {
-    color: rgb(168, 160, 149);
+    color: rgb(168 160 149);
   }
 
   .inf-link a,
   .inf-linkc a,
   .inf-linkt a,
   .inf-linkl a {
-    color: rgb(232, 230, 227);
+    color: rgb(232 230 227);
     text-decoration-color: initial;
   }
 
@@ -3842,48 +3842,48 @@
 
   .news-headline strong,
   .inf-cat {
-    color: rgb(255, 140, 56);
+    color: rgb(255 140 56);
   }
 
   .inf-tobackbtn {
-    background-color: rgb(77, 83, 86);
-    border-color: rgb(82, 88, 92);
-    color: rgb(232, 230, 227);
+    background-color: rgb(77 83 86);
+    border-color: rgb(82 88 92);
+    color: rgb(232 230 227);
     text-decoration-color: initial;
   }
 
   .inf-tobackbtn:hover {
-    background-color: rgb(72, 82, 106);
+    background-color: rgb(72 82 106);
   }
 
   @media screen and (max-width: 640px) {
     .inf-tobackbtn {
-      border-color: rgb(82, 88, 92);
+      border-color: rgb(82 88 92);
     }
 
     .inf-tobackbtn:hover {
-      background-color: rgb(76, 83, 86);
+      background-color: rgb(76 83 86);
     }
   }
 
   #verisign {
-    background-color: rgb(24, 26, 27);
-    border-color: rgb(140, 130, 115);
+    background-color: rgb(24 26 27);
+    border-color: rgb(140 130 115);
   }
 
   .agreement-box {
-    border-color: rgb(82, 88, 92);
+    border-color: rgb(82 88 92);
   }
 
   .account-input-by-postal {
-    background-color: rgb(53, 49, 0);
-    border-color: rgb(82, 88, 92);
-    color: rgb(232, 230, 227);
+    background-color: rgb(53 49 0);
+    border-color: rgb(82 88 92);
+    color: rgb(232 230 227);
     text-decoration-color: initial;
   }
 
   .account-input-by-postal:hover {
-    background-color: rgb(78, 73, 0);
+    background-color: rgb(78 73 0);
   }
 
   /*#login-input-id dt {
@@ -3891,32 +3891,32 @@
   }*/
 
   .login-input dt {
-    background-color: rgb(91, 98, 102);
+    background-color: rgb(91 98 102);
   }
 
   .login-input dd input[readonly],
   .login-input dd input.is-readonly {
-    background-color: rgb(65, 71, 73);
-    color: rgb(232, 230, 227);
+    background-color: rgb(65 71 73);
+    color: rgb(232 230 227);
   }
 
   .login-otherid-link a {
     background-color: initial;
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBQ0FBQUFBZ0NBWUFBQUJ6ZW5yMEFBQUFDWEJJV1hNQUFBc1RBQUFMRXdFQW1wd1lBQUFGSEdsVVdIUllUVXc2WTI5dExtRmtiMkpsTG5odGNBQUFBQUFBUEQ5NGNHRmphMlYwSUdKbFoybHVQU0x2dTc4aUlHbGtQU0pYTlUwd1RYQkRaV2hwU0hweVpWTjZUbFJqZW10ak9XUWlQejRnUEhnNmVHMXdiV1YwWVNCNGJXeHVjenA0UFNKaFpHOWlaVHB1Y3pwdFpYUmhMeUlnZURwNGJYQjBhejBpUVdSdlltVWdXRTFRSUVOdmNtVWdOUzQyTFdNeE5EVWdOemt1TVRZek5EazVMQ0F5TURFNEx6QTRMekV6TFRFMk9qUXdPakl5SUNBZ0lDQWdJQ0FpUGlBOGNtUm1PbEpFUmlCNGJXeHVjenB5WkdZOUltaDBkSEE2THk5M2QzY3Vkek11YjNKbkx6RTVPVGt2TURJdk1qSXRjbVJtTFhONWJuUmhlQzF1Y3lNaVBpQThjbVJtT2tSbGMyTnlhWEIwYVc5dUlISmtaanBoWW05MWREMGlJaUI0Yld4dWN6cDRiWEE5SW1oMGRIQTZMeTl1Y3k1aFpHOWlaUzVqYjIwdmVHRndMekV1TUM4aUlIaHRiRzV6T21SalBTSm9kSFJ3T2k4dmNIVnliQzV2Y21jdlpHTXZaV3hsYldWdWRITXZNUzR4THlJZ2VHMXNibk02Y0dodmRHOXphRzl3UFNKb2RIUndPaTh2Ym5NdVlXUnZZbVV1WTI5dEwzQm9iM1J2YzJodmNDOHhMakF2SWlCNGJXeHVjenA0YlhCTlRUMGlhSFIwY0RvdkwyNXpMbUZrYjJKbExtTnZiUzk0WVhBdk1TNHdMMjF0THlJZ2VHMXNibk02YzNSRmRuUTlJbWgwZEhBNkx5OXVjeTVoWkc5aVpTNWpiMjB2ZUdGd0x6RXVNQzl6Vkhsd1pTOVNaWE52ZFhKalpVVjJaVzUwSXlJZ2VHMXdPa055WldGMGIzSlViMjlzUFNKQlpHOWlaU0JRYUc5MGIzTm9iM0FnUTBNZ01qQXhPU0FvVjJsdVpHOTNjeWtpSUhodGNEcERjbVZoZEdWRVlYUmxQU0l5TURFNUxURXhMVEEyVkRFMk9qVTJPak0zS3pBNU9qQXdJaUI0YlhBNlRXOWthV1o1UkdGMFpUMGlNakF4T1MweE1TMHdObFF4TnpvME9Eb3hOU3N3T1Rvd01DSWdlRzF3T2sxbGRHRmtZWFJoUkdGMFpUMGlNakF4T1MweE1TMHdObFF4TnpvME9Eb3hOU3N3T1Rvd01DSWdaR002Wm05eWJXRjBQU0pwYldGblpTOXdibWNpSUhCb2IzUnZjMmh2Y0RwRGIyeHZjazF2WkdVOUlqTWlJSEJvYjNSdmMyaHZjRHBKUTBOUWNtOW1hV3hsUFNKelVrZENJRWxGUXpZeE9UWTJMVEl1TVNJZ2VHMXdUVTA2U1c1emRHRnVZMlZKUkQwaWVHMXdMbWxwWkRvME5EZ3lNMlF4WXkwMFpEVTFMV1ZrTkRjdE9EUTVNeTFoTm1abE9UWmpPR1F6TmpVaUlIaHRjRTFOT2tSdlkzVnRaVzUwU1VROUluaHRjQzVrYVdRNk5EUTRNak5rTVdNdE5HUTFOUzFsWkRRM0xUZzBPVE10WVRabVpUazJZemhrTXpZMUlpQjRiWEJOVFRwUGNtbG5hVzVoYkVSdlkzVnRaVzUwU1VROUluaHRjQzVrYVdRNk5EUTRNak5rTVdNdE5HUTFOUzFsWkRRM0xUZzBPVE10WVRabVpUazJZemhrTXpZMUlqNGdQSGh0Y0UxTk9raHBjM1J2Y25rK0lEeHlaR1k2VTJWeFBpQThjbVJtT214cElITjBSWFowT21GamRHbHZiajBpWTNKbFlYUmxaQ0lnYzNSRmRuUTZhVzV6ZEdGdVkyVkpSRDBpZUcxd0xtbHBaRG8wTkRneU0yUXhZeTAwWkRVMUxXVmtORGN0T0RRNU15MWhObVpsT1Raak9HUXpOalVpSUhOMFJYWjBPbmRvWlc0OUlqSXdNVGt0TVRFdE1EWlVNVFk2TlRZNk16Y3JNRGs2TURBaUlITjBSWFowT25OdlpuUjNZWEpsUVdkbGJuUTlJa0ZrYjJKbElGQm9iM1J2YzJodmNDQkRReUF5TURFNUlDaFhhVzVrYjNkektTSXZQaUE4TDNKa1pqcFRaWEUrSUR3dmVHMXdUVTA2U0dsemRHOXllVDRnUEM5eVpHWTZSR1Z6WTNKcGNIUnBiMjQrSUR3dmNtUm1PbEpFUmo0Z1BDOTRPbmh0Y0cxbGRHRStJRHcvZUhCaFkydGxkQ0JsYm1ROUluSWlQejdPa3RWVUFBQUVuVWxFUVZSWWhhWFhiMnhWOVJrSDhNODV0N2Z0bGREQ2FFdUxBaHFkZ0JYYUZiVWFOR0tjb0ROcVFaY2xVNVA1eG1WWnRpVjdZY1pZaWFKb1lzeGV6QmdUMzJqaW44UW9Uc1ZvQ0Zrb3pnMWhZL3pwclBnWEJ3N2FVb1FXNVBidnJTL082UVdrdmZjVW5uZm5lWDdQOC8yZTM5L3ZFMnhaS2FsVjR5WmNneWJNeG93NGRnUUhzQlBic0JtSGt4UXRTVEJtSVg2Tk8xRTN3WmpwdUN3bUNJZndOcDVCZTZIaVlZRllPUjdCRHZ5eUFQaDRWaGZuN01EYXVOYWtDRnlDRDdBR2FSQ1FHMlR3RzBiNm8rOEVsa1pyWE91U3BBU2FzQVdMODU2QTNBRHBpaW5xYmxzaFUxZG44SnRFQk1ac2NWeXpxUmlCaS9HdWFJUGxMZGRQV0pJMjczY3ZxWC9vRFExcjIxVFcxK3Z2bWhTSjJYSHRpeWNpVUlxL1l1YjNNM01qaEdWcGxmT1hnTXlzeXpVKzNtYkdWVmZwNzU0VWlabDRNOFk2aThBZjBEaGVWa21Hd2FNbmZmYnNneGdGNmFsVkZxMTl4NHptYTJRN1kzZXlmZEdBVldNZlFYd1B6RWZIaENXQ0NLQy9rOXBsdDFyWXVrRVFSaWM0TjVTMVo4M3R1disrV1hsTi9FdWpSVW1NNGdyc1RUMndBRHlKSHhYTFNsMUE3NTdQWlE5dVYzM3RYWUtTTWtFcXJmcjZGaWNQYk5mYnZrOHFRNUFxU2lEQUZMd1ZpbTY0dTR1bWlBcVh6K1RneG8xMnJiN0Z5TUMzRWJIeVNnMXJONm03N1E0RFBZem1KRm1PdTFFZFlpa3FraEFZVytmTVRBNXYzV1ozNjgwR2ovNC9aaGU2Y3ZWNkY5NStsNEZ1Um9lS2txakEwaERYSndJLzNRSXl0ZlJzM1diWDZtV0crcnBqRG1uMXE5NDBlK1hQbzVrWUxrcGlTWWhGa3lZUVcza054OW83N0h4b2llekJqL1ArQmI5LzJaeWYzV2Z3YU5HWldCUml6cmtTSU5vVHZYcy90N3YxSjdLZG4rWDk4My83b2puMy9NTHd0d3FkaXJraHBwMFBBYU9VVlhIOGk2Lzg2MWYxZWovYWtnL04rODN6cGw0NjExRGZoTm5UQ3IyRzU4Ym1MRS9oU3lIRXNmUENEQmpvWWVxbGMxMzliSWZLK2h2em9VK2Vmc0NKTC9aTFQzekdqb1hZZno3NC9WMVV6TDlNdzZQdnlkVCtNTy9mKzVmNzdYLzlCU1ZURk5xRS93dXg1NXpCdTVtMmNJR21KLzhoTTJ0QjN2L3huKysxLzlXWGxFNG5TQ3UwQ2R0RGtWaVluSTJTN2FUcXVtYU42elpKVjlSRTd0eWdqNTVvY2VDTlY1UlZFWlFVQkljUFN0Q0dQa2x1d3dBNXNsMVVYOWVzNGRHL1NaVk5pVW5sL0hmZFBRNXQzS0NzaHFENG85U0h0bENrWHRjWEJjZm9TTFRtczVZdjE3aHVVeDU4cEwvWDdqVS9kdWk5RGRHZkozc1IxK1B3MkRGOHFtQkt2SW42dTZtOVpia3IvL1NPc0d3cW91ZTQvWkVXWFpzM0s2OU5OTzNpRVU5eFNwQjBpTlRyK0paaitBUVgzZGxpMGNQdjVyWEFVRitubmF1VzZucS9iVEphUUl6VndTbEJRaVNUdG9zVXl4azJmSkxTeWdzMFAvZVZkRVYxQkg2OHg1N1dXeDNac1NNQ1QyNjcwWXdCenBSa2cxaUJzNlJtbUNJM01LUnY3ejlCOXVDbmR2MXhxU1AvbmpSNFY0d3hNT1lJeG1uTm1rVEM4WlF5UGsyV1QydGM1dmduSHpyeDVTR2wweWNGZmdBdCtNL3B6dkVJRURVUnJ4bW5OeGcrRVVtelZFYlM5U2Jxa0g2S2ZkOFBUUFFZN2NNTmVBekRSR0JoS2FVL0lGV2VHSHc0cm5IRGVPQ0ZDRUJXMUZZdHhuUG9UQVFaV1dlY3N6aXVrWjFvNEVSTE1KN1ZPTE05dndoVmNhd0hYNHZXZDd1b1BVL1VzbndIUHlObFpPL2N4NmtBQUFBQVNVVk9SSzVDWUlJPSIgLz48L3N2Zz4=");
-    color: rgb(255, 148, 69);
+    color: rgb(255 148 69);
     text-decoration-color: initial;
   }
 
   .accselect-button {
-    background-color: rgb(54, 74, 132);
+    background-color: rgb(54 74 132);
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNTAiIGhlaWdodD0iNTAiPjxkZWZzPjxmaWx0ZXIgaWQ9ImRhcmtyZWFkZXItaW1hZ2UtZmlsdGVyIj48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMC4yNDkgLTAuNjE0IC0wLjY3MiAwLjAwMCAxLjAzNSAtMC42NDYgMC4yODggLTAuNjY0IDAuMDAwIDEuMDIwIC0wLjYzNiAtMC42MDkgMC4yNTAgMC4wMDAgMC45OTQgMC4wMDAgMC4wMDAgMC4wMDAgMS4wMDAgMC4wMDAiIC8+PC9maWx0ZXI+PC9kZWZzPjxpbWFnZSB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIGZpbHRlcj0idXJsKCNkYXJrcmVhZGVyLWltYWdlLWZpbHRlcikiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBRElBQUFBeUNBWUFBQUFlUDRpeEFBQUY3RWxFUVZSb2djMWFYVXhqUlJRKzl3Y0tGSkF1VytwU2JXbUNwQVZSVnNPREM0YUExYTEwSVJFU0gxQ2ZlRERyejRNa204aktQcWlCQkhuQkdKWVhWMk1pSlBLd1Q0U0VRRFlZa3VXRmtFMkVDcVNRWEJBRFc0cWxTb0V1NVpvcDU5Wnl0Mzl6YndHL1pGN3VuYm56ZlhmbXpKbHpaaGhSRkVFQ3d6Q2dBandBNUFGQUxnQmtBVUFtUHVQd2t5RUFPQUtBSUFBY0FNQS9BUEEzUGxNTnRVSUkwVUlBdUFRQTJWRmtqd0ZBakNyaHowY1ZOa3JrUGdEc0FJQlhqU2lsUWpRQW9BZUFJZ0I0Z3VWWUlRY2lLZ09MQjhzQjdVZG9oWkJPaTFGQUVFdTZRRHJQd0NuNUdBRCtwUGs1TkVJdUE0QVp5UittVVVBc2FGQ1FBQURicVRSSVZZZ1JBQXc0bjBObncvMHBjTGhva0tuMlI3TEtxUWg1SG8zNUFQNHozUE5FTmk0RzY0bjZaSk1RTWdHQTdnSkZBUGF0UXk1eGtVZ0lHWWtDSlNKNmUzdk5naUI4NXZmNzcrM3Q3ZDBueGUvMy95QUlRa2QzZDdlWlVvaUlIQXFRVTB6RW0xclBvWCtnRmpFL1AvOStlWG41NXd6RFpNUmtKWXBIUzB0TDM5aHN0cDhvQlRGb005NVlOaE5yUlBSWTltbEZ6TXpNM0tpb3FMZ1RUd1NjL0N6ZWFyWGVucDJkZllmbTI4aGxQNHJmS2NpRnNEZ1g5eWs3QWJ2ZHJxMnVycjZUYXYycXFxcmJUcWN6ajdZZjVHYUsydnFFSVJkU2pINkMya3YzOWZXOXpYRmNRYXIxT1k3TDcrbnB1VUhiRDNJakhLOUVQNHdJWVJnbUd6MjJJbWRuc1ZqZVZOREdycVF2NUZpRVMzTVkwU09pVitPeGMzTnpYNlp0azVPVDg1TFMvcEJyeEZiQ1FvZ0I0aFpFMGU2enNySlN3M0djanJZZG1WNXRiVzBwVDBjWmpwQXo0UjRaa1V2NFFwSFRzOXZ0U3NsQWFXbXBWbUZURVRrVDdoRWhoV3Ayc2s2bjA2YTBiVU5EZzFWcFcrUk11QU9MMHlwYlJUd0JWcXYxbXRLMlpXVmxyeWx0aTV3Sjl3d3lJdmxxdzAyV1pUTlZOT2ZWOUkyNzhUd2lSS3QyYSs1eXVhYVV0bDFlWHA1VzB6Y09ncGJzWDE3QXY2Skt6T2JtNXRjR2crRmRtalllaitkK1VWRlJwNXAra1h1UXhXaE05UmE5dHJiMnEwQWdNSjlxL2NQRFE4SGhjSHlwdGwrMGt5d3BtNkZhaU52dGZqSTBOUFJGaW92Rzhlam9hT2ZjM0J4MWtpRUdDSGVlVEsxWE1iK1VGdXpzN0h5bjArbmVTdlF0bjgvM1FLZlQzVXhYbjVLeHB4V0NJUHlhN0h1Q0lDaGVIT0pBWk5ISVZhVVlvN0c0dUxpU3JJN2I3WGFucXova0htSngrVXFMRUJLVE5EVTEzVXBXeitGdzNMcCsvWHB1T3ZxVWhKRGc1QmtNVWxRWmZHdHJhLzdJeU1nOXJWYjdTcks2bVptWlYxcGFXcTZ0ckt5TUx5d3NxTTJSRWU2SERBYjArWmoyVklTcHFhazNhbXBxdW5pZUw2WnBId3dHTnlZbko3dWNUdWRERlVKSVdPMG5VMnRQSGphbUNwSVI4Zmw4ZzNWMWRYZHBSY0RKeUJnYkd4dC8zTjNkL1g1d2NMQk1vUkRpUHZha2ZPdUxLQ2dsTkRjMzV3OE1ETncwR28wZkpFbzBVT0o0YTJ2cmw0Nk9qdjdoNFdFZlJWTmlhNytGMDBFTXc5alFScEk2czRtSmlicjYrdm9lanVNdXAwbkFLWVJDSWUvMDlIUlhmWDM5Z3hTcXMyanN2MHRDU1B6N2JMSjAvdXJxNnFjV2krWGpkQzdYOFNBSXd0MlNrcEp2azFUVFlPWitTM0tJT3pqWDRoSWNHeHVydFZnc241eUhDQUt6MmZ6UitQajQ2d21xU0daQkVuWW5FU0xKL21INlBtNXNvTmZyQzgrQ2NDSVlEQVpqZ3RjOGNnN0hVdEZiRkE4T1ZleFdQSzhtZUZJRWp1TVNqYjRHT2NNcElhSW83dU44aXlsbWUzdjc4WGtMOFhxOW5qaXZKTnVJWkVUbFNXd2k3Q29BQk9TQmxzbGs0bDB1MTg5YXJmYnFHWEtQSUJBSVBMTFpiTyt0cmEzSnczRGk4M0lBNEZFMFI3bE5IT054bHduOVNrUWwrV0I3ZS91SG5aMmRqdk1RMHQvZlB4RkRoSlNSRitRL090NnhnaEdUWHhkNXdDT0hKSUlZK0liOFpieDRaQU9YNUxqR2Z3SFFJS2VuUkVDU1ZNdzYvb1VDekxOZTFNZ3dLTUtYNkJ3eFdZUzRCZ0IvNFpDZWl5T01nU3prc0phb1VpcWg3anJPUzYzU1hiSkNTRGszYjdJVFhWQnhZU0I0aGxOTjJucG9jQlRpK1pMVGpTaXZjSEI0VW5SV1Z6aDR2UEZBeUcvU3BITC9iNWRxdGxFRTlSbG1PcTg1WmFHVENrVmRjNUtMaytJSEZrZVhRMTkxWWRlY1lvSDhVWEpLU3d4VXVuaEdua2tMQ2hGRlJrNjZlRVoyRGlReHFEaFhFQUVBL0FzdGt0Z2kxaktBYUFBQUFBQkpSVTVFcmtKZ2dnPT0iIC8+PC9zdmc=");
-    border-color: rgb(82, 88, 92);
-    color: rgb(232, 230, 227);
+    border-color: rgb(82 88 92);
+    color: rgb(232 230 227);
     text-decoration-color: initial;
   }
 
   .accselect-button:hover {
-    background-color: rgb(10, 59, 149);
+    background-color: rgb(10 59 149);
   }
 
   /*.accselect-close a {
@@ -3924,7 +3924,7 @@
   }*/
 
   .icon-link.link-arrow {
-    color: rgb(255, 148, 69);
+    color: rgb(255 148 69);
     text-decoration-color: initial;
   }
 

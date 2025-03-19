@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Neko Gaming Library Test
-// @namespace    NekoBoiNick.Web.NekoGaming.LibraryTest
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0
 // @description  Test script for the Neko Gaming Library
 // @author       Neko Boi Nick

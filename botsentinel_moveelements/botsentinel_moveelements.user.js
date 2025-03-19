@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Bot Sentinel Move Elements
-// @namespace    NekoBoiNick.Web.BotSentinel.ElementsMove
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1
 // @description  Tries to move all the elements regarding the Bot Sentinel extension on Twitter
 // @author       Neko Boi Nick
@@ -13,13 +13,17 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // ==/UserScript==
-/* global $ */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   "use strict";
+
+  /** @type {number} */
   let id = -1;
+
   id = setInterval(() => {
+    /** @type {JQuery<HTMLDivElement>} */
     const div = $("div.bot-sentinel-account-status");
 
     if (div.length > 0) {

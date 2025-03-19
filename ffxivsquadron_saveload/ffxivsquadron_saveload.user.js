@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         FFXIV Squadron App
-// @namespace    NekoBoiNick.Web.FFXIVSquadron.SaveLoad
+// @namespace    NekoBoiNick.Web
 // @version      1.0.5
 // @description  Syncs the FFXIV Sqadron App Data
 // @author       Neko Boi Nick
@@ -22,17 +22,19 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $, sqMissionSolver, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global sqMissionSolver, jQuery */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   const SettingsSaveName = "FFXIVSquadronApp.Settings";
   const DateSaveName = "FFXIVSquadronApp.Date";
   const IconUrlSaveName = "FFXIVSquadronApp.IronUrl";
 
-  const getSettings = () => btoa(localStorage.getItem("squadron"));
+  function getSettings () {
+    return btoa(localStorage.getItem("squadron"));
+  }
 
-  const setSettings = settings => {
+  function setSettings (settings) {
     try {
       // Apply the imported settings now.
       localStorage.setItem("squadron", atob(settings));
@@ -45,13 +47,17 @@ $(document).ready(() => {
     }
 
     return true;
-  };
+  }
 
-  const getDate = () => Date.now();
+  function getDate () {
+    return Date.now();
+  }
 
-  const compareDate = (cur, prev) => cur > prev;
+  function compareDate (cur, prev) {
+    return cur > prev;
+  }
 
-  const saveSettings = force => {
+  function saveSettings (force) {
     const date = GM_getValue(DateSaveName);
     const settings = getSettings();
     const settingsPrev = GM_getValue(SettingsSaveName);
@@ -69,9 +75,9 @@ $(document).ready(() => {
     }
 
     return false;
-  };
+  }
 
-  const loadSettings = force => {
+  function loadSettings (force) {
     const date = GM_getValue(DateSaveName);
     const settings = GM_getValue(SettingsSaveName);
     if (force) {
@@ -85,23 +91,25 @@ $(document).ready(() => {
     }
 
     return false;
-  };
+  }
 
   setInterval(() => {
     saveSettings();
   }, 15000);
+
   GM_registerMenuCommand("Load Settings", () => {
     loadSettings(true);
   });
+
   GM_registerMenuCommand("Save Settings", () => {
     saveSettings(true);
   });
 
   let currentSealsImage = [];
 
-  const getBase64Image = (url, callback) => {
+  function getBase64Image (url, callback) {
     GM_xmlhttpRequest({
-      method: "GET", url, responseType: "arraybuffer", onload(data) {
+      method: "GET", url, responseType: "arraybuffer", onload (data) {
         if (data.response.length < 1) {
           callback(null, { event: false });
           return;
@@ -120,11 +128,11 @@ $(document).ready(() => {
         // Ta-da your image data url!
         const dataURL = "data:image/" + dataType + ";base64," + b64;
         callback(dataURL);
-      }, onerror(data) {
+      }, onerror (data) {
         callback(null, { event: data });
       }, headers: { referer: "https://www.ffxivsquadron.com/", origin: "https://www.ffxivsquadron.com/" }
     });
-  };
+  }
 
   const setupCurrentCrafters = () => {
     let pages = 0;
@@ -200,7 +208,41 @@ $(document).ready(() => {
     return { ExitState: true, ExitCode: 0 };
   };
 
-  const setupMutationObserver = () => {
+  function handleActiveChemistries (activeChemistries) {
+    for (const [, chemistry] of Object.entries(activeChemistries)) {
+      const chemImage = $(".img-chem img", $(chemistry));
+      if ($(chemImage).attr("src") === "images/cra_scrips.png") {
+        $(chemImage).attr("src", `${currentSealsImage[1]}`);
+        $(chemImage).attr("width", "32");
+        $(chemImage).attr("height", "32");
+      }
+
+      if ($(chemImage).attr("src") === "images/gat_scrips.png") {
+        $(chemImage).attr("src", `${currentSealsImage[1]}`);
+        $(chemImage).attr("width", "32");
+        $(chemImage).attr("height", "32");
+      }
+    }
+  }
+
+  /**
+   * @param {Mutation[]} mutationList
+   */
+  function callback (mutationList) {
+    for (const mutation of mutationList) {
+      if (mutation.type === "childList" && mutation.addedNodes.length > 0 && $(mutation.addedNodes[0]).attr("class").split(" ")[0] === "result-line") {
+        for (const node of mutation.addedNodes) {
+          const chemistries = $(node).children(".stats-and-training").children(".chemistries");
+          if (chemistries.length > 0) {
+            const activeChemistries = $(chemistries).children("div:not(.title-stat)");
+            handleActiveChemistries(activeChemistries);
+          }
+        }
+      }
+    }
+  }
+
+  function setupMutationObserver () {
     const targetNode = $("#content-right")[0];
     const config = { attributes: false, childList: true, subtree: true };
     const updateIcon = setupCurrentCrafters();
@@ -209,44 +251,13 @@ $(document).ready(() => {
       return;
     }
 
-    const handleActiveChemistries = activeChemistries => {
-      for (const [, chemistry] of Object.entries(activeChemistries)) {
-        const chemImage = $(".img-chem img", $(chemistry));
-        if ($(chemImage).attr("src") === "images/cra_scrips.png") {
-          $(chemImage).attr("src", `${currentSealsImage[1]}`);
-          $(chemImage).attr("width", "32");
-          $(chemImage).attr("height", "32");
-        }
-
-        if ($(chemImage).attr("src") === "images/gat_scrips.png") {
-          $(chemImage).attr("src", `${currentSealsImage[1]}`);
-          $(chemImage).attr("width", "32");
-          $(chemImage).attr("height", "32");
-        }
-      }
-    };
-
-    const callback = (mutationList, _) => {
-      for (const mutation of mutationList) {
-        if (mutation.type === "childList" && mutation.addedNodes.length > 0 && $(mutation.addedNodes[0]).attr("class").split(" ")[0] === "result-line") {
-          for (const [, node] of Object.entries(mutation.addedNodes)) {
-            const chemistries = $(node).children(".stats-and-training").children(".chemistries");
-            if (chemistries.length > 0) {
-              const activeChemistries = $(chemistries).children("div:not(.title-stat)");
-              handleActiveChemistries(activeChemistries);
-            }
-          }
-        }
-      }
-    };
-
     const observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
 
     $(document).on("unload", () => {
       observer.disconnect();
     });
-  };
+  }
 
   setupMutationObserver();
 });

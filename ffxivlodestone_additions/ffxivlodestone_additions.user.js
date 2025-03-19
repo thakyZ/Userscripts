@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         FFXIV Lodestone Additions
-// @namespace    NekoBoiNick.Web.FFXIV.Lodestone.Additions
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1
 // @description  Adds various things to the FFXIV Lodestone.
 // @author       Neko Boi Nick
@@ -41,7 +41,6 @@ jQuery(($) => {
     });
   }
 
-  /* eslint-disable-next-line camelcase */
   function modifyGM_configFrame(frame) {
     const previousStyle = $(frame).attr("style");
     const newStyle = [];

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Outlook Mail Additions
-// @namespace    NekoBoiNick.Web.OutlookMail.Additions
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0
 // @description  Additions to Outlook Web Mail
 // @author       Neko Boi Nick

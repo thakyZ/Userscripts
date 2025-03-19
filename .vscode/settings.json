@@ -6,7 +6,7 @@
     "editor.defaultFormatter": "thakyZ.vs-code-prettier-eslint-nekoboinick"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "thakyZ.vs-code-prettier-eslint-nekoboinick"
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -23,6 +23,7 @@
   "[scss]": {
     "editor.defaultFormatter": "stylelint.vscode-stylelint"
   },
+  "cSpell.reportUnknownWords": false,
   "css.validate": false,
   "docwriter.style": "JSDoc",
   "editor.defaultFormatter": null,
@@ -30,7 +31,6 @@
   "editor.formatOnSave": false,
   "editor.formatOnType": false, // required
   "eslint.debug": true,
-  "eslint.experimental.useFlatConfig": true,
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
   "eslint.options": {
@@ -48,18 +48,25 @@
     "htm",
     "!template.html"
   ],
+  "iridium.npm.packageManager": "npm",
   "less.validate": false,
+  "npm.packageManager": "npm",
   "scss.validate": false,
   "stylelint.config": null,
-  "stylelint.enable": true,
-  "stylelint.configFile": ".stylelintrc.js",
-  "stylelint.packageManager": "pnpm",
-  "stylelint.reportNeedlessDisables": true,
   "stylelint.configBasedir": "${workspaceDir}",
+  "stylelint.configFile": "stylelint.config.mjs",
+  "stylelint.enable": true,
+  "stylelint.packageManager": "npm",
+  "stylelint.reportNeedlessDisables": true,
   "stylelint.validate": [
     "css",
     "scss",
-    "less"
-  ],
-  "vs-code-prettier-eslint.prettierLast": true
+    "less",
+    "stylus"
+],
+"debug.javascript.codelens.npmScripts": "all",
+"debug.javascript.enableNetworkView": true,
+"typescript.enablePromptUseWorkspaceTsdk": true,
+"typescript.check.npmIsInstalled": true,
+"typescript.format.enable": true,
 }

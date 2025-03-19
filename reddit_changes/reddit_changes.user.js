@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Reddit Changes
-// @namespace    NekoBoiNick.Web.Reddit.CHanges
+// @namespace    NekoBoiNick.Web
 // @version      1.0.3.1
 // @description  Does changes for reddit.
 // @author       Neko Boi Nick
@@ -34,6 +34,7 @@ this.jQuery(($) => {
     blockElements.push($("a[href='/premium'] + button > span"));
     blockElements.push($("button > span:contains('Create Avatar')"));
     blockElements.push($("a[href*='https://ads.reddit.com'] > *"));
+    blockElements.push($("div[data-test-id=\"frontpage-sidebar\"]"));
 
     for (const [, element] of Object.entries(blockElements)) {
       if ($(element).length > 0) {
@@ -140,7 +141,7 @@ this.jQuery(($) => {
           }
 
           (async function () {
-            const imageLink = await fetchImageLink();
+            const imageLink = await fetchImageLink(Number(index));
             $(element).parents("a").attr("href", imageLink);
             $(element).attr("src", imageLink);
           })();

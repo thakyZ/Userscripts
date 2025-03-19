@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Speed Test Redirect
-// @namespace    NekoBoiNick.Web.Search.SpeedTest
+// @namespace    NekoBoiNick.Web
 // @copyright    2023, Neko Boi Nick
 // @version      1.0.2.1
 // @license      MIT

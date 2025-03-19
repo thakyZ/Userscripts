@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         YouTube MP4 Handler
-// @namespace    NekoBoiNick.Web.YouTube.MP4Handler
+// @namespace    NekoBoiNick.Web
 // @version      1.0.2.1
 // @description  Uses a protocol to make youtube-dl download MP4's.
 // @author       Neko Boi Nick
@@ -52,6 +52,7 @@ this.jQuery(($) => {
           console.log(`ytdl:-x --audio-format m4a --audio-quality 0 --no-color ${window.location.href}`);
           window.open(`ytdl:-x --audio-format m4a --audio-quality 0 --no-color ${window.location.href}`, "_blank");
         });
+
         clearInterval(id);
       }
     }, 100);

@@ -18,6 +18,6 @@ module.exports = function (fileOverrides) {
 
       // Handle this module via the file system.
       return null;
-    }
+    },
   };
 };

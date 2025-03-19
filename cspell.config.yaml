@@ -1,0 +1,57 @@
+---
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
+version: "0.2"
+enabled: true
+name: CSpell Config
+description: A config for UserScripts
+enableGlobDot: true
+allowCompoundWords: true
+useGitignore: true
+showStatus: true
+caseSensitive: false
+usePnP: false
+maxDuplicateProblems: 5
+language: en
+ignoreRandomStrings: true
+minRandomLength: 6
+globRoot: .
+ignorePaths: []
+dictionaryDefinitions: []
+enableFiletypes:
+  - json
+  - javascript
+  - html
+  - markdown
+dictionaries:
+  - en_US
+  - companies
+  - softwareTerms
+  - misc
+  - typescript
+  - node
+  - php
+  - go
+  - python
+  - powershell
+  - html
+  - css
+  - csharp
+  - latex
+  - bash
+  - fonts
+  - filetypes
+  - npm
+words: []
+ignoreWords: []
+includeRegExpList: []
+suggestionNumChanges: 5
+suggestWords: []
+patterns:
+  - name: domain_name
+    description: Used to ignore domain name and tld
+    pattern: /[a-z]+\\?\.[a-z]{2,3}(?:\.[a-z]{2,3})?/
+ignoreRegExpList:
+ - domain_name
+ - /(?<=#)\bwp\w+\b/
+ - /(?<=(?:--|@)(?:wp-)?)darkmysite/
+import: []

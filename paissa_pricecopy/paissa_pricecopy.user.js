@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Paissa Price Copy
-// @namespace    NekoBoiNick.Web.FFXIV.Paissa.Copy
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0
 // @description  Adds link to copy price to clipboard.
 // @author       Neko Boi Nick

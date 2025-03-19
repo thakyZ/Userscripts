@@ -94,7 +94,7 @@ table.navbox {
 table.navbox th {
   background-color: #0d0d0d;
 }
-table[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37, 37, 38); color: white;"]:not(
+table[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37 37 38); color: white;"]:not(
     .wikitable
   )
   table
@@ -103,7 +103,7 @@ table[style="background: none 0% 0% / auto repeat scroll padding-box border-box 
   tr:first-child {
   color: #101010;
 }
-table[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37, 37, 38); color: white;"]:not(
+table[style="background: none 0% 0% / auto repeat scroll padding-box border-box rgb(37 37 38); color: white;"]:not(
     .wikitable
   )
   table

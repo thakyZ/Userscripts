@@ -9,11 +9,9 @@ module.exports = async function (grunt) {
     "library/" + filename,
     "library/invalidFileNameChars.json",
     "library/" + filename.replace(".js", ".min.map"),
-    "library/" + filename.replace(".js", ".min.js")
+    "library/" + filename.replace(".js", ".min.js"),
   ];
-  const cleanPaths = [
-    "library/temp"
-  ];
+  const cleanPaths = ["library/temp"];
 
   // Process files for distribution
   grunt.registerTask("dist", function () {
@@ -25,18 +23,17 @@ module.exports = async function (grunt) {
     const flags = Object.keys(this.flags);
 
     // Combine all output target paths
-    const paths = [].concat(stored, flags).filter((path) => path !== "*");
+    const paths = [].concat(stored, flags).filter(path => path !== "*");
 
     // Ensure the dist files are pure ASCII
     let nonAscii = false;
 
-    distPaths.forEach((filename) => {
+    distPaths.forEach(filename => {
       let i;
       let c;
       let text = fs.readFileSync(filename, "utf8");
 
       // Ensure files use only \n for line endings, not \r\n
-      // eslint-disable-next-line no-control-regex
       if (/\x0d\x0a/.test(text)) {
         grunt.log.writeln(filename + ": Incorrect line endings (\\r\\n)");
         nonAscii = true;
@@ -70,7 +67,7 @@ module.exports = async function (grunt) {
       }
 
       // Optionally copy dist files to other locations
-      paths.forEach((path) => {
+      paths.forEach(path => {
         if (!/\/$/.test(path)) {
           path += "/";
         }
@@ -96,7 +93,7 @@ module.exports = async function (grunt) {
         const flags = Object.keys(this.flags);
 
         // Combine all output target paths
-        return [].concat(stored, flags).filter((path) => path !== "*");
+        return [].concat(stored, flags).filter(path => path !== "*");
       } catch (error) {
         grunt.log.error(error.stack);
       }

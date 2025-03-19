@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Cheat Engine Bypass Website
-// @namespace    NekoBoiNick.CheatEngine.Fixes
+// @namespace    NekoBoiNick.Web
 // @version      1.0.2
 // @description  Bypasses the ad website when downloading cheat engine.
 // @author       NekoBoiNick
@@ -14,21 +14,25 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   "use strict";
 
+  /** @type {String} */
   const skipButtonClass = ".skip_button";
-  const urlCheck = /^http:\/\/ffsrchmgr.com\/\d+\/[a-z0-9+_=]+(\?install_id=.+)?$/i;
+  /** @type {RegExp} */
+  const urlCheck = /^http:\/\/ffsrchmgr\.com\/\d+\/[a-z0-9+_=]+(\?install_id=.+)?$/i;
 
+  /** @type {String} */
   const loc = window.location.href;
 
   if (urlCheck.test(loc)) {
+    /** @type {JQuery<HTMLElement>} */
     const test = $(skipButtonClass);
 
-    if (test.innerHTML.includes("Skip")) {
+    if (test.html().includes("Skip")) {
       setTimeout(() => {
         $(skipButtonClass).click();
       }, 1000);

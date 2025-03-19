@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Adfocus Link Remover
-// @namespace    NekoBoiNick.Global.AdFocusLinkRemover
+// @namespace    NekoBoiNick.Web
 // @version      1.0.3.1
 // @description  Removes AdFocus redirects if possible.
 // @author       Neko Boi Nick
@@ -14,12 +14,13 @@
 // @supportURL   https://github.com/thakyZ/Userscripts/issues
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
-/* global $ */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   "use strict";
 
+  /** @type {JQuery<HTMLElement>} */
   const links = $("a");
   const regex = /^https?:\/\/adfoc.us\/serve\/sitelinks\/\?id=\d*&url=/g;
   for (let i = 0; i < $(links).length; i++) {

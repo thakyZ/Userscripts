@@ -2,7 +2,7 @@
 /* CSpell:ignore tiktak */
 // ==UserScript==
 // @name         TikTok Download Video
-// @namespace    NekoBoiNick.Web.TikTok.SaveVideo
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1.1
 // @description  Adds a download button to TikTok Videos
 // @author       Neko Boi Nick

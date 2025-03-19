@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Final Fantasy XIV Online Store Changes
-// @namespace    NekoBoiNick.Web.FFXIV.OnlineStore.Changes
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1
 // @description  QoL changes for the Final Fantasy XIV Online Store.
 // @author       Neko Boi Nick
@@ -37,14 +37,13 @@ this.jQuery(($) => {
    * de-de: GBP
    * de-de: EUR
    */
-  function getUserDisplayPreferences() {
+  const getUserDisplayPreferences = () => {
     const langHeader = $(".global-header-lang-main");
-    /* CSpell:ignoreRegExp \/\^https:\\\/\\\/store\\\.finalfantasyxiv\\\.com\\\/ffxivstore\\\/\(\\w\{2\}-\\w\{2\}\)\\\/\.\*\/gi */
     const langName = window.location.href.replaceAll(/^https:\/\/store\.finalfantasyxiv\.com\/ffxivstore\/(\w{2}-\w{2})\/.*/gi, "$1");
     const langLabel = langHeader.find(".global-header-lang-label").text().replaceAll(/^\s*/gi, "").replaceAll(/\s*$/gi, "");
 
     return { name: langName, currency: langLabel };
-  }
+  };
 
   let data = {};
 
@@ -77,17 +76,17 @@ this.jQuery(($) => {
   /* Online store product API
    * https://api.store.finalfantasyxiv.com/ffxivcatalog/api/products/?lang=en-us&currency=USD&limit=1000
    */
-  async function getCache() {
+  const getCache = async () => {
     const pref = getUserDisplayPreferences();
     const uri = `https://api.store.finalfantasyxiv.com/ffxivcatalog/api/products/?lang=${pref.name}&currency=${pref.currency}&limit=1000`;
-    let tempString = "";
+    let _string = "";
     try {
       const response = await get(uri);
       try {
         const json = JSON.parse(response);
         const date = new Date().toISOString();
         const cachedData = { date, data: json };
-        tempString = JSON.stringify(cachedData);
+        _string = JSON.stringify(cachedData);
       } catch (error) {
         console.error(`Failed to parse and cache product information at uri ${uri}\n${error}`);
         return undefined;
@@ -97,36 +96,36 @@ this.jQuery(($) => {
       return undefined;
     }
 
-    return tempString;
-  }
+    return _string;
+  };
 
-  async function loadCache() {
-    let tempData = GM_getValue(cacheDataName);
+  const loadCache = async () => {
+    let _data = GM_getValue(cacheDataName);
 
-    if (tempData === undefined) {
+    if (_data === undefined) {
       const value = await getCache();
       GM_setValue(cacheDataName, value);
-      tempData = value;
+      _data = value;
       console.log("Fetched and cached product data");
     }
 
-    let tempJson = JSON.parse(tempData);
+    let _json = JSON.parse(_data);
     const date = new Date();
-    const newDate = date.getTime();
-    const oldDate = new Date(Date.parse(tempJson.date));
-    const newOldDate = oldDate.getTime();
-    const futureDate = new Date(oldDate.setMonth(oldDate.getMonth() + 1)).getTime();
+    const _date = date.getTime();
+    const olddate = new Date(Date.parse(_json.date));
+    const _olddate = olddate.getTime();
+    const futureDate = new Date(olddate.setMonth(olddate.getMonth() + 1)).getTime();
 
-    if (newDate >= newOldDate && newDate >= futureDate) {
+    if (_date >= _olddate && _date >= futureDate) {
       const value = await getCache();
       GM_setValue(cacheDataName, value);
-      tempData = value;
-      tempJson = JSON.parse(tempData);
+      _data = value;
+      _json = JSON.parse(_data);
       console.log("Fetched and cached product data");
     }
 
-    data = tempJson;
-  }
+    data = _json;
+  };
 
   (async () => {
     try {
@@ -137,21 +136,20 @@ this.jQuery(($) => {
     }
   })();
 
-  function getObjectUri(element) {
+  const getObjectUri = element => {
     const thumbUri = $(element).find("div.item-card-image img").attr("src");
-    const item = data.data.products.find((item) => item.thumbnailUrl === thumbUri);
+    const item = data.data.products.find(item => item.thumbnailUrl === thumbUri);
     console.log(data);
     const pref = getUserDisplayPreferences();
     return `https://store.finalfantasyxiv.com/ffxivstore/${pref.name}/product/${item.id}`;
-  }
+  };
 
-  function detectListings() {
+  const detectListings = () => {
     const itemsListed = $(".main .container .panel .content .item-liquid-box .item-liquid-cell");
     if (itemsListed.length > 0) {
       $(itemsListed).each((index, element) => {
-        // CSpell:ignore evented
         if ($(element).data("evented") !== true) {
-          $(element).on("contextmenu", (eventObject) => {
+          $(element).on("contextmenu", eventObject => {
             if (eventObject.shiftKey) {
               const uri = getObjectUri(eventObject.currentTarget);
               GM_openInTab(uri);
@@ -161,16 +159,15 @@ this.jQuery(($) => {
         }
       });
     }
-  }
+  };
 
   const setupMutationObserver = () => {
     const targetNode = $(".main .container .panel .content")[0];
     const config = { attributes: true, childList: true, subtree: true };
 
-    const callback = (mutationList) => {
+    const callback = mutationList => {
       for (const mutation of mutationList) {
         if (mutation.type === "childList") {
-          /* CSpell:ignore container-navi */
           if ($(mutation.target).hasClass("container-navi")) {
             detectListings();
           }

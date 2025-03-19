@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         DotNet Fiddle Keybinds
-// @namespace    NekoBoiNick.Web.DotNetFiddle.Keybinds
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0
 // @description  try to take over the world!
 // @author       NekoBoiNick

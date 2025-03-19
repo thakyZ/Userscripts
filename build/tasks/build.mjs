@@ -18,21 +18,23 @@ module.exports = function (grunt) {
 
   // Catch `// @CODE` and subsequent comment lines event if they don't start
   // in the first column.
-  const wrapper = read("wrapper.js").split(/[\x20\t]*\/\/ @CODE\n(?:[\x20\t]*\/\/[^\n]+\n)*/);
+  const wrapper = read("wrapper.js").split(
+    /[\x20\t]*\/\/ @CODE\n(?:[\x20\t]*\/\/[^\n]+\n)*/,
+  );
 
   const inputFileName = "nekogaming.userscript.lib.js";
   const inputRollupOptions = {
-    input: `${srcFolder}/${inputFileName}`
+    input: `${srcFolder}/${inputFileName}`,
   };
-  const outputRollupOptions = {
 
+  const outputRollupOptions = {
     // The ESM format is not actually used as we strip it during
     // the build; it's just that it doesn't generate any extra
     // wrappers so there's nothing for us to remove.
     format: "esm",
 
     intro: wrapper[0].replace(/\n*$/, ""),
-    outro: wrapper[1].replace(/^\n*/, "")
+    outro: wrapper[1].replace(/^\n*/, ""),
   };
   const fileOverrides = new Map();
 
@@ -49,7 +51,7 @@ module.exports = function (grunt) {
   grunt.registerMultiTask(
     "build",
     "Build jQuery ECMAScript modules, " +
-    "(include/exclude modules with +/- flags), embed date/version",
+      "(include/exclude modules with +/- flags), embed date/version",
     async function () {
       const done = this.async();
 
@@ -65,8 +67,11 @@ module.exports = function (grunt) {
 
         // We'll skip printing the whole big exclusions for a bare `build:*:*:slim` which
         // usually comes from `custom:slim`.
-        const isPureSlim = !!(flags.slim && flags["*"] &&
-          Object.keys(flags).length === 2);
+        const isPureSlim = !!(
+          flags.slim &&
+          flags["*"] &&
+          Object.keys(flags).length === 2
+        );
 
         delete flags["*"];
 
@@ -87,17 +92,15 @@ module.exports = function (grunt) {
           if (list) {
             prepend = prepend ? `${prepend}/` : "";
             list.forEach(function (module) {
-
               // Exclude var modules as well
               if (module === "var") {
                 excludeList(
                   fs.readdirSync(`${srcFolder}/${prepend}${module}`),
-                  prepend + module
+                  prepend + module,
                 );
                 return;
               }
               if (prepend) {
-
                 // Skip if this is not a js file and we're walking files in a dir
                 if (!(module = /([\w-\/]+)\.js$/.exec(module))) {
                   return;
@@ -129,10 +132,8 @@ module.exports = function (grunt) {
           const module = m[2];
 
           if (exclude) {
-
             // Can't exclude certain modules
             if (minimum.indexOf(module) === -1) {
-
               // Add to excluded
               if (excluded.indexOf(module) === -1) {
                 grunt.log.writeln(flag);
@@ -142,14 +143,13 @@ module.exports = function (grunt) {
                 // These are the removable dependencies
                 // It's fine if the directory is not there
                 try {
-
                   // `selector` is a special case as we don't just remove
                   // the module, but we replace it with `selector-native`
                   // which re-uses parts of the `src/selector` folder.
                   if (module !== "selector") {
                     excludeList(
                       fs.readdirSync(`${srcFolder}/${module}`),
-                      module
+                      module,
                     );
                   }
                 } catch (e) {
@@ -168,7 +168,9 @@ module.exports = function (grunt) {
                 }
               }
             } else {
-              grunt.log.error("Module \"" + module + "\" is a minimum requirement.");
+              grunt.log.error(
+                'Module "' + module + '" is a minimum requirement.',
+              );
             }
           } else {
             grunt.log.writeln(flag);
@@ -206,15 +208,19 @@ module.exports = function (grunt) {
 
         // Remove the jQuery export from the entry file, we'll use our own
         // custom wrapper.
-        setOverride(inputRollupOptions.input,
-          read(inputFileName).replace(/\n*export default jQuery;\n*/, "\n"));
+        setOverride(
+          inputRollupOptions.input,
+          read(inputFileName).replace(/\n*export default jQuery;\n*/, "\n"),
+        );
 
         // Replace exports/global with a noop noConflict
         if (excluded.includes("exports/global")) {
           const index = excluded.indexOf("exports/global");
-          setOverride(`${srcFolder}/exports/global.js`,
-            "import jQuery from \"../core.js\";\n\n" +
-            "jQuery.noConflict = function() {};");
+          setOverride(
+            `${srcFolder}/exports/global.js`,
+            'import jQuery from "../core.js";\n\n' +
+              "jQuery.noConflict = function() {};",
+          );
           excluded.splice(index, 1);
         }
 
@@ -227,7 +233,10 @@ module.exports = function (grunt) {
           // Set pkg.version to version with excludes or with the "slim" marker,
           // so minified file picks it up but skip the commit hash the same way
           // it's done for the full build.
-          const commitlessVersion = version.replace(" " + process.env.COMMIT, "");
+          const commitlessVersion = version.replace(
+            " " + process.env.COMMIT,
+            "",
+          );
           grunt.config.set("pkg.version", commitlessVersion);
           grunt.verbose.writeln("Version changed to " + commitlessVersion);
 
@@ -238,34 +247,35 @@ module.exports = function (grunt) {
 
               // The `selector` module is not removed, but replaced
               // with `selector-native`.
-              module === "selector" ? read("selector-native.js") : ""
+              module === "selector" ? read("selector-native.js") : "",
             );
           }
         }
 
         // Turn off opt-in if necessary
         if (!optIn) {
-
           // Remove the default inclusions, they will be overwritten with the explicitly
           // included ones.
           setOverride(inputRollupOptions.input, "");
-
         }
 
         // Import the explicitly included modules.
         if (included.length) {
-          setOverride(inputRollupOptions.input,
-            getOverride(inputRollupOptions.input) + included
-              .map(module => `import "./${module}.js";`)
-              .join("\n"));
+          setOverride(
+            inputRollupOptions.input,
+            getOverride(inputRollupOptions.input) +
+              included.map(module => `import "./${module}.js";`).join("\n"),
+          );
         }
 
         const bundle = await rollup.rollup({
           ...inputRollupOptions,
-          plugins: [rollupFileOverrides(fileOverrides)]
+          plugins: [rollupFileOverrides(fileOverrides)],
         });
 
-        const { output: [{ code }] } = await bundle.generate(outputRollupOptions);
+        const {
+          output: [{ code }],
+        } = await bundle.generate(outputRollupOptions);
 
         const compiledContents = code
 
@@ -276,8 +286,7 @@ module.exports = function (grunt) {
           // yyyy-mm-ddThh:mmZ
           .replace(
             /@DATE/g,
-            (new Date()).toISOString()
-              .replace(/:\d+\.\d+Z$/, "Z")
+            new Date().toISOString().replace(/:\d+\.\d+Z$/, "Z"),
           );
 
         grunt.file.write(name, compiledContents);
@@ -286,7 +295,8 @@ module.exports = function (grunt) {
       } catch (err) {
         done(err);
       }
-    });
+    },
+  );
 
   // Special "alias" task to make custom build creation less grawlix-y
   // Translation example
@@ -306,6 +316,10 @@ module.exports = function (grunt) {
     const modules = args.length ? args[0].split(",").join(":") : "";
 
     grunt.log.writeln("Creating custom build...\n");
-    grunt.task.run(["build:*:*" + (modules ? ":" + modules : ""), "uglify", "dist"]);
+    grunt.task.run([
+      "build:*:*" + (modules ? ":" + modules : ""),
+      "uglify",
+      "dist",
+    ]);
   });
 };

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam Url Filter Bypasser
-// @namespace    NekoBoiNick.Web.Steam.UrlFilterBypass
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0
 // @description  Simple script to bypass steam url filter.
 // @author       Neko Boi Nick

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Ariyala's FFXIV Toolkit Bookmarks
-// @namespace    NekoBoiNick.Web.AriyalaFFXIV.Shortcuts
+// @namespace    NekoBoiNick.Web
 // @version      1.0.3
 // @license      MIT
 // @description  Adds a small box for shortcuts on the Wiki.
@@ -18,8 +18,8 @@
 // @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/ariyala_shortcuts/styles.min.css
 // @resource     items https://cdn.jsdelivr.net/gh/thakyz/Userscripts/ariyala_shortcuts/item.template.html
 // ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
 const jsonConfig = {
   items: [
@@ -32,18 +32,20 @@ const jsonConfig = {
   ],
 };
 
-$(document).ready(() => {
+this.jQuery(($) => {
   GM_addStyle(GM_getResourceText("css"));
 
   const item = [];
 
-  $.each(jsonConfig.items, (_, value) => {
+  for (const value of jsonConfig.items) {
     item.push($.fn.createElement("items", { "#{{id}}": value.id, "#{{icon}}": value.icon, "#{{url}}": value.url, "#{{name}}": value.name }));
-  });
+  }
+
   const templateTray = () => "<div class=\"tray\" id=\"bookmarks\"></div>";
 
   $("#body").append(templateTray());
-  $.each(item, (_, value) => {
+
+  for (const value of item) {
     $("#bookmarks").append(value);
-  });
+  }
 });

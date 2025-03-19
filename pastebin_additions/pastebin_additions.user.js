@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Pastebin Additions
-// @namespace    NekoBoiNick.Web.Pastebin.Additions
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1
 // @description  Adds things to Pastebin
 // @author       Neko Boi Nick

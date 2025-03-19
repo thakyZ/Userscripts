@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         FFLogs To XIV Analysis
-// @namespace    NekoBoiNick.Web.FFLogs.ButtonToXIVAnalysis
+// @namespace    NekoBoiNick.Web
 // @version      1.0.4
 // @description  Adds a button to FFLogs reports to redirect to XIV Analysis
 // @author       Neko Boi Nick
@@ -210,7 +210,7 @@ $(document).ready(() => {
           };
 
           if (whichTab().check && ($("span#filter-source-text").text() === "All Sources" || $("span#filter-source-text").text() === "All Friendlies")) {
-            $("table.summary-table.report.dataTable tbody tr td.main-table-name.report-table-name", $("#summary")).each((_, element) => {
+            $("table.summary-table.report.dataTable tbody tr td.main-table-name.report-table-name", $("#summary")).each(function (_, element) {
               if ($(element).text().includes("Limit Break")) {
                 return;
               }

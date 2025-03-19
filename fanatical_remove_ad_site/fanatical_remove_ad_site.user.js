@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Fanatical Remove Malware Ad Site
-// @namespace    NekoBoiNick.Web.Fanatical.AntiMalware
+// @namespace    NekoBoiNick.Web
 // @version      1.0.2
 // @description  Removes known malware ad site from various sites
 // @author       Neko Boi Nick

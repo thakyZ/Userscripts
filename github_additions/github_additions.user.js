@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Github Additions
-// @namespace    NekoBoiNick.Web.Github.Additions
+// @namespace    NekoBoiNick.Web
 // @version      1.0.2.2
 // @description  try to take over the world!
 // @author       Neko Boi Nick

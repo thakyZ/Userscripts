@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Reddit User Profile Links
-// @namespace    NekoBoiNick.Web.Reddit.UserProfileLinks.
+// @namespace    NekoBoiNick.Web
 // @version      1.0.4.1
 // @description  Adds links to Reddit User Profiles if provided.
 // @author       thakyZ

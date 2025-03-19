@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Etro.gg Changes
-// @namespace    NekoBoiNick.Web.Etro.Changes
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0
 // @description  Various Changes to Etro.gg
 // @author       Neko Boi Nick
@@ -215,7 +215,7 @@ $(document).ready(() => {
     }, 100);
   };
 
-  const runScript = () => {
+  function runScript() {
     if (/https:\/\/etro\.gg\/gearset\/[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/gi.test(window.location.href)) {
       addSortButtons();
     }
@@ -245,19 +245,49 @@ $(document).ready(() => {
         }
       }, 100);
     });
-  };
+  }
 
-  const setupMutationObserver = () => {
+  function elementIsOrContains(element, selector) {
+    const output = [];
+    if (element.is(selector)) {
+      output.push(element);
+    }
+
+    if (element.find(selector)) {
+      output.push(element);
+    }
+
+    return output;
+  }
+
+  function appendAttr(element, name, value) {
+    const attr = element.attr(name);
+    if (attr.includes(value)) {
+      return;
+    }
+
+    element.attr(name, attr + value);
+  }
+
+  function setupMutationObserver() {
     const targetNode = $("body")[0];
     const config = { attributes: true, childList: true, subtree: true };
 
-    const callback = (mutationList, _) => {
+    function callback(mutationList, _) {
       for (const mutation of mutationList) {
         if (mutation.type === "childList" && $(mutation.target).attr("class").includes("mantine-AppShell-main")) {
           runScript();
         }
+
+        for (const [index, element] of elementIsOrContains($(mutation.target), "[id*=\"-ad-\"]")) {
+          if (isNaN(Number(index))) {
+            continue;
+          }
+
+          appendAttr(element, "style", ";display: none !important;");
+        }
       }
-    };
+    }
 
     const observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
@@ -265,7 +295,7 @@ $(document).ready(() => {
     $(document).on("unload", () => {
       observer.disconnect();
     });
-  };
+  }
 
   setupMutationObserver();
 });

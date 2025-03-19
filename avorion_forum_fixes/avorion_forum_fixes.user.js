@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Avorion Forum Fixes
-// @namespace    NekoBoiNick.Avorion.ForumFixes
+// @namespace    NekoBoiNick.Web
 // @version      1.0.2.1
 // @description  Changes some issues with the __old__ Avorion forums.
 // @author       Neko Boi Nick
@@ -14,41 +14,83 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // @require      https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js
 // ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
 // Code to add getting all attributes from elements.
-(function (old) {
-  $.fn.attr = function (...args) {
-    if (args.length === 0) {
-      if (this.length === 0) {
-        return null;
-      }
 
-      const obj = {};
-      $.each(this[0].attributes, function () {
-        if (this.specified) {
-          obj[this.name] = this.value;
-        }
-      });
-      return obj;
-    }
-
-    return old.apply(this, args);
-  };
-})($.fn.attr);
-
-$(document).ready(() => {
+this.jQuery(($) => {
   "use strict";
+  (
+    /**
+     * Override method for JQuery's attr method.
+     * This should return a Record<string, string>
+     * if no parameters are specified.
+     * @param {JQueryAttrFunc} old
+     */
+    function (old) {
+      /**
+       * New attr function override.
+       * @param  {...any} args Arguments from the original method.
+       * @returns {Record<String, String>} New element with applied old attributes
+       */
+      $.fn.attr = function(...args) {
+        if (args.length === 0) {
+          if (this.length === 0) {
+            return null;
+          }
 
+          /** @type {Record<String, String>} */
+          const obj = {};
+          for (const value in this[0].attributes) {
+            if (value.specified) {
+              obj[value.name] = value.value;
+            }
+          }
+
+          return obj;
+        }
+
+        return old.apply(this, args);
+      };
+    }
+  )($.fn.attr);
+
+  /** @type {JQuery<HTMLDivElement>} */
   const newSpoilerTag = $("<div></div>");
-  const oldSpoilerTag = $("#BBCBox_message_button_1_21");
-  $.each($(oldSpoilerTag).attr().items, (key, value) => {
-    $(newSpoilerTag).attr(key, value);
-  });
 
-  $(newSpoilerTag).text("Spoiler");
-  $(newSpoilerTag).css({
+  if (!newSpoilerTag) {
+    return;
+  }
+
+  /** @type {JQuery<HTMLElement>} */
+  const oldSpoilerTag = $("#BBCBox_message_button_1_21");
+
+  if (!oldSpoilerTag) {
+    return;
+  }
+
+  /** @type {Iterable<Record<string, string>>} */
+  const oldSpoilerTagAttrs = oldSpoilerTag.attr();
+
+  if (!oldSpoilerTagAttrs) {
+    return;
+  }
+
+  /** @type {Record<string, string>} */
+  const oldSpoilerTagAttributes = oldSpoilerTag.attr().items;
+
+  if (!oldSpoilerTagAttributes) {
+    return;
+  }
+
+  for (const [key, value] of Object.entries(oldSpoilerTagAttributes)) {
+    newSpoilerTag.attr(key, value);
+  }
+
+  newSpoilerTag.text("Spoiler");
+
+  newSpoilerTag.css({
     backgroundSize: "cover",
     backgroundColor: "#E4E4E4 !important",
     color: "#000 !important",
@@ -59,16 +101,24 @@ $(document).ready(() => {
     minHeight: "22px !important",
     display: "inline-block !important",
   });
-  $(newSpoilerTag).on("mouseover", () => {
-    $(this).css("background-image");
-    $(this).css({ backgroundColor: "#58BE5E !important" });
-    this.instanceRef.handleButtonMouseOver(this);
-  });
-  $(newSpoilerTag).on("mouseover", () => {
-    $(this).css("background-image");
-    $(this).css({ backgroundColor: "#E4E4E4 !important" });
-    this.instanceRef.handleButtonMouseOver(this);
+
+  newSpoilerTag.on("mouseover", (event) => {
+    /** @type {JQuery<HTMLDivElement>} */
+    const target = $(event.target);
+
+    target.css("background-image");
+    target.css({ backgroundColor: "#58BE5E !important" });
+    target[0].instanceRef.handleButtonMouseOver(target);
   });
 
-  $(oldSpoilerTag).replaceWith(newSpoilerTag);
+  $(newSpoilerTag).on("mouseover", (event) => {
+    /** @type {JQuery<HTMLDivElement>} */
+    const target = $(event.target);
+
+    target.css("background-image");
+    target.css({ backgroundColor: "#E4E4E4 !important" });
+    target[0].instanceRef.handleButtonMouseOver(target);
+  });
+
+  oldSpoilerTag.replaceWith(newSpoilerTag);
 });

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Piccrew Translate
-// @namespace    NekoBoiNick.Web.Piccrew.Translate
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0
 // @description  Translates Piccrew's site to english
 // @author       Neko Boi Nick (thakyZ)
@@ -15,15 +15,15 @@
 // @homepageURL  https://github.com/thakyZ/Userscripts
 // ==/UserScript==
 // The @grant directives are needed to restore the proper sandbox.
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   "use strict";
   const debug = true;
   $(document).ready(() => {
-    ($ => {
-      $.fn.detectOriginalText = $class => {
+    (($) => {
+      $.fn.detectOriginalText = ($class) => {
         if (debug) {
           console.log("detectedStrings : " + $($class).length);
         }

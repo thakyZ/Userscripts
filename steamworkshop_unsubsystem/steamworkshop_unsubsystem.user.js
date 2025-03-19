@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Steam Workshop Unsubscribe Systematically
-// @namespace    NekoBoiNick.Web.Steam.Workshop.UnSubSystematically.
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0.1
 // @description  Adds a new button to unsubscribe from a collection systematically instead of all at once.
 // @author       Neko Boi Nick

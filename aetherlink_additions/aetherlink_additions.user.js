@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Aether Link Additions
-// @namespace    NekoBoiNick.Web.FFXIV.Aetherlink.Additions
+// @namespace    NekoBoiNick.Web
 // @version      1.0.2
 // @description  Adds new features to Aether Link.
 // @author       Neko Boi Nick

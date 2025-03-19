@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         Pterodactyl Wiki Changes
-// @namespace    NekoBoiNick.Web.Pterodactyl.Wiki.Changes
+// @namespace    NekoBoiNick.Web
 // @version      1.0.4.1
 // @description  Changes things on the Pterodactyl wiki
 // @author       Neko Boi Nick
 // @match        https://pterodactyl.io/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=pterodactyl.io
 // @license      MIT
+// @grant        unsafeWindow
 // @grant        GM_setClipboard
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
@@ -53,11 +54,21 @@ this.jQuery(($) => {
   function addCopyButtons(codeBox) {
     const code = $(codeBox).html().split("\n");
     const codes = [];
-    for (const element of code) {
-      let coded = element.replaceAll(/<span class="token comment">.*<\/span>/gi, "");
-      coded = coded.replaceAll(/<span class="token(?: [\w-]+){1,2}"><span class="token(?: [\w-]+){1,2}">(.*?)(?:<\/span>){1,2}/gi, "$1");
-      coded = coded.replaceAll(/<span class="token(?: [\w-]+){1,2}">(.+?)((<\/span>){1,2}|<span class="token(?: [\w-]+){1,2}">)/gi, "$1");
-      codes.push(coded.trim());
+    for (const line of code) {
+      if (typeof line !== "string" || line === "") {
+        codes.push("");
+        continue;
+      }
+
+      const parsed = $(`<div>${line}</div>`);
+      parsed.find("span.comment").remove();
+
+      if (typeof parsed.text() !== "string" || parsed.text() === "") {
+        codes.push("");
+        continue;
+      }
+
+      codes.push(parsed.text().trim());
     }
 
     if (codes.slice(-1)[0] === "") {
@@ -82,7 +93,6 @@ this.jQuery(($) => {
 
     function callback(mutationList) {
       for (const mutation of mutationList) {
-        console.log(mutation);
         if (mutation.type === "childList") {
           if ($(mutation.target).hasClass("theme-container") || $(mutation.target).hasClass("global-ui") || $(mutation.target).hasClass("page")) {
             detectScriptBoxes();
@@ -93,6 +103,12 @@ this.jQuery(($) => {
 
     const observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
+
+    if (typeof unsafeWindow.nbn !== "object") {
+      unsafeWindow.nbn = {};
+    }
+
+    unsafeWindow.nbn.$ = $;
 
     $(document).on("unload", () => {
       observer.disconnect();

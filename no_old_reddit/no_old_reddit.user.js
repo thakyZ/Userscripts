@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         No Old Reddit
-// @namespace    NekoBoiNick.Reddit.NoOld
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0
 // @description  Changes links that redirect to old reddit so that they use the new design
 // @author       Neko Boi Nick

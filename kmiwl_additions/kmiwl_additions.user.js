@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Kmiwl Additions
-// @namespace    NekoBoiNick.Web.Kmiwl.Additions
+// @namespace    NekoBoiNick.Web
 // @version      1.0.1.1
 // @description  Additional features added to Kmiwl's Website
 // @author       Neko Boi Nick

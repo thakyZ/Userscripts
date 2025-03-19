@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "DOM",
+      "ES2022",
+      "ES2021",
+      // "DOM.AsyncIterable",
+      // "DOM.Iterable",
+      // "ES2015",
+      // "ES2016",
+      // "ES6",
+      // "ES2017",
+    ],
+    "module": "CommonJS",
+    "target": "ES2023",
+    "baseUrl": ".",
+    "checkJs": true,
+  },
+  "typeAcquisition": {
+    "include": ["jquery"],
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+  ]
+}

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Imgur Broken Album Redirect Script
-// @namespace    NekoBoiNick.Imgur.BrokenAlbum
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0.1
 // @description  Redirects the favorited albums to a working link
 // @author       Neko Boi Nick

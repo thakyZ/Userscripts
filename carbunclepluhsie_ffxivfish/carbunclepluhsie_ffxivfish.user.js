@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Fish Tracking App
-// @namespace    NekoBoiNick.Web.CarbunclePluhsie.FFXIVFish
+// @namespace    NekoBoiNick.Web
 // @version      1.0.3
 // @description  Syncs Fish Tracking to the browser's local storage.
 // @author       Neko Boi Nick

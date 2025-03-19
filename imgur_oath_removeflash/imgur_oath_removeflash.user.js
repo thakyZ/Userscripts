@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Imgur OAuth 2.0 Remove Flash Content
-// @namespace    NekoBoiNick.Web.Imgur.OAuth.2-0.RemoveFlash
+// @namespace    NekoBoiNick.Web
 // @version      1.0.0
 // @description  Removes old flash from the Imgur OAuth 2.0 Page
 // @author       Neko Boi Nick
