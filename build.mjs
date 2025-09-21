@@ -12,7 +12,8 @@ import { sassPlugin } from "esbuild-sass-plugin";
 import { lessLoader } from "esbuild-plugin-less";
 import postcss from "postcss";
 import postcssPresetEnv from "postcss-preset-env";
-import autoprefixer from "autoprefixer";
+// DISABLED: import autoprefixer from "autoprefixer";
+const autoprefixer = require("autoprefixer");
 // DISABLED: const autoprefixerLess = require("less-plugin-autoprefix");
 // DISABLED: const postcssStyl = require("postcss-styl");
 // DISABLED: const postcssLessEngine = require("postcss-less-engine");
@@ -97,8 +98,6 @@ const stylusLoader = require("esbuild-stylus-loader");
           }
         }),
         esbuildPostCss({
-          // TODO: fix typing on https://github.com/thakyz/esbuild-plugin-postcss.git
-          // @ts-expect-error Broken typing
           plugins: [
             autoprefixer,
           ],
@@ -110,7 +109,8 @@ const stylusLoader = require("esbuild-stylus-loader");
           allowInlineConfig: true,
           overrideConfigFile: path.join(__dirname, "eslint.config.mjs"),
         }),
-        // DISABLED: esbuildRecurseClonePlugin({}),
+        // DISABLED:
+        // esbuildRecurseClonePlugin({}),
         /** @type {import("esbuild").Plugin} */
         stylusLoader({
           stylusOptions: {

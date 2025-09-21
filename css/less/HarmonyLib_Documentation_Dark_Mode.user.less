@@ -1,0 +1,3083 @@
+/* ==UserStyle==
+    @name           HarmonyLib Documentation Dark Mode
+    @namespace      NekoBoiNick.Web.HarmonyLib.Documentation.Dark
+    @version        1.0.0
+    @description    A dark theme for the HarmonyLib Documentation.
+    @author         Neko Boi Nick
+    @preprocessor   less
+    ==/UserStyle== */
+/* stylelint-disable color-hex-length, alpha-value-notation ---- Disabled */
+@document url-prefix("https://harmony.pardeike.net/") {
+  @media (prefers-color-scheme: dark) {
+    /* !Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css; */
+    :root {
+      --body-foreg: #eeeeee; /* #333333; */
+      --body-backg: #000000; /* #ffffff; */
+      --forg-muted: #777777; /* #777777; */
+      --rul-border: #333333; /* #eeeeee; */
+      --nav-border: #212121; /* #e7e7e7; */
+      --pre-border: #999999; /* #999999; */
+      --cart-bordr: #000000; /* #000000; */
+      --tabl-bordr: #444444; /* #dddddd; */
+      --anchor-frg: #337ab7; /* #337ab7; */
+      --a-fg-hover: #23527c; /* #23527c; */
+      --mark-bkgrd: #fcf8e3; /* #fcf8e3; */
+      --uknown-000: #286090; /* #286090; */
+      --uknown-001: #3c763d; /* #3c763d; */
+      --uknown-002: #2b542c; /* #2b542c; */
+      --uknown-003: #31708f; /* #31708f; */
+      --uknown-004: #245269; /* #245269; */
+      --uknown-005: #8a6d3b; /* #8a6d3b; */
+      --uknown-006: #66512c; /* #66512c; */
+      --uknown-007: #a94442; /* #a94442; */
+      --uknown-008: #843534; /* #843534; */
+      --uknown-009: #dff0d8; /* #dff0d8; */
+      --uknown-010: #c1e2b3; /* #c1e2b3; */
+      --uknown-011: #d9edf7; /* #d9edf7; */
+      --uknown-012: #afd9ee; /* #afd9ee; */
+      --uknown-013: #f7ecb5; /* #f7ecb5; */
+      --uknown-014: #f2dede; /* #f2dede; */
+      --uknown-015: #e4b9b9; /* #e4b9b9; */
+      --uknown-016: #c7254e; /* #c7254e; */
+      --uknown-017: #f9f2f4; /* #f9f2f4; */
+      --uknown-019: #333333; /* #f5f5f5; */
+      --uknown-020: #cccccc; /* #cccccc; */
+      --uknown-021: #f9f9f9; /* #f9f9f9; */
+      --uknown-022: #e8e8e8; /* #e8e8e8; */
+      --uknown-023: #d0e9c6; /* #d0e9c6; */
+      --uknown-024: #c4e3f3; /* #c4e3f3; */
+      --uknown-025: #faf2cc; /* #faf2cc; */
+      --uknown-026: #ebcccc; /* #ebcccc; */
+      --uknown-027: #e5e5e5; /* #e5e5e5; */
+      --uknown-028: #555555; /* #555555; */
+      --uknown-030: #66afe9; /* #66afe9; */
+      --uknown-032: #67b168; /* #67b168; */
+      --uknown-033: #c0a16b; /* #c0a16b; */
+      --uknown-034: #ce8483; /* #ce8483; */
+      --uknown-035: #737373; /* #737373; */
+      --uknown-037: #e6e6e6; /* #e6e6e6; */
+      --uknown-038: #8c8c8c; /* #8c8c8c; */
+      --uknown-039: #adadad; /* #adadad; */
+      --uknown-040: #d4d4d4; /* #d4d4d4; */
+      --uknown-041: #2e6da4; /* #2e6da4; */
+      --uknown-042: #122b40; /* #122b40; */
+      --uknown-043: #204d74; /* #204d74; */
+      --uknown-044: #5cb85c; /* #5cb85c; */
+      --uknown-045: #4cae4c; /* #4cae4c; */
+      --uknown-046: #449d44; /* #449d44; */
+      --uknown-047: #255625; /* #255625; */
+      --uknown-048: #398439; /* #398439; */
+      --uknown-049: #5bc0de; /* #5bc0de; */
+      --uknown-050: #46b8da; /* #46b8da; */
+      --uknown-051: #31b0d5; /* #31b0d5; */
+      --uknown-052: #1b6d85; /* #1b6d85; */
+      --uknown-053: #269abc; /* #269abc; */
+      --uknown-054: #f0ad4e; /* #f0ad4e; */
+      --uknown-055: #eea236; /* #eea236; */
+      --uknown-056: #ec971f; /* #ec971f; */
+      --uknown-057: #985f0d; /* #985f0d; */
+      --uknown-058: #d58512; /* #d58512; */
+      --uknown-059: #d9534f; /* #d9534f; */
+      --uknown-060: #d43f3a; /* #d43f3a; */
+      --uknown-061: #c9302c; /* #c9302c; */
+      --uknown-062: #761c19; /* #761c19; */
+      --uknown-063: #ac2925; /* #ac2925; */
+      --uknown-066: #262626; /* #262626; */
+      --uknown-068: #5e5e5e; /* #5e5e5e; */
+      --uknown-069: #888888; /* #888888; */
+      --uknown-070: #222222; /* #222222; */
+      --uknown-071: #080808; /* #080808; */
+      --uknown-072: #9d9d9d; /* #9d9d9d; */
+      --uknown-073: #444444; /* #444444; */
+      --uknown-074: #101010; /* #101010; */
+      --uknown-075: #d5d5d5; /* #d5d5d5; */
+      --uknown-076: #d6e9c6; /* #d6e9c6; */
+      --uknown-077: #c9e2b3; /* #c9e2b3; */
+      --uknown-078: #bce8f1; /* #bce8f1; */
+      --uknown-079: #a6e1ec; /* #a6e1ec; */
+      --uknown-080: #faebcc; /* #faebcc; */
+      --uknown-081: #f7e1b5; /* #f7e1b5; */
+      --uknown-082: #ebccd1; /* #ebccd1; */
+      --uknown-083: #e4b9c0; /* #e4b9c0; */
+      --uknown-086: #c7ddef; /* #c7ddef; */
+      --uknown-088: #e3e3e3; /* #e3e3e3; */
+      --uknown-091: #f7f7f7; /* #f7f7f7; */
+      --uknown-092: #ebebeb; /* #ebebeb; */
+      --uknown-095: #969896; /* #969896; */
+      --uknown-096: #df5000; /* #df5000; */
+      --uknown-097: #a71d5d; /* #a71d5d; */
+      --uknown-098: #0086b3; /* #0086b3; */
+      --uknown-099: #63a35c; /* #63a35c; */
+      --uknown-100: #795da3; /* #795da3; */
+      --uknown-101: #55a532; /* #55a532; */
+      --uknown-102: #eaffea; /* #eaffea; */
+      --uknown-103: #bd2c00; /* #bd2c00; */
+      --uknown-104: #ffecec; /* #ffecec; */
+      --uknown-105: #111111; /* #111111; */
+      --uknown-107: #009933; /* #009933; */
+      --uknown-108: #47a7a0; /* #47a7a0; */
+      --uknown-109: #212121; /* #f1f1f1; */
+      --uknown-110: #666666; /* #666666; */
+      --uknown-111: #767676; /* #767676; */
+      --uknown-112: #3b8bd0; /* #3b8bd0; */
+      --uknown-113: #717374; /* #717374; */
+      --uknown-114: #f1f2f3; /* #f1f2f3; */
+      --uknown-115: #569cd6; /* #569cd6; */
+      --uknown-116: #d69d85; /* #d69d85; */
+      --uknown-117: #ffffcc; /* #ffffcc; */
+      --uknown-118: #6e6e6e; /* #6e6e6e; */
+      --uknown-119: #0050c5; /* #0050c5; */
+      --uknown-120: #e0e0e0; /* #e0e0e0; */
+      --uknown-121: #a2a2a2; /* #e0e0e0; */
+      --uknown-018: rgb(  0   0   0 / .2500); /* rgba(  0,   0,   0, .2500); */
+      --uknown-029: rgb(  0   0   0 / .0750); /* rgba(  0,   0,   0, .0750); */
+      --uknown-031: rgb(102 175 233 / .6000); /* rgba(102, 175, 233, .6000); */
+      --uknown-036: rgb(  0   0   0 / .1250); /* rgba(  0,   0,   0, .1250); */
+      --uknown-064: rgb(  0   0   0 / .1500); /* rgba(  0,   0,   0, .1500); */
+      --uknown-065: rgb(  0   0   0 / .1750); /* rgba(  0,   0,   0, .1750); */
+      --uknown-067: rgb(255 255 255 / .1000); /* rgba(255, 255, 255, .1000); */
+      --uknown-084: rgb(  0   0   0 / .1000); /* rgba(  0,   0,   0, .1000); */
+      --uknown-085: rgb(255 255 255 / .1500); /* rgba(255, 255, 255, .1500); */
+      --uknown-087: rgb(  0   0   0 / .0500); /* rgba(  0,   0,   0, .0500); */
+      --uknown-089: rgb(  0   0   0 / .2000); /* rgba(  0,   0,   0, .2000); */
+      --uknown-090: rgb(  0   0   0 / .5000); /* rgba(  0,   0,   0, .5000); */
+      --uknown-093: rgb(  0   0   0 / .6000); /* rgba(  0,   0,   0, .6000); */
+      --uknown-094: rgb(  0   0   0 / .0001); /* rgba(  0,   0,   0, .0001); */
+      --uknown-106: rgb( 25  25  25 / .5000); /* rgba( 25,  25,  25, .5000); */
+    }
+
+    .badge {
+      color: var(--body-backg);
+      background-color: var(--forg-muted);
+    }
+
+    .btn-primary {
+      color: var(--body-backg);
+      background-color: var(--anchor-frg);
+      border-color: var(--uknown-041);
+
+      &:focus, &.focus {
+        color: var(--body-backg);
+        background-color: var(--uknown-00);
+        border-color: var(--uknown-042);
+      }
+
+      &:hover {
+        color: var(--body-backg);
+        background-color: var(--uknown-00);
+        border-color: var(--uknown-043);
+      }
+
+      &:active, &.active {
+        color: var(--body-backg);
+        background-color: var(--uknown-00);
+        border-color: var(--uknown-043);
+
+        &:focus, &:hover, &.focus {
+          color: var(--body-backg);
+          background-color: var(--uknown-043);
+          border-color: var(--uknown-042);
+        }
+
+        &:hover {
+          color: var(--body-backg);
+          background-color: var(--uknown-043);
+          border-color: var(--uknown-042);
+        }
+      }
+
+      .badge {
+        color: var(--anchor-frg);
+        background-color: var(--body-backg);
+      }
+
+      &.disabled, &[disabled] {
+        &:focus, &:hover, &.focus {
+          background-color: var(--anchor-frg);
+          border-color: var(--uknown-041);
+        }
+      }
+    }
+
+    .btn-success {
+      color: var(--body-backg);
+      background-color: var(--uknown-044);
+      border-color: var(--uknown-045);
+
+      &:focus, &.focus {
+        color: var(--body-backg);
+        background-color: var(--uknown-046);
+        border-color: var(--uknown-047);
+      }
+
+      &:hover {
+        color: var(--body-backg);
+        background-color: var(--uknown-046);
+        border-color: var(--uknown-048);
+      }
+
+      &:active, &.active {
+        color: var(--body-backg);
+        background-color: var(--uknown-046);
+        border-color: var(--uknown-048);
+
+        &:focus, &:hover, &.focus {
+          color: var(--body-backg);
+          background-color: var(--uknown-048);
+          border-color: var(--uknown-047);
+        }
+      }
+
+      .badge {
+        color: var(--uknown-044);
+        background-color: var(--body-backg);
+      }
+
+      &.disabled, &[disabled] {
+        &:focus, &:hover, &.focus {
+          background-color: var(--uknown-044);
+          border-color: var(--uknown-045);
+        }
+      }
+    }
+
+    .btn-info {
+      color: var(--body-backg);
+      background-color: var(--uknown-049);
+      border-color: var(--uknown-050);
+
+      &:focus, &.focus {
+        color: var(--body-backg);
+        background-color: var(--uknown-051);
+        border-color: var(--uknown-052);
+      }
+
+      &:hover {
+        color: var(--body-backg);
+        background-color: var(--uknown-051);
+        border-color: var(--uknown-053);
+      }
+
+      &:active, &.active {
+        color: var(--body-backg);
+        background-color: var(--uknown-051);
+        border-color: var(--uknown-053);
+
+        &:focus, &:hover, &.focus {
+          color: var(--body-backg);
+          background-color: var(--uknown-053);
+          border-color: var(--uknown-052);
+        }
+      }
+
+      .badge {
+        color: var(--uknown-049);
+        background-color: var(--body-backg);
+      }
+
+      &.disabled, &[disabled] {
+        &:focus, &:hover, &.focus {
+          background-color: var(--uknown-049);
+          border-color: var(--uknown-050);
+        }
+      }
+    }
+
+    .btn-warning {
+      color: var(--body-backg);
+      background-color: var(--uknown-054);
+      border-color: var(--uknown-055);
+
+      &:focus, &.focus {
+        color: var(--body-backg);
+        background-color: var(--uknown-056);
+        border-color: var(--uknown-057);
+      }
+
+      &:hover {
+        color: var(--body-backg);
+        background-color: var(--uknown-056);
+        border-color: var(--uknown-058);
+      }
+
+      &:active, &.active {
+        color: var(--body-backg);
+        background-color: var(--uknown-056);
+        border-color: var(--uknown-058);
+
+        &:focus, &:hover, &.focus {
+          color: var(--body-backg);
+          background-color: var(--uknown-058);
+          border-color: var(--uknown-057);
+        }
+      }
+
+      .badge {
+        color: var(--uknown-054);
+        background-color: var(--body-backg);
+      }
+
+      &.disabled, &[disabled] {
+        &:focus, &:hover, &.focus {
+          background-color: var(--uknown-054);
+          border-color: var(--uknown-055);
+        }
+      }
+    }
+
+    .btn-danger {
+      color: var(--body-backg);
+      background-color: var(--uknown-059);
+      border-color: var(--uknown-060);
+
+      &:focus, &.focus {
+        color: var(--body-backg);
+        background-color: var(--uknown-061);
+        border-color: var(--uknown-062);
+      }
+
+      &:hover {
+        color: var(--body-backg);
+        background-color: var(--uknown-061);
+        border-color: var(--uknown-063);
+      }
+
+      &:active {
+        color: var(--body-backg);
+        background-color: var(--uknown-061);
+        border-color: var(--uknown-063);
+
+        &:focus, &:hover, &.focus {
+          color: var(--body-backg);
+          background-color: var(--uknown-063);
+          border-color: var(--uknown-062);
+        }
+      }
+
+      .badge {
+        color: var(--uknown-059);
+        background-color: var(--body-backg);
+      }
+
+      &.disabled, &[disabled] {
+        &:focus, &:hover, &.focus {
+          background-color: var(--uknown-059);
+          border-color: var(--uknown-060);
+        }
+      }
+    }
+
+    .btn-link {
+      color: var(--anchor-frg);
+
+      &:focus, &:hover {
+        color: var(--a-fg-hover);
+      }
+
+      &.disabled, &[disabled] {
+        &:focus, &:hover, &.focus {
+          color: var(--forg-muted);
+        }
+      }
+    }
+
+    .btn-default {
+      color: var(--body-foreg);
+      background-color: var(--body-backg);
+      border-color: var(--uknown-020);
+
+      &:focus, &:hover, &.focus {
+        color: var(--body-foreg);
+        background-color: var(--uknown-037);
+        border-color: var(--uknown-038);
+      }
+
+      &:active, &.active {
+        color: var(--body-foreg);
+        background-color: var(--uknown-037);
+        border-color: var(--uknown-039);
+
+        &:focus, &:hover, &.focus {
+          color: var(--body-foreg);
+          background-color: var(--uknown-040);
+          border-color: var(--uknown-038);
+        }
+      }
+
+      .badge {
+        color: var(--body-backg);
+        background-color: var(--body-foreg);
+      }
+    }
+
+    .text-primary {
+      color: var(--anchor-frg);
+    }
+
+    .text-success {
+      color: var(--uknown-01);
+    }
+
+    .text-info {
+      color: var(--uknown-03);
+    }
+
+    .text-warning {
+      color: var(--uknown-05);
+    }
+
+    .text-danger {
+      color: var(--uknown-07);
+    }
+
+    .bg-primary {
+      color: var(--body-backg);
+      background-color: var(--anchor-frg);
+    }
+
+    .bg-success {
+      background-color: var(--uknown-09);
+    }
+
+    .bg-info {
+      background-color: var(--uknown-011);
+    }
+
+    .bg-warning {
+      background-color: var(--mark-bkgrd);
+    }
+
+    .bg-danger {
+      background-color: var(--uknown-014);
+    }
+
+    code {
+      color: var(--uknown-113);
+      background-color: var(--uknown-114);
+    }
+
+    .label {
+      color: var(--body-backg);
+    }
+
+    .thumbnail {
+      background-color: var(--body-backg);
+      border-color: var(--tabl-bordr);
+
+      .caption {
+        color: var(--body-foreg);
+      }
+
+      .active {
+        border-color: var(--anchor-frg);
+      }
+    }
+
+    .list-group-item {
+      background-color: var(--body-backg);
+      border-color: var(--tabl-bordr);
+
+      &.disabled {
+        color: var(--forg-muted);
+        background-color: var(--rul-border);
+
+        &:focus, &:hover, .list-group-item-text {
+          color: var(--forg-muted);
+        }
+
+        &:focus, &:hover {
+          background-color: var(--rul-border);
+
+          .list-group-item-text {
+            color: var(--forg-muted);
+          }
+        }
+      }
+
+      &.active {
+        color: var(--body-backg);
+        background-color: var(--anchor-frg);
+        border-color: var(--anchor-frg);
+
+        > .badge {
+          color: var(--anchor-frg);
+          background-color: var(--body-backg);
+        }
+
+        &:focus, &:hover {
+          color: var(--body-backg);
+          background-color: var(--anchor-frg);
+          border-color: var(--anchor-frg);
+
+          .list-group-item-text {
+            color: var(--uknown-086);
+          }
+        }
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        .list-group-item-text {
+          color: var(--uknown-086);
+        }
+      }
+    }
+
+    a {
+      color: var(--anchor-frg);
+
+      &:focus, &:hover, code {
+        color: var(--a-fg-hover);
+      }
+
+      code {
+        background-color: var(--uknown-114);
+      }
+
+      .text-primary {
+        &:focus, &:hover {
+          color: var(--uknown-00);
+        }
+      }
+
+      .text-success {
+        &:focus, &:hover {
+          color: var(--uknown-02);
+        }
+      }
+
+      .text-info {
+        &:focus, &:hover {
+          color: var(--uknown-04);
+        }
+      }
+
+      .text-warning {
+        &:focus, &:hover {
+          color: var(--uknown-06);
+        }
+      }
+
+      .text-danger {
+        &:focus, &:hover {
+          color: var(--uknown-08);
+        }
+      }
+
+      .bg-primary {
+        &:focus, &:hover {
+          background-color: var(--uknown-00);
+        }
+      }
+
+      .bg-success {
+        &:focus, &:hover {
+          background-color: var(--uknown-010);
+        }
+      }
+
+      .bg-info {
+        &:focus, &:hover {
+          background-color: var(--uknown-012);
+        }
+      }
+
+      .bg-warning {
+        &:focus, &:hover {
+          background-color: var(--uknown-013);
+        }
+      }
+
+      .bg-danger {
+        &:focus, &:hover {
+          background-color: var(--uknown-015);
+        }
+      }
+
+      .disable {
+        color: var(--cart-bordr);
+
+        &:hover {
+          color: var(--cart-bordr);
+        }
+      }
+
+      .label, .badge {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        &:focus, &:hover {
+          color: var(--body-backg);
+        }
+      }
+
+      .thumbnail {
+        &:focus, &:hover {
+          border-color: var(--anchor-frg);
+        }
+      }
+
+      .list-group-item {
+        color: var(--uknown-028);
+
+        .list-group-item-heading {
+          color: var(--body-foreg);
+        }
+
+        &:focus, &:hover {
+          color: var(--uknown-028);
+          background-color: var(--uknown-019);
+        }
+      }
+
+      .list-group-item-success {
+        color: var(--uknown-01);
+
+        &:focus, &:hover {
+          color: var(--uknown-01);
+          background-color: var(--uknown-023);
+        }
+
+        &.active {
+          color: var(--body-backg);
+          background-color: var(--uknown-01);
+          border-color: var(--uknown-01);
+
+          &:focus, &:hover {
+            color: var(--body-backg);
+            background-color: var(--uknown-01);
+            border-color: var(--uknown-01);
+          }
+        }
+      }
+
+      .list-group-item-info {
+        color: var(--uknown-03);
+
+        &:focus, &:hover {
+          color: var(--uknown-03);
+          background-color: var(--uknown-024);
+        }
+
+        &.active {
+          color: var(--body-backg);
+          background-color: var(--uknown-03);
+          border-color: var(--uknown-03);
+
+          &:focus, &:hover {
+            color: var(--body-backg);
+            background-color: var(--uknown-03);
+            border-color: var(--uknown-03);
+          }
+        }
+      }
+
+      .list-group-item-warning {
+        color: var(--uknown-05);
+
+        &:focus, &:hover {
+          color: var(--uknown-05);
+          background-color: var(--uknown-025);
+        }
+
+        &.active {
+          color: var(--body-backg);
+          background-color: var(--uknown-05);
+          border-color: var(--uknown-05);
+
+          &:focus, &:hover {
+            color: var(--body-backg);
+            background-color: var(--uknown-05);
+            border-color: var(--uknown-05);
+          }
+        }
+      }
+
+      .list-group-item-danger {
+        color: var(--uknown-07);
+
+        &:focus, &:hover {
+          color: var(--uknown-07);
+          background-color: var(--uknown-026);
+        }
+
+        &.active {
+          color: var(--body-backg);
+          background-color: var(--uknown-07);
+          border-color: var(--uknown-07);
+
+          &:focus, &:hover {
+            color: var(--body-backg);
+            background-color: var(--uknown-07);
+            border-color: var(--uknown-07);
+          }
+        }
+      }
+    }
+
+    .pager {
+      li {
+        > a {
+          background-color: var(--body-backg);
+          border-color: var(--tabl-bordr);
+
+          &:focus, &:hover {
+            background-color: var(--rul-border);
+          }
+        }
+
+        > span {
+          background-color: var(--body-backg);
+          border-color: var(--tabl-bordr);
+        }
+      }
+
+      .disabled {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > a {
+          color: var(--forg-muted);
+          background-color: var(--body-backg);
+
+          &:focus, &:hover {
+            color: var(--forg-muted);
+            background-color: var(--body-backg);
+          }
+        }
+
+        > span {
+          color: var(--forg-muted);
+          background-color: var(--body-backg);
+        }
+      }
+    }
+
+    .toc {
+      background-color: var(--uknown-109);
+
+      .nav {
+        > li {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            color: var(--uknown-110);
+
+            &:hover, &:focus {
+              color: var(--cart-bordr);
+            }
+          }
+
+          .active {
+            > a {
+              color: var(--a-fg-hover);
+
+              &:hover, &:focus {
+                color: var(--a-fg-hover);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .navbar-collapse {
+      -webkit-box-shadow-color: var(--uknown-067);
+      box-shadow: var(--uknown-067);
+    }
+
+    .navbar-form {
+      -webkit-box-shadow-color: var(--uknown-067), var(--uknown-067);
+      box-shadow: var(--uknown-067), var(--uknown-067);
+    }
+
+    .navbar-default {
+      background-color: var(--rul-border);
+      border-color: var(--nav-border);
+
+      .navbar-brand {
+        color: var(--forg-muted);
+
+        &:focus, &:hover {
+          color: var(--uknown-068);
+        }
+      }
+
+      .navbar-nav {
+        > li {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            color: var(--forg-muted);
+
+            /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+            &:focus, &:hover {
+              color: var(--body-foreg);
+            }
+          }
+        }
+
+        > .active, > .open {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            color: var(--uknown-028);
+            background-color: var(--nav-border);
+
+            /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+            &:focus, &:hover {
+              color: var(--uknown-028);
+              background-color: var(--nav-border);
+            }
+          }
+        }
+
+        > .disabled {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            color: var(--uknown-020);
+
+            /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+            &:focus, &:hover {
+              color: var(--uknown-020);
+            }
+          }
+        }
+      }
+
+      .navbar-text {
+        color: var(--forg-muted);
+      }
+
+      .navbar-toggle {
+        border-color: var(--tabl-bordr);
+
+        &:focus {
+          background-color: var(--tabl-bordr);
+        }
+
+        &:hover {
+          background-color: var(--tabl-bordr);
+        }
+
+        .icon-bar {
+          background-color: var(--uknown-069);
+        }
+      }
+
+      .navbar-collapse {
+        border-color: var(--nav-border);
+      }
+
+      .navbar-form {
+        border-color: var(--nav-border);
+      }
+
+      .navbar-link {
+        color: var(--forg-muted);
+
+        &:hover {
+          color: var(--body-foreg);
+        }
+      }
+
+      .btn-link {
+        color: var(--forg-muted);
+
+        &:focus {
+          color: var(--body-foreg);
+        }
+
+        &:hover {
+          color: var(--body-foreg);
+        }
+      }
+
+      .btn-link[disabled] {
+        &:focus {
+          color: var(--uknown-020);
+        }
+
+        &:hover {
+          color: var(--uknown-020);
+        }
+      }
+    }
+
+    input {
+      background-color: var(--uknown-105);
+      color: var(--uknown-017);
+    }
+
+    .sidetoc {
+      background-color: var(--uknown-109);
+      border-left-color: var(--nav-border);
+      border-right-color: var(--nav-border);
+    }
+
+    body {
+      color: var(--body-foreg);
+      background-color: var(--body-backg);
+
+      .toc {
+        background-color: var(--uknown-109);
+      }
+    }
+
+    .img-thumbnail {
+      background-color: var(--body-backg);
+      border-color: var(--tabl-bordr);
+    }
+
+    blockquote, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+      small, .small {
+        color: var(--forg-muted);
+      }
+    }
+
+    .mark, mark {
+      background-color: var(--mark-bkgrd);
+    }
+
+    .text-muted {
+      color: var(--forg-muted);
+    }
+
+    .page-header {
+      border-bottom-color: var(--rul-border);
+    }
+
+    blockquote {
+      border-left-color: var(--rul-border);
+
+      footer {
+        color: var(--forg-muted);
+      }
+
+      &.pull-right {
+        border-right-color: var(--rul-border);
+      }
+    }
+
+    .blockquote-reverse {
+      border-right-color: var(--rul-border);
+    }
+
+    kbd {
+      color: var(--body-backg);
+      background-color: var(--body-foreg);
+      -webkit-box-shadow-color: var(--uknown-018);
+      box-shadow: var(--uknown-018);
+    }
+
+    pre {
+      color: var(--body-foreg);
+      background-color: var(--uknown-019);
+      border-color: var(--uknown-020);
+
+      > code {
+        .line-highlight {
+          background-color: var(--uknown-117);
+        }
+      }
+    }
+
+    caption {
+      color: var(--forg-muted);
+    }
+
+    .table {
+      > thead {
+        > tr {
+          > td, > th {
+            border-top-color: var(--tabl-bordr);
+
+            &.active {
+              background-color: var(--uknown-019);
+            }
+
+            &.success {
+              background-color: var(--uknown-09);
+            }
+
+            &.info {
+              background-color: var(--uknown-011);
+            }
+
+            &.warning {
+              background-color: var(--mark-bkgrd);
+            }
+
+            &.danger {
+              background-color: var(--uknown-014);
+            }
+          }
+
+          > th {
+            border-bottom-color: var(--tabl-bordr);
+          }
+        }
+
+        &.active {
+          > td, > th {
+            background-color: var(--uknown-019);
+          }
+        }
+
+        &.success {
+          > td, > th {
+            background-color: var(--uknown-09);
+          }
+        }
+
+        &.info {
+          > td, > th {
+            background-color: var(--uknown-011);
+          }
+        }
+
+        &.warning {
+          > td, > th {
+            background-color: var(--mark-bkgrd);
+          }
+        }
+
+        &.danger {
+          > td, > th {
+            background-color: var(--uknown-014);
+          }
+        }
+      }
+
+      > tbody {
+        + tbody {
+          border-top-color: var(--tabl-bordr);
+        }
+
+        > tr {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > td, > th {
+            border-top-color: var(--tabl-bordr);
+
+            &.active {
+              background-color: var(--uknown-019);
+            }
+
+            &.success {
+              background-color: var(--uknown-09);
+            }
+
+            &.info {
+              background-color: var(--uknown-011);
+            }
+
+            &.warning {
+              background-color: var(--mark-bkgrd);
+            }
+
+            &.danger {
+              background-color: var(--uknown-014);
+            }
+          }
+        }
+
+        &.active {
+          > td, > th {
+            background-color: var(--uknown-019);
+          }
+        }
+
+        &.success {
+          > td, > th {
+            background-color: var(--uknown-09);
+          }
+        }
+
+        &.info {
+          > td, > th {
+            background-color: var(--uknown-011);
+          }
+        }
+
+        &.warning {
+          > td, > th {
+            background-color: var(--mark-bkgrd);
+          }
+        }
+
+        &.danger {
+          > td, > th {
+            background-color: var(--uknown-014);
+          }
+        }
+      }
+
+      > tfoot {
+        > tr {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > td, > th {
+            border-top-color: var(--tabl-bordr);
+
+            &.active {
+              background-color: var(--uknown-019);
+            }
+
+            &.success {
+              background-color: var(--uknown-09);
+            }
+
+            &.info {
+              background-color: var(--uknown-011);
+            }
+
+            &.warning {
+              background-color: var(--mark-bkgrd);
+            }
+
+            &.danger {
+              background-color: var(--uknown-014);
+            }
+          }
+        }
+
+        &.active {
+          > td, > th {
+            background-color: var(--uknown-019);
+          }
+        }
+
+        &.success {
+          > td, > th {
+            background-color: var(--uknown-09);
+          }
+        }
+
+        &.info {
+          > td, > th {
+            background-color: var(--uknown-011);
+          }
+        }
+
+        &.warning {
+          > td, > th {
+            background-color: var(--mark-bkgrd);
+          }
+        }
+
+        &.danger {
+          > td, > th {
+            background-color: var(--uknown-014);
+          }
+        }
+      }
+
+      .table {
+        background-color: var(--body-backg);
+      }
+    }
+
+    .table-bordered {
+      border-color: var(--tabl-bordr);
+
+      > thead {
+        > tr {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > td, > th {
+            border-color: var(--tabl-bordr);
+          }
+        }
+      }
+
+      > tbody {
+        > tr {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > td, > th {
+            border-color: var(--tabl-bordr);
+          }
+        }
+      }
+
+      > tfoot {
+        > tr {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > td, > th {
+            border-color: var(--tabl-bordr);
+          }
+        }
+      }
+    }
+
+    .table-striped {
+      > tbody {
+        > tr {
+          &:nth-of-type(odd) {
+            background-color: var(--uknown-021);
+          }
+        }
+      }
+    }
+
+    .btn {
+      &:focus, &:hover, .focus {
+        color: var(--body-foreg);
+      }
+
+      &:active, .active {
+        -webkit-box-shadow-color: var(--uknown-036);
+        box-shadow: var(--uknown-036);
+      }
+    }
+
+    .table-hover {
+      > tbody {
+        > tr {
+          &:hover {
+            background-color: var(--uknown-019);
+
+            > .active {
+              background-color: var(--uknown-022);
+            }
+
+            > .success {
+              background-color: var(--uknown-023);
+            }
+
+            > .info {
+              background-color: var(--uknown-024);
+            }
+
+            > .warning {
+              background-color: var(--uknown-025);
+            }
+
+            > .danger {
+              background-color: var(--uknown-026);
+            }
+          }
+
+          > td, > th {
+            &.active {
+              &:hover {
+                background-color: var(--uknown-022);
+              }
+            }
+
+            &.success {
+              &:hover {
+                background-color: var(--uknown-023);
+              }
+            }
+
+            &.info {
+              &:hover {
+                background-color: var(--uknown-024);
+              }
+            }
+
+            &.warning {
+              &:hover {
+                background-color: var(--uknown-025);
+              }
+            }
+
+            &.danger {
+              &:hover {
+                background-color: var(--uknown-026);
+              }
+            }
+        }
+
+        &.active {
+          &:hover {
+            > td, > th {
+              background-color: var(--uknown-022);
+            }
+          }
+        }
+
+        &.success {
+          &:hover {
+            > td, > th {
+              background-color: var(--uknown-023);
+            }
+          }
+        }
+
+        &.info {
+          &:hover {
+            > td, > th {
+              background-color: var(--uknown-024);
+            }
+          }
+        }
+
+        &.warning {
+          &:hover {
+            > td, > th {
+              background-color: var(--uknown-025);
+            }
+          }
+        }
+
+        &.danger {
+          &:hover {
+            > td, > th {
+              background-color: var(--uknown-026);
+            }
+          }
+        }
+      }
+      }
+    }
+
+    legend {
+      color: var(--body-foreg);
+      border-bottom-color: var(--uknown-027);
+    }
+
+    output {
+      color: var(--uknown-028);
+    }
+
+    .form-control {
+      color: var(--uknown-028);
+      background-color: var(--body-backg);
+      border-color: var(--uknown-020);
+      -webkit-box-shadow-color: var(--uknown-029);
+      box-shadow: var(--uknown-029);
+
+      &:focus {
+        border-color: var(--uknown-030);
+        -webkit-box-shadow-color: var(--uknown-029), var(--uknown-031);
+        box-shadow: var(--uknown-029), var(--uknown-031);
+      }
+
+      /* stylelint-disable-next-line selector-pseudo-element-no-unknown, selector-pseudo-class-no-unknown ---- In the original css code. */
+      &::placeholder, &:input-placeholder, &::input-placeholder {
+        color: var(--pre-border);
+      }
+
+      [disabled], [readonly] {
+        background-color: var(--rul-border);
+      }
+    }
+
+    .help-block {
+      color: var(--uknown-035);
+    }
+
+    .input-group-addon {
+      color: var(--uknown-028);
+      background-color: var(--rul-border);
+      border-color: var(--uknown-020);
+    }
+
+    .has-success {
+      .checkbox, .checkbox-inline, .control-label, .help-block, .radio, .radio-inline, .form-control-feedback, .input-group-addon {
+        color: var(--uknown-01);
+      }
+
+      .form-control {
+        border-color: var(--uknown-01);
+        -webkit-box-shadow-color: var(--uknown-029);
+        box-shadow: var(--uknown-029);
+
+        &:focus {
+          border-color: var(--uknown-02);
+          -webkit-box-shadow-color: var(--uknown-029), var(--uknown-032);
+          box-shadow: var(--uknown-029), var(--uknown-032);
+        }
+      }
+
+      .input-group-addon {
+        background-color: var(--uknown-09);
+        border-color: var(--uknown-01);
+      }
+
+      .checkbox, .checkbox-inline, .radio, .radio-inline {
+        label {
+          color: var(--uknown-01);
+        }
+      }
+    }
+
+    .has-warning {
+      .checkbox, .checkbox-inline, .control-label, .help-block, .radio, .radio-inline, .form-control-feedback, .input-group-addon {
+        color: var(--uknown-05);
+      }
+
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      .form-control {
+        border-color: var(--uknown-05);
+        -webkit-box-shadow-color: var(--uknown-029);
+        box-shadow: var(--uknown-029);
+
+        &:focus {
+          border-color: var(--uknown-06);
+          -webkit-box-shadow-color: var(--uknown-029), var(--uknown-033);
+          box-shadow: var(--uknown-029), var(--uknown-033);
+        }
+      }
+
+      .input-group-addon {
+        background-color: var(--mark-bkgrd);
+        border-color: var(--uknown-05);
+      }
+
+      .checkbox, .checkbox-inline, .radio, .radio-inline {
+        label {
+          color: var(--uknown-05);
+        }
+      }
+    }
+
+    .has-error {
+      .checkbox, .checkbox-inline, .control-label, .help-block, .radio, .radio-inline, .form-control-feedback, .input-group-addon {
+        color: var(--uknown-07);
+      }
+
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      .form-control {
+        border-color: var(--uknown-07);
+        -webkit-box-shadow-color: var(--uknown-029);
+        box-shadow: var(--uknown-029);
+
+        &:focus {
+          border-color: var(--uknown-08);
+          -webkit-box-shadow-color: var(--uknown-029), var(--uknown-034);
+          box-shadow: var(--uknown-029), var(--uknown-034);
+        }
+      }
+
+      .input-group-addon {
+        background-color: var(--uknown-014);
+        border-color: var(--uknown-07);
+      }
+
+      .checkbox, .checkbox-inline, .radio, .radio-inline {
+        label {
+          color: var(--uknown-07);
+        }
+      }
+    }
+
+    .open {
+      .active {
+        .focus {
+          color: var(--body-foreg);
+          background-color: var(--uknown-040);
+          border-color: var(--uknown-038);
+        }
+      }
+
+      .disabled, [disabled] {
+        &:focus, &:hover, .focus {
+          background-color: var(--body-backg);
+          border-color: var(--uknown-020);
+        }
+      }
+
+      > .dropdown-toggle {
+        .btn-default {
+          color: var(--body-foreg);
+          background-color: var(--uknown-037);
+          border-color: var(--uknown-039);
+
+          &:focus, &:hover, .focus {
+            color: var(--body-foreg);
+            background-color: var(--uknown-040);
+            border-color: var(--uknown-038);
+          }
+        }
+
+        .btn-primary {
+          color: var(--body-backg);
+          background-color: var(--uknown-00);
+          border-color: var(--uknown-043);
+
+          &:focus, &:hover, .focus {
+            color: var(--body-backg);
+            background-color: var(--uknown-043);
+            border-color: var(--uknown-042);
+          }
+        }
+
+        .btn-success {
+          color: var(--body-backg);
+          background-color: var(--uknown-046);
+          border-color: var(--uknown-048);
+
+          &:focus, &:hover, .focus {
+            color: var(--body-backg);
+            background-color: var(--uknown-048);
+            border-color: var(--uknown-047);
+          }
+        }
+
+        .btn-info {
+          color: var(--body-backg);
+          background-color: var(--uknown-051);
+          border-color: var(--uknown-053);
+
+          &:focus, &:hover, .focus {
+            color: var(--body-backg);
+            background-color: var(--uknown-053);
+            border-color: var(--uknown-052);
+          }
+        }
+
+        .btn-warning {
+          color: var(--body-backg);
+          background-color: var(--uknown-056);
+          border-color: var(--uknown-058);
+
+          &:focus, &:hover, .focus {
+            color: var(--body-backg);
+            background-color: var(--uknown-058);
+            border-color: var(--uknown-057);
+          }
+        }
+
+        .btn-danger {
+          color: var(--body-backg);
+          background-color: var(--uknown-061);
+          border-color: var(--uknown-063);
+
+          &:focus, &:hover, .focus {
+            color: var(--body-backg);
+            background-color: var(--uknown-063);
+            border-color: var(--uknown-062);
+          }
+        }
+      }
+    }
+
+    fieldset {
+      &[disabled] {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        .form-control {
+          background-color: var(--rul-border);
+        }
+
+        .btn-default {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover, .focus {
+            background-color: var(--body-backg);
+            border-color: var(--uknown-020);
+          }
+        }
+
+        .btn-primary {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover, .focus {
+            background-color: var(--anchor-frg);
+            border-color: var(--uknown-041);
+          }
+        }
+
+        .btn-success {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover, .focus {
+            background-color: var(--uknown-044);
+            border-color: var(--uknown-045);
+          }
+        }
+
+        .btn-info {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover, .focus {
+            background-color: var(--uknown-049);
+            border-color: var(--uknown-050);
+          }
+        }
+
+        .btn-warning {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover, .focus {
+            background-color: var(--uknown-054);
+            border-color: var(--uknown-055);
+          }
+        }
+
+        .btn-danger {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover, .focus {
+            background-color: var(--uknown-059);
+            border-color: var(--uknown-060);
+          }
+        }
+
+        .btn-link {
+          &:focus, &:hover {
+            color: var(--forg-muted);
+          }
+        }
+
+        .navbar-default {
+          .btn-link {
+            &:focus, &:hover {
+              color: var(--uknown-020);
+            }
+          }
+        }
+
+        .navbar-inverse {
+          .btn-link {
+            &:focus, &:hover {
+              color: var(--uknown-073);
+            }
+          }
+        }
+      }
+    }
+
+    .divider {
+      color: var(--uknown-020);
+    }
+
+    .dropdown-menu {
+      background-color: var(--body-backg);
+      border-color: var(--uknown-064);
+      -webkit-box-shadow-color: var(--uknown-065);
+      box-shadow: var(--uknown-065);
+
+      .divider {
+        background-color: var(--uknown-027);
+      }
+
+      > li {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > a {
+          color: var(--body-foreg);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            color: var(--uknown-066);
+            background-color: var(--uknown-019);
+          }
+        }
+      }
+
+      > .active {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > a {
+          color: var(--body-backg);
+          background-color: var(--anchor-frg);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            color: var(--body-backg);
+            background-color: var(--anchor-frg);
+          }
+        }
+      }
+
+      > .disabled {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > a {
+          color: var(--forg-muted);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            color: var(--forg-muted);
+          }
+        }
+      }
+    }
+
+    .dropdown-header {
+      color: var(--forg-muted);
+    }
+
+    .btn-group {
+      .open {
+        .dropdown-toggle {
+          -webkit-box-shadow-color: var(--uknown-036);
+          box-shadow: var(--uknown-036);
+        }
+      }
+    }
+
+    .nav {
+      > li {
+        > a {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            background-color: var(--rul-border);
+          }
+        }
+      }
+
+      > li.disabled {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > a {
+          color: var(--forg-muted);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            color: var(--forg-muted);
+          }
+        }
+      }
+
+      .open {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > a {
+          background-color: var(--rul-border);
+          border-color: var(--anchor-frg);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            background-color: var(--rul-border);
+            border-color: var(--anchor-frg);
+          }
+        }
+      }
+
+      .nav-divider {
+        background-color: var(--uknown-027);
+      }
+    }
+
+    .nav-tabs {
+      border-bottom-color: var(--tabl-bordr);
+
+      > li {
+        > a {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:hover {
+            border-color: var(--rul-border), var(--rul-border), var(--tabl-bordr);
+          }
+        }
+      }
+
+      > li.active {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > a {
+          color: var(--uknown-028);
+          background-color: var(--body-backg);
+          border-color: var(--tabl-bordr);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            color: var(--uknown-028);
+            background-color: var(--body-backg);
+            border-color: var(--tabl-bordr);
+          }
+        }
+      }
+
+      .nav-justified {
+        > .active {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            border-color: var(--tabl-bordr);
+
+            /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+            &:focus, &:hover {
+              border-color: var(--tabl-bordr);
+            }
+          }
+        }
+      }
+    }
+
+    .nav-pills {
+      > li {
+        .active {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            color: var(--body-backg);
+            background-color: var(--anchor-frg);
+
+            /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+            &:focus, &:hover {
+              color: var(--body-backg);
+              background-color: var(--anchor-frg);
+            }
+          }
+        }
+      }
+
+      > .active {
+        > a {
+          > .badge {
+            color: var(--anchor-frg);
+            background-color: var(--body-backg);
+          }
+        }
+      }
+    }
+
+    .nav-tabs-justified {
+      > .active {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > a {
+          border-color: var(--tabl-bordr);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            border-color: var(--tabl-bordr);
+          }
+        }
+      }
+    }
+
+    .navbar-inverse {
+      background-color: var(--uknown-070);
+      border-color: var(--uknown-071);
+
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      .navbar-brand {
+        color: var(--uknown-072);
+
+        &:focus {
+          color: var(--body-backg);
+        }
+
+        &:hover {
+          color: var(--body-backg);
+        }
+      }
+
+      .navbar-nav {
+        > li {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            color: var(--uknown-072);
+
+            /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+            &:focus, &:hover {
+              color: var(--body-backg);
+            }
+          }
+        }
+
+        > .active {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            color: var(--body-backg);
+            background-color: var(--uknown-071);
+
+            /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+            &:focus, &:hover {
+              color: var(--body-backg);
+              background-color: var(--uknown-071);
+            }
+          }
+        }
+
+        > .disabled {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            color: var(--uknown-073);
+
+            /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+            &:focus, &:hover {
+              color: var(--uknown-073);
+            }
+          }
+        }
+
+        > .open {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            color: var(--body-backg);
+            background-color: var(--uknown-071);
+
+            /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+            &:focus, &:hover {
+              color: var(--body-backg);
+              background-color: var(--uknown-071);
+            }
+          }
+        }
+      }
+
+      .navbar-text {
+        color: var(--uknown-072);
+      }
+
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      .navbar-toggle {
+        border-color: var(--body-foreg);
+
+        &:focus, &:hover {
+          background-color: var(--body-foreg);
+        }
+
+        .icon-bar {
+          background-color: var(--body-backg);
+        }
+      }
+
+      .navbar-collapse, .navbar-form {
+        border-color: var(--uknown-074);
+      }
+
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      .navbar-link {
+        color: var(--uknown-072);
+
+        &:hover {
+          color: var(--body-backg);
+        }
+      }
+
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      .btn-link {
+        color: var(--uknown-072);
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        &:focus, &:hover {
+          color: var(--body-backg);
+        }
+
+        &[disabled] {
+          &:focus, &:hover {
+            color: var(--uknown-073);
+          }
+        }
+      }
+    }
+
+    .breadcrumb {
+      background-color: var(--uknown-019);
+
+      > li {
+        + li {
+          &::before {
+            color: var(--uknown-020);
+          }
+        }
+      }
+
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      > .active {
+        color: var(--forg-muted);
+      }
+    }
+
+    .pagination {
+      > li {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > a {
+          background-color: var(--body-backg);
+          border-color: var(--tabl-bordr);
+          color: var(--uknown-108);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            color: var(--a-fg-hover);
+            background-color: var(--rul-border);
+            border-color: var(--tabl-bordr);
+          }
+        }
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > span {
+          color: var(--anchor-frg);
+          background-color: var(--body-backg);
+          border-color: var(--tabl-bordr);
+
+          &:focus, &:hover {
+            color: var(--a-fg-hover);
+            background-color: var(--rul-border);
+            border-color: var(--tabl-bordr);
+          }
+        }
+      }
+
+      > .active {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > a {
+          color: var(--body-backg);
+          background-color: var(--uknown-108);
+          border-color: var(--uknown-108);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            color: var(--body-backg);
+            background-color: var(--anchor-frg);
+            border-color: var(--anchor-frg);
+          }
+        }
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > span {
+          color: var(--body-backg);
+          background-color: var(--anchor-frg);
+          border-color: var(--anchor-frg);
+
+          &:focus, &:hover {
+            color: var(--body-backg);
+            background-color: var(--anchor-frg);
+            border-color: var(--anchor-frg);
+          }
+        }
+      }
+
+      > .disabled {
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > a {
+          color: var(--forg-muted);
+          background-color: var(--body-backg);
+          border-color: var(--tabl-bordr);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            color: var(--forg-muted);
+            background-color: var(--body-backg);
+            border-color: var(--tabl-bordr);
+          }
+        }
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        > span {
+          color: var(--forg-muted);
+          background-color: var(--body-backg);
+          border-color: var(--tabl-bordr);
+
+          &:focus, &:hover {
+            color: var(--forg-muted);
+            background-color: var(--body-backg);
+            border-color: var(--tabl-bordr);
+          }
+        }
+      }
+    }
+
+    .label-default {
+      background-color: var(--forg-muted);
+
+      &[href] {
+        &:focus, &:hover {
+          background-color: var(--uknown-068);
+        }
+      }
+    }
+
+    .label-primary {
+      background-color: var(--anchor-frg);
+
+      &[href] {
+        &:focus, &:hover {
+          background-color: var(--uknown-00);
+        }
+      }
+    }
+
+    .label-success {
+      background-color: var(--uknown-044);
+
+      &[href] {
+        &:focus, &:hover {
+          background-color: var(--uknown-046);
+        }
+      }
+    }
+
+    .label-info {
+      background-color: var(--uknown-049);
+
+      &[href] {
+        &:focus, &:hover {
+          background-color: var(--uknown-051);
+        }
+      }
+    }
+
+    .label-warning {
+      background-color: var(--uknown-054);
+
+      &[href] {
+        &:focus, &:hover {
+          background-color: var(--uknown-056);
+        }
+      }
+    }
+
+    .label-danger {
+      background-color: var(--uknown-059);
+
+      &[href] {
+        &:focus, &:hover {
+          background-color: var(--uknown-061);
+        }
+      }
+    }
+
+    hr {
+      border-color: var(--uknown-020);
+      border-top-color: var(--rul-border);
+    }
+
+    .jumbotron {
+      background-color: var(--rul-border);
+
+      > hr {
+        border-top-color: var(--uknown-075);
+      }
+    }
+
+    .alert-success {
+      color: var(--uknown-01);
+      background-color: var(--uknown-09);
+      border-color: var(--uknown-076);
+
+      hr {
+        border-top-color: var(--uknown-077);
+      }
+
+      .alert-link {
+        color: var(--uknown-02);
+      }
+    }
+
+    .alert-info {
+      color: var(--uknown-03);
+      background-color: var(--uknown-011);
+      border-color: var(--uknown-078);
+
+      hr {
+        border-top-color: var(--uknown-079);
+      }
+
+      .alert-link {
+        color: var(--uknown-04);
+      }
+    }
+
+    .alert-warning {
+      color: var(--uknown-05);
+      background-color: var(--mark-bkgrd);
+      border-color: var(--uknown-080);
+
+      hr {
+        border-top-color: var(--uknown-081);
+      }
+
+      .alert-link {
+        color: var(--uknown-06);
+      }
+    }
+
+    .alert-danger {
+      color: var(--uknown-07);
+      background-color: var(--uknown-014);
+      border-color: var(--uknown-082);
+
+      hr {
+        border-top-color: var(--uknown-083);
+      }
+
+      .alert-link {
+        color: var(--uknown-08);
+      }
+    }
+
+    .progress {
+      background-color: var(--uknown-019);
+      -webkit-box-shadow-color: var(--uknown-084);
+      box-shadow: var(--uknown-084);
+    }
+
+    .progress-bar {
+      color: var(--body-backg);
+      background-color: var(--anchor-frg);
+      -webkit-box-shadow-color: var(--uknown-064);
+      box-shadow: var(--uknown-064);
+    }
+
+    .progress-bar-striped {
+      background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+      background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+      background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+    }
+
+    .progress-bar-success {
+      background-color: var(--uknown-044);
+    }
+
+    .progress-bar-info {
+      background-color: var(--uknown-049);
+    }
+
+    .progress-bar-warning {
+      background-color: var(--uknown-054);
+    }
+
+    .progress-bar-danger {
+      background-color: var(--uknown-059);
+    }
+
+    .progress-striped {
+      .progress-bar {
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+      }
+
+      .progress-bar-success {
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+      }
+
+      .progress-bar-info {
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+      }
+
+      .progress-bar-warning {
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+      }
+
+      .progress-bar-danger {
+        background-image: linear-gradient(45deg, var(--uknown-085) 25%, transparent 25%, transparent 50%, var(--uknown-085) 75%, transparent 75%, transparent);
+      }
+    }
+
+    button {
+      color: var(--anchor-frg);
+
+      &:hover, &:focus {
+        color: var(--a-fg-hover);
+      }
+
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      .list-group-item {
+        color: var(--uknown-028);
+
+        .list-group-item-heading {
+          color: var(--body-foreg);
+        }
+
+        &:focus, &:hover {
+          color: var(--uknown-028);
+          background-color: var(--uknown-019);
+        }
+      }
+
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      .list-group-item-success {
+        color: var(--uknown-01);
+
+        &:focus, &:hover {
+          color: var(--uknown-01);
+          background-color: var(--uknown-023);
+        }
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        .active {
+          color: var(--body-backg);
+          background-color: var(--uknown-01);
+          border-color: var(--uknown-01);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            color: var(--body-backg);
+            background-color: var(--uknown-01);
+            border-color: var(--uknown-01);
+          }
+        }
+      }
+
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      .list-group-item-info {
+        color: var(--uknown-03);
+
+        &:focus, &:hover {
+          color: var(--uknown-03);
+          background-color: var(--uknown-024);
+        }
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        .active {
+          color: var(--body-backg);
+          background-color: var(--uknown-03);
+          border-color: var(--uknown-03);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            color: var(--body-backg);
+            background-color: var(--uknown-03);
+            border-color: var(--uknown-03);
+          }
+        }
+      }
+
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      .list-group-item-warning {
+        color: var(--uknown-05);
+
+        &:focus, &:hover {
+          color: var(--uknown-05);
+          background-color: var(--uknown-025);
+        }
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        .active {
+          color: var(--body-backg);
+          background-color: var(--uknown-05);
+          border-color: var(--uknown-05);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            color: var(--body-backg);
+            background-color: var(--uknown-05);
+            border-color: var(--uknown-05);
+          }
+        }
+      }
+
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      .list-group-item-danger {
+        color: var(--uknown-07);
+
+        &:focus, &:hover {
+          color: var(--uknown-07);
+          background-color: var(--uknown-026);
+        }
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        .active {
+          color: var(--body-backg);
+          background-color: var(--uknown-07);
+          border-color: var(--uknown-07);
+
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          &:focus, &:hover {
+            color: var(--body-backg);
+            background-color: var(--uknown-07);
+            border-color: var(--uknown-07);
+          }
+        }
+      }
+    }
+
+    /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+    .list-group-item-success {
+      color: var(--uknown-01);
+      background-color: var(--uknown-09);
+    }
+
+    /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+    .list-group-item-info {
+      color: var(--uknown-03);
+      background-color: var(--uknown-011);
+    }
+
+    /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+    .list-group-item-warning {
+      color: var(--uknown-05);
+      background-color: var(--mark-bkgrd);
+    }
+
+    /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+    .list-group-item-danger {
+      color: var(--uknown-07);
+      background-color: var(--uknown-014);
+    }
+
+    .panel {
+      background-color: var(--body-backg);
+      -webkit-box-shadow-color: var(--uknown-087);
+      box-shadow: var(--uknown-087);
+
+      > .panel-body {
+        + .table, + .table-responsive, + .panel-body {
+          border-top-color: var(--tabl-bordr);
+        }
+      }
+    }
+
+    .panel-footer {
+      background-color: var(--uknown-019);
+      border-top-color: var(--tabl-bordr);
+    }
+
+    .panel-group {
+      .panel-heading {
+        + .panel-collapse {
+          > .list-group {
+            border-top-color: var(--tabl-bordr);
+          }
+        }
+      }
+
+      .panel-heading, .panel-footer {
+        + .panel-collapse {
+          .panel-body {
+            border-bottom-color: var(--tabl-bordr);
+          }
+        }
+      }
+    }
+
+    .panel-default {
+      border-color: var(--tabl-bordr);
+
+      > .panel-heading {
+        color: var(--body-foreg);
+        background-color: var(--uknown-019);
+        border-color: var(--tabl-bordr);
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        .badge {
+          color: var(--uknown-019);
+          background-color: var(--body-foreg);
+        }
+      }
+
+      > .panel-heading, > .panel-footer {
+        + .panel-collapse {
+          > .panel-body {
+            border-bottom-color: var(--tabl-bordr);
+          }
+        }
+      }
+    }
+
+    .panel-primary {
+      border-color: var(--anchor-frg);
+
+      > .panel-heading {
+        color: var(--body-backg);
+        background-color: var(--anchor-frg);
+        border-color: var(--anchor-frg);
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        .badge {
+          color: var(--anchor-frg);
+          background-color: var(--body-backg);
+        }
+      }
+
+      > .panel-heading, > .panel-footer {
+        + .panel-collapse {
+          > .panel-body {
+            border-bottom-color: var(--anchor-frg);
+          }
+        }
+      }
+    }
+
+    .panel-success {
+      border-color: var(--uknown-076);
+
+      > .panel-heading {
+        color: var(--uknown-01);
+        background-color: var(--uknown-09);
+        border-color: var(--uknown-076);
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        .badge {
+          color: var(--uknown-09);
+          background-color: var(--uknown-01);
+        }
+      }
+
+      > .panel-heading, > .panel-footer {
+        + .panel-collapse {
+          > .panel-body {
+            border-bottom-color: var(--uknown-076);
+          }
+        }
+      }
+    }
+
+    .panel-info {
+      border-color: var(--uknown-078);
+
+      > .panel-heading {
+        color: var(--uknown-03);
+        background-color: var(--uknown-011);
+        border-color: var(--uknown-078);
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        .badge {
+          color: var(--uknown-011);
+          background-color: var(--uknown-03);
+        }
+      }
+
+      > .panel-heading, > .panel-footer {
+        + .panel-collapse {
+          > .panel-body {
+            border-bottom-color: var(--uknown-078);
+          }
+        }
+      }
+    }
+
+    .panel-warning {
+      border-color: var(--uknown-080);
+
+      > .panel-heading {
+        color: var(--uknown-05);
+        background-color: var(--mark-bkgrd);
+        border-color: var(--uknown-080);
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        .badge {
+          color: var(--mark-bkgrd);
+          background-color: var(--uknown-05);
+        }
+      }
+
+      > .panel-heading, > .panel-footer {
+        + .panel-collapse {
+          > .panel-body {
+            border-bottom-color: var(--uknown-080);
+          }
+        }
+      }
+    }
+
+    .panel-danger {
+      border-color: var(--uknown-082);
+
+      > .panel-heading {
+        color: var(--uknown-07);
+        background-color: var(--uknown-014);
+        border-color: var(--uknown-082);
+
+        /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+        .badge {
+          color: var(--uknown-014);
+          background-color: var(--uknown-07);
+        }
+      }
+
+      > .panel-heading, > .panel-footer {
+        + .panel-collapse {
+          > .panel-body {
+            border-top-color: var(--uknown-082);
+          }
+        }
+      }
+    }
+
+    .well {
+      background-color: var(--uknown-019);
+      border-color: var(--uknown-088);
+      -webkit-box-shadow-color: var(--uknown-087);
+      box-shadow: var(--uknown-087);
+
+      blockquote {
+        border-color: var(--uknown-064);
+      }
+    }
+
+    .modal-backdrop, .close {
+      background-color: var(--cart-bordr);
+    }
+
+    .close {
+      text-shadow: var(--body-backg);
+
+      &:focus, &:hover {
+        color: var(--cart-bordr);
+      }
+    }
+
+    .modal-content {
+      background-color: var(--body-backg);
+      border-color: var(--uknown-089);
+      -webkit-box-shadow-color: var(--uknown-090);
+      box-shadow: var(--uknown-090);
+    }
+
+    .modal-header, .modal-footer {
+      border-bottom-color: var(--uknown-027);
+    }
+
+    .tooltip {
+      .top, .top-left, .top-right, .right, .left, .bottom, .bottom-left, .bottom-right {
+        .tooltip-arrow {
+          border-bottom-color: var(--cart-bordr);
+        }
+      }
+    }
+
+    .tooltip-inner {
+      color: var(--body-backg);
+      background-color: var(--cart-bordr);
+    }
+
+    .popover {
+      background-color: var(--body-backg);
+      border-color: var(--uknown-089);
+      -webkit-box-shadow-color: var(--uknown-089);
+      box-shadow: var(--uknown-089);
+
+      .top, .right, .bottom, .left {
+        > .arrow {
+          border-top-color: var(--uknown-018);
+
+          &::after {
+            border-top-color: var(--body-backg);
+          }
+        }
+      }
+    }
+
+    .popover-title {
+      background-color: var(--uknown-091);
+      border-bottom-color: var(--uknown-092);
+    }
+
+    .carousel-control {
+      color: var(--body-backg);
+      text-shadow: var(--uknown-093);
+
+      &:focus, &:hover {
+        color: var(--body-backg);
+      }
+
+      .left {
+        background-image: linear-gradient(to left, var(--uknown-090) 0, var(--uknown-094) 100%);
+        background-image: linear-gradient(to left, var(--uknown-090) 0, var(--uknown-094) 100%);
+        background-image: -webkit-gradient(linear, left top, right top, from(var(--uknown-090)), to(var(--uknown-094)));
+        background-image: linear-gradient(to right, var(--uknown-090) 0, var(--uknown-094) 100%);
+      }
+
+      .right {
+        background-image: linear-gradient(to left, var(--uknown-094) 0, var(--uknown-090) 100%);
+        background-image: linear-gradient(to left, var(--uknown-094) 0, var(--uknown-090) 100%);
+        background-image: -webkit-gradient(linear, left top, right top, from(var(--uknown-094)), to(var(--uknown-090)));
+        background-image: linear-gradient(to right, var(--uknown-094) 0, var(--uknown-090) 100%);
+      }
+    }
+
+    .carousel-indicators {
+      /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+      li, .active {
+        border-color: var(--body-backg);
+      }
+    }
+
+    .carousel-caption {
+      color: var(--body-backg);
+      text-shadow: var(--uknown-093);
+    }
+
+    .hljs {
+      background: var(--body-backg);
+      color: var(--body-foreg);
+    }
+
+    .hljs-comment, .hljs-meta {
+      color: var(--uknown-095);
+    }
+
+    .hljs-emphasis, .hljs-quote, .hljs-strong, .hljs-template-variable, .hljs-variable {
+      color: var(--uknown-096);
+    }
+
+    .hljs-string {
+      color: var(--uknown-116);
+    }
+
+    .hljs-keyword {
+      color: var(--uknown-115);
+    }
+
+    .hljs-selector-tag, .hljs-type {
+      color: var(--uknown-097);
+    }
+
+    .hljs-attribute, .hljs-bullet, .hljs-literal, .hljs-symbol {
+      color: var(--uknown-098);
+    }
+
+    .hljs-name, .hljs-section {
+      color: var(--uknown-099);
+    }
+
+    .hljs-tag {
+      color: var(--body-foreg);
+    }
+
+    .hljs-title, .hljs-attr, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-id, .hljs-selector-pseudo {
+      color: var(--uknown-0100);
+    }
+
+    .hljs-addition {
+      color: var(--uknown-0101);
+      background-color: var(--uknown-0102);
+    }
+
+    .hljs-deletion {
+      color: var(--uknown-0103);
+      background-color: var(--uknown-0104);
+    }
+
+    svg {
+      &:hover {
+        path {
+          fill: var(--body-backg);
+        }
+      }
+    }
+
+    .grad-top {
+      background: linear-gradient(var(--uknown-087), transparent);
+    }
+
+    .grad-bottom {
+      background: linear-gradient(transparent, var(--uknown-087));
+    }
+
+    .inheritance {
+      h5 {
+        border-bottom-color: var(--uknown-020);
+      }
+    }
+
+    /* stylelint-disable-next-line selector-class-pattern ---- Not my selector name */
+    .inheritedMembers {
+      h5 {
+        border-bottom-color: var(--uknown-020);
+      }
+    }
+
+    #autocollapse {
+      .collapsed {
+        .navbar-collapse {
+          box-shadow: var(--uknown-067);
+        }
+      }
+    }
+
+    .collapsing {
+      .navbar-form {
+        box-shadow: var(--uknown-067), var(--uknown-067);
+      }
+    }
+
+    .collapsed {
+      .collapse {
+        .in {
+          .navbar-form {
+            box-shadow: var(--uknown-067), var(--uknown-067);
+          }
+        }
+      }
+    }
+
+    .docs-search {
+      background: var(--body-backg);
+
+      > .search-query {
+        color: var(--uknown-028);
+      }
+    }
+
+    .search-results-container {
+      border-top-color: var(--uknown-105);
+      background: var(--uknown-106);
+    }
+
+    .search-results-group-heading {
+      color: var(--body-backg);
+    }
+
+    .search-close {
+      color: var(--body-backg);
+      background: var(--uknown-019);
+      box-shadow: var(--uknown-105);
+    }
+
+    .sr-item {
+      > .item-href {
+        color: var(--uknown-107);
+      }
+    }
+
+    /* stylelint-disable-next-line selector-class-pattern ---- Not my selector name */
+    .sidenav, .fixed_header {
+      background-color: var(--uknown-109);
+    }
+
+    .sidefilter {
+      background-color: var(--uknown-109);
+      border-left-color: var(--nav-border);
+      border-right-color: var(--nav-border);
+    }
+
+    .toc-filter {
+      background: var(--body-backg);
+      color: var(--uknown-110);
+
+      > input {
+        color: var(--uknown-110);
+      }
+    }
+
+    .sideaffix {
+      > div.contribution {
+        > ul {
+          > li {
+            > a.contribution-link {
+              &:hover {
+                background-color: var(--body-backg);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .affix {
+      ul {
+        > li {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            color: var(--uknown-110);
+
+            /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+            &::before, &:hover {
+              color: var(--uknown-020);
+            }
+          }
+
+          .active {
+            /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+            > a {
+              color: var(--a-fg-hover);
+
+              &::before {
+                color: var(--a-fg-hover);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .tryspan {
+      border-color: var(--uknown-020);
+      background-color: var(--body-backg);
+      color: var(--uknown-111);
+
+      &:hover {
+        background-color: var(--uknown-112);
+        color: var(--body-backg);
+        border-color: var(--uknown-112);
+      }
+    }
+
+    .footer {
+      border-top-color: var(--nav-border);
+      background-color: var(--rul-border);
+    }
+
+    /* stylelint-disable-next-line selector-class-pattern ---- Not my selector name */
+    .tabGroup {
+      a {
+        &[role="tab"] {
+          color: var(--uknown-118);
+          border-bottom-color: var(--body-backg);
+
+          &:hover, &:focus, &[aria-selected="true"] {
+            border-bottom-color: var(--uknown-119);
+            color: var(--uknown-119);
+          }
+
+          &:focus {
+            outline: var(--uknown-119);
+          }
+        }
+      }
+
+      section {
+        &[role="tabpanel"] {
+          border: var(--uknown-120);
+        }
+      }
+    }
+
+    /* stylelint-disable-next-line selector-class-pattern ---- Not my selector name */
+    .decalaration, .fieldValue, .parameters, .returns {
+      color: var(--uknown-121);
+    }
+
+    @media print {
+      blockquote, pre, .label {
+        border-color: var(--pre-border);
+      }
+
+      .btn {
+        > .caret {
+          border-top-color: var(--cart-bordr) !important;
+        }
+      }
+
+      .dropup {
+        > .btn {
+          > .caret {
+            border-top-color: var(--cart-bordr) !important;
+          }
+        }
+      }
+
+      .table, .table-bordered {
+        td, th {
+          background-color: var(--body-backg) !important;
+        }
+      }
+    }
+
+    @media screen and (width <= 767px) {
+      .table-responsive {
+        border-color: var(--tabl-bordr);
+      }
+    }
+
+    @media (width >= 768px) {
+      .nav-tabs {
+        .nav-justified {
+          > li {
+            > a {
+              border-bottom-color: var(--tabl-bordr);
+            }
+          }
+
+          > .active {
+            > a {
+              border-bottom-color: var(--body-backg);
+
+              &:focus, &:hover {
+                border-bottom-color: var(--body-backg);
+              }
+            }
+          }
+        }
+      }
+
+      .nav-tabs-justified {
+        > li {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            border-bottom-color: var(--tabl-bordr);
+          }
+        }
+
+        > .active {
+          /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+          > a {
+            border-bottom-color: var(--body-backg);
+
+            /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+            &:focus, &:hover {
+              border-bottom-color: var(--body-backg);
+            }
+          }
+        }
+      }
+
+      .modal-content {
+        -webkit-box-shadow-color: var(--uknown-090);
+        box-shadow: var(--uknown-090);
+      }
+    }
+
+    @media (width <= 767px) {
+      .navbar-default {
+        .navbar-nav {
+          .open {
+            .dropdown-menu {
+              > li {
+                > a {
+                  color: var(--forg-muted);
+
+                  &:focus, &:hover {
+                    color: var(--body-foreg);
+                  }
+                }
+              }
+
+              > .active {
+                /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+                > a {
+                  color: var(--uknown-028);
+                  background-color: var(--nav-border);
+
+                  &:focus, &:hover {
+                    color: var(--uknown-028);
+                    background-color: var(--nav-border);
+                  }
+                }
+              }
+
+              > .disabled {
+                /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+                > a {
+                  color: var(--uknown-020);
+
+                  &:focus, &:hover {
+                    color: var(--uknown-020);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .navbar-inverse {
+        .navbar-nav {
+          .open {
+            .dropdown-menu {
+              > .dropdown-header, .divider {
+                border-color: var(--uknown-071);
+              }
+
+              > li {
+                /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+                > a {
+                  color: var(--uknown-072);
+
+                  /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+                  &:focus, &:hover {
+                    color: var(--body-backg);
+                  }
+                }
+              }
+
+              > .active {
+                /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+                > a {
+                  color: var(--body-backg);
+                  background-color: var(--uknown-071);
+
+                  &:focus, &:hover {
+                    color: var(--body-backg);
+                    background-color: var(--uknown-071);
+                  }
+                }
+              }
+
+              > .disabled {
+                /* stylelint-disable-next-line no-descending-specificity ---- Looping issue */
+                > a {
+                  color: var(--uknown-073);
+
+                  &:focus, &:hover {
+                    color: var(--uknown-073);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media only screen and (width <= 768px) {
+      .toc {
+        li {
+          &::after {
+            color: var(--uknown-110);
+          }
+        }
+      }
+    }
+  }
+}

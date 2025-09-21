@@ -18,7 +18,6 @@
 // @resource     css https://cdn.jsdelivr.net/gh/thakyz/Userscripts/ariyala_shortcuts/styles.min.css
 // @resource     items https://cdn.jsdelivr.net/gh/thakyz/Userscripts/ariyala_shortcuts/item.template.html
 // ==/UserScript==
-/* global jQuery */
 this.jQuery = jQuery.noConflict(true);
 
 const jsonConfig = {

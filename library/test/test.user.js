@@ -11,10 +11,10 @@
 // @require      https://cdn.jsdelivr.net/gh/thakyz/Userscripts/library/nekogaming.userscript.lib.js
 // @resource     example https://cdn.jsdelivr.net/gh/thakyz/Userscripts/library/test/elements.template.html
 // ==/UserScript==
-/* global $, jQuery */
-this.$ = this.jQuery = jQuery.noConflict(true);
+/* global jQuery */
+this.jQuery = jQuery.noConflict(true);
 
-$(document).ready(() => {
+this.jQuery(($) => {
   "use strict";
 
   const run = () => {

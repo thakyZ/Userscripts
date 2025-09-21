@@ -16,6 +16,12 @@
       "DOM",
       "ES2022",
       "ES2021",
+      // "DOM.AsyncIterable",
+      // "DOM.Iterable",
+      // "ES2015",
+      // "ES2016",
+      // "ES6",
+      // "ES2017",
     ],
     // "jsx": "preserve",                                /* Specify what JSX code is generated. */
     // "experimentalDecorators": true,                   /* Enable experimental support for legacy experimental decorators. */
@@ -29,16 +35,16 @@
     // "moduleDetection": "auto",                        /* Control what method is used to detect module-format JS files. */
 
     /* Modules */
-    "module": "NodeNext",                                /* Specify what module code is generated. */
-    "rootDir": "./",                                     /* Specify the root folder within your source files. */
-    "moduleResolution": "NodeNext",                      /* Specify how TypeScript looks up a file from a given module specifier. */
+    "module": "ES2022",                                  /* Specify what module code is generated. */
+    "rootDir": ".",                                      /* Specify the root folder within your source files. */
+    "moduleResolution": "Bundler",                       /* Specify how TypeScript looks up a file from a given module specifier. */
     // "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
     // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     "typeRoots": [                                       /* Specify multiple folders that act like './node_modules/@types'. */
-      "./node_modules/@types",
-      "./types",
-      "./library",
+      "node_modules/@types",
+      "types",
+      "library",
     ],
     "types": [                                           /* Specify type package names to be included without being referenced in a source file. */
       "jest",
@@ -121,11 +127,8 @@
   },
   "exclude": [
     "node_modules",
-    "**/node_modules/*",
-    "**/*.min.*",
-    "./**/*.user.js",
-    "./library/*.userscript.lib.js",
-    "./library/*.userscript.lib.d.ts",
-    "./types/*.ts",
+    "*.min.*",
+    "build",
+    "out",
   ]
 }

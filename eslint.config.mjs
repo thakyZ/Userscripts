@@ -10,10 +10,10 @@ import customRules from "./build/rules-custom.mjs";
 /** @type {FlatCompat} */
 const flatCompat = new FlatCompat();
 
-/** @type {Array<import('eslint-config-greasemonkey').EslintGreaseMonkeyModule>} */
+/** @type {Partial<import('eslint').Linter.Config>[]} */
 const greaseMonkey = flatCompat.extends("greasemonkey");
 
-export default [
+export default typescript_eslint.config(
   eslint.configs.recommended,
   typescript_eslint.configs.recommendedTypeChecked,
   eslint_markdown.configs.recommended,
@@ -35,7 +35,7 @@ export default [
       },
       globals: {
         ...globals.browser,
-        ...greaseMonkey[0].languageOptions.globals,
+        ...greaseMonkey[0].languageOptions?.globals,
         jQuery: "readonly",
         NekoGamingUserScriptLibrary: "readonly",
         GM_config: "readonly",
@@ -63,7 +63,7 @@ export default [
       },
       globals: {
         ...globals.browser,
-        ...greaseMonkey[0].languageOptions.globals,
+        ...greaseMonkey[0].languageOptions?.globals,
       },
     },
     linterOptions: {
@@ -155,4 +155,4 @@ export default [
       camelcase: "off",
     },
   },
-];
+);

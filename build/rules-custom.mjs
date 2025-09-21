@@ -1,3 +1,19 @@
+/**
+ * @typedef MonkeyCodeNamesTypeDef
+ * @type {"string" | "custom" | "custom_global"}
+ */
+
+/**
+ * @function
+ * @typedef GetMonkeyCodeNamesFunc
+ * @type {(type: MonkeyCodeNamesTypeDef) => String[] | { [key: String]: String }}
+ */
+
+/**
+ * Creates a new instance of the custom rules.
+ * @param {GetMonkeyCodeNamesFunc} getMonkeyCodeNames
+ * @returns {import('eslint').Linter.RulesRecord}
+ */
 export default function (getMonkeyCodeNames) {
   return {
     "comma-dangle": "off",

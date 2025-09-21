@@ -1,26 +1,27 @@
-import * as fs from "node:fs";
-import * as path from "node:path";
-import * as url from "url";
-
-/** @type {String} */
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
-
-/**
- * Gets the installed version of a module from the path and name.
- *
- * @param {String} name The name of the module to query.
- * @returns {String | null}
- */
-function getInstalledVersion(name) {
-  const folders = fs.readdirSync(path.join(__dirname, "..", "node_modules"));
-  for (const [, item] of Object.entries(folders)) {
-    if (item.startsWith(name + "@")) {
-      return item;
-    }
-  }
-
-  return null;
-}
+// Unused:
+// import * as fs from "node:fs";
+// import * as path from "node:path";
+// import * as url from "url";
+//
+// /** @type {String} */
+// const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+//
+// /**
+//  * Gets the installed version of a module from the path and name.
+//  *
+//  * @param {String} name The name of the module to query.
+//  * @returns {String | null}
+//  */
+// function getInstalledVersion(name) {
+//   const folders = fs.readdirSync(path.join(__dirname, "..", "node_modules"));
+//   for (const [, item] of Object.entries(folders)) {
+//     if (item.startsWith(name + "@")) {
+//       return item;
+//     }
+//   }
+//
+//   return null;
+// }
 
 /**
  * @typedef MonkeyCodeNamesTypeDef
@@ -39,22 +40,23 @@ function getInstalledVersion(name) {
  */
 
 /**
- * @typedef {Object} EslintGreaseMonkeyModule
- * @property {EslintGreaseMonkeyModule_LanguageOptions} languageOptions
- */
-
-/**
  * Gets a list of monkey code names. And parses them into types.
  *
- * @param {EslintGreaseMonkeyModule[]} eslintGreaseMonkeyModule
+ * @param {Partial<import('eslint').Linter.Config>[]} config
  * @returns {GetMonkeyCodeNamesFunc} }
  */
-function getMonkeyCodeNames(eslintGreaseMonkeyModule) {
+function getMonkeyCodeNames(config) {
   /** @type {GetMonkeyCodeNamesFunc} */
   const output = (type) => {
+    /** @type {import('eslint').Linter.Globals | undefined} */
+    const entries = config[0]?.languageOptions?.globals;
+    if (!entries) {
+      return [];
+    }
+
     /** @type {String[]} */
     const names = [
-      ...Object.keys(eslintGreaseMonkeyModule[0].languageOptions.globals),
+      ...Object.keys(entries),
       "GM_configStruct",
       "GM_configField",
       "GM_config",

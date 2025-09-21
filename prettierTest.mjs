@@ -1,16 +1,22 @@
-const fs = require("fs");
-const path = require("path");
+import { readdirSync, statSync, readFileSync } from "fs";
+import { resolve, extname, basename } from "path";
 
 (function (module) {
   const blacklistedDir = [".git", ".vscode", "node_modules"];
 
+  /**
+   * Walks a directory visiting all files and direcotires.
+   * @param {string} directory The directory to walk.
+   * @returns {string[]}
+   */
   function walk(directory) {
+    /** @type {string[]} */
     let results = [];
-    const directoryItems = fs.readdirSync(directory);
+    const directoryItems = readdirSync(directory);
     for (const [, file] of Object.entries(directoryItems)) {
       if (blacklistedDir.includes(file) === false) {
-        const filePath = path.resolve(directory, file);
-        const stats = fs.statSync(filePath);
+        const filePath = resolve(directory, file);
+        const stats = statSync(filePath);
 
         if (stats && stats.isDirectory()) {
           results = results.concat(walk(filePath));
@@ -32,9 +38,9 @@ const path = require("path");
 
     for (const [, file] of Object.entries(files)) {
       /** @type {String} */
-      const extension = path.extname(file);
+      const extension = extname(file);
       /** @type {String} */
-      const fileData = fs.readFileSync(file, { encoding: "utf-8", flag: "r+" });
+      const fileData = readFileSync(file, { encoding: "utf-8", flag: "r+" });
       if (extension === ".js") {
         /** @type {RegExp} */
         const userScriptJQueryDetect = /\/\/ ==UserScript==\n(?:\/\/ @.+\n)+\/\/ ==\/UserScript==\n\/\* global .*? \*\/\nthis\.\$ = this\.jQuery = jQuery\.noConflict\(true\);/;
@@ -43,11 +49,19 @@ const path = require("path");
         if (userScriptJQueryDetect.test(fileData)) {
           /** @type {RegExpMatchArray | null} */
           const matched = fileData.match(userScriptJQueryDetect);
-          results[`**/${path.basename(file)}`] = matched[0].split("\n").length;
+          if (matched === null) {
+            continue;
+          }
+
+          results[`**/${basename(file)}`] = matched[0].split("\n").length;
         } else if (userScriptDetect.test(fileData)) {
           /** @type {RegExpMatchArray | null} */
           const matched = fileData.match(userScriptDetect);
-          results[`**/${path.basename(file)}`] = matched[0].split("\n").length;
+          if (matched === null) {
+            continue;
+          }
+
+          results[`**/${basename(file)}`] = matched[0].split("\n").length;
         }
       } else if (extension === ".css") {
         /** @type {RegExp} */
@@ -55,7 +69,11 @@ const path = require("path");
         if (userStyleDetect.test(fileData)) {
           /** @type {RegExpMatchArray | null} */
           const matched = fileData.match(userStyleDetect);
-          results[`**/${path.basename(file)}`] = matched[0].split("\n").length;
+          if (matched === null) {
+            continue;
+          }
+
+          results[`**/${basename(file)}`] = matched[0].split("\n").length;
         }
       }
     }
